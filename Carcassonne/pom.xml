@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>it.polimi.dei.swknights</groupId>
-  <artifactId>carcassonne</artifactId>
+  <artifactId>Carcassonne</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -22,4 +22,15 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <description>Gioco di strategia ispirato al gioco da tavolo Carcassonne.
+Il gioco è sviluppato in Java, nell'ambito del corso &quot;Prova Finale (Ingegneria del Software)&quot; edizione AA 2011/2012.
+
+Il progetto è sviluppato da:
+
+Edoardo Pasi - 741927
+Davide Tateo - 743013
+
+Il referente è Davide Tateo.
+
+</description>
 </project>
