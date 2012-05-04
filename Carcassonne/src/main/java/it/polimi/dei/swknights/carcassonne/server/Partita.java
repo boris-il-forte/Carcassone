@@ -1,9 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.server;
 
-import java.util.Vector;
-import unattachedCollaboration.View;
-import Integer;
+import java.util.List;
+
+import it.polimi.dei.swknights.carcassonne.server.Controller.Controllore;
 import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
+import it.polimi.dei.swknights.carcassonne.server.ViewProxy.View;
 
 public class Partita {
 
@@ -11,7 +12,7 @@ public class Partita {
 
   public Integer idPartita;
 
-  public Controller controller;
+  public Controllore controller;
 
   public View view;
 
@@ -21,10 +22,9 @@ public class Partita {
    * 
    * @element-type CarcassonneServer
    */
-    public Vector  myDatiPartita;
-    public Vector  myControllore;
-    public Vector  myDatiPartita;
-    public Vector  myControllore;
-    public Vector  myView;
+    public List  myDatiPartita;
+    public List  myControllore;
+
+    public List  myView;
 
 }

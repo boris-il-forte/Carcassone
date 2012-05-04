@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
-import java.util.Vector;
+import java.util.List;
 import Integer;
 
 public class ComandoUtenteEvent {
@@ -9,6 +9,6 @@ public class ComandoUtenteEvent {
 
   public Integer newAttr;
 
-    public Vector  myComando;
+    public List  myComando;
 
 }

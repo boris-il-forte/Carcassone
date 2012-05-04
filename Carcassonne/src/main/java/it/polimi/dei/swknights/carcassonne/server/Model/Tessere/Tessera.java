@@ -1,6 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
-import java.util.Vector;
+import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
+
+import java.util.List;
 
 public abstract class Tessera {
 
@@ -18,31 +20,11 @@ public abstract class Tessera {
    * 
    * @element-type DatiPartita
    */
-    public Vector  Caratterizzata;
-        public Vector  Composta;
-    public Vector  myLink;
-    public Vector  myElemento;
-    public Vector  myConfine;
-      public Vector  myConfine;
-public class Giocatore {
+    public List  Caratterizzata;
+        public List  Composta;
+    public List  myLink;
+    public List  myElemento;
+    public List  myConfine;
 
-  public ListaSegnalini;
-
-  private Integer Punti;
-
-        public Vector  myGiocatore;
-    public Vector  myGiocatore;
-    public Vector  mySegnalino;
-    public Vector  mySegnalino;
-
-  public void esulta() {
-  }
-
-  public void newOperation() {
-  }
-
-  public void newOperation() {
-  }
-
-}
+    
 }

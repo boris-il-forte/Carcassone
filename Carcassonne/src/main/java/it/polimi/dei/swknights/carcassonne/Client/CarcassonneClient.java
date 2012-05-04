@@ -1,8 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.Client;
 
-import java.util.Vector;
-import it.polimi.dei.swknights.carcassonne.server.Controller;
-import Integer;
+import java.util.List;
+
+import it.polimi.dei.swknights.carcassonne.Client.ControllerProxy.*;
+
 import it.polimi.dei.swknights.carcassonne.server.ViewProxy.View;
 
 public class CarcassonneClient {
@@ -13,7 +14,7 @@ public class CarcassonneClient {
 
   public Integer idPartita;
 
-    public Vector  myController;
-    public Vector  myView;
+    public List  myController;
+    public List  myView;
 
 }

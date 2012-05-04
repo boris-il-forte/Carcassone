@@ -1,4 +1,4 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-class Citta extends Costruzione, Costruzione {
+class Citta extends Costruzione {
 }

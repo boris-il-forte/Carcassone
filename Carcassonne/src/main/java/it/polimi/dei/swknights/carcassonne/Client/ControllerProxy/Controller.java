@@ -5,7 +5,12 @@ import it.polimi.dei.swknights.carcassonne.Events.ViewListener;
 public class Controller implements ViewListener {
 
   
-  public void request() {
-  }
+	  public void request() {
+	  }
+
+	public void riceviInput() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
