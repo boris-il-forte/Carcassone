@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Giocatore;
 
-import it.polimi.dei.swknights.carcassonne.exceptions.finitiColoriDisponibiliException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.finitiColoriDisponibiliException;
 
 import java.awt.*;
 import java.util.ArrayDeque;

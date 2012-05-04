@@ -1,7 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
-import it.polimi.dei.swknights.carcassonne.exceptions.PartitaFinitaException;
-import it.polimi.dei.swknights.carcassonne.exceptions.finitiColoriDisponibiliException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.finitiColoriDisponibiliException;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.FactoryGiocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.FactoryTessere;
@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
 
 public class DatiPartita
 {
@@ -24,6 +23,7 @@ public class DatiPartita
 		this.factoryGiocatori = new FactoryGiocatore();
 		this.inizializzaPilaTessere();
 		this.inizializzaGiocatori();
+		this.inizializzaAreaDiGioco();
 	}
 
 

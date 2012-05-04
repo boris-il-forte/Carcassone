@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne.exceptions;
+package it.polimi.dei.swknights.carcassonne.Exceptions;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 

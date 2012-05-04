@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Giocatore;
 
-import it.polimi.dei.swknights.carcassonne.exceptions.SegnaliniFinitiException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
 import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 
 import java.awt.Color;
