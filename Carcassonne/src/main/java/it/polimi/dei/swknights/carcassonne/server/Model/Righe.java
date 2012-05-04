@@ -1,13 +1,14 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
-import java.util.Vector;
+import java.util.List;
+import java.util.Map;
 
 public class Righe {
 
-  private Map<Integer><Righe> Tessere;
+  private Map<Integer,Righe> Tessere;
 
-    public Vector  myTessera;
-    public Vector  Contengono;
+    public List  myTessera;
+    public List  Contengono;
     /**
    * 
    * @element-type AreaDiGioco

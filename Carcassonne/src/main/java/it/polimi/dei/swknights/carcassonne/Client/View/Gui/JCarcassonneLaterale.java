@@ -1,11 +1,11 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import java.util.Vector;
+import java.util.List;
 
 public class JCarcassonneLaterale {
 
-    public Vector  myGUI;
-    public Vector  myJCarcassonneScorrimentoMappa;
-    public Vector  myJCarcassonneZoom;
+    public List  myGUI;
+    public List  myJCarcassonneScorrimentoMappa;
+    public List  myJCarcassonneZoom;
 
 }

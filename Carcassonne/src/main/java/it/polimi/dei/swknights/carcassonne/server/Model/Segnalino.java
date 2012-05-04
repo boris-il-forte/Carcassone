@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
-import java.util.Vector;
+import java.util.List;
 
 public class Segnalino {
 
@@ -11,6 +11,6 @@ public class Segnalino {
    * 
    * @element-type Giocatore
    */
-      public Vector  myGiocatore;
+      public List  myGiocatore;
 
 }

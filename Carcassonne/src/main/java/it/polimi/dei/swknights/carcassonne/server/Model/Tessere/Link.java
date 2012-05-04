@@ -1,7 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
-import Integer;
-import Boolean;
 
 public class Link {
 

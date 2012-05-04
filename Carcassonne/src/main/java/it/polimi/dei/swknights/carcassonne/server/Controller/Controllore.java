@@ -1,9 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Events.ViewListener;
-import java.util.Vector;
+
+import java.util.EventListener;
+import java.util.List;
 import it.polimi.dei.swknights.carcassonne.Events.EventSource;
-import Integer;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
 
@@ -19,10 +20,22 @@ public class Controllore implements ViewListener, EventSource {
 
   public Integer newAttr;
 
-    public Vector  myDatiPartita;
-    public Vector  myTessera;
-    public Vector  myContaPunti;
-    public Vector  Si appoggia a;
-      public Vector  myPartita;
+    public List  myDatiPartita;
+    public List  myTessera;
+    public List  myContaPunti;
+    public List  SiAppoggiaA;
+      public List  myPartita;
+	public void addListener(EventListener eventListener) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void removeListener(EventListener eventListener) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void riceviInput() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

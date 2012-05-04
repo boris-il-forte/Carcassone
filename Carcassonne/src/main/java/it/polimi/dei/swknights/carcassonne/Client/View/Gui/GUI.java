@@ -1,10 +1,13 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import java.util.Vector;
-import it.polimi.dei.swknights.carcassonne.Client.View.View;
-import it.polimi.dei.swknights.carcassonne.ActionLister;
+import java.util.List;
 
-public class GUI extends View implements ActionLister {
+import javax.swing.JFrame;
+
+import it.polimi.dei.swknights.carcassonne.Client.View.View;
+import java.awt.event.*;
+
+public class GUI extends View implements ActionListener {
 
   public JFrame finestra;
 
@@ -14,11 +17,16 @@ public class GUI extends View implements ActionLister {
 
   public JCarcassonneTavolo Tavolo;
 
-    public Vector  myJCarcassonneMenu;
-    public Vector  myJCarcassonneLaterale;
-    public Vector  myJCarcassonneTavolo;
+    public List  myJCarcassonneMenu;
+    public List  myJCarcassonneLaterale;
+    public List  myJCarcassonneTavolo;
 
   public void showGui() {
   }
+
+public void actionPerformed(ActionEvent arg0) {
+	// TODO Auto-generated method stub
+	
+}
 
 }

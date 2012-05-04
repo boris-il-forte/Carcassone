@@ -1,12 +1,12 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import java.util.Vector;
+import java.util.List;
 
-public class JCarcassonneTavolo extends JCarcassonneLaterale, GUI {
+public class JCarcassonneTavolo {
 
-  private List<JCarccassoneTessera> listaTessere;
+  private List<JCarcassonneTessera> listaTessere;
 
-    public Vector  myGUI;
-    public Vector  myJCarcassonneTessera;
+    public List  myGUI;
+    public List  myJCarcassonneTessera;
 
 }

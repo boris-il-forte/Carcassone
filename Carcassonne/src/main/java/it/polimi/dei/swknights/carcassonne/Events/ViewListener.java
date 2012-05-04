@@ -1,9 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
-import EventListener;
-import it.polimi.dei.swknights.carcassonne.server.Controller.EventListener;
+import java.util.EventListener;
 
-public interface ViewListener extends EventListener, EventListener {
+
+
+public interface ViewListener extends EventListener {
 
   public void riceviInput();
 

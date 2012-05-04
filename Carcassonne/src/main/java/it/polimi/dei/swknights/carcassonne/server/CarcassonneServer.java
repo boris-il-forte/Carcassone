@@ -1,12 +1,12 @@
 package it.polimi.dei.swknights.carcassonne.server;
 
-import java.util.Vector;
+import java.util.List;
 
 public class CarcassonneServer {
 
   public List<Partita> partite;
 
-    public Vector  Gestisce;
-    public Vector  myServerSocket;
+    public List  Gestisce;
+    public List  myServerSocket;
 
 }
