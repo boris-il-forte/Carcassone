@@ -13,4 +13,10 @@ public class FactoryTessere {
   return null;
   }
 
+	public boolean tesseraDisponibile()
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

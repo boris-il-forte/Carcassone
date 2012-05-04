@@ -1,16 +1,19 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
-import java.util.List;
+import java.awt.Color;
 
-public class Segnalino {
-
-  private Color colore;
-
-        /* {usage=1..n}*/
-    /**
-   * 
-   * @element-type Giocatore
-   */
-      public List  myGiocatore;
+public class Segnalino
+{
+	public Segnalino(Color colore)
+	{
+		this.colore=colore;
+	}
+	
+	public Color getColore()
+	{
+		return this.colore;
+	}
+	
+	private Color colore;
 
 }
