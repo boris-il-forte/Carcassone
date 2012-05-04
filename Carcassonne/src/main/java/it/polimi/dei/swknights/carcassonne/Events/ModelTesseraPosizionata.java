@@ -1,7 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
-public class ModelTesseraPosizionata extends ModelTessera, ModelTessera {
+import it.polimi.dei.swknights.carcassonne.Coordinate;
 
-  public Posizione coordinate;
-
+public class ModelTesseraPosizionata extends ModelTessera
+{
+  public Coordinate coordinate;
 }

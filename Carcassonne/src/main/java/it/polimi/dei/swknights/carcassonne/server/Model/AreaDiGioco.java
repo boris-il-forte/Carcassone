@@ -1,8 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.exceptions.RigaNonTrovataException;
-import it.polimi.dei.swknights.carcassonne.exceptions.TesseraNonTrovataException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.RigaNonTrovataException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.util.HashMap;
