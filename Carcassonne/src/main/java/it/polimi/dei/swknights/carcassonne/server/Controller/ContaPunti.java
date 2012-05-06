@@ -49,7 +49,7 @@ public class ContaPunti
 			costruzione = this.getCostruzioneAggregata(confinanti, costruzione);
 			this.aggiungiNuoviConfini(nuoviConfini, costruzione);
 		}
-		// TODO manca controllo costruzione finita! qui? penso di no!
+		// TODO manca controllo costruzione finita! (due righe) qui? penso di no!
 	}
 
 	private Costruzione getCostruzioneAggregata(List<Confine> listaConfini, Costruzione costruzione)
