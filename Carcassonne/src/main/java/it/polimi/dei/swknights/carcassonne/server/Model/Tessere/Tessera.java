@@ -6,25 +6,29 @@ import java.util.List;
 
 public abstract class Tessera {
 
-  protected Elemento nord;
+  protected final Elemento nord;
 
-  protected Elemento sud;
+  protected final Elemento sud;
 
-  protected Elemento est;
+  protected final Elemento est;
 
-  protected Elemento ovest;
+  protected final Elemento ovest;
 
   protected Link link;
 
-    /**
-   * 
-   * @element-type DatiPartita
-   */
-    public List  Caratterizzata;
-        public List  Composta;
-    public List  myLink;
-    public List  myElemento;
-    public List  myConfine;
+  public Tessera( Elemento nord, Elemento sud, Elemento ovest, Elemento est)
+  {
+	  this.nord = nord;
+	  this.sud = sud;
+	  this.ovest = ovest;
+	  this.est = est;
+  }
 
+ 
+  
+
+
+
+  
     
 }
