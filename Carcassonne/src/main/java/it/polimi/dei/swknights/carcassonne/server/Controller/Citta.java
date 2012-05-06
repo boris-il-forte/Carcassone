@@ -14,7 +14,6 @@ class Citta extends Costruzione
 	@Override
 	protected int contaPezziComuni(Costruzione costruzione)
 	{
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }
