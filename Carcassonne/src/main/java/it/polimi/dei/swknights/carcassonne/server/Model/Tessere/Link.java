@@ -5,15 +5,15 @@ public class Link {
 
   public Boolean SN;
 
-  public Integer SE;
+  public Boolean SE;
 
-  public Integer OE;
+  public Boolean OE;
 
-  public Integer SO;
+  public Boolean SO;
 
-  public Integer NE;
+  public Boolean NE;
 
-  public Integer NO;
+  public Boolean NO;
 
       public Tessera myTessera;
 
