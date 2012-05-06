@@ -1,16 +1,30 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import java.util.List;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
-class Confine {
+class Confine
+{
+	public Confine(Tessera tessera, Elemento lato)
+	{
+		this.tessera = tessera;
+		this.lato = lato;
+	}
 
-  public Tessera tessera;
+	@Override
+	public boolean equals(Object object)
+	{
+		boolean isEqual= false;
+		if (object instanceof Confine)
+		{
+			Confine confine = (Confine) object; 
+			if(this.lato==confine.lato && this.tessera==confine.tessera)isEqual= true;
+		}
+		return isEqual;
+	}
 
-  public Elemento lato;
+	private final Tessera	tessera;
 
-    public List  myTessera;
-    public List  myElemento;
+	private final Elemento	lato;
 
 }
