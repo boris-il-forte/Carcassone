@@ -1,7 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
 import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
-import java.util.List;
 
 /**
  * That class represents one Carcassonne element, it can be
