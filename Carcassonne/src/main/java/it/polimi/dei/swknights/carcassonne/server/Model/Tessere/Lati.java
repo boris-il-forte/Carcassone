@@ -1,7 +1,11 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
-
+/**
+ * That class encapsulate the four elements of a card
+ * @author Edo & Dave
+ *
+ */
 public class Lati
 {
 
@@ -13,13 +17,22 @@ public class Lati
 		this.est = est;
 	}
 
+	/**
+	 * gets the element on the specified cardinal point
+	 * @param puntoCardinale  cardinal point
+	 * @return the element on that cardinal point
+	 */
 	public Elemento getElementoInDirezione(PuntoCardinale puntoCardinale)
 	{
 		Elemento[] elementi =
 		{ this.nord, this.sud, this.ovest, this.est };
 		return elementi[puntoCardinale.ordinal()];
 	}
-	
+	/**
+	 * gets the element on the opposite direction of the specified point
+	 * @param puntoCardinale  cardinal point
+	 * @return the element on that cardinal point
+	 */
     public Elemento getElementoInDirezioneOpposta(PuntoCardinale puntoCardinale)
     {
     	puntoCardinale = puntoOpposto(puntoCardinale);
@@ -45,7 +58,9 @@ public class Lati
     	}
     	
     }
-    
+    /**
+     * rotate 90° clockwise the 4 elements of the card.
+     */
 	public void ruota()
 	{
 		Elemento nordTmp = this.nord;

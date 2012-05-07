@@ -8,6 +8,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * That class is the main component of the factoy design pattern:
+ * it creates the cards
+ * @author Edo & Dave
+ *
+ */
 
 public class FactoryTessereNormali extends FactoryTessere {
 
@@ -92,6 +98,13 @@ public class FactoryTessereNormali extends FactoryTessere {
 		return false;
 	}
 
+	/** gets an element of the specified initial
+	 *  C stays for City
+	 *  N stay for Nothing
+	 *  S stays for Street
+	 * @param siglaElemento: the initial of the wanted element
+	 * @return: the wanted element
+	 */
 	private  Elemento charToElemento(char siglaElemento)
 	{
 		if (siglaElemento=='S')
@@ -108,9 +121,11 @@ public class FactoryTessereNormali extends FactoryTessere {
 	}
 
 	
-	
-	////scrive in this.descrizioneTessere il contenuto di tessere.dat, 
-	//  una riga -> una stringa dell'ArrayList
+    /**
+     * Fills cardDescriptions with all the lines included in the cards file	
+     * @param pathFileTessere: path of the cards file
+     */
+
 	private void estraiDescrizioniTessere(String pathFileTessere)
 	{
 		
