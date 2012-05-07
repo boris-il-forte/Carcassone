@@ -1,20 +1,33 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
+public class Link
+{
 
-public class Link {
+	public void ruota()
+	{
+		boolean tempSN = this.SN;
+		this.SN = this.OE;
+		this.OE = tempSN;
+		boolean tempSE = this.SE;
+		this.SE = this.NE;
+		this.NE = this.NO;
+		this.NO = this.SO;
+		this.SO = tempSE;
 
-  public Boolean SN;
+	}
 
-  public Boolean SE;
+	public Boolean SN;
 
-  public Boolean OE;
+	public Boolean SE;
 
-  public Boolean SO;
+	public Boolean OE;
 
-  public Boolean NE;
+	public Boolean SO;
 
-  public Boolean NO;
+	public Boolean NE;
 
-      public Tessera myTessera;
+	public Boolean NO;
+
+	public Tessera myTessera;
 
 }
