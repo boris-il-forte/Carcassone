@@ -1,11 +1,18 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
-public class TesseraNormale extends Tessera {
-	
-	  public TesseraNormale( Elemento nord, Elemento sud, Elemento ovest, Elemento est)
-	  {
-		  super(nord, sud, ovest, est);
-		  
-	  }
-	
+public class TesseraNormale extends Tessera
+{
+
+	public TesseraNormale(Lati lati, Link link)
+	{
+		super(lati, link);
+	}
+
+	@Override
+	public String toString()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

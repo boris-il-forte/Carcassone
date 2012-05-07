@@ -1,8 +1,14 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
+public class Citta extends Elemento
+{
 
-public class Citta extends Elemento {
+	public Integer punti=2;
 
-  public Integer punti;
+	@Override
+	int getPunteggio()
+	{
+		return punti;
+	}
 
 }

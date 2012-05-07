@@ -54,6 +54,7 @@ public class FactoryTessereNormali extends FactoryTessere {
 		Elemento est;
 		
 		Link link= new Link();
+		Lati lati;
 		
 		String [] partiDescrizione;
 	    partiDescrizione = descrizione.split(" ");
@@ -63,6 +64,8 @@ public class FactoryTessereNormali extends FactoryTessere {
 	     sud = this.charToElemento( partiDescrizione[1].charAt(2) );
 	     ovest = this.charToElemento( partiDescrizione[2].charAt(2) );
 	     est = this.charToElemento( partiDescrizione[3].charAt(2) );
+	     
+	     lati =  new Lati(nord, sud, ovest, est);
 	     
 	     link.SN = charToBoolLink( partiDescrizione[4].charAt(3) );
 	     link.NE = charToBoolLink( partiDescrizione[5].charAt(3) );
@@ -74,8 +77,7 @@ public class FactoryTessereNormali extends FactoryTessere {
 
 	     
 	     
-	     tessera = new TesseraNormale(nord, sud, ovest, est);
-	     tessera.link = link;
+	     tessera = new TesseraNormale(lati, link);
 	     
 		return tessera;
 	}
