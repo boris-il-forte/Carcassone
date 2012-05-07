@@ -15,6 +15,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
 
+/** 
+ * This class is the representation of the game data, it allows basic
+ * operations involving players; handle the turns
+ * @author Edo & Dave
+ *
+ */
+
 public class DatiPartita
 {
 
@@ -32,6 +39,12 @@ public class DatiPartita
 		return areaDiGioco;
 	}
 
+	/**
+	 * Return the player of the given color
+	 * @param colore: the color of the player to be found
+	 * @return the player of that color
+	 */
+	
 	public Giocatore getGiocatore(Color colore)
 	{
 		
@@ -48,13 +61,21 @@ public class DatiPartita
 	{
 		return this.giocatoreCorrente;
 	}
-	
+	/**
+	 * 	changes the current turn to the next
+	 */
 	public void nextTurno()
 	{
 		this.giocatoreCorrente = this.giocatori.poll();
 		this.giocatori.add(this.giocatoreCorrente);
 	}
 
+	/**
+	 * gets a card from  the deck if there is any available
+	 * @return the card on the top of the desk
+	 * @throws PartitaFinitaException if the cards are finished, and so the game
+	 * ends
+	 */
 	public Tessera getTessera() throws PartitaFinitaException
 	{
 		int index = pilaTessere.size();
@@ -67,7 +88,10 @@ public class DatiPartita
 		else throw new PartitaFinitaException();
 
 	}
-
+    /**
+     * Add a player to the current group of players
+     * @throws finitiColoriDisponibiliException
+     */
 	public void addGiocatore() throws finitiColoriDisponibiliException
 	{
 	    Giocatore playerToAdd ;

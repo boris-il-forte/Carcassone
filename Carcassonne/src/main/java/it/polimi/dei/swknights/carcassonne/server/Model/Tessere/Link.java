@@ -1,8 +1,14 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
-
+/**
+ * That class represent all the connections on a card e.g. a street that cross the card
+ * @author Edo & Dave
+ *
+ */
 public class Link
 {
-
+    /**
+     * rotate the connections according to a clockwise 90° rotation
+     */
 	public void ruota()
 	{
 		boolean tempSN = this.SN;
