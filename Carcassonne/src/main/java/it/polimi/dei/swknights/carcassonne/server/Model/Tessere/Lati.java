@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,36 +32,7 @@ public class Lati
 		{ this.nord, this.sud, this.ovest, this.est };
 		return elementi[puntoCardinale.toInt()];
 	}
-	/**
-	 * gets the element on the opposite direction of the specified point
-	 * @param puntoCardinale  cardinal point
-	 * @return the element on that cardinal point
-	 */
-    public Elemento getElementoInDirezioneOpposta(PuntoCardinale puntoCardinale)
-    {
-    	puntoCardinale = puntoOpposto(puntoCardinale);
-        return getElementoInDirezione(puntoCardinale);
-        		
-    }
 
-    private PuntoCardinale puntoOpposto(PuntoCardinale puntoCardinale)
-    {
-    	switch(puntoCardinale)
-    	{
-    	    case nord:
-    	    	return PuntoCardinale.sud;
-    	    case sud:
-    	    	return PuntoCardinale.nord;
-    	    case ovest:
-    	    	return PuntoCardinale.est;
-    	    case est:
-    	    	return PuntoCardinale.ovest;
-    	    default:
-    	    	return PuntoCardinale.nord;
-    	    	
-    	}
-    	
-    }
     /**
      * rotate 90° clockwise the 4 elements of the card.
      */
@@ -73,7 +43,6 @@ public class Lati
 		this.ovest = this.sud;
 		this.sud = this.est;
 		this.est = nordTmp;
-	
 	}
 	
 	public Map<Costruzione, PuntoCardinale> getListaCostruzioniPrimitive(Tessera tessera)

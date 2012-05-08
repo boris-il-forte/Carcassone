@@ -1,20 +1,16 @@
 package it.polimi.dei.swknights.carcassonne.Client;
 
-import java.util.List;
-
 import it.polimi.dei.swknights.carcassonne.Client.ControllerProxy.*;
 
 import it.polimi.dei.swknights.carcassonne.server.ViewProxy.View;
 
-public class CarcassonneClient {
+public class CarcassonneClient
+{
 
-  public View view;
+	public View			view;
 
-  public Controller controller;
+	public Controller	controller;
 
-  public Integer idPartita;
-
-    public List  myController;
-    public List  myView;
+	public Integer		idPartita;
 
 }
