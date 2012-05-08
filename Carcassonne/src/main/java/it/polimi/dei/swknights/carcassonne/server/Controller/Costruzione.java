@@ -27,13 +27,26 @@ public abstract class Costruzione
 	 * @param tessera
 	 *            the first element of the construction
 	 */
-
-
+	
 	public Costruzione(Tessera tessera)
 	{
 		this.listaSegnalini = new ArrayList<Segnalino>();
 		this.elementi = new HashSet<Tessera>();
+		
+		this.elementi.add(tessera);
 	}
+	
+	public Costruzione getCopy(Tessera tessera)
+	{
+		Costruzione costruzioneCopia=null;
+		if (this instanceof CostruzioneCitta)
+			costruzioneCopia = new CostruzioneCitta(tessera);
+		if (this instanceof CostruzioneStrada)
+			costruzioneCopia = new CostruzioneStrada(tessera);
+		
+		return costruzioneCopia;
+	}
+	
 
 	/**
 	 * Method used to join two constructions
