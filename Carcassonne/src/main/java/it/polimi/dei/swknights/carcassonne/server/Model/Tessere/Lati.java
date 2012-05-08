@@ -1,7 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
@@ -75,14 +76,19 @@ public class Lati
 	
 	}
 	
-	public List<Costruzione> getListaCostruzioniPrimitive(Tessera tessera)
+	public Map<Costruzione, PuntoCardinale> getListaCostruzioniPrimitive(Tessera tessera)
 	{
-		List<Costruzione> listaCostruzioni = new ArrayList<Costruzione>();
-		Elemento[] elementi =  { this.nord, this.sud, this.est, this.ovest };
+		Map<Costruzione, PuntoCardinale> listaCostruzioni = new HashMap<Costruzione, PuntoCardinale>();
+		Elemento[] elementi = 
+			{ this.nord, this.sud, this.est, this.ovest };
+		PuntoCardinale[] punti =
+			{ PuntoCardinale.nord, PuntoCardinale.sud, PuntoCardinale.est, PuntoCardinale.ovest};
+		int indicePuntiCardinali=0;
 		for(Elemento elemento : elementi)
 		{
 			Costruzione costruzione = elemento.getCostruzione(tessera);
-			if(costruzione != null) listaCostruzioni.add(costruzione);
+			if(costruzione != null) listaCostruzioni.put(costruzione, punti[indicePuntiCardinali]);
+			indicePuntiCardinali++;
 		}
 		return listaCostruzioni;
 	}
