@@ -1,6 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 /**
  * That class encapsulate the four elements of a card
  * @author Edo & Dave
@@ -26,7 +30,7 @@ public class Lati
 	{
 		Elemento[] elementi =
 		{ this.nord, this.sud, this.ovest, this.est };
-		return elementi[puntoCardinale.ordinal()];
+		return elementi[puntoCardinale.toInt()];
 	}
 	/**
 	 * gets the element on the opposite direction of the specified point
@@ -69,6 +73,18 @@ public class Lati
 		this.sud = this.est;
 		this.est = nordTmp;
 	
+	}
+	
+	public List<Costruzione> getListaCostruzioniPrimitive(Tessera tessera)
+	{
+		List<Costruzione> listaCostruzioni = new ArrayList<Costruzione>();
+		Elemento[] elementi =  { this.nord, this.sud, this.est, this.ovest };
+		for(Elemento elemento : elementi)
+		{
+			Costruzione costruzione = elemento.getCostruzione(tessera);
+			if(costruzione != null) listaCostruzioni.add(costruzione);
+		}
+		return listaCostruzioni;
 	}
 
 	private Elemento nord;

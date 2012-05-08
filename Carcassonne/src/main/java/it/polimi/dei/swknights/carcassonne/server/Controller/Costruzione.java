@@ -18,7 +18,7 @@ import java.util.Set;
  * 
  */
 
-abstract class Costruzione
+public abstract class Costruzione
 {
 	/**
 	 * Default constructor Simply initialize a new construction whit at least
@@ -27,6 +27,7 @@ abstract class Costruzione
 	 * @param tessera
 	 *            the first element of the construction
 	 */
+
 
 	public Costruzione(Tessera tessera)
 	{
