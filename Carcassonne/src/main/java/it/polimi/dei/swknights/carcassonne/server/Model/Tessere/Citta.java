@@ -1,4 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
+
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
+import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneCitta;
+
 /**
  * That class represents one of the Carcassonne main elements: the Cities
  * @author Edo & Dave
@@ -6,6 +10,11 @@ package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
  */
 public class Citta extends Elemento
 {
+
+	protected Citta()
+	{
+		super(TipoElemento.citta);
+	}
 
 	public Integer punti=2;
 
@@ -16,6 +25,13 @@ public class Citta extends Elemento
 	int getPunteggio()
 	{
 		return punti;
+	}
+
+	@Override
+	Costruzione getCostruzione(Tessera tessera)
+	{
+		// TODO Auto-generated method stub
+		return new CostruzioneCitta(tessera);
 	}
 
 }

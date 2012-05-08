@@ -4,9 +4,9 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
 
-class Strade extends Costruzione
+public class CostruzioneStrada extends Costruzione
 {
-	public Strade(Tessera tessera)
+	public CostruzioneStrada(Tessera tessera)
 	{
 		super(tessera);
 	}

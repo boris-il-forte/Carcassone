@@ -1,6 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
+import java.util.List;
+
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 
 /**
  * This class is the abstract representation of the cards that can be placed on
@@ -60,9 +63,13 @@ public abstract class Tessera
 		Elemento elementoSuo = this.lati
 				.getElementoInDirezioneOpposta(puntoCardinale);
 
-		return (elementoMio.equals(elementoSuo)); // TODO: bene equals o
-													// sonoSimili?
-
+		return (elementoMio.stessoTipoElemento(elementoSuo));
+	}
+	
+	public List<Costruzione> getCostruzioni()
+	{
+		List<Costruzione> listCostruzione = lati.getListaCostruzioniPrimitive(this);
+		
 	}
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
