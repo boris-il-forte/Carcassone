@@ -9,7 +9,7 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
  *
  */
 
-class Confine
+public class Confine
 {
 	/**
 	 * Constructor to create a border of a construction

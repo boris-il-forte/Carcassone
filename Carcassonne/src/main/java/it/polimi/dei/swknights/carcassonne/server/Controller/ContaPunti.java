@@ -1,12 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.server.Model.AreaDiGioco;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
@@ -103,7 +101,7 @@ public class ContaPunti
 		List<Costruzione> costruzioni = this.getCostruzioniTessera(tessera);
 		for (Costruzione costruzione : costruzioni)
 		{
-			List<Confine> confinanti = this.calcolaConfinanti(coordinateTessera);
+			List<Confine> confinanti = null; //TODO da modificare!!!!
 			mapCostruzioni.put(costruzione, confinanti);
 		}
 		return mapCostruzioni;

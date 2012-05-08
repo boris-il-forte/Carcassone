@@ -54,7 +54,7 @@ public class FactoryTessereNormali extends FactoryTessere
 
 	private Tessera tesseraDaDescrzione(String descrizione)
 	{
-		// TODO: controllo sia buona descrizione come??
+		// TODO: controllo sia buona descrizione con regexp
 
 		Tessera tessera;
 		Elemento nord;
@@ -68,6 +68,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		String[] partiDescrizione;
 		partiDescrizione = descrizione.split(" ");
 		
+		//TODO: si può migliorare? spero di sì!
 		nord = this
 				.charToElemento(partiDescrizione[PuntoCardinale.nord.toInt()]
 						.charAt(PARAMETRO_PUNTOCARDINALE));
@@ -182,5 +183,6 @@ public class FactoryTessereNormali extends FactoryTessere
 	private List<String> descrizioniTessere;
 
 	private final int PARAMETRO_PUNTOCARDINALE = 2;
+	
 	private final int PARAMETRO_LINK = 3;
 }

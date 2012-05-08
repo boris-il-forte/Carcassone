@@ -2,11 +2,12 @@ package it.polimi.dei.swknights.carcassonne.server;
 
 import java.util.List;
 
-public class CarcassonneServer {
+public class CarcassonneServer
+{
 
-  public List<Partita> partite;
+	public List<Partita>	partite;
 
-    public List  Gestisce;
-    public List  myServerSocket;
+	public List				Gestisce;
+	public List				myServerSocket;
 
 }

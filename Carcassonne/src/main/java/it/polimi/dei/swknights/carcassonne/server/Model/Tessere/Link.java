@@ -1,4 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
+
+import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+
 /**
  * That class represent all the connections on a card e.g. a street that cross the card
  * @author Edo & Dave
@@ -35,5 +38,30 @@ public class Link
 	public Boolean NO;
 
 	public Tessera myTessera;
+
+	public boolean isConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
+	{
+		boolean linkNecessario = false;
+
+		if (puntoCardinale1 == PuntoCardinale.nord && puntoCardinale2 == PuntoCardinale.est)
+			linkNecessario = this.NE;
+
+		if (puntoCardinale1 == PuntoCardinale.nord && puntoCardinale2 == PuntoCardinale.ovest)
+			linkNecessario = this.NO;
+
+		if (puntoCardinale1 == PuntoCardinale.nord && puntoCardinale2 == PuntoCardinale.sud)
+			linkNecessario = this.SN;
+
+		if (puntoCardinale1 == PuntoCardinale.sud && puntoCardinale2 == PuntoCardinale.est)
+			linkNecessario = this.SE;
+
+		if (puntoCardinale1 == PuntoCardinale.sud && puntoCardinale2 == PuntoCardinale.ovest)
+			linkNecessario = this.SO;
+
+		if (puntoCardinale1 == PuntoCardinale.est && puntoCardinale2 == PuntoCardinale.ovest)
+			linkNecessario = this.OE;
+
+		return linkNecessario;
+	}
 
 }

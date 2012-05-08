@@ -30,23 +30,34 @@ public class Cartografo
 
 	private void calcolaConfiniEConfinanti(Coordinate coordinateTessera, AreaDiGioco cartaGeografica)
 	{
-		for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
+		Tessera tessera;
+		try
 		{
-			Coordinate coordinateConfinante = coordinateTessera.getCoordinateA(puntoCardinale);
-			try
+			tessera = cartaGeografica.getTessera(coordinateTessera);
+			for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
 			{
-				Tessera tesseraConfinante = cartaGeografica.getTessera(coordinateConfinante);
-				Confine confinante = tesseraConfinante.getConfine(puntoCardinale.opposto());
-				this.confinanti.add(confinante);
+				Coordinate coordinateConfinante = coordinateTessera.getCoordinateA(puntoCardinale);
+				try
+				{
+					Tessera tesseraConfinante = cartaGeografica.getTessera(coordinateConfinante);
+					Confine confinante = tesseraConfinante.getConfine(puntoCardinale.opposto());
+					this.confinanti.add(confinante);
+				}
+				catch (TesseraNonTrovataException e)
+				{
+
+					Confine confine = tessera.getConfine(puntoCardinale);
+					this.confini.add(confine);
+				}
 			}
-			catch (TesseraNonTrovataException e)
-			{
-				Confine confine = coordinateTessera.getConfine(puntoCardinale);
-				this.confini.add(confine);
-			}
+
+		}
+		catch (TesseraNonTrovataException e1)
+		{
+			e1.printStackTrace();
 		}
 	}
-	
+
 	private ArrayList<Confine>	confinanti;
 
 	private ArrayList<Confine>	confini;
