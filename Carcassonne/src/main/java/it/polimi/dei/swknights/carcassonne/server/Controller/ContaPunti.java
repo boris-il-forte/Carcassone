@@ -27,6 +27,7 @@ public class ContaPunti
 	 * @param areaDiGioco
 	 *            game area necessary to get model data
 	 */
+	
 	public ContaPunti(AreaDiGioco areaDiGioco)
 	{
 		this.areaDiGioco = areaDiGioco;
@@ -42,10 +43,12 @@ public class ContaPunti
 
 	public void riceviCoordinateTessera(Coordinate coordinateTessera)
 	{
+		//TODO da ripensare in funzione del cartografo! fa un task comune a entrambi i metodi...
+		Cartografo cartografo = new Cartografo(coordinateTessera, this.areaDiGioco);
 		Map<Costruzione, List<Confine>> mapCostruzioni = this.getMappaCostruzioni(coordinateTessera);
 		for (Costruzione costruzione : mapCostruzioni.keySet())
 		{
-			List<Confine> nuoviConfini = this.calcolaNuoviConfini(costruzione);
+			List<Confine> nuoviConfini = cartografo.getConfiniCalcolati();
 			List<Confine> confinanti = mapCostruzioni.get(costruzione);
 			costruzione = this.getCostruzioneAggregata(confinanti, costruzione);
 			this.aggiungiNuoviConfini(nuoviConfini, costruzione);
@@ -87,30 +90,12 @@ public class ContaPunti
 		}
 	}
 
-	private List<Confine> calcolaConfinanti(Coordinate coordinate)
-	{
-		List<Confine> confini = new ArrayList<Confine>();
-		for(PuntoCardinale puntoCardinale  : PuntoCardinale.values())
-		{
-			Coordinate coordinateConfinante = coordinate.getCoordinateA(puntoCardinale);
-			try
-			{
-				this.areaDiGioco.getTessera(coordinateConfinante);
-			}
-			catch (TesseraNonTrovataException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return confini;
-	}
-
 	private List<Costruzione> getCostruzioniTessera(Tessera tessera)
 	{
 		return tessera.getCostruzioni();
 	}
 
+	//TODO da ripensare col cartografo!
 	private Map<Costruzione, List<Confine>> getMappaCostruzioni(Coordinate coordinateTessera)
 	{
 		Map<Costruzione, List<Confine>> mapCostruzioni = new HashMap<Costruzione, List<Confine>>();

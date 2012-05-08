@@ -18,6 +18,16 @@ public class Cartografo
 		this.calcolaConfiniEConfinanti(coordinateTessera, cartaGeografica);
 	}
 
+	public List<Confine> getConfiniCalcolati()
+	{
+		return this.confini;
+	}
+
+	public List<Confine> getConfinantiCalcolati()
+	{
+		return this.confinanti;
+	}
+
 	private void calcolaConfiniEConfinanti(Coordinate coordinateTessera, AreaDiGioco cartaGeografica)
 	{
 		for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
@@ -36,7 +46,7 @@ public class Cartografo
 			}
 		}
 	}
-
+	
 	private ArrayList<Confine>	confinanti;
 
 	private ArrayList<Confine>	confini;
