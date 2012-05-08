@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.server.Model.AreaDiGioco;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
@@ -72,12 +73,6 @@ public class ContaPunti
 		}
 	}
 
-	private List<Confine> calcolaNuoviConfini(Costruzione costruzione)
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	private Tessera getTessera(Coordinate coordinate)
 	{
 		try
@@ -92,18 +87,28 @@ public class ContaPunti
 		}
 	}
 
-	private List<Confine> calcolaConfinanti(Costruzione costruzione)
+	private List<Confine> calcolaConfinanti(Coordinate coordinate)
 	{
 		List<Confine> confini = new ArrayList<Confine>();
-		// TODO da finire
+		for(PuntoCardinale puntoCardinale  : PuntoCardinale.values())
+		{
+			Coordinate coordinateConfinante = coordinate.getCoordinateA(puntoCardinale);
+			try
+			{
+				this.areaDiGioco.getTessera(coordinateConfinante);
+			}
+			catch (TesseraNonTrovataException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return confini;
 	}
 
 	private List<Costruzione> getCostruzioniTessera(Tessera tessera)
 	{
-		List<Costruzione> costruzioni = new ArrayList<Costruzione>();
-		// TODO da finire
-		return costruzioni;
+		return tessera.getCostruzioni();
 	}
 
 	private Map<Costruzione, List<Confine>> getMappaCostruzioni(Coordinate coordinateTessera)
@@ -113,7 +118,7 @@ public class ContaPunti
 		List<Costruzione> costruzioni = this.getCostruzioniTessera(tessera);
 		for (Costruzione costruzione : costruzioni)
 		{
-			List<Confine> confinanti = this.calcolaConfinanti(costruzione);
+			List<Confine> confinanti = this.calcolaConfinanti(coordinateTessera);
 			mapCostruzioni.put(costruzione, confinanti);
 		}
 		return mapCostruzioni;
