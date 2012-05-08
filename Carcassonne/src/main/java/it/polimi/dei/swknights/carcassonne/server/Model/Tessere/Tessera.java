@@ -2,6 +2,8 @@ package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
@@ -63,8 +65,18 @@ public abstract class Tessera {
 	}
 
 	public List<Costruzione> getCostruzioni() {
-		List<Costruzione> listCostruzione = lati
+		
+		Map<Costruzione, PuntoCardinale> mappaCostruzioni = lati
 				.getListaCostruzioniPrimitive(this);
+		
+		List<Costruzione> listCostruzione = new ArrayList<Costruzione>();
+		//travaso le chiavi in una lista (è utile per il for che sia possibile get(i) )
+		Set<Costruzione> CostruzioniKeys = mappaCostruzioni.keySet();
+		for(Costruzione costruzione : CostruzioniKeys)
+		{
+			listCostruzione.add(costruzione);
+		}
+		
 
 		List<Costruzione> listAggregati = new ArrayList<Costruzione>();
         Costruzione tempAggregato1=null;
@@ -79,7 +91,7 @@ public abstract class Tessera {
 			for (j = i + 1; j < listCostruzione.size()-1; j++) 
 			{
 				if (connected(listCostruzione.get(i),
-						listCostruzione.get(j)))
+						listCostruzione.get(j), mappaCostruzioni))
 				{
 					inglobati[j]=true;
 					
@@ -91,14 +103,47 @@ public abstract class Tessera {
 			tempAggregato1 = null;
 		}
 
-		return listAggregati;
+		return listCostruzione;
 	}
 
-	private boolean connected(Costruzione c1, Costruzione c2) {
-		// TODO: fare
-		return true;
+	private boolean connected(Costruzione costruzione1, Costruzione costruzione2, Map<Costruzione, PuntoCardinale> mappaCostruzioni)
+	{
+		PuntoCardinale puntoCardinale1 = mappaCostruzioni.get(costruzione1);
+		PuntoCardinale puntoCardinale2 = mappaCostruzioni.get(costruzione2);
+		boolean linkNecessario=false;
+		
+		if (puntoCardinale1 == PuntoCardinale.nord && puntoCardinale2 == PuntoCardinale.est)
+			linkNecessario = this.link.NE;
+
+		if (puntoCardinale1 == PuntoCardinale.nord && puntoCardinale2 == PuntoCardinale.ovest)
+			linkNecessario = this.link.NO;
+
+		if (puntoCardinale1 == PuntoCardinale.nord && puntoCardinale2 == PuntoCardinale.sud)
+			linkNecessario = this.link.SN;
+		
+		
+
+		if (puntoCardinale1 == PuntoCardinale.sud && puntoCardinale2 == PuntoCardinale.est)
+			linkNecessario = this.link.SE;
+
+		if (puntoCardinale1 == PuntoCardinale.sud && puntoCardinale2 == PuntoCardinale.ovest)
+			linkNecessario = this.link.SO;
+		
+
+		if (puntoCardinale1 == PuntoCardinale.est && puntoCardinale2 == PuntoCardinale.ovest)
+			linkNecessario = this.link.OE;
+		
+		return linkNecessario;
+
+		
 	}
 
+	
+	public Confine getConfine()
+	{
+		//TODO: da fare!
+	}
+	
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
 
 	public abstract String toString();
