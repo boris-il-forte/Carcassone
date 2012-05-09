@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
+import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 
 import java.io.BufferedReader;
@@ -62,13 +63,13 @@ public class FactoryTessereNormali extends FactoryTessere
 		Elemento ovest;
 		Elemento est;
 
-		Link link = new Link();
+		Link link;
 		Lati lati;
 
 		String[] partiDescrizione;
 		partiDescrizione = descrizione.split(" ");
-		
-		//TODO: si può migliorare? spero di sì!
+
+		// TODO: si può migliorare? spero di sì!
 		nord = this
 				.charToElemento(partiDescrizione[PuntoCardinale.nord.toInt()]
 						.charAt(PARAMETRO_PUNTOCARDINALE));
@@ -82,14 +83,17 @@ public class FactoryTessereNormali extends FactoryTessere
 		lati = new Lati(nord, sud, ovest, est);
 		try
 		{
-			//TODO: kill the magic!
-			link.SN = charToBoolLink(partiDescrizione[4].charAt(PARAMETRO_LINK));
-			link.NE = charToBoolLink(partiDescrizione[5].charAt(PARAMETRO_LINK));
-			link.NO = charToBoolLink(partiDescrizione[6].charAt(PARAMETRO_LINK));
-			link.OE = charToBoolLink(partiDescrizione[7].charAt(PARAMETRO_LINK));
-			link.SE = charToBoolLink(partiDescrizione[8].charAt(PARAMETRO_LINK));
-			link.SO = charToBoolLink(partiDescrizione[9].charAt(PARAMETRO_LINK));
-		} catch (BadAttributeValueExpException e)
+			//TODO: kill the magick!
+			boolean[] links = new boolean[6];
+			for (int i = 4; i < 10; i++)
+			{
+				String[] entry = partiDescrizione[i].split("=");
+				Bussola agoBussola = Bussola.valueOf(entry[0]);
+				links[agoBussola.ordinal()] = this.charToBoolLink(entry[1].charAt(0));
+			}
+			link= new Link(links);
+		} 
+		catch (BadAttributeValueExpException e)
 		{
 			return null;
 		}
@@ -184,5 +188,4 @@ public class FactoryTessereNormali extends FactoryTessere
 
 	private final int PARAMETRO_PUNTOCARDINALE = 2;
 	
-	private final int PARAMETRO_LINK = 3;
 }

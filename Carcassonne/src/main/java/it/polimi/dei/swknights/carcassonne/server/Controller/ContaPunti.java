@@ -1,13 +1,12 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.server.Model.AreaDiGioco;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
-import it.polimi.dei.swknights.carcassonne.server.Model.AreaDiGioco;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
+import java.util.Set;
 
 /**
  * This class provide an algorithm to calculate Constructions victory points
@@ -43,27 +42,31 @@ public class ContaPunti
 	{
 		//TODO da ripensare in funzione del cartografo! fa un task comune a entrambi i metodi...
 		Cartografo cartografo = new Cartografo(coordinateTessera, this.areaDiGioco);
-		Map<Costruzione, List<Confine>> mapCostruzioni = this.getMappaCostruzioni(coordinateTessera);
-		for (Costruzione costruzione : mapCostruzioni.keySet())
+		Set<Costruzione> costruzioni = cartografo.getCostruzioni();
+		Map<Costruzione, List<Confine>> mapConfinanti = cartografo.getConfinantiCalcolati();
+		Map<Costruzione, List<Confine>> mapConfini = cartografo.getConfiniCalcolati();
+		
+		for (Costruzione costruzione : costruzioni)
 		{
-			List<Confine> nuoviConfini = cartografo.getConfiniCalcolati();
-			List<Confine> confinanti = mapCostruzioni.get(costruzione);
+			List<Confine> nuoviConfini = mapConfini.get(costruzione);
+			List<Confine> confinanti = mapConfinanti.get(costruzione);
 			costruzione = this.getCostruzioneAggregata(confinanti, costruzione);
 			this.aggiungiNuoviConfini(nuoviConfini, costruzione);
 		}
 		// TODO manca controllo costruzione finita! (due righe) qui? penso di no!
 	}
 
-	private Costruzione getCostruzioneAggregata(List<Confine> listaConfini, Costruzione costruzione)
+	private Costruzione getCostruzioneAggregata(List<Confine> listaConfinanti, Costruzione nuovoPezzoCostruzione)
 	{
-		for (Confine confine : listaConfini)
+		for (Confine confinante : listaConfinanti)
 		{
-			Costruzione costruzioneConfinante = this.mappaConfiniCostruzione.get(confine);
-			costruzioneConfinante.joinCostruzioni(costruzione);
-			this.mappaConfiniCostruzione.remove(confine);
-			costruzione = costruzioneConfinante;
+			Costruzione costruzioneConfinante = this.mappaConfiniCostruzione.get(confinante);
+			costruzioneConfinante.joinCostruzioni(nuovoPezzoCostruzione);
+			this.mappaConfiniCostruzione.remove(confinante);
+			nuovoPezzoCostruzione = costruzioneConfinante;
+			
 		}
-		return costruzione;
+		return nuovoPezzoCostruzione;
 	}
 
 	private void aggiungiNuoviConfini(List<Confine> nuoviConfini, Costruzione costruzione)
@@ -72,39 +75,6 @@ public class ContaPunti
 		{
 			this.mappaConfiniCostruzione.put(nuovoConfine, costruzione);
 		}
-	}
-
-	private Tessera getTessera(Coordinate coordinate)
-	{
-		try
-		{
-			Tessera tessera = areaDiGioco.getTessera(coordinate);
-			return tessera;
-		}
-		catch (TesseraNonTrovataException e)
-		{
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	private List<Costruzione> getCostruzioniTessera(Tessera tessera)
-	{
-		return tessera.getCostruzioni();
-	}
-
-	//TODO da ripensare col cartografo!
-	private Map<Costruzione, List<Confine>> getMappaCostruzioni(Coordinate coordinateTessera)
-	{
-		Map<Costruzione, List<Confine>> mapCostruzioni = new HashMap<Costruzione, List<Confine>>();
-		Tessera tessera = this.getTessera(coordinateTessera);
-		List<Costruzione> costruzioni = this.getCostruzioniTessera(tessera);
-		for (Costruzione costruzione : costruzioni)
-		{
-			List<Confine> confinanti = null; //TODO da modificare!!!!
-			mapCostruzioni.put(costruzione, confinanti);
-		}
-		return mapCostruzioni;
 	}
 
 	private AreaDiGioco					areaDiGioco;

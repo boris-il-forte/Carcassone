@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
@@ -63,42 +64,51 @@ public abstract class Tessera
 	public boolean buonVicino(Tessera tessera, PuntoCardinale puntoCardinale)
 	{
 		Elemento elementoMio = this.lati.getElementoInDirezione(puntoCardinale);
-		Elemento elementoSuo = this.lati.getElementoInDirezione(puntoCardinale.opposto());
+		Elemento elementoSuo = this.lati.getElementoInDirezione(puntoCardinale
+				.opposto());
 
 		return (elementoMio.stessoTipoElemento(elementoSuo));
 	}
 
-	public List<Costruzione> getCostruzioni()
+	public Map<Costruzione, List<PuntoCardinale>> getCostruzioni()
 	{
 
-		Map<Costruzione, PuntoCardinale> mappaCostruzioni = lati.getListaCostruzioniPrimitive(this);
+		Map<Costruzione, List<PuntoCardinale>> mappaCostruzioniPunti = new HashMap<Costruzione, List<PuntoCardinale>>();
 
-		List<Costruzione> listCostruzione = new ArrayList<Costruzione>(mappaCostruzioni.keySet());
-		List<Costruzione> listAggregati = new ArrayList<Costruzione>();
+		Map<Costruzione, PuntoCardinale> mappaCostruzioni = lati
+				.getMappaCostruzioniPrimitive(this);
+
+		List<Costruzione> listCostruzione = new ArrayList<Costruzione>(
+				mappaCostruzioni.keySet());
 		Costruzione tempAggregato1 = null;
 		Costruzione tempAggregato2 = null;
-		boolean[] inglobati = { false, false, false, false };
+		boolean[] inglobati =
+		{ false, false, false, false };
 
 		int i = 0, j = 0;
-		for (i = 0; inglobati[i] == false && i < listCostruzione.size() - 1; i++)
+		for (i = 0; i < listCostruzione.size() - 1; i++)
 		{
+			if(inglobati[i] == true) continue;
+			List<PuntoCardinale> puntiCardinali= new ArrayList<PuntoCardinale>();
 			tempAggregato1 = listCostruzione.get(i);
 
 			for (j = i + 1; j < listCostruzione.size() - 1; j++)
 			{
-				if (isConnected(listCostruzione.get(i), listCostruzione.get(j), mappaCostruzioni))
+				puntiCardinali.add(mappaCostruzioni.get(tempAggregato1));
+				if (isConnected(listCostruzione.get(i), listCostruzione.get(j),
+						mappaCostruzioni))
 				{
 					inglobati[j] = true;
-
+					puntiCardinali.add(mappaCostruzioni.get(tempAggregato2));
 					tempAggregato2 = listCostruzione.get(j);
 					tempAggregato1.joinCostruzioni(tempAggregato2);
 				}
 			}
-			listAggregati.add(tempAggregato1.getCopy(this));
-			tempAggregato1 = null;
+
+			mappaCostruzioniPunti.put(tempAggregato1.getCopy(this), puntiCardinali);
 		}
 
-		return listCostruzione;
+		return mappaCostruzioniPunti;
 	}
 
 	public Confine getConfine(PuntoCardinale puntoCardinale)
@@ -113,16 +123,17 @@ public abstract class Tessera
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
 
-	private boolean isConnected(Costruzione costruzione1, Costruzione costruzione2,
+	private boolean isConnected(Costruzione costruzione1,
+			Costruzione costruzione2,
 			Map<Costruzione, PuntoCardinale> mappaCostruzioni)
 	{
 		PuntoCardinale puntoCardinale1 = mappaCostruzioni.get(costruzione1);
 		PuntoCardinale puntoCardinale2 = mappaCostruzioni.get(costruzione2);
-		return this.link.isConnected(puntoCardinale1, puntoCardinale2);
+		return this.link.areConnected(puntoCardinale1, puntoCardinale2);
 	}
 
-	protected final Lati	lati;
+	protected final Lati lati;
 
-	protected final Link	link;
+	protected final Link link;
 
 }

@@ -45,7 +45,7 @@ public class Lati
 		this.est = nordTmp;
 	}
 	
-	public Map<Costruzione, PuntoCardinale> getListaCostruzioniPrimitive(Tessera tessera)
+	public Map<Costruzione, PuntoCardinale> getMappaCostruzioniPrimitive(Tessera tessera)
 	{
 		Map<Costruzione, PuntoCardinale> listaCostruzioni = new HashMap<Costruzione, PuntoCardinale>();
 		Elemento[] elementi = 
