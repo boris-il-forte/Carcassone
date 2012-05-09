@@ -18,17 +18,17 @@ import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
  * 
  */
 
-public class Controllore implements ViewListener, EventSource
+public class Controller implements ViewListener, EventSource
 {
 	/**
 	 * Default Constructor. Initialize data structures
 	 * 
 	 */
-	public Controllore()
+	public Controller()
 	{
 		this.listeners = new ArrayList<ViewListener>();
 		this.partita = new DatiPartita();
-		this.contaPunti = new ContaPunti(this.partita.getAreaDiGioco());
+		this.contaPunti = new ContatoreCartografo(this.partita.getAreaDiGioco());
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class Controllore implements ViewListener, EventSource
 
 	private Tessera				tesseraCorrente;
 
-	private ContaPunti			contaPunti;
+	private ContatoreCartografo			contaPunti;
 
 	private DatiPartita			partita;
 

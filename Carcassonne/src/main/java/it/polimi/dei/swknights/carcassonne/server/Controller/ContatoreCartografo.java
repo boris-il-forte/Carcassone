@@ -14,9 +14,11 @@ import java.util.Set;
  * each iteration cost O(1) as the card has only 4 possible sides
  * the single iteration is called n times, with n the number of card inserted in the whole game
  * in each iteration the algorithm calculate all the constructions in the card.
+ *  This class has the Cartographer suffix because it also creates abstract structures to
+ * represent full streets and cities and so has to deal with the map.
  */
 
-public class ContaPunti
+public class ContatoreCartografo
 {
 	/**
 	 * Default constructor for Contapunti
@@ -25,10 +27,10 @@ public class ContaPunti
 	 *            game area necessary to get model data
 	 */
 	
-	public ContaPunti(AreaDiGioco areaDiGioco)
+	public ContatoreCartografo(AreaDiGioco areaDiGioco)
 	{
 		this.areaDiGioco = areaDiGioco;
-		this.mappaConfiniCostruzione = new HashMap<Confine, Costruzione>();
+		this.mappaConfiniCostruzione = new HashMap<VicinoTessera, Costruzione>();
 	}
 
 	/**
@@ -41,24 +43,24 @@ public class ContaPunti
 	public void riceviCoordinateTessera(Coordinate coordinateTessera)
 	{
 		//TODO da ripensare in funzione del cartografo! fa un task comune a entrambi i metodi...
-		Cartografo cartografo = new Cartografo(coordinateTessera, this.areaDiGioco);
+		EsploratoreVicini cartografo = new EsploratoreVicini(coordinateTessera, this.areaDiGioco);
 		Set<Costruzione> costruzioni = cartografo.getCostruzioni();
-		Map<Costruzione, List<Confine>> mapConfinanti = cartografo.getConfinantiCalcolati();
-		Map<Costruzione, List<Confine>> mapConfini = cartografo.getConfiniCalcolati();
+		Map<Costruzione, List<VicinoTessera>> mapConfinanti = cartografo.getConfinantiCalcolati();
+		Map<Costruzione, List<VicinoTessera>> mapConfini = cartografo.getViciniVuoti();
 		
 		for (Costruzione costruzione : costruzioni)
 		{
-			List<Confine> nuoviConfini = mapConfini.get(costruzione);
-			List<Confine> confinanti = mapConfinanti.get(costruzione);
+			List<VicinoTessera> nuoviConfini = mapConfini.get(costruzione);
+			List<VicinoTessera> confinanti = mapConfinanti.get(costruzione);
 			costruzione = this.getCostruzioneAggregata(confinanti, costruzione);
 			this.aggiungiNuoviConfini(nuoviConfini, costruzione);
 		}
 		// TODO manca controllo costruzione finita! (due righe) qui? penso di no!
 	}
 
-	private Costruzione getCostruzioneAggregata(List<Confine> listaConfinanti, Costruzione nuovoPezzoCostruzione)
+	private Costruzione getCostruzioneAggregata(List<VicinoTessera> listaConfinanti, Costruzione nuovoPezzoCostruzione)
 	{
-		for (Confine confinante : listaConfinanti)
+		for (VicinoTessera confinante : listaConfinanti)
 		{
 			Costruzione costruzioneConfinante = this.mappaConfiniCostruzione.get(confinante);
 			costruzioneConfinante.joinCostruzioni(nuovoPezzoCostruzione);
@@ -69,9 +71,9 @@ public class ContaPunti
 		return nuovoPezzoCostruzione;
 	}
 
-	private void aggiungiNuoviConfini(List<Confine> nuoviConfini, Costruzione costruzione)
+	private void aggiungiNuoviConfini(List<VicinoTessera> nuoviConfini, Costruzione costruzione)
 	{
-		for (Confine nuovoConfine : nuoviConfini)
+		for (VicinoTessera nuovoConfine : nuoviConfini)
 		{
 			this.mappaConfiniCostruzione.put(nuovoConfine, costruzione);
 		}
@@ -79,6 +81,6 @@ public class ContaPunti
 
 	private AreaDiGioco					areaDiGioco;
 
-	private Map<Confine, Costruzione>	mappaConfiniCostruzione;
+	private Map<VicinoTessera, Costruzione>	mappaConfiniCostruzione;
 
 }

@@ -4,12 +4,14 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 /**
- * This class is used to get an abstraction of the border of the construction 
+ * This class is used to get an abstraction of the neighbour of the construction 
+ * The neighbour can be full e.g. when hosting a street of a city
+ * or empty when no card was placed there
  * @author dave
- *
+ * @version 1.1
  */
 
-public class Confine
+public class VicinoTessera
 {
 	/**
 	 * Constructor to create a border of a construction
@@ -20,7 +22,7 @@ public class Confine
 	 *            The element of the card considered
 	 */
 	
-	public Confine(Tessera tessera, Elemento lato)
+	public VicinoTessera(Tessera tessera, Elemento lato)
 	{
 		this.tessera = tessera;
 		this.lato = lato;
@@ -30,9 +32,9 @@ public class Confine
 	public boolean equals(Object object)
 	{
 		boolean isEqual = false;
-		if (object instanceof Confine)
+		if (object instanceof VicinoTessera)
 		{
-			Confine confine = (Confine) object;
+			VicinoTessera confine = (VicinoTessera) object;
 			if (this.lato == confine.lato && this.tessera == confine.tessera) isEqual = true;
 		}
 		return isEqual;
