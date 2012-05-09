@@ -16,6 +16,7 @@ import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
  * @author edo & dave
  * 
  */
+
 public abstract class Tessera
 {
 	Tessera(Lati lati, Link link)
