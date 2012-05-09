@@ -15,5 +15,7 @@ public class Carcassonne
         //TODO:togliere questo baby-schifo test
         FactoryTessereNormali fnTest = new FactoryTessereNormali();
         fnTest.acquisisciMazzoDaFile("File/tessere.dat");
+        
+        System.out.println(PuntoCardinale.valueOf("sud").toInt() );
     }
 }
