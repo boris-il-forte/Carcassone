@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
 import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Exceptions.NoFirstCardException;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -37,19 +38,50 @@ public class FactoryTessereNormali extends FactoryTessere
 		this.estraiDescrizioniTessere(pathFileTessere);
 		// scrive in this.descrizioneTessere
 
-		this.creaMazzoTessere();
+		try
+		{
+			this.creaMazzoTessere();
+		} catch (NoFirstCardException e) 
+		{			
+			e.printStackTrace();
+			System.exit(-3);
+		}
 
 		// DEBUG System.out.println(this.mazzo);
 	}
 
-	private void creaMazzoTessere()
+	private void creaMazzoTessere() throws NoFirstCardException
 	{
+		Tessera tesseraMagic=null; 
 		for (String descrizione : this.descrizioniTessere)
 		{
 			Tessera tessera = this.tesseraDaDescrzione(descrizione);
-			this.mazzo.add(tessera);
-
+			//TODO: ma uno String sigla=Prato nell'oggetto no?? :)
+			if(tessera.lati.getElementoInDirezione(PuntoCardinale.nord).stessoTipoElemento(new Prato())
+			   &&
+			   tessera.lati.getElementoInDirezione(PuntoCardinale.sud).stessoTipoElemento(new Citta())
+			   &&
+			   tessera.lati.getElementoInDirezione(PuntoCardinale.ovest).stessoTipoElemento(new Strada ())
+			   &&
+			   tessera.lati.getElementoInDirezione(PuntoCardinale.est).stessoTipoElemento(new Strada())
+			  ) 
+			{
+				tesseraMagic = this.tesseraDaDescrzione(descrizione); // con = tessera copierei riferimento
+			}
+			else
+			{
+				this.mazzo.add(tessera);
+			}
+		
 		}
+		
+		if(tesseraMagic==null)
+		{
+			throw new NoFirstCardException("controlla il file tessere e la factory perchè manca la tessera iniziale");
+		    //potrebbe mettercela dato che sa come farla volendo.. ma meglio
+		}
+		
+		this.mazzo.add(tesseraMagic);
 
 	}
 

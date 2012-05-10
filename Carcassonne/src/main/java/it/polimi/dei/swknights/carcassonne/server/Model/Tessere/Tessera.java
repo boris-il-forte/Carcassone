@@ -24,6 +24,8 @@ public abstract class Tessera
 	{
 		this.lati = lati;
 		this.link = link;
+		Map <String, String> m = new HashMap<String, String>();
+		m.remove(null);
 	}
 
 	/**

@@ -10,8 +10,7 @@ public class View implements ControllerListener {
   public void request() {
   }
 
-  public void newOperation() {
-  }
+
 
 public void riceviModificheModel() {
 	// TODO Auto-generated method stub
