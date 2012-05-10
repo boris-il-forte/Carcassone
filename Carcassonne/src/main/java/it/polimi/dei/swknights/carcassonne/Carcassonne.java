@@ -12,9 +12,11 @@ public class Carcassonne
     {
         System.out.println( "Hello World!" );
         
-        //TODO:togliere questo baby-schifo test
+        //TODO:togliere questo baby-schifo test in luogo di migliori, ma fino ad allora..
         FactoryTessereNormali fnTest = new FactoryTessereNormali();
         fnTest.acquisisciMazzoDaFile("File/tessere.dat");
+        
+        
         
         System.out.println(PuntoCardinale.valueOf("sud").toInt() );
     }
