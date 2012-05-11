@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
-import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
