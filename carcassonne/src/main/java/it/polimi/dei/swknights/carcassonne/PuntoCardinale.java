@@ -12,7 +12,7 @@ public enum PuntoCardinale
 	{
 		return this.numerazione;
 	}
-
+	
 	public PuntoCardinale opposto()
 	{
 		switch (this)

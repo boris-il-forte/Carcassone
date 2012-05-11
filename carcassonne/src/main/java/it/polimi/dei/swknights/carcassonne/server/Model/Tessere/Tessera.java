@@ -5,6 +5,7 @@ import it.polimi.dei.swknights.carcassonne.server.Controller.ConfineTessera;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -73,14 +74,12 @@ public abstract class Tessera
 		List<Costruzione> listCostruzione = new ArrayList<Costruzione>(mappaCostruzioni.keySet());
 		Costruzione tempAggregato1 = null;
 		Costruzione tempAggregato2 = null;
-		boolean[] inglobati =
-		{ false, false, false, false };
+		boolean[] inglobati = { false, false, false, false };
 
 		int i = 0, j = 0;
 		for (i = 0; i < listCostruzione.size() - 1; i++)
 		{
-			if (inglobati[i] == true)
-				continue;
+			if (inglobati[i] == true) continue;
 			List<PuntoCardinale> puntiCardinali = new ArrayList<PuntoCardinale>();
 			tempAggregato1 = listCostruzione.get(i);
 
@@ -120,6 +119,45 @@ public abstract class Tessera
 	public abstract String toString();
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
+
+	protected int[] getNumerazioni()
+	{
+		int[] numerazione = new int[PuntoCardinale.NUMERO_DIREZIONI];
+		int counter;
+		int stradaCounter = 0;
+		int cittaCounter = 0;
+		List<PuntoCardinale> puntiDaProvare = new ArrayList<PuntoCardinale>(Arrays.asList(PuntoCardinale
+				.values()));
+		for (PuntoCardinale punto1 : puntiDaProvare)
+		{
+			switch (this.lati.getTipoElementoInDirezione(punto1))
+			{
+				case strada:
+					counter = ++stradaCounter;
+					break;
+				case citta:
+					counter = ++cittaCounter;
+				default:
+					continue;
+			}
+			for(PuntoCardinale punto2 : puntiDaProvare)
+			{
+				if(this.isConnected(punto1, punto2))
+				{
+					puntiDaProvare.remove(punto2);
+					numerazione[punto2.toInt()] = counter;
+				}
+			}
+		}
+		return null;
+	}
+
+	private boolean isConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
+	{
+		if (puntoCardinale1 == puntoCardinale2)
+			return true;
+		else return this.link.areConnected(puntoCardinale1, puntoCardinale2);
+	}
 
 	private boolean isConnected(Costruzione costruzione1, Costruzione costruzione2,
 			Map<Costruzione, PuntoCardinale> mappaCostruzioni)
