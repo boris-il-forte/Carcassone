@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
-import it.polimi.dei.swknights.carcassonne.server.Controller.VicinoTessera;
+import it.polimi.dei.swknights.carcassonne.server.Controller.ConfineTessera;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 
 /**
@@ -109,10 +109,10 @@ public abstract class Tessera
 	 * @param puntoCardinale
 	 * @return the neighbour or null if empty
 	 */
-	public VicinoTessera getVicino(PuntoCardinale puntoCardinale)
+	public ConfineTessera getVicino(PuntoCardinale puntoCardinale)
 	{
 		Elemento elemento = this.lati.getTipoElementoInDirezione(puntoCardinale);
-		return new VicinoTessera(this, elemento);
+		return new ConfineTessera(this, elemento);
 	}
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...

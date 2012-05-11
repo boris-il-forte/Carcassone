@@ -19,19 +19,19 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
  * @author mainly Dave and Edo 
  *
  */
-public class EsploratoreVicini
+public class EsploratoreConfini
 {
-	public EsploratoreVicini(Coordinate coordinateTessera, AreaDiGioco cartaGeografica)
+	public EsploratoreConfini(Coordinate coordinateTessera, AreaDiGioco cartaGeografica)
 	{
-		this.confini = new HashMap<Costruzione, List<VicinoTessera>>();
-		this.confinanti = new HashMap<Costruzione, List<VicinoTessera>>();
+		this.confini = new HashMap<Costruzione, List<ConfineTessera>>();
+		this.confinanti = new HashMap<Costruzione, List<ConfineTessera>>();
 		this.getEmptyAndFullNeighbours(coordinateTessera, cartaGeografica);
 	}
 	/**
 	 * gets the empty neighbour of the card
 	 * @return   a map that associates a building with its empty neighbours
 	 */
-	public Map<Costruzione, List<VicinoTessera>> getViciniVuoti()
+	public Map<Costruzione, List<ConfineTessera>> getViciniVuoti()
 	{
 		return this.confini;
 	}
@@ -40,7 +40,7 @@ public class EsploratoreVicini
 	 * getss the ectual neighbours of the card (e.g. a part of city) 
 	 * @return
 	 */
-	public Map<Costruzione, List<VicinoTessera>> getConfinantiCalcolati()
+	public Map<Costruzione, List<ConfineTessera>> getConfinantiScoperti()
 	{
 		return this.confinanti;
 	}
@@ -50,7 +50,7 @@ public class EsploratoreVicini
 	 * and full neighbours: taken space around the card where someone put another card
 	 * @param coordinateTessera
 	 * @param cartaGeografica
-	 * @see VicinoTessera
+	 * @see ConfineTessera
 	 */
 	
 	//confini = vuoti   confinanti = pieni   (ovvio no?)
@@ -66,8 +66,8 @@ public class EsploratoreVicini
 			for (Costruzione costruzione : mapCostruzioni.keySet())
 				//per ogni costruzione aggregata della tessera guarda i vicini
 			{
-				List<VicinoTessera> listaConfinante = new ArrayList<VicinoTessera>();
-				List<VicinoTessera> listaConfini = new ArrayList<VicinoTessera>();
+				List<ConfineTessera> listaConfinante = new ArrayList<ConfineTessera>();
+				List<ConfineTessera> listaConfini = new ArrayList<ConfineTessera>();
 				//la costruzione aggregata nella tessera 1 o + confini
 				// es. una città a NE ha 2 confini: N e E
 				for(PuntoCardinale puntoCardinale : mapCostruzioni.get(costruzione)) 
@@ -76,13 +76,13 @@ public class EsploratoreVicini
 					try
 					{ //vicini pieni
 						Tessera tesseraConfinante = cartaGeografica.getTessera(coordinateConfinante);
-						VicinoTessera confinante = tesseraConfinante.getVicino(puntoCardinale.opposto());
+						ConfineTessera confinante = tesseraConfinante.getVicino(puntoCardinale.opposto());
 						listaConfinante.add(confinante);
 					} 
 					catch (TesseraNonTrovataException e)
 					{ //vicini vuoti
 	
-						VicinoTessera confine = tessera.getVicino(puntoCardinale);
+						ConfineTessera confine = tessera.getVicino(puntoCardinale);
 						listaConfini.add(confine);
 					}
 				}
@@ -97,9 +97,9 @@ public class EsploratoreVicini
 		}
 	}
 
-	private Map<Costruzione, List<VicinoTessera>> confinanti;
+	private Map<Costruzione, List<ConfineTessera>> confinanti;
 
-	private Map<Costruzione, List<VicinoTessera>> confini;
+	private Map<Costruzione, List<ConfineTessera>> confini;
 
 	/**
 	 * gets costructions and free space around the card

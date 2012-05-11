@@ -1,10 +1,12 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
+import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 
 /**
  * That class encapsulate the four elements of a card
@@ -79,6 +81,35 @@ public class Lati
 		return listaCostruzioni;
 	}
 
+	
+	@Override 
+	public String toString()
+	{
+		StringBuilder componiStringhe= new StringBuilder();
+		componiStringhe.append(nord.toString()+" ");
+		componiStringhe.append(sud.toString()+" ");
+		componiStringhe.append(ovest.toString()+ " ");
+		componiStringhe.append(est.toString()+ " ");
+		String stringSegnalino = printSegnalino();
+		if(stringSegnalino != null)
+		{
+			PuntoCardinale direzione = this.datiSegnalino.puntoCardinale;
+			int index = direzione.toInt()*2+1; //TODO kill the magic? ridicolo?
+			componiStringhe.insert(index, stringSegnalino);
+		}
+		return "";
+	}
+	
+	private String printSegnalino()
+	{
+		Segnalino segnalino = this.datiSegnalino.segnalino;
+		if(segnalino!= null)
+		{
+			return segnalino.toString();
+		}
+		else return null;
+	}
+	
 	private Elemento nord;
 
 	private Elemento sud;
@@ -86,5 +117,14 @@ public class Lati
 	private Elemento ovest;
 
 	private Elemento est;
-
+	
+	private DatiSegnalino datiSegnalino;
+	
+	private class DatiSegnalino
+	{
+		public Segnalino segnalino;
+		public PuntoCardinale puntoCardinale;
+		
+	}
+	
 }

@@ -11,7 +11,7 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
  * @version 1.1
  */
 
-public class VicinoTessera
+public class ConfineTessera
 {
 	/**
 	 * Constructor to create a border of a construction
@@ -22,7 +22,7 @@ public class VicinoTessera
 	 *            The element of the card considered
 	 */
 	
-	public VicinoTessera(Tessera tessera, Elemento lato)
+	public ConfineTessera(Tessera tessera, Elemento lato)
 	{
 		this.tessera = tessera;
 		this.lato = lato;
@@ -32,9 +32,9 @@ public class VicinoTessera
 	public boolean equals(Object object)
 	{
 		boolean isEqual = false;
-		if (object instanceof VicinoTessera)
+		if (object instanceof ConfineTessera)
 		{
-			VicinoTessera confine = (VicinoTessera) object;
+			ConfineTessera confine = (ConfineTessera) object;
 			if (this.lato == confine.lato && this.tessera == confine.tessera) isEqual = true;
 		}
 		return isEqual;
