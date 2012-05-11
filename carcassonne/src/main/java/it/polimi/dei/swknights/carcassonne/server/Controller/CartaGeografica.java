@@ -25,7 +25,7 @@ public class CartaGeografica
 	{
 		mappaConfini.put(nuovoConfine, costruzione);
 		List<ConfineTessera> listaConfini = this.mappaCostruzioni.get(costruzione);
-		if (listaConfini != null)
+		if (listaConfini == null)
 		{
 			listaConfini = new ArrayList<ConfineTessera>();
 			mappaCostruzioni.put(costruzione, listaConfini);
