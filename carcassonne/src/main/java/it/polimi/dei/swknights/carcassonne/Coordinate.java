@@ -42,13 +42,16 @@ public class Coordinate
 		{
 			case nord:
 				incrementoX++;
+				break;
 			case sud:
 				incrementoX--;
+				break;
 			case ovest:
 				incrementoY--;
+				break;
 			case est:
 				incrementoY++;
-
+				break;
 		}
 		return new Coordinate(x + incrementoX, y + incrementoY);
 	}

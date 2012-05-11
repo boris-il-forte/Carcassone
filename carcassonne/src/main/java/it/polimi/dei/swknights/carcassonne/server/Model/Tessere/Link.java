@@ -32,13 +32,9 @@ public class Link
 	{
 		for (Bussola direzione : Bussola.values())
 		{
-			direzioni[direzione.ordinal()] = links[direzione.ordinal()];
+			direzioni[direzione.toInt()] = links[direzione.toInt()];
 		}
 	}
-
-	private boolean[]	direzioni	= new boolean[6];
-
-	public Tessera		myTessera;
 
 	public boolean areConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
 	{
@@ -62,7 +58,9 @@ public class Link
 		if (puntoCardinale1 == PuntoCardinale.est && puntoCardinale2 == PuntoCardinale.ovest)
 			agoBussola = Bussola.OE;
 
-		return direzioni[agoBussola.ordinal()];
+		return direzioni[agoBussola.toInt()];
 	}
+
+	private boolean[]	direzioni	= new boolean[Bussola.NUMERO_DIREZIONI];
 
 }
