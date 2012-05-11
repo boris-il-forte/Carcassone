@@ -74,6 +74,12 @@ public class Lati
 		}
 		return listaCostruzioni;
 	}
+	
+	public void setSegnalino(Segnalino segnalino, PuntoCardinale puntoCardinale)
+	{
+		this.datiSegnalino.segnalino=segnalino;
+		this.datiSegnalino.puntoCardinale=puntoCardinale;
+	}
 
 	@Override
 	public String toString()

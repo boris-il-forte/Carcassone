@@ -20,7 +20,7 @@ public enum Bussola
 		return numero;
 	}
 
-	public static int	NUMERO_DIREZIONI	= 6;
+	public static final int	NUMERO_DIREZIONI	= 6;
 
 	private int			numero;
 }

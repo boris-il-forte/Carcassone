@@ -30,6 +30,16 @@ public class ConfineTessera
 	}
 
 	@Override
+	public int hashCode()
+	{
+		final int numeroPrimo = 31;
+		int hash = 1;
+		hash = numeroPrimo * hash + this.lato.hashCode();
+		hash = numeroPrimo * hash + this.tessera.hashCode();
+		return hash;
+	}
+
+	@Override
 	public boolean equals(Object object)
 	{
 		boolean isEqual = false;

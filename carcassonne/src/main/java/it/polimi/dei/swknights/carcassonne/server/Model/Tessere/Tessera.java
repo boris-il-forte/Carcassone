@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ConfineTessera;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
+import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,7 +80,7 @@ public abstract class Tessera
 		int i = 0, j = 0;
 		for (i = 0; i < listCostruzione.size() - 1; i++)
 		{
-			if (inglobati[i] == true) continue;
+			if (inglobati[i]) continue;
 			List<PuntoCardinale> puntiCardinali = new ArrayList<PuntoCardinale>();
 			tempAggregato1 = listCostruzione.get(i);
 
@@ -112,6 +113,11 @@ public abstract class Tessera
 	{
 		Elemento elemento = this.lati.getTipoElementoInDirezione(puntoCardinale);
 		return new ConfineTessera(this, elemento);
+	}
+	
+	public void setSegnalino(Segnalino segnalino, PuntoCardinale puntoCardinale)
+	{
+		this.lati.setSegnalino(segnalino,puntoCardinale);
 	}
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...

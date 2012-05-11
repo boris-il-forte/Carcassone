@@ -57,7 +57,7 @@ public class DatiPartita
 
 		}
 
-		return null; // TODO: chiedere cosa fare a sangiorgio
+		return null; // TODO: lanciare eccezione
 
 	}
 
@@ -88,8 +88,7 @@ public class DatiPartita
 		if (index > 0)
 		{
 			index--;
-			Tessera tessera = this.pilaTessere.get(index);
-			return tessera;
+			return this.pilaTessere.get(index);
 		} else
 			throw new PartitaFinitaException();
 
@@ -114,7 +113,8 @@ public class DatiPartita
 		{
 			this.addGiocatore();
 			this.giocatoreCorrente = this.getGiocatore(Color.RED);
-		} catch (finitiColoriDisponibiliException e)
+		}
+		catch (finitiColoriDisponibiliException e)
 		{ // non dovrebbe mai avvenire perchè un colore c'è per forza all'inizio
 			e.printStackTrace();
 			System.exit(-1);
@@ -132,7 +132,7 @@ public class DatiPartita
 	{
 		this.pilaTessere = new ArrayList<Tessera>();
 		FactoryTessere factory = new FactoryTessereNormali();
-		while (factory.tesseraDisponibile() == true)
+		while (factory.tesseraDisponibile())
 		{
 			this.pilaTessere.add(factory.getTessera());
 		}
