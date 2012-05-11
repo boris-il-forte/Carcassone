@@ -41,10 +41,11 @@ public class FactoryTessereNormali extends FactoryTessere
 		try
 		{
 			this.creaMazzoTessere();
-		} catch (NoFirstCardException e)
+		}
+		catch (NoFirstCardException e)
 		{
 			e.printStackTrace();
-			System.exit(-3);
+			System.exit(-1);
 		}
 
 		// DEBUG System.out.println(this.mazzo);
@@ -66,17 +67,17 @@ public class FactoryTessereNormali extends FactoryTessere
 																		// tessera
 																		// copierei
 																		// riferimento
-			} else
+			}
+			else
 			{
 				this.mazzo.add(tessera);
 			}
 
 		}
 
-		if (tesseraMagic == null)
-		{
-			throw new NoFirstCardException("controlla il file tessere e la factory perchè manca la tessera iniziale");
-			// potrebbe mettercela dato che sa come farla volendo.. ma meglio
+		if (tesseraMagic == null) { throw new NoFirstCardException(
+				"controlla il file tessere e la factory perchè manca la tessera iniziale");
+		// potrebbe mettercela dato che sa come farla volendo.. ma meglio
 		}
 
 		this.mazzo.add(tesseraMagic);
@@ -88,7 +89,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		// TODO: controllo sia buona descrizione con regexp
 
 		Tessera tessera;
-		Elemento[] elementiTessera = new Elemento[PuntoCardinale.numero];
+		Elemento[] elementiTessera = new Elemento[PuntoCardinale.NUMERO_DIREZIONI];
 
 		Link link;
 		Lati lati;
@@ -108,16 +109,17 @@ public class FactoryTessereNormali extends FactoryTessere
 			boolean[] links = new boolean[Bussola.NUMERO_DIREZIONI];
 			for (Bussola bussola : Bussola.values())
 			{
-				Integer firstElement = 0;
-				Integer secondElement = 1;
-				int index = PuntoCardinale.numero + bussola.toInt();
+				final Integer firstElement = 0;
+				final Integer secondElement = 1;
+				int index = PuntoCardinale.NUMERO_DIREZIONI + bussola.toInt();
 				String[] entry = partiDescrizione[index].split("=");
 				Bussola agoBussola = Bussola.valueOf(entry[firstElement]);
 				links[agoBussola.ordinal()] = this.charToBoolLink(entry[secondElement].charAt(firstElement));
 
 			}
 			link = new Link(links);
-		} catch (BadAttributeValueExpException e)
+		}
+		catch (BadAttributeValueExpException e)
 		{
 			return null;
 		}
@@ -167,11 +169,13 @@ public class FactoryTessereNormali extends FactoryTessere
 				line = br.readLine();
 			}
 
-		} catch (FileNotFoundException e)
+		}
+		catch (FileNotFoundException e)
 		{
 			e.printStackTrace();
 			System.exit(-1);
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			e.printStackTrace();
 			System.exit(-1);
