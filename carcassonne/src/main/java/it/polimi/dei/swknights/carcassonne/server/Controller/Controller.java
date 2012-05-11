@@ -1,14 +1,14 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Events.EventSource;
 import it.polimi.dei.swknights.carcassonne.Events.ViewListener;
+import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
+import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
-import it.polimi.dei.swknights.carcassonne.Events.EventSource;
-import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
-import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
 
 /**
  * Class that implements theController of the MVC pattern Contains all the
@@ -81,12 +81,12 @@ public class Controller implements ViewListener, EventSource
 		tesseraCorrente = this.partita.getTessera();
 	}
 
-	private List<ViewListener> listeners;
+	private List<ViewListener>	listeners;
 
-	private Tessera tesseraCorrente;
+	private Tessera				tesseraCorrente;
 
-	private ContatoreCartografo contaPunti;
+	private ContatoreCartografo	contaPunti;
 
-	private DatiPartita partita;
+	private DatiPartita			partita;
 
 }

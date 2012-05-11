@@ -6,6 +6,7 @@ public class RigaNonTrovataException extends Exception
 	{
 		super("Non esiste la riga n " + riga);
 	}
-	private static final long serialVersionUID = -4902334967575966538L;
-	
+
+	private static final long	serialVersionUID	= -4902334967575966538L;
+
 }

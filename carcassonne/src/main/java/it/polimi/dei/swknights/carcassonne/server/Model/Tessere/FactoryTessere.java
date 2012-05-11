@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class FactoryTessere
 {
 
-	protected List<Tessera> mazzo;
+	protected List<Tessera>	mazzo;
 
 	public Tessera getTessera()
 	{

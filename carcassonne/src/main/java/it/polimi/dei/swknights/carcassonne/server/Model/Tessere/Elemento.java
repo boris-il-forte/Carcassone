@@ -3,13 +3,11 @@ package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneCitta;
 import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneStrada;
-import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 
 public enum Elemento
 {
 	prato, citta, strada;
 
-	
 	public Costruzione getCostruzione(Tessera tessera)
 	{
 		switch (this)
@@ -25,7 +23,7 @@ public enum Elemento
 		}
 	}
 
-	public static Elemento getTipoElemento(char sigla)
+	public static Elemento getElemento(char sigla)
 	{
 		switch (sigla)
 		{
@@ -36,12 +34,9 @@ public enum Elemento
 			case 'C':
 				return Elemento.citta;
 			default:
-				throw new IllegalArgumentException(
-						"Non esiste nessun elemento con la sigla  " + sigla);
+				throw new IllegalArgumentException("Non esiste nessun elemento con la sigla  " + sigla);
 		}
 
 	}
 
-
-	
 }

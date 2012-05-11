@@ -7,14 +7,14 @@ import it.polimi.dei.swknights.carcassonne.server.ViewProxy.View;
 public class Partita
 {
 
-	public DatiPartita model;
+	public DatiPartita	model;
 
-	public Integer idPartita;
+	public Integer		idPartita;
 
-	public Controller controller;
+	public Controller	controller;
 
-	public View view;
+	public View			view;
 
-	public Integer newAttr;
+	public Integer		newAttr;
 
 }

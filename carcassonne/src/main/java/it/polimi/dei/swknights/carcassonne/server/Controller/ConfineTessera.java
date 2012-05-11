@@ -1,12 +1,13 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 /**
- * This class is used to get an abstraction of the neighbour of the construction 
- * The neighbour can be full e.g. when hosting a street of a city
- * or empty when no card was placed there
+ * This class is used to get an abstraction of the neighbour of the construction
+ * The neighbour can be full e.g. when hosting a street of a city or empty when
+ * no card was placed there
+ * 
  * @author dave
  * @version 1.1
  */
@@ -21,7 +22,7 @@ public class ConfineTessera
 	 * @param lato
 	 *            The element of the card considered
 	 */
-	
+
 	public ConfineTessera(Tessera tessera, Elemento lato)
 	{
 		this.tessera = tessera;
@@ -35,7 +36,8 @@ public class ConfineTessera
 		if (object instanceof ConfineTessera)
 		{
 			ConfineTessera confine = (ConfineTessera) object;
-			if (this.lato == confine.lato && this.tessera == confine.tessera) isEqual = true;
+			if (this.lato == confine.lato && this.tessera == confine.tessera)
+				isEqual = true;
 		}
 		return isEqual;
 	}

@@ -4,7 +4,7 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
 
-public class CostruzioneCitta extends Costruzione 
+public class CostruzioneCitta extends Costruzione
 {
 	public CostruzioneCitta(Tessera tessera)
 	{

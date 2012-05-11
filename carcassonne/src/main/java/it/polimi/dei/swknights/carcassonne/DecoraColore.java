@@ -15,17 +15,15 @@ public class DecoraColore
 		this.mappaColori.put(Color.YELLOW, "G");
 		this.mappaColori.put(Color.BLACK, "N");
 	}
-	
-	
-	
-	private final Map<Color, String> mappaColori = new TreeMap<Color, String>();
-	
+
+	private final Map<Color, String>	mappaColori	= new TreeMap<Color, String>();
+
 	@Override
 	public String toString()
 	{
-		return "("+mappaColori.get(this.color)+")";
+		return "(" + mappaColori.get(this.color) + ")";
 	}
-	
-	private Color color;
-	
+
+	private Color	color;
+
 }

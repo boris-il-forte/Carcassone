@@ -1,31 +1,37 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import java.util.EventListener;
-import java.util.List;
 import it.polimi.dei.swknights.carcassonne.Events.EventSource;
 
-public class JCarcassonneMenu implements EventSource {
+import java.util.EventListener;
+import java.util.List;
 
-    public List  myGUI;
+public class JCarcassonneMenu implements EventSource
+{
 
-	public void addListener() {
+	public List	myGUI;
+
+	public void addListener()
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void removeListener() {
+	public void removeListener()
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void addListener(EventListener eventListener) {
+	public void addListener(EventListener eventListener)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	public void removeListener(EventListener eventListener) {
+	public void removeListener(EventListener eventListener)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -1,32 +1,36 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import it.polimi.dei.swknights.carcassonne.Client.View.View;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.JFrame;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.View;
-import java.awt.event.*;
+public class GUI extends View implements ActionListener
+{
 
-public class GUI extends View implements ActionListener {
+	public JFrame				finestra;
 
-  public JFrame finestra;
+	public JCarcassonneMenu		menu;
 
-  public JCarcassonneMenu menu;
+	public JCarcassonneLaterale	barraLaterale;
 
-  public JCarcassonneLaterale barraLaterale;
+	public JCarcassonneTavolo	Tavolo;
 
-  public JCarcassonneTavolo Tavolo;
+	public List					myJCarcassonneMenu;
+	public List					myJCarcassonneLaterale;
+	public List					myJCarcassonneTavolo;
 
-    public List  myJCarcassonneMenu;
-    public List  myJCarcassonneLaterale;
-    public List  myJCarcassonneTavolo;
+	public void showGui()
+	{
+	}
 
-  public void showGui() {
-  }
+	public void actionPerformed(ActionEvent arg0)
+	{
+		// TODO Auto-generated method stub
 
-public void actionPerformed(ActionEvent arg0) {
-	// TODO Auto-generated method stub
-	
-}
+	}
 
 }

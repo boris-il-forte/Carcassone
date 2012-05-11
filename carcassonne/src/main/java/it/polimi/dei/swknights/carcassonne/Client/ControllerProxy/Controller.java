@@ -2,15 +2,17 @@ package it.polimi.dei.swknights.carcassonne.Client.ControllerProxy;
 
 import it.polimi.dei.swknights.carcassonne.Events.ViewListener;
 
-public class Controller implements ViewListener {
+public class Controller implements ViewListener
+{
 
-  
-	  public void request() {
-	  }
+	public void request()
+	{
+	}
 
-	public void riceviInput() {
+	public void riceviInput()
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -2,7 +2,5 @@ package it.polimi.dei.swknights.carcassonne;
 
 public enum Comandi
 {
-	RuotaTessera,
-	InserisciTessera,
-	AggiungiSegnalino;	
+	RuotaTessera, InserisciTessera, AggiungiSegnalino;
 }

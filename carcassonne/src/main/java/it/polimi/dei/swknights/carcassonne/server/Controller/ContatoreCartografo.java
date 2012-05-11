@@ -42,13 +42,12 @@ public class ContatoreCartografo
 
 	public void riceviCoordinateTessera(Coordinate coordinateTessera)
 	{
-		EsploratoreConfini esploratore = new EsploratoreConfini(
-				coordinateTessera, this.areaDiGioco);
+		EsploratoreConfini esploratore = new EsploratoreConfini(coordinateTessera, this.areaDiGioco);
 		Set<Costruzione> costruzioni = esploratore.getCostruzioni();
-		Map<Costruzione, List<ConfineTessera>> mapConfinanti = esploratore
-				.getConfinantiScoperti();
-		Map<Costruzione, List<ConfineTessera>> mapConfini = esploratore
-				.getViciniVuoti(); //Hic Sunt Leones!
+		Map<Costruzione, List<ConfineTessera>> mapConfinanti = esploratore.getConfinantiScoperti();
+		Map<Costruzione, List<ConfineTessera>> mapConfini = esploratore.getViciniVuoti(); // Hic
+																							// Sunt
+																							// Leones!
 
 		for (Costruzione costruzione : costruzioni)
 		{
@@ -59,22 +58,18 @@ public class ContatoreCartografo
 		}
 	}
 
-	private Costruzione getCostruzioneAggregata(
-			List<ConfineTessera> listaConfinanti,
-			Costruzione nuovoPezzoCostruzione)
+	private Costruzione getCostruzioneAggregata(List<ConfineTessera> listaConfinanti, Costruzione nuovoPezzoCostruzione)
 	{
 		for (ConfineTessera confinante : listaConfinanti)
 		{
-			Costruzione costruzioneConfinante = this.cartaGeografica
-					.getCostruzioneAggregata(nuovoPezzoCostruzione, confinante);
+			Costruzione costruzioneConfinante = this.cartaGeografica.getCostruzioneAggregata(nuovoPezzoCostruzione, confinante);
 			nuovoPezzoCostruzione = costruzioneConfinante;
 
 		}
 		return nuovoPezzoCostruzione;
 	}
 
-	private void aggiungiNuoviConfini(List<ConfineTessera> nuoviConfini,
-			Costruzione costruzione)
+	private void aggiungiNuoviConfini(List<ConfineTessera> nuoviConfini, Costruzione costruzione)
 	{
 		for (ConfineTessera nuovoConfine : nuoviConfini)
 		{
@@ -82,8 +77,8 @@ public class ContatoreCartografo
 		}
 	}
 
-	private AreaDiGioco areaDiGioco;
+	private AreaDiGioco		areaDiGioco;
 
-	private CartaGeografica cartaGeografica;
+	private CartaGeografica	cartaGeografica;
 
 }

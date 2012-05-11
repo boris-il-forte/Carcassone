@@ -15,11 +15,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
 
-/** 
- * This class is the representation of the game data, it allows basic
- * operations involving players; handle the turns
+/**
+ * This class is the representation of the game data, it allows basic operations
+ * involving players; handle the turns
+ * 
  * @author Edo & Dave
- *
+ * 
  */
 
 public class DatiPartita
@@ -33,7 +34,6 @@ public class DatiPartita
 		this.inizializzaAreaDiGioco();
 	}
 
-
 	public AreaDiGioco getAreaDiGioco()
 	{
 		return areaDiGioco;
@@ -41,28 +41,33 @@ public class DatiPartita
 
 	/**
 	 * Return the player of the given color
-	 * @param colore: the color of the player to be found
+	 * 
+	 * @param colore
+	 *            : the color of the player to be found
 	 * @return the player of that color
 	 */
-	
+
 	public Giocatore getGiocatore(Color colore)
 	{
-		
-		for(Giocatore giocatore : this.giocatori)
+
+		for (Giocatore giocatore : this.giocatori)
 		{
-			if(giocatore.getColore() == colore) return giocatore;
-			
+			if (giocatore.getColore() == colore)
+				return giocatore;
+
 		}
-		
-		return null; //TODO: chiedere cosa fare a sangiorgio
-		
+
+		return null; // TODO: chiedere cosa fare a sangiorgio
+
 	}
+
 	public Giocatore getGiocatoreCorrente()
 	{
 		return this.giocatoreCorrente;
 	}
+
 	/**
-	 * 	changes the current turn to the next
+	 * changes the current turn to the next
 	 */
 	public void nextTurno()
 	{
@@ -71,10 +76,11 @@ public class DatiPartita
 	}
 
 	/**
-	 * gets a card from  the deck if there is any available
+	 * gets a card from the deck if there is any available
+	 * 
 	 * @return the card on the top of the desk
-	 * @throws PartitaFinitaException if the cards are finished, and so the game
-	 * ends
+	 * @throws PartitaFinitaException
+	 *             if the cards are finished, and so the game ends
 	 */
 	public Tessera getTessera() throws PartitaFinitaException
 	{
@@ -84,21 +90,23 @@ public class DatiPartita
 			index--;
 			Tessera tessera = this.pilaTessere.get(index);
 			return tessera;
-		}
-		else throw new PartitaFinitaException();
+		} else
+			throw new PartitaFinitaException();
 
 	}
-    /**
-     * Add a player to the current group of players
-     * @throws finitiColoriDisponibiliException
-     */
+
+	/**
+	 * Add a player to the current group of players
+	 * 
+	 * @throws finitiColoriDisponibiliException
+	 */
 	public void addGiocatore() throws finitiColoriDisponibiliException
 	{
-	    Giocatore playerToAdd ;
-	    playerToAdd = this.factoryGiocatori.getGiocatore();
-	    this.giocatori.add(playerToAdd);
+		Giocatore playerToAdd;
+		playerToAdd = this.factoryGiocatori.getGiocatore();
+		this.giocatori.add(playerToAdd);
 	}
-	
+
 	private void inizializzaGiocatori()
 	{
 		this.giocatori = new ArrayDeque<Giocatore>();
@@ -106,22 +114,20 @@ public class DatiPartita
 		{
 			this.addGiocatore();
 			this.giocatoreCorrente = this.getGiocatore(Color.RED);
-		} 
-		catch (finitiColoriDisponibiliException e)
-		{  //non dovrebbe mai avvenire perchè un colore c'è per forza all'inizio
+		} catch (finitiColoriDisponibiliException e)
+		{ // non dovrebbe mai avvenire perchè un colore c'è per forza all'inizio
 			e.printStackTrace();
 			System.exit(-1);
 		}
-		
-		
+
 	}
 
 	private void inizializzaAreaDiGioco()
 	{
 		this.areaDiGioco = new AreaDiGioco();
-		//TODO: mettere la tessera magica al centro
+		// TODO: mettere la tessera magica al centro
 	}
-	
+
 	private void inizializzaPilaTessere()
 	{
 		this.pilaTessere = new ArrayList<Tessera>();
@@ -133,14 +139,14 @@ public class DatiPartita
 		Collections.shuffle(this.pilaTessere);
 	}
 
-	private AreaDiGioco areaDiGioco;
+	private AreaDiGioco				areaDiGioco;
 
-	private List<Tessera> pilaTessere;
+	private List<Tessera>			pilaTessere;
 
-	private Giocatore giocatoreCorrente;
+	private Giocatore				giocatoreCorrente;
 
-	private Queue<Giocatore> giocatori;
-	
-	private final FactoryGiocatore factoryGiocatori;
+	private Queue<Giocatore>		giocatori;
+
+	private final FactoryGiocatore	factoryGiocatori;
 
 }

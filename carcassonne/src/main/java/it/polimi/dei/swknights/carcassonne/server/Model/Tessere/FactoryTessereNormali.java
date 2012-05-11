@@ -58,19 +58,15 @@ public class FactoryTessereNormali extends FactoryTessere
 			Tessera tessera = this.tesseraDaDescrzione(descrizione);
 
 			if (tessera.lati.getTipoElementoInDirezione(PuntoCardinale.nord) == Elemento.prato
-					&& tessera.lati
-							.getTipoElementoInDirezione(PuntoCardinale.sud) == Elemento.citta
-					&& tessera.lati
-							.getTipoElementoInDirezione(PuntoCardinale.ovest) == Elemento.strada
-					&& tessera.lati
-							.getTipoElementoInDirezione(PuntoCardinale.est) == Elemento.strada)
+					&& tessera.lati.getTipoElementoInDirezione(PuntoCardinale.sud) == Elemento.citta
+					&& tessera.lati.getTipoElementoInDirezione(PuntoCardinale.ovest) == Elemento.strada
+					&& tessera.lati.getTipoElementoInDirezione(PuntoCardinale.est) == Elemento.strada)
 			{
 				tesseraMagic = this.tesseraDaDescrzione(descrizione); // con =
 																		// tessera
 																		// copierei
 																		// riferimento
-			} 
-			else
+			} else
 			{
 				this.mazzo.add(tessera);
 			}
@@ -79,8 +75,7 @@ public class FactoryTessereNormali extends FactoryTessere
 
 		if (tesseraMagic == null)
 		{
-			throw new NoFirstCardException(
-					"controlla il file tessere e la factory perchè manca la tessera iniziale");
+			throw new NoFirstCardException("controlla il file tessere e la factory perchè manca la tessera iniziale");
 			// potrebbe mettercela dato che sa come farla volendo.. ma meglio
 		}
 
@@ -104,7 +99,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		{
 			int dir = direzione.toInt();
 			char sigla = partiDescrizione[dir].charAt(PARAMETRO_PUNTOCARDINALE);
-			elementiTessera[dir] = Elemento.getTipoElemento(sigla);
+			elementiTessera[dir] = Elemento.getElemento(sigla);
 		}
 
 		lati = new Lati(elementiTessera);
@@ -118,9 +113,7 @@ public class FactoryTessereNormali extends FactoryTessere
 				int index = PuntoCardinale.numero + bussola.toInt();
 				String[] entry = partiDescrizione[index].split("=");
 				Bussola agoBussola = Bussola.valueOf(entry[firstElement]);
-				links[agoBussola.ordinal()] = this
-						.charToBoolLink(entry[secondElement]
-								.charAt(firstElement));
+				links[agoBussola.ordinal()] = this.charToBoolLink(entry[secondElement].charAt(firstElement));
 
 			}
 			link = new Link(links);
@@ -134,8 +127,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		return tessera;
 	}
 
-	private Boolean charToBoolLink(char siglaLink)
-			throws BadAttributeValueExpException
+	private Boolean charToBoolLink(char siglaLink) throws BadAttributeValueExpException
 	{
 		switch (siglaLink)
 		{
@@ -192,8 +184,8 @@ public class FactoryTessereNormali extends FactoryTessere
 		return imgURL.getFile();
 	}
 
-	private List<String> descrizioniTessere;
+	private List<String>	descrizioniTessere;
 
-	private final int PARAMETRO_PUNTOCARDINALE = 2;
+	private final int		PARAMETRO_PUNTOCARDINALE	= 2;
 
 }
