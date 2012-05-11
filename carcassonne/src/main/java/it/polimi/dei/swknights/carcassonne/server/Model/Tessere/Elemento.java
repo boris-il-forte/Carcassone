@@ -42,16 +42,6 @@ public enum Elemento
 
 	}
 
-	public Segnalino getSegnalino()
-	{
-		return this.segnalino;
-	}
 
-	public void setSegnalino(Segnalino segnalino)
-	{
-		this.segnalino = segnalino;
-	}
-
-	private Segnalino segnalino ;
 	
 }

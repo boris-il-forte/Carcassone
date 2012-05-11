@@ -81,12 +81,12 @@ public class Controller implements ViewListener, EventSource
 		tesseraCorrente = this.partita.getTessera();
 	}
 
-	private List<ViewListener>	listeners;
+	private List<ViewListener> listeners;
 
-	private Tessera				tesseraCorrente;
+	private Tessera tesseraCorrente;
 
-	private ContatoreCartografo			contaPunti;
+	private ContatoreCartografo contaPunti;
 
-	private DatiPartita			partita;
+	private DatiPartita partita;
 
 }
