@@ -41,8 +41,8 @@ public class FactoryTessereNormali extends FactoryTessere
 		try
 		{
 			this.creaMazzoTessere();
-		} catch (NoFirstCardException e) 
-		{			
+		} catch (NoFirstCardException e)
+		{
 			e.printStackTrace();
 			System.exit(-3);
 		}
@@ -52,35 +52,38 @@ public class FactoryTessereNormali extends FactoryTessere
 
 	private void creaMazzoTessere() throws NoFirstCardException
 	{
-		Tessera tesseraMagic=null; 
+		Tessera tesseraMagic = null;
 		for (String descrizione : this.descrizioniTessere)
 		{
 			Tessera tessera = this.tesseraDaDescrzione(descrizione);
-			//TODO: ma uno String sigla=Prato nell'oggetto no?? :)
-			if(tessera.lati.getElementoInDirezione(PuntoCardinale.nord).stessoTipoElemento(new Prato())
-			   &&
-			   tessera.lati.getElementoInDirezione(PuntoCardinale.sud).stessoTipoElemento(new Citta())
-			   &&
-			   tessera.lati.getElementoInDirezione(PuntoCardinale.ovest).stessoTipoElemento(new Strada ())
-			   &&
-			   tessera.lati.getElementoInDirezione(PuntoCardinale.est).stessoTipoElemento(new Strada())
-			  ) 
+
+			if (tessera.lati.getTipoElementoInDirezione(PuntoCardinale.nord) == Elemento.prato
+					&& tessera.lati
+							.getTipoElementoInDirezione(PuntoCardinale.sud) == Elemento.citta
+					&& tessera.lati
+							.getTipoElementoInDirezione(PuntoCardinale.ovest) == Elemento.strada
+					&& tessera.lati
+							.getTipoElementoInDirezione(PuntoCardinale.est) == Elemento.strada)
 			{
-				tesseraMagic = this.tesseraDaDescrzione(descrizione); // con = tessera copierei riferimento
-			}
+				tesseraMagic = this.tesseraDaDescrzione(descrizione); // con =
+																		// tessera
+																		// copierei
+																		// riferimento
+			} 
 			else
 			{
 				this.mazzo.add(tessera);
 			}
-		
+
 		}
-		
-		if(tesseraMagic==null)
+
+		if (tesseraMagic == null)
 		{
-			throw new NoFirstCardException("controlla il file tessere e la factory perchè manca la tessera iniziale");
-		    //potrebbe mettercela dato che sa come farla volendo.. ma meglio
+			throw new NoFirstCardException(
+					"controlla il file tessere e la factory perchè manca la tessera iniziale");
+			// potrebbe mettercela dato che sa come farla volendo.. ma meglio
 		}
-		
+
 		this.mazzo.add(tesseraMagic);
 
 	}
@@ -90,42 +93,38 @@ public class FactoryTessereNormali extends FactoryTessere
 		// TODO: controllo sia buona descrizione con regexp
 
 		Tessera tessera;
-		Elemento nord;
-		Elemento sud;
-		Elemento ovest;
-		Elemento est;
+		Elemento[] elementiTessera = new Elemento[PuntoCardinale.numero];
 
 		Link link;
 		Lati lati;
-
 		String[] partiDescrizione;
 		partiDescrizione = descrizione.split(" ");
 
-		// TODO: si può migliorare? spero di sì!
-		nord = this
-				.charToElemento(partiDescrizione[PuntoCardinale.nord.toInt()]
-						.charAt(PARAMETRO_PUNTOCARDINALE));
-		sud = this.charToElemento(partiDescrizione[PuntoCardinale.sud.toInt()]
-				.charAt(PARAMETRO_PUNTOCARDINALE));
-		ovest = this.charToElemento(partiDescrizione[PuntoCardinale.ovest
-				.toInt()].charAt(PARAMETRO_PUNTOCARDINALE));
-		est = this.charToElemento(partiDescrizione[PuntoCardinale.est.toInt()]
-				.charAt(PARAMETRO_PUNTOCARDINALE));
+		for (PuntoCardinale direzione : PuntoCardinale.values())
+		{
+			int dir = direzione.toInt();
+			char sigla = partiDescrizione[dir].charAt(PARAMETRO_PUNTOCARDINALE);
+			elementiTessera[dir] = Elemento.getTipoElemento(sigla);
+		}
 
-		lati = new Lati(nord, sud, ovest, est);
+		lati = new Lati(elementiTessera);
 		try
 		{
-			//TODO: kill the magick!
-			boolean[] links = new boolean[6];
-			for (int i = 4; i < 10; i++)
+			boolean[] links = new boolean[Bussola.NUMERO_DIREZIONI];
+			for (Bussola bussola : Bussola.values())
 			{
-				String[] entry = partiDescrizione[i].split("=");
-				Bussola agoBussola = Bussola.valueOf(entry[0]);
-				links[agoBussola.ordinal()] = this.charToBoolLink(entry[1].charAt(0));
+				Integer firstElement = 0;
+				Integer secondElement = 1;
+				int index = PuntoCardinale.numero + bussola.toInt();
+				String[] entry = partiDescrizione[index].split("=");
+				Bussola agoBussola = Bussola.valueOf(entry[firstElement]);
+				links[agoBussola.ordinal()] = this
+						.charToBoolLink(entry[secondElement]
+								.charAt(firstElement));
+
 			}
-			link= new Link(links);
-		} 
-		catch (BadAttributeValueExpException e)
+			link = new Link(links);
+		} catch (BadAttributeValueExpException e)
 		{
 			return null;
 		}
@@ -146,29 +145,6 @@ public class FactoryTessereNormali extends FactoryTessere
 				return false;
 			default:
 				throw new BadAttributeValueExpException(siglaLink);
-		}
-	}
-
-	/**
-	 * gets an element of the specified initial C stays for City N stay for
-	 * Nothing S stays for Street
-	 * 
-	 * @param siglaElemento
-	 *            : the initial of the wanted element
-	 * @return: the wanted element
-	 */
-	private Elemento charToElemento(char siglaElemento)
-	{
-		switch (siglaElemento)
-		{
-			case 'S':
-				return new Strada();
-			case 'C':
-				return new Citta();
-			case 'N':
-				return new Prato();
-			default:
-				return null; // TODO: exception!!!
 		}
 	}
 
@@ -219,5 +195,5 @@ public class FactoryTessereNormali extends FactoryTessere
 	private List<String> descrizioniTessere;
 
 	private final int PARAMETRO_PUNTOCARDINALE = 2;
-	
+
 }

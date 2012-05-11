@@ -1,67 +1,57 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
+import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneCitta;
+import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneStrada;
 import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 
-/**
- * That class represents one Carcassonne element, it can be instanciated as City
- * or Streat
- * 
- * @author Edo & Dave
- * 
- */
-
-public abstract class Elemento
+public enum Elemento
 {
+	prato, citta, strada;
 
-	protected Elemento(TipoElemento tipoElemento)
-	{
-		this.tipoElemento = tipoElemento;
-	}
 	
-	
-	abstract int getPunteggio();
-	
-	abstract Costruzione getCostruzione(Tessera tessera);
-
-	/**
-	 * Establish whether the given element is of the same type to the current element,
-	 * e.g. two streets are of the same type
-	 */
-	public boolean stessoTipoElemento(Elemento elemento)
+	public Costruzione getCostruzione(Tessera tessera)
 	{
-	    if ( this.tipoElemento == elemento.tipoElemento)
-	    	return true;
-	    else
-	    	return false;
-	}
-    
-
-	/**
-	 * remove the controlling pawn on the current element
-	 * 
-	 * @return the removed pawn
-	 */
-
-	public Segnalino removeSegnalino()
-	{
-		Segnalino segnalino = this.segnalino;
-		this.segnalino = null;
-		return segnalino;
+		switch (this)
+		{
+			case prato:
+				return null;
+			case citta:
+				return new CostruzioneCitta(tessera);
+			case strada:
+				return new CostruzioneStrada(tessera);
+			default:
+				return null;
+		}
 	}
 
-	/**
-	 * place a pawn on the current element
-	 * 
-	 * @param segnalino
-	 */
+	public static Elemento getTipoElemento(char sigla)
+	{
+		switch (sigla)
+		{
+			case 'N':
+				return Elemento.prato;
+			case 'S':
+				return Elemento.strada;
+			case 'C':
+				return Elemento.citta;
+			default:
+				throw new IllegalArgumentException(
+						"Non esiste nessun elemento con la sigla  " + sigla);
+		}
+
+	}
+
+	public Segnalino getSegnalino()
+	{
+		return this.segnalino;
+	}
+
 	public void setSegnalino(Segnalino segnalino)
 	{
 		this.segnalino = segnalino;
 	}
 
-	private final TipoElemento tipoElemento;
-
-	private Segnalino segnalino;
-
+	private Segnalino segnalino ;
+	
 }
