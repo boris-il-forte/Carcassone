@@ -7,6 +7,7 @@ public class PartitaFinitaException extends Exception
 	{
 		super("Le tessere sono terminate: La partita è conclusa");
 	}
-	private static final long serialVersionUID = 9013683308135792500L;
+
+	private static final long	serialVersionUID	= 9013683308135792500L;
 
 }

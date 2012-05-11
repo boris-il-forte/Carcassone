@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne;
 
-public enum PuntoCardinale {
+public enum PuntoCardinale
+{
 	nord(0), sud(1), ovest(2), est(3);
 	private int	numerazione;
 
@@ -30,6 +31,6 @@ public enum PuntoCardinale {
 				return null;
 		}
 	}
-	
-	public static final int numero = 4;
+
+	public static final int	numero	= 4;
 }

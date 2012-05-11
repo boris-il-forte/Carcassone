@@ -27,26 +27,25 @@ public abstract class Costruzione
 	 * @param tessera
 	 *            the first element of the construction
 	 */
-	
+
 	public Costruzione(Tessera tessera)
 	{
 		this.listaSegnalini = new ArrayList<Segnalino>();
 		this.elementi = new HashSet<Tessera>();
-		
+
 		this.elementi.add(tessera);
 	}
-	
+
 	public Costruzione getCopy(Tessera tessera)
 	{
-		Costruzione costruzioneCopia=null;
+		Costruzione costruzioneCopia = null;
 		if (this instanceof CostruzioneCitta)
 			costruzioneCopia = new CostruzioneCitta(tessera);
 		if (this instanceof CostruzioneStrada)
 			costruzioneCopia = new CostruzioneStrada(tessera);
-		
+
 		return costruzioneCopia;
 	}
-	
 
 	/**
 	 * Method used to join two constructions
@@ -102,7 +101,7 @@ public abstract class Costruzione
 	 */
 
 	public abstract int contaPuntiGiocatore(Color colore); // TODO ripensare!
-	
+
 	protected int contaElementi()
 	{
 		return this.elementi.size();
@@ -111,7 +110,8 @@ public abstract class Costruzione
 	private Map<Color, Integer> inizializzaContatore()
 	{
 		// TODO copia incolla è il male!
-		Color colori[] = new Color[] { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK };
+		Color colori[] = new Color[]
+		{ Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK };
 		final int vuoto = 0; // TODO di troppo?
 		Map<Color, Integer> contatore = new HashMap<Color, Integer>();
 		for (Color colore : colori)
@@ -127,11 +127,13 @@ public abstract class Costruzione
 		for (Color colore : contatore.keySet())
 		{
 			int numeroSegnalini = contatore.get(colore);
-			if (numeroSegnalini > max) max = numeroSegnalini;
+			if (numeroSegnalini > max)
+				max = numeroSegnalini;
 		}
 		for (Color colore : contatore.keySet())
 		{
-			if (contatore.get(colore) == max) controllori.add(colore);
+			if (contatore.get(colore) == max)
+				controllori.add(colore);
 		}
 		return controllori;
 	}

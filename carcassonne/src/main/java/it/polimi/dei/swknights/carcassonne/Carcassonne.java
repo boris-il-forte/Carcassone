@@ -4,20 +4,19 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.FactoryTessereNo
 
 /**
  * Hello world!
- *
+ * 
  */
-public class Carcassonne 
+public class Carcassonne
 {
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
-        
-        //TODO:togliere questo baby-schifo test in luogo di migliori, ma fino ad allora..
-        FactoryTessereNormali fnTest = new FactoryTessereNormali();
-        fnTest.acquisisciMazzoDaFile("File/tessere.dat");
-        
-        
-        
-        System.out.println(PuntoCardinale.valueOf("sud").toInt() );
-    }
+	public static void main(String[] args)
+	{
+		System.out.println("Hello World!");
+
+		// TODO:togliere questo baby-schifo test in luogo di migliori, ma fino
+		// ad allora..
+		FactoryTessereNormali fnTest = new FactoryTessereNormali();
+		fnTest.acquisisciMazzoDaFile("File/tessere.dat");
+
+		System.out.println(PuntoCardinale.valueOf("sud").toInt());
+	}
 }

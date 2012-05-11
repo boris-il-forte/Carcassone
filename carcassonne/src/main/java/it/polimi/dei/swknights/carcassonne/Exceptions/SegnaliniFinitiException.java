@@ -7,6 +7,7 @@ public class SegnaliniFinitiException extends Exception
 	{
 		super("Segnalini del giocatore finiti");
 	}
-	private static final long serialVersionUID = 4405032866451452294L;
+
+	private static final long	serialVersionUID	= 4405032866451452294L;
 
 }

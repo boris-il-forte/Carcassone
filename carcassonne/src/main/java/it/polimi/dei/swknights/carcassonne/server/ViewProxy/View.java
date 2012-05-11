@@ -1,20 +1,22 @@
 package it.polimi.dei.swknights.carcassonne.server.ViewProxy;
 
-import java.util.List;
 import it.polimi.dei.swknights.carcassonne.Events.ControllerListener;
 
-public class View implements ControllerListener {
+import java.util.List;
 
-    public List  myPartita;
+public class View implements ControllerListener
+{
 
-  public void request() {
-  }
+	public List	myPartita;
 
+	public void request()
+	{
+	}
 
+	public void riceviModificheModel()
+	{
+		// TODO Auto-generated method stub
 
-public void riceviModificheModel() {
-	// TODO Auto-generated method stub
-	
-}
+	}
 
 }

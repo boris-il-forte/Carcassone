@@ -1,12 +1,13 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
+import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.server.Controller.ConfineTessera;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
-import it.polimi.dei.swknights.carcassonne.server.Controller.ConfineTessera;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 
 /**
  * This class is the abstract representation of the cards that can be placed on
@@ -24,7 +25,7 @@ public abstract class Tessera
 	{
 		this.lati = lati;
 		this.link = link;
-		Map <String, String> m = new HashMap<String, String>();
+		Map<String, String> m = new HashMap<String, String>();
 		m.remove(null);
 	}
 
@@ -36,8 +37,6 @@ public abstract class Tessera
 		this.lati.ruota();
 		this.link.ruota();
 	}
-
-
 
 	/**
 	 * This method return whether the given card at the given position accepts
@@ -53,26 +52,25 @@ public abstract class Tessera
 	public boolean buonVicino(Tessera tessera, PuntoCardinale puntoCardinale)
 	{
 		Elemento elementoMio = this.lati.getTipoElementoInDirezione(puntoCardinale);
-		Elemento elementoSuo = this.lati.getTipoElementoInDirezione(puntoCardinale
-				.opposto());
+		Elemento elementoSuo = this.lati.getTipoElementoInDirezione(puntoCardinale.opposto());
 
-		return (elementoMio==elementoSuo);
+		return (elementoMio == elementoSuo);
 	}
-   /**
-    * gets the aggregated costructions on the card
-    * e.g a street that crosses from north to south the card
-    * @return:  a list containing the Costruction of the card
-    */
+
+	/**
+	 * gets the aggregated costructions on the card e.g a street that crosses
+	 * from north to south the card
+	 * 
+	 * @return: a list containing the Costruction of the card
+	 */
 	public Map<Costruzione, List<PuntoCardinale>> getCostruzioni()
 	{
 
 		Map<Costruzione, List<PuntoCardinale>> mappaCostruzioniPunti = new HashMap<Costruzione, List<PuntoCardinale>>();
 
-		Map<Costruzione, PuntoCardinale> mappaCostruzioni = lati
-				.getMappaCostruzioniPrimitive(this);
+		Map<Costruzione, PuntoCardinale> mappaCostruzioni = lati.getMappaCostruzioniPrimitive(this);
 
-		List<Costruzione> listCostruzione = new ArrayList<Costruzione>(
-				mappaCostruzioni.keySet());
+		List<Costruzione> listCostruzione = new ArrayList<Costruzione>(mappaCostruzioni.keySet());
 		Costruzione tempAggregato1 = null;
 		Costruzione tempAggregato2 = null;
 		boolean[] inglobati =
@@ -81,15 +79,15 @@ public abstract class Tessera
 		int i = 0, j = 0;
 		for (i = 0; i < listCostruzione.size() - 1; i++)
 		{
-			if(inglobati[i] == true) continue;
-			List<PuntoCardinale> puntiCardinali= new ArrayList<PuntoCardinale>();
+			if (inglobati[i] == true)
+				continue;
+			List<PuntoCardinale> puntiCardinali = new ArrayList<PuntoCardinale>();
 			tempAggregato1 = listCostruzione.get(i);
 
 			for (j = i + 1; j < listCostruzione.size() - 1; j++)
 			{
 				puntiCardinali.add(mappaCostruzioni.get(tempAggregato1));
-				if (isConnected(listCostruzione.get(i), listCostruzione.get(j),
-						mappaCostruzioni))
+				if (isConnected(listCostruzione.get(i), listCostruzione.get(j), mappaCostruzioni))
 				{
 					inglobati[j] = true;
 					puntiCardinali.add(mappaCostruzioni.get(tempAggregato2));
@@ -105,7 +103,9 @@ public abstract class Tessera
 	}
 
 	/**
-	 * Returns the neighbour of the given cardinal point or null if the neighbour is empty
+	 * Returns the neighbour of the given cardinal point or null if the
+	 * neighbour is empty
+	 * 
 	 * @param puntoCardinale
 	 * @return the neighbour or null if empty
 	 */
@@ -121,8 +121,7 @@ public abstract class Tessera
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
 
-	private boolean isConnected(Costruzione costruzione1,
-			Costruzione costruzione2,
+	private boolean isConnected(Costruzione costruzione1, Costruzione costruzione2,
 			Map<Costruzione, PuntoCardinale> mappaCostruzioni)
 	{
 		PuntoCardinale puntoCardinale1 = mappaCostruzioni.get(costruzione1);
@@ -130,8 +129,8 @@ public abstract class Tessera
 		return this.link.areConnected(puntoCardinale1, puntoCardinale2);
 	}
 
-	protected final Lati lati;
+	protected final Lati	lati;
 
-	protected final Link link;
+	protected final Link	link;
 
 }

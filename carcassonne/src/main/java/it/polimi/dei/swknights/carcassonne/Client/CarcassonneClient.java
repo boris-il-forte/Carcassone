@@ -1,7 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Client;
 
-import it.polimi.dei.swknights.carcassonne.Client.ControllerProxy.*;
-
+import it.polimi.dei.swknights.carcassonne.Client.ControllerProxy.Controller;
 import it.polimi.dei.swknights.carcassonne.server.ViewProxy.View;
 
 public class CarcassonneClient
