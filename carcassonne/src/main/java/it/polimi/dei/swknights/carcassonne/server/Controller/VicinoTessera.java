@@ -1,7 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
 
 /**
  * This class is used to get an abstraction of the neighbour of the construction 

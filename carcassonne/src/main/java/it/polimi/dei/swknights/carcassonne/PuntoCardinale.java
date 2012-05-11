@@ -30,4 +30,6 @@ public enum PuntoCardinale {
 				return null;
 		}
 	}
+	
+	public static final int numero = 4;
 }

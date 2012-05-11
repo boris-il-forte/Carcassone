@@ -7,5 +7,19 @@ package it.polimi.dei.swknights.carcassonne;
  */
 public enum Bussola
 {
-	NS, NE, NO, OE, SE, SO;
+	NS(0), NE(1), NO(2), OE(3), SE(4), SO(5);
+	
+	private Bussola(int numero)
+	{
+		this.numero = numero;
+	}
+	
+	public int toInt()
+	{
+		return numero;
+	}
+
+	public static int NUMERO_DIREZIONI = 6;
+
+	private int numero;
 }
