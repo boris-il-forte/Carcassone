@@ -37,8 +37,7 @@ public class AreaDiGioco
 		try
 		{
 			Riga riga = this.getRiga(coordinate.getY());
-			Tessera tessera = riga.getTessera(coordinate.getX());
-			return tessera;
+			return riga.getTessera(coordinate.getX());
 		} catch (Exception e)
 		{
 			throw new TesseraNonTrovataException(coordinate);

@@ -188,8 +188,8 @@ public class FactoryTessereNormali extends FactoryTessere
 		return imgURL.getFile();
 	}
 
-	private List<String>	descrizioniTessere;
+	private List<String>		descrizioniTessere;
 
-	private final int		PARAMETRO_PUNTOCARDINALE	= 2;
+	private static final int	PARAMETRO_PUNTOCARDINALE	= 2;
 
 }
