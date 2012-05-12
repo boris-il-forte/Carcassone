@@ -22,6 +22,7 @@ public class Lati
 		this.sud = sud;
 		this.ovest = ovest;
 		this.est = est;
+		this.datiSegnalino = new DatiSegnalino();
 	}
 
 	public Lati(Elemento[] elementiTessera)
@@ -93,8 +94,7 @@ public class Lati
 		if (stringSegnalino != null)
 		{
 			PuntoCardinale direzione = this.datiSegnalino.puntoCardinale;
-			int index = direzione.toInt() * 2 + 1; // TODO kill the magic?
-													// ridicolo?
+			int index = direzione.toInt() * 2 + 1;
 			componiStringhe.insert(index, stringSegnalino);
 		}
 		return "";
@@ -124,7 +124,6 @@ public class Lati
 	{
 		public Segnalino		segnalino;
 		public PuntoCardinale	puntoCardinale;
-
 	}
 
 }
