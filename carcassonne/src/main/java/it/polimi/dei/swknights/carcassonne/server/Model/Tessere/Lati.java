@@ -85,19 +85,24 @@ public class Lati
 	@Override
 	public String toString()
 	{
+		Elemento[] elementi ={this.nord, this.sud, this.ovest, this.est};
 		StringBuilder componiStringhe = new StringBuilder();
-		componiStringhe.append(nord.toString() + " ");
-		componiStringhe.append(sud.toString() + " ");
-		componiStringhe.append(ovest.toString() + " ");
-		componiStringhe.append(est.toString() + " ");
-		String stringSegnalino = printSegnalino();
-		if (stringSegnalino != null)
+		for(PuntoCardinale puntoCardinale : PuntoCardinale.values())
 		{
+			String stringPuntoCardinale = puntoCardinale.toString();
+			String stringElemento = elementi[puntoCardinale.toInt()].toString();
+			componiStringhe.append(stringPuntoCardinale + '=' + stringElemento + ' ');
+		}
+		String stringSegnalino = printSegnalino();
+		if (stringSegnalino.length() > 0)
+		{
+			final int caratteriPerElemento= 4;
+			final int offsetPrimoElemento = caratteriPerElemento -1;
 			PuntoCardinale direzione = this.datiSegnalino.puntoCardinale;
-			int index = direzione.toInt() * 2 + 1;
+			int index = direzione.toInt() * caratteriPerElemento + offsetPrimoElemento;
 			componiStringhe.insert(index, stringSegnalino);
 		}
-		return "";
+		return componiStringhe.toString();
 	}
 
 	private String printSegnalino()
@@ -107,7 +112,7 @@ public class Lati
 		{
 			return segnalino.toString();
 		} else
-			return null;
+			return "";
 	}
 
 	private Elemento		nord;

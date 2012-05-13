@@ -1,6 +1,9 @@
 package it.polimi.dei.swknights.carcassonne;
 
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.FactoryTessereNormali;
+import java.awt.Color;
+
+import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.*;
 
 /**
  * Hello world!
@@ -16,7 +19,11 @@ public class Carcassonne
 		// ad allora..
 		FactoryTessereNormali fnTest = new FactoryTessereNormali();
 		fnTest.acquisisciMazzoDaFile("File/tessere.dat");
-
-		System.out.println(PuntoCardinale.valueOf("sud").toInt());
+		Tessera tessera = fnTest.getTessera();
+		String stringTessera1 = tessera.toString();
+		tessera.setSegnalino(new Segnalino(Color.RED), PuntoCardinale.nord);
+		String stringTessera2 = tessera.toString();
+		System.out.println(stringTessera1);
+		System.out.println(stringTessera2);
 	}
 }

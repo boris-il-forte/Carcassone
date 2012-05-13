@@ -2,10 +2,11 @@ package it.polimi.dei.swknights.carcassonne;
 
 public enum PuntoCardinale
 {
-	nord(0), sud(1), ovest(2), est(3);
-	private PuntoCardinale(int numerazione)
+	nord(0, "N"), sud(1, "S"), ovest(2,"O"), est(3,"E");
+	private PuntoCardinale(int numerazione, String string)
 	{
 		this.numerazione = numerazione;
+		this.string = string;
 	}
 
 	public int toInt()
@@ -29,8 +30,16 @@ public enum PuntoCardinale
 				return null;
 		}
 	}
+	
+	@Override
+	public String toString()
+	{
+		return this.string;
+	}
 
 	public static final int	NUMERO_DIREZIONI	= 4;
 	
 	private int	numerazione;
+
+	private String	string;
 }

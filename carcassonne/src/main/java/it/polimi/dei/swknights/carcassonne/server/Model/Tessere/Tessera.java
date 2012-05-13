@@ -126,45 +126,6 @@ public abstract class Tessera
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
 
-	protected int[] getNumerazioni()
-	{
-		int[] numerazione = new int[PuntoCardinale.NUMERO_DIREZIONI];
-		int counter;
-		int stradaCounter = 0;
-		int cittaCounter = 0;
-		List<PuntoCardinale> puntiDaProvare = new ArrayList<PuntoCardinale>(Arrays.asList(PuntoCardinale
-				.values()));
-		for (PuntoCardinale punto1 : puntiDaProvare)
-		{
-			switch (this.lati.getTipoElementoInDirezione(punto1))
-			{
-				case strada:
-					counter = ++stradaCounter;
-					break;
-				case citta:
-					counter = ++cittaCounter;
-					break;
-				default:
-					continue;
-			}
-			for(PuntoCardinale punto2 : puntiDaProvare)
-			{
-				if(this.isConnected(punto1, punto2))
-				{
-					puntiDaProvare.remove(punto2);
-					numerazione[punto2.toInt()] = counter;
-				}
-			}
-		}
-		return null;
-	}
-
-	private boolean isConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
-	{
-		if (puntoCardinale1 == puntoCardinale2)
-			return true;
-		else return this.link.areConnected(puntoCardinale1, puntoCardinale2);
-	}
 
 	private boolean isConnected(Costruzione costruzione1, Costruzione costruzione2,
 			Map<Costruzione, PuntoCardinale> mappaCostruzioni)
