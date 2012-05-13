@@ -6,14 +6,14 @@ import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneStrada;
 
 public enum Elemento
 {
-	prato, citta, strada;
+	prato("N"), citta("C"), strada("S");
+	
+	private String	strig;
 
 	public Costruzione getCostruzione(Tessera tessera)
 	{
 		switch (this)
 		{
-			case prato:
-				return null;
 			case citta:
 				return new CostruzioneCitta(tessera);
 			case strada:
@@ -37,6 +37,17 @@ public enum Elemento
 				throw new IllegalArgumentException("Non esiste nessun elemento con la sigla  " + sigla);
 		}
 
+	}
+	
+	@Override
+	public String toString()
+	{
+		return this.strig;
+	}
+
+	private Elemento(String string)
+	{
+		this.strig =string;
 	}
 
 }

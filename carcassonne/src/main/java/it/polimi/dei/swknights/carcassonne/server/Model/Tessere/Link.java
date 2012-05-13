@@ -60,6 +60,24 @@ public class Link
 
 		return direzioni[agoBussola.toInt()];
 	}
+	
+	@Override
+	public String toString()
+	{
+		StringBuilder stringBuilder = new StringBuilder();
+		for(Bussola direzione : Bussola.values())
+		{
+			boolean connesso = this.direzioni[direzione.toInt()];
+			char valore = (connesso == true)?('1'):('0');
+			stringBuilder.append(direzione.toString());
+			stringBuilder.append('=');
+			stringBuilder.append(valore);
+			stringBuilder.append(' ');
+		}
+		final int lastCharIndex = stringBuilder.length()-1;
+		stringBuilder.deleteCharAt(lastCharIndex);
+		return stringBuilder.toString();
+	}
 
 	private boolean[]	direzioni	= new boolean[Bussola.NUMERO_DIREZIONI];
 

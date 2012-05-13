@@ -11,15 +11,9 @@ public class TesseraNormale extends Tessera
 	@Override
 	public String toString()
 	{
-		int index=0;
-		int[] numerazioni = getNumerazioni();
-		String stringa = this.lati.toString();
-		StringBuilder builder = new StringBuilder(stringa);
-		for(int i= stringa.indexOf(' ', 0); i>0 && index<numerazioni.length;  i=stringa.indexOf(' ', i+1))
-		{
-			builder.insert(i, numerazioni[index++]);
-		}
-		return builder.toString();
+		String stringaLati = this.lati.toString();
+		String stringaConnessioni = this.link.toString();
+		return stringaLati + stringaConnessioni;
 	}
 
 }

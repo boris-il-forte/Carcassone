@@ -2,7 +2,7 @@ package it.polimi.dei.swknights.carcassonne;
 
 import java.awt.Color;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 public class DecoraColore
 {
@@ -16,12 +16,12 @@ public class DecoraColore
 		this.mappaColori.put(Color.BLACK, "N");
 	}
 
-	private final Map<Color, String>	mappaColori	= new TreeMap<Color, String>();
+	private final Map<Color, String>	mappaColori	= new HashMap<Color, String>();
 
 	@Override
 	public String toString()
 	{
-		return "(" + mappaColori.get(this.color) + ")";
+		return mappaColori.get(this.color);
 	}
 
 	private Color	color;
