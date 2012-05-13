@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Giocatore;
 
-import it.polimi.dei.swknights.carcassonne.Exceptions.finitiColoriDisponibiliException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
 
 import java.awt.Color;
 import java.util.ArrayDeque;
@@ -36,12 +36,12 @@ public class FactoryGiocatore
 	 * The aim of the Factory: create a player and returns it to the caller
 	 * 
 	 * @return the creted player
-	 * @throws finitiColoriDisponibiliException
+	 * @throws FinitiColoriDisponibiliException
 	 *             when all colors are used, the caller may not create more
 	 *             players.
 	 */
 
-	public Giocatore getGiocatore() throws finitiColoriDisponibiliException
+	public Giocatore getGiocatore() throws FinitiColoriDisponibiliException
 	{
 		Color colore;
 
@@ -49,7 +49,7 @@ public class FactoryGiocatore
 		if (colore != null)
 			return new Giocatore(colore);
 		else
-			throw new finitiColoriDisponibiliException();
+			throw new FinitiColoriDisponibiliException();
 	}
 
 }

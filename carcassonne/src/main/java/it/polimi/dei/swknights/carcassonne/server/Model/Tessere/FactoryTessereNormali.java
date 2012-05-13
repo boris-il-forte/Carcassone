@@ -152,7 +152,7 @@ public class FactoryTessereNormali extends FactoryTessere
 	private void estraiDescrizioniTessere(String pathFileTessere)
 	{
 
-		String percorsoCompletoFile = PercorsoFullDiRisorsa(pathFileTessere);
+		String percorsoCompletoFile = percorsoFullDiRisorsa(pathFileTessere);
 
 		try
 		{
@@ -182,7 +182,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		}
 	}
 
-	private String PercorsoFullDiRisorsa(String path)
+	private String percorsoFullDiRisorsa(String path)
 	{
 		java.net.URL imgURL = this.getClass().getResource(path);
 		return imgURL.getFile();
