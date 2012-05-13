@@ -6,7 +6,7 @@ import java.util.List;
 
 /*
  */
-public class ViewProxy extends View implements ControllerListener
+public class ViewProxy extends View
 {
 
 	public ConnessioneAView	realSubject;

@@ -52,6 +52,8 @@ public class Coordinate
 			case est:
 				incrementoY++;
 				break;
+			default:
+				break;
 		}
 		return new Coordinate(x + incrementoX, y + incrementoY);
 	}

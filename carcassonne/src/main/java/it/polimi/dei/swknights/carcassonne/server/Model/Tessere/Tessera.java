@@ -143,6 +143,7 @@ public abstract class Tessera
 					break;
 				case citta:
 					counter = ++cittaCounter;
+					break;
 				default:
 					continue;
 			}

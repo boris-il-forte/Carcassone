@@ -1,7 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
-import it.polimi.dei.swknights.carcassonne.Exceptions.finitiColoriDisponibiliException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.FactoryGiocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.FactoryTessere;
@@ -97,9 +97,9 @@ public class DatiPartita
 	/**
 	 * Add a player to the current group of players
 	 * 
-	 * @throws finitiColoriDisponibiliException
+	 * @throws FinitiColoriDisponibiliException
 	 */
-	public void addGiocatore() throws finitiColoriDisponibiliException
+	public void addGiocatore() throws FinitiColoriDisponibiliException
 	{
 		Giocatore playerToAdd;
 		playerToAdd = this.factoryGiocatori.getGiocatore();
@@ -114,7 +114,7 @@ public class DatiPartita
 			this.addGiocatore();
 			this.giocatoreCorrente = this.getGiocatore(Color.RED);
 		}
-		catch (finitiColoriDisponibiliException e)
+		catch (FinitiColoriDisponibiliException e)
 		{ // non dovrebbe mai avvenire perchè un colore c'è per forza all'inizio
 			e.printStackTrace();
 			System.exit(-1);
