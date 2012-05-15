@@ -18,13 +18,13 @@ public class Link
 	public void ruota()
 	{
 		boolean tempSN = this.direzioni[Bussola.NS.ordinal()];
-		this.direzioni[Bussola.NS.ordinal()] = this.direzioni[Bussola.OE.ordinal()];
-		this.direzioni[Bussola.OE.ordinal()] = tempSN;
+		this.direzioni[Bussola.NS.ordinal()] = this.direzioni[Bussola.WE.ordinal()];
+		this.direzioni[Bussola.WE.ordinal()] = tempSN;
 		boolean tempSE = this.direzioni[Bussola.SE.ordinal()];
 		this.direzioni[Bussola.SE.ordinal()] = this.direzioni[Bussola.NE.ordinal()];
-		this.direzioni[Bussola.NE.ordinal()] = this.direzioni[Bussola.NO.ordinal()];
-		this.direzioni[Bussola.NO.ordinal()] = this.direzioni[Bussola.SO.ordinal()];
-		this.direzioni[Bussola.SO.ordinal()] = tempSE;
+		this.direzioni[Bussola.NE.ordinal()] = this.direzioni[Bussola.NW.ordinal()];
+		this.direzioni[Bussola.NW.ordinal()] = this.direzioni[Bussola.SW.ordinal()];
+		this.direzioni[Bussola.SW.ordinal()] = tempSE;
 
 	}
 
@@ -44,7 +44,7 @@ public class Link
 			agoBussola = Bussola.NE;
 
 		if (puntoCardinale1 == PuntoCardinale.nord && puntoCardinale2 == PuntoCardinale.ovest)
-			agoBussola = Bussola.NO;
+			agoBussola = Bussola.NW;
 
 		if (puntoCardinale1 == PuntoCardinale.nord && puntoCardinale2 == PuntoCardinale.sud)
 			agoBussola = Bussola.NS;
@@ -53,10 +53,10 @@ public class Link
 			agoBussola = Bussola.SE;
 
 		if (puntoCardinale1 == PuntoCardinale.sud && puntoCardinale2 == PuntoCardinale.ovest)
-			agoBussola = Bussola.SO;
+			agoBussola = Bussola.SW;
 
 		if (puntoCardinale1 == PuntoCardinale.est && puntoCardinale2 == PuntoCardinale.ovest)
-			agoBussola = Bussola.OE;
+			agoBussola = Bussola.WE;
 
 		return direzioni[agoBussola.toInt()];
 	}
