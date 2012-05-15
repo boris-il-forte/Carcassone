@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -36,7 +37,7 @@ public abstract class Costruzione
 		this.elementi.add(tessera);
 	}
 
-	public Costruzione getCopy(Tessera tessera)
+	public Costruzione getCopy(Tessera tessera) //TODO che è sta porcata?? e il polimorfismo?
 	{
 		Costruzione costruzioneCopia = null;
 		if (this instanceof CostruzioneCitta)
@@ -124,16 +125,16 @@ public abstract class Costruzione
 	{
 		int max = 1;
 		List<Color> controllori = new ArrayList<Color>();
-		for (Color colore : contatore.keySet())
+		for (Entry<Color, Integer> entryColore : contatore.entrySet())
 		{
-			int numeroSegnalini = contatore.get(colore);
+			int numeroSegnalini = entryColore.getValue();
 			if (numeroSegnalini > max)
 				max = numeroSegnalini;
 		}
-		for (Color colore : contatore.keySet())
+		for (Entry<Color, Integer> entryColore : contatore.entrySet())
 		{
-			if (contatore.get(colore) == max)
-				controllori.add(colore);
+			if (entryColore.getValue() == max)
+				controllori.add(entryColore.getKey());
 		}
 		return controllori;
 	}
