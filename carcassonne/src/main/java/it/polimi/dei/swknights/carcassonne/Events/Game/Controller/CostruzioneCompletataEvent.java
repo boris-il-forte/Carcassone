@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
+
 public class CostruzioneCompletataEvent extends ControllerEvent
 {
 
@@ -12,8 +14,7 @@ public class CostruzioneCompletataEvent extends ControllerEvent
 	@Override
 	protected void setComando()
 	{
-		// TODO Auto-generated method stub
-
+		this.messaggio = MessaggiController.costruction;
 	}
 
 	

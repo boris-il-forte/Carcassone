@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
+
 public class TurnoEvent extends ControllerEvent
 {
 
@@ -12,8 +14,7 @@ public class TurnoEvent extends ControllerEvent
 	@Override
 	protected void setComando()
 	{
-		// TODO Auto-generated method stub
-
+		this.messaggio = MessaggiController.turn;
 	}
 
 	private static final long	serialVersionUID	= -8277130187657287093L;

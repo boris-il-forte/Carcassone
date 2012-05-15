@@ -7,9 +7,9 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.ComandoView;
 
 public class PlaceEvent extends ViewEvent {
 
-	public PlaceEvent(Object source, AdapterTessera tessera, Coordinate coordinate) {
+	public PlaceEvent(Object source, String descrizioneTessera, Coordinate coordinate) {
 		super(source);
-		this.tessera = tessera;
+		this.descrizioneTessera = descrizioneTessera;
 		this.coordinateDestinazione = coordinate;
 	}
 
@@ -25,10 +25,10 @@ public class PlaceEvent extends ViewEvent {
 	}
 	public String getDescrizioneTessera()
 	{
-		return this.tessera.toProtocolString();
+		return this.descrizioneTessera;
 	}
 	
-	private  final AdapterTessera tessera;
+	private  final String descrizioneTessera;
 	private  final Coordinate coordinateDestinazione;
 	
 	private static final long serialVersionUID = 2085506187547788810L;

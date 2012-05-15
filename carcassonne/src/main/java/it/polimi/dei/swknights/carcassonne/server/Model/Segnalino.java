@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
+
 import it.polimi.dei.swknights.carcassonne.DecoraColore;
 
 import java.awt.Color;
@@ -35,6 +36,6 @@ public class Segnalino
 		DecoraColore decoraColore= new DecoraColore(this.colore);
 		return "," + decoraColore.toString();
 	}
-	private Color	colore;
+	private Color 	colore;
 
 }
