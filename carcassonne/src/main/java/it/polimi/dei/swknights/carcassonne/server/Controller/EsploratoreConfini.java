@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 /**
@@ -65,24 +66,24 @@ public class EsploratoreConfini
 		Tessera tessera;
 		try
 		{
-			tessera = cartaGeografica.getTessera(coordinateTessera); // se c'è è
-																		// confinante
-																		// se no
-																		// confine
+			// se c'è è confinante se no confine
+			tessera = cartaGeografica.getTessera(coordinateTessera);
 			Map<Costruzione, List<PuntoCardinale>> mapCostruzioni;
-			mapCostruzioni = tessera.getCostruzioni(); // costruzioni aggregate
-														// della tessera con
-														// relative liste di
-														// punti cardinali (1
-														// solo per nn aggreg)
-			for (Costruzione costruzione : mapCostruzioni.keySet())
+			/*
+			 * costruzioni aggregate della tessera con relative liste di punti
+			 * cardinali (1 solo per nn aggreg)
+			 */
+			mapCostruzioni = tessera.getCostruzioni();
+			for (Entry<Costruzione, List<PuntoCardinale>> entryCostruzione : mapCostruzioni.entrySet())
 			// per ogni costruzione aggregata della tessera guarda i vicini
 			{
 				List<ConfineTessera> listaConfinante = new ArrayList<ConfineTessera>();
 				List<ConfineTessera> listaConfini = new ArrayList<ConfineTessera>();
-				// la costruzione aggregata nella tessera 1 o + confini
-				// es. una città a NE ha 2 confini: N e E
-				for (PuntoCardinale puntoCardinale : mapCostruzioni.get(costruzione))
+				/*
+				 * la costruzione aggregata nella tessera 1 o + confini es. una
+				 * città a NE ha 2 confini: N e E
+				 */
+				for (PuntoCardinale puntoCardinale : mapCostruzioni.get(entryCostruzione.getKey()))
 				{
 					Coordinate coordinateConfinante = coordinateTessera.getCoordinateA(puntoCardinale);
 					try
@@ -90,18 +91,20 @@ public class EsploratoreConfini
 						Tessera tesseraConfinante = cartaGeografica.getTessera(coordinateConfinante);
 						ConfineTessera confinante = tesseraConfinante.getVicino(puntoCardinale.opposto());
 						listaConfinante.add(confinante);
-					} catch (TesseraNonTrovataException e)
+					}
+					catch (TesseraNonTrovataException e)
 					{ // vicini vuoti
 
 						ConfineTessera confine = tessera.getVicino(puntoCardinale);
 						listaConfini.add(confine);
 					}
 				}
-				this.confinanti.put(costruzione, listaConfinante);
-				this.confini.put(costruzione, listaConfini);
+				this.confinanti.put(entryCostruzione.getKey(), listaConfinante);
+				this.confini.put(entryCostruzione.getKey(), listaConfini);
 			}
 
-		} catch (TesseraNonTrovataException e1)
+		}
+		catch (TesseraNonTrovataException e1)
 		{
 			e1.printStackTrace();
 			System.exit(-1);

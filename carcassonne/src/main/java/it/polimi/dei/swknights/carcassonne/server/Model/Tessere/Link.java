@@ -68,7 +68,7 @@ public class Link
 		for(Bussola direzione : Bussola.values())
 		{
 			boolean connesso = this.direzioni[direzione.toInt()];
-			char valore = (connesso == true)?('1'):('0');
+			char valore = (connesso)?('1'):('0');
 			stringBuilder.append(direzione.toString());
 			stringBuilder.append('=');
 			stringBuilder.append(valore);
