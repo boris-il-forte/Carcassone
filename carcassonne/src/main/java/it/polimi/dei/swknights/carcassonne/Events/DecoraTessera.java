@@ -11,7 +11,7 @@ public class DecoraTessera
 	private Color giocatore;
 	private AdapterTessera tessera;
 	
-	DecoraTessera(AdapterTessera tessera, Coordinate coordinate, Color giocatore)
+	public DecoraTessera(AdapterTessera tessera, Coordinate coordinate, Color giocatore)
 	{
 		this.tessera = tessera ;
 		this.coordinate = coordinate;
@@ -20,6 +20,7 @@ public class DecoraTessera
 	public AdapterTessera getTessera()
 	{
 		return tessera;
+		
 	}
 	public Color getGiocatore()
 	{
