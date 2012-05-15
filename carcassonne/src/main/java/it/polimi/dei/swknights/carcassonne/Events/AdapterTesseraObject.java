@@ -5,9 +5,9 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 public class AdapterTesseraObject extends AdapterTessera
 {
-	AdapterTesseraObject(Tessera tessera)
+	public AdapterTesseraObject(Tessera tessera)
 	{
-		this.tessera = tessera;
+		this.tessera = tessera; //TODO clona! (per eventi immutabili)
 	}
 	
 	@Override
