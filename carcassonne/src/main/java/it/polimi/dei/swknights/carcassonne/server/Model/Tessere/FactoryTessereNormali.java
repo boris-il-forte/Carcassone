@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +50,6 @@ public class FactoryTessereNormali extends FactoryTessere
 			System.exit(-1);
 		}
 
-		// DEBUG System.out.println(this.mazzo);
 	}
 
 	private void creaMazzoTessere() throws NoFirstCardException
@@ -81,6 +82,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		}
 
 		this.mazzo.add(tesseraMagic);
+		
 
 	}
 
@@ -152,11 +154,10 @@ public class FactoryTessereNormali extends FactoryTessere
 	private void estraiDescrizioniTessere(String pathFileTessere)
 	{
 
-		String percorsoCompletoFile = percorsoFullDiRisorsa(pathFileTessere);
 
 		try
 		{
-			FileReader fr = new FileReader(new File(percorsoCompletoFile));
+			FileReader fr = new FileReader(new File(pathFileTessere));
 
 			BufferedReader br = new BufferedReader(fr);
 			String line;
@@ -180,12 +181,6 @@ public class FactoryTessereNormali extends FactoryTessere
 			e.printStackTrace();
 			System.exit(-1);
 		}
-	}
-
-	private String percorsoFullDiRisorsa(String path)
-	{
-		java.net.URL imgURL = this.getClass().getResource(path);
-		return imgURL.getFile();
 	}
 
 	private List<String>		descrizioniTessere;
