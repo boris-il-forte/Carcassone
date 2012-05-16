@@ -6,7 +6,6 @@ import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
