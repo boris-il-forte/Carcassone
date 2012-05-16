@@ -4,7 +4,6 @@ import java.awt.Color;
 
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.Game.ComandoView;
-import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 
 public class TileEvent extends ViewEvent
 {

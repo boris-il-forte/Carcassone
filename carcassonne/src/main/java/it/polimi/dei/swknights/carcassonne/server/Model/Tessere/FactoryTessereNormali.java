@@ -2,7 +2,9 @@ package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
 import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.NoFirstCardException;
+import it.polimi.dei.swknights.carcassonne.Parser.Parser;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -41,8 +43,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		try
 		{
 			this.creaMazzoTessere();
-		}
-		catch (NoFirstCardException e)
+		} catch (NoFirstCardException e)
 		{
 			e.printStackTrace();
 			System.exit(-1);
@@ -66,80 +67,65 @@ public class FactoryTessereNormali extends FactoryTessere
 																		// tessera
 																		// copierei
 																		// riferimento
-			}
-			else
+			} else
 			{
 				this.mazzo.add(tessera);
 			}
 
 		}
 
-		if (tesseraMagic == null) { throw new NoFirstCardException(
-				"controlla il file tessere e la factory perchè manca la tessera iniziale");
-		// potrebbe mettercela dato che sa come farla volendo.. ma meglio
+		if (tesseraMagic == null)
+		{
+			throw new NoFirstCardException("controlla il file tessere e la factory perchè manca la tessera iniziale");
+			// potrebbe mettercela dato che sa come farla volendo.. ma meglio
 		}
 
 		this.mazzo.add(tesseraMagic);
-		
 
 	}
 
 	private Tessera tesseraDaDescrzione(String descrizione)
+	{	
+		try
+		{
+			Parser parser = new Parser(descrizione);
+			Lati lati = this.creaElementi(parser);  
+			Link link = this.creaLinks(parser);
+			return new TesseraNormale(lati, link);
+		} 
+		catch (InvalidStringToParseException e1)
+		{
+			e1.printStackTrace();
+			return null; //TODO: propago eccezione?
+		} 
+		catch (BadAttributeValueExpException e)
+		{
+			e.printStackTrace(); //TODO propago eccezione?
+			return null;
+		}
+	}
+	
+	private Lati creaElementi(Parser parser)
 	{
-		// TODO: controllo sia buona descrizione con regexp
-
-		Tessera tessera;
-		Elemento[] elementiTessera = new Elemento[PuntoCardinale.NUMERO_DIREZIONI];
-
-		Link link;
-		Lati lati;
-		String[] partiDescrizione;
-		partiDescrizione = descrizione.split(" ");
-
+		Elemento elementiTessera[] = new Elemento[PuntoCardinale.NUMERO_DIREZIONI];
 		for (PuntoCardinale direzione : PuntoCardinale.values())
 		{
 			int dir = direzione.toInt();
-			char sigla = partiDescrizione[dir].charAt(PARAMETRO_PUNTOCARDINALE);
-			elementiTessera[dir] = Elemento.getElemento(sigla);
+			char elemento = parser.getData(direzione);
+			elementiTessera[dir] = Elemento.getElemento(elemento);
 		}
-
-		lati = new Lati(elementiTessera);
-		try
-		{
-			boolean[] links = new boolean[Bussola.NUMERO_DIREZIONI];
-			for (Bussola bussola : Bussola.values())
-			{
-				final Integer firstElement = 0;
-				final Integer secondElement = 1;
-				int index = PuntoCardinale.NUMERO_DIREZIONI + bussola.toInt();
-				String[] entry = partiDescrizione[index].split("=");
-				Bussola agoBussola = Bussola.valueOf(entry[firstElement]);
-				links[agoBussola.ordinal()] = this.charToBoolLink(entry[secondElement].charAt(firstElement));
-
-			}
-			link = new Link(links);
-		}
-		catch (BadAttributeValueExpException e)
-		{
-			return null;
-		}
-
-		tessera = new TesseraNormale(lati, link);
-
-		return tessera;
+		return new Lati(elementiTessera);
 	}
-
-	private Boolean charToBoolLink(char siglaLink) throws BadAttributeValueExpException
+	
+	private Link creaLinks(Parser parser) throws BadAttributeValueExpException
 	{
-		switch (siglaLink)
+		boolean[] links = new boolean[Bussola.NUMERO_DIREZIONI];
+		for (Bussola direzione : Bussola.values())
 		{
-			case '1':
-				return true;
-			case '0':
-				return false;
-			default:
-				throw new BadAttributeValueExpException(siglaLink);
+			int dir = direzione.toInt();
+			links[dir] = parser.getDataBool(direzione);
 		}
+		return new Link(links);
 	}
 
 	/**
@@ -151,38 +137,59 @@ public class FactoryTessereNormali extends FactoryTessere
 
 	private void estraiDescrizioniTessere(String pathFileTessere)
 	{
-
+		FileReader fileReader = null;
+		BufferedReader bufferedReader = null;
 
 		try
 		{
-			FileReader fr = new FileReader(new File(pathFileTessere));
+			fileReader = new FileReader(new File(pathFileTessere));
 
-			BufferedReader br = new BufferedReader(fr);
+			bufferedReader = new BufferedReader(fileReader);
 			String line;
 
-			line = br.readLine();
+			line = bufferedReader.readLine();
 
 			while (line != null)
 			{
 				this.descrizioniTessere.add(line);
-				line = br.readLine();
+				line = bufferedReader.readLine();
 			}
 
-		}
-		catch (FileNotFoundException e)
+		} catch (FileNotFoundException e)
 		{
 			e.printStackTrace();
 			System.exit(-1);
-		}
-		catch (IOException e)
+		} catch (IOException e)
 		{
 			e.printStackTrace();
 			System.exit(-1);
+		} finally
+		{
+			this.close(fileReader);
 		}
+
+	}
+
+	private void close(FileReader fileReader)
+	{
+		if (fileReader == null)
+		{
+			return;
+		}
+		boolean chiuso = false;
+		do
+		{
+			try
+			{
+				fileReader.close();
+				chiuso = true;
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+		} while (!chiuso);
 	}
 
 	private List<String>		descrizioniTessere;
-
-	private static final int	PARAMETRO_PUNTOCARDINALE	= 2;
 
 }
