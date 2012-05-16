@@ -1,4 +1,10 @@
 package it.polimi.dei.swknights.carcassonne;
+/**
+ * this enum gives a simple implementation of the Cardinal Points, it also gives the 
+ * opposite Point
+ * @author edoardopasi & dave
+ *
+ */
 
 public enum PuntoCardinale
 {
@@ -13,7 +19,10 @@ public enum PuntoCardinale
 	{
 		return this.numerazione;
 	}
-	
+	/**
+	 * 
+	 * @return  the Cardinal Point in the oppposite direction
+	 */
 	public PuntoCardinale opposto()
 	{
 		switch (this)

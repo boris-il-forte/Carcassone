@@ -2,6 +2,13 @@ package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.ComandoView;
 
+/**
+ * Event triggered by the view to notify that the current player 
+ * wants to rotate the current card
+ * @author edoardopasi & dave
+ *
+ */
+
 public class RotateEvent extends ViewEvent
 {
 

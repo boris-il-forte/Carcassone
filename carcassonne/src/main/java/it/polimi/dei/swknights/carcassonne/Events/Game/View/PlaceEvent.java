@@ -2,7 +2,11 @@ package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Events.Game.ComandoView;
-
+/**
+ * Event triggered by the view to notify that the current player wants to  place a card
+ * @author edoardopasi & dave
+ *
+ */
 public class PlaceEvent extends ViewEvent
 {
 
@@ -11,7 +15,10 @@ public class PlaceEvent extends ViewEvent
 		super(source);
 		this.coordinateDestinazione = coordinate;
 	}
-
+    /**
+     * The coordinates where the card may be placed
+     * @return
+     */
 	public Coordinate getCoordinateDestinazione()
 	{
 		return this.coordinateDestinazione;

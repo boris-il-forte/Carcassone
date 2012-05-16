@@ -41,8 +41,7 @@ public class Lati
 	 */
 	public Elemento getTipoElementoInDirezione(PuntoCardinale puntoCardinale)
 	{
-		Elemento[] elementi =
-		{ this.nord, this.sud, this.ovest, this.est };
+		Elemento[] elementi = { this.nord, this.sud, this.ovest, this.est };
 		return elementi[puntoCardinale.toInt()];
 	}
 
@@ -57,37 +56,43 @@ public class Lati
 		this.sud = this.est;
 		this.est = nordTmp;
 	}
-
+	/**
+	 * Gets non-aggregated Buildings of a given card
+	 * @param tessera of which the caller wants to know the Building
+	 * @return a map binding each Building to a Cardinal Point
+	 */
 	public Map<Costruzione, PuntoCardinale> getMappaCostruzioniPrimitive(Tessera tessera)
 	{
-		Map<Costruzione, PuntoCardinale> listaCostruzioni = new HashMap<Costruzione, PuntoCardinale>();
-		Elemento[] elementi =
-		{ this.nord, this.sud, this.est, this.ovest };
-		PuntoCardinale[] punti =
-		{ PuntoCardinale.nord, PuntoCardinale.sud, PuntoCardinale.est, PuntoCardinale.ovest };
+		Map<Costruzione, PuntoCardinale> mappaCostruzioni = new HashMap<Costruzione, PuntoCardinale>();
+		Elemento[] elementi = { this.nord, this.sud, this.est, this.ovest };
+		PuntoCardinale[] punti = { PuntoCardinale.nord, PuntoCardinale.sud, PuntoCardinale.est,
+				PuntoCardinale.ovest };
 		int indicePuntiCardinali = 0;
 		for (Elemento elemento : elementi)
 		{
 			Costruzione costruzione = elemento.getCostruzione(tessera);
-			if (costruzione != null)
-				listaCostruzioni.put(costruzione, punti[indicePuntiCardinali]);
+			if (costruzione != null) mappaCostruzioni.put(costruzione, punti[indicePuntiCardinali]);
 			indicePuntiCardinali++;
 		}
-		return listaCostruzioni;
+		return mappaCostruzioni;
 	}
-	
-	public void setSegnalino(Segnalino segnalino, PuntoCardinale puntoCardinale)
+	/**
+	 * 
+	 * @param marker the marker to be placed
+	 * @param puntoCardinale where place the marker
+	 */
+	public void setSegnalino(Segnalino marker, PuntoCardinale puntoCardinale)
 	{
-		this.datiSegnalino.segnalino=segnalino;
-		this.datiSegnalino.puntoCardinale=puntoCardinale;
+		this.datiSegnalino.segnalino = marker;
+		this.datiSegnalino.puntoCardinale = puntoCardinale;
 	}
 
 	@Override
 	public String toString()
 	{
-		Elemento[] elementi ={this.nord, this.sud, this.ovest, this.est};
+		Elemento[] elementi = { this.nord, this.sud, this.ovest, this.est };
 		StringBuilder componiStringhe = new StringBuilder();
-		for(PuntoCardinale puntoCardinale : PuntoCardinale.values())
+		for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
 		{
 			String stringPuntoCardinale = puntoCardinale.toString();
 			String stringElemento = elementi[puntoCardinale.toInt()].toString();
@@ -96,8 +101,8 @@ public class Lati
 		String stringSegnalino = printSegnalino();
 		if (stringSegnalino.length() > 0)
 		{
-			final int caratteriPerElemento= 4;
-			final int offsetPrimoElemento = caratteriPerElemento -1;
+			final int caratteriPerElemento = 4;
+			final int offsetPrimoElemento = caratteriPerElemento - 1;
 			PuntoCardinale direzione = this.datiSegnalino.puntoCardinale;
 			int index = direzione.toInt() * caratteriPerElemento + offsetPrimoElemento;
 			componiStringhe.insert(index, stringSegnalino);
@@ -111,8 +116,8 @@ public class Lati
 		if (segnalino != null)
 		{
 			return segnalino.toString();
-		} else
-			return "";
+		}
+		else return "";
 	}
 
 	private Elemento		nord;

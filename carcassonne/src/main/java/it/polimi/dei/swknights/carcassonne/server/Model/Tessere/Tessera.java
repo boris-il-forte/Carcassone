@@ -113,7 +113,11 @@ public abstract class Tessera
 		Elemento elemento = this.lati.getTipoElementoInDirezione(puntoCardinale);
 		return new ConfineTessera(this, elemento);
 	}
-	
+	/**
+	 * 
+	 * @param marker the marker to be placed
+	 * @param puntoCardinale where place the marker
+	 */
 	public void setSegnalino(Segnalino segnalino, PuntoCardinale puntoCardinale)
 	{
 		this.lati.setSegnalino(segnalino,puntoCardinale);

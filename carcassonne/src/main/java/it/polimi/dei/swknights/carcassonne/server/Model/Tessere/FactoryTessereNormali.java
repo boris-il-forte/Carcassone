@@ -169,7 +169,11 @@ public class FactoryTessereNormali extends FactoryTessere
 		}
 
 	}
-
+    /**
+     * Potentially dangerous, may not end !
+     * If nothing bad happens it ends without any problem
+     * @param fileReader
+     */
 	private void close(FileReader fileReader)
 	{
 		if (fileReader == null)

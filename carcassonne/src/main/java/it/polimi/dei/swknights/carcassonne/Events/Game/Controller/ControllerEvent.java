@@ -1,9 +1,12 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
-
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
-
 import java.util.EventObject;
-
+/**
+ * This class describes a generic ControllerEvent, it basically provide just
+ * a schema for the specific Controller events
+ * @author edoardopasi
+ *
+ */
 public abstract class ControllerEvent extends EventObject
 {
 

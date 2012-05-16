@@ -3,6 +3,12 @@ package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.ComandoView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 
+/**
+ * Event to be triggered when a user tries to perform a non valid move
+ * @author edoardopasi & dave
+ *
+ */
+
 public class MossaNonValidaEvent extends ControllerEvent
 {
 

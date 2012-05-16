@@ -35,7 +35,12 @@ public class Link
 			direzioni[direzione.toInt()] = links[direzione.toInt()];
 		}
 	}
-
+	/**
+	 * Returns whether two Elements on two given Cardinal Points are connected
+	 * @param puntoCardinale1
+	 * @param puntoCardinale2
+	 * @return
+	 */
 	public boolean areConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
 	{
 		Bussola agoBussola = Bussola.NE;
