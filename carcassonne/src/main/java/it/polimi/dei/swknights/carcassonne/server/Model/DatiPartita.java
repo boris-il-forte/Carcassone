@@ -57,7 +57,7 @@ public class DatiPartita
 
 		}
 
-		return null; // TODO: lanciare eccezione
+		throw new IllegalArgumentException(colore.toString());
 
 	}
 
