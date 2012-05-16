@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Parser;
 
+import javax.management.BadAttributeValueExpException;
+
 import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
@@ -35,10 +37,10 @@ public class Parser
 	 * @return parsed data at puntoCardinale
 	 */
 
-	public String getData(PuntoCardinale puntoCardinale)
+	public char getData(PuntoCardinale puntoCardinale)
 	{
 		int index = this.getIndex(puntoCardinale);
-		return this.parsedData[index];
+		return this.parsedData[index].charAt(FIRST_CHAR);
 	}
 
 	/**
@@ -49,19 +51,24 @@ public class Parser
 	 * @return parsed data at agoBussola
 	 */
 
-	public String getData(Bussola agoBussola)
+	public char getData(Bussola agoBussola)
 	{
 		int index = this.getIndex(agoBussola);
-		return this.parsedData[index];
+		return this.parsedData[index].charAt(FIRST_CHAR);
 	}
-
-	public String getType()
+	
+	public Boolean getDataBool(Bussola agoBussola) throws BadAttributeValueExpException
 	{
-		if (parsedToken == Token.Null)
+		char siglaLink = this.getData(agoBussola);
+		switch (siglaLink)
 		{
-			return "";
-		} else
-			return parsedToken.toString();
+			case '1':
+				return true;
+			case '0':
+				return false;
+			default:
+				throw new BadAttributeValueExpException(siglaLink);
+		}
 	}
 
 	protected final int getIndex(PuntoCardinale puntoCardinale)
@@ -84,29 +91,25 @@ public class Parser
 			{
 				String dati[] = pezzo.split("=");
 				Token token = Token.valueOf(dati[TOKEN]);
-				if (dati.length > 1)
-				{
-					parsedData[token.ordinal()] = dati[DATA];
-				} else
-				{
-					parsedToken = token;
-				}
+				parsedData[token.ordinal()] = dati[DATA];
 			}
 		} else
 			throw new InvalidStringToParseException(stringToParse);
 	}
 
+	
+	
 	protected String			parsedData[];
-
-	private Token				parsedToken	= Token.Null;
 
 	private final static int	TOKEN		= 0;
 
-	private final static int	DATA		= 0;
+	private final static int	DATA		= 1;
+	
+	private final static int 	FIRST_CHAR  = 0;
 
 	private enum Token
 	{
-		N, S, W, E, NS, NE, NW, WE, SE, SW, M, U, Null;
+		N, S, W, E, NS, NE, NW, WE, SE, SW;
 
 		public static int	DATA_TOKENS	= 10;
 	};
