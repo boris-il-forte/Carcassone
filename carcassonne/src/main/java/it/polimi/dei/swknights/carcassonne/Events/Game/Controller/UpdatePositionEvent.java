@@ -6,6 +6,12 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
 
+/**
+ * Event triggered by the controller after that a new card is correctely placed
+ * @author edoardopasi & dave
+ *
+ */
+
 public class UpdatePositionEvent extends UpdateEvent
 {
 	public UpdatePositionEvent(Tessera tessera, Coordinate coordinate, Color giocatore, Object source)

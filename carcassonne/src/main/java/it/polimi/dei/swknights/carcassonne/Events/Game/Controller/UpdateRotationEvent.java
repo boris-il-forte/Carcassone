@@ -6,6 +6,12 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
 
+/**
+ * Event triggered by the controller after that card is rotated
+ * @author edoardopasi & dave
+ *
+ */
+
 public class UpdateRotationEvent extends UpdateEvent
 {
 	public UpdateRotationEvent(Tessera tessera, Coordinate coordinate, Color giocatore, Object source)

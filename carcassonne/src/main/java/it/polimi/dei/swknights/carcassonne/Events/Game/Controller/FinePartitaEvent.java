@@ -2,6 +2,12 @@ package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 
+/**
+ * Event to be triggered when the game finishes that is when no more cards are available
+ * @author edoardopasi & dave
+ *
+ */
+
 public class FinePartitaEvent extends ControllerEvent
 {
 

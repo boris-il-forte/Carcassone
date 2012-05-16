@@ -1,6 +1,12 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
+/**
+ * Event to be triggered when a new turn begins
+ * @author edoardopasi & dave
+ *
+ */
+
 
 public class TurnoEvent extends ControllerEvent
 {

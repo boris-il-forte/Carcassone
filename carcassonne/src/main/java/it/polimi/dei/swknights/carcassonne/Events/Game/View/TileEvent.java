@@ -5,6 +5,13 @@ import java.awt.Color;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.Game.ComandoView;
 
+/**
+ * Event triggered by the view to notify that the current player wants to place a 
+ * marker on the just placed card
+ * @author edoardopasi & dave
+ *
+ */
+
 public class TileEvent extends ViewEvent
 {
 
@@ -20,7 +27,10 @@ public class TileEvent extends ViewEvent
 	{
 		this.comando = ComandoView.tile;
 	}
-
+	/**
+	 * the color of the marker he wants to place
+	 * @return
+	 */
 	public String getColoreSegnalino()
 	{
 		return this.color.toString();
