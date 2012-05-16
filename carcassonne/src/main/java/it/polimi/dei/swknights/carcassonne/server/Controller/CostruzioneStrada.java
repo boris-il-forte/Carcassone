@@ -18,4 +18,10 @@ public class CostruzioneStrada extends Costruzione
 		return 0;
 	}
 
+	@Override
+	public Costruzione getCopy(Tessera tessera)
+	{
+		return new CostruzioneStrada(tessera);
+	}
+
 }
