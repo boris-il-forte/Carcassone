@@ -17,4 +17,10 @@ public class CostruzioneCitta extends Costruzione
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public Costruzione getCopy(Tessera tessera)
+	{
+		return new CostruzioneCitta(tessera);
+	}
 }

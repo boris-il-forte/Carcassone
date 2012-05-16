@@ -12,8 +12,7 @@ public class ComandoUtenteEvent extends EventObject
 		
 	}
 
-	private MessaggiController	comando;	// TODO sbagliato! servono classi e sottoclassi,
-    					// no enum...
+	private MessaggiController	comando;	
 	
 	private Object source;
 }

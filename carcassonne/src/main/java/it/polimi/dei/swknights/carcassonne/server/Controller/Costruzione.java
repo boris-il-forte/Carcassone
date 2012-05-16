@@ -37,16 +37,8 @@ public abstract class Costruzione
 		this.elementi.add(tessera);
 	}
 
-	public Costruzione getCopy(Tessera tessera) //TODO che è sta porcata?? e il polimorfismo?
-	{
-		Costruzione costruzioneCopia = null;
-		if (this instanceof CostruzioneCitta)
-			costruzioneCopia = new CostruzioneCitta(tessera);
-		if (this instanceof CostruzioneStrada)
-			costruzioneCopia = new CostruzioneStrada(tessera);
-
-		return costruzioneCopia;
-	}
+	//TODO: ma che serve? ora è meglio, comunque...
+	public abstract Costruzione getCopy(Tessera tessera);
 
 	/**
 	 * Method used to join two constructions
