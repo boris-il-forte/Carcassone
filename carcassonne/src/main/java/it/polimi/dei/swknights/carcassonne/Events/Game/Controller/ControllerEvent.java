@@ -21,9 +21,12 @@ public abstract class ControllerEvent extends EventObject
 		return messaggio.toString();
 	}
 
-	protected abstract void setComando();
+	protected void setComando(MessaggiController messaggio)
+	{
+		this.messaggio = messaggio;
+	}
 
-	protected MessaggiController	messaggio;
+	private MessaggiController	messaggio;
 	
 	private static final long	serialVersionUID	= 3191102477186388256L;
 

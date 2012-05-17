@@ -10,9 +10,6 @@ import java.awt.Color;
 
 public abstract class UpdateEvent extends ControllerEvent
 {
-
-	protected abstract void setComando();
-
 	public UpdateEvent(Tessera tessera, Coordinate coordinate, Color giocatore, Object source)
 	{
 		super(source);
@@ -26,10 +23,11 @@ public abstract class UpdateEvent extends ControllerEvent
 		AdapterTessera adapter = new AdapterTesseraString(tessera);
 		this.setData(adapter, coordinate, giocatore);
 	}
-
-	protected DecoraTessera getData()
+	
+		
+	public AdapterTessera getTessera()
 	{
-		return this.dati;
+		return this.dati.getTessera();
 	}
 
 	private void setData(AdapterTessera tessera, Coordinate coordinate, Color giocatore)
@@ -37,6 +35,10 @@ public abstract class UpdateEvent extends ControllerEvent
 		this.dati = new DecoraTessera(tessera, coordinate, giocatore);
 	}
 
+	protected DecoraTessera getDati()
+	{
+		return this.dati;
+	}
 	private DecoraTessera		dati; 
 
 	private static final long	serialVersionUID	= -4838659490031728270L;

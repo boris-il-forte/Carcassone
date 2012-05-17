@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
@@ -14,17 +13,10 @@ import java.awt.Color;
 
 public class UpdateRotationEvent extends UpdateEvent
 {
-	public UpdateRotationEvent(Tessera tessera, Coordinate coordinate, Color giocatore, Object source)
+	public UpdateRotationEvent(Tessera tessera, Color giocatore, Object source)
 	{
-		super(tessera, coordinate, giocatore, source);
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	protected void setComando()
-	{
-		this.messaggio = MessaggiController.update_rotation;
-
+		super(tessera, null, giocatore, source);
+		this.setComando(MessaggiController.update_rotation);
 	}
 
 	private static final long	serialVersionUID	= -7350182684969632910L;
