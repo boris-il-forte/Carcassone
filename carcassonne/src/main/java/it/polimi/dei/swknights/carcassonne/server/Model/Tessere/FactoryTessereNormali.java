@@ -111,7 +111,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		for (PuntoCardinale direzione : PuntoCardinale.values())
 		{
 			int dir = direzione.toInt();
-			char elemento = parser.getData(direzione);
+			char elemento = parser.getDataChar(direzione);
 			elementiTessera[dir] = Elemento.getElemento(elemento);
 		}
 		return new Lati(elementiTessera);
