@@ -2,6 +2,9 @@ package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 
+import java.awt.Color;
+import java.util.Map;
+
 /**
  * Event to be triggered when the game finishes that is when no more cards are available
  * @author edoardopasi & dave
@@ -11,20 +14,19 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 public class FinePartitaEvent extends ControllerEvent
 {
 
-	public FinePartitaEvent(Object source)
+	public FinePartitaEvent(Object source, Map<Color, Integer> mappaPunteggi)
 	{
 		super(source);
-		// TODO Auto-generated constructor stub
+		this.setComando(MessaggiController.end);
+		this.mappaPunteggi = mappaPunteggi;
 	}
 
-	@Override
-	protected void setComando()
+	public Map<Color, Integer> getMappaPunteggi()
 	{
-		this.messaggio = MessaggiController.end;
-
+		return mappaPunteggi;
 	}
 
-	
+	private Map<Color, Integer>	mappaPunteggi;
 	private static final long	serialVersionUID	= 7228959705104329672L;
 
 }
