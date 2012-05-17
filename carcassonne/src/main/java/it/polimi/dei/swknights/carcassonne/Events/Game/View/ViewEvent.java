@@ -22,11 +22,14 @@ public abstract class ViewEvent extends EventObject
 		return this.comando.toString();
 	}
 	
+	final protected void setComando(ComandoView comando)
+	{
+		this.comando = comando;
+	}
+	
 	public abstract void accept(ControllerHandler handler);
 
-	protected abstract void setComando();
-
-	protected ComandoView	comando;
+	private ComandoView	comando;
 	
 	private static final long	serialVersionUID	= -5387280202389373513L;
 
