@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.ComandoView;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 
 import java.util.EventObject;
 /**
@@ -20,6 +21,8 @@ public abstract class ViewEvent extends EventObject
 	{
 		return this.comando.toString();
 	}
+	
+	public abstract void accept(ControllerHandler handler);
 
 	protected abstract void setComando();
 

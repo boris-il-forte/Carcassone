@@ -149,4 +149,11 @@ public class DatiPartita
 
 	private final FactoryGiocatore	factoryGiocatori;
 
+	public List<Giocatore> getListaGiocatori()
+	{
+		List<Giocatore> giocatori = new ArrayList<Giocatore>();
+		giocatori.addAll(this.giocatori);
+		return giocatori;
+	}
+
 }

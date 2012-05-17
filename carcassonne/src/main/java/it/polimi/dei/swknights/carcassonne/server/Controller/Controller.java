@@ -1,14 +1,25 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Events.ControllerListener;
 import it.polimi.dei.swknights.carcassonne.Events.EventSource;
 import it.polimi.dei.swknights.carcassonne.Events.ViewListener;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
+import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.EventObject;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class that implements theController of the MVC pattern Contains all the
@@ -20,15 +31,29 @@ import java.util.List;
 
 public class Controller implements ViewListener, EventSource
 {
+	private boolean	tesseraPosizionata;
+
 	/**
 	 * Default Constructor. Initialize data structures
 	 * 
 	 */
 	public Controller()
 	{
-		this.listeners = new ArrayList<ViewListener>();
+		this.listeners = new ArrayList<ControllerListener>();
 		this.partita = new DatiPartita();
 		this.contaPunti = new ContatoreCartografo(this.partita.getAreaDiGioco());
+		this.visitorHandlers = this.attivaHandler();
+	}
+
+	public Tessera getTessera()
+	{
+		return this.tesseraCorrente;
+	}
+
+	public Color getGiocatoreCorrente()
+	{
+		Giocatore giocatore = this.partita.getGiocatoreCorrente();
+		return giocatore.getColore();
 	}
 
 	/**
@@ -42,12 +67,12 @@ public class Controller implements ViewListener, EventSource
 
 	public void addListener(EventListener eventListener)
 	{
-		ViewListener viewListener;
+		ControllerListener controllerListener;
 		// TODO this.blocco instanceof Male! xD
-		if (eventListener instanceof ViewListener)
+		if (eventListener instanceof ControllerListener)
 		{
-			viewListener = (ViewListener) eventListener;
-			this.listeners.add(viewListener);
+			controllerListener = (ControllerListener) eventListener;
+			this.listeners.add(controllerListener);
 		}
 	}
 
@@ -69,11 +94,54 @@ public class Controller implements ViewListener, EventSource
 	 * 
 	 * @see it.polimi.dei.swknights.carcassonne.Events.ViewListener#riceviInput()
 	 */
+	public void riceviInput(ViewEvent event)
+	{		
+		for(ControllerHandler visitorHandler : this.visitorHandlers)
+		{
+			event.accept(visitorHandler);
+		}
+	}
 
-	public void riceviInput()
+	public void run()
 	{
-		// TODO Auto-generated method stub
+		try
+		{
+			while(true)
+			{
+				this.cominciaTurno();
+				this.attendiPosizionamentoTessera();
+			}
+			
+		} 
+		catch (PartitaFinitaException e)
+		{
+			this.fire(new FinePartitaEvent(this, this.getMappaPunteggi()));
+				
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	private List<ControllerHandler> attivaHandler()
+	{
+		List<ControllerHandler> handlerList = new ArrayList<ControllerHandler>();
+		//TODO: Handlers
+		return handlerList;
+	}
+	
+	private void cominciaTurno() throws PartitaFinitaException
+	{
+			//Inizia il turno
+			Giocatore giocatoreCorrente = this.partita.getGiocatoreCorrente();
+			this.estraiTessera();
+			this.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
+	}
 
+	private void attendiPosizionamentoTessera() throws InterruptedException
+	{
+		while(!this.tesseraPosizionata) wait();		
 	}
 
 	private void estraiTessera() throws PartitaFinitaException
@@ -81,12 +149,33 @@ public class Controller implements ViewListener, EventSource
 		tesseraCorrente = this.partita.getTessera();
 	}
 
-	private List<ViewListener>	listeners;
+	private Map<Color, Integer> getMappaPunteggi()
+	{
+		Map<Color, Integer> mapPunteggi = new HashMap<Color, Integer>();
+		List<Giocatore> giocatori = this.partita.getListaGiocatori();
+		for (Giocatore giocatore : giocatori)
+		{
+			mapPunteggi.put(giocatore.getColore(), giocatore.getPunti());
+		}
+		return mapPunteggi;
+	}
 
-	private Tessera				tesseraCorrente;
+	public void fire(EventObject event)
+	{
+		for (ControllerListener listener : this.listeners)
+		{
+			listener.riceviModificheModel(event);
+		}
+	}
 
-	private ContatoreCartografo	contaPunti;
+	private List<ControllerListener>	listeners;
+	
+	private List<ControllerHandler> 	visitorHandlers;
 
-	private DatiPartita			partita;
+	private Tessera						tesseraCorrente;
+
+	private ContatoreCartografo			contaPunti;
+
+	private DatiPartita					partita;
 
 }

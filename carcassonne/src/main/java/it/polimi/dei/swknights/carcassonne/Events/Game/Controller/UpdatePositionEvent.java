@@ -17,14 +17,12 @@ public class UpdatePositionEvent extends UpdateEvent
 	public UpdatePositionEvent(Tessera tessera, Coordinate coordinate, Color giocatore, Object source)
 	{
 		super(tessera, coordinate, giocatore, source);
-		// TODO Auto-generated constructor stub
+		this.setComando(MessaggiController.update_position);
 	}
-
-	@Override
-	protected void setComando()
+	
+	public Coordinate getCoordinate()
 	{
-		this.messaggio = MessaggiController.update_position;
-
+		return this.getDati().getCoordinate();
 	}
 
 	private static final long	serialVersionUID	= -461479380615200557L;
