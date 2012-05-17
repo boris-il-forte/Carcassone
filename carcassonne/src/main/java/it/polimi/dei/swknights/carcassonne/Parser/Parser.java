@@ -1,5 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Parser;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.management.BadAttributeValueExpException;
 
 import it.polimi.dei.swknights.carcassonne.Bussola;
@@ -37,10 +40,17 @@ public class Parser
 	 * @return parsed data at puntoCardinale
 	 */
 
-	public char getData(PuntoCardinale puntoCardinale)
+	public String getData(PuntoCardinale puntoCardinale)
 	{
 		int index = this.getIndex(puntoCardinale);
-		return this.parsedData[index].charAt(FIRST_CHAR);
+		return this.parsedData[index];
+	}
+
+	// TODO javadoc
+
+	public char getDataChar(PuntoCardinale puntoCardinale)
+	{
+		return this.getData(puntoCardinale).charAt(FIRST_CHAR);
 	}
 
 	/**
@@ -51,15 +61,26 @@ public class Parser
 	 * @return parsed data at agoBussola
 	 */
 
-	public char getData(Bussola agoBussola)
+	public char getDataChar(Bussola agoBussola)
 	{
-		int index = this.getIndex(agoBussola);
-		return this.parsedData[index].charAt(FIRST_CHAR);
+		return this.getData(agoBussola).charAt(FIRST_CHAR);
 	}
 	
+	public String getDataType()
+	{
+		return this.typeData;
+	}
+
+	// TODO javadoc
+	public String getData(Bussola agoBussola)
+	{
+		int index = this.getIndex(agoBussola);
+		return this.parsedData[index];
+	}
+
 	public Boolean getDataBool(Bussola agoBussola) throws BadAttributeValueExpException
 	{
-		char siglaLink = this.getData(agoBussola);
+		char siglaLink = this.getDataChar(agoBussola);
 		switch (siglaLink)
 		{
 			case '1':
@@ -85,32 +106,64 @@ public class Parser
 	private void parseString(String stringToParse) throws InvalidStringToParseException
 	{
 		String pezzi[] = stringToParse.split(" ");
-		if (pezzi.length < Token.DATA_TOKENS + 1)
+
+		try
 		{
-			for (String pezzo : pezzi)
+			controlloNumeroTokens(stringToParse, pezzi.length);
+			parsingPerToken(pezzi);
+		}
+		catch(IllegalArgumentException e)
+		{
+			throw new InvalidStringToParseException(stringToParse,e);
+		}
+
+	}
+	
+	private void controlloNumeroTokens(String stringToParse, int length) throws InvalidStringToParseException
+	{
+		if (!(length == Token.DATA_TOKENS + 1) && !(length == Token.DATA_TOKENS))
+			throw new InvalidStringToParseException(stringToParse);
+	}
+	
+	private void parsingPerToken(String pezzi[]) throws IllegalArgumentException
+	{
+		List<String> listPezzi = Arrays.asList(pezzi);
+		for (String pezzo : listPezzi)
+		{
+			String dati[] = pezzo.split("=");
+			try
 			{
-				String dati[] = pezzo.split("=");
 				Token token = Token.valueOf(dati[TOKEN]);
 				parsedData[token.ordinal()] = dati[DATA];
 			}
-		} else
-			throw new InvalidStringToParseException(stringToParse);
+			catch (IllegalArgumentException e)
+			{
+				String dataExtra[] = dati[TOKEN].split("=");
+				TypeToken.valueOf(dataExtra[TOKEN]);
+				typeData = pezzo;
+			}
+		}
 	}
 
-	
-	
 	protected String			parsedData[];
+	
+	protected String			typeData = "";
 
 	private final static int	TOKEN		= 0;
 
 	private final static int	DATA		= 1;
-	
-	private final static int 	FIRST_CHAR  = 0;
 
-	private enum Token
+	private final static int	FIRST_CHAR	= 0;
+
+	private enum Token 
 	{
 		N, S, W, E, NS, NE, NW, WE, SE, SW;
 
 		public static int	DATA_TOKENS	= 10;
 	};
+
+	private enum TypeToken 
+	{
+		U, M;
+	}
 }
