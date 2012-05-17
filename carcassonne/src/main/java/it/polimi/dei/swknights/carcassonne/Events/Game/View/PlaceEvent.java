@@ -15,6 +15,7 @@ public class PlaceEvent extends ViewEvent
 	public PlaceEvent(Object source, Coordinate coordinate)
 	{
 		super(source);
+		this.setComando(ComandoView.place);
 		this.coordinateDestinazione = coordinate;
 	}
     /**
@@ -24,13 +25,6 @@ public class PlaceEvent extends ViewEvent
 	public Coordinate getCoordinateDestinazione()
 	{
 		return this.coordinateDestinazione;
-	}
-
-	@Override
-	protected void setComando()
-	{
-		this.comando = ComandoView.place;
-	
 	}
 
 	private final Coordinate	coordinateDestinazione;

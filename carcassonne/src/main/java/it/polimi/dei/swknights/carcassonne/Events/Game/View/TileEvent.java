@@ -19,15 +19,11 @@ public class TileEvent extends ViewEvent
 	public TileEvent(Object source, Color colore, PuntoCardinale punto)
 	{
 		super(source);
+		setComando(ComandoView.tile);
 		this.puntoDestinazione = punto;
 		this.color = colore;
 	}
 
-	@Override
-	protected void setComando()
-	{
-		this.comando = ComandoView.tile;
-	}
 	/**
 	 * the color of the marker he wants to place
 	 * @return

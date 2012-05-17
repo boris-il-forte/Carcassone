@@ -17,20 +17,17 @@ public class PassEvent extends ViewEvent
 	public PassEvent(Object source)
 	{
 		super(source);
+		this.setComando(ComandoView.pass);
 	}
-
-	@Override
-	protected void setComando()
-	{
-		this.comando = ComandoView.pass;
-	}
-
-	private static final long	serialVersionUID	= 2085506187547788810L;
+	
 
 	@Override
 	public void accept(ControllerHandler handler)
 	{
 		handler.visit(this);
 	}
+
+
+	private static final long	serialVersionUID	= 2085506187547788810L;
 
 }
