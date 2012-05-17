@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Events.ControllerListener;
 import it.polimi.dei.swknights.carcassonne.Events.EventSource;
 import it.polimi.dei.swknights.carcassonne.Events.ViewListener;
@@ -9,6 +8,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEve
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.RuotaHandler;
 import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
@@ -48,6 +48,11 @@ public class Controller implements ViewListener, EventSource
 	public Tessera getTessera()
 	{
 		return this.tesseraCorrente;
+	}
+	
+	public ContatoreCartografo getContapunti()
+	{
+		return this.contaPunti;
 	}
 
 	public Color getGiocatoreCorrente()
@@ -124,10 +129,18 @@ public class Controller implements ViewListener, EventSource
 		}
 	}
 	
+	public void fire(EventObject event)
+	{
+		for (ControllerListener listener : this.listeners)
+		{
+			listener.riceviModificheModel(event);
+		}
+	}
+
 	private List<ControllerHandler> attivaHandler()
 	{
 		List<ControllerHandler> handlerList = new ArrayList<ControllerHandler>();
-		//TODO: Handlers
+		handlerList.add(new RuotaHandler(this));
 		return handlerList;
 	}
 	
@@ -158,14 +171,6 @@ public class Controller implements ViewListener, EventSource
 			mapPunteggi.put(giocatore.getColore(), giocatore.getPunti());
 		}
 		return mapPunteggi;
-	}
-
-	public void fire(EventObject event)
-	{
-		for (ControllerListener listener : this.listeners)
-		{
-			listener.riceviModificheModel(event);
-		}
 	}
 
 	private List<ControllerListener>	listeners;
