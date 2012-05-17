@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.management.BadAttributeValueExpException;
-
 import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
@@ -29,6 +28,8 @@ public class Parser
 	public Parser(String stringToParse) throws InvalidStringToParseException
 	{
 		this.parsedData = new String[Token.DATA_TOKENS];
+		for (int i = 0; i < this.parsedData.length; i++)
+			this.parsedData[i] = "";
 		this.parseString(stringToParse);
 	}
 
@@ -65,7 +66,7 @@ public class Parser
 	{
 		return this.getData(agoBussola).charAt(FIRST_CHAR);
 	}
-	
+
 	public String getDataType()
 	{
 		return this.typeData;
@@ -112,20 +113,21 @@ public class Parser
 			controlloNumeroTokens(stringToParse, pezzi.length);
 			parsingPerToken(pezzi);
 		}
-		catch(IllegalArgumentException e)
+		catch (IllegalArgumentException e)
 		{
-			throw new InvalidStringToParseException(stringToParse,e);
+			throw new InvalidStringToParseException(stringToParse, e);
 		}
 
 	}
-	
+
 	private void controlloNumeroTokens(String stringToParse, int length) throws InvalidStringToParseException
 	{
 		if (!(length == Token.DATA_TOKENS + 1) && !(length == Token.DATA_TOKENS))
 			throw new InvalidStringToParseException(stringToParse);
 	}
-	
-	private void parsingPerToken(String pezzi[]) throws IllegalArgumentException
+
+	private void parsingPerToken(String pezzi[]) throws InvalidStringToParseException,
+			IllegalArgumentException
 	{
 		List<String> listPezzi = Arrays.asList(pezzi);
 		for (String pezzo : listPezzi)
@@ -133,21 +135,38 @@ public class Parser
 			String dati[] = pezzo.split("=");
 			try
 			{
-				Token token = Token.valueOf(dati[TOKEN]);
+				Token token = parseToken(dati[TOKEN]);
 				parsedData[token.ordinal()] = dati[DATA];
 			}
 			catch (IllegalArgumentException e)
 			{
 				String dataExtra[] = dati[TOKEN].split("=");
-				TypeToken.valueOf(dataExtra[TOKEN]);
+				typeTokenParsed(dataExtra[TOKEN]);
 				typeData = pezzo;
 			}
 		}
 	}
 
-	protected String			parsedData[];
+	private Token parseToken(String stringToken) throws InvalidStringToParseException
+	{
+		Token token = Token.valueOf(stringToken);
+		if (this.parsedData[token.ordinal()] == "")
+		{
+			return token;
+		}
+		else throw new InvalidStringToParseException("token già parsato");
+	}
 	
-	protected String			typeData = "";
+	private void typeTokenParsed(String stringToken) throws InvalidStringToParseException, IllegalArgumentException
+	{
+		TypeToken.valueOf(stringToken);
+		if (this.typeData != "")
+			throw new InvalidStringToParseException("TypeToken già parsato");
+	}
+
+	protected String			parsedData[];
+
+	protected String			typeData	= "";
 
 	private final static int	TOKEN		= 0;
 
@@ -155,15 +174,13 @@ public class Parser
 
 	private final static int	FIRST_CHAR	= 0;
 
-	private enum Token 
-	{
+	private enum Token {
 		N, S, W, E, NS, NE, NW, WE, SE, SW;
 
 		public static int	DATA_TOKENS	= 10;
 	};
 
-	private enum TypeToken 
-	{
+	private enum TypeToken {
 		U, M;
 	}
 }
