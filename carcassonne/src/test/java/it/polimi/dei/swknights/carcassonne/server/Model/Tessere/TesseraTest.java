@@ -84,7 +84,7 @@ public class TesseraTest
 		//DELIRIO!
 		Set<Costruzione> costruzioniM1 = m1.keySet();
 		Set<Costruzione> costruzioniM2 = m2.keySet();
-		
+		//è qua che non va bene, es.  c1->nsoe   e   c2->nsoe  dice che sono diverse!!
 		if (costruzioniM1.containsAll(costruzioniM2) && costruzioniM2.containsAll(costruzioniM1))
 		{
 			return true;
