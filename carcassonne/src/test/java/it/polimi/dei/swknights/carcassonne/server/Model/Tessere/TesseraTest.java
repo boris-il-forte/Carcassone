@@ -5,11 +5,15 @@ import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneCitta;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -52,32 +56,43 @@ public class TesseraTest
 		TesseraNormale tessera = new TesseraNormale(creaLatiCittaGrande(), creaLinkCittaGrande());
 		
 		List<PuntoCardinale> punti = new ArrayList<PuntoCardinale>();
-		punti.add(PuntoCardinale.nord);
-		punti.add(PuntoCardinale.sud);
-		punti.add(PuntoCardinale.ovest);
-		punti.add(PuntoCardinale.est);
+		for(PuntoCardinale p : PuntoCardinale.values() ) //tutti connessi e unica città
+		{
+			punti.add(p);
+		}
 		
 		mappaExp = new HashMap<Costruzione, List<PuntoCardinale>>();
 		mappaExp.put( new CostruzioneCitta(tessera), punti);
 		
 		mappaGot = tessera.getCostruzioni();
 		
-		
-	  
+		if(! stesseCostruzioniMappe(mappaGot, mappaExp))
+		{
+			assertTrue("nemmeno le stesse costruzioni!", false);
+		}
+		else
+		{
+			assertTrue(true);
+		}
 	}
 	
-	private boolean equivalentiMappe
+	
+	
+	private boolean stesseCostruzioniMappe
 	(Map<Costruzione, List<PuntoCardinale>> m1, Map<Costruzione, List<PuntoCardinale>> m2)
 	{
-		
+		//DELIRIO!
 		Set<Costruzione> costruzioniM1 = m1.keySet();
 		Set<Costruzione> costruzioniM2 = m2.keySet();
+		
 		if (costruzioniM1.containsAll(costruzioniM2) && costruzioniM2.containsAll(costruzioniM1))
 		{
-			
+			return true;
 		}
-	
-		return false;
+		else
+		{
+			return false;
+		}
 	}
 	
 	
