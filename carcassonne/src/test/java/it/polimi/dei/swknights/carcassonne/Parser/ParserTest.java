@@ -3,6 +3,9 @@ package it.polimi.dei.swknights.carcassonne.Parser;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
@@ -12,8 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+
 
 public class ParserTest
 {

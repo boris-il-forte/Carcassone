@@ -130,8 +130,23 @@ public abstract class Costruzione
 		}
 		return controllori;
 	}
+	/**
+	 * returns true if the passed object is the same type of this building
+	 * e.g.  city and city  or street and street
+	 */
+	@Override
+	public boolean equals(Object obj)
+	{
+	  	if(! (obj instanceof Costruzione))
+	  		return false;
+	  	if ( obj instanceof CostruzioneCitta && this instanceof CostruzioneCitta ||
+	  		obj instanceof CostruzioneStrada && this instanceof CostruzioneStrada )
+	  		return true;
+		return false;
+	  		
+	}
+	
 
 	protected Set<Tessera>	elementi;
-
 	private List<Segnalino>	listaSegnalini;
 }

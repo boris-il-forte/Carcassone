@@ -68,37 +68,56 @@ public abstract class Tessera
 	{
 
 		Map<Costruzione, List<PuntoCardinale>> mappaCostruzioniPunti = new HashMap<Costruzione, List<PuntoCardinale>>();
-
 		Map<Costruzione, PuntoCardinale> mappaCostruzioni = lati.getMappaCostruzioniPrimitive(this);
-
 		List<Costruzione> listCostruzione = new ArrayList<Costruzione>(mappaCostruzioni.keySet());
-		Costruzione tempAggregato1 = null;
-		Costruzione tempAggregato2 = null;
-		boolean[] inglobati = { false, false, false, false };
 
-		int i = 0, j = 0;
-		for (i = 0; i < listCostruzione.size() - 1; i++)
+		for(Costruzione costruzione: listCostruzione)
 		{
-			if (inglobati[i]) continue;
-			List<PuntoCardinale> puntiCardinali = new ArrayList<PuntoCardinale>();
-			tempAggregato1 = listCostruzione.get(i);
-
-			for (j = i + 1; j < listCostruzione.size() - 1; j++)
+			List<PuntoCardinale> puntiConnessi = this.puntiConnessiACostruzione(costruzione, mappaCostruzioni);
+			if(mappaCostruzioniPunti.values().contains(puntiConnessi) == false)
 			{
-				puntiCardinali.add(mappaCostruzioni.get(tempAggregato1));
-				if (isConnected(listCostruzione.get(i), listCostruzione.get(j), mappaCostruzioni))
-				{
-					inglobati[j] = true;
-					puntiCardinali.add(mappaCostruzioni.get(tempAggregato2));
-					tempAggregato2 = listCostruzione.get(j);
-					tempAggregato1.joinCostruzioni(tempAggregato2);
-				}
+				mappaCostruzioniPunti.put(costruzione, puntiConnessi);
+			
 			}
-
-			mappaCostruzioniPunti.put(tempAggregato1.getCopy(this), puntiCardinali);
 		}
+			
 
 		return mappaCostruzioniPunti;
+	}
+	
+	private List<PuntoCardinale> puntiConnessiACostruzione(Costruzione c, Map<Costruzione, PuntoCardinale> mapCostruzPunto)
+	{
+		List<PuntoCardinale> puntiConnessi = new ArrayList<PuntoCardinale>();
+		PuntoCardinale puntoDaEsaminare = mapCostruzPunto.get(c);
+		for(PuntoCardinale p : PuntoCardinale.values())
+		{
+			if ( this.link.areConnected(p, puntoDaEsaminare) )
+			{
+				puntiConnessi.add(p);
+			}
+		}
+		
+		return puntiConnessi;
+		
+	}
+	
+	//TOODO: oppure mi faccio dare la mappa dall'altra parte da link??
+	private Map<PuntoCardinale, Costruzione> PuntoCostruzione  (Map<Costruzione, PuntoCardinale> mappaCostruzioni)
+	{
+		Map<PuntoCardinale, Costruzione> mappaPuntoCostruzione = new HashMap<PuntoCardinale, Costruzione>();
+		List<Costruzione> listCostruzione = new ArrayList<Costruzione>(mappaCostruzioni.keySet());
+		for( Costruzione c : listCostruzione)
+		{
+			for(PuntoCardinale p : PuntoCardinale.values())
+			{
+				if(mappaCostruzioni.get(c) == p)
+				{
+					mappaPuntoCostruzione.put(p, c);
+				}
+			}
+		}
+			
+		return mappaPuntoCostruzione;
 	}
 
 	/**
