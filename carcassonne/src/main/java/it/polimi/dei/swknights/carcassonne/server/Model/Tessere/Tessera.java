@@ -70,12 +70,16 @@ public abstract class Tessera
 		Map<Costruzione, List<PuntoCardinale>> mappaCostruzioniPunti = new HashMap<Costruzione, List<PuntoCardinale>>();
 		Map<Costruzione, PuntoCardinale> mappaCostruzioni = lati.getMappaCostruzioniPrimitive(this);
 		List<Costruzione> listCostruzione = new ArrayList<Costruzione>(mappaCostruzioni.keySet());
-
+		
+		List < List<PuntoCardinale> > giaMesse = new ArrayList<List<PuntoCardinale>>();
+		
 		for(Costruzione costruzione: listCostruzione)
 		{
 			List<PuntoCardinale> puntiConnessi = this.puntiConnessiACostruzione(costruzione, mappaCostruzioni);
-			if(mappaCostruzioniPunti.values().contains(puntiConnessi) == false)
+			
+			if(giaMesse.contains(puntiConnessi) == false)
 			{
+				giaMesse.add(puntiConnessi);
 				mappaCostruzioniPunti.put(costruzione, puntiConnessi);
 			
 			}
@@ -101,24 +105,6 @@ public abstract class Tessera
 		
 	}
 	
-	//TOODO: oppure mi faccio dare la mappa dall'altra parte da link??
-	private Map<PuntoCardinale, Costruzione> PuntoCostruzione  (Map<Costruzione, PuntoCardinale> mappaCostruzioni)
-	{
-		Map<PuntoCardinale, Costruzione> mappaPuntoCostruzione = new HashMap<PuntoCardinale, Costruzione>();
-		List<Costruzione> listCostruzione = new ArrayList<Costruzione>(mappaCostruzioni.keySet());
-		for( Costruzione c : listCostruzione)
-		{
-			for(PuntoCardinale p : PuntoCardinale.values())
-			{
-				if(mappaCostruzioni.get(c) == p)
-				{
-					mappaPuntoCostruzione.put(p, c);
-				}
-			}
-		}
-			
-		return mappaPuntoCostruzione;
-	}
 
 	/**
 	 * Returns the neighbour of the given cardinal point or null if the
