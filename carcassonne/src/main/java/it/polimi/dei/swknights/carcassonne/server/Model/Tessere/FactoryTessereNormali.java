@@ -1,5 +1,4 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
-
 import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
@@ -98,11 +97,20 @@ public class FactoryTessereNormali extends FactoryTessere
 			e1.printStackTrace();
 			return null; //TODO: propago eccezione?
 		} 
-		catch (BadAttributeValueExpException e)
+		catch (IllegalArgumentException e)
 		{
 			e.printStackTrace(); //TODO propago eccezione?
 			return null;
 		}
+		catch (BadAttributeValueExpException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+
+
+
 	}
 	
 	private Lati creaElementi(Parser parser)
@@ -117,7 +125,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		return new Lati(elementiTessera);
 	}
 	
-	private Link creaLinks(Parser parser) throws BadAttributeValueExpException
+	private Link creaLinks(Parser parser) throws BadAttributeValueExpException, IllegalArgumentException
 	{
 		boolean[] links = new boolean[Bussola.NUMERO_DIREZIONI];
 		for (Bussola direzione : Bussola.values())

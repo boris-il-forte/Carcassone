@@ -56,6 +56,7 @@ public class Lati
 		this.sud = this.est;
 		this.est = nordTmp;
 	}
+	
 	/**
 	 * Gets non-aggregated Buildings of a given card
 	 * @param tessera of which the caller wants to know the Building

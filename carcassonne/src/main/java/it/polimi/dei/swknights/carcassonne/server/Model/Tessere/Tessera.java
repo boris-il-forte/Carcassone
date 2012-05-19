@@ -62,7 +62,7 @@ public abstract class Tessera
 	 * gets the aggregated costructions on the card e.g a street that crosses
 	 * from north to south the card
 	 * 
-	 * @return: a list containing the Costruction of the card
+	 * @return a list containing the Costruction of the card
 	 */
 	public Map<Costruzione, List<PuntoCardinale>> getCostruzioni()
 	{
