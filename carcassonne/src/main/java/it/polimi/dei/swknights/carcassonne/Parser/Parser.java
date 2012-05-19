@@ -2,7 +2,6 @@ package it.polimi.dei.swknights.carcassonne.Parser;
 
 import java.util.Arrays;
 import java.util.List;
-
 import javax.management.BadAttributeValueExpException;
 import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;

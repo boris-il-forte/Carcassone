@@ -25,11 +25,21 @@ public class Link
 		this.direzioni[Bussola.NE.ordinal()] = this.direzioni[Bussola.NW.ordinal()];
 		this.direzioni[Bussola.NW.ordinal()] = this.direzioni[Bussola.SW.ordinal()];
 		this.direzioni[Bussola.SW.ordinal()] = tempSE;
-
 	}
 
-	public Link(boolean[] links)
+	
+	/**
+	 * Array of six booleans to be passed in the following order
+	 *  NS(0), NE(1), NW(2), WE(3), SE(4), SW(5);
+	 * @param links
+	 * @throws IllegalArgumentException
+	 */
+	public Link(boolean[] links) throws IllegalArgumentException
 	{
+		if(links.length != 6)
+		{
+			throw new IllegalArgumentException("You are supposed to pass six booleans to Link!");
+		}
 		for (Bussola direzione : Bussola.values())
 		{
 			direzioni[direzione.toInt()] = links[direzione.toInt()];
