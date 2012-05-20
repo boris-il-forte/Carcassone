@@ -30,6 +30,7 @@ public class TileHandler extends ControllerHandler
 	@Override
 	public void visit(TileEvent event)
 	{
+		//TODO: incompleto
 		
 		Color coloreGiocatore = controller.getGiocatoreCorrente();
 		Giocatore giocatore = this.model.getGiocatore(coloreGiocatore);
