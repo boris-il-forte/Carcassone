@@ -95,7 +95,7 @@ public abstract class Costruzione
 
 	public abstract int contaPuntiGiocatore(Color colore); // TODO ripensare!
 
-	protected int contaElementi()
+	public int contaElementi()
 	{
 		return this.elementi.size();
 	}

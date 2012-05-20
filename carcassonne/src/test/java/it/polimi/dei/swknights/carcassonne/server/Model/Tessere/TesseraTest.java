@@ -66,14 +66,46 @@ public class TesseraTest
 		
 		mappaExp = new HashMap<Costruzione, List<PuntoCardinale>>();
 		mappaExp.put( new CostruzioneCitta(tessera), punti);
-		
 		mappaGot = tessera.getCostruzioni();
 		
 		List<Costruzione> CostruzioniExp = listaDa( mappaExp.keySet());
 		List<Costruzione> CostruzioniGot = listaDa( mappaGot.keySet());
 		
-		Collections.sort(CostruzioniExp, new Comparator<Costruzione>(){
+		assertTrue(stesseListePuntiCardinali(CostruzioniExp, CostruzioniGot));
+
+	}
 	
+	
+	private boolean stesseListePuntiCardinali(List<Costruzione> CostruzioniExp, List<Costruzione> CostruzioniGot)
+	{
+		ordinaCostruzioni(CostruzioniGot);
+		ordinaCostruzioni(CostruzioniExp);
+		
+		if(CostruzioniExp.size() == CostruzioniGot.size())
+		{
+		   	for(int i=0; i< CostruzioniExp.size(); i++)
+		   	{
+		   		Costruzione costruzioneExp = CostruzioniExp.get(i);
+		   		Costruzione costruzioneGot = CostruzioniGot.get(i);
+		   		List<PuntoCardinale> puntiExp =  mappaExp.get(costruzioneExp);
+		   		List<PuntoCardinale> puntiGot =  mappaGot.get(costruzioneGot);
+		   		if(puntiExp.equals(puntiGot) == false)
+		   		{
+		   			return false;
+		   		}
+		   	}
+		   	return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	private void ordinaCostruzioni(List<Costruzione> costruzioniGot)
+	{
+		Collections.sort(costruzioniGot, new Comparator<Costruzione>(){
+			
 			public int compare(Costruzione c1, Costruzione c2)
 			{
 				if(c1.contaElementi() != c2.contaElementi())
@@ -90,32 +122,9 @@ public class TesseraTest
 				}
 				return 0;
 			}
-		});
-		
-		if(CostruzioniExp.size() == CostruzioniGot.size())
-		{
-		   	for(int i=0; i< CostruzioniExp.size(); i++)
-		   	{
-		   		Costruzione costruzioneExp = CostruzioniExp.get(i);
-		   		Costruzione costruzioneGot = CostruzioniGot.get(i);
-		   		List<PuntoCardinale> puntiExp =  mappaExp.get(costruzioneExp);
-		   		List<PuntoCardinale> puntiGot =  mappaGot.get(costruzioneGot);
-		   		if(puntiExp.equals(puntiGot) == false)
-		   		{
-		   			assertTrue("c'è una costruzione aggregata per cui i punti cardinali" +
-		   					 "ritornati differiscono" ,false);
-		   		}
-		   	}
-		   	assertTrue(true);
-		}
-		else
-		{
-			assertTrue("non hanno lo stesso numero di costruzioni!", false);
-		}
+		});		
 	}
-	
-	
-	
+
 	private List<Costruzione> listaDa(Set<Costruzione> keySet)
 	{
 		List<Costruzione> listaC = new ArrayList<Costruzione>();
@@ -125,17 +134,5 @@ public class TesseraTest
 		}
 		return listaC;
 	}
-
-	private boolean stesseCostruzioniMappe
-	(Map<Costruzione, List<PuntoCardinale>> m1, Map<Costruzione, List<PuntoCardinale>> m2)
-	{
-		//DELIRIO!
-		Set<Costruzione> costruzioniM1 = m1.keySet();
-		Set<Costruzione> costruzioniM2 = m2.keySet();
-		return  costruzioniM1.equals(costruzioniM2);
-
-	}
-	
-	
 	
 }
