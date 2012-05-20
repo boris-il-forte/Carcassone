@@ -39,7 +39,13 @@ public class ConfineTessera
 		return hash;
 	}
 
+	
 	@Override
+	/**
+	 * two neighbours are equals iff the elements are of the same type 
+	 * e.g. city and city,  and the card is the same
+	 * more formally:  this.lato == confine.lato && this.card == confine.card
+	 */
 	public boolean equals(Object object)
 	{
 		boolean isEqual = false;
