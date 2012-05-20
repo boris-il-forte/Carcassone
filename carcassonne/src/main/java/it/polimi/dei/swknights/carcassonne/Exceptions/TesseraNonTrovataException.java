@@ -11,7 +11,8 @@ public class TesseraNonTrovataException extends Exception
 
 	public TesseraNonTrovataException(Coordinate coordinate)
 	{
-		super("La tessera alla coordinata (" + coordinate.getX() + ", " + coordinate.getY() + ") non è stata trovata");
+		super("La tessera alla coordinata (" + coordinate.getX() + ", " + coordinate.getY()
+				+ ") non è stata trovata");
 	}
 
 	private static final long	serialVersionUID	= 2844279070241861687L;

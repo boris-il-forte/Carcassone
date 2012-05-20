@@ -1,14 +1,15 @@
 package it.polimi.dei.swknights.carcassonne;
+
 /**
- * this enum gives a simple implementation of the Cardinal Points, it also gives the 
- * opposite Point
+ * this enum gives a simple implementation of the Cardinal Points, it also gives
+ * the opposite Point
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
 
-public enum PuntoCardinale
-{
-	nord(0, "N"), sud(1, "S"), ovest(2,"W"), est(3,"E");
+public enum PuntoCardinale {
+	nord(0, "N"), sud(1, "S"), ovest(2, "W"), est(3, "E");
 	private PuntoCardinale(int numerazione, String string)
 	{
 		this.numerazione = numerazione;
@@ -19,9 +20,10 @@ public enum PuntoCardinale
 	{
 		return this.numerazione;
 	}
+
 	/**
 	 * 
-	 * @return  the Cardinal Point in the oppposite direction
+	 * @return the Cardinal Point in the oppposite direction
 	 */
 	public PuntoCardinale opposto()
 	{
@@ -39,7 +41,7 @@ public enum PuntoCardinale
 				return null;
 		}
 	}
-	
+
 	@Override
 	public String toString()
 	{
@@ -47,8 +49,8 @@ public enum PuntoCardinale
 	}
 
 	public static final int	NUMERO_DIREZIONI	= 4;
-	
-	private int	numerazione;
 
-	private String	string;
+	private int				numerazione;
+
+	private String			string;
 }

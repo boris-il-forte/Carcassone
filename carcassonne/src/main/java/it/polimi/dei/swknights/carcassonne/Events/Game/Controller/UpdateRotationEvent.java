@@ -7,8 +7,9 @@ import java.awt.Color;
 
 /**
  * Event triggered by the controller after that card is rotated
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
 
 public class UpdateRotationEvent extends UpdateEvent

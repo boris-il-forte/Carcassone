@@ -11,7 +11,8 @@ public class PathGioco
 
 	public static final String	BASE_PATH	= "src/resources/";
 
-	/* per accedere a risorsa
-	 * fai getclass.getresource.toURI  e poi File(URI) e infine: inputstream(File)
+	/*
+	 * per accedere a risorsa fai getclass.getresource.toURI e poi File(URI) e
+	 * infine: inputstream(File)
 	 */
 }

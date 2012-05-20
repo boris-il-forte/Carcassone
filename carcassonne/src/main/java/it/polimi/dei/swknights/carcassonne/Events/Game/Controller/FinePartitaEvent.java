@@ -6,9 +6,11 @@ import java.awt.Color;
 import java.util.Map;
 
 /**
- * Event to be triggered when the game finishes that is when no more cards are available
+ * Event to be triggered when the game finishes that is when no more cards are
+ * available
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
 
 public class FinePartitaEvent extends ControllerEvent

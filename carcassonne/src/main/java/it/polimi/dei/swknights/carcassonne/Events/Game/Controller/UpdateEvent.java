@@ -23,8 +23,7 @@ public abstract class UpdateEvent extends ControllerEvent
 		AdapterTessera adapter = new AdapterTesseraString(tessera);
 		this.setData(adapter, coordinate, giocatore);
 	}
-	
-		
+
 	public AdapterTessera getTessera()
 	{
 		return this.dati.getTessera();
@@ -39,7 +38,8 @@ public abstract class UpdateEvent extends ControllerEvent
 	{
 		return this.dati;
 	}
-	private DecoraTessera		dati; 
+
+	private DecoraTessera		dati;
 
 	private static final long	serialVersionUID	= -4838659490031728270L;
 

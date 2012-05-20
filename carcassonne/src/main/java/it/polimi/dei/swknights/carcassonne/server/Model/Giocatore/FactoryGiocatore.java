@@ -23,8 +23,7 @@ public class FactoryGiocatore
 	public FactoryGiocatore()
 	{
 		int i = 0;
-		Color colori[] = new Color[]
-		{ Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK };
+		Color colori[] = new Color[] { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK };
 		codaColoriDisponibili = new ArrayDeque<Color>();
 
 		for (i = 0; i < colori.length; i++)
@@ -48,8 +47,7 @@ public class FactoryGiocatore
 		colore = codaColoriDisponibili.poll();
 		if (colore != null)
 			return new Giocatore(colore);
-		else
-			throw new FinitiColoriDisponibiliException();
+		else throw new FinitiColoriDisponibiliException();
 	}
 
 }

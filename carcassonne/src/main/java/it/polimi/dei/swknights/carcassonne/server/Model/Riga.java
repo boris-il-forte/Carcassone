@@ -48,8 +48,7 @@ public class Riga
 		Tessera tessera = this.tessere.get(coordinataX);
 		if (tessera != null)
 			return tessera;
-		else
-			throw new TesseraNonTrovataException(coordinataX);
+		else throw new TesseraNonTrovataException(coordinataX);
 	}
 
 	private Map<Integer, Tessera>	tessere;

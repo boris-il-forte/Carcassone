@@ -1,11 +1,14 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
+
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 import java.util.EventObject;
+
 /**
- * This class describes a generic ControllerEvent, it basically provide just
- * a schema for the specific Controller events
+ * This class describes a generic ControllerEvent, it basically provide just a
+ * schema for the specific Controller events
+ * 
  * @author edoardopasi
- *
+ * 
  */
 public abstract class ControllerEvent extends EventObject
 {
@@ -16,6 +19,7 @@ public abstract class ControllerEvent extends EventObject
 
 	}
 
+	@Override
 	public String toString()
 	{
 		return messaggio.toString();
@@ -27,7 +31,7 @@ public abstract class ControllerEvent extends EventObject
 	}
 
 	private MessaggiController	messaggio;
-	
+
 	private static final long	serialVersionUID	= 3191102477186388256L;
 
 }

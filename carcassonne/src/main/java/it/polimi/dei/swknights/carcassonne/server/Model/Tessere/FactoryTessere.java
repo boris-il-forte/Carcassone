@@ -16,7 +16,7 @@ public abstract class FactoryTessere
 
 	public Tessera getTessera()
 	{
-		int lastIndex = this.mazzo.size()-1;
+		int lastIndex = this.mazzo.size() - 1;
 		return this.mazzo.remove(lastIndex);
 	}
 

@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-
-
 public class ParserTest
 {
 	private static List<String>		listaTestOK;
@@ -73,7 +71,7 @@ public class ParserTest
 					stringBuilder.append(" ");
 				}
 				stringBuilder.append(parser.getDataType());
-				
+
 				assertEquals(stringaDaTestareOracoloOk, stringBuilder.toString());
 
 			}
