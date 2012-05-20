@@ -8,6 +8,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEve
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PlaceHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.RuotaHandler;
 import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
@@ -45,7 +46,7 @@ public class Controller implements ViewListener, EventSource
 		this.visitorHandlers = this.attivaHandler();
 	}
 
-	public Tessera getTessera()
+	public Tessera getTesseraCorrente()
 	{
 		return this.tesseraCorrente;
 	}
@@ -141,6 +142,7 @@ public class Controller implements ViewListener, EventSource
 	{
 		List<ControllerHandler> handlerList = new ArrayList<ControllerHandler>();
 		handlerList.add(new RuotaHandler(this));
+		handlerList.add(new PlaceHandler(this, this.partita.getAreaDiGioco()));
 		return handlerList;
 	}
 	

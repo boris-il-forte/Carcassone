@@ -17,7 +17,7 @@ public class RuotaHandler extends ControllerHandler
 	@Override
 	public void visit(RotateEvent event)
 	{
-		Tessera tessera = this.controller.getTessera();
+		Tessera tessera = this.controller.getTesseraCorrente();
 		tessera.ruota();
 		controller.fire(new UpdateRotationEvent(tessera, this.controller.getGiocatoreCorrente(), controller));
 	}

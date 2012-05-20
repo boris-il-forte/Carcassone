@@ -41,7 +41,7 @@ public class EsploratoreConfini
 	}
 
 	/**
-	 * getss the ectual neighbours of the card (e.g. a part of city)
+	 * gets the ectual neighbours of the card (e.g. a part of city)
 	 * 
 	 * @return
 	 */
@@ -60,7 +60,7 @@ public class EsploratoreConfini
 	 * @see ConfineTessera
 	 */
 
-	// confini = vuoti confinanti = pieni (ovvio no?)
+	// confini = vuoti confinanti = pieni 
 	private void getEmptyAndFullNeighbours(Coordinate coordinateTessera, AreaDiGioco cartaGeografica)
 	{
 		Tessera tessera;
