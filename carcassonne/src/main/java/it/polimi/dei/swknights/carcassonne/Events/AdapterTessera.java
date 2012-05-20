@@ -1,6 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
+import it.polimi.dei.swknights.carcassonne.Parser.ExtraParser;
 /**
  * The aim of this class is provide an Adapter that basically limits the getters on the Card
  * Is usefull to pass all the needed informations of Card via events but no more then that
@@ -17,21 +19,21 @@ public abstract class AdapterTessera
 	 */
 	public String toCliString(PuntoCardinale puntoCardinale)
 	{
-		String stringToParse = this.parseString(this.toProtocolString());
-		stringToParse = this.parseString(stringToParse);
-		stringToParse = this.selectString(stringToParse, puntoCardinale);
-		return stringToParse;
+		return this.parseString(this.toProtocolString());
+
 	}
 	
 	private String parseString(String string)
 	{
-		//TODO: parser
-		return string;
-	}
-	
-	private String selectString(String string, PuntoCardinale puntoCardinale)
-	{
-		//TODO parser v2
-		return string;
+		ExtraParser parser;
+		try
+		{
+			parser = new ExtraParser(string);
+			return parser.toString();
+		}
+		catch (InvalidStringToParseException e)
+		{
+			return "";
+		}
 	}
 }

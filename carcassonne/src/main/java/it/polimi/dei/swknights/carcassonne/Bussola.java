@@ -18,6 +18,19 @@ public enum Bussola {
 	{
 		return numero;
 	}
+	
+	public static Bussola componi(PuntoCardinale punto1, PuntoCardinale punto2)
+	{
+		
+		if(punto1.toInt() < punto2.toInt())
+		{
+			PuntoCardinale tmp = punto1;
+			punto1 = punto2;
+			punto2 = tmp;
+		}
+		String stringBussola = punto1.toString() +punto2.toString();
+		return Bussola.valueOf(stringBussola);	
+	}
 
 	public static final int	NUMERO_DIREZIONI	= 6;
 

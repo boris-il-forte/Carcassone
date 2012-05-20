@@ -89,23 +89,6 @@ public abstract class Tessera
 		return mappaCostruzioniPunti;
 	}
 	
-	private List<PuntoCardinale> puntiConnessiACostruzione(Costruzione c, Map<Costruzione, PuntoCardinale> mapCostruzPunto)
-	{
-		List<PuntoCardinale> puntiConnessi = new ArrayList<PuntoCardinale>();
-		PuntoCardinale puntoDaEsaminare = mapCostruzPunto.get(c);
-		for(PuntoCardinale p : PuntoCardinale.values())
-		{
-			if ( this.link.areConnected(p, puntoDaEsaminare) )
-			{
-				puntiConnessi.add(p);
-			}
-		}
-		
-		return puntiConnessi;
-		
-	}
-	
-
 	/**
 	 * Returns the neighbour of the given cardinal point 
 	 * The neighbout can be for instance: 
@@ -136,12 +119,20 @@ public abstract class Tessera
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
 
 
-	private boolean isConnected(Costruzione costruzione1, Costruzione costruzione2,
-			Map<Costruzione, PuntoCardinale> mappaCostruzioni)
+	private List<PuntoCardinale> puntiConnessiACostruzione(Costruzione c, Map<Costruzione, PuntoCardinale> mapCostruzPunto)
 	{
-		PuntoCardinale puntoCardinale1 = mappaCostruzioni.get(costruzione1);
-		PuntoCardinale puntoCardinale2 = mappaCostruzioni.get(costruzione2);
-		return this.link.areConnected(puntoCardinale1, puntoCardinale2);
+		List<PuntoCardinale> puntiConnessi = new ArrayList<PuntoCardinale>();
+		PuntoCardinale puntoDaEsaminare = mapCostruzPunto.get(c);
+		for(PuntoCardinale p : PuntoCardinale.values())
+		{
+			if ( this.link.areConnected(p, puntoDaEsaminare) )
+			{
+				puntiConnessi.add(p);
+			}
+		}
+		
+		return puntiConnessi;
+		
 	}
 
 	protected final Lati	lati;
