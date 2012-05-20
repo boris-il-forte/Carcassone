@@ -66,14 +66,14 @@ public class EsploratoreConfini
 		Tessera tessera;
 		try
 		{
-			// se c'è è confinante se no confine
+			
 			tessera = cartaGeografica.getTessera(coordinateTessera);
 			Map<Costruzione, List<PuntoCardinale>> mapCostruzioni;
 			/*
 			 * costruzioni aggregate della tessera con relative liste di punti
 			 * cardinali (1 solo per nn aggreg)
 			 */
-			mapCostruzioni = tessera.getCostruzioni();
+			mapCostruzioni = tessera.getMapCostruzioniPunti();
 			for (Entry<Costruzione, List<PuntoCardinale>> entryCostruzione : mapCostruzioni.entrySet())
 			// per ogni costruzione aggregata della tessera guarda i vicini
 			{
@@ -122,7 +122,7 @@ public class EsploratoreConfini
 	 *         neighbour is empty or is grass
 	 */
 	public Set<Costruzione> getCostruzioni()
-	{
+	{	
 		Set<Costruzione> semiSetCostruzioni1 = this.confini.keySet();
 		Set<Costruzione> semiSetCostruzioni2 = this.confinanti.keySet();
 		semiSetCostruzioni1.addAll(semiSetCostruzioni2);

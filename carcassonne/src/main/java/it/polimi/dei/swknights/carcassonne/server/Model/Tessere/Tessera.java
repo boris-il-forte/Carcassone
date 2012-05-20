@@ -64,7 +64,7 @@ public abstract class Tessera
 	 * 
 	 * @return a list containing the Costruction of the card
 	 */
-	public Map<Costruzione, List<PuntoCardinale>> getCostruzioni()
+	public Map<Costruzione, List<PuntoCardinale>> getMapCostruzioniPunti()
 	{
 
 		Map<Costruzione, List<PuntoCardinale>> mappaCostruzioniPunti = new HashMap<Costruzione, List<PuntoCardinale>>();
@@ -107,11 +107,12 @@ public abstract class Tessera
 	
 
 	/**
-	 * Returns the neighbour of the given cardinal point or null if the
-	 * neighbour is empty
-	 * 
+	 * Returns the neighbour of the given cardinal point 
+	 * The neighbout can be for instance: 
+	 *  city  + this card  if there is a city in the given cardinal point
+	 *  grass + this card  if there is nothing (grass) in the given cardinal poin
 	 * @param puntoCardinale
-	 * @return the neighbour or null if empty
+	 * @return the neighbour
 	 */
 	public ConfineTessera getVicino(PuntoCardinale puntoCardinale)
 	{

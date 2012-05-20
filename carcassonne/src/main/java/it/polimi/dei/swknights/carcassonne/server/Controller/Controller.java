@@ -137,7 +137,12 @@ public class Controller implements ViewListener, EventSource
 			listener.riceviModificheModel(event);
 		}
 	}
-
+	
+	protected ContatoreCartografo getContaPunti()
+	{
+		return this.contaPunti;
+	}
+	
 	private List<ControllerHandler> attivaHandler()
 	{
 		List<ControllerHandler> handlerList = new ArrayList<ControllerHandler>();
@@ -174,7 +179,9 @@ public class Controller implements ViewListener, EventSource
 		}
 		return mapPunteggi;
 	}
-
+	
+	
+	
 	private List<ControllerListener>	listeners;
 	
 	private List<ControllerHandler> 	visitorHandlers;

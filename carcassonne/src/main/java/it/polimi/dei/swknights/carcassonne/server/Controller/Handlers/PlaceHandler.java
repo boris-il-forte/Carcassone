@@ -29,6 +29,7 @@ public class PlaceHandler extends ControllerHandler
 		if(tuttoVicinatoDAccordo(coordinate, tessera))
 		{
 			areaDiGioco.addTessera(coordinate, tessera);
+			this.controller.getContapunti().riceviCoordinateTessera(coordinate);
 		}
 		else
 		{
