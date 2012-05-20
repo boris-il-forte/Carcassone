@@ -1,4 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
+
 import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
@@ -42,7 +43,8 @@ public class FactoryTessereNormali extends FactoryTessere
 		try
 		{
 			this.creaMazzoTessere();
-		} catch (NoFirstCardException e)
+		}
+		catch (NoFirstCardException e)
 		{
 			e.printStackTrace();
 			System.exit(-1);
@@ -66,17 +68,17 @@ public class FactoryTessereNormali extends FactoryTessere
 																		// tessera
 																		// copierei
 																		// riferimento
-			} else
+			}
+			else
 			{
 				this.mazzo.add(tessera);
 			}
 
 		}
 
-		if (tesseraMagic == null)
-		{
-			throw new NoFirstCardException("controlla il file tessere e la factory perchè manca la tessera iniziale");
-			// potrebbe mettercela dato che sa come farla volendo.. ma meglio
+		if (tesseraMagic == null) { throw new NoFirstCardException(
+				"controlla il file tessere e la factory perchè manca la tessera iniziale");
+		// potrebbe mettercela dato che sa come farla volendo.. ma meglio
 		}
 
 		this.mazzo.add(tesseraMagic);
@@ -84,22 +86,22 @@ public class FactoryTessereNormali extends FactoryTessere
 	}
 
 	private Tessera tesseraDaDescrzione(String descrizione)
-	{	
+	{
 		try
 		{
 			Parser parser = new Parser(descrizione);
-			Lati lati = this.creaElementi(parser);  
+			Lati lati = this.creaElementi(parser);
 			Link link = this.creaLinks(parser);
 			return new TesseraNormale(lati, link);
-		} 
+		}
 		catch (InvalidStringToParseException e1)
 		{
 			e1.printStackTrace();
-			return null; //TODO: propago eccezione?
-		} 
+			return null; // TODO: propago eccezione?
+		}
 		catch (IllegalArgumentException e)
 		{
-			e.printStackTrace(); //TODO propago eccezione?
+			e.printStackTrace(); // TODO propago eccezione?
 			return null;
 		}
 		catch (BadAttributeValueExpException e)
@@ -109,10 +111,8 @@ public class FactoryTessereNormali extends FactoryTessere
 			return null;
 		}
 
-
-
 	}
-	
+
 	private Lati creaElementi(Parser parser)
 	{
 		Elemento elementiTessera[] = new Elemento[PuntoCardinale.NUMERO_DIREZIONI];
@@ -124,7 +124,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		}
 		return new Lati(elementiTessera);
 	}
-	
+
 	private Link creaLinks(Parser parser) throws BadAttributeValueExpException, IllegalArgumentException
 	{
 		boolean[] links = new boolean[Bussola.NUMERO_DIREZIONI];
@@ -163,31 +163,33 @@ public class FactoryTessereNormali extends FactoryTessere
 				line = bufferedReader.readLine();
 			}
 
-		} catch (FileNotFoundException e)
+		}
+		catch (FileNotFoundException e)
 		{
 			e.printStackTrace();
 			System.exit(-1);
-		} catch (IOException e)
+		}
+		catch (IOException e)
 		{
 			e.printStackTrace();
 			System.exit(-1);
-		} finally
+		}
+		finally
 		{
 			this.close(fileReader);
 		}
 
 	}
-    /**
-     * Potentially dangerous, may not end !
-     * If nothing bad happens it ends without any problem
-     * @param fileReader
-     */
+
+	/**
+	 * Potentially dangerous, may not end ! If nothing bad happens it ends
+	 * without any problem
+	 * 
+	 * @param fileReader
+	 */
 	private void close(FileReader fileReader)
 	{
-		if (fileReader == null)
-		{
-			return;
-		}
+		if (fileReader == null) { return; }
 		boolean chiuso = false;
 		do
 		{
@@ -195,13 +197,14 @@ public class FactoryTessereNormali extends FactoryTessere
 			{
 				fileReader.close();
 				chiuso = true;
-			} catch (IOException e)
+			}
+			catch (IOException e)
 			{
 				e.printStackTrace();
 			}
 		} while (!chiuso);
 	}
 
-	private List<String>		descrizioniTessere;
+	private List<String>	descrizioniTessere;
 
 }

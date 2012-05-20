@@ -8,8 +8,9 @@ import java.awt.Color;
 
 /**
  * Event triggered by the controller after that a new card is correctely placed
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
 
 public class UpdatePositionEvent extends UpdateEvent
@@ -19,7 +20,7 @@ public class UpdatePositionEvent extends UpdateEvent
 		super(tessera, coordinate, giocatore, source);
 		this.setComando(MessaggiController.update_position);
 	}
-	
+
 	public Coordinate getCoordinate()
 	{
 		return this.getDati().getCoordinate();

@@ -42,8 +42,7 @@ public class Giocatore
 		Segnalino segnalino = this.listaSegnalini.poll();
 		if (segnalino != null)
 			return segnalino;
-		else
-			throw new SegnaliniFinitiException();
+		else throw new SegnaliniFinitiException();
 	}
 
 	/**

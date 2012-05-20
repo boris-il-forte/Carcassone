@@ -66,12 +66,12 @@ public class ExtraParser extends Parser
 	{
 		StringBuilder builder = new StringBuilder();
 		int numerazioni[] = this.getNumerazioni();
-		for(PuntoCardinale puntoCardinale : PuntoCardinale.values())
+		for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
 		{
 			builder.append(getData(puntoCardinale));
 			builder.append(numerazioni[puntoCardinale.toInt()]);
 			String extradata = this.getExtraData(puntoCardinale);
-			if(extradata.length()>0)builder.append("("+extradata+")");
+			if (extradata.length() > 0) builder.append("(" + extradata + ")");
 			builder.append(" ");
 		}
 		builder.append(this.getDataType());

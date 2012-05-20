@@ -70,30 +70,31 @@ public abstract class Tessera
 		Map<Costruzione, List<PuntoCardinale>> mappaCostruzioniPunti = new HashMap<Costruzione, List<PuntoCardinale>>();
 		Map<Costruzione, PuntoCardinale> mappaCostruzioni = lati.getMappaCostruzioniPrimitive(this);
 		List<Costruzione> listCostruzione = new ArrayList<Costruzione>(mappaCostruzioni.keySet());
-		
-		List < List<PuntoCardinale> > giaMesse = new ArrayList<List<PuntoCardinale>>();
-		
-		for(Costruzione costruzione: listCostruzione)
+
+		List<List<PuntoCardinale>> giaMesse = new ArrayList<List<PuntoCardinale>>();
+
+		for (Costruzione costruzione : listCostruzione)
 		{
-			List<PuntoCardinale> puntiConnessi = this.puntiConnessiACostruzione(costruzione, mappaCostruzioni);
-			
-			if(giaMesse.contains(puntiConnessi) == false)
+			List<PuntoCardinale> puntiConnessi = this
+					.puntiConnessiACostruzione(costruzione, mappaCostruzioni);
+
+			if (giaMesse.contains(puntiConnessi) == false)
 			{
 				giaMesse.add(puntiConnessi);
 				mappaCostruzioniPunti.put(costruzione, puntiConnessi);
-			
+
 			}
 		}
-			
 
 		return mappaCostruzioniPunti;
 	}
-	
+
 	/**
-	 * Returns the neighbour of the given cardinal point 
-	 * The neighbout can be for instance: 
-	 *  city  + this card  if there is a city in the given cardinal point
-	 *  grass + this card  if there is nothing (grass) in the given cardinal poin
+	 * Returns the neighbour of the given cardinal point The neighbout can be
+	 * for instance: city + this card if there is a city in the given cardinal
+	 * point grass + this card if there is nothing (grass) in the given cardinal
+	 * poin
+	 * 
 	 * @param puntoCardinale
 	 * @return the neighbour
 	 */
@@ -102,37 +103,41 @@ public abstract class Tessera
 		Elemento elemento = this.lati.getTipoElementoInDirezione(puntoCardinale);
 		return new ConfineTessera(this, elemento);
 	}
+
 	/**
 	 * 
-	 * @param marker the marker to be placed
-	 * @param puntoCardinale where place the marker
+	 * @param marker
+	 *            the marker to be placed
+	 * @param puntoCardinale
+	 *            where place the marker
 	 */
 	public void setSegnalino(Segnalino segnalino, PuntoCardinale puntoCardinale)
 	{
-		this.lati.setSegnalino(segnalino,puntoCardinale);
+		this.lati.setSegnalino(segnalino, puntoCardinale);
 	}
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
 
+	@Override
 	public abstract String toString();
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
 
-
-	private List<PuntoCardinale> puntiConnessiACostruzione(Costruzione c, Map<Costruzione, PuntoCardinale> mapCostruzPunto)
+	private List<PuntoCardinale> puntiConnessiACostruzione(Costruzione c,
+			Map<Costruzione, PuntoCardinale> mapCostruzPunto)
 	{
 		List<PuntoCardinale> puntiConnessi = new ArrayList<PuntoCardinale>();
 		PuntoCardinale puntoDaEsaminare = mapCostruzPunto.get(c);
-		for(PuntoCardinale p : PuntoCardinale.values())
+		for (PuntoCardinale p : PuntoCardinale.values())
 		{
-			if ( this.link.areConnected(p, puntoDaEsaminare) )
+			if (this.link.areConnected(p, puntoDaEsaminare))
 			{
 				puntiConnessi.add(p);
 			}
 		}
-		
+
 		return puntiConnessi;
-		
+
 	}
 
 	protected final Lati	lati;

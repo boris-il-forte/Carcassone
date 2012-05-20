@@ -7,7 +7,7 @@ public class TesseraNormale extends Tessera
 	{
 		super(lati, link);
 	}
-	
+
 	@Override
 	public String toString()
 	{

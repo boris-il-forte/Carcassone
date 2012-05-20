@@ -1,23 +1,25 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
+
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneCitta;
 import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneStrada;
 
 /**
- * Each element of this enum  represent one of the possible Buildings, like City or Streat,
- * or the grass that represent an empty space
+ * Each element of this enum represent one of the possible Buildings, like City
+ * or Streat, or the grass that represent an empty space
  * 
- * @author edoardopasi & dave 
- *
+ * @author edoardopasi & dave
+ * 
  */
 
-public enum Elemento
-{
+public enum Elemento {
 	prato("N"), citta("C"), strada("S");
-	
+
 	private String	strig;
+
 	/**
 	 * Used to get the Building from the Element
+	 * 
 	 * @param tessera
 	 * @return a Building of the appropriate type
 	 * @see CostruzioneCitta
@@ -38,12 +40,12 @@ public enum Elemento
 
 	/**
 	 * 
-	 * @param sigla the Initial letter of the required element
-	 * N for nothing => grass
-	 * S for Streat
-	 * C for City  
+	 * @param sigla
+	 *            the Initial letter of the required element N for nothing =>
+	 *            grass S for Streat C for City
 	 * @return the type of the Element
-	 * @throws IllegalArgumentException if a char different from N, S or C is passed
+	 * @throws IllegalArgumentException
+	 *             if a char different from N, S or C is passed
 	 */
 	public static Elemento getElemento(char sigla)
 	{
@@ -60,7 +62,7 @@ public enum Elemento
 		}
 
 	}
-	
+
 	@Override
 	public String toString()
 	{
@@ -69,7 +71,7 @@ public enum Elemento
 
 	private Elemento(String string)
 	{
-		this.strig =string;
+		this.strig = string;
 	}
 
 }

@@ -38,7 +38,8 @@ public class AreaDiGioco
 		{
 			Riga riga = this.getRiga(coordinate.getY());
 			return riga.getTessera(coordinate.getX());
-		} catch (Exception e)
+		}
+		catch (Exception e)
 		{
 			throw new TesseraNonTrovataException(coordinate);
 		}
@@ -59,7 +60,8 @@ public class AreaDiGioco
 		try
 		{
 			riga = getRiga(coordinate.getY());
-		} catch (RigaNonTrovataException e)
+		}
+		catch (RigaNonTrovataException e)
 		{
 			riga = new Riga();
 			addRiga(coordinate.getY(), riga);
@@ -80,8 +82,7 @@ public class AreaDiGioco
 		Riga riga = this.righe.get(rigaCercata);
 		if (riga != null)
 			return riga;
-		else
-			throw new RigaNonTrovataException(rigaCercata);
+		else throw new RigaNonTrovataException(rigaCercata);
 	}
 
 	/**

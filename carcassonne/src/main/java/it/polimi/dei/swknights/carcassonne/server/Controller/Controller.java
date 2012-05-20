@@ -50,7 +50,7 @@ public class Controller implements ViewListener, EventSource
 	{
 		return this.tesseraCorrente;
 	}
-	
+
 	public ContatoreCartografo getContapunti()
 	{
 		return this.contaPunti;
@@ -101,8 +101,8 @@ public class Controller implements ViewListener, EventSource
 	 * @see it.polimi.dei.swknights.carcassonne.Events.ViewListener#riceviInput()
 	 */
 	public void riceviInput(ViewEvent event)
-	{		
-		for(ControllerHandler visitorHandler : this.visitorHandlers)
+	{
+		for (ControllerHandler visitorHandler : this.visitorHandlers)
 		{
 			event.accept(visitorHandler);
 		}
@@ -112,24 +112,24 @@ public class Controller implements ViewListener, EventSource
 	{
 		try
 		{
-			while(true)
+			while (true)
 			{
 				this.cominciaTurno();
 				this.attendiPosizionamentoTessera();
 			}
-			
-		} 
+
+		}
 		catch (PartitaFinitaException e)
 		{
 			this.fire(new FinePartitaEvent(this, this.getMappaPunteggi()));
-				
+
 		}
 		catch (InterruptedException e)
 		{
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void fire(EventObject event)
 	{
 		for (ControllerListener listener : this.listeners)
@@ -137,12 +137,12 @@ public class Controller implements ViewListener, EventSource
 			listener.riceviModificheModel(event);
 		}
 	}
-	
+
 	protected ContatoreCartografo getContaPunti()
 	{
 		return this.contaPunti;
 	}
-	
+
 	private List<ControllerHandler> attivaHandler()
 	{
 		List<ControllerHandler> handlerList = new ArrayList<ControllerHandler>();
@@ -150,18 +150,19 @@ public class Controller implements ViewListener, EventSource
 		handlerList.add(new PlaceHandler(this, this.partita.getAreaDiGioco()));
 		return handlerList;
 	}
-	
+
 	private void cominciaTurno() throws PartitaFinitaException
 	{
-			//Inizia il turno
-			Giocatore giocatoreCorrente = this.partita.getGiocatoreCorrente();
-			this.estraiTessera();
-			this.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
+		// Inizia il turno
+		Giocatore giocatoreCorrente = this.partita.getGiocatoreCorrente();
+		this.estraiTessera();
+		this.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
 	}
 
 	private void attendiPosizionamentoTessera() throws InterruptedException
 	{
-		while(!this.tesseraPosizionata) wait();		
+		while (!this.tesseraPosizionata)
+			wait();
 	}
 
 	private void estraiTessera() throws PartitaFinitaException
@@ -179,12 +180,10 @@ public class Controller implements ViewListener, EventSource
 		}
 		return mapPunteggi;
 	}
-	
-	
-	
+
 	private List<ControllerListener>	listeners;
-	
-	private List<ControllerHandler> 	visitorHandlers;
+
+	private List<ControllerHandler>		visitorHandlers;
 
 	private Tessera						tesseraCorrente;
 

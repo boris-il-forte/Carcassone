@@ -14,18 +14,19 @@ public class UpdateTurnoEvent extends UpdateEvent
 		this.setComando(MessaggiController.turn);
 		this.color = color;
 	}
-	
+
 	public UpdateTurnoEvent(Object source, Color color, String tessera)
 	{
 		super(tessera, null, color, source);
 		this.setComando(MessaggiController.turn);
 		this.color = color;
 	}
-	
+
 	public Color getGiocatoreCorrente()
 	{
 		return this.color;
 	}
+
 	private final Color			color;
 	private static final long	serialVersionUID	= -8277130187657287093L;
 

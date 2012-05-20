@@ -6,10 +6,10 @@ import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.Controller
 /**
  * Event triggered by the view to notify that the current player does not want
  * to place a marker on just placed card
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
-
 
 public class PassEvent extends ViewEvent
 {
@@ -19,14 +19,12 @@ public class PassEvent extends ViewEvent
 		super(source);
 		this.setComando(ComandoView.pass);
 	}
-	
 
 	@Override
 	public void accept(ControllerHandler handler)
 	{
 		handler.visit(this);
 	}
-
 
 	private static final long	serialVersionUID	= 2085506187547788810L;
 

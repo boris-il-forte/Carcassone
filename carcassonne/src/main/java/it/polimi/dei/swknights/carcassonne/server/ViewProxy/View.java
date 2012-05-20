@@ -12,13 +12,13 @@ public class View implements ControllerListener
 
 	public void request()
 	{
-		
+
 	}
 
 	public void riceviModificheModel(EventObject event)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

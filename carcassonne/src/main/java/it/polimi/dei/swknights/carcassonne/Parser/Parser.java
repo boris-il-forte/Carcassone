@@ -155,12 +155,12 @@ public class Parser
 		}
 		else throw new InvalidStringToParseException("token già parsato");
 	}
-	
-	private void typeTokenParsed(String stringToken) throws InvalidStringToParseException, IllegalArgumentException
+
+	private void typeTokenParsed(String stringToken) throws InvalidStringToParseException,
+			IllegalArgumentException
 	{
 		TypeToken.valueOf(stringToken);
-		if (this.typeData != "")
-			throw new InvalidStringToParseException("TypeToken già parsato");
+		if (this.typeData != "") throw new InvalidStringToParseException("TypeToken già parsato");
 	}
 
 	protected String			parsedData[];

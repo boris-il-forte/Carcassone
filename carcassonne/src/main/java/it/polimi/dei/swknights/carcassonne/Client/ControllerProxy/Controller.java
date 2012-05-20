@@ -8,19 +8,19 @@ public class Controller implements ViewListener
 
 	public void request()
 	{
-		
+
 	}
 
 	public void run()
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void riceviInput(ViewEvent event)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

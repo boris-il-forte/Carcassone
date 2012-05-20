@@ -11,6 +11,7 @@ public class ConnessioneAController extends Controller
 	public List			myServerSocket;
 	public List			myConnessione;
 
+	@Override
 	public void request()
 	{
 	}

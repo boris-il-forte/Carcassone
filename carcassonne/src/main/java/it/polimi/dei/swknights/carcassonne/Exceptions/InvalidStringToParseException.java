@@ -6,7 +6,7 @@ public class InvalidStringToParseException extends Exception
 	{
 		super(invalidString, cause);
 	}
-	
+
 	public InvalidStringToParseException(String invalidString)
 	{
 		super(invalidString);

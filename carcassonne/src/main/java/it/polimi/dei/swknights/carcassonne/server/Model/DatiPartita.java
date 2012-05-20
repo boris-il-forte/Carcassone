@@ -52,8 +52,7 @@ public class DatiPartita
 
 		for (Giocatore giocatore : this.giocatori)
 		{
-			if (giocatore.getColore() == colore)
-				return giocatore;
+			if (giocatore.getColore() == colore) return giocatore;
 
 		}
 
@@ -89,8 +88,8 @@ public class DatiPartita
 		{
 			index--;
 			return this.pilaTessere.get(index);
-		} else
-			throw new PartitaFinitaException();
+		}
+		else throw new PartitaFinitaException();
 
 	}
 

@@ -60,13 +60,13 @@ public class EsploratoreConfini
 	 * @see ConfineTessera
 	 */
 
-	// confini = vuoti confinanti = pieni 
+	// confini = vuoti confinanti = pieni
 	private void getEmptyAndFullNeighbours(Coordinate coordinateTessera, AreaDiGioco cartaGeografica)
 	{
 		Tessera tessera;
 		try
 		{
-			
+
 			tessera = cartaGeografica.getTessera(coordinateTessera);
 			Map<Costruzione, List<PuntoCardinale>> mapCostruzioni;
 			/*
@@ -122,7 +122,7 @@ public class EsploratoreConfini
 	 *         neighbour is empty or is grass
 	 */
 	public Set<Costruzione> getCostruzioni()
-	{	
+	{
 		Set<Costruzione> semiSetCostruzioni1 = this.confini.keySet();
 		Set<Costruzione> semiSetCostruzioni2 = this.confinanti.keySet();
 		semiSetCostruzioni1.addAll(semiSetCostruzioni2);

@@ -37,7 +37,7 @@ public abstract class Costruzione
 		this.elementi.add(tessera);
 	}
 
-	//TODO: ma che serve? ora è meglio, comunque...
+	// TODO: ma che serve? ora è meglio, comunque...
 	public abstract Costruzione getCopy(Tessera tessera);
 
 	/**
@@ -103,8 +103,7 @@ public abstract class Costruzione
 	private Map<Color, Integer> inizializzaContatore()
 	{
 		// TODO copia incolla è il male!
-		Color colori[] = new Color[]
-		{ Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK };
+		Color colori[] = new Color[] { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK };
 		final int vuoto = 0; // TODO di troppo?
 		Map<Color, Integer> contatore = new HashMap<Color, Integer>();
 		for (Color colore : colori)
@@ -120,35 +119,27 @@ public abstract class Costruzione
 		for (Entry<Color, Integer> entryColore : contatore.entrySet())
 		{
 			int numeroSegnalini = entryColore.getValue();
-			if (numeroSegnalini > max)
-				max = numeroSegnalini;
+			if (numeroSegnalini > max) max = numeroSegnalini;
 		}
 		for (Entry<Color, Integer> entryColore : contatore.entrySet())
 		{
-			if (entryColore.getValue() == max)
-				controllori.add(entryColore.getKey());
+			if (entryColore.getValue() == max) controllori.add(entryColore.getKey());
 		}
 		return controllori;
 	}
 
-
 	/**
-	 * returns true if the passed object is the same type of this building
-	 * e.g.  city and city  or street and street
+	 * returns true if the passed object is the same type of this building e.g.
+	 * city and city or street and street
 	 */
 	/*
-	@Override
-	public boolean equals(Object obj)
-	{
-	  	if(! (obj instanceof Costruzione))
-	  		return false;
-	  	if ( obj instanceof CostruzioneCitta && this instanceof CostruzioneCitta ||
-	  		obj instanceof CostruzioneStrada && this instanceof CostruzioneStrada )
-	  		return true;
-		return false;
-	  		
-	}
-	*/
+	 * @Override public boolean equals(Object obj) { if(! (obj instanceof
+	 * Costruzione)) return false; if ( obj instanceof CostruzioneCitta && this
+	 * instanceof CostruzioneCitta || obj instanceof CostruzioneStrada && this
+	 * instanceof CostruzioneStrada ) return true; return false;
+	 * 
+	 * }
+	 */
 
 	protected Set<Tessera>	elementi;
 	private List<Segnalino>	listaSegnalini;

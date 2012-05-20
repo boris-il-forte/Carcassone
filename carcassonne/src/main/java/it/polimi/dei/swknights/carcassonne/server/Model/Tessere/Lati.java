@@ -56,10 +56,12 @@ public class Lati
 		this.sud = this.est;
 		this.est = nordTmp;
 	}
-	
+
 	/**
 	 * Gets non-aggregated Buildings of a given card
-	 * @param tessera of which the caller wants to know the Building
+	 * 
+	 * @param tessera
+	 *            of which the caller wants to know the Building
 	 * @return a map binding each Building to a Cardinal Point
 	 */
 	public Map<Costruzione, PuntoCardinale> getMappaCostruzioniPrimitive(Tessera tessera)
@@ -77,10 +79,13 @@ public class Lati
 		}
 		return mappaCostruzioni;
 	}
+
 	/**
 	 * 
-	 * @param marker the marker to be placed
-	 * @param puntoCardinale where place the marker
+	 * @param marker
+	 *            the marker to be placed
+	 * @param puntoCardinale
+	 *            where place the marker
 	 */
 	public void setSegnalino(Segnalino marker, PuntoCardinale puntoCardinale)
 	{

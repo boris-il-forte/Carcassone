@@ -3,14 +3,14 @@ package it.polimi.dei.swknights.carcassonne;
 import java.awt.Color;
 import java.util.Map;
 import java.util.HashMap;
+
 /**
- * The aim of this class is, mainly, to provide a better implementation of
- *  the default Color.toString method offered by awt
+ * The aim of this class is, mainly, to provide a better implementation of the
+ * default Color.toString method offered by awt
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
-
-
 
 public class AdapterColore
 {
@@ -26,7 +26,6 @@ public class AdapterColore
 
 	private final Map<Color, String>	mappaColori	= new HashMap<Color, String>();
 
-	
 	@Override
 	/**
 	 * returns  R, B, G, Y or K according to the Color

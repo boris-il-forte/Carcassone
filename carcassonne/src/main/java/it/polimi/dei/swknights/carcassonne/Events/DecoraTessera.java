@@ -6,22 +6,24 @@ import it.polimi.dei.swknights.carcassonne.Coordinate;
 
 public class DecoraTessera
 {
-	private  int idTessera; 
-	private Coordinate coordinate;
-	private Color giocatore;
-	private AdapterTessera tessera;
-	
+	private int				idTessera;
+	private Coordinate		coordinate;
+	private Color			giocatore;
+	private AdapterTessera	tessera;
+
 	public DecoraTessera(AdapterTessera tessera, Coordinate coordinate, Color giocatore)
 	{
-		this.tessera = tessera ;
+		this.tessera = tessera;
 		this.coordinate = coordinate;
-		this.giocatore =  giocatore; 
+		this.giocatore = giocatore;
 	}
+
 	public AdapterTessera getTessera()
 	{
 		return tessera;
-		
+
 	}
+
 	public Color getGiocatore()
 	{
 		return giocatore;
@@ -31,11 +33,10 @@ public class DecoraTessera
 	{
 		return coordinate;
 	}
+
 	public int getIdTessera()
 	{
 		return idTessera;
 	}
-
-
 
 }

@@ -58,11 +58,13 @@ public class ContatoreCartografo
 		}
 	}
 
-	private Costruzione getCostruzioneAggregata(List<ConfineTessera> listaConfinanti, Costruzione nuovoPezzoCostruzione)
+	private Costruzione getCostruzioneAggregata(List<ConfineTessera> listaConfinanti,
+			Costruzione nuovoPezzoCostruzione)
 	{
 		for (ConfineTessera confinante : listaConfinanti)
 		{
-			Costruzione costruzioneConfinante = this.cartaGeografica.getCostruzioneAggregata(nuovoPezzoCostruzione, confinante);
+			Costruzione costruzioneConfinante = this.cartaGeografica.getCostruzioneAggregata(
+					nuovoPezzoCostruzione, confinante);
 			nuovoPezzoCostruzione = costruzioneConfinante;
 
 		}

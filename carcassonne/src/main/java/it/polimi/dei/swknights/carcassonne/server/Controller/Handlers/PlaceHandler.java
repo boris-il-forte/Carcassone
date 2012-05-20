@@ -26,7 +26,7 @@ public class PlaceHandler extends ControllerHandler
 	{
 		Tessera tessera = this.controller.getTesseraCorrente();
 		Coordinate coordinate = event.getCoordinateDestinazione();
-		if(tuttoVicinatoDAccordo(coordinate, tessera))
+		if (tuttoVicinatoDAccordo(coordinate, tessera))
 		{
 			areaDiGioco.addTessera(coordinate, tessera);
 			this.controller.getContapunti().riceviCoordinateTessera(coordinate);
@@ -39,34 +39,25 @@ public class PlaceHandler extends ControllerHandler
 
 	private boolean tuttoVicinatoDAccordo(Coordinate coordinate, Tessera tessera)
 	{
-		boolean dAccordo=true;
-		Tessera tesseraVicino =null;
-		for(PuntoCardinale punto : PuntoCardinale.values())
+		boolean dAccordo = true;
+		Tessera tesseraVicino = null;
+		for (PuntoCardinale punto : PuntoCardinale.values())
 		{
-		     try
+			try
 			{
 				tesseraVicino = this.areaDiGioco.getTessera(coordinate.getCoordinateA(punto));
-				if( tessera.buonVicino(tesseraVicino, punto)==false)
+				if (tessera.buonVicino(tesseraVicino, punto) == false)
 				{
-					dAccordo=false;
+					dAccordo = false;
 				}
-				
+
 			}
 			catch (TesseraNonTrovataException e)
 			{
-				//a est (o nord o quello che è) non c'è nessuno, meglio, non si lamenta
+				// a est (o nord o quello che è) non c'è nessuno, meglio, non si
+				// lamenta
 			}
 		}
 		return dAccordo;
 	}
 }
-
-
-
-
-
-
-
-
-
-
