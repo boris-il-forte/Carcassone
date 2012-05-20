@@ -130,10 +130,13 @@ public abstract class Costruzione
 		}
 		return controllori;
 	}
+
+
 	/**
 	 * returns true if the passed object is the same type of this building
 	 * e.g.  city and city  or street and street
 	 */
+	/*
 	@Override
 	public boolean equals(Object obj)
 	{
@@ -145,7 +148,7 @@ public abstract class Costruzione
 		return false;
 	  		
 	}
-	
+	*/
 
 	protected Set<Tessera>	elementi;
 	private List<Segnalino>	listaSegnalini;

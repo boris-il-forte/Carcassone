@@ -66,7 +66,7 @@ public class TesseraTest
 		
 		mappaExp = new HashMap<Costruzione, List<PuntoCardinale>>();
 		mappaExp.put( new CostruzioneCitta(tessera), punti);
-		mappaGot = tessera.getCostruzioni();
+		mappaGot = tessera.getMapCostruzioniPunti();
 		
 		List<Costruzione> CostruzioniExp = listaDa( mappaExp.keySet());
 		List<Costruzione> CostruzioniGot = listaDa( mappaGot.keySet());
