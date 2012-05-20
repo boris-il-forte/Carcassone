@@ -1,5 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Parser;
 
+import java.util.Arrays;
+import java.util.List;
+
 import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
@@ -58,6 +61,23 @@ public class ExtraParser extends Parser
 		return extraData[index];
 	}
 
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+		int numerazioni[] = this.getNumerazioni();
+		for(PuntoCardinale puntoCardinale : PuntoCardinale.values())
+		{
+			builder.append(getData(puntoCardinale));
+			builder.append(numerazioni[puntoCardinale.toInt()]);
+			String extradata = this.getExtraData(puntoCardinale);
+			if(extradata.length()>0)builder.append("("+extradata+")");
+			builder.append(" ");
+		}
+		builder.append(this.getDataType());
+		return builder.toString();
+	}
+
 	private void extraParse()
 	{
 		for (int i = 0; i < this.parsedData.length; i++)
@@ -70,7 +90,53 @@ public class ExtraParser extends Parser
 				this.parsedData[i] = dataToParse[normalDataIndex];
 				this.extraData[i] = dataToParse[extraDataIndex];
 			}
+			else this.extraData[i] = "";
 		}
+	}
+
+	private int[] getNumerazioni()
+	{
+		int[] numerazione = new int[PuntoCardinale.NUMERO_DIREZIONI];
+		int counter;
+		int stradaCounter = 0;
+		int cittaCounter = 0;
+		List<PuntoCardinale> puntiDaProvare = Arrays.asList(PuntoCardinale.values());
+		for (PuntoCardinale punto1 : puntiDaProvare)
+		{
+			switch (this.getDataChar(punto1))
+			{
+				case 'S':
+					counter = ++stradaCounter;
+					break;
+				case 'C':
+					counter = ++cittaCounter;
+					break;
+				default:
+					continue;
+			}
+			for (PuntoCardinale punto2 : puntiDaProvare)
+			{
+				if (this.isConnected(punto1, punto2))
+				{
+					puntiDaProvare.remove(punto2);
+					numerazione[punto2.toInt()] = counter;
+				}
+			}
+		}
+		return null;
+	}
+
+	private boolean isConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
+	{
+		if (puntoCardinale1 == puntoCardinale2)
+			return true;
+		else return this.areConnected(puntoCardinale1, puntoCardinale2);
+	}
+
+	private boolean areConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
+	{
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	private String	extraData[];

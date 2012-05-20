@@ -53,26 +53,7 @@ public class Link
 	 */
 	public boolean areConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
 	{
-		Bussola agoBussola = Bussola.NE;
-
-		if (puntoCardinale1 == PuntoCardinale.nord && puntoCardinale2 == PuntoCardinale.est)
-			agoBussola = Bussola.NE;
-
-		if (puntoCardinale1 == PuntoCardinale.nord && puntoCardinale2 == PuntoCardinale.ovest)
-			agoBussola = Bussola.NW;
-
-		if (puntoCardinale1 == PuntoCardinale.nord && puntoCardinale2 == PuntoCardinale.sud)
-			agoBussola = Bussola.NS;
-
-		if (puntoCardinale1 == PuntoCardinale.sud && puntoCardinale2 == PuntoCardinale.est)
-			agoBussola = Bussola.SE;
-
-		if (puntoCardinale1 == PuntoCardinale.sud && puntoCardinale2 == PuntoCardinale.ovest)
-			agoBussola = Bussola.SW;
-
-		if (puntoCardinale1 == PuntoCardinale.est && puntoCardinale2 == PuntoCardinale.ovest)
-			agoBussola = Bussola.WE;
-
+		Bussola agoBussola = Bussola.componi(puntoCardinale1, puntoCardinale2);
 		return direzioni[agoBussola.toInt()];
 	}
 	
