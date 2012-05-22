@@ -9,7 +9,7 @@ package it.polimi.dei.swknights.carcassonne;
 public class PathGioco
 {
 
-	public static final String	BASE_PATH	= "src/resources/";
+	public static final String	PACKAGE_PATH	= "File";
 
 	/*
 	 * per accedere a risorsa fai getclass.getresource.toURI e poi File(URI) e
