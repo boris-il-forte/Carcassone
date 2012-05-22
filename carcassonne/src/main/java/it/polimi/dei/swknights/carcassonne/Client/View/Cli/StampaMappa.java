@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne.Client.View.CLI;
+package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
 import java.awt.Dimension;
 import java.util.HashMap;
@@ -25,6 +25,12 @@ class StampaMappa
 		Coordinate primoPuntoTessera = this.getPrimoPuntoTessera(coordinate);
 		this.scriviTessera(primoPuntoTessera,tessera, vicinato);
 		this.scriviVuoti(coordinate, vicinato);
+	}
+	
+	@Override
+	public String toString()
+	{
+		return this.builder.toString();
 	}
 	
 	private Coordinate getPrimoPuntoTessera(Coordinate coordinate)
