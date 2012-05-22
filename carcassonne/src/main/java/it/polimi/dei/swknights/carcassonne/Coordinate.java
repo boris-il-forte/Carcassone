@@ -58,6 +58,24 @@ public class Coordinate
 		return new Coordinate(x + incrementoX, y + incrementoY);
 	}
 
+	public Coordinate getCoordinateA(Coordinate coordinateRelativa)
+	{
+		return new Coordinate(this.x + coordinateRelativa.x, this.y+ coordinateRelativa.y);
+	}
+
+	public Coordinate getVersore()
+	{
+		int x = (this.x!=0) ? (this.x/Math.abs(this.x)) : 0;
+		int y = (this.y!=0) ? (this.y/Math.abs(this.x)) : 0;
+		return new Coordinate(x, y);
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "("+this.x+","+this.y+")";
+	}
+
 	private Integer	x;
 
 	private Integer	y;
