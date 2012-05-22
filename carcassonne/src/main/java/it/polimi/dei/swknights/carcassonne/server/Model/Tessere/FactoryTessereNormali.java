@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,65 +148,49 @@ public class FactoryTessereNormali extends FactoryTessere
 
 	private void estraiDescrizioniTessere(String pathFileTessere)
 	{
-		FileReader fileReader = null;
-		BufferedReader bufferedReader = null;
 
+		String s = "File/Carcassonne.txt" ;
+		URL resource = FactoryTessereNormali.class.getResource(s);	
+		BufferedReader in=null;
 		try
 		{
-			fileReader = new FileReader(new File(pathFileTessere));
-
-			bufferedReader = new BufferedReader(fileReader);
-			String line;
-
-			line = bufferedReader.readLine();
-
-			while (line != null)
-			{
-				this.descrizioniTessere.add(line);
-				line = bufferedReader.readLine();
-			}
-
-		}
-		catch (FileNotFoundException e)
-		{
-			e.printStackTrace();
-			System.exit(-1);
+			in = new BufferedReader( new InputStreamReader(resource.openStream() ));
+			
+			scriviTessereDaReader(in);
+			in.close();
 		}
 		catch (IOException e)
 		{
 			e.printStackTrace();
-			System.exit(-1);
+		}
+		
+
+
+	}
+	
+	private void scriviTessereDaReader(BufferedReader in) throws IOException
+	{
+		String inputLine=null;
+		try
+		{
+			while ((inputLine = in.readLine()) != null)
+			{
+				descrizioniTessere.add(inputLine);
+			}
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 		finally
 		{
-			this.close(fileReader);
+			in.close();
 		}
-
 	}
 
-	/**
-	 * Potentially dangerous, may not end ! If nothing bad happens it ends
-	 * without any problem
-	 * 
-	 * @param fileReader
-	 */
-	private void close(FileReader fileReader)
-	{
-		if (fileReader == null) { return; }
-		boolean chiuso = false;
-		do
-		{
-			try
-			{
-				fileReader.close();
-				chiuso = true;
-			}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-		} while (!chiuso);
-	}
+	
+	
+	
 
 	private List<String>	descrizioniTessere;
 
