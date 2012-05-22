@@ -23,7 +23,9 @@ public class StringBuilder2D
 	public void fillConCarattere(Coordinate start, Coordinate end, char c) throws IllegalArgumentException
 	{
 		if (!coordinateAccettabili(start, end))
+		{
 			throw new IllegalArgumentException("Coordinate non accettabili");
+		}
 		int deltaX = end.getX() - start.getX();
 		int deltaY = end.getY() - start.getY();
 		Coordinate incrementoRelativo = new Coordinate(deltaX, deltaY).getVersore();
