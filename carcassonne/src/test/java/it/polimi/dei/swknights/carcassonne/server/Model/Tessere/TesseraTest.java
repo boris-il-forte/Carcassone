@@ -108,8 +108,12 @@ public class TesseraTest
 				}
 				else
 				{
-					if (c1 instanceof CostruzioneCitta && c2 instanceof CostruzioneStrada) return 1;
-					if (c1 instanceof CostruzioneStrada && c2 instanceof CostruzioneCitta) return -1;
+					if (c1 instanceof CostruzioneCitta && c2 instanceof CostruzioneStrada) {
+						return 1;
+					}
+					if (c1 instanceof CostruzioneStrada && c2 instanceof CostruzioneCitta) {
+						return -1;
+					}
 
 				}
 				return 0;
