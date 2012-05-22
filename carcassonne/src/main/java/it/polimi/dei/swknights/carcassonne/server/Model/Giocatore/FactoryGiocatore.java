@@ -27,7 +27,9 @@ public class FactoryGiocatore
 		codaColoriDisponibili = new ArrayDeque<Color>();
 
 		for (i = 0; i < colori.length; i++)
+		{
 			codaColoriDisponibili.add(colori[i]);
+		}
 
 	}
 
@@ -45,9 +47,13 @@ public class FactoryGiocatore
 		Color colore;
 
 		colore = codaColoriDisponibili.poll();
-		if (colore != null)
+		if (colore != null) {
 			return new Giocatore(colore);
-		else throw new FinitiColoriDisponibiliException();
+		}
+		else
+		{
+			throw new FinitiColoriDisponibiliException();
+		}
 	}
 
 }

@@ -78,7 +78,7 @@ public abstract class Tessera
 			List<PuntoCardinale> puntiConnessi = this
 					.puntiConnessiACostruzione(costruzione, mappaCostruzioni);
 
-			if (giaMesse.contains(puntiConnessi) == false)
+			if (!giaMesse.contains(puntiConnessi))
 			{
 				giaMesse.add(puntiConnessi);
 				mappaCostruzioniPunti.put(costruzione, puntiConnessi);

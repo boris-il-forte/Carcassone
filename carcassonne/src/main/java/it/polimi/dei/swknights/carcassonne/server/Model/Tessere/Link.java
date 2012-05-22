@@ -54,7 +54,9 @@ public class Link
 	public boolean areConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
 	{
 		if (puntoCardinale1.equals(puntoCardinale2))
+		{
 			return true;
+		}
 		else
 		{
 			Bussola agoBussola = Bussola.componi(puntoCardinale1, puntoCardinale2);
