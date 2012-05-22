@@ -5,7 +5,5 @@ import java.util.EventObject;
 
 public interface ControllerListener extends EventListener
 {
-
-	public void riceviModificheModel(EventObject event);
-
+	void riceviModificheModel(EventObject event);
 }

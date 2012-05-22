@@ -40,7 +40,8 @@ public class Giocatore
 	public Segnalino getSegnalino() throws SegnaliniFinitiException
 	{
 		Segnalino segnalino = this.listaSegnalini.poll();
-		if (segnalino != null) {
+		if (segnalino != null)
+		{
 			return segnalino;
 		}
 		else
@@ -71,19 +72,19 @@ public class Giocatore
 	 */
 	private void inizializzaSegnalini()
 	{
-		this.listaSegnalini = new ArrayBlockingQueue<Segnalino>(this.maxSegnalini);
-		for (int i = 0; i < maxSegnalini; i++)
+		this.listaSegnalini = new ArrayBlockingQueue<Segnalino>(MAX_SEGNALINI);
+		for (int i = 0; i < MAX_SEGNALINI; i++)
 		{
 			this.listaSegnalini.add(new Segnalino(this.colore));
 		}
 	}
 
-	private Color				colore;
+	private Color					colore;
 
-	private Queue<Segnalino>	listaSegnalini;
+	private Queue<Segnalino>		listaSegnalini;
 
-	private int					punti;
+	private int						punti;
 
-	private final Integer		maxSegnalini	= 7;
+	private static final Integer	MAX_SEGNALINI	= 7;
 
 }

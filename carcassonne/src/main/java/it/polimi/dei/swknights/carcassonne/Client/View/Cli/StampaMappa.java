@@ -37,8 +37,8 @@ class StampaMappa
 	{
 		int x = coordinate.getX() - this.datiMappa.getMaxA(PuntoCardinale.ovest);
 		int y = coordinate.getY() - this.datiMappa.getMaxA(PuntoCardinale.nord);
-		x *= larghezzaTessera;
-		y *= altezzaTessera;
+		x *= LARGHEZZA_TESSERA;
+		y *= ALTEZZA_TESSERA;
 		return new Coordinate(x, y);
 	}
 
@@ -68,8 +68,8 @@ class StampaMappa
 
 	private void scriviCordinate(Coordinate coordinate)
 	{
-		final int x = larghezzaTessera/2;
-		final int y = altezzaTessera/2;
+		final int x = LARGHEZZA_TESSERA/2;
+		final int y = ALTEZZA_TESSERA/2;
 		final Coordinate centroRelativo = new Coordinate(x, y);
 		String coordinateString = coordinate.toString();
 		Coordinate primoPunto = this.getPrimoPuntoTessera(coordinate);
@@ -96,8 +96,8 @@ class StampaMappa
 	private Map<PuntoCardinale, Lato> getMapLati(Coordinate primoPuntoTessera)
 	{
 		Map<PuntoCardinale, Lato> mappaLati = new HashMap<PuntoCardinale, StampaMappa.Lato>();
-		Coordinate incrementoX = new Coordinate(larghezzaTessera, 0);
-		Coordinate incrementoY = new Coordinate(0, altezzaTessera);		
+		Coordinate incrementoX = new Coordinate(LARGHEZZA_TESSERA, 0);
+		Coordinate incrementoY = new Coordinate(0, ALTEZZA_TESSERA);		
 		
 		Coordinate angoloNO = primoPuntoTessera;
 		Coordinate angoloNE = primoPuntoTessera.getCoordinateA(incrementoX);
@@ -134,8 +134,8 @@ class StampaMappa
 
 	private void scriviAngoli(Coordinate primoPuntoTessera)
 	{
-		Coordinate incrementoY = new Coordinate(0, altezzaTessera);
-		Coordinate incrementoX = new Coordinate(larghezzaTessera, 0);
+		Coordinate incrementoY = new Coordinate(0, ALTEZZA_TESSERA);
+		Coordinate incrementoX = new Coordinate(LARGHEZZA_TESSERA, 0);
 		this.builder.scriviCarattere(primoPuntoTessera, '+');
 		this.builder.scriviCarattere(primoPuntoTessera.getCoordinateA(incrementoX).getCoordinateA(incrementoY), '+');
 		this.builder.scriviCarattere(primoPuntoTessera.getCoordinateA(incrementoX), '+');
@@ -146,11 +146,11 @@ class StampaMappa
 
 	private StringBuilder2D		builder;
 
-	private static final int	altezzaTessera		= 7;
+	private static final int	ALTEZZA_TESSERA		= 7;
 
-	private static final int	larghezzaTessera	= 14;
+	private static final int	LARGHEZZA_TESSERA	= 14;
 	
-	private class Lato 
+	private static class Lato 
 	{
 		public Lato(Coordinate start, Coordinate end)
 		{
