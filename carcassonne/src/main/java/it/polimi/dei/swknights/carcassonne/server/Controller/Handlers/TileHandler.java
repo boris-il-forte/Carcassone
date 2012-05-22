@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 
 import java.awt.Color;
 
+import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Controller;
@@ -34,10 +35,14 @@ public class TileHandler extends ControllerHandler
 		Color coloreGiocatore = controller.getGiocatoreCorrente();
 		Giocatore giocatore = this.model.getGiocatore(coloreGiocatore);
 		Tessera tesseraDaControllare = controller.getTesseraCorrente();
-
+		PuntoCardinale puntoCardinale = event.getPuntoDestinazione();
 		try
 		{
-			Segnalino segnalino = giocatore.getSegnalino();
+			if(costruzioneLibera(null)) 
+			{//TODO: il controller deve conoscere le ultime costruzioni
+				Segnalino segnalino = giocatore.getSegnalino();
+				tesseraDaControllare.setSegnalino(segnalino, puntoCardinale);
+			}
 		}
 		catch (SegnaliniFinitiException e)
 		{
@@ -49,7 +54,7 @@ public class TileHandler extends ControllerHandler
 	private boolean costruzioneLibera(Costruzione costruzione)
 	{
 		// TODO: don't panic and ask explorer
-		return false;
+		return true;
 	}
 
 }

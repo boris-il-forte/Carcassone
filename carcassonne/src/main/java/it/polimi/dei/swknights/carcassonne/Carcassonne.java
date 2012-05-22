@@ -1,12 +1,10 @@
 package it.polimi.dei.swknights.carcassonne;
 
-import java.awt.Color;
-
-import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
-import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
-import it.polimi.dei.swknights.carcassonne.Client.View.CLI.StringBuilder2D;
 import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.*;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.FactoryTessereNormali;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
+
+import java.awt.Color;
 
 /**
  * Hello world!
