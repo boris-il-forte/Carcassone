@@ -6,16 +6,12 @@ import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseExcept
 import it.polimi.dei.swknights.carcassonne.Exceptions.NoFirstCardException;
 import it.polimi.dei.swknights.carcassonne.Parser.Parser;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import javax.management.BadAttributeValueExpException;
 
@@ -40,17 +36,21 @@ public class FactoryTessereNormali extends FactoryTessere
 	public void acquisisciMazzoDaFile(String pathFileTessere)
 	{
 
-		this.estraiDescrizioniTessere(pathFileTessere);
 		// scrive in this.descrizioneTessere
 
 		try
 		{
+			this.estraiDescrizioniTessere(pathFileTessere);
 			this.creaMazzoTessere();
 		}
 		catch (NoFirstCardException e)
 		{
 			e.printStackTrace();
 			System.exit(-1);
+		}
+		catch (IOException e1)
+		{
+			e1.printStackTrace();
 		}
 
 	}
@@ -144,53 +144,32 @@ public class FactoryTessereNormali extends FactoryTessere
 	 * 
 	 * @param pathFileTessere
 	 *            : path of the cards file
+	 * @throws IOException
 	 */
 
-	private void estraiDescrizioniTessere(String pathFileTessere)
+	private void estraiDescrizioniTessere(String pathFileTessere) throws IOException
 	{
-
-		String s = "File/Carcassonne.txt" ;
-		URL resource = FactoryTessereNormali.class.getResource(s);	
-		BufferedReader in=null;
-		try
-		{
-			in = new BufferedReader( new InputStreamReader(resource.openStream() ));
-			
-			scriviTessereDaReader(in);
-			in.close();
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		
-
+		URL resourceTxtFile = FactoryTessereNormali.class.getResource(pathFileTessere);
+		InputStreamReader inputStreamReader = null;
+		Scanner scanner;
+		inputStreamReader = new InputStreamReader(resourceTxtFile.openStream());
+		scanner = new Scanner(inputStreamReader);
+		scriviTessereDaReader(scanner);
 
 	}
-	
-	private void scriviTessereDaReader(BufferedReader in) throws IOException
-	{
-		String inputLine=null;
-		try
-		{
-			while ((inputLine = in.readLine()) != null)
-			{
-				descrizioniTessere.add(inputLine);
-			}
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-		finally
-		{
-			in.close();
-		}
-	}
 
-	
-	
-	
+	private void scriviTessereDaReader(Scanner in)
+	{
+		String inputLine = null;
+
+		while ((inputLine = in.nextLine()) != null)
+		{
+			descrizioniTessere.add(inputLine);
+		}
+
+		in.close();
+
+	}
 
 	private List<String>	descrizioniTessere;
 
