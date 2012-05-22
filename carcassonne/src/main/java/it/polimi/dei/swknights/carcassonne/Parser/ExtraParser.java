@@ -71,7 +71,10 @@ public class ExtraParser extends Parser
 			builder.append(getData(puntoCardinale));
 			builder.append(numerazioni[puntoCardinale.toInt()]);
 			String extradata = this.getExtraData(puntoCardinale);
-			if (extradata.length() > 0) builder.append("(" + extradata + ")");
+			if (extradata.length() > 0)
+			{
+				builder.append("(" + extradata + ")");
+			}
 			builder.append(" ");
 		}
 		builder.append(this.getDataType());
@@ -90,7 +93,10 @@ public class ExtraParser extends Parser
 				this.parsedData[i] = dataToParse[normalDataIndex];
 				this.extraData[i] = dataToParse[extraDataIndex];
 			}
-			else this.extraData[i] = "";
+			else
+			{
+				this.extraData[i] = "";
+			}
 		}
 	}
 
@@ -128,9 +134,13 @@ public class ExtraParser extends Parser
 
 	private boolean isConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
 	{
-		if (puntoCardinale1 == puntoCardinale2)
+		if (puntoCardinale1 == puntoCardinale2) {
 			return true;
-		else return this.areConnected(puntoCardinale1, puntoCardinale2);
+		}
+		else
+		{
+			return this.areConnected(puntoCardinale1, puntoCardinale2);
+		}
 	}
 
 	private boolean areConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)

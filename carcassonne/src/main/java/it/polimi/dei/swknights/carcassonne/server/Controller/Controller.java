@@ -162,7 +162,9 @@ public class Controller implements ViewListener, EventSource
 	private void attendiPosizionamentoTessera() throws InterruptedException
 	{
 		while (!this.tesseraPosizionata)
+		{
 			wait();
+		}
 	}
 
 	private void estraiTessera() throws PartitaFinitaException

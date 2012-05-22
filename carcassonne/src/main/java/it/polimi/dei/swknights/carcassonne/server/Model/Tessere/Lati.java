@@ -74,7 +74,10 @@ public class Lati
 		for (Elemento elemento : elementi)
 		{
 			Costruzione costruzione = elemento.getCostruzione(tessera);
-			if (costruzione != null) mappaCostruzioni.put(costruzione, punti[indicePuntiCardinali]);
+			if (costruzione != null)
+			{
+				mappaCostruzioni.put(costruzione, punti[indicePuntiCardinali]);
+			}
 			indicePuntiCardinali++;
 		}
 		return mappaCostruzioni;
@@ -123,7 +126,10 @@ public class Lati
 		{
 			return segnalino.toString();
 		}
-		else return "";
+		else
+		{
+			return "";
+		}
 	}
 
 	private Elemento		nord;

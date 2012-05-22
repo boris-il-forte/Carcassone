@@ -107,7 +107,9 @@ public abstract class Costruzione
 		final int vuoto = 0; // TODO di troppo?
 		Map<Color, Integer> contatore = new HashMap<Color, Integer>();
 		for (Color colore : colori)
+		{
 			contatore.put(colore, vuoto);
+		}
 		return contatore;
 	}
 
@@ -119,11 +121,17 @@ public abstract class Costruzione
 		for (Entry<Color, Integer> entryColore : contatore.entrySet())
 		{
 			int numeroSegnalini = entryColore.getValue();
-			if (numeroSegnalini > max) max = numeroSegnalini;
+			if (numeroSegnalini > max)
+			{
+				max = numeroSegnalini;
+			}
 		}
 		for (Entry<Color, Integer> entryColore : contatore.entrySet())
 		{
-			if (entryColore.getValue() == max) controllori.add(entryColore.getKey());
+			if (entryColore.getValue() == max)
+			{
+				controllori.add(entryColore.getKey());
+			}
 		}
 		return controllori;
 	}

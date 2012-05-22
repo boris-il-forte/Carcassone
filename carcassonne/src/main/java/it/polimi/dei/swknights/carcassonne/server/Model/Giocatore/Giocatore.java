@@ -40,9 +40,13 @@ public class Giocatore
 	public Segnalino getSegnalino() throws SegnaliniFinitiException
 	{
 		Segnalino segnalino = this.listaSegnalini.poll();
-		if (segnalino != null)
+		if (segnalino != null) {
 			return segnalino;
-		else throw new SegnaliniFinitiException();
+		}
+		else
+		{
+			throw new SegnaliniFinitiException();
+		}
 	}
 
 	/**

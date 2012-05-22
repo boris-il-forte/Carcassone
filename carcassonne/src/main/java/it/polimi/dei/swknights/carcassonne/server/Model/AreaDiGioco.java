@@ -80,9 +80,13 @@ public class AreaDiGioco
 	public Riga getRiga(Integer rigaCercata) throws RigaNonTrovataException
 	{
 		Riga riga = this.righe.get(rigaCercata);
-		if (riga != null)
+		if (riga != null) {
 			return riga;
-		else throw new RigaNonTrovataException(rigaCercata);
+		}
+		else
+		{
+			throw new RigaNonTrovataException(rigaCercata);
+		}
 	}
 
 	/**

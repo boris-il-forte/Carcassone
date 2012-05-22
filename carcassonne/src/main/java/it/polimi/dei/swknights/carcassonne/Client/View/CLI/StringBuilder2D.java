@@ -70,10 +70,12 @@ public class StringBuilder2D
 
 	private boolean coordinateAccettabili(Coordinate coordinata1, Coordinate coordinata2)
 	{
-		if (coordinata1.equals(coordinata2))
+		if (coordinata1.equals(coordinata2)) {
 			return false;
-		if (coordinata2.getX() != coordinata1.getX() && coordinata2.getY() != coordinata1.getY())
+		}
+		if (coordinata2.getX() != coordinata1.getX() && coordinata2.getY() != coordinata1.getY()) {
 			return false;
+		}
 
 		return true;
 
@@ -96,7 +98,9 @@ public class StringBuilder2D
 		StringBuilder inizializzatore = new StringBuilder();
 
 		for (int i = 0; i < larghezza; i++)
+		{
 			inizializzatore.append(' ');
+		}
 		for (StringBuilder linea : this.linee)
 		{
 			linea.append(inizializzatore);

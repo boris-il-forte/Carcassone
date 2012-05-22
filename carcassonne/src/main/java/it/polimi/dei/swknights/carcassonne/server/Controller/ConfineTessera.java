@@ -51,7 +51,10 @@ public class ConfineTessera
 		if (object instanceof ConfineTessera)
 		{
 			ConfineTessera confine = (ConfineTessera) object;
-			if (this.lato == confine.lato && this.tessera == confine.tessera) isEqual = true;
+			if (this.lato == confine.lato && this.tessera == confine.tessera)
+			{
+				isEqual = true;
+			}
 		}
 		return isEqual;
 	}

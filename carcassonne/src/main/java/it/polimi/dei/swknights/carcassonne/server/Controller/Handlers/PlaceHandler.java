@@ -46,7 +46,7 @@ public class PlaceHandler extends ControllerHandler
 			try
 			{
 				tesseraVicino = this.areaDiGioco.getTessera(coordinate.getCoordinateA(punto));
-				if (tessera.buonVicino(tesseraVicino, punto) == false)
+				if (!tessera.buonVicino(tesseraVicino, punto))
 				{
 					dAccordo = false;
 				}

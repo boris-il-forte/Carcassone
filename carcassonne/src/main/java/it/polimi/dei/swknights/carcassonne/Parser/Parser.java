@@ -28,7 +28,9 @@ public class Parser
 	{
 		this.parsedData = new String[Token.DATA_TOKENS];
 		for (int i = 0; i < this.parsedData.length; i++)
+		{
 			this.parsedData[i] = "";
+		}
 		this.parseString(stringToParse);
 	}
 
@@ -121,8 +123,9 @@ public class Parser
 
 	private void controlloNumeroTokens(String stringToParse, int length) throws InvalidStringToParseException
 	{
-		if (!(length == Token.DATA_TOKENS + 1) && !(length == Token.DATA_TOKENS))
+		if (!(length == Token.DATA_TOKENS + 1) && !(length == Token.DATA_TOKENS)) {
 			throw new InvalidStringToParseException(stringToParse);
+		}
 	}
 
 	private void parsingPerToken(String pezzi[]) throws InvalidStringToParseException,
@@ -149,18 +152,23 @@ public class Parser
 	private Token parseToken(String stringToken) throws InvalidStringToParseException
 	{
 		Token token = Token.valueOf(stringToken);
-		if (this.parsedData[token.ordinal()] == "")
+		if (this.parsedData[token.ordinal()].equals(""))
 		{
 			return token;
 		}
-		else throw new InvalidStringToParseException("token già parsato");
+		else
+		{
+			throw new InvalidStringToParseException("token già parsato");
+		}
 	}
 
 	private void typeTokenParsed(String stringToken) throws InvalidStringToParseException,
 			IllegalArgumentException
 	{
 		TypeToken.valueOf(stringToken);
-		if (this.typeData != "") throw new InvalidStringToParseException("TypeToken già parsato");
+		if (!this.typeData .equals("")) {
+			throw new InvalidStringToParseException("TypeToken già parsato");
+		}
 	}
 
 	protected String			parsedData[];
@@ -176,7 +184,7 @@ public class Parser
 	private enum Token {
 		N, S, W, E, NS, NE, NW, WE, SE, SW;
 
-		public static int	DATA_TOKENS	= 10;
+		public static final int	DATA_TOKENS	= 10;
 	};
 
 	private enum TypeToken {
