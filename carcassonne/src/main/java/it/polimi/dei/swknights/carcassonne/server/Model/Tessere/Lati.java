@@ -142,9 +142,10 @@ public class Lati
 
 	private DatiSegnalino	datiSegnalino;
 
-	private class DatiSegnalino
+	private static class DatiSegnalino
 	{
 		public Segnalino		segnalino;
+		
 		public PuntoCardinale	puntoCardinale;
 	}
 

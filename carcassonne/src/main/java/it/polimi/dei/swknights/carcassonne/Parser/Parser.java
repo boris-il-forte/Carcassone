@@ -175,11 +175,11 @@ public class Parser
 
 	protected String			typeData	= "";
 
-	private final static int	TOKEN		= 0;
+	private static final int	TOKEN		= 0;
 
-	private final static int	DATA		= 1;
+	private static final int	DATA		= 1;
 
-	private final static int	FIRST_CHAR	= 0;
+	private static final int	FIRST_CHAR	= 0;
 
 	private enum Token {
 		N, S, W, E, NS, NE, NW, WE, SE, SW;

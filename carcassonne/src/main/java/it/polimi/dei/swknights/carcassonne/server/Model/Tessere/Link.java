@@ -36,7 +36,7 @@ public class Link
 	 */
 	public Link(boolean[] links) throws IllegalArgumentException
 	{
-		if (links.length != 6) { throw new IllegalArgumentException(
+		if (links.length != LINKS_NUMBER) { throw new IllegalArgumentException(
 				"You are supposed to pass six booleans to Link!"); }
 		for (Bussola direzione : Bussola.values())
 		{
@@ -83,5 +83,7 @@ public class Link
 	}
 
 	private boolean[]	direzioni	= new boolean[Bussola.NUMERO_DIREZIONI];
+	
+	private static final int LINKS_NUMBER = 6;
 
 }

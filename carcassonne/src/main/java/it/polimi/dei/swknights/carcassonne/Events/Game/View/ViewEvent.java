@@ -24,7 +24,7 @@ public abstract class ViewEvent extends EventObject
 		return this.comando.toString();
 	}
 
-	final protected void setComando(ComandoView comando)
+	protected final void setComando(ComandoView comando)
 	{
 		this.comando = comando;
 	}

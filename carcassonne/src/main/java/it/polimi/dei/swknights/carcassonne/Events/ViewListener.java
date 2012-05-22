@@ -5,5 +5,5 @@ import java.util.EventListener;
 
 public interface ViewListener extends EventListener, Runnable
 {
-	public void riceviInput(ViewEvent event);
+	void riceviInput(ViewEvent event);
 }
