@@ -12,13 +12,10 @@
 	</properties>
 	<build>
 		<resources>
-      	<resource>
-        	<directory> src/res </directory>
-        		<includes>
-          			<include> tessere.txt </include>
-          	    </includes>
-     	 </resource>
-		
+			<resource>
+				<directory> src/main/resources</directory>
+			</resource>
+
 		</resources>
 	
 		<plugins>
