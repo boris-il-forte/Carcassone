@@ -21,7 +21,7 @@ public class Carcassonne
 		// TODO:togliere questo baby-schifo test in luogo di migliori, ma fino
 		// ad allora..
 		FactoryTessereNormali fnTest = new FactoryTessereNormali();
-		fnTest.acquisisciMazzoDaFile("File/Carcassonne.txt");
+		fnTest.acquisisciMazzoDaFile("/Carcassonne.txt");
 		Tessera tessera = fnTest.getTessera();
 		String stringTessera1 = tessera.toString();
 		tessera.setSegnalino(new Segnalino(Color.RED), PuntoCardinale.nord);
