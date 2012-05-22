@@ -5,8 +5,8 @@ import java.util.EventListener;
 public interface EventSource
 {
 
-	public void addListener(EventListener eventListener);
+	void addListener(EventListener eventListener);
 
-	public void removeListener(EventListener eventListener);
+	void removeListener(EventListener eventListener);
 
 }

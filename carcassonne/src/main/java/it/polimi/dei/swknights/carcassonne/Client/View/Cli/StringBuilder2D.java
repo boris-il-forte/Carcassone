@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne.Client.View.CLI;
+package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 
@@ -63,7 +63,7 @@ public class StringBuilder2D
 		for (StringBuilder linea : this.linee)
 		{
 			builder.append(linea.toString());
-			builder.append(';');
+			builder.append(NEW_LINE);
 		}
 		return builder.toString();
 	}
@@ -110,5 +110,7 @@ public class StringBuilder2D
 	private Dimension			dimensione;
 
 	private List<StringBuilder>	linee;
+	
+	private static final String NEW_LINE = System.getProperty("line.separator");
 
 }

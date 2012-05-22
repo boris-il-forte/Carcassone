@@ -33,4 +33,11 @@ public class GUI extends View implements ActionListener
 
 	}
 
+	@Override
+	public void aggiornaMappa()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 }

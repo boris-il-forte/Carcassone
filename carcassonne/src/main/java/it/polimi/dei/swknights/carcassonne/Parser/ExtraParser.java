@@ -3,6 +3,8 @@ package it.polimi.dei.swknights.carcassonne.Parser;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.management.BadAttributeValueExpException;
+
 import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
@@ -145,8 +147,19 @@ public class ExtraParser extends Parser
 
 	private boolean areConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		if(puntoCardinale1 == puntoCardinale2) 
+		{
+			return true;
+		}
+		Bussola agoBussola = Bussola.componi(puntoCardinale1, puntoCardinale2);
+		try
+		{
+			return this.getDataBool(agoBussola);
+		}
+		catch (BadAttributeValueExpException e)
+		{
+			return false;
+		}
 	}
 
 	private String	extraData[];
