@@ -28,15 +28,6 @@ public class Carcassonne
 		String stringTessera2 = tessera.toString();
 		System.out.println(stringTessera1);
 		System.out.println(stringTessera2);
-		DatiMappa dati = new DatiMappa(new Coordinate(-5, -6), new Coordinate(5, 6));
-		StringBuilder2D builder = new StringBuilder2D(dati);
-		builder.addTessera(new Coordinate(0, 0), "", new Vicinato());
-		
-		String stringhe[] = builder.toString().split(";");
-		for(String string : stringhe)
-		{
-			System.out.println(string);
-		}
 	}
 
 }

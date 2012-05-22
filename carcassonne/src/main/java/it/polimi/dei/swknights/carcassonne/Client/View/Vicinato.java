@@ -16,9 +16,9 @@ public class Vicinato
 		this.mappaVicinato.put(PuntoCardinale.est, est);
 	}
 	
-	public Vicinato()
+	public Vicinato(boolean haVicini)
 	{
-		this(false,false,false,false);
+		this(haVicini,haVicini,haVicini,haVicini);
 	}
 
 	public Boolean haVicinoA(PuntoCardinale puntoCardinale)
