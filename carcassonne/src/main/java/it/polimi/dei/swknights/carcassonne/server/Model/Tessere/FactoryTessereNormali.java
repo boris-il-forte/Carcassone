@@ -155,15 +155,16 @@ public class FactoryTessereNormali extends FactoryTessere
 		inputStreamReader = new InputStreamReader(resourceTxtFile.openStream());
 		scanner = new Scanner(inputStreamReader);
 		scriviTessereDaReader(scanner);
-
+		scanner.close();
 	}
 
 	private void scriviTessereDaReader(Scanner in)
 	{
 		String inputLine = null;
 
-		while ((inputLine = in.nextLine()) != null)
+		while ((in.hasNext()))
 		{
+			inputLine= in.nextLine();
 			descrizioniTessere.add(inputLine);
 		}
 
