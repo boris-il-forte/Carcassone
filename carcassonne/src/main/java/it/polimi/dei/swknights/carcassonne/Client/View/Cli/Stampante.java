@@ -111,7 +111,6 @@ class Stampante
 			Coordinate puntoInternoLato = lato.getPuntoMedioLato();
 			if (this.vuotoA(puntoInternoLato))
 			{
-				System.out.println("Effettivamente Vuoto a: " + puntoInternoLato);
 				this.builder.fillConCarattere(lato.getStart(), lato.getEnd(), confine);
 			}
 		}
@@ -138,7 +137,6 @@ class Stampante
 
 	private boolean vuotoA(Coordinate coordinate)
 	{
-		System.out.println("controllo vuoto in " + coordinate);
 		return (this.builder.getCharAt(coordinate) == ' ');
 	}
 
@@ -192,15 +190,15 @@ class Stampante
 			Coordinate coordPuntoInterno = this.getPuntoMedioLato();
 
 			Coordinate coordinataInserimento = coordPuntoInterno.getCoordinateA(puntoOpposto);
-
+			System.out.println("media: " + media + "punto interno: " + coordinataInserimento + " Punto cardinale: "+puntoCardinale+" opposto: " +puntoOpposto);
 			if (puntoCardinale == PuntoCardinale.est)
 			{
-				int x = -label.length();
+				int x = 1 -label.length();
 				Coordinate incremento = new Coordinate(x, 0);
-				coordinataInserimento.getCoordinateA(incremento);
+				coordinataInserimento = coordinataInserimento.getCoordinateA(incremento);
 			}
 
-			return null;
+			return coordinataInserimento;
 		}
 
 		public Coordinate getPuntoMedioLato()

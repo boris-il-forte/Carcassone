@@ -41,16 +41,16 @@ public class Coordinate
 		switch (puntoCardinale)
 		{
 			case nord:
-				incrementoX++;
-				break;
-			case sud:
-				incrementoX--;
-				break;
-			case ovest:
 				incrementoY--;
 				break;
-			case est:
+			case sud:
 				incrementoY++;
+				break;
+			case ovest:
+				incrementoX--;
+				break;
+			case est:
+				incrementoX++;
 				break;
 			default:
 				break;
