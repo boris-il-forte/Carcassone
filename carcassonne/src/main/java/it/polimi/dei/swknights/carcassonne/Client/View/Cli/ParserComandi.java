@@ -22,11 +22,9 @@ public class ParserComandi
 		{
 			int x, y;
 			String comando = stringComando;
-			int start = this.offsetSegno(comando);
-			x = Integer.parseInt(comando.substring(start, comando.indexOf(',')));
-			comando = comando.substring(comando.indexOf(',') + 1);
-			start = this.offsetSegno(comando);
-			y = Integer.parseInt(comando.substring(start, comando.indexOf(',')));
+			String[] parti = comando.split(",");
+			x = Integer.parseInt(parti[STRINGA_X]);
+			y = Integer.parseInt(parti[STRINGA_Y]);
 			return this.cli.provaPosizionareTessera(new Coordinate(x, y));
 		}
 
@@ -70,20 +68,8 @@ public class ParserComandi
 		return false;
 	}
 
-	private int offsetSegno(String comando)
-	{
-		int start;
-		if (comando.charAt(PRIMO) == '-')
-		{
-			start = 1;
-		}
-		else
-		{
-			start = 0;
-		}
-		return start;
-	}
 
-	private final int	PRIMO	= 0;
+	private final int	STRINGA_X	= 0;
+	private final int   STRINGA_Y   = 1;
 	private Cli			cli;
 }
