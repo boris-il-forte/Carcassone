@@ -32,7 +32,7 @@ public class Carcassonne
 		System.out.println(stringTessera2);
 		
 		Cli cli = new Cli();
-		//cli.CANCELLAMI_DOPO_TEST();
+		cli.CANCELLAMI_DOPO_TEST();
 		ParserComandi p = new ParserComandi(cli);
 		
 		Scanner s = new Scanner(System.in);
