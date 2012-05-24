@@ -46,7 +46,7 @@ public class ScenarioDiGioco
 		return new Coordinate(x, y);
 	}
 
-	public List<EntryTessera> getEntrySet(Coordinate min, Coordinate max)
+	public List<EntryTessera> getEntryList(Coordinate min, Coordinate max)
 	{
 		List<EntryTessera> list = new ArrayList<EntryTessera>();
 		for (Entry<Integer, Riga> entryRiga : this.mappaRighe.entrySet())
