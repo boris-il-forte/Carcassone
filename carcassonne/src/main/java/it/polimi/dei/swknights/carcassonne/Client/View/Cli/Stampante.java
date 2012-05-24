@@ -108,8 +108,9 @@ class Stampante
 			char confine = (vicinato.haVicinoA(punto)) ? '.' : '#';
 			Lato lato = mapLati.get(punto);
 			Coordinate puntoInternoLato = lato.getPuntoMedioLato();
-			if (this.controllaVuotoA(puntoInternoLato))
+			if (this.vuotoA(puntoInternoLato))
 			{
+				System.out.println("Effettivamente Vuoto a: " + puntoInternoLato);
 				this.builder.fillConCarattere(lato.getStart(), lato.getEnd(), confine);
 			}
 		}
@@ -134,8 +135,9 @@ class Stampante
 		return mappaLati;
 	}
 
-	private boolean controllaVuotoA(Coordinate coordinate)
+	private boolean vuotoA(Coordinate coordinate)
 	{
+		System.out.println("controllo vuoto in " + coordinate);
 		return (this.builder.getCharAt(coordinate) == ' ');
 	}
 
