@@ -1,7 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.Parser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.management.BadAttributeValueExpException;
 
@@ -108,10 +110,13 @@ public class ExtraParser extends Parser
 		int counter;
 		int stradaCounter = 0;
 		int cittaCounter = 0;
-		List<PuntoCardinale> puntiDaProvare = Arrays.asList(PuntoCardinale.values());
-		for (PuntoCardinale punto1 : puntiDaProvare)
+		List<PuntoCardinale> puntiDaProvare = new ArrayList<PuntoCardinale>();
+		puntiDaProvare.addAll(Arrays.asList(PuntoCardinale.values()));
+		ListIterator<PuntoCardinale> iteraPunto = puntiDaProvare.listIterator();
+		while(iteraPunto.hasNext())
 		{
-			switch (this.getDataChar(punto1))
+			PuntoCardinale punto = iteraPunto.next();
+			switch (this.getDataChar(punto))
 			{
 				case 'S':
 					counter = ++stradaCounter;
@@ -122,16 +127,19 @@ public class ExtraParser extends Parser
 				default:
 					continue;
 			}
-			for (PuntoCardinale punto2 : puntiDaProvare)
+			ListIterator<PuntoCardinale> iteraPunto2 = iteraPunto;
+			while(iteraPunto2.hasNext())
 			{
-				if (this.isConnected(punto1, punto2))
+				PuntoCardinale punto2 = iteraPunto2.next();
+				if (this.isConnected(punto, punto2))
 				{
-					puntiDaProvare.remove(punto2);
+					
 					numerazione[punto2.toInt()] = counter;
+					iteraPunto2.remove();
 				}
 			}
 		}
-		return null;
+		return numerazione;
 	}
 
 	private boolean isConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
