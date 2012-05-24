@@ -30,7 +30,7 @@ public class StringBuilder2D
 		int deltaY = end.getY() - start.getY();
 		Coordinate incrementoRelativo = new Coordinate(deltaX, deltaY).getVersore();
 
-		for (Coordinate coordinate = start.getCoordinateA(incrementoRelativo); coordinate.equals(end); coordinate = coordinate
+		for (Coordinate coordinate = start.getCoordinateA(incrementoRelativo); !coordinate.equals(end); coordinate = coordinate
 				.getCoordinateA(incrementoRelativo))
 		{
 			this.scriviCarattere(coordinate, c);
