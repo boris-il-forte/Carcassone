@@ -10,7 +10,13 @@ import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
 import it.polimi.dei.swknights.carcassonne.Client.View.View;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Lati;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Link;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 
 public class Cli extends View
 {
@@ -50,6 +56,28 @@ public class Cli extends View
 		// TODO
 	}
 
+	public void CANCELLAMI_DOPO_TEST()
+	{
+		//TODO: kill that
+		Lati latiCreandi;
+		Elemento nord = Elemento.citta;
+		Elemento sud = Elemento.citta;
+		Elemento ovest = Elemento.citta;
+		Elemento est = Elemento.citta;
+		latiCreandi = new Lati(nord, sud, ovest, est);
+		
+		/* NS(0), NE(1), NW(2), WE(3), SE(4), SW(5); */
+		boolean[] bl = { true, true, true, true, true, true };
+		Link l = new Link(bl);
+		
+		TesseraNormale tn = new TesseraNormale(latiCreandi, l);
+		AdapterTessera at = new AdapterTesseraObject(tn);
+		
+		 this.getScenario().SetTessera(new Coordinate(0, 0), at );
+		 this.aggiornaMappa();
+	}
+	
+	
 	public boolean posizionaSengalino(String stringComando)
 	{
 		String elementi[] = this.getTesseraCorrente().toCliString().split(" ");
