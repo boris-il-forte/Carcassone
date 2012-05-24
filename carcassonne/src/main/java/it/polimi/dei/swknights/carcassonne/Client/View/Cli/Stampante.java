@@ -2,22 +2,40 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
 import java.awt.Dimension;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
+import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
 
-class StampaMappa
+class Stampante
 {
 
-	public StampaMappa(DatiMappa datiMappa)
+	public Stampante(DatiMappa datiMappa)
 	{
 		this.datiMappa = datiMappa;
 		int width = datiMappa.getLarghezza();
 		int height = datiMappa.getAltezza();
 		this.builder = new StringBuilder2D(new Dimension(width, height));
+	}
+	
+	public void addListTessera(List<EntryTessera> listaTessere)
+	{
+		for(EntryTessera entryTessera : listaTessere)
+		{
+			this.addTessera(entryTessera);
+		}
+	}
+	
+	public void addTessera(EntryTessera entryTessera)
+	{
+		Coordinate coordinate = entryTessera.getCoordinate();
+		String tessera = entryTessera.getTessera().toCliString();
+		Vicinato vicinato = entryTessera.getVicinato();
+		this.addTessera(coordinate, tessera, vicinato);
 	}
 
 	public void addTessera(Coordinate coordinate, String tessera, Vicinato vicinato)
@@ -95,7 +113,7 @@ class StampaMappa
 	
 	private Map<PuntoCardinale, Lato> getMapLati(Coordinate primoPuntoTessera)
 	{
-		Map<PuntoCardinale, Lato> mappaLati = new HashMap<PuntoCardinale, StampaMappa.Lato>();
+		Map<PuntoCardinale, Lato> mappaLati = new HashMap<PuntoCardinale, Stampante.Lato>();
 		Coordinate incrementoX = new Coordinate(LARGHEZZA_TESSERA, 0);
 		Coordinate incrementoY = new Coordinate(0, ALTEZZA_TESSERA);		
 		

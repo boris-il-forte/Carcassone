@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
 import it.polimi.dei.swknights.carcassonne.Parser.ExtraParser;
 
@@ -22,7 +21,7 @@ public abstract class AdapterTessera
 	 * @return a string describing the card in suitable way for the Command Line
 	 *         Interface
 	 */
-	public String toCliString(PuntoCardinale puntoCardinale)
+	public String toCliString()
 	{
 		return this.parseString(this.toProtocolString());
 

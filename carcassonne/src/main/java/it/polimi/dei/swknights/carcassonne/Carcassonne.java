@@ -1,10 +1,14 @@
 package it.polimi.dei.swknights.carcassonne;
 
+import it.polimi.dei.swknights.carcassonne.Client.View.View;
+import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
+import it.polimi.dei.swknights.carcassonne.Client.View.Cli.ParserComandi;
 import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.FactoryTessereNormali;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
+import java.util.Scanner;
 
 /**
  * Hello world!
@@ -26,6 +30,21 @@ public class Carcassonne
 		String stringTessera2 = tessera.toString();
 		System.out.println(stringTessera1);
 		System.out.println(stringTessera2);
+		
+		Cli cli = new Cli();
+		ParserComandi p = new ParserComandi(cli);
+		
+		Scanner s = new Scanner(System.in);
+		
+		while(true)
+		{
+			
+			//s.nextLine();
+			System.out.println("zizi dammi la robba");
+			p.eseguiComando(s.nextLine());
+		}
+		
+		
 	}
 
 }
