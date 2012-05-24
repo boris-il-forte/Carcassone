@@ -17,8 +17,9 @@ class Stampante
 	public Stampante(DatiMappa datiMappa)
 	{
 		this.datiMappa = datiMappa;
-		int width = datiMappa.getLarghezza();
-		int height = datiMappa.getAltezza();
+		int width = datiMappa.getLarghezza()*LARGHEZZA_TESSERA;
+		int height = datiMappa.getAltezza()*ALTEZZA_TESSERA;
+		System.out.println(width+","+height);
 		this.builder = new StringBuilder2D(new Dimension(width, height));
 	}
 	
@@ -71,8 +72,11 @@ class Stampante
 	{
 		for(PuntoCardinale punto : PuntoCardinale.values())
 		{
-			Coordinate coordinateDestinazione = coordinate.getCoordinateA(punto);
-			this.scriviTesseraVuota(coordinateDestinazione);
+			if(!vicinato.haVicinoA(punto))
+			{
+				Coordinate coordinateDestinazione = coordinate.getCoordinateA(punto);
+				this.scriviTesseraVuota(coordinateDestinazione);
+			}
 		}
 
 	}

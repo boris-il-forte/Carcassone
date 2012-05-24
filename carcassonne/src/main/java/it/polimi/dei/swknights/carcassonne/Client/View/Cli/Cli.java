@@ -28,7 +28,7 @@ public class Cli extends View
 		super();
 		this.out = new PrintWriter(System.out);
 		this.in = new Scanner(System.in);
-		this.coordinataRelativaSE = new Coordinate(ALTEZZA, LARGHEZZA);
+		this.coordinataRelativaSE = new Coordinate(LARGHEZZA, ALTEZZA);
 		this.setCoordinataNordOvest(new Coordinate(-LARGHEZZA / 2, -ALTEZZA / 2));
 		this.currentPhase = fasiTurno.Inzio;
 	}
@@ -160,9 +160,9 @@ public class Cli extends View
 
 	private ParserComandi		parser;
 
-	private static final int	ALTEZZA		= 10;
+	private static final int	ALTEZZA		= 5;
 
-	private static final int	LARGHEZZA	= 5;
+	private static final int	LARGHEZZA	= 10;
 
 	private final Coordinate	coordinataRelativaSE;
 
