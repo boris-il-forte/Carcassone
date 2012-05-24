@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.View;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.ParserComandi;
 import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;

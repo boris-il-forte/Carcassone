@@ -19,7 +19,6 @@ class Stampante
 		this.datiMappa = datiMappa;
 		int width = datiMappa.getLarghezza() * LARGHEZZA_TESSERA;
 		int height = datiMappa.getAltezza() * ALTEZZA_TESSERA;
-		System.out.println(width + "," + height);
 		this.builder = new StringBuilder2D(new Dimension(width, height));
 	}
 
@@ -190,7 +189,6 @@ class Stampante
 			Coordinate coordPuntoInterno = this.getPuntoMedioLato();
 
 			Coordinate coordinataInserimento = coordPuntoInterno.getCoordinateA(puntoOpposto);
-			System.out.println("media: " + media + "punto interno: " + coordinataInserimento + " Punto cardinale: "+puntoCardinale+" opposto: " +puntoOpposto);
 			if (puntoCardinale == PuntoCardinale.est)
 			{
 				int x = 1 -label.length();
