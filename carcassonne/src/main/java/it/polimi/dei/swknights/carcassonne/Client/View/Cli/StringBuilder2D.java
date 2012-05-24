@@ -22,10 +22,8 @@ public class StringBuilder2D
 
 	public void fillConCarattere(Coordinate start, Coordinate end, char c) throws IllegalArgumentException
 	{
-		if (!coordinateAccettabili(start, end))
-		{
-			throw new IllegalArgumentException("Coordinate non accettabili");
-		}
+		if (!coordinateAccettabili(start, end)) { throw new IllegalArgumentException(
+				"Coordinate non accettabili"); }
 		int deltaX = end.getX() - start.getX();
 		int deltaY = end.getY() - start.getY();
 		Coordinate incrementoRelativo = new Coordinate(deltaX, deltaY).getVersore();
@@ -39,8 +37,9 @@ public class StringBuilder2D
 
 	public void scriviStringa(Coordinate coordinataInserimento, String string)
 	{
-		// TODO Auto-generated method stub
-		
+		System.out.println("Coorinate inserite:" + coordinataInserimento);
+		StringBuilder linea = this.linee.get(coordinataInserimento.getY());
+		linea.insert(coordinataInserimento.getX(), string);
 	}
 
 	public void scriviStringaCentrata(Coordinate coordinate, String coordinateString)
@@ -49,7 +48,7 @@ public class StringBuilder2D
 		int inizio = coordinate.getX() - coordinateString.length() / 2;
 		linea.replace(inizio, inizio + coordinateString.length(), coordinateString);
 	}
-	
+
 	public char getCharAt(Coordinate coordinate)
 	{
 		StringBuilder linea = this.linee.get(coordinate.getY());
@@ -70,12 +69,8 @@ public class StringBuilder2D
 
 	private boolean coordinateAccettabili(Coordinate coordinata1, Coordinate coordinata2)
 	{
-		if (coordinata1.equals(coordinata2)) {
-			return false;
-		}
-		if (coordinata2.getX() != coordinata1.getX() && coordinata2.getY() != coordinata1.getY()) {
-			return false;
-		}
+		if (coordinata1.equals(coordinata2)) { return false; }
+		if (coordinata2.getX() != coordinata1.getX() && coordinata2.getY() != coordinata1.getY()) { return false; }
 
 		return true;
 
@@ -110,7 +105,7 @@ public class StringBuilder2D
 	private Dimension			dimensione;
 
 	private List<StringBuilder>	linee;
-	
-	private static final String NEW_LINE = System.getProperty("line.separator");
+
+	private static final String	NEW_LINE	= System.getProperty("line.separator");
 
 }

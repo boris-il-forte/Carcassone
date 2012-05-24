@@ -127,6 +127,7 @@ public class ExtraParser extends Parser
 				default:
 					continue;
 			}
+			numerazione[punto.toInt()] = counter;
 			ListIterator<PuntoCardinale> iteraPunto2 = iteraPunto;
 			while(iteraPunto2.hasNext())
 			{
