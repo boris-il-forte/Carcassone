@@ -29,7 +29,14 @@ public class ScenarioDiGioco
 		int x = coordinate.getX();
 		int y = coordinate.getY();
 		Riga riga = this.mappaRighe.get(y);
-		return riga.getTessera(x);
+		if(riga!=null)
+		{
+			return riga.getTessera(x);
+		}
+		else
+		{
+			return null;  //TODO o exception??
+		}
 	}
 
 	public Coordinate getMax()
