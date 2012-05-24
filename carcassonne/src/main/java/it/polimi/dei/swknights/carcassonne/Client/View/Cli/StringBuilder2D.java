@@ -37,7 +37,6 @@ public class StringBuilder2D
 
 	public void scriviStringa(Coordinate coordinataInserimento, String string)
 	{
-		System.out.println("Coorinate inserite:" + coordinataInserimento);
 		StringBuilder linea = this.linee.get(coordinataInserimento.getY());
 		linea.insert(coordinataInserimento.getX(), string);
 	}
@@ -70,7 +69,7 @@ public class StringBuilder2D
 	private boolean coordinateAccettabili(Coordinate coordinata1, Coordinate coordinata2)
 	{
 		if (coordinata1.equals(coordinata2)) { return false; }
-		if (coordinata2.getX() != coordinata1.getX() && coordinata2.getY() != coordinata1.getY()) { return false; }
+		if (!coordinata2.getX().equals(coordinata1.getX()) && !coordinata2.getY().equals(coordinata1.getY())) { return false; }
 
 		return true;
 
