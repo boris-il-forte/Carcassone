@@ -84,6 +84,7 @@ class Stampante
 	private void scriviTesseraVuota(Coordinate coordinate)
 	{
 		Coordinate primoPunto = this.getPrimoPuntoTessera(coordinate);
+		this.scriviAngoli(primoPunto);
 		this.scriviLati(primoPunto, new Vicinato(true));
 		this.scriviCordinate(coordinate);
 	}
