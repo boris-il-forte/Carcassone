@@ -4,7 +4,7 @@ import it.polimi.dei.swknights.carcassonne.Connessioni.Connessione;
 
 import java.util.List;
 
-public class ConnessioneAView extends View
+public class ConnessioneAView extends ViewConnessione
 {
 
 	public Connessione	connessione;

@@ -19,7 +19,6 @@ public abstract class View implements EventSource
 	{
 		this.listeners = new ArrayList<ViewListener>();
 		this.scenario = new ScenarioDiGioco();
-
 	}
 
 
@@ -43,7 +42,7 @@ public abstract class View implements EventSource
 
 	public abstract void aggiornaMappa();
 
-	public abstract void posizionaTessera();
+	public abstract void posizionaTessera(Coordinate coordinatePosizione);
 
 	public void setColore(Color coloreGiocatore)
 	{

@@ -6,4 +6,5 @@ import java.util.EventObject;
 public interface ControllerListener extends EventListener
 {
 	void riceviModificheModel(EventObject event);
+	
 }

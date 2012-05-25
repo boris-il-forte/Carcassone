@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Client.View.View;
 
@@ -49,7 +50,7 @@ public class GUI extends View implements ActionListener
 	}
 
 	@Override
-	public void posizionaTessera()
+	public void posizionaTessera(Coordinate coordinatePosizione)
 	{
 		// TODO Auto-generated method stub
 		

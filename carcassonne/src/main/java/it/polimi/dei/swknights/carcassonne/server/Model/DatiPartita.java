@@ -136,6 +136,7 @@ public class DatiPartita
 	{
 		this.pilaTessere = new ArrayList<Tessera>();
 		FactoryTessere factory = new FactoryTessereNormali();
+        factory.acquisisciMazzoDaFile("/Carcassonne.txt");		
 		while (factory.tesseraDisponibile())
 		{
 			this.pilaTessere.add(factory.getTessera());
