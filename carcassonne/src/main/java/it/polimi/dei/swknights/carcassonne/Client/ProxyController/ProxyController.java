@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne.Client.ControllerProxy;
+package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
 import it.polimi.dei.swknights.carcassonne.Connessioni.Connessione;
 
@@ -6,7 +6,7 @@ import java.util.List;
 
 /*
  */
-public class ControllerProxy extends Controller
+public class ProxyController extends AbstractConnessioneController
 {
 
 	public Connessione	realSubject;

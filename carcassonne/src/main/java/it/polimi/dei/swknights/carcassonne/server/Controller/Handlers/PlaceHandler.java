@@ -5,17 +5,17 @@ import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Controller;
+import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.AreaDiGioco;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 public class PlaceHandler extends ControllerHandler
 {
 
-	private Controller	controller;
+	private ModuloController	controller;
 	private AreaDiGioco	areaDiGioco;
 
-	public PlaceHandler(Controller controller, AreaDiGioco areaGioco)
+	public PlaceHandler(ModuloController controller, AreaDiGioco areaGioco)
 	{
 		this.controller = controller;
 		this.areaDiGioco = areaGioco;

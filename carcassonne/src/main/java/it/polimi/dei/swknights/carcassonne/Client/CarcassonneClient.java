@@ -1,14 +1,14 @@
 package it.polimi.dei.swknights.carcassonne.Client;
 
-import it.polimi.dei.swknights.carcassonne.Client.ControllerProxy.Controller;
-import it.polimi.dei.swknights.carcassonne.server.ViewProxy.ViewConnessione;
+import it.polimi.dei.swknights.carcassonne.Client.ProxyController.AbstractConnessioneController;
+import it.polimi.dei.swknights.carcassonne.server.ProxyView.AbstractConnessioneView;
 
 public class CarcassonneClient
 {
 
-	public ViewConnessione			view;
+	public AbstractConnessioneView			view;
 
-	public Controller	controller;
+	public AbstractConnessioneController	controller;
 
 	public Integer		idPartita;
 

@@ -1,10 +1,10 @@
-package it.polimi.dei.swknights.carcassonne.Client.ControllerProxy;
+package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
 import it.polimi.dei.swknights.carcassonne.Connessioni.Connessione;
 
 import java.util.List;
 
-public class ConnessioneAController extends Controller
+public class ConnessioneController extends AbstractConnessioneController
 {
 
 	public Connessione	connessione;

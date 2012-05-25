@@ -9,7 +9,7 @@ import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
-import it.polimi.dei.swknights.carcassonne.Client.View.View;
+import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
@@ -21,7 +21,7 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Lati;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Link;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 
-public class Cli extends View 
+public class Cli extends ModuloView 
 {
 	public Cli()
 	{

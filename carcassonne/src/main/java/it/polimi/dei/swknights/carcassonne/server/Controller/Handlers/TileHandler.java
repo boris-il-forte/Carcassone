@@ -5,7 +5,7 @@ import java.awt.Color;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Controller;
+import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
 import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
@@ -15,7 +15,7 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 public class TileHandler extends ControllerHandler
 {
 	DatiPartita	model;
-	Controller	controller;
+	ModuloController	controller;
 
 	public TileHandler(DatiPartita datiPartita)
 	{

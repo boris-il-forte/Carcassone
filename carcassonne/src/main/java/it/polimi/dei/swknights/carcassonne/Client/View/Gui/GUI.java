@@ -2,7 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
-import it.polimi.dei.swknights.carcassonne.Client.View.View;
+import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-public class GUI extends View implements ActionListener
+public class GUI extends ModuloView implements ActionListener
 {
 
 	@Override

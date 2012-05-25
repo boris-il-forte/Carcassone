@@ -1,9 +1,9 @@
-package it.polimi.dei.swknights.carcassonne.Client.ControllerProxy;
+package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
-import it.polimi.dei.swknights.carcassonne.Events.ViewListener;
+import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 
-public class Controller implements ViewListener
+public class AbstractConnessioneController implements Controller
 {
 
 	public void request()
