@@ -4,7 +4,6 @@ import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.View;
-import it.polimi.dei.swknights.carcassonne.Events.EventSource;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 
@@ -14,12 +13,17 @@ import java.util.EventListener;
 import java.util.EventObject;
 import java.util.List;
 
-public abstract class ModuloView implements EventSource, View
+public abstract class ModuloView implements View
 {
 	public ModuloView()
 	{
 		this.listeners = new ArrayList<Controller>();
 		this.scenario = new ScenarioDiGioco();
+	}
+	
+	public void run()
+	{
+		System.out.println("sono la view vera. che bello. ah no... sono astratta!");
 	}
 	
 	public void riceviModificheModel(EventObject event)
@@ -35,11 +39,6 @@ public abstract class ModuloView implements EventSource, View
 		}
 	}
 
-	public Color getColoreGiocatore()
-	{
-		return this.coloreGiocatore;
-	}
-	
 	public void removeListener(EventListener eventListener)
 	{
 		this.listeners.remove(eventListener);
@@ -49,6 +48,13 @@ public abstract class ModuloView implements EventSource, View
 
 	public abstract void posizionaTessera(Coordinate coordinatePosizione);
 
+	public abstract void muoviViewA(PuntoCardinale puntoCardinale, int quantita);
+
+	public Color getColoreGiocatore()
+	{
+		return this.coloreGiocatore;
+	}
+	
 	public void setColore(Color coloreGiocatore)
 	{
 		this.coloreGiocatore = coloreGiocatore;
@@ -68,8 +74,6 @@ public abstract class ModuloView implements EventSource, View
 	{
 		this.tesseraCorrente = tesseraCorrente;
 	}
-
-	public abstract void muoviViewA(PuntoCardinale puntoCardinale, int quantita);
 
 	public void fire(ViewEvent event)
 	{
