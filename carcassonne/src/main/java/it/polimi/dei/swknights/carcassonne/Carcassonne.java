@@ -1,10 +1,8 @@
 package it.polimi.dei.swknights.carcassonne;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.View;
+import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Controller;
-import it.polimi.dei.swknights.carcassonne.server.ViewProxy.ViewConnessione;
-import it.polimi.dei.swknights.carcassonne.server.ViewProxy.ViewProxy;
+import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 
 
 /**
@@ -30,9 +28,7 @@ public class Carcassonne
 		System.out.println(stringTessera2);*/
 
 		
-		View v = new Cli();
-
-		Cli cli;
+		ModuloView cli = new Cli();
 		
 		String risposta="";
 		do
@@ -44,18 +40,14 @@ public class Carcassonne
 		}
 		while(risposta.compareToIgnoreCase("CLI") != 0);
 		
-		Controller controllerGame = new Controller();
+		ModuloController controllerGame = new ModuloController();
 		
 	    cli = new Cli();		
 		cli.addListener(controllerGame);
-		
-		ViewProxy viewPerController = new ViewProxy();
-	 	viewPerController.setView(cli);
 	 	
-	 	controllerGame.addListener(viewPerController);
+	 	controllerGame.addListener(cli);
 	
 		controllerGame.cominciaGioco();
-	 	cli.giocaFase();
 		
 	}
 

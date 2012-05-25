@@ -1,9 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.Events.ControllerListener;
+import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.EventSource;
-import it.polimi.dei.swknights.carcassonne.Events.ViewListener;
+import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
@@ -33,7 +33,7 @@ import java.util.Map;
  * 
  */
 
-public class Controller implements ViewListener, EventSource
+public class ModuloController implements Controller, EventSource
 {
 	private boolean	tesseraPosizionata;
 
@@ -41,9 +41,9 @@ public class Controller implements ViewListener, EventSource
 	 * Default Constructor. Initialize data structures
 	 * 
 	 */
-	public Controller()
+	public ModuloController()
 	{
-		this.listeners = new ArrayList<ControllerListener>();
+		this.listeners = new ArrayList<View>();
 		this.partita = new DatiPartita();
 		this.contaPunti = new ContatoreCartografo(this.partita.getAreaDiGioco());
 		this.visitorHandlers = this.attivaHandler();
@@ -103,11 +103,11 @@ public class Controller implements ViewListener, EventSource
 
 	public void addListener(EventListener eventListener)
 	{
-		ControllerListener controllerListener;
+		View controllerListener;
 		// TODO this.blocco instanceof Male! xD
-		if (eventListener instanceof ControllerListener)
+		if (eventListener instanceof View)
 		{
-			controllerListener = (ControllerListener) eventListener;
+			controllerListener = (View) eventListener;
 			this.listeners.add(controllerListener);
 		}
 	}
@@ -128,7 +128,7 @@ public class Controller implements ViewListener, EventSource
 	/**
 	 * Method that should be called when firing an event to the Controller
 	 * 
-	 * @see it.polimi.dei.swknights.carcassonne.Events.ViewListener#riceviInput()
+	 * @see it.polimi.dei.swknights.carcassonne.Events.Controller#riceviInput()
 	 */
 	public void riceviInput(ViewEvent event)
 	{
@@ -163,7 +163,7 @@ public class Controller implements ViewListener, EventSource
 	public void fire(EventObject event)
 	{
 		System.out.println("sono controller: lancio event:" + event.toString());
-		for (ControllerListener listener : this.listeners)
+		for (View listener : this.listeners)
 		{
 			listener.riceviModificheModel(event);
 		}
@@ -214,7 +214,7 @@ public class Controller implements ViewListener, EventSource
 		return mapPunteggi;
 	}
 
-	private List<ControllerListener>	listeners;
+	private List<View>	listeners;
 
 	private List<ControllerHandler>		visitorHandlers;
 

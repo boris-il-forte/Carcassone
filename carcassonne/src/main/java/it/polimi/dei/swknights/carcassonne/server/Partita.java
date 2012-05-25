@@ -1,8 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.server;
 
-import it.polimi.dei.swknights.carcassonne.server.Controller.Controller;
+import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
-import it.polimi.dei.swknights.carcassonne.server.ViewProxy.ViewConnessione;
+import it.polimi.dei.swknights.carcassonne.server.ProxyView.AbstractConnessioneView;
 
 public class Partita
 {
@@ -11,9 +11,9 @@ public class Partita
 
 	public Integer		idPartita;
 
-	public Controller	controller;
+	public ModuloController	controller;
 
-	public ViewConnessione			view;
+	public AbstractConnessioneView			view;
 
 	public Integer		newAttr;
 

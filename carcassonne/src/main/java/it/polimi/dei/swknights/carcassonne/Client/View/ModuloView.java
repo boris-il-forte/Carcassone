@@ -3,31 +3,35 @@ package it.polimi.dei.swknights.carcassonne.Client.View;
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.EventSource;
-import it.polimi.dei.swknights.carcassonne.Events.ViewListener;
-import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.EventListener;
+import java.util.EventObject;
 import java.util.List;
 
-public abstract class View implements EventSource
+public abstract class ModuloView implements EventSource, View
 {
-	public View()
+	public ModuloView()
 	{
-		this.listeners = new ArrayList<ViewListener>();
+		this.listeners = new ArrayList<Controller>();
 		this.scenario = new ScenarioDiGioco();
 	}
-
-
-
+	
+	public void riceviModificheModel(EventObject event)
+	{
+		
+	}
+	
 	public void addListener(EventListener eventListener)
 	{
-		if (eventListener instanceof ViewListener)
+		if (eventListener instanceof Controller)
 		{
-			this.listeners.add((ViewListener) eventListener);
+			this.listeners.add((Controller) eventListener);
 		}
 	}
 
@@ -35,6 +39,7 @@ public abstract class View implements EventSource
 	{
 		return this.coloreGiocatore;
 	}
+	
 	public void removeListener(EventListener eventListener)
 	{
 		this.listeners.remove(eventListener);
@@ -48,8 +53,6 @@ public abstract class View implements EventSource
 	{
 		this.coloreGiocatore = coloreGiocatore;
 	}
-
-
 
 	public void setCoordinataNordOvest(Coordinate coordinataNordOvest)
 	{
@@ -70,7 +73,7 @@ public abstract class View implements EventSource
 
 	public void fire(ViewEvent event)
 	{
-		for (ViewListener listener : listeners)
+		for (Controller listener : listeners)
 		{
 			listener.riceviInput(event);
 		}
@@ -89,7 +92,7 @@ public abstract class View implements EventSource
 	
 	private final ScenarioDiGioco	scenario;
 
-	private List<ViewListener>		listeners;
+	private List<Controller>		listeners;
 
 	private Coordinate				coordinataNordOvest;
 

@@ -1,15 +1,15 @@
-package it.polimi.dei.swknights.carcassonne.server.ViewProxy;
+package it.polimi.dei.swknights.carcassonne.server.ProxyView;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.Client.View.View;
+import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
-import it.polimi.dei.swknights.carcassonne.Events.ControllerListener;
+import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 
 import java.util.EventObject;
 import java.util.List;
 
-public class ViewConnessione implements ControllerListener
+public class AbstractConnessioneView implements View
 {
 
 	public List	myPartita;
@@ -19,9 +19,9 @@ public class ViewConnessione implements ControllerListener
 
 	}
 	
-	public View view ;
+	public ModuloView view ;
 
-	public void setView(View view)
+	public void setView(ModuloView view)
 	{
 		this.view = view;
 	}
