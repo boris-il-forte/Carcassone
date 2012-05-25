@@ -1,15 +1,18 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Events.ControllerListener;
 import it.polimi.dei.swknights.carcassonne.Events.EventSource;
 import it.polimi.dei.swknights.carcassonne.Events.ViewListener;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PlaceHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.RuotaHandler;
+import it.polimi.dei.swknights.carcassonne.server.Model.AreaDiGioco;
 import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
@@ -44,7 +47,34 @@ public class Controller implements ViewListener, EventSource
 		this.partita = new DatiPartita();
 		this.contaPunti = new ContatoreCartografo(this.partita.getAreaDiGioco());
 		this.visitorHandlers = this.attivaHandler();
+		this.areaGioco = partita.getAreaDiGioco();
+
 	}
+	
+	public void cominciaGioco()
+	{
+		
+		//set up vari?
+		this.primaMossaPartita();
+	}
+
+	
+	private void primaMossaPartita()
+	{
+		try
+		{
+			this.estraiTessera();
+		}
+		catch (PartitaFinitaException e)
+		{
+			e.printStackTrace();
+		}
+		this.areaGioco.addTessera(this.COORD_PRIMA_TESSERA, this.tesseraCorrente);
+	    //dico alla gui!
+		this.fire(new PlaceEvent(this, COORD_PRIMA_TESSERA));
+	}
+
+
 
 	public Tessera getTesseraCorrente()
 	{
@@ -132,6 +162,7 @@ public class Controller implements ViewListener, EventSource
 
 	public void fire(EventObject event)
 	{
+		System.out.println("sono controller: lancio event:" + event.toString());
 		for (ControllerListener listener : this.listeners)
 		{
 			listener.riceviModificheModel(event);
@@ -192,5 +223,9 @@ public class Controller implements ViewListener, EventSource
 	private ContatoreCartografo			contaPunti;
 
 	private DatiPartita					partita;
+	
+	private final AreaDiGioco					areaGioco;
+	
+	private final Coordinate COORD_PRIMA_TESSERA = new Coordinate(0, 0);
 
 }

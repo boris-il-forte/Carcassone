@@ -21,7 +21,7 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Lati;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Link;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 
-public class Cli extends View
+public class Cli extends View 
 {
 	public Cli()
 	{
@@ -31,6 +31,30 @@ public class Cli extends View
 		this.coordinataRelativaSE = new Coordinate(LARGHEZZA, ALTEZZA);
 		this.setCoordinataNordOvest(new Coordinate(-LARGHEZZA / 2, -ALTEZZA / 2));
 		this.currentPhase = fasiTurno.Inzio;
+		this.parser = new ParserComandi(this);
+		
+	}
+
+	public void giocaFase()
+	{
+		this.aggiornaMappa();
+		System.out.println((this.currentPhase.toString()));
+		String comando = this.in.nextLine();
+		this.parser.eseguiComando(comando);
+		//mettiti in attesa
+	}
+	
+	private void nextPhase()
+	{
+		if (this.currentPhase == fasiTurno.Inzio)
+		{
+			this.currentPhase = fasiTurno.Media;
+		}
+		else if ( this.currentPhase == fasiTurno.Media)
+		{
+			this.currentPhase = fasiTurno.Inzio;
+		}
+		
 	}
 
 	@Override
@@ -55,9 +79,10 @@ public class Cli extends View
 	}
 
 	@Override
-	public void posizionaTessera()
+	public void posizionaTessera(Coordinate coordinatePosizione)
 	{
-		// TODO
+		this.getScenario().SetTessera(coordinatePosizione, this.getTesseraCorrente());
+		//TODO: va aggiornato vicinato??
 	}
 
 	public void CANCELLAMI_DOPO_TEST()
@@ -169,10 +194,20 @@ public class Cli extends View
 	private fasiTurno			currentPhase;
 
 	public enum fasiTurno {
-		Inzio("Place card or rotate"), Media("Rotate"), Attesa("Tile or pass");
-		fasiTurno(String s)
-		{
+		Inzio("Place card or rotate"), Media("Tile or pass"), Attesa("wait server response...");
+		
+		private String messaggioUtente;
+		
 
+		public String toString()
+		{
+			return this.messaggioUtente;
+		}
+		
+
+		private fasiTurno(String messaggio)
+		{
+			this.messaggioUtente = messaggio;
 		}
 
 	}

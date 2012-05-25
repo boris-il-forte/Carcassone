@@ -173,33 +173,7 @@ public class FactoryTessereNormali extends FactoryTessere
 	}
 	
 	
-	private boolean buonaLineaFile(String linea)
-	{
-		String s = "N=S S=C W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0";
-		
-		String PUNTO="N|S|W|E";
-		String COSTRUZIONE="N|S|C";
-		String BOOL="0|1";
-		String LINK="NS|NE|NW|WE|SE|SW";
-		String reg="";
-		for(PuntoCardinale punto: PuntoCardinale.values())
-		{
-			reg = reg +  "(" + PUNTO  + ")" + "=" + "(" + COSTRUZIONE + ")" + " " ;
-		}
-		int j=0;
-		for(Bussola bussola : Bussola.values())
-		{
-			reg = reg +  "(" + LINK  + ")" + "=" + "(" + BOOL + ")";
-			
-			if(j!=Bussola.NUMERO_DIREZIONI-1)
-			{
-				reg= reg + " ";
-			}
-			j++;
-		}
-		return linea.matches(reg);
-		
-	}
+
 	
 	
 

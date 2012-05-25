@@ -2,7 +2,7 @@ package it.polimi.dei.swknights.carcassonne.server;
 
 import it.polimi.dei.swknights.carcassonne.server.Controller.Controller;
 import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
-import it.polimi.dei.swknights.carcassonne.server.ViewProxy.View;
+import it.polimi.dei.swknights.carcassonne.server.ViewProxy.ViewConnessione;
 
 public class Partita
 {
@@ -13,7 +13,7 @@ public class Partita
 
 	public Controller	controller;
 
-	public View			view;
+	public ViewConnessione			view;
 
 	public Integer		newAttr;
 

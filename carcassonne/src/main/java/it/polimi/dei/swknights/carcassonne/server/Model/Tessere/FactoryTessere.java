@@ -38,6 +38,6 @@ public abstract class FactoryTessere
 	 * @param pathFileTessere
 	 *            : path of the cards file
 	 */
-	protected abstract void acquisisciMazzoDaFile(String pathFileTessere);
+	public abstract void acquisisciMazzoDaFile(String pathFileTessere);
 
 }
