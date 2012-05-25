@@ -1,14 +1,11 @@
 package it.polimi.dei.swknights.carcassonne;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
+import it.polimi.dei.swknights.carcassonne.Events.Controller;
+import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 
 
-/**
- * Hello world!
- * 
- */
 public class Carcassonne
 {
 	public static void main(String[] args)
@@ -28,7 +25,7 @@ public class Carcassonne
 		System.out.println(stringTessera2);*/
 
 		
-		ModuloView cli = new Cli();
+		View view = new Cli();
 		
 		String risposta="";
 		do
@@ -40,14 +37,12 @@ public class Carcassonne
 		}
 		while(risposta.compareToIgnoreCase("CLI") != 0);
 		
-		ModuloController controllerGame = new ModuloController();
+		Controller controller = new ModuloController();
 		
-	    cli = new Cli();		
-		cli.addListener(controllerGame);
+	    view = new Cli();		
+		view.addListener(controller);
 	 	
-	 	controllerGame.addListener(cli);
-	
-		controllerGame.cominciaGioco();
+	 	controller.addListener(view);
 		
 	}
 
