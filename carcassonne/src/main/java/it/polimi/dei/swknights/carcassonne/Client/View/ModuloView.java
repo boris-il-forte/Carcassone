@@ -44,43 +44,43 @@ public abstract class ModuloView implements View
 		this.listeners.remove(eventListener);
 	}
 
-	public abstract void aggiornaMappa();
-
-	public abstract void posizionaTessera(Coordinate coordinatePosizione);
-
-	public abstract void muoviViewA(PuntoCardinale puntoCardinale, int quantita);
-
-	public Color getColoreGiocatore()
-	{
-		return this.coloreGiocatore;
-	}
-	
-	public void setColore(Color coloreGiocatore)
-	{
-		this.coloreGiocatore = coloreGiocatore;
-	}
-
-	public void setCoordinataNordOvest(Coordinate coordinataNordOvest)
-	{
-		this.coordinataNordOvest = coordinataNordOvest;
-	}
-
-	public AdapterTessera getTesseraCorrente()
-	{
-		return tesseraCorrente;
-	}
-
-	public void setTesseraCorrente(AdapterTessera tesseraCorrente)
-	{
-		this.tesseraCorrente = tesseraCorrente;
-	}
-
 	public void fire(ViewEvent event)
 	{
 		for (Controller listener : listeners)
 		{
 			listener.riceviInput(event);
 		}
+	}
+
+	protected abstract void aggiornaMappa();
+
+	protected abstract void posizionaTessera(Coordinate coordinatePosizione);
+
+	protected abstract void muoviViewA(PuntoCardinale puntoCardinale, int quantita);
+
+	protected Color getColoreGiocatore()
+	{
+		return this.coloreGiocatore;
+	}
+	
+	protected void setColore(Color coloreGiocatore)
+	{
+		this.coloreGiocatore = coloreGiocatore;
+	}
+
+	protected void setCoordinataNordOvest(Coordinate coordinataNordOvest)
+	{
+		this.coordinataNordOvest = coordinataNordOvest;
+	}
+
+	protected AdapterTessera getTesseraCorrente()
+	{
+		return tesseraCorrente;
+	}
+
+	protected void setTesseraCorrente(AdapterTessera tesseraCorrente)
+	{
+		this.tesseraCorrente = tesseraCorrente;
 	}
 
 	protected ScenarioDiGioco getScenario()
