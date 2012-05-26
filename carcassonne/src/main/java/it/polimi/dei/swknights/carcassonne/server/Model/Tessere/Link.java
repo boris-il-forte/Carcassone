@@ -46,6 +46,16 @@ public class Link
 		}
 	}
 
+	public Link(boolean NS, boolean NE, boolean NW, boolean WE, boolean SE, boolean SW)
+	{
+		this.direzioni[Bussola.NS.toInt()] =NS;
+		this.direzioni[Bussola.NE.toInt()] =NE;
+		this.direzioni[Bussola.NW.toInt()] =NW;
+		this.direzioni[Bussola.WE.toInt()] =WE;
+		this.direzioni[Bussola.SE.toInt()] =SE;
+		this.direzioni[Bussola.SW.toInt()] =SW;
+	}
+
 	/**
 	 * Returns whether two Elements on two given Cardinal Points are connected
 	 * 

@@ -6,11 +6,18 @@ import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
+import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Lati;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Link;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 
 import java.awt.Color;
 import java.io.PrintWriter;
@@ -62,9 +69,12 @@ public class Cli extends ModuloView
 	@Override
 	public void posizionaTessera(Coordinate coordinatePosizione)
 	{
-		if (this.getTesseraCorrente() == null /**TODO TEST! **/)
+		if (this.getTesseraCorrente() == null /* TODO: JUST FOR TESTING! */)
 		{
-		//	this.setTesseraCorrente(); 
+			Tessera tessera = new TesseraNormale(new Lati(Elemento.prato, Elemento.prato, Elemento.citta,
+					Elemento.citta), new Link(false, false, false, false, false, false));
+
+			this.setTesseraCorrente(new AdapterTesseraObject(tessera));
 		}
 		{
 			this.getScenario().SetTessera(coordinatePosizione, this.getTesseraCorrente());
@@ -130,42 +140,63 @@ public class Cli extends ModuloView
 	protected void ridaiSegnaliniDiTessere(List<AdapterTessera> tessereCostruzioneFinita)
 	{
 		// TODO Auto-generated method stub
+		
 
 	}
 
 	@Override
 	protected void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
 	{
-		
-		
+		this.setTesseraCorrente(tessIniziale);
+		this.posizionaTessera(this.centroScenario);
+		this.aggiornaMappa();
+
 	}
 
 	@Override
 	protected void notificaFinePartita()
 	{
-		// TODO Auto-generated method stub
-
+		this.notificaVideo("Fine Partita!");
 	}
 
 	@Override
 	protected void notificaMossaNonValida()
 	{
-		this.out.println("Mossa non valida");
-		this.out.flush();
+		this.notificaVideo("Mossa non valida!");
 
 	}
 
 	@Override
 	protected void aggiornaColoreCorrente(Color colore)
 	{
-		// TODO Auto-generated method stub
-
+		this.setColore(colore);
 	}
 
 	@Override
 	protected void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
 	{
-		// TODO Auto-generated method stub
+		this.setTesseraCorrente(tessera);
+		this.mostraTesseraCorrente();
+
+	}
+
+	public void mostraTesseraCorrente()
+	{
+		if (this.getTesseraCorrente() == null /* TODO: JUST FOR TESTING! */)
+		{
+			Tessera tessera = new TesseraNormale(new Lati(Elemento.citta, Elemento.citta, Elemento.strada,
+					Elemento.citta), new Link(false, true, true, true, false, false));
+
+			this.setTesseraCorrente(new AdapterTesseraObject(tessera));
+		}
+
+		// DatiMappa datiDeg = new DatiMappa(min, max)
+		Stampante stampanteTessera = new Stampante();
+		Vicinato vicinato = new Vicinato(false);
+		stampanteTessera.addTessera(new Coordinate(0, 0), this.getTesseraCorrente().toCliString(), vicinato);
+
+		this.out.print(stampanteTessera);
+		this.out.flush();
 
 	}
 
@@ -198,12 +229,19 @@ public class Cli extends ModuloView
 	private static final int	ALTEZZA		= 5;
 
 	private static final int	LARGHEZZA	= 10;
-	
+
 	private Color				giocatoreCorrente;
 
 	private final Coordinate	coordinataRelativaSE;
 
 	private FasiTurno			currentPhase;
+
+	private void notificaVideo(String message)
+	{
+		this.out.println(message);
+		this.out.flush();
+		
+	}
 
 	private enum FasiTurno {
 		Inizio("Place card or rotate"), Media("Tile or pass"), Attesa("wait server response...");

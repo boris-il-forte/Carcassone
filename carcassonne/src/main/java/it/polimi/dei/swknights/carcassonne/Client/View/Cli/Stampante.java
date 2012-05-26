@@ -21,6 +21,15 @@ class Stampante
 		int height = datiMappa.getAltezza() * ALTEZZA_TESSERA;
 		this.builder = new StringBuilder2D(new Dimension(width, height));
 	}
+	
+	
+	public Stampante()
+	{
+	
+		this(  new DatiMappa(new Coordinate(-1,-1), new Coordinate(+1,1)));
+		
+	}
+	
 
 	public void addListTessera(List<EntryTessera> listaTessere)
 	{
