@@ -5,6 +5,10 @@ import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 
 import java.awt.Color;
@@ -29,7 +33,43 @@ public abstract class ModuloView implements View
 	public void riceviModificheModel(EventObject event)
 	{
 		
+		if(event instanceof ControllerEvent)
+		{
+			
+			if(event instanceof InizioGiocoEvent)
+			{
+				
+				InizioGiocoEvent ige = (InizioGiocoEvent) event;
+				
+				Color coloreIniziale = ige.getGiocatore();
+				AdapterTessera tessIniziale= ige.getTesseraIniziale();
+				this.visualizzaTesseraCorrente(tessIniziale);
+				this.aggiornaColoreCorrente(coloreIniziale);
+				
+			}
+			if( event instanceof MossaNonValidaEvent)
+			{
+				this.notificaMossaNonValida();
+			}
+			if( event instanceof FinePartitaEvent)
+			{
+				this.notificaFinePartita();
+			}
+			
+			
+		}
+		
+		
 	}
+	
+
+	protected abstract void notificaFinePartita();
+	
+	protected abstract void notificaMossaNonValida();
+	
+	protected abstract void aggiornaColoreCorrente(Color colore);
+	
+	protected abstract void visualizzaTesseraCorrente(AdapterTessera tessera);
 	
 	public void addListener(EventListener eventListener)
 	{
@@ -51,7 +91,8 @@ public abstract class ModuloView implements View
 			listener.riceviInput(event);
 		}
 	}
-
+	
+	
 	protected abstract void aggiornaMappa();
 
 	protected abstract void posizionaTessera(Coordinate coordinatePosizione);
