@@ -43,6 +43,15 @@ public class Carcassonne
 		view.addListener(controller);
 	 	
 	 	controller.addListener(view);
+	 	
+	 	
+	 	view.run();
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
 		
 	}
 
