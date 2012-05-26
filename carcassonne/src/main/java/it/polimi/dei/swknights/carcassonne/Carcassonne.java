@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne;
 
+import java.io.PrintWriter;
+
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.View;
@@ -10,7 +12,6 @@ public class Carcassonne
 {
 	public static void main(String[] args)
 	{
-		System.out.println("Hello World!");
 
 		// TODO:togliere questo baby-schifo test in luogo di migliori, ma fino
 		// ad allora..
@@ -26,12 +27,13 @@ public class Carcassonne
 
 		
 		View view = new Cli();
-		
+		PrintWriter out = new PrintWriter(System.out);
 		String risposta="";
 		do
 		{
-			System.out.println("Interfaccia grafica a finestra o Interfaccia testuale?");
-			System.out.println("Scrivi CLI per testuale o GUI per grafica");
+			out.println("Interfaccia grafica a finestra o Interfaccia testuale?");
+			out.println("Scrivi CLI per testuale o GUI per grafica");
+			out.flush();
 			java.util.Scanner scannerIO = new java.util.Scanner(System.in);
 			risposta = scannerIO.nextLine();
 		}
