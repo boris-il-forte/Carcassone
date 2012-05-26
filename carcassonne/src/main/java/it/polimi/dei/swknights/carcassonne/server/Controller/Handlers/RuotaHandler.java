@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Controller;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
@@ -9,9 +10,9 @@ public class RuotaHandler extends ControllerHandler
 {
 	private ModuloController	controller;
 
-	public RuotaHandler(ModuloController controller)
+	public RuotaHandler(ModuloController moduloController)
 	{
-		this.controller = controller;
+		this.controller = moduloController;
 	}
 
 	@Override
