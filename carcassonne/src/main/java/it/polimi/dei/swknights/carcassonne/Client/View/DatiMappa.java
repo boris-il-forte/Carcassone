@@ -24,12 +24,12 @@ public class DatiMappa
 
 	public Integer getAltezza()
 	{
-		return getMaxA(PuntoCardinale.sud) - getMaxA(PuntoCardinale.nord);
+		return getMaxA(PuntoCardinale.sud) - getMaxA(PuntoCardinale.nord)+1;
 	}
 	
 	public Integer getLarghezza()
 	{
-		return getMaxA(PuntoCardinale.est) - getMaxA(PuntoCardinale.ovest);
+		return getMaxA(PuntoCardinale.est) - getMaxA(PuntoCardinale.ovest)+1;
 	}
 	
 	public int getMaxA(PuntoCardinale puntoCardinale)

@@ -185,7 +185,6 @@ public class Cli extends ModuloView
 	{
 		this.setTesseraCorrente(tessera);
 		this.mostraTesseraCorrente();
-
 	}
 
 	public void mostraTesseraCorrente()

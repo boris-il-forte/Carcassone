@@ -17,19 +17,17 @@ class Stampante
 	public Stampante(DatiMappa datiMappa)
 	{
 		this.datiMappa = datiMappa;
-		int width = datiMappa.getLarghezza() * LARGHEZZA_TESSERA;
-		int height = datiMappa.getAltezza() * ALTEZZA_TESSERA;
-		this.builder = new StringBuilder2D(new Dimension(width, height));
+		int width = (datiMappa.getLarghezza()) * LARGHEZZA_TESSERA;
+		int height = (datiMappa.getAltezza()) * ALTEZZA_TESSERA;
+		this.builder = new StringBuilder2D(new Dimension(width+1, height+1));
 	}
-	
-	
+
 	public Stampante()
 	{
-	
-		this(  new DatiMappa(new Coordinate(-1,-1), new Coordinate(+1,1)));
-		
+
+		this(new DatiMappa(new Coordinate(0, 0), new Coordinate(0, 0)));
+
 	}
-	
 
 	public void addListTessera(List<EntryTessera> listaTessere)
 	{
@@ -80,13 +78,22 @@ class Stampante
 	{
 		for (PuntoCardinale punto : PuntoCardinale.values())
 		{
-			if (!vicinato.haVicinoA(punto))
+			if (!vicinato.haVicinoA(punto) && this.coordinataStampabile(coordinate) )
 			{
 				Coordinate coordinateDestinazione = coordinate.getCoordinateA(punto);
 				this.scriviTesseraVuota(coordinateDestinazione);
 			}
 		}
 
+	}
+	
+	private boolean coordinataStampabile(Coordinate coordinate)
+	{
+		boolean daStampare = coordinate.getX()<this.datiMappa.getMaxA(PuntoCardinale.est);
+		daStampare = daStampare && coordinate.getX()>this.datiMappa.getMaxA(PuntoCardinale.ovest);
+		daStampare = daStampare && coordinate.getY()<this.datiMappa.getMaxA(PuntoCardinale.sud);
+		daStampare = daStampare && coordinate.getY()>this.datiMappa.getMaxA(PuntoCardinale.nord);
+		return daStampare;
 	}
 
 	private void scriviTesseraVuota(Coordinate coordinate)
@@ -200,7 +207,7 @@ class Stampante
 			Coordinate coordinataInserimento = coordPuntoInterno.getCoordinateA(puntoOpposto);
 			if (puntoCardinale == PuntoCardinale.est)
 			{
-				int x = 1 -label.length();
+				int x = 1 - label.length();
 				Coordinate incremento = new Coordinate(x, 0);
 				coordinataInserimento = coordinataInserimento.getCoordinateA(incremento);
 			}
