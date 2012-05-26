@@ -168,6 +168,7 @@ public abstract class ModuloView implements View
 		return coordinataNordOvest;
 	}
 
+	protected final Coordinate centroScenario = new Coordinate(0, 0);
 	
 	private final ScenarioDiGioco	scenario;
 

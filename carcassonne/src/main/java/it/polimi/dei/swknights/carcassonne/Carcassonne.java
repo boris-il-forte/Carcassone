@@ -53,7 +53,7 @@ public class Carcassonne
 	 	cliProva.posizionaTessera(new Coordinate(0, 0));
 	 	cliProva.aggiornaMappa();
 	 	
-	 	
+	 	cliProva.mostraTesseraCorrente();
 	 	
 	 	
 	 	

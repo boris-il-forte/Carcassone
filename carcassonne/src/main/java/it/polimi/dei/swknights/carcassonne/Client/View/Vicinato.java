@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Vicinato
 {
-	public Vicinato(boolean nord, boolean sud, boolean est, boolean ovest)
+	public Vicinato(Boolean nord, Boolean sud, Boolean est, Boolean ovest)
 	{
 		this.mappaVicinato = new HashMap<PuntoCardinale, Boolean>();
 		this.mappaVicinato.put(PuntoCardinale.nord, nord);
@@ -16,7 +16,7 @@ public class Vicinato
 		this.mappaVicinato.put(PuntoCardinale.est, est);
 	}
 	
-	public Vicinato(boolean haVicini)
+	public Vicinato(Boolean haVicini)
 	{
 		this(haVicini,haVicini,haVicini,haVicini);
 	}
