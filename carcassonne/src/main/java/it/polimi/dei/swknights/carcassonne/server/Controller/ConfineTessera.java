@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
+import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 /**
@@ -23,10 +23,10 @@ public class ConfineTessera
 	 *            The element of the card considered
 	 */
 
-	public ConfineTessera(Tessera tessera, Elemento lato)
+	public ConfineTessera(Tessera tessera, PuntoCardinale puntoCardinale)
 	{
 		this.tessera = tessera;
-		this.lato = lato;
+		this.puntoCardinale = puntoCardinale;
 	}
 
 	@Override
@@ -34,8 +34,8 @@ public class ConfineTessera
 	{
 		final int numeroPrimo = 31;
 		int hash = 1;
-		hash = numeroPrimo * hash + this.lato.hashCode();
 		hash = numeroPrimo * hash + this.tessera.hashCode();
+		hash = numeroPrimo * hash + this.puntoCardinale.hashCode();
 		return hash;
 	}
 
@@ -51,7 +51,7 @@ public class ConfineTessera
 		if (object instanceof ConfineTessera)
 		{
 			ConfineTessera confine = (ConfineTessera) object;
-			if (this.lato == confine.lato && this.tessera == confine.tessera)
+			if (this.tessera == confine.tessera && this.puntoCardinale.equals(confine.puntoCardinale))
 			{
 				isEqual = true;
 			}
@@ -59,8 +59,13 @@ public class ConfineTessera
 		return isEqual;
 	}
 
-	private final Tessera	tessera;
+	public PuntoCardinale getPuntoCardinale()
+	{
+		return this.puntoCardinale;
+	}
 
-	private final Elemento	lato;
+	private final Tessera			tessera;
+
+	private final PuntoCardinale	puntoCardinale;
 
 }

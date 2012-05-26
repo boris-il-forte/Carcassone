@@ -46,25 +46,23 @@ public class ContatoreCartografo
 		EsploratoreConfini esploratore = new EsploratoreConfini(coordinateTessera, this.areaDiGioco);
 		Set<Costruzione> costruzioni = esploratore.getCostruzioni();
 		Map<Costruzione, List<ConfineTessera>> mapConfinanti = esploratore.getConfinantiScoperti();
-		Map<Costruzione, List<ConfineTessera>> mapConfini = esploratore.getViciniVuoti(); // Hic
-																							// Sunt
-																							// Leones!
-
+		Map<Costruzione, List<ConfineTessera>> mapConfini = esploratore.getViciniVuoti();
+		this.cartello = new CartelloStradale(esploratore.getMappaCostruzioni());
 		for (Costruzione costruzione : costruzioni)
 		{
 			List<ConfineTessera> nuoviConfini = mapConfini.get(costruzione);
 			List<ConfineTessera> confinanti = mapConfinanti.get(costruzione);
-			costruzione = this.getCostruzioneAggregata(confinanti, costruzione);
-			this.aggiungiNuoviConfini(nuoviConfini, costruzione);
+			Costruzione costruzioneAggregata = this.getCostruzioneAggregata(confinanti, costruzione);
+			this.aggiungiNuoviConfini(nuoviConfini, costruzioneAggregata);
+			this.cartello.aggiorna(costruzioneAggregata, costruzione);
 		}
 	}
 
 	public Map<PuntoCardinale, Costruzione> getMapCostruzioniUltimaTessera()
-	{  //dell'ultima tessera
-		//TODO: !
-		return null;
+	{
+		return this.cartello.getIndicazioni();
 	}
-	
+
 	private Costruzione getCostruzioneAggregata(List<ConfineTessera> listaConfinanti,
 			Costruzione nuovoPezzoCostruzione)
 	{
@@ -86,8 +84,10 @@ public class ContatoreCartografo
 		}
 	}
 
-	private AreaDiGioco		areaDiGioco;
+	private AreaDiGioco			areaDiGioco;
 
-	private CartaGeografica	cartaGeografica;
+	private CartaGeografica		cartaGeografica;
+
+	private CartelloStradale	cartello;
 
 }

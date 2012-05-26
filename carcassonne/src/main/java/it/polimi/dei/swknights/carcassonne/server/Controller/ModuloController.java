@@ -35,8 +35,6 @@ import java.util.Map;
 
 public class ModuloController implements Controller, EventSource
 {
-	private boolean	tesseraPosizionata;
-
 	/**
 	 * Default Constructor. Initialize data structures
 	 * 
@@ -59,23 +57,6 @@ public class ModuloController implements Controller, EventSource
 	}
 
 	
-	private void primaMossaPartita()
-	{
-		try
-		{
-			this.estraiTessera();
-		}
-		catch (PartitaFinitaException e)
-		{
-			e.printStackTrace();
-		}
-		this.areaGioco.addTessera(this.COORD_PRIMA_TESSERA, this.tesseraCorrente);
-	    //dico alla gui!
-		this.fire(new PlaceEvent(this, COORD_PRIMA_TESSERA));
-	}
-
-
-
 	public Tessera getTesseraCorrente()
 	{
 		return this.tesseraCorrente;
@@ -169,9 +150,32 @@ public class ModuloController implements Controller, EventSource
 		}
 	}
 
+	public void cominciaTurno() throws PartitaFinitaException
+	{
+		// Inizia il turno
+		Giocatore giocatoreCorrente = this.partita.getGiocatoreCorrente();
+		this.estraiTessera();
+		this.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
+	}
+
 	protected ContatoreCartografo getContaPunti()
 	{
 		return this.contaPunti;
+	}
+
+	private void primaMossaPartita()
+	{
+		try
+		{
+			this.estraiTessera();
+		}
+		catch (PartitaFinitaException e)
+		{
+			e.printStackTrace();
+		}
+		this.areaGioco.addTessera(this.COORD_PRIMA_TESSERA, this.tesseraCorrente);
+	    //dico alla gui!
+		this.fire(new PlaceEvent(this, COORD_PRIMA_TESSERA));
 	}
 
 	private List<ControllerHandler> attivaHandler()
@@ -180,14 +184,6 @@ public class ModuloController implements Controller, EventSource
 		handlerList.add(new RuotaHandler(this));
 		handlerList.add(new PlaceHandler(this, this.partita.getAreaDiGioco()));
 		return handlerList;
-	}
-
-	public void cominciaTurno() throws PartitaFinitaException
-	{
-		// Inizia il turno
-		Giocatore giocatoreCorrente = this.partita.getGiocatoreCorrente();
-		this.estraiTessera();
-		this.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
 	}
 
 	private void attendiPosizionamentoTessera() throws InterruptedException
@@ -213,6 +209,8 @@ public class ModuloController implements Controller, EventSource
 		}
 		return mapPunteggi;
 	}
+
+	private boolean	tesseraPosizionata;
 
 	private List<View>	listeners;
 

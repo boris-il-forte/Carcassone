@@ -98,10 +98,9 @@ public abstract class Tessera
 	 * @param puntoCardinale
 	 * @return the neighbour
 	 */
-	public ConfineTessera getVicino(PuntoCardinale puntoCardinale)
+	public ConfineTessera getConfineA(PuntoCardinale puntoCardinale)
 	{
-		Elemento elemento = this.lati.getTipoElementoInDirezione(puntoCardinale);
-		return new ConfineTessera(this, elemento);
+		return new ConfineTessera(this, puntoCardinale);
 	}
 
 	/**
