@@ -45,8 +45,13 @@ public class Carcassonne
 	 	controller.addListener(view);
 	 	
 	 	
-	 	view.run();
+	 	//view.run();
 	 	
+	 	Cli cliProva = new Cli();
+	 	
+	   
+	 	cliProva.posizionaTessera(new Coordinate(0, 0));
+	 	cliProva.aggiornaMappa();
 	 	
 	 	
 	 	

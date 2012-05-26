@@ -3,7 +3,9 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -51,6 +53,48 @@ public class GUI extends ModuloView implements ActionListener
 
 	@Override
 	public void posizionaTessera(Coordinate coordinatePosizione)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void ridaiSegnaliniDiTessere(List<AdapterTessera> tessereCostruzioneFinita)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void notificaFinePartita()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void notificaMossaNonValida()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void aggiornaColoreCorrente(Color colore)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
 	{
 		// TODO Auto-generated method stub
 		

@@ -6,16 +6,18 @@ import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
 
+import java.awt.Color;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
 
-public class Cli extends ModuloView 
+public class Cli extends ModuloView
 {
 	public Cli()
 	{
@@ -26,16 +28,16 @@ public class Cli extends ModuloView
 		this.setCoordinataNordOvest(new Coordinate(-LARGHEZZA / 2, -ALTEZZA / 2));
 		this.currentPhase = FasiTurno.Inizio;
 		this.parser = new ParserComandi(this);
-		
+
 	}
 
 	public void giocaFase()
 	{
 		this.aggiornaMappa();
 		this.getInput();
-		//mettiti in attesa
+		// mettiti in attesa
 	}
-	
+
 	@Override
 	public void aggiornaMappa()
 	{
@@ -60,8 +62,14 @@ public class Cli extends ModuloView
 	@Override
 	public void posizionaTessera(Coordinate coordinatePosizione)
 	{
-		this.getScenario().SetTessera(coordinatePosizione, this.getTesseraCorrente());
-		//TODO: va aggiornato vicinato??
+		if (this.getTesseraCorrente() == null /**TODO TEST! **/)
+		{
+		//	this.setTesseraCorrente(); 
+		}
+		{
+			this.getScenario().SetTessera(coordinatePosizione, this.getTesseraCorrente());
+		}
+		// TODO: va aggiornato vicinato??
 	}
 
 	public boolean provaPosizionareTessera(Coordinate coordinate)
@@ -118,6 +126,49 @@ public class Cli extends ModuloView
 		return false;
 	}
 
+	@Override
+	protected void ridaiSegnaliniDiTessere(List<AdapterTessera> tessereCostruzioneFinita)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
+	{
+		
+		
+	}
+
+	@Override
+	protected void notificaFinePartita()
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void notificaMossaNonValida()
+	{
+		this.out.println("Mossa non valida");
+		this.out.flush();
+
+	}
+
+	@Override
+	protected void aggiornaColoreCorrente(Color colore)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
 	private void getInput()
 	{
 		boolean valido;
@@ -147,6 +198,8 @@ public class Cli extends ModuloView
 	private static final int	ALTEZZA		= 5;
 
 	private static final int	LARGHEZZA	= 10;
+	
+	private Color				giocatoreCorrente;
 
 	private final Coordinate	coordinataRelativaSE;
 
@@ -154,7 +207,7 @@ public class Cli extends ModuloView
 
 	private enum FasiTurno {
 		Inizio("Place card or rotate"), Media("Tile or pass"), Attesa("wait server response...");
-		
+
 		private FasiTurno(String messaggio)
 		{
 			this.messaggioUtente = messaggio;
@@ -164,11 +217,11 @@ public class Cli extends ModuloView
 		{
 			return this.messaggioUtente;
 		}
-		
-		//TODO: controllare
+
+		// TODO: controllare
 		public FasiTurno nextPhase()
 		{
-			switch(this)
+			switch (this)
 			{
 				case Inizio:
 					return Media;
@@ -176,14 +229,13 @@ public class Cli extends ModuloView
 					return Attesa;
 				case Attesa:
 					return Inizio;
-					
+
 				default:
 					return Attesa;
 			}
 		}
-		
 
-		private String messaggioUtente;
+		private String	messaggioUtente;
 
 	}
 
