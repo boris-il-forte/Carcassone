@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.EventObject;
 import java.util.List;
+import java.util.Map;
 
 public abstract class ModuloView implements View
 {
@@ -83,7 +84,7 @@ public abstract class ModuloView implements View
 			if(event instanceof CostruzioneCompletataEvent)
 			{
 				 CostruzioneCompletataEvent cce = (CostruzioneCompletataEvent)event;				 
-			     List<AdapterTessera>	tessereAggiornate = cce.getTessereAggiornate();
+				 Map<AdapterTessera, Coordinate> tessereAggiornate = cce.getTessereAggiornate();
 			     this.ridaiSegnaliniDiTessere(tessereAggiornate);
 			}
 			
@@ -93,7 +94,7 @@ public abstract class ModuloView implements View
 		
 	}
 	
-	protected abstract void ridaiSegnaliniDiTessere(List<AdapterTessera> tessereCostruzioneFinita);
+	protected abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
 	
 	protected abstract void mettiEMostraPrimaTessera(AdapterTessera tessIniziale);
 

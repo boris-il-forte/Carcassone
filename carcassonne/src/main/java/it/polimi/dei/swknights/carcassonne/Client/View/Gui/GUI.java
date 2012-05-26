@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JFrame;
 
@@ -59,7 +60,7 @@ public class GUI extends ModuloView implements ActionListener
 	}
 
 	@Override
-	protected void ridaiSegnaliniDiTessere(List<AdapterTessera> tessereCostruzioneFinita)
+	protected void ridaiSegnaliniDiTessere( Map<AdapterTessera, Coordinate> tessereAggiornate)
 	{
 		// TODO Auto-generated method stub
 		
