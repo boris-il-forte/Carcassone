@@ -24,18 +24,23 @@ public class ScenarioDiGioco
 		riga.setTessera(tessera, coordinate.getX());
 	}
 
+	public void togliSegnalinoA(Coordinate coordinata)
+	{
+		//TODO:
+	}
+	
 	public AdapterTessera getTessera(Coordinate coordinate)
 	{
 		int x = coordinate.getX();
 		int y = coordinate.getY();
 		Riga riga = this.mappaRighe.get(y);
-		if(riga!=null)
+		if (riga != null)
 		{
 			return riga.getTessera(x);
 		}
 		else
 		{
-			return null;  //TODO o exception??
+			return null; // TODO o exception??
 		}
 	}
 
@@ -64,11 +69,11 @@ public class ScenarioDiGioco
 				for (Entry<Integer, AdapterTessera> entryTessera : entryRiga.getValue().getEntrySet())
 				{
 					int x = entryTessera.getKey();
-					if(y >= min.getX() && y <= max.getX())
+					if (y >= min.getX() && y <= max.getX())
 					{
-						Coordinate coordinate = new Coordinate(x,y);
+						Coordinate coordinate = new Coordinate(x, y);
 						Vicinato vicinato = this.getVicinato(coordinate);
-						EntryTessera entry = new EntryTessera(coordinate,entryTessera.getValue(),vicinato);
+						EntryTessera entry = new EntryTessera(coordinate, entryTessera.getValue(), vicinato);
 						list.add(entry);
 					}
 				}
@@ -84,21 +89,20 @@ public class ScenarioDiGioco
 		final int sud = PuntoCardinale.sud.toInt();
 		final int ovest = PuntoCardinale.ovest.toInt();
 		final int est = PuntoCardinale.est.toInt();
-		
+
 		boolean vicinato[] = new boolean[4];
-		for(PuntoCardinale puntoCardinale : PuntoCardinale.values())
+		for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
 		{
 			Coordinate coordinateVicino = coordinate.getCoordinateA(puntoCardinale);
 			vicinato[puntoCardinale.toInt()] = this.esisteTesseraA(coordinateVicino);
 		}
-		
+
 		return new Vicinato(vicinato[nord], vicinato[sud], vicinato[ovest], vicinato[est]);
 	}
-	
-	
+
 	private boolean esisteTesseraA(Coordinate coordinate)
 	{
-		return (this.getTessera(coordinate)!=null);
+		return (this.getTessera(coordinate) != null);
 	}
 
 	private Integer getMinX()
@@ -152,6 +156,7 @@ public class ScenarioDiGioco
 		public void setTessera(AdapterTessera tessera, int coordinataX)
 		{
 			this.caselleRiga.put(coordinataX, tessera);
+		
 		}
 
 		public Integer getMax()
@@ -172,4 +177,10 @@ public class ScenarioDiGioco
 		private SortedMap<Integer, AdapterTessera>	caselleRiga;
 
 	}
+
+
+
+
+
+
 }

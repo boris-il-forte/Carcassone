@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 import java.util.List;
 
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Events.DecoraTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 
 /**
@@ -24,6 +25,7 @@ public class CostruzioneCompletataEvent extends ControllerEvent
 	public List<AdapterTessera> getTessereAggiornate()
 	{
 		return this.tessereAggiornate;
+
 	}
 
 	private List<AdapterTessera>	tessereAggiornate;

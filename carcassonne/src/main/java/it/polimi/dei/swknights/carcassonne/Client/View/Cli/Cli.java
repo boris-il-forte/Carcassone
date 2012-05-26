@@ -140,6 +140,13 @@ public class Cli extends ModuloView
 	protected void ridaiSegnaliniDiTessere(List<AdapterTessera> tessereCostruzioneFinita)
 	{
 		// TODO Auto-generated method stub
+		for(AdapterTessera tesseraLiberata : tessereCostruzioneFinita)
+		{
+		   
+			ScenarioDiGioco scenario = this.getScenario();
+			scenario.togliSegnalinoA(coordinata);
+		}
+			
 		
 
 	}
@@ -192,8 +199,8 @@ public class Cli extends ModuloView
 
 		// DatiMappa datiDeg = new DatiMappa(min, max)
 		Stampante stampanteTessera = new Stampante();
-		Vicinato vicinato = new Vicinato(false);
-		stampanteTessera.addTessera(new Coordinate(0, 0), this.getTesseraCorrente().toCliString(), vicinato);
+		Vicinato vicinatoVuoto = new Vicinato(false);
+		stampanteTessera.addTessera(new Coordinate(0, 0), this.getTesseraCorrente().toCliString(), vicinatoVuoto);
 
 		this.out.print(stampanteTessera);
 		this.out.flush();
@@ -243,6 +250,7 @@ public class Cli extends ModuloView
 		
 	}
 
+	
 	private enum FasiTurno {
 		Inizio("Place card or rotate"), Media("Tile or pass"), Attesa("wait server response...");
 
