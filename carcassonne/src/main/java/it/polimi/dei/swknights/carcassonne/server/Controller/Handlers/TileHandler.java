@@ -15,9 +15,6 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 public class TileHandler extends ControllerHandler
 {
-	DatiPartita	model;
-	ModuloController	controller;
-
 	public TileHandler(DatiPartita datiPartita)
 	{
 		this.model = datiPartita;
@@ -33,14 +30,14 @@ public class TileHandler extends ControllerHandler
 	{
 		// TODO: incompleto
 
-		Color coloreGiocatore = controller.getGiocatoreCorrente();
+		Color coloreGiocatore = this.controller.getGiocatoreCorrente();
 		Giocatore giocatore = this.model.getGiocatore(coloreGiocatore);
-		Tessera tesseraDaControllare = controller.getTesseraCorrente();
+		Tessera tesseraDaControllare = this.controller.getTesseraCorrente();
 		PuntoCardinale puntoCardinale = event.getPuntoDestinazione();
 		try
 		{
-			if(costruzioneLibera(null, puntoCardinale)) 
-			{//TODO: il controller deve conoscere le ultime costruzioni
+			if (costruzioneLibera(null, puntoCardinale))
+			{// TODO: il controller deve conoscere le ultime costruzioni
 				Segnalino segnalino = giocatore.getSegnalino();
 				tesseraDaControllare.setSegnalino(segnalino, puntoCardinale);
 			}
@@ -54,11 +51,11 @@ public class TileHandler extends ControllerHandler
 
 	private boolean costruzioneLibera(Costruzione costruzione, PuntoCardinale punto)
 	{
-		// TODO: incompleto   getMapCostruzioniUltimaTessera(); da fare!! ora return null;
-		Map <PuntoCardinale, Costruzione> m = this.controller.getContapunti().getMapCostruzioniUltimaTessera();
-		
-		if (m.get(punto).controllataDa().size() == 0)
-		{	
+		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
+		mappaCostruzioni = this.controller.getContapunti().getMapCostruzioniUltimaTessera();
+
+		if (mappaCostruzioni.get(punto).controllataDa().size() == 0)
+		{
 			return true;
 		}
 		else
@@ -66,5 +63,9 @@ public class TileHandler extends ControllerHandler
 			return false;
 		}
 	}
+
+	DatiPartita			model;
+
+	ModuloController	controller;
 
 }

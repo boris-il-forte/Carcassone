@@ -51,6 +51,46 @@ public class EsploratoreConfini
 	}
 
 	/**
+	 * gets costructions and free space around the card
+	 * 
+	 * @return a set of costructions, some of them could be null if the
+	 *         neighbour is empty or is grass
+	 */
+	public Set<Costruzione> getCostruzioni()
+	{
+		Set<Costruzione> semiSetCostruzioni1 = this.confini.keySet();
+		Set<Costruzione> semiSetCostruzioni2 = this.confinanti.keySet();
+		semiSetCostruzioni1.addAll(semiSetCostruzioni2);
+		return semiSetCostruzioni1;
+	}
+
+	public Map<Costruzione, List<PuntoCardinale>> getMappaCostruzioni()
+	{
+		Map<Costruzione, List<PuntoCardinale>> mappaCostruzioni = new HashMap<Costruzione, List<PuntoCardinale>>();
+		Set<Costruzione> costruzioni = this.getCostruzioni();
+		for (Costruzione costruzione : costruzioni)
+		{
+			List<PuntoCardinale> listaPunti = new ArrayList<PuntoCardinale>();
+			List<ConfineTessera> confini = this.confini.get(costruzione);
+			List<ConfineTessera> confinanti = this.confinanti.get(costruzione);
+			listaPunti.addAll(this.getPunticardinaliDi(confini));
+			listaPunti.addAll(this.getPunticardinaliDi(confinanti));
+			mappaCostruzioni.put(costruzione, listaPunti);
+		}
+		return mappaCostruzioni;
+	}
+
+	private List<PuntoCardinale> getPunticardinaliDi(List<ConfineTessera> confini)
+	{
+		List<PuntoCardinale> lista = new ArrayList<PuntoCardinale>();
+		for(ConfineTessera confine : confini)
+		{
+			lista.add(confine.getPuntoCardinale());
+		}
+		return lista;
+	}
+
+	/**
 	 * gets empty neighbours: free space around the card where nobody placed
 	 * nothing and full neighbours: taken space around the card where someone
 	 * put another card
@@ -89,13 +129,13 @@ public class EsploratoreConfini
 					try
 					{ // vicini pieni
 						Tessera tesseraConfinante = cartaGeografica.getTessera(coordinateConfinante);
-						ConfineTessera confinante = tesseraConfinante.getVicino(puntoCardinale.opposto());
+						ConfineTessera confinante = tesseraConfinante.getConfineA(puntoCardinale.opposto());
 						listaConfinante.add(confinante);
 					}
 					catch (TesseraNonTrovataException e)
 					{ // vicini vuoti
 
-						ConfineTessera confine = tessera.getVicino(puntoCardinale);
+						ConfineTessera confine = tessera.getConfineA(puntoCardinale);
 						listaConfini.add(confine);
 					}
 				}
@@ -115,17 +155,4 @@ public class EsploratoreConfini
 
 	private Map<Costruzione, List<ConfineTessera>>	confini;
 
-	/**
-	 * gets costructions and free space around the card
-	 * 
-	 * @return a set of costructions, some of them could be null if the
-	 *         neighbour is empty or is grass
-	 */
-	public Set<Costruzione> getCostruzioni()
-	{
-		Set<Costruzione> semiSetCostruzioni1 = this.confini.keySet();
-		Set<Costruzione> semiSetCostruzioni2 = this.confinanti.keySet();
-		semiSetCostruzioni1.addAll(semiSetCostruzioni2);
-		return semiSetCostruzioni1;
-	}
 }
