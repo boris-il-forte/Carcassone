@@ -144,9 +144,79 @@ public class Lati
 
 	private static class DatiSegnalino
 	{
+		/* (non-Javadoc)
+		 * @see java.lang.Object#hashCode()
+		 */
+		@Override
+		public int hashCode()
+		{
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((puntoCardinale == null) ? 0 : puntoCardinale.hashCode());
+			result = prime * result + ((segnalino == null) ? 0 : segnalino.hashCode());
+			return result;
+		}
+
+		/* (non-Javadoc)
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@Override
+		public boolean equals(Object obj)
+		{
+			if (this == obj) { return true; }
+			if (obj == null) { return false; }
+			if (!(obj instanceof DatiSegnalino)) { return false; }
+			DatiSegnalino other = (DatiSegnalino) obj;
+			if (puntoCardinale != other.puntoCardinale) { return false; }
+			if (segnalino == null)
+			{
+				if (other.segnalino != null) { return false; }
+			}
+			else if (!segnalino.equals(other.segnalino)) { return false; }
+			return true;
+		}
+
 		public Segnalino		segnalino;
 		
 		public PuntoCardinale	puntoCardinale;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode()
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((datiSegnalino == null) ? 0 : datiSegnalino.hashCode());
+		result = prime * result + ((est == null) ? 0 : est.hashCode());
+		result = prime * result + ((nord == null) ? 0 : nord.hashCode());
+		result = prime * result + ((ovest == null) ? 0 : ovest.hashCode());
+		result = prime * result + ((sud == null) ? 0 : sud.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (getClass() != obj.getClass()) return false;
+		Lati other = (Lati) obj;
+		if (datiSegnalino == null)
+		{
+			if (other.datiSegnalino != null) return false;
+		}
+		else if (!datiSegnalino.equals(other.datiSegnalino)) return false;
+		if (est != other.est) return false;
+		if (nord != other.nord) return false;
+		if (ovest != other.ovest) return false;
+		if (sud != other.sud) return false;
+		return true;
 	}
 
 }

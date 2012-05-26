@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
+import java.util.Arrays;
+
 import it.polimi.dei.swknights.carcassonne.Bussola;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 
@@ -85,5 +87,31 @@ public class Link
 	private boolean[]	direzioni	= new boolean[Bussola.NUMERO_DIREZIONI];
 	
 	private static final int LINKS_NUMBER = 6;
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode()
+	{
+		final int prime = 43;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(direzioni);
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (this == obj) return true;
+		if (obj == null) return false;
+		if (! (obj instanceof Link )) return false;
+		Link other = (Link) obj;
+		if (!Arrays.equals(direzioni, other.direzioni)) return false;
+		return true;
+	}
 
 }
