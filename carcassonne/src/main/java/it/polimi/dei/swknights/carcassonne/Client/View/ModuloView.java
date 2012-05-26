@@ -6,9 +6,13 @@ import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 
 import java.awt.Color;
@@ -43,7 +47,7 @@ public abstract class ModuloView implements View
 				
 				Color coloreIniziale = ige.getGiocatore();
 				AdapterTessera tessIniziale= ige.getTesseraIniziale();
-				this.visualizzaTesseraCorrente(tessIniziale);
+				this.mettiEMostraPrimaTessera(tessIniziale);
 				this.aggiornaColoreCorrente(coloreIniziale);
 				
 			}
@@ -55,6 +59,33 @@ public abstract class ModuloView implements View
 			{
 				this.notificaFinePartita();
 			}
+			if (event instanceof UpdateTurnoEvent)
+			{
+				UpdateTurnoEvent ute = (UpdateTurnoEvent)event;
+				Color colGiocatoreCorrente = ute.getGiocatoreCorrente();
+				AdapterTessera tesseraNuova =  ute.getTessera();
+				
+				this.cambiaEMostraTesseraCorrente(tesseraNuova);
+				this.aggiornaColoreCorrente(colGiocatoreCorrente);
+			}
+			if (event instanceof UpdateRotationEvent)
+			{
+				UpdateRotationEvent ure = (UpdateRotationEvent)event;
+				AdapterTessera tesseraNuova = ure.getTessera();
+				this.cambiaEMostraTesseraCorrente(tesseraNuova);
+			}
+			if(event instanceof UpdatePositionEvent)
+			{
+				//TODO: capire cos'è
+				UpdatePositionEvent upe = (UpdatePositionEvent)event;
+				//questo non ho capito cosa fa di preciso (non è quello del fascio di info??)
+			}
+			if(event instanceof CostruzioneCompletataEvent)
+			{
+				 CostruzioneCompletataEvent cce = (CostruzioneCompletataEvent)event;				 
+			     List<AdapterTessera>	tessereAggiornate = cce.getTessereAggiornate();
+			     this.ridaiSegnaliniDiTessere(tessereAggiornate);
+			}
 			
 			
 		}
@@ -62,6 +93,9 @@ public abstract class ModuloView implements View
 		
 	}
 	
+	protected abstract void ridaiSegnaliniDiTessere(List<AdapterTessera> tessereCostruzioneFinita);
+	
+	protected abstract void mettiEMostraPrimaTessera(AdapterTessera tessIniziale);
 
 	protected abstract void notificaFinePartita();
 	
@@ -69,7 +103,7 @@ public abstract class ModuloView implements View
 	
 	protected abstract void aggiornaColoreCorrente(Color colore);
 	
-	protected abstract void visualizzaTesseraCorrente(AdapterTessera tessera);
+	protected abstract void cambiaEMostraTesseraCorrente(AdapterTessera tessera);
 	
 	public void addListener(EventListener eventListener)
 	{
