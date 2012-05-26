@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Model.AreaDiGioco;
 
 import java.util.List;
@@ -58,6 +59,12 @@ public class ContatoreCartografo
 		}
 	}
 
+	public Map<PuntoCardinale, Costruzione> getMapCostruzioniUltimaTessera()
+	{  //dell'ultima tessera
+		//TODO: !
+		return null;
+	}
+	
 	private Costruzione getCostruzioneAggregata(List<ConfineTessera> listaConfinanti,
 			Costruzione nuovoPezzoCostruzione)
 	{

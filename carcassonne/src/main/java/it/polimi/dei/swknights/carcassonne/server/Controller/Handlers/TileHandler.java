@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 
 import java.awt.Color;
+import java.util.Map;
 
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
@@ -38,7 +39,7 @@ public class TileHandler extends ControllerHandler
 		PuntoCardinale puntoCardinale = event.getPuntoDestinazione();
 		try
 		{
-			if(costruzioneLibera(null)) 
+			if(costruzioneLibera(null, puntoCardinale)) 
 			{//TODO: il controller deve conoscere le ultime costruzioni
 				Segnalino segnalino = giocatore.getSegnalino();
 				tesseraDaControllare.setSegnalino(segnalino, puntoCardinale);
@@ -51,10 +52,19 @@ public class TileHandler extends ControllerHandler
 
 	}
 
-	private boolean costruzioneLibera(Costruzione costruzione)
+	private boolean costruzioneLibera(Costruzione costruzione, PuntoCardinale punto)
 	{
-		// TODO: don't panic and ask explorer
-		return true;
+		// TODO: incompleto   getMapCostruzioniUltimaTessera(); da fare!! ora return null;
+		Map <PuntoCardinale, Costruzione> m = this.controller.getContapunti().getMapCostruzioniUltimaTessera();
+		
+		if (m.get(punto).controllataDa().size() == 0)
+		{	
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 }
