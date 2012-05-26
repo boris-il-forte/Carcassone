@@ -1,12 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
-import java.util.List;
-import java.util.Map;
-
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
-import it.polimi.dei.swknights.carcassonne.Events.DecoraTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
+
+import java.util.Map;
 
 /**
  * Event to be triggered when a streat or a city is completed

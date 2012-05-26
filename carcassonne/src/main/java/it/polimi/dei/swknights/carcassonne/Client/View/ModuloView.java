@@ -77,9 +77,10 @@ public abstract class ModuloView implements View
 			}
 			if(event instanceof UpdatePositionEvent)
 			{
-				//TODO: capire cos'è
+				
 				UpdatePositionEvent upe = (UpdatePositionEvent)event;
-				//questo non ho capito cosa fa di preciso (non è quello del fascio di info??)
+				Coordinate  coord = upe.getCoordinate();
+				this.posizionaTessera(coord);
 			}
 			if(event instanceof CostruzioneCompletataEvent)
 			{
