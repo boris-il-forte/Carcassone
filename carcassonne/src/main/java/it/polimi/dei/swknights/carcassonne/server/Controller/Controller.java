@@ -1,10 +1,12 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.Events.View;
+import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.EventSource;
-import it.polimi.dei.swknights.carcassonne.Events.Controller;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
+import it.polimi.dei.swknights.carcassonne.Events.View;import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
@@ -33,7 +35,7 @@ import java.util.Map;
  * 
  */
 
-public class ModuloController implements Controller, EventSource
+public class Controller implements it.polimi.dei.swknights.carcassonne.Events.Controller, EventSource
 {
 	private boolean	tesseraPosizionata;
 
@@ -41,26 +43,31 @@ public class ModuloController implements Controller, EventSource
 	 * Default Constructor. Initialize data structures
 	 * 
 	 */
-	public ModuloController()
+	public Controller()
 	{
 		this.listeners = new ArrayList<View>();
+		
 		this.partita = new DatiPartita();
 		this.contaPunti = new ContatoreCartografo(this.partita.getAreaDiGioco());
-		this.visitorHandlers = this.attivaHandler();
+		//this.visitorHandlers = this.attivaHandler();
 		this.areaGioco = partita.getAreaDiGioco();
 
 	}
-	
+
 	public void cominciaGioco()
 	{
-		
-		//set up vari?
+
+		// set up vari?
+	
 		this.primaMossaPartita();
 	}
 
-	
+
+
 	private void primaMossaPartita()
 	{
+		// agisco sul model (draw the first card that is one to be placed at the
+		// beginning)
 		try
 		{
 			this.estraiTessera();
@@ -69,12 +76,32 @@ public class ModuloController implements Controller, EventSource
 		{
 			e.printStackTrace();
 		}
+
 		this.areaGioco.addTessera(this.COORD_PRIMA_TESSERA, this.tesseraCorrente);
-	    //dico alla gui!
-		this.fire(new PlaceEvent(this, COORD_PRIMA_TESSERA));
+		// dico alla gui!
+		AdapterTessera tesseraPerView = new AdapterTesseraObject(this.getTesseraCorrente());
+		this.fire(new InizioGiocoEvent(this, tesseraPerView, getGiocatoreCorrente()));
+
 	}
 
+	public void eseguiMossaFase(FasiController fase)
+	{
+		if (fase == FasiController.turn)
+		{
 
+			try
+			{
+				this.estraiTessera();
+			}
+			catch (PartitaFinitaException e)
+			{
+				e.printStackTrace();
+			}
+
+			this.fire(new UpdateTurnoEvent(this, this.getGiocatoreCorrente(), this.getTesseraCorrente()));
+
+		}
+	}
 
 	public Tessera getTesseraCorrente()
 	{
@@ -128,7 +155,7 @@ public class ModuloController implements Controller, EventSource
 	/**
 	 * Method that should be called when firing an event to the Controller
 	 * 
-	 * @see it.polimi.dei.swknights.carcassonne.Events.Controller#riceviInput()
+	 * @see it.polimi.dei.swknights.carcassonne.Events.ViewListener#riceviInput()
 	 */
 	public void riceviInput(ViewEvent event)
 	{
@@ -145,7 +172,8 @@ public class ModuloController implements Controller, EventSource
 			while (true)
 			{
 				this.cominciaTurno();
-				this.attendiPosizionamentoTessera();
+
+				// this.attendiPosizionamentoTessera();
 			}
 
 		}
@@ -154,18 +182,17 @@ public class ModuloController implements Controller, EventSource
 			this.fire(new FinePartitaEvent(this, this.getMappaPunteggi()));
 
 		}
-		catch (InterruptedException e)
-		{
-			e.printStackTrace();
-		}
+		/*
+		 * catch (InterruptedException e) { e.printStackTrace(); }
+		 */
 	}
 
 	public void fire(EventObject event)
 	{
 		System.out.println("sono controller: lancio event:" + event.toString());
-		for (View listener : this.listeners)
+		for (View listenerView : this.listeners)
 		{
-			listener.riceviModificheModel(event);
+			listenerView.riceviModificheModel(event);
 		}
 	}
 
@@ -174,20 +201,15 @@ public class ModuloController implements Controller, EventSource
 		return this.contaPunti;
 	}
 
-	private List<ControllerHandler> attivaHandler()
-	{
-		List<ControllerHandler> handlerList = new ArrayList<ControllerHandler>();
-		handlerList.add(new RuotaHandler(this));
-		handlerList.add(new PlaceHandler(this, this.partita.getAreaDiGioco()));
-		return handlerList;
-	}
 
-	public void cominciaTurno() throws PartitaFinitaException
+
+	private void cominciaTurno() throws PartitaFinitaException
 	{
 		// Inizia il turno
 		Giocatore giocatoreCorrente = this.partita.getGiocatoreCorrente();
 		this.estraiTessera();
 		this.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
+
 	}
 
 	private void attendiPosizionamentoTessera() throws InterruptedException
@@ -214,6 +236,12 @@ public class ModuloController implements Controller, EventSource
 		return mapPunteggi;
 	}
 
+	
+	public enum FasiController
+	{
+		turn, rotated, update, end
+	}
+	
 	private List<View>	listeners;
 
 	private List<ControllerHandler>		visitorHandlers;
@@ -223,9 +251,10 @@ public class ModuloController implements Controller, EventSource
 	private ContatoreCartografo			contaPunti;
 
 	private DatiPartita					partita;
-	
-	private final AreaDiGioco					areaGioco;
-	
-	private final Coordinate COORD_PRIMA_TESSERA = new Coordinate(0, 0);
+
+	private final AreaDiGioco			areaGioco;
+
+	private final Coordinate			COORD_PRIMA_TESSERA	= new Coordinate(0, 0);
+
 
 }
