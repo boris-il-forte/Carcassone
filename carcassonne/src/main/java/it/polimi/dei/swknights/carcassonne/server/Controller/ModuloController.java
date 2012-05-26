@@ -51,9 +51,6 @@ public class ModuloController implements Controller, EventSource
 
 	}
 	
-
-	
-	
 	public void cominciaGioco()
 	{
 		
