@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
@@ -30,6 +31,9 @@ public class PlaceHandler extends ControllerHandler
 		{
 			areaDiGioco.addTessera(coordinate, tessera);
 			this.controller.getContapunti().riceviCoordinateTessera(coordinate);
+			this.controller.fire(
+					new UpdatePositionEvent(
+							tessera, coordinate, this.controller.getGiocatoreCorrente(), this));
 		}
 		else
 		{

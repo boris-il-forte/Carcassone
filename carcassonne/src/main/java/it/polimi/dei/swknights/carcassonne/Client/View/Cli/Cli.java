@@ -23,6 +23,7 @@ import java.awt.Color;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 public class Cli extends ModuloView
@@ -138,16 +139,16 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	protected void ridaiSegnaliniDiTessere( Map<AdapterTessera, Coordinate> tessereCostruzioneFinita)
+	protected void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereCostruzioneFinita)
 	{
 		ScenarioDiGioco scenario = this.getScenario();
-		for(AdapterTessera tesseraLiberata : tessereCostruzioneFinita.keySet())
+		for (Entry<AdapterTessera, Coordinate> entryAdapterCoord : tessereCostruzioneFinita.entrySet())
 		{
-			scenario.SetTessera( tessereCostruzioneFinita.get(tesseraLiberata), tesseraLiberata);
-			
+			Coordinate coord = entryAdapterCoord.getValue();
+			AdapterTessera tessera = entryAdapterCoord.getKey();
+			scenario.SetTessera(coord, tessera);
+
 		}
-			
-		
 
 	}
 
@@ -200,7 +201,8 @@ public class Cli extends ModuloView
 		// DatiMappa datiDeg = new DatiMappa(min, max)
 		Stampante stampanteTessera = new Stampante();
 		Vicinato vicinatoVuoto = new Vicinato(false);
-		stampanteTessera.addTessera(new Coordinate(0, 0), this.getTesseraCorrente().toCliString(), vicinatoVuoto);
+		stampanteTessera.addTessera(new Coordinate(0, 0), this.getTesseraCorrente().toCliString(),
+				vicinatoVuoto);
 
 		this.out.print(stampanteTessera);
 		this.out.flush();
@@ -247,10 +249,9 @@ public class Cli extends ModuloView
 	{
 		this.out.println(message);
 		this.out.flush();
-		
+
 	}
 
-	
 	private enum FasiTurno {
 		Inizio("Place card or rotate"), Media("Tile or pass"), Attesa("wait server response...");
 
