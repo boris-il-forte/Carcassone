@@ -22,6 +22,7 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 import java.awt.Color;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Cli extends ModuloView
@@ -137,14 +138,13 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	protected void ridaiSegnaliniDiTessere(List<AdapterTessera> tessereCostruzioneFinita)
+	protected void ridaiSegnaliniDiTessere( Map<AdapterTessera, Coordinate> tessereCostruzioneFinita)
 	{
-		// TODO Auto-generated method stub
-		for(AdapterTessera tesseraLiberata : tessereCostruzioneFinita)
+		ScenarioDiGioco scenario = this.getScenario();
+		for(AdapterTessera tesseraLiberata : tessereCostruzioneFinita.keySet())
 		{
-		   
-			ScenarioDiGioco scenario = this.getScenario();
-			scenario.togliSegnalinoA(coordinata);
+			scenario.SetTessera( tessereCostruzioneFinita.get(tesseraLiberata), tesseraLiberata);
+			
 		}
 			
 		

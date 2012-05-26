@@ -24,10 +24,7 @@ public class ScenarioDiGioco
 		riga.setTessera(tessera, coordinate.getX());
 	}
 
-	public void togliSegnalinoA(Coordinate coordinata)
-	{
-		//TODO:
-	}
+	
 	
 	public AdapterTessera getTessera(Coordinate coordinate)
 	{
@@ -148,12 +145,12 @@ public class ScenarioDiGioco
 			this.caselleRiga = new TreeMap<Integer, AdapterTessera>();
 		}
 
-		public AdapterTessera getTessera(int coordinataX)
+		public AdapterTessera getTessera(Integer coordinataX)
 		{
 			return this.caselleRiga.get(coordinataX);
 		}
 
-		public void setTessera(AdapterTessera tessera, int coordinataX)
+		public void setTessera(AdapterTessera tessera, Integer coordinataX)
 		{
 			this.caselleRiga.put(coordinataX, tessera);
 		
@@ -177,6 +174,7 @@ public class ScenarioDiGioco
 		private SortedMap<Integer, AdapterTessera>	caselleRiga;
 
 	}
+
 
 
 
