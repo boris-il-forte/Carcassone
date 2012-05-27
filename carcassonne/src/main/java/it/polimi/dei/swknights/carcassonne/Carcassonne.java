@@ -8,6 +8,7 @@ import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
+import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
 
 public class Carcassonne
@@ -40,11 +41,11 @@ public class Carcassonne
 			risposta = scannerIO.nextLine();
 		}
 		while(risposta.compareToIgnoreCase("CLI") != 0);
-		
-		Controller controller = new ModuloController();
+		ModuloModel model = new ModuloModel();
+		Controller controller = new ModuloController(model);
 	    view = new Cli();		
 		view.addListener(controller);
-	 	controller.addListener(view);
+	 	model.addListener(view);
 	 	superStarDestroyer.execute(view);
 	 	superStarDestroyer.execute(controller);	 	
 	}
