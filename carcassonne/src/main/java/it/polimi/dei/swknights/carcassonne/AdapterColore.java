@@ -17,14 +17,12 @@ public class AdapterColore
 	public AdapterColore(Color color)
 	{
 		this.color = color;
-		this.mappaColori.put(Color.RED, "R");
-		this.mappaColori.put(Color.BLUE, "B");
-		this.mappaColori.put(Color.GREEN, "G");
-		this.mappaColori.put(Color.YELLOW, "Y");
-		this.mappaColori.put(Color.BLACK, "K");
+		this.mappaColori.put(Color.RED, "R Rosso");
+		this.mappaColori.put(Color.BLUE, "B Blu");
+		this.mappaColori.put(Color.GREEN, "G Verde");
+		this.mappaColori.put(Color.YELLOW, "Y Giallo");
+		this.mappaColori.put(Color.BLACK, "K Nero");
 	}
-
-	private final Map<Color, String>	mappaColori	= new HashMap<Color, String>();
 
 	@Override
 	/**
@@ -32,9 +30,23 @@ public class AdapterColore
 	 */
 	public String toString()
 	{
-		return mappaColori.get(this.color);
+		String[] stringhe = this.getStringhe();
+		return stringhe[0];
+	}
+	
+	public String toName()
+	{
+		String[] stringhe = this.getStringhe();
+		return stringhe[1];
+	}
+	
+	private String[] getStringhe()
+	{
+		return this.mappaColori.get(this.color).split(" ");
 	}
 
 	private Color	color;
+	
+	private final Map<Color, String>	mappaColori	= new HashMap<Color, String>();
 
 }
