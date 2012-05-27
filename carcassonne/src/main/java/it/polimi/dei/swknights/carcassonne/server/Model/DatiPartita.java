@@ -29,10 +29,18 @@ public class DatiPartita
 	public DatiPartita()
 	{
 		this.factoryGiocatori = new FactoryGiocatore();
+		this.listFactoryTessere = new ArrayList<FactoryTessere>();
+		this.listFactoryTessere.add(new FactoryTessereNormali());
 		this.inizializzaPilaTessere();
 		this.inizializzaGiocatori();
 		this.inizializzaAreaDiGioco();
 	}
+
+	/**
+	 * Getter for AreaDiGioco
+	 * 
+	 * @return the AreaDiGioco of this game
+	 */
 
 	public AreaDiGioco getAreaDiGioco()
 	{
@@ -52,9 +60,7 @@ public class DatiPartita
 
 		for (Giocatore giocatore : this.giocatori)
 		{
-			if (giocatore.getColore() == colore) {
-				return giocatore;
-			}
+			if (giocatore.getColore() == colore) { return giocatore; }
 
 		}
 
@@ -62,9 +68,28 @@ public class DatiPartita
 
 	}
 
+	/**
+	 * Get the current player
+	 * 
+	 * @return the player who's turn is
+	 */
+
 	public Giocatore getGiocatoreCorrente()
 	{
 		return this.giocatoreCorrente;
+	}
+
+	/**
+	 * Get the Player's list
+	 * 
+	 * @return the current players list
+	 */
+
+	public List<Giocatore> getListaGiocatori()
+	{
+		List<Giocatore> giocatori = new ArrayList<Giocatore>();
+		giocatori.addAll(this.giocatori);
+		return giocatori;
 	}
 
 	/**
@@ -83,7 +108,8 @@ public class DatiPartita
 	 * @throws PartitaFinitaException
 	 *             if the cards are finished, and so the game ends
 	 */
-	public Tessera getTessera() throws PartitaFinitaException
+
+	public Tessera pescaTesseraDalMazzo() throws PartitaFinitaException
 	{
 		int index = pilaTessere.size();
 		if (index > 0)
@@ -97,12 +123,19 @@ public class DatiPartita
 		}
 
 	}
+	
+	
+	public Tessera pescaPrimaTessera()
+	{
+		return this.tesseraMagic;
+	}
 
 	/**
 	 * Add a player to the current group of players
 	 * 
 	 * @throws FinitiColoriDisponibiliException
 	 */
+
 	public void addGiocatore() throws FinitiColoriDisponibiliException
 	{
 		Giocatore playerToAdd;
@@ -135,30 +168,40 @@ public class DatiPartita
 	private void inizializzaPilaTessere()
 	{
 		this.pilaTessere = new ArrayList<Tessera>();
-		FactoryTessere factory = new FactoryTessereNormali();
-        factory.acquisisciMazzoDaFile("/Carcassonne.txt");		
-		while (factory.tesseraDisponibile())
+		for(FactoryTessere factory : this.listFactoryTessere)
 		{
-			this.pilaTessere.add(factory.getTessera());
+			//TODO cambiare modo di assegnare percorso...
+			factory.acquisisciMazzoDaFile("/Carcassonne.txt");
+			while (factory.tesseraDisponibile())
+			{
+				this.pilaTessere.add(factory.getTessera());
+			}
+			Collections.shuffle(this.pilaTessere);
+			this.setPrimaTessera(factory.getTesseraMagic());
 		}
-		Collections.shuffle(this.pilaTessere);
+
 	}
-
-	private AreaDiGioco				areaDiGioco;
-
-	private List<Tessera>			pilaTessere;
-
-	private Giocatore				giocatoreCorrente;
-
-	private Queue<Giocatore>		giocatori;
-
-	private final FactoryGiocatore	factoryGiocatori;
-
-	public List<Giocatore> getListaGiocatori()
+	
+	private void setPrimaTessera(Tessera primaTessera)
 	{
-		List<Giocatore> giocatori = new ArrayList<Giocatore>();
-		giocatori.addAll(this.giocatori);
-		return giocatori;
+		if(primaTessera!=null && this.tesseraMagic == null)
+		{
+			this.tesseraMagic = primaTessera;
+		}
 	}
+
+	private AreaDiGioco					areaDiGioco;
+
+	private Tessera						tesseraMagic;
+
+	private List<Tessera>				pilaTessere;
+
+	private Giocatore					giocatoreCorrente;
+
+	private Queue<Giocatore>			giocatori;
+
+	private final List<FactoryTessere>	listFactoryTessere;
+
+	private final FactoryGiocatore		factoryGiocatori;
 
 }

@@ -28,8 +28,8 @@ public class FactoryTessereNormali extends FactoryTessere
 
 	public FactoryTessereNormali()
 	{
+		super();
 		this.descrizioniTessere = new ArrayList<String>();
-		this.mazzo = new ArrayList<Tessera>();
 	}
 
 	@Override
@@ -67,24 +67,20 @@ public class FactoryTessereNormali extends FactoryTessere
 					&& tessera.lati.getTipoElementoInDirezione(PuntoCardinale.ovest) == Elemento.strada
 					&& tessera.lati.getTipoElementoInDirezione(PuntoCardinale.est) == Elemento.strada)
 			{
-				tesseraMagic = this.tesseraDaDescrzione(descrizione); // con =
-																		// tessera
-																		// copierei
-																		// riferimento
+				tesseraMagic = this.tesseraDaDescrzione(descrizione);
 			}
 			else
 			{
-				this.mazzo.add(tessera);
+				this.aggiungiAlMazzo(tessera);
 			}
 
 		}
 
 		if (tesseraMagic == null) { throw new NoFirstCardException(
 				"controlla il file tessere e la factory perchè manca la tessera iniziale");
-		// potrebbe mettercela dato che sa come farla volendo.. ma meglio
 		}
 
-		this.mazzo.add(tesseraMagic);
+		this.setTesseraMagick(tesseraMagic);
 
 	}
 
@@ -171,11 +167,6 @@ public class FactoryTessereNormali extends FactoryTessere
 		in.close();
 
 	}
-	
-	
-
-	
-	
 
 	private List<String>	descrizioniTessere;
 

@@ -86,27 +86,16 @@ public class ModuloModel implements Model
 
 	}
 
-	public void iniziaGioco()
+	public void iniziaGioco(int numeroGiocatori)
 	{
-		Tessera primaTessera=null;
-		try
-		{
-			primaTessera = this.getTesseraDaMazzo();
-		}
-		catch (PartitaFinitaException e)
-		{
-			e.printStackTrace();
-		}
-		
+		Tessera primaTessera = this.datiPartita.pescaPrimaTessera();
 		AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
-		
-		this.creaGiocatori(2);
+		this.creaGiocatori(numeroGiocatori);
 		this.datiPartita.getAreaDiGioco().addTessera(new Coordinate(0, 0), primaTessera);
 		this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore()));
-		
 	}
 
-	public void piazzaTessera(Tessera tessera, Coordinate coordinate)
+	public void posizionaTessera(Tessera tessera, Coordinate coordinate)
 	{
 		AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
 		Giocatore giocatore = this.datiPartita.getGiocatoreCorrente();
@@ -126,7 +115,7 @@ public class ModuloModel implements Model
 
 	public Tessera getTesseraDaMazzo() throws PartitaFinitaException
 	{
-		return this.datiPartita.getTessera();
+		return this.datiPartita.pescaTesseraDalMazzo();
 	}
 
 	public List<Giocatore> getListaGiocatori()

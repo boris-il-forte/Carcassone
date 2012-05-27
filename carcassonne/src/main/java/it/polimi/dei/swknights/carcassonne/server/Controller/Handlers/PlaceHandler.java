@@ -26,7 +26,7 @@ public class PlaceHandler extends ControllerHandler
 		if (this.tuttoVicinatoDAccordo(coordinate, tessera))
 		{
 			this.controller.getContapunti().riceviCoordinateTessera(coordinate);
-			this.model.piazzaTessera(tessera, coordinate);
+			this.model.posizionaTessera(tessera, coordinate);
 		}
 		else
 		{
