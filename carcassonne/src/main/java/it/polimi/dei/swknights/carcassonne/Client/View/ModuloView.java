@@ -64,6 +64,8 @@ public abstract class ModuloView implements View
 			}
 			if (event instanceof UpdateTurnoEvent)
 			{
+				this.aggiornaMappa();
+				
 				UpdateTurnoEvent ute = (UpdateTurnoEvent) event;
 				Color colGiocatoreCorrente = ute.getGiocatoreCorrente();
 				AdapterTessera tesseraNuova = ute.getTessera();
@@ -75,6 +77,8 @@ public abstract class ModuloView implements View
 			}
 			if (event instanceof UpdateRotationEvent)
 			{
+				this.aggiornaMappa();
+				
 				UpdateRotationEvent ure = (UpdateRotationEvent) event;
 				AdapterTessera tesseraNuova = ure.getTessera();
 				this.cambiaEMostraTesseraCorrente(tesseraNuova);
@@ -95,7 +99,7 @@ public abstract class ModuloView implements View
 
 		}
 
-		this.giocaFase();
+		this.attendiInput();
 	}
 
 	public void addListener(EventListener eventListener)
@@ -119,7 +123,7 @@ public abstract class ModuloView implements View
 		}
 	}
 
-	protected abstract void giocaFase();
+	protected abstract void attendiInput();
 
 	protected abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
 

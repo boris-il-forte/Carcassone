@@ -102,7 +102,7 @@ public class GUI extends ModuloView implements ActionListener
 	}
 
 	@Override
-	protected void giocaFase()
+	protected void attendiInput()
 	{
 		// TODO Auto-generated method stub
 		

@@ -93,13 +93,12 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	synchronized protected void giocaFase()
+	synchronized protected void attendiInput()
 	{
 		System.out.println("GIOCA FASE");
-		
-		this.aggiornaMappa();
+		this.informaUser.setPhase( this.getFaseTurno());
 		this.getInput();
-		// mettiti in attesa
+
 	}
 
 	@Override
@@ -151,6 +150,7 @@ public class Cli extends ModuloView
 	@Override
 	protected void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
 	{
+		System.out.println("CAMBIO TESSERA CORRENTE E LA MOSTRO");
 		this.setTesseraCorrente(tessera);
 		this.informaUser.setTesseraCorrente(tessera);
 		this.informaUser.mostraTesseraCorrente();
@@ -198,6 +198,7 @@ public class Cli extends ModuloView
 
 	synchronized private void getInput()
 	{
+		System.out.println("GET INPUT");
 		boolean valido;
 		do
 		{

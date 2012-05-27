@@ -18,6 +18,7 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +46,7 @@ public class ModuloController implements Controller
 
 	public void run()
 	{
+		this.cominciaGioco();
 		try
 		{
 			while (true)
@@ -80,7 +82,7 @@ public class ModuloController implements Controller
 
 	public void cominciaGioco()
 	{
-
+		System.out.println("COMINCIA GIOCO");
 		// set up vari?
 		this.primaMossaPartita();
 	}
@@ -143,6 +145,7 @@ public class ModuloController implements Controller
 	{
 		while (!this.tesseraPosizionata)
 		{
+			System.out.println("WAIT");
 			wait();
 		}
 	}
@@ -174,5 +177,17 @@ public class ModuloController implements Controller
 	private final ModuloModel		model;
 
 	private final Coordinate		COORD_PRIMA_TESSERA	= new Coordinate(0, 0);
+
+	public void addListener(EventListener eventListener)
+	{
+		
+		
+	}
+
+	public void removeListener(EventListener eventListener)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 
 }
