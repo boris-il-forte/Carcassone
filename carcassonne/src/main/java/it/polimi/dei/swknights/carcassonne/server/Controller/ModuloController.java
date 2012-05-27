@@ -1,8 +1,11 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
@@ -83,7 +86,6 @@ public class ModuloController implements Controller
 	public void cominciaGioco()
 	{
 		System.out.println("COMINCIA GIOCO");
-		// set up vari?
 		this.primaMossaPartita();
 	}
 
@@ -108,6 +110,26 @@ public class ModuloController implements Controller
 		return this.contaPunti;
 	}
 
+	private void primaMossaPartita()
+	{
+		Tessera primaTessera=null;
+		try
+		{
+			primaTessera = this.model.getTesseraDaMazzo();
+		}
+		catch (PartitaFinitaException e)
+		{
+			e.printStackTrace();
+		}
+		
+		AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
+		
+		this.model.creaGiocatori(2);
+		this.model.piazzaTessera(primaTessera, new Coordinate(0, 0));
+		this.model.fire(new InizioGiocoEvent(this, tessera, getGiocatoreCorrente()));
+	
+	}
+
 	private void cominciaTurno() throws PartitaFinitaException
 	{
 		// Inizia il turno
@@ -116,7 +138,7 @@ public class ModuloController implements Controller
 		this.model.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
 	}
 
-	private void primaMossaPartita()
+	private void primaMossaTurno()
 	{
 		try
 		{
@@ -153,6 +175,7 @@ public class ModuloController implements Controller
 	private void estraiTessera() throws PartitaFinitaException
 	{
 		tesseraCorrente = this.model.getTesseraDaMazzo();
+		
 	}
 
 	private Map<Color, Integer> getMappaPunteggi()
