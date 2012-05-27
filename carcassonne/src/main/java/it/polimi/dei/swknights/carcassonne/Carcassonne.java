@@ -41,8 +41,11 @@ public class Carcassonne
 			risposta = scannerIO.nextLine();
 		}
 		while(risposta.compareToIgnoreCase("CLI") != 0);
+
+		
 		ModuloModel model = new ModuloModel();
 		Controller controller = new ModuloController(model);
+
 	    view = new Cli();		
 		view.addListener(controller);
 	 	model.addListener(view);
