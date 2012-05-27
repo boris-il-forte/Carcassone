@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 import java.awt.Color;
 
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 
 public class InizioGiocoEvent extends ControllerEvent
 {
@@ -13,6 +14,7 @@ public class InizioGiocoEvent extends ControllerEvent
 		super(source);
 		this.giocatore=giocatore;
 		this.tesseraIniziale = tesseraIniziale;
+		this.setComando(MessaggiController.beginGame);
 		
 	}
 	

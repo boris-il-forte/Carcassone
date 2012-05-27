@@ -1,13 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
-import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
@@ -54,16 +49,16 @@ public class ModuloController implements Controller
 		{
 			while (true)
 			{
-				this.cominciaTurno();
+				this.primaMossaTurno();
 				this.attendiPosizionamentoTessera();
 			}
 	
 		}
-		catch (PartitaFinitaException e)
+		/*catch (PartitaFinitaException e)
 		{
 			this.model.fire(new FinePartitaEvent(this, this.getMappaPunteggi()));
 	
-		}
+		}*/
 		catch (InterruptedException e)
 		{
 			e.printStackTrace();
@@ -112,34 +107,16 @@ public class ModuloController implements Controller
 
 	private void primaMossaPartita()
 	{
-		Tessera primaTessera=null;
-		try
-		{
-			primaTessera = this.model.getTesseraDaMazzo();
-		}
-		catch (PartitaFinitaException e)
-		{
-			e.printStackTrace();
-		}
-		
-		AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
-		
-		this.model.creaGiocatori(2);
-		this.model.piazzaTessera(primaTessera, new Coordinate(0, 0));
-		this.model.fire(new InizioGiocoEvent(this, tessera, getGiocatoreCorrente()));
-	
+		this.model.iniziaGioco();
 	}
 
-	private void cominciaTurno() throws PartitaFinitaException
-	{
-		// Inizia il turno
-		Giocatore giocatoreCorrente = this.model.getGiocatoreCorrente();
-		this.estraiTessera();
-		this.model.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
-	}
+	
 
 	private void primaMossaTurno()
 	{
+		
+		System.out.println("INIZIO TURNO");
+		Giocatore giocatoreCorrente = this.model.getGiocatoreCorrente();
 		try
 		{
 			this.estraiTessera();
@@ -149,8 +126,8 @@ public class ModuloController implements Controller
 			e.printStackTrace();
 		}
 		this.model.piazzaTessera(this.tesseraCorrente, this.COORD_PRIMA_TESSERA);
-		// dico alla gui!
-		this.model.fire(new PlaceEvent(this, COORD_PRIMA_TESSERA));
+		this.model.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
+		
 	}
 
 	private List<ControllerHandler> attivaHandler()

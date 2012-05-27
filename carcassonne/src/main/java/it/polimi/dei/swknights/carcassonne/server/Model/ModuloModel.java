@@ -6,8 +6,11 @@ import java.util.EventObject;
 import java.util.List;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Model;
 import it.polimi.dei.swknights.carcassonne.Events.View;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
@@ -71,7 +74,7 @@ public class ModuloModel implements Model
 	{
 		try
 		{
-			for (int i = 0; i < numeroGiocatori; i++)
+			for (int i = 1; i < numeroGiocatori; i++)
 			{
 				this.datiPartita.addGiocatore();
 			}
@@ -81,6 +84,26 @@ public class ModuloModel implements Model
 			throw new IllegalArgumentException("hai chiesto troppi giocatori");
 		}
 
+	}
+
+	public void iniziaGioco()
+	{
+		Tessera primaTessera=null;
+		try
+		{
+			primaTessera = this.getTesseraDaMazzo();
+		}
+		catch (PartitaFinitaException e)
+		{
+			e.printStackTrace();
+		}
+		
+		AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
+		
+		this.creaGiocatori(2);
+		this.datiPartita.getAreaDiGioco().addTessera(new Coordinate(0, 0), primaTessera);
+		this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore()));
+		
 	}
 
 	public void piazzaTessera(Tessera tessera, Coordinate coordinate)
