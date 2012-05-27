@@ -51,7 +51,6 @@ public class AvvisiUser
 	public void setPhase(FasiTurno faseTurno)
 	{
 		this.faseTurno = faseTurno;
-
 	}
 
 	public void setTesseraCorrente(AdapterTessera tessera)

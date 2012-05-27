@@ -60,8 +60,10 @@ public class ModuloModel implements Model
 
 	public void fire(EventObject event)
 	{
-		// TODO Auto-generated method stub
-
+		for(View listener : this.listeners)
+		{
+			listener.riceviModificheModel(event);
+		}
 	}
 
 	public void piazzaTessera(Tessera tessera, Coordinate coordinate)
@@ -79,8 +81,7 @@ public class ModuloModel implements Model
 
 	public Giocatore getGiocatoreCorrente()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return this.datiPartita.getGiocatoreCorrente();
 	}
 
 	public Tessera getTesseraDaMazzo() throws PartitaFinitaException
