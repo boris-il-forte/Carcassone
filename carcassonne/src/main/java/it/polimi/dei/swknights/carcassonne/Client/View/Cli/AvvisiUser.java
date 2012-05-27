@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
+import it.polimi.dei.swknights.carcassonne.AdapterColore;
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Client.View.FasiTurno;
 import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
@@ -13,7 +14,8 @@ public class AvvisiUser
 
 	public void chiediComando()
 	{
-		this.notificaVideo("Tocca a te giocatore " + this.coloreGiocatore.toString() + "!");
+		AdapterColore colore = new AdapterColore(this.coloreGiocatore);
+		this.notificaVideo("Tocca a te giocatore " + colore.toName() + "!");
 		this.notificaVideo("Inserisci comando");
 		this.notificaVideo(faseTurno.toString());
 
@@ -73,6 +75,7 @@ public class AvvisiUser
 	private AdapterTessera	tesseraCorrente;
 
 	private PrintWriter		out;
+	
 	private FasiTurno		faseTurno;
 
 	private Color			coloreGiocatore;
