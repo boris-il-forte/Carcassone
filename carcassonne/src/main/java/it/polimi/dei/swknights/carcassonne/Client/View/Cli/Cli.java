@@ -4,21 +4,14 @@ import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
+import it.polimi.dei.swknights.carcassonne.Client.View.FasiTurno;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
-import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
-import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Lati;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Link;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
-
 import java.awt.Color;
 import java.io.PrintWriter;
 import java.util.List;
@@ -26,6 +19,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
+/**
+ * Command Line Interface
+ * 
+ * @author edoardopasi & dave
+ * 
+ */
 public class Cli extends ModuloView
 {
 	public Cli()
@@ -35,15 +34,21 @@ public class Cli extends ModuloView
 		this.in = new Scanner(System.in);
 		this.coordinataRelativaSE = new Coordinate(LARGHEZZA, ALTEZZA);
 		this.setCoordinataNordOvest(new Coordinate(-LARGHEZZA / 2, -ALTEZZA / 2));
-		this.currentPhase = FasiTurno.Inizio;
 		this.parser = new ParserComandi(this);
+		this.informaUser = new AvvisiUser(out);
 
 	}
 
-	
+	/**
+	 * Executed in response of x,y place the card only if the command is given
+	 * in a appropriate game phase
+	 * 
+	 * @param coordinate
+	 * @return true if the card is placed
+	 */
 	public boolean provaPosizionareTessera(Coordinate coordinate)
 	{
-		if (currentPhase == FasiTurno.Inizio)
+		if (this.getFaseTurno() == FasiTurno.Inizio)
 		{
 			this.fire(new PlaceEvent(this, coordinate));
 			return true;
@@ -58,6 +63,9 @@ public class Cli extends ModuloView
 	@Override
 	protected void aggiornaMappa()
 	{
+		
+		System.out.println("AGGIORNO MAPPA");
+		
 		ScenarioDiGioco scenario = this.getScenario();
 		Stampante stampante = this.inizializzaStampante();
 		Coordinate base = this.getCoordinataNordOvest();
@@ -69,37 +77,30 @@ public class Cli extends ModuloView
 		this.out.flush();
 	}
 
-
 	@Override
 	protected void posizionaTessera(Coordinate coordinatePosizione)
 	{
-		if (this.getTesseraCorrente() == null /* TODO: JUST FOR TESTING! */)
-		{
-			Tessera tessera = new TesseraNormale(new Lati(Elemento.prato, Elemento.prato, Elemento.citta,
-					Elemento.citta), new Link(false, false, false, false, false, false));
-	
-			this.setTesseraCorrente(new AdapterTesseraObject(tessera));
-		}
+		System.out.println("POSIZIONO TESSERA");
+		
 		this.getScenario().SetTessera(coordinatePosizione, this.getTesseraCorrente());
 	}
-
 
 	@Override
 	protected void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
 	{
 		// TODO Auto-generated method stub
-	
-	}
 
+	}
 
 	@Override
 	synchronized protected void giocaFase()
 	{
+		System.out.println("GIOCA FASE");
+		
 		this.aggiornaMappa();
 		this.getInput();
 		// mettiti in attesa
 	}
-
 
 	@Override
 	protected void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereCostruzioneFinita)
@@ -118,6 +119,10 @@ public class Cli extends ModuloView
 	@Override
 	protected void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
 	{
+		System.out.println("METTO LA PRIMA TESSERA IN CENTRO");
+		
+	     // in modulo View viene messo fase=inizio
+		this.informaUser.setPhase(this.getFaseTurno());
 		this.setTesseraCorrente(tessIniziale);
 		this.posizionaTessera(this.centroScenario);
 		this.aggiornaMappa();
@@ -127,53 +132,33 @@ public class Cli extends ModuloView
 	@Override
 	protected void notificaFinePartita()
 	{
-		this.notificaVideo("Fine Partita!");
+		this.informaUser.notificaFinePartita();
 	}
 
 	@Override
 	protected void notificaMossaNonValida()
 	{
-		this.notificaVideo("Mossa non valida!");
+		this.informaUser.notificaMossaNonValida();
 
 	}
 
 	@Override
 	protected void aggiornaColoreCorrente(Color colore)
 	{
-		this.setColore(colore);
+		this.informaUser.setColore(colore);
 	}
 
 	@Override
 	protected void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
 	{
 		this.setTesseraCorrente(tessera);
-		this.mostraTesseraCorrente();
-	}
-
-	protected void mostraTesseraCorrente()
-	{
-		if (this.getTesseraCorrente() == null /* TODO: JUST FOR TESTING! */)
-		{
-			Tessera tessera = new TesseraNormale(new Lati(Elemento.citta, Elemento.citta, Elemento.strada,
-					Elemento.citta), new Link(false, true, true, true, false, false));
-
-			this.setTesseraCorrente(new AdapterTesseraObject(tessera));
-		}
-
-		// DatiMappa datiDeg = new DatiMappa(min, max)
-		Stampante stampanteTessera = new Stampante();
-		Vicinato vicinatoVuoto = new Vicinato(false);
-		stampanteTessera.addTessera(new Coordinate(0, 0), this.getTesseraCorrente().toCliString(),
-				vicinatoVuoto);
-
-		this.out.print(stampanteTessera);
-		this.out.flush();
-
+		this.informaUser.setTesseraCorrente(tessera);
+		this.informaUser.mostraTesseraCorrente();
 	}
 
 	boolean ruotaTessera()
 	{
-		if (currentPhase == FasiTurno.Inizio || currentPhase == FasiTurno.Media)
+		if (this.getFaseTurno() == FasiTurno.Inizio || this.getFaseTurno() == FasiTurno.Media)
 		{
 			this.fire(new RotateEvent(this));
 			return true;
@@ -184,10 +169,9 @@ public class Cli extends ModuloView
 		}
 	}
 
-
 	boolean nonMettereSegnalino()
 	{
-		if (currentPhase == FasiTurno.Media)
+		if (this.getFaseTurno() == FasiTurno.Media)
 		{
 			this.fire(new PassEvent(this));
 			return true;
@@ -197,7 +181,6 @@ public class Cli extends ModuloView
 			return false;
 		}
 	}
-
 
 	boolean posizionaSengalino(String stringComando)
 	{
@@ -213,14 +196,13 @@ public class Cli extends ModuloView
 		return false;
 	}
 
-
 	synchronized private void getInput()
 	{
 		boolean valido;
 		do
 		{
-			this.out.println(this.currentPhase.toString());
-			this.out.println("Inserisci comando");
+			this.informaUser.chiediComando();
+			
 			String comando = this.in.nextLine();
 			valido = this.parser.eseguiComando(comando);
 		} while (!valido);
@@ -240,55 +222,12 @@ public class Cli extends ModuloView
 
 	private ParserComandi		parser;
 
+	private final AvvisiUser	informaUser;
+
 	private static final int	ALTEZZA		= 5;
 
 	private static final int	LARGHEZZA	= 10;
 
-	private Color				giocatoreCorrente;
-
 	private final Coordinate	coordinataRelativaSE;
-
-	private FasiTurno			currentPhase;
-
-	private void notificaVideo(String message)
-	{
-		this.out.println(message);
-		this.out.flush();
-
-	}
-
-	private enum FasiTurno {
-		Inizio("Place card or rotate"), Media("Tile or pass"), Attesa("wait server response...");
-
-		private FasiTurno(String messaggio)
-		{
-			this.messaggioUtente = messaggio;
-		}
-
-		public String toString()
-		{
-			return this.messaggioUtente;
-		}
-
-		// TODO: controllare
-		public FasiTurno nextPhase()
-		{
-			switch (this)
-			{
-				case Inizio:
-					return Media;
-				case Media:
-					return Attesa;
-				case Attesa:
-					return Inizio;
-
-				default:
-					return Attesa;
-			}
-		}
-
-		private String	messaggioUtente;
-
-	}
 
 }

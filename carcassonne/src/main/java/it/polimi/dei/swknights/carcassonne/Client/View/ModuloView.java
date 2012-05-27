@@ -29,71 +29,75 @@ public abstract class ModuloView implements View
 		this.listeners = new ArrayList<Controller>();
 		this.scenario = new ScenarioDiGioco();
 	}
-	
+
 	public void run()
 	{
 		System.out.println("sono la view vera. che bello. ah no... sono astratta!");
 	}
-	
+
 	public synchronized void riceviModificheModel(EventObject event)
 	{
-		
-		if(event instanceof ControllerEvent)
+		System.out.println("sono la view, ho ricevuto " + event.toString());
+
+		if (event instanceof ControllerEvent)
 		{
-			
-			if(event instanceof InizioGiocoEvent)
+
+			if (event instanceof InizioGiocoEvent)
 			{
-				
+
 				InizioGiocoEvent ige = (InizioGiocoEvent) event;
-				
+
 				Color coloreIniziale = ige.getGiocatore();
-				AdapterTessera tessIniziale= ige.getTesseraIniziale();
+				AdapterTessera tessIniziale = ige.getTesseraIniziale();
+				this.faseTurno = FasiTurno.Inizio;
 				this.mettiEMostraPrimaTessera(tessIniziale);
 				this.aggiornaColoreCorrente(coloreIniziale);
-				
+
 			}
-			if( event instanceof MossaNonValidaEvent)
+			if (event instanceof MossaNonValidaEvent)
 			{
 				this.notificaMossaNonValida();
 			}
-			if( event instanceof FinePartitaEvent)
+			if (event instanceof FinePartitaEvent)
 			{
 				this.notificaFinePartita();
 			}
 			if (event instanceof UpdateTurnoEvent)
 			{
-				UpdateTurnoEvent ute = (UpdateTurnoEvent)event;
+				UpdateTurnoEvent ute = (UpdateTurnoEvent) event;
 				Color colGiocatoreCorrente = ute.getGiocatoreCorrente();
-				AdapterTessera tesseraNuova =  ute.getTessera();
+				AdapterTessera tesseraNuova = ute.getTessera();
 				
+				this.faseTurno = FasiTurno.Inizio;
 				this.cambiaEMostraTesseraCorrente(tesseraNuova);
 				this.aggiornaColoreCorrente(colGiocatoreCorrente);
+			
 			}
 			if (event instanceof UpdateRotationEvent)
 			{
-				UpdateRotationEvent ure = (UpdateRotationEvent)event;
+				UpdateRotationEvent ure = (UpdateRotationEvent) event;
 				AdapterTessera tesseraNuova = ure.getTessera();
 				this.cambiaEMostraTesseraCorrente(tesseraNuova);
 			}
-			if(event instanceof UpdatePositionEvent)
+			if (event instanceof UpdatePositionEvent)
 			{
-				
-				UpdatePositionEvent upe = (UpdatePositionEvent)event;
-				Coordinate  coord = upe.getCoordinate();
+
+				UpdatePositionEvent upe = (UpdatePositionEvent) event;
+				Coordinate coord = upe.getCoordinate();
 				this.posizionaTessera(coord);
 			}
-			if(event instanceof CostruzioneCompletataEvent)
+			if (event instanceof CostruzioneCompletataEvent)
 			{
-				 CostruzioneCompletataEvent cce = (CostruzioneCompletataEvent)event;				 
-				 Map<AdapterTessera, Coordinate> tessereAggiornate = cce.getTessereAggiornate();
-			     this.ridaiSegnaliniDiTessere(tessereAggiornate);
+				CostruzioneCompletataEvent cce = (CostruzioneCompletataEvent) event;
+				Map<AdapterTessera, Coordinate> tessereAggiornate = cce.getTessereAggiornate();
+				this.ridaiSegnaliniDiTessere(tessereAggiornate);
 			}
-			
+
 		}
-		
+
 		this.giocaFase();
 	}
-	
+
 	public void addListener(EventListener eventListener)
 	{
 		if (eventListener instanceof Controller)
@@ -114,21 +118,21 @@ public abstract class ModuloView implements View
 			listener.riceviInput(event);
 		}
 	}
-	
-	protected abstract void giocaFase();
-	
-	protected abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
-	
-	protected abstract void mettiEMostraPrimaTessera(AdapterTessera tessIniziale);
 
+	protected abstract void giocaFase();
+
+	protected abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
+
+	protected abstract void mettiEMostraPrimaTessera(AdapterTessera tessIniziale);
+	
 	protected abstract void notificaFinePartita();
-	
+
 	protected abstract void notificaMossaNonValida();
-	
+
 	protected abstract void aggiornaColoreCorrente(Color colore);
-	
+
 	protected abstract void cambiaEMostraTesseraCorrente(AdapterTessera tessera);
-	
+
 	protected abstract void aggiornaMappa();
 
 	protected abstract void posizionaTessera(Coordinate coordinatePosizione);
@@ -139,7 +143,7 @@ public abstract class ModuloView implements View
 	{
 		return this.coloreGiocatore;
 	}
-	
+
 	protected void setColore(Color coloreGiocatore)
 	{
 		this.coloreGiocatore = coloreGiocatore;
@@ -168,10 +172,22 @@ public abstract class ModuloView implements View
 	protected Coordinate getCoordinataNordOvest()
 	{
 		return coordinataNordOvest;
+	}		
+	
+	protected FasiTurno getFaseTurno()
+	{
+		return this.faseTurno;
 	}
 
-	protected final Coordinate centroScenario = new Coordinate(0, 0);
+	protected void setFaseTurno(FasiTurno fase)
+	{
+		this.faseTurno = fase;
+	}
 	
+	protected final Coordinate		centroScenario	= new Coordinate(0, 0);
+
+	private FasiTurno				faseTurno;
+
 	private final ScenarioDiGioco	scenario;
 
 	private List<Controller>		listeners;
