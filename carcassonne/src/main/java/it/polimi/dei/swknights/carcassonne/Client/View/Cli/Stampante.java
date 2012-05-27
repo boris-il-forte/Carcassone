@@ -161,10 +161,13 @@ class Stampante
 		String elementi[] = tessera.split(" ");
 		for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
 		{
-			Lato lato = mapLati.get(puntoCardinale);
-			Coordinate coordinataInserimento = lato.getCoordinateLabel(puntoCardinale,
-					elementi[puntoCardinale.toInt()]);
-			this.builder.scriviStringa(coordinataInserimento, elementi[puntoCardinale.toInt()]);
+			if(!elementi[puntoCardinale.toInt()].equals("N0"))
+			{
+				Lato lato = mapLati.get(puntoCardinale);
+				Coordinate coordinataInserimento = lato.getCoordinateLabel(puntoCardinale,
+						elementi[puntoCardinale.toInt()]);
+				this.builder.scriviStringa(coordinataInserimento, elementi[puntoCardinale.toInt()]);
+			}
 		}
 
 	}

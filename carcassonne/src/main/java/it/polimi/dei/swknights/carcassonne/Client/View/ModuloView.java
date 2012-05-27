@@ -35,7 +35,7 @@ public abstract class ModuloView implements View
 		System.out.println("sono la view vera. che bello. ah no... sono astratta!");
 	}
 	
-	public void riceviModificheModel(EventObject event)
+	public synchronized void riceviModificheModel(EventObject event)
 	{
 		
 		if(event instanceof ControllerEvent)
@@ -89,23 +89,10 @@ public abstract class ModuloView implements View
 			     this.ridaiSegnaliniDiTessere(tessereAggiornate);
 			}
 			
-			
 		}
 		
-		
+		this.giocaFase();
 	}
-	
-	protected abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
-	
-	protected abstract void mettiEMostraPrimaTessera(AdapterTessera tessIniziale);
-
-	protected abstract void notificaFinePartita();
-	
-	protected abstract void notificaMossaNonValida();
-	
-	protected abstract void aggiornaColoreCorrente(Color colore);
-	
-	protected abstract void cambiaEMostraTesseraCorrente(AdapterTessera tessera);
 	
 	public void addListener(EventListener eventListener)
 	{
@@ -128,6 +115,19 @@ public abstract class ModuloView implements View
 		}
 	}
 	
+	protected abstract void giocaFase();
+	
+	protected abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
+	
+	protected abstract void mettiEMostraPrimaTessera(AdapterTessera tessIniziale);
+
+	protected abstract void notificaFinePartita();
+	
+	protected abstract void notificaMossaNonValida();
+	
+	protected abstract void aggiornaColoreCorrente(Color colore);
+	
+	protected abstract void cambiaEMostraTesseraCorrente(AdapterTessera tessera);
 	
 	protected abstract void aggiornaMappa();
 

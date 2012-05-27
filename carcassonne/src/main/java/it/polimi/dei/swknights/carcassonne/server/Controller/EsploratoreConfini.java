@@ -8,6 +8,7 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -58,8 +59,8 @@ public class EsploratoreConfini
 	 */
 	public Set<Costruzione> getCostruzioni()
 	{
-		Set<Costruzione> semiSetCostruzioni1 = this.confini.keySet();
-		Set<Costruzione> semiSetCostruzioni2 = this.confinanti.keySet();
+		Set<Costruzione> semiSetCostruzioni1 = new HashSet<Costruzione>(this.confini.keySet());
+		Set<Costruzione> semiSetCostruzioni2 = new HashSet<Costruzione>(this.confinanti.keySet());
 		semiSetCostruzioni1.addAll(semiSetCostruzioni2);
 		return semiSetCostruzioni1;
 	}

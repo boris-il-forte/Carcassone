@@ -1,6 +1,8 @@
 package it.polimi.dei.swknights.carcassonne;
 
 import java.io.PrintWriter;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
@@ -25,7 +27,7 @@ public class Carcassonne
 		System.out.println(stringTessera1);
 		System.out.println(stringTessera2);*/
 
-		
+		Executor superStarDestroyer = Executors.newCachedThreadPool();  
 		View view = new Cli();
 		PrintWriter out = new PrintWriter(System.out);
 		String risposta="";
@@ -40,26 +42,11 @@ public class Carcassonne
 		while(risposta.compareToIgnoreCase("CLI") != 0);
 		
 		Controller controller = new ModuloController();
-		
 	    view = new Cli();		
 		view.addListener(controller);
-	 	
 	 	controller.addListener(view);
-	 	
-	 	
-	 	//view.run();
-	 	
-	 	Cli cliProva = new Cli();
-	 	
-	   
-	 	cliProva.posizionaTessera(new Coordinate(0, 0));
-	 	cliProva.aggiornaMappa();
-	 	
-	 	cliProva.mostraTesseraCorrente();
-	 	
-	 	
-	 	
-		
+	 	superStarDestroyer.execute(view);
+	 	superStarDestroyer.execute(controller);	 	
 	}
 
 }

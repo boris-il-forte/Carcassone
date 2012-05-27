@@ -40,50 +40,7 @@ public class Cli extends ModuloView
 
 	}
 
-	public void giocaFase()
-	{
-		this.aggiornaMappa();
-		this.getInput();
-		// mettiti in attesa
-	}
-
-	@Override
-	public void aggiornaMappa()
-	{
-		ScenarioDiGioco scenario = this.getScenario();
-		Stampante stampante = this.inizializzaStampante();
-		Coordinate base = this.getCoordinataNordOvest();
-		List<EntryTessera> listaTessere = scenario.getEntryList(base,
-				base.getCoordinateA(this.coordinataRelativaSE));
-		stampante.addListTessera(listaTessere);
-		String mappa = stampante.toString();
-		this.out.print(mappa);
-		this.out.flush();
-	}
-
-	@Override
-	public void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void posizionaTessera(Coordinate coordinatePosizione)
-	{
-		if (this.getTesseraCorrente() == null /* TODO: JUST FOR TESTING! */)
-		{
-			Tessera tessera = new TesseraNormale(new Lati(Elemento.prato, Elemento.prato, Elemento.citta,
-					Elemento.citta), new Link(false, false, false, false, false, false));
-
-			this.setTesseraCorrente(new AdapterTesseraObject(tessera));
-		}
-		{
-			this.getScenario().SetTessera(coordinatePosizione, this.getTesseraCorrente());
-		}
-		// TODO: va aggiornato vicinato??
-	}
-
+	
 	public boolean provaPosizionareTessera(Coordinate coordinate)
 	{
 		if (currentPhase == FasiTurno.Inizio)
@@ -98,45 +55,51 @@ public class Cli extends ModuloView
 
 	}
 
-	boolean ruotaTessera()
+	@Override
+	protected void aggiornaMappa()
 	{
-		if (currentPhase == FasiTurno.Inizio || currentPhase == FasiTurno.Media)
-		{
-			this.fire(new RotateEvent(this));
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		ScenarioDiGioco scenario = this.getScenario();
+		Stampante stampante = this.inizializzaStampante();
+		Coordinate base = this.getCoordinataNordOvest();
+		List<EntryTessera> listaTessere = scenario.getEntryList(base,
+				base.getCoordinateA(this.coordinataRelativaSE));
+		stampante.addListTessera(listaTessere);
+		String mappa = stampante.toString();
+		this.out.print(mappa);
+		this.out.flush();
 	}
 
-	boolean nonMettereSegnalino()
+
+	@Override
+	protected void posizionaTessera(Coordinate coordinatePosizione)
 	{
-		if (currentPhase == FasiTurno.Media)
+		if (this.getTesseraCorrente() == null /* TODO: JUST FOR TESTING! */)
 		{
-			this.fire(new PassEvent(this));
-			return true;
+			Tessera tessera = new TesseraNormale(new Lati(Elemento.prato, Elemento.prato, Elemento.citta,
+					Elemento.citta), new Link(false, false, false, false, false, false));
+	
+			this.setTesseraCorrente(new AdapterTesseraObject(tessera));
 		}
-		else
-		{
-			return false;
-		}
+		this.getScenario().SetTessera(coordinatePosizione, this.getTesseraCorrente());
 	}
 
-	boolean posizionaSengalino(String stringComando)
+
+	@Override
+	protected void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
 	{
-		String elementi[] = this.getTesseraCorrente().toCliString().split(" ");
-		for (PuntoCardinale punto : PuntoCardinale.values())
-		{
-			if (elementi[punto.toInt()].equals(stringComando))
-			{
-				this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
-				return true;
-			}
-		}
-		return false;
+		// TODO Auto-generated method stub
+	
 	}
+
+
+	@Override
+	synchronized protected void giocaFase()
+	{
+		this.aggiornaMappa();
+		this.getInput();
+		// mettiti in attesa
+	}
+
 
 	@Override
 	protected void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereCostruzioneFinita)
@@ -187,7 +150,7 @@ public class Cli extends ModuloView
 		this.mostraTesseraCorrente();
 	}
 
-	public void mostraTesseraCorrente()
+	protected void mostraTesseraCorrente()
 	{
 		if (this.getTesseraCorrente() == null /* TODO: JUST FOR TESTING! */)
 		{
@@ -208,7 +171,50 @@ public class Cli extends ModuloView
 
 	}
 
-	private void getInput()
+	boolean ruotaTessera()
+	{
+		if (currentPhase == FasiTurno.Inizio || currentPhase == FasiTurno.Media)
+		{
+			this.fire(new RotateEvent(this));
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+	boolean nonMettereSegnalino()
+	{
+		if (currentPhase == FasiTurno.Media)
+		{
+			this.fire(new PassEvent(this));
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+	boolean posizionaSengalino(String stringComando)
+	{
+		String elementi[] = this.getTesseraCorrente().toCliString().split(" ");
+		for (PuntoCardinale punto : PuntoCardinale.values())
+		{
+			if (elementi[punto.toInt()].equals(stringComando))
+			{
+				this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	synchronized private void getInput()
 	{
 		boolean valido;
 		do
