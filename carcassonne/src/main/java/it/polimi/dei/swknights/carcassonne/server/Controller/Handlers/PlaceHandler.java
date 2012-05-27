@@ -30,7 +30,7 @@ public class PlaceHandler extends ControllerHandler
 		}
 		else
 		{
-			this.controller.fire(new MossaNonValidaEvent(controller));
+			this.model.fire(new MossaNonValidaEvent(controller));
 		}
 	}
 

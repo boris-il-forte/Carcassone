@@ -1,26 +1,26 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 
-import java.awt.Color;
-import java.util.Map;
-
-import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
-import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
-import it.polimi.dei.swknights.carcassonne.server.Model.DatiPartita;
+import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
+import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
+import java.awt.Color;
+import java.util.Map;
+
 public class TileHandler extends ControllerHandler
 {
-	public TileHandler(DatiPartita datiPartita)
+	public TileHandler(ModuloController controller, ModuloModel model)
 	{
-		this.model = datiPartita;
+		this.controller = controller;
+		this.model = model;
 	}
 
 	/**
@@ -31,8 +31,8 @@ public class TileHandler extends ControllerHandler
 	@Override
 	public void visit(TileEvent event)
 	{
-		Color coloreGiocatore = this.controller.getGiocatoreCorrente();
-		Giocatore giocatore = this.model.getGiocatore(coloreGiocatore);
+		Giocatore giocatore = this.model.getGiocatoreCorrente();
+		Color coloreGiocatore = giocatore.getColore();
 		Tessera tesseraDaControllare = this.controller.getTesseraCorrente();
 		PuntoCardinale puntoCardinale = event.getPuntoDestinazione();
 		try
@@ -41,12 +41,13 @@ public class TileHandler extends ControllerHandler
 			{
 				Segnalino segnalino = giocatore.getSegnalino();
 				tesseraDaControllare.setSegnalino(segnalino, puntoCardinale);
-				this.controller.fire(new UpdatePositionEvent(tesseraDaControllare, null, coloreGiocatore, this.controller));
+				this.model.fire(new UpdatePositionEvent(tesseraDaControllare, null, coloreGiocatore,
+						this.controller));
 			}
 		}
 		catch (SegnaliniFinitiException e)
 		{
-			this.controller.fire(new MossaNonValidaEvent(this.controller));
+			this.model.fire(new MossaNonValidaEvent(this.controller));
 		}
 
 	}
@@ -66,8 +67,8 @@ public class TileHandler extends ControllerHandler
 		}
 	}
 
-	DatiPartita			model;
+	private ModuloModel			model;
 
-	ModuloController	controller;
+	private ModuloController	controller;
 
 }

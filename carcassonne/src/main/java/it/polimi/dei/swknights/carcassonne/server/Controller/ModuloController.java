@@ -2,24 +2,22 @@ package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
-import it.polimi.dei.swknights.carcassonne.Events.EventSource;
-import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PassHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PlaceHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.RuotaHandler;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.TileHandler;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.EventObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,18 +30,52 @@ import java.util.Map;
  * 
  */
 
-public class ModuloController implements Controller, EventSource
+public class ModuloController implements Controller
 {
 	/**
 	 * Default Constructor. Initialize data structures
 	 * 
 	 */
-	public ModuloController()
+	public ModuloController(ModuloModel model)
 	{
-		this.listeners = new ArrayList<View>();
-		this.model = new ModuloModel();
+		this.model = model;
 		this.contaPunti = new ContatoreCartografo(this.model);
 		this.visitorHandlers = this.attivaHandler();
+	}
+
+	public void run()
+	{
+		try
+		{
+			while (true)
+			{
+				this.cominciaTurno();
+				this.attendiPosizionamentoTessera();
+			}
+	
+		}
+		catch (PartitaFinitaException e)
+		{
+			this.model.fire(new FinePartitaEvent(this, this.getMappaPunteggi()));
+	
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Method that should be called when firing an event to the Controller
+	 * 
+	 * @see it.polimi.dei.swknights.carcassonne.Events.Controller#riceviInput()
+	 */
+	public void riceviInput(ViewEvent event)
+	{
+		for (ControllerHandler visitorHandler : this.visitorHandlers)
+		{
+			event.accept(visitorHandler);
+		}
 	}
 
 	public void cominciaGioco()
@@ -69,83 +101,7 @@ public class ModuloController implements Controller, EventSource
 		return giocatore.getColore();
 	}
 
-	/**
-	 * Add Listener to the listerner list
-	 * 
-	 * @param listener
-	 *            to be added, if it is not a ViewListener, it would not be
-	 *            added to the list
-	 * @see it.polimi.dei.swknights.carcassonne.Events.EventSource#addListener(java.util.EventListener)
-	 */
-
-	public void addListener(EventListener eventListener)
-	{
-		View controllerListener;
-		if (eventListener instanceof View)
-		{
-			controllerListener = (View) eventListener;
-			this.listeners.add(controllerListener);
-		}
-	}
-
-	/**
-	 * Remove listener to the listener list
-	 * 
-	 * @param listener
-	 *            to be removed from the listener list
-	 * @see it.polimi.dei.swknights.carcassonne.Events.EventSource#removeListener(java.util.EventListener)
-	 */
-
-	public void removeListener(EventListener eventListener)
-	{
-		this.listeners.remove(eventListener);
-	}
-
-	/**
-	 * Method that should be called when firing an event to the Controller
-	 * 
-	 * @see it.polimi.dei.swknights.carcassonne.Events.Controller#riceviInput()
-	 */
-	public void riceviInput(ViewEvent event)
-	{
-		for (ControllerHandler visitorHandler : this.visitorHandlers)
-		{
-			event.accept(visitorHandler);
-		}
-	}
-
-	public void run()
-	{
-		try
-		{
-			while (true)
-			{
-				this.cominciaTurno();
-				this.attendiPosizionamentoTessera();
-			}
-
-		}
-		catch (PartitaFinitaException e)
-		{
-			this.fire(new FinePartitaEvent(this, this.getMappaPunteggi()));
-
-		}
-		catch (InterruptedException e)
-		{
-			e.printStackTrace();
-		}
-	}
-
-	public void fire(EventObject event)
-	{
-		System.out.println("sono controller: lancio event:" + event.toString());
-		for (View listener : this.listeners)
-		{
-			listener.riceviModificheModel(event);
-		}
-	}
-
-	protected ContatoreCartografo getContaPunti()
+	ContatoreCartografo getContaPunti()
 	{
 		return this.contaPunti;
 	}
@@ -155,7 +111,7 @@ public class ModuloController implements Controller, EventSource
 		// Inizia il turno
 		Giocatore giocatoreCorrente = this.model.getGiocatoreCorrente();
 		this.estraiTessera();
-		this.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
+		this.model.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
 	}
 
 	private void primaMossaPartita()
@@ -170,14 +126,16 @@ public class ModuloController implements Controller, EventSource
 		}
 		this.model.piazzaTessera(this.tesseraCorrente, this.COORD_PRIMA_TESSERA);
 		// dico alla gui!
-		this.fire(new PlaceEvent(this, COORD_PRIMA_TESSERA));
+		this.model.fire(new PlaceEvent(this, COORD_PRIMA_TESSERA));
 	}
 
 	private List<ControllerHandler> attivaHandler()
 	{
 		List<ControllerHandler> handlerList = new ArrayList<ControllerHandler>();
-		handlerList.add(new RuotaHandler(this));
+		handlerList.add(new RuotaHandler(this, this.model));
 		handlerList.add(new PlaceHandler(this, this.model));
+		handlerList.add(new TileHandler(this, this.model));
+		handlerList.add(new PassHandler());
 		return handlerList;
 	}
 
@@ -206,8 +164,6 @@ public class ModuloController implements Controller, EventSource
 	}
 
 	private boolean					tesseraPosizionata;
-
-	private List<View>				listeners;
 
 	private List<ControllerHandler>	visitorHandlers;
 
