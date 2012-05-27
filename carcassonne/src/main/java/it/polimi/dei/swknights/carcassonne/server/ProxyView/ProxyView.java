@@ -1,7 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.server.ProxyView;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
-
 import java.util.List;
 
 

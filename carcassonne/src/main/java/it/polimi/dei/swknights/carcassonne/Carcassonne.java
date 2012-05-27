@@ -11,7 +11,7 @@ import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
 
-public class Carcassonne
+class Carcassonne
 {
 	public static void main(String[] args)
 	{

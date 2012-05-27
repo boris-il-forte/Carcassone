@@ -132,7 +132,7 @@ public class ExtraParser extends Parser
 			while(iteraPunto.hasNext())
 			{
 				PuntoCardinale punto2 = iteraPunto.next();
-				if (this.isConnected(punto, punto2))
+				if (this.areConnected(punto, punto2))
 				{
 					
 					numerazione[punto2.toInt()] = counter;
@@ -156,20 +156,9 @@ public class ExtraParser extends Parser
 		return iteraPunto;
 	}
 
-	private boolean isConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
-	{
-		if (puntoCardinale1 == puntoCardinale2) {
-			return true;
-		}
-		else
-		{
-			return this.areConnected(puntoCardinale1, puntoCardinale2);
-		}
-	}
-
 	private boolean areConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
 	{
-		if(puntoCardinale1 == puntoCardinale2) 
+		if(puntoCardinale1.equals(puntoCardinale2)) 
 		{
 			return true;
 		}

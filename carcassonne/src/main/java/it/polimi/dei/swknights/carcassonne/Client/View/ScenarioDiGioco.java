@@ -18,7 +18,7 @@ public class ScenarioDiGioco
 		this.mappaRighe = new TreeMap<Integer, ScenarioDiGioco.Riga>();
 	}
 
-	public void SetTessera(Coordinate coordinate, AdapterTessera tessera)
+	public void setTessera(Coordinate coordinate, AdapterTessera tessera)
 	{
 		Riga riga = this.getRigaInserimento(coordinate.getY());
 		riga.setTessera(tessera, coordinate.getX());

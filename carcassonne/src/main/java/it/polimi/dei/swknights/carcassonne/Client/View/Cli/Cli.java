@@ -82,7 +82,7 @@ public class Cli extends ModuloView
 	{
 		System.out.println("POSIZIONO TESSERA");
 		
-		this.getScenario().SetTessera(coordinatePosizione, this.getTesseraCorrente());
+		this.getScenario().setTessera(coordinatePosizione, this.getTesseraCorrente());
 	}
 
 	@Override
@@ -109,7 +109,7 @@ public class Cli extends ModuloView
 		{
 			Coordinate coord = entryAdapterCoord.getValue();
 			AdapterTessera tessera = entryAdapterCoord.getKey();
-			scenario.SetTessera(coord, tessera);
+			scenario.setTessera(coord, tessera);
 
 		}
 
