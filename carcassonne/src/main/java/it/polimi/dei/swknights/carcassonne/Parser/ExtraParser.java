@@ -139,10 +139,21 @@ public class ExtraParser extends Parser
 					iteraPunto.remove();
 				}
 			}
-			iteraPunto = puntiDaProvare.listIterator();
-			while (!iteraPunto.next().equals(old));
+			iteraPunto = this.riavvolgiIterator(puntiDaProvare, old);
 		}
 		return numerazione;
+	}
+
+	private ListIterator<PuntoCardinale> riavvolgiIterator(List<PuntoCardinale> puntiDaProvare, PuntoCardinale old)
+	{
+		ListIterator<PuntoCardinale> iteraPunto =  puntiDaProvare.listIterator();
+		PuntoCardinale next;
+		do
+		{
+			next = iteraPunto.next();
+		}
+		while (!next.equals(old));
+		return iteraPunto;
 	}
 
 	private boolean isConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
