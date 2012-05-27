@@ -15,19 +15,6 @@ public class Carcassonne
 {
 	public static void main(String[] args)
 	{
-
-		// TODO:togliere questo baby-schifo test in luogo di migliori, ma fino
-		// ad allora..
-
-		/*FactoryTessereNormali fnTest = new FactoryTessereNormali();
-		fnTest.acquisisciMazzoDaFile("/Carcassonne.txt");
-		Tessera tessera = fnTest.getTessera();
-		String stringTessera1 = tessera.toString();
-		tessera.setSegnalino(new Segnalino(Color.RED), PuntoCardinale.nord);
-		String stringTessera2 = tessera.toString();
-		System.out.println(stringTessera1);
-		System.out.println(stringTessera2);*/
-
 		Executor superStarDestroyer = Executors.newCachedThreadPool();  
 		View view = new Cli();
 		PrintWriter out = new PrintWriter(System.out);
