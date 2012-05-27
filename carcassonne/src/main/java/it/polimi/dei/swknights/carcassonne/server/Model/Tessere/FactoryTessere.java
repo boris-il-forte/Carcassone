@@ -7,17 +7,26 @@ package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
  *
  */
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class FactoryTessere
 {
 
-	protected List<Tessera>	mazzo;
-
+	public FactoryTessere()
+	{
+		this.mazzo = new ArrayList<Tessera>();
+	}
+	
 	public Tessera getTessera()
 	{
 		int lastIndex = this.mazzo.size() - 1;
 		return this.mazzo.remove(lastIndex);
+	}
+
+	public Tessera getTesseraMagic()
+	{
+		return this.tesseraMagic;
 	}
 
 	/**
@@ -39,5 +48,19 @@ public abstract class FactoryTessere
 	 *            : path of the cards file
 	 */
 	public abstract void acquisisciMazzoDaFile(String pathFileTessere);
+
+	protected void setTesseraMagick(Tessera tesseraMagic)
+	{
+		this.tesseraMagic= tesseraMagic;
+	}
+	
+	protected void aggiungiAlMazzo(Tessera tessera)
+	{
+		this.mazzo.add(tessera);
+	}
+	
+	private Tessera		tesseraMagic;
+
+	private List<Tessera>	mazzo;
 
 }

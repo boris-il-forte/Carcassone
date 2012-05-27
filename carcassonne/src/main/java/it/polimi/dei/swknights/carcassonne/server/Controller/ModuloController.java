@@ -107,7 +107,7 @@ public class ModuloController implements Controller
 
 	private void primaMossaPartita()
 	{
-		this.model.iniziaGioco();
+		this.model.iniziaGioco(2);
 	}
 
 	
@@ -125,7 +125,7 @@ public class ModuloController implements Controller
 		{
 			e.printStackTrace();
 		}
-		this.model.piazzaTessera(this.tesseraCorrente, this.COORD_PRIMA_TESSERA);
+		this.model.posizionaTessera(this.tesseraCorrente, this.COORD_PRIMA_TESSERA);
 		this.model.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
 		
 	}
@@ -151,8 +151,7 @@ public class ModuloController implements Controller
 
 	private void estraiTessera() throws PartitaFinitaException
 	{
-		tesseraCorrente = this.model.getTesseraDaMazzo();
-		
+		tesseraCorrente = this.model.getTesseraDaMazzo();	
 	}
 
 	private Map<Color, Integer> getMappaPunteggi()
