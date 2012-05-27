@@ -147,42 +147,6 @@ public abstract class Tessera
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode()
-	{
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((lati == null) ? 0 : lati.hashCode());
-		result = prime * result + ((link == null) ? 0 : link.hashCode());
-		return result;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj)
-	{
-		if (this == obj) return true;
-		if (obj == null) return false;
-		if (getClass() != obj.getClass()) return false;
-		Tessera other = (Tessera) obj;
-		if (lati == null)
-		{
-			if (other.lati != null) return false;
-		}
-		else if (!lati.equals(other.lati)) return false;
-		if (link == null)
-		{
-			if (other.link != null) return false;
-		}
-		else if (!link.equals(other.link)) return false;
-		return true;
-	}
-
 	private List<PuntoCardinale> puntiConnessiACostruzione(Costruzione c,
 			Map<Costruzione, PuntoCardinale> mapCostruzPunto)
 	{

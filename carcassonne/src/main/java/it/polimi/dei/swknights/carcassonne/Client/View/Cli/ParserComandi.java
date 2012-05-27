@@ -15,9 +15,7 @@ public class ParserComandi
 		int quantitaSpostamento = 0;
 		System.out.println(stringComando);
 		if (stringComando.matches("[SCsc][1-4]")) // es c1 s2
-		{ 
-			return this.cli.posizionaSengalino(stringComando);
-		}
+		{ return this.cli.posizionaSengalino(stringComando); }
 		if (stringComando.matches("\\-?\\d+\\,\\-?\\d+")) // es (2,-4)
 		{
 			int x, y;
@@ -28,22 +26,16 @@ public class ParserComandi
 			return this.cli.provaPosizionareTessera(new Coordinate(x, y));
 		}
 
-		if (stringComando.matches("rotate"))
-		{
-			return this.cli.ruotaTessera();
-		}
-		if (stringComando.matches("pass"))
-		{
-			return this.cli.nonMettereSegnalino();
-		}
+		if (stringComando.matches("rotate")) { return this.cli.ruotaTessera(); }
+		if (stringComando.matches("pass")) { return this.cli.nonMettereSegnalino(); }
 
-		if(stringComando.matches("(up|down|left|right)\\=\\d+"))
+		if (stringComando.matches("(up|down|left|right)\\=\\d+"))
 		{
-			
-			String dopoUguale = stringComando.substring( stringComando.indexOf('=')+1);
+
+			String dopoUguale = stringComando.substring(stringComando.indexOf('=') + 1);
 			quantitaSpostamento = Integer.parseInt(dopoUguale);
 		}
-		
+
 		if (stringComando.matches("up\\=\\d+"))
 		{
 			this.cli.muoviViewA(PuntoCardinale.nord, quantitaSpostamento);
@@ -68,8 +60,9 @@ public class ParserComandi
 		return false;
 	}
 
-
-	private final int	STRINGA_X	= 0;
-	private final int   STRINGA_Y   = 1;
-	private Cli			cli;
+	private Cli					cli;
+	
+	private final static int	STRINGA_X	= 0;
+	
+	private final static int	STRINGA_Y	= 1;
 }

@@ -136,7 +136,7 @@ public class DatiPartita
 	 * @throws FinitiColoriDisponibiliException
 	 */
 
-	public void addGiocatore() throws FinitiColoriDisponibiliException
+	public final void addGiocatore() throws FinitiColoriDisponibiliException
 	{
 		Giocatore playerToAdd;
 		playerToAdd = this.factoryGiocatori.getGiocatore();

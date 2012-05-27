@@ -8,6 +8,7 @@ public enum FasiTurno {
 		this.messaggioUtente = messaggio;
 	}
 
+	@Override
 	public String toString()
 	{
 		return this.messaggioUtente;
