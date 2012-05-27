@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
@@ -52,13 +53,14 @@ public class ModuloController implements Controller
 				this.primaMossaTurno();
 				this.attendiPosizionamentoTessera();
 			}
-	
+
 		}
-		/*catch (PartitaFinitaException e)
-		{
-			this.model.fire(new FinePartitaEvent(this, this.getMappaPunteggi()));
-	
-		}*/
+		/*
+		 * catch (PartitaFinitaException e) { this.model.fire(new
+		 * FinePartitaEvent(this, this.getMappaPunteggi()));
+		 * 
+		 * }
+		 */
 		catch (InterruptedException e)
 		{
 			e.printStackTrace();
@@ -84,25 +86,19 @@ public class ModuloController implements Controller
 		this.primaMossaPartita();
 	}
 
-	public Tessera getTesseraCorrente()
-	{
-		return this.tesseraCorrente;
-	}
+	/*
+	 * public Tessera getTesseraCorrente() { return this.tesseraCorrente; }
+	 */
 
 	public ContatoreCartografo getContapunti()
 	{
 		return this.contaPunti;
 	}
 
-	public Color getGiocatoreCorrente()
+	public boolean ruotaOk()
 	{
-		Giocatore giocatore = this.model.getGiocatoreCorrente();
-		return giocatore.getColore();
-	}
-
-	ContatoreCartografo getContaPunti()
-	{
-		return this.contaPunti;
+		//TODO controllare se puoi ruotare
+		return true;
 	}
 
 	private void primaMossaPartita()
@@ -110,24 +106,18 @@ public class ModuloController implements Controller
 		this.model.iniziaGioco(2);
 	}
 
-	
-
 	private void primaMossaTurno()
 	{
-		
 		System.out.println("INIZIO TURNO");
-		Giocatore giocatoreCorrente = this.model.getGiocatoreCorrente();
 		try
 		{
-			this.estraiTessera();
+			this.model.cominciaTurno();
 		}
 		catch (PartitaFinitaException e)
 		{
-			e.printStackTrace();
+			//TODO: incompleto
+			this.model.fire(new FinePartitaEvent(this.model, this.getMappaPunteggi()));
 		}
-		this.model.posizionaTessera(this.tesseraCorrente, this.COORD_PRIMA_TESSERA);
-		this.model.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
-		
 	}
 
 	private List<ControllerHandler> attivaHandler()
@@ -149,11 +139,6 @@ public class ModuloController implements Controller
 		}
 	}
 
-	private void estraiTessera() throws PartitaFinitaException
-	{
-		tesseraCorrente = this.model.getTesseraDaMazzo();	
-	}
-
 	private Map<Color, Integer> getMappaPunteggi()
 	{
 		Map<Color, Integer> mapPunteggi = new HashMap<Color, Integer>();
@@ -169,24 +154,10 @@ public class ModuloController implements Controller
 
 	private List<ControllerHandler>	visitorHandlers;
 
-	private Tessera					tesseraCorrente;
-
 	private ContatoreCartografo		contaPunti;
 
 	private final ModuloModel		model;
 
-	private final Coordinate		COORD_PRIMA_TESSERA	= new Coordinate(0, 0);
-
-	public void addListener(EventListener eventListener)
-	{
-		
-		
-	}
-
-	public void removeListener(EventListener eventListener)
-	{
-		// TODO Auto-generated method stub
-		
-	}
+	private static final Coordinate	COORD_PRIMA_TESSERA	= new Coordinate(0, 0);
 
 }
