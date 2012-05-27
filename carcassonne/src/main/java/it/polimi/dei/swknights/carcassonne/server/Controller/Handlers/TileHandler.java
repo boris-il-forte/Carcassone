@@ -31,7 +31,7 @@ public class TileHandler extends ControllerHandler
 		{
 			if (costruzioneLibera(puntoCardinale))
 			{
-				this.model.addSegnalino(puntoCardinale);
+				this.model.addSegnalinoTesseraCorrente(puntoCardinale);
 			}
 			else
 			{

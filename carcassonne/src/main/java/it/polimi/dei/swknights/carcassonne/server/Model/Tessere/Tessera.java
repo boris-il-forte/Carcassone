@@ -147,27 +147,6 @@ public abstract class Tessera
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
 
-	private List<PuntoCardinale> puntiConnessiACostruzione(Costruzione c,
-			Map<Costruzione, PuntoCardinale> mapCostruzPunto)
-	{
-		List<PuntoCardinale> puntiConnessi = new ArrayList<PuntoCardinale>();
-		PuntoCardinale puntoDaEsaminare = mapCostruzPunto.get(c);
-		for (PuntoCardinale p : PuntoCardinale.values())
-		{
-			if (this.link.areConnected(p, puntoDaEsaminare))
-			{
-				puntiConnessi.add(p);
-			}
-		}
-
-		return puntiConnessi;
-
-	}
-
-	protected final Lati	lati;
-
-	protected final Link	link;
-
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -203,5 +182,26 @@ public abstract class Tessera
 		else if (!link.equals(other.link)) return false;
 		return true;
 	}
+
+	private List<PuntoCardinale> puntiConnessiACostruzione(Costruzione c,
+			Map<Costruzione, PuntoCardinale> mapCostruzPunto)
+	{
+		List<PuntoCardinale> puntiConnessi = new ArrayList<PuntoCardinale>();
+		PuntoCardinale puntoDaEsaminare = mapCostruzPunto.get(c);
+		for (PuntoCardinale p : PuntoCardinale.values())
+		{
+			if (this.link.areConnected(p, puntoDaEsaminare))
+			{
+				puntiConnessi.add(p);
+			}
+		}
+
+		return puntiConnessi;
+
+	}
+
+	protected final Lati	lati;
+
+	protected final Link	link;
 
 }

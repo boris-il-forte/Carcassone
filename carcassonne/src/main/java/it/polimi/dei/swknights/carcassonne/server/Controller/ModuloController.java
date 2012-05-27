@@ -1,9 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
@@ -12,15 +9,9 @@ import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PlaceHandl
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.RuotaHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.TileHandler;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
-import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
-import java.awt.Color;
 import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Class that implements theController of the MVC pattern Contains all the
@@ -48,6 +39,7 @@ public class ModuloController implements Controller
 		this.cominciaGioco();
 		try
 		{
+			this.attendiPosizionamentoTessera();
 			while (true)
 			{
 				this.primaMossaTurno();
@@ -55,12 +47,6 @@ public class ModuloController implements Controller
 			}
 
 		}
-		/*
-		 * catch (PartitaFinitaException e) { this.model.fire(new
-		 * FinePartitaEvent(this, this.getMappaPunteggi()));
-		 * 
-		 * }
-		 */
 		catch (InterruptedException e)
 		{
 			e.printStackTrace();
@@ -103,7 +89,15 @@ public class ModuloController implements Controller
 
 	private void primaMossaPartita()
 	{
-		this.model.iniziaGioco(2);
+		try
+		{
+			this.model.iniziaGioco(2);
+		}
+		catch (PartitaFinitaException e)
+		{
+			e.printStackTrace();
+			System.exit(0);
+		}
 	}
 
 	private void primaMossaTurno()
@@ -115,8 +109,8 @@ public class ModuloController implements Controller
 		}
 		catch (PartitaFinitaException e)
 		{
-			//TODO: incompleto
-			this.model.fire(new FinePartitaEvent(this.model, this.getMappaPunteggi()));
+			//TODO: incompleto... mancano i punteggi ulteriori accumulati!
+			this.model.notificaFinePartita();
 		}
 	}
 
@@ -139,17 +133,6 @@ public class ModuloController implements Controller
 		}
 	}
 
-	private Map<Color, Integer> getMappaPunteggi()
-	{
-		Map<Color, Integer> mapPunteggi = new HashMap<Color, Integer>();
-		List<Giocatore> giocatori = this.model.getListaGiocatori();
-		for (Giocatore giocatore : giocatori)
-		{
-			mapPunteggi.put(giocatore.getColore(), giocatore.getPunti());
-		}
-		return mapPunteggi;
-	}
-
 	private boolean					tesseraPosizionata;
 
 	private List<ControllerHandler>	visitorHandlers;
@@ -157,7 +140,5 @@ public class ModuloController implements Controller
 	private ContatoreCartografo		contaPunti;
 
 	private final ModuloModel		model;
-
-	private static final Coordinate	COORD_PRIMA_TESSERA	= new Coordinate(0, 0);
 
 }
