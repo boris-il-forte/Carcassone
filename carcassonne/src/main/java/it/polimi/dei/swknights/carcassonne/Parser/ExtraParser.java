@@ -128,17 +128,19 @@ public class ExtraParser extends Parser
 					continue;
 			}
 			numerazione[punto.toInt()] = counter;
-			ListIterator<PuntoCardinale> iteraPunto2 = iteraPunto;
-			while(iteraPunto2.hasNext())
+			PuntoCardinale old = punto;
+			while(iteraPunto.hasNext())
 			{
-				PuntoCardinale punto2 = iteraPunto2.next();
+				PuntoCardinale punto2 = iteraPunto.next();
 				if (this.isConnected(punto, punto2))
 				{
 					
 					numerazione[punto2.toInt()] = counter;
-					iteraPunto2.remove();
+					iteraPunto.remove();
 				}
 			}
+			iteraPunto = puntiDaProvare.listIterator();
+			while (!iteraPunto.next().equals(old));
 		}
 		return numerazione;
 	}

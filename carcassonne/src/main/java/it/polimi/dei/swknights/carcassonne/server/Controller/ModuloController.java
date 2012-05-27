@@ -186,7 +186,7 @@ public class ModuloController implements Controller, EventSource
 		return handlerList;
 	}
 
-	private void attendiPosizionamentoTessera() throws InterruptedException
+	synchronized private void attendiPosizionamentoTessera() throws InterruptedException
 	{
 		while (!this.tesseraPosizionata)
 		{
