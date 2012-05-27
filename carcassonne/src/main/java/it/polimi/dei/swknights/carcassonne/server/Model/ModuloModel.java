@@ -9,6 +9,7 @@ import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Events.Model;
 import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
+import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
@@ -60,10 +61,26 @@ public class ModuloModel implements Model
 
 	public void fire(EventObject event)
 	{
-		for(View listener : this.listeners)
+		for (View listener : this.listeners)
 		{
 			listener.riceviModificheModel(event);
 		}
+	}
+
+	public void creaGiocatori(int numeroGiocatori)
+	{
+		try
+		{
+			for (int i = 0; i < numeroGiocatori; i++)
+			{
+				this.datiPartita.addGiocatore();
+			}
+		}
+		catch (FinitiColoriDisponibiliException e)
+		{
+			throw new IllegalArgumentException("hai chiesto troppi giocatori");
+		}
+
 	}
 
 	public void piazzaTessera(Tessera tessera, Coordinate coordinate)
@@ -71,9 +88,9 @@ public class ModuloModel implements Model
 		AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
 		Giocatore giocatore = this.datiPartita.getGiocatoreCorrente();
 		areaDiGioco.addTessera(coordinate, tessera);
-		this.fire(new UpdatePositionEvent(tessera, coordinate, giocatore.getColore() , this));
+		this.fire(new UpdatePositionEvent(tessera, coordinate, giocatore.getColore(), this));
 	}
-	
+
 	public Tessera getTessera(Coordinate coordinate) throws TesseraNonTrovataException
 	{
 		return this.datiPartita.getAreaDiGioco().getTessera(coordinate);
