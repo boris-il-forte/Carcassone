@@ -3,7 +3,7 @@ package it.polimi.dei.swknights.carcassonne.server.Controller;
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
-import it.polimi.dei.swknights.carcassonne.server.Model.AreaDiGioco;
+import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.util.ArrayList;
@@ -24,11 +24,11 @@ import java.util.Set;
  */
 public class EsploratoreConfini
 {
-	public EsploratoreConfini(Coordinate coordinateTessera, AreaDiGioco cartaGeografica)
+	public EsploratoreConfini(Coordinate coordinateTessera, ModuloModel model)
 	{
 		this.confini = new HashMap<Costruzione, List<ConfineTessera>>();
 		this.confinanti = new HashMap<Costruzione, List<ConfineTessera>>();
-		this.getEmptyAndFullNeighbours(coordinateTessera, cartaGeografica);
+		this.getEmptyAndFullNeighbours(coordinateTessera, model);
 	}
 
 	/**
@@ -97,18 +97,18 @@ public class EsploratoreConfini
 	 * put another card
 	 * 
 	 * @param coordinateTessera
-	 * @param cartaGeografica
+	 * @param model
 	 * @see ConfineTessera
 	 */
 
 	// confini = vuoti confinanti = pieni
-	private void getEmptyAndFullNeighbours(Coordinate coordinateTessera, AreaDiGioco cartaGeografica)
+	private void getEmptyAndFullNeighbours(Coordinate coordinateTessera, ModuloModel model)
 	{
 		Tessera tessera;
 		try
 		{
 
-			tessera = cartaGeografica.getTessera(coordinateTessera);
+			tessera = model.getTessera(coordinateTessera);
 			Map<Costruzione, List<PuntoCardinale>> mapCostruzioni;
 			/*
 			 * costruzioni aggregate della tessera con relative liste di punti
@@ -129,7 +129,7 @@ public class EsploratoreConfini
 					Coordinate coordinateConfinante = coordinateTessera.getCoordinateA(puntoCardinale);
 					try
 					{ // vicini pieni
-						Tessera tesseraConfinante = cartaGeografica.getTessera(coordinateConfinante);
+						Tessera tesseraConfinante = model.getTessera(coordinateConfinante);
 						ConfineTessera confinante = tesseraConfinante.getConfineA(puntoCardinale.opposto());
 						listaConfinante.add(confinante);
 					}

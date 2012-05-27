@@ -2,7 +2,7 @@ package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
-import it.polimi.dei.swknights.carcassonne.server.Model.AreaDiGioco;
+import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
 import java.util.List;
 import java.util.Map;
@@ -24,13 +24,13 @@ public class ContatoreCartografo
 	/**
 	 * Default constructor for Contapunti
 	 * 
-	 * @param areaDiGioco
+	 * @param model
 	 *            game area necessary to get model data
 	 */
 
-	public ContatoreCartografo(AreaDiGioco areaDiGioco)
+	public ContatoreCartografo(ModuloModel model)
 	{
-		this.areaDiGioco = areaDiGioco;
+		this.model = model;
 		this.cartaGeografica = new CartaGeografica();
 	}
 
@@ -43,7 +43,7 @@ public class ContatoreCartografo
 
 	public void riceviCoordinateTessera(Coordinate coordinateTessera)
 	{
-		EsploratoreConfini esploratore = new EsploratoreConfini(coordinateTessera, this.areaDiGioco);
+		EsploratoreConfini esploratore = new EsploratoreConfini(coordinateTessera, this.model);
 		Set<Costruzione> costruzioni = esploratore.getCostruzioni();
 		Map<Costruzione, List<ConfineTessera>> mapConfinanti = esploratore.getConfinantiScoperti();
 		Map<Costruzione, List<ConfineTessera>> mapConfini = esploratore.getViciniVuoti();
@@ -84,7 +84,7 @@ public class ContatoreCartografo
 		}
 	}
 
-	private AreaDiGioco			areaDiGioco;
+	private ModuloModel			model;
 
 	private CartaGeografica		cartaGeografica;
 

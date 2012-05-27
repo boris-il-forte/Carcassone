@@ -3,7 +3,10 @@ package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 import java.awt.Color;
 import java.util.Map;
 
+import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
@@ -28,28 +31,27 @@ public class TileHandler extends ControllerHandler
 	@Override
 	public void visit(TileEvent event)
 	{
-		// TODO: incompleto
-
 		Color coloreGiocatore = this.controller.getGiocatoreCorrente();
 		Giocatore giocatore = this.model.getGiocatore(coloreGiocatore);
 		Tessera tesseraDaControllare = this.controller.getTesseraCorrente();
 		PuntoCardinale puntoCardinale = event.getPuntoDestinazione();
 		try
 		{
-			if (costruzioneLibera(null, puntoCardinale))
-			{// TODO: il controller deve conoscere le ultime costruzioni
+			if (costruzioneLibera(puntoCardinale))
+			{
 				Segnalino segnalino = giocatore.getSegnalino();
 				tesseraDaControllare.setSegnalino(segnalino, puntoCardinale);
+				this.controller.fire(new UpdatePositionEvent(tesseraDaControllare, null, coloreGiocatore, this.controller));
 			}
 		}
 		catch (SegnaliniFinitiException e)
 		{
-			e.printStackTrace();
+			this.controller.fire(new MossaNonValidaEvent(this.controller));
 		}
 
 	}
 
-	private boolean costruzioneLibera(Costruzione costruzione, PuntoCardinale punto)
+	private boolean costruzioneLibera(PuntoCardinale punto)
 	{
 		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
 		mappaCostruzioni = this.controller.getContapunti().getMapCostruzioniUltimaTessera();
