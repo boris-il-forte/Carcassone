@@ -3,23 +3,19 @@ package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
-import it.polimi.dei.swknights.carcassonne.server.Model.AreaDiGioco;
+import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 public class PlaceHandler extends ControllerHandler
 {
 
-	private ModuloController	controller;
-	private AreaDiGioco	areaDiGioco;
-
-	public PlaceHandler(ModuloController controller, AreaDiGioco areaGioco)
+	public PlaceHandler(ModuloController controller, ModuloModel model)
 	{
 		this.controller = controller;
-		this.areaDiGioco = areaGioco;
+		this.model = model;
 	}
 
 	@Override
@@ -27,13 +23,10 @@ public class PlaceHandler extends ControllerHandler
 	{
 		Tessera tessera = this.controller.getTesseraCorrente();
 		Coordinate coordinate = event.getCoordinateDestinazione();
-		if (tuttoVicinatoDAccordo(coordinate, tessera))
+		if (this.tuttoVicinatoDAccordo(coordinate, tessera))
 		{
-			areaDiGioco.addTessera(coordinate, tessera);
 			this.controller.getContapunti().riceviCoordinateTessera(coordinate);
-			this.controller.fire(
-					new UpdatePositionEvent(
-							tessera, coordinate, this.controller.getGiocatoreCorrente(), this));
+			this.model.piazzaTessera(tessera, coordinate);
 		}
 		else
 		{
@@ -49,7 +42,7 @@ public class PlaceHandler extends ControllerHandler
 		{
 			try
 			{
-				tesseraVicino = this.areaDiGioco.getTessera(coordinate.getCoordinateA(punto));
+				tesseraVicino = this.model.getTessera(coordinate.getCoordinateA(punto));
 				if (!tessera.buonVicino(tesseraVicino, punto))
 				{
 					dAccordo = false;
@@ -58,10 +51,13 @@ public class PlaceHandler extends ControllerHandler
 			}
 			catch (TesseraNonTrovataException e)
 			{
-				// a est (o nord o quello che è) non c'è nessuno, meglio, non si
-				// lamenta
+				continue;
 			}
 		}
 		return dAccordo;
 	}
+
+	private ModuloController	controller;
+
+	private ModuloModel				model;
 }
