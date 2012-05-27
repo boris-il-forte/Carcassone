@@ -2,17 +2,12 @@ package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
-import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
-import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
-import java.awt.Color;
 import java.util.Map;
 
 public class TileHandler extends ControllerHandler
@@ -31,23 +26,21 @@ public class TileHandler extends ControllerHandler
 	@Override
 	public void visit(TileEvent event)
 	{
-		Giocatore giocatore = this.model.getGiocatoreCorrente();
-		Color coloreGiocatore = giocatore.getColore();
-		Tessera tesseraDaControllare = this.controller.getTesseraCorrente();
 		PuntoCardinale puntoCardinale = event.getPuntoDestinazione();
 		try
 		{
 			if (costruzioneLibera(puntoCardinale))
 			{
-				Segnalino segnalino = giocatore.getSegnalino();
-				tesseraDaControllare.setSegnalino(segnalino, puntoCardinale);
-				this.model.fire(new UpdatePositionEvent(tesseraDaControllare, null, coloreGiocatore,
-						this.controller));
+				this.model.addSegnalino(puntoCardinale);
+			}
+			else
+			{
+				this.model.fire(new MossaNonValidaEvent(this.model));
 			}
 		}
 		catch (SegnaliniFinitiException e)
 		{
-			this.model.fire(new MossaNonValidaEvent(this.controller));
+			this.model.fire(new MossaNonValidaEvent(this.model));
 		}
 
 	}

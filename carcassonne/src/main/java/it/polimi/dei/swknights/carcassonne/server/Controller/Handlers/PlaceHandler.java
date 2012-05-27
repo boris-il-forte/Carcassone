@@ -21,7 +21,7 @@ public class PlaceHandler extends ControllerHandler
 	@Override
 	public void visit(PlaceEvent event)
 	{
-		Tessera tessera = this.controller.getTesseraCorrente();
+		Tessera tessera = this.model.getTesseraCorrente();
 		Coordinate coordinate = event.getCoordinateDestinazione();
 		if (this.tuttoVicinatoDAccordo(coordinate, tessera))
 		{

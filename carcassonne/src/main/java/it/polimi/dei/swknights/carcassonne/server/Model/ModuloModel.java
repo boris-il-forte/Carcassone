@@ -1,19 +1,24 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.EventObject;
 import java.util.List;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Model;
 import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
@@ -70,6 +75,32 @@ public class ModuloModel implements Model
 		}
 	}
 
+	public void ruotaTessera()
+	{
+		this.tesseraCorrente.ruota();
+		Color coloreGiocatoreCorrente = this.getColoreGiocatoreCorrente();
+		this.fire(new UpdateRotationEvent(this.tesseraCorrente, coloreGiocatoreCorrente, this));
+	}
+
+	public Color getColoreGiocatoreCorrente()
+	{
+		Giocatore giocatore = this.getGiocatoreCorrente();
+		return giocatore.getColore();
+	}
+
+	public void addSegnalino(PuntoCardinale puntoCardinale) throws SegnaliniFinitiException
+	{
+		Segnalino segnalino = this.getGiocatoreCorrente().getSegnalino();
+		this.tesseraCorrente.setSegnalino(segnalino, puntoCardinale);
+		// TODO errore! null è sbagliato!
+		this.fire(new UpdatePositionEvent(this.tesseraCorrente, null, this.getColoreGiocatoreCorrente(), this));
+	}
+
+	public Tessera getTesseraCorrente()
+	{
+		return this.tesseraCorrente;
+	}
+
 	public void creaGiocatori(int numeroGiocatori)
 	{
 		try
@@ -95,6 +126,14 @@ public class ModuloModel implements Model
 		this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore()));
 	}
 
+	public void cominciaTurno() throws PartitaFinitaException
+	{
+		Giocatore giocatoreCorrente = this.getGiocatoreCorrente();
+		this.getTesseraDaMazzo();
+		this.fire(new UpdateTurnoEvent(this, giocatoreCorrente.getColore(), this.tesseraCorrente));
+
+	}
+
 	public void posizionaTessera(Tessera tessera, Coordinate coordinate)
 	{
 		AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
@@ -113,9 +152,9 @@ public class ModuloModel implements Model
 		return this.datiPartita.getGiocatoreCorrente();
 	}
 
-	public Tessera getTesseraDaMazzo() throws PartitaFinitaException
+	public void getTesseraDaMazzo() throws PartitaFinitaException
 	{
-		return this.datiPartita.pescaTesseraDalMazzo();
+		this.tesseraCorrente = this.datiPartita.pescaTesseraDalMazzo();
 	}
 
 	public List<Giocatore> getListaGiocatori()
@@ -126,5 +165,7 @@ public class ModuloModel implements Model
 	private DatiPartita	datiPartita;
 
 	private List<View>	listeners;
+
+	private Tessera		tesseraCorrente;
 
 }
