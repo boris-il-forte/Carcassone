@@ -40,7 +40,7 @@ public class Carcassonne
 			java.util.Scanner scannerIO = new java.util.Scanner(System.in);
 			risposta = scannerIO.nextLine();
 		}
-		while(risposta.compareToIgnoreCase("CLI") != 0);
+		while(!risposta.equalsIgnoreCase("CLI"));
 
 		
 		ModuloModel model = new ModuloModel();
