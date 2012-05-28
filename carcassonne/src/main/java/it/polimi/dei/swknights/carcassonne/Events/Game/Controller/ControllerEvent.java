@@ -1,6 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
+
 import java.util.EventObject;
 
 /**
@@ -25,6 +28,8 @@ public abstract class ControllerEvent extends EventObject
 		return messaggio.toString();
 	}
 
+	public abstract void accept(ViewHandler handler);
+	
 	protected void setComando(MessaggiController messaggio)
 	{
 		this.messaggio = messaggio;
@@ -33,5 +38,7 @@ public abstract class ControllerEvent extends EventObject
 	private MessaggiController	messaggio;
 
 	private static final long	serialVersionUID	= 3191102477186388256L;
+
+
 
 }
