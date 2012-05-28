@@ -2,81 +2,21 @@ package it.polimi.dei.swknights.carcassonne.Client.View;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.CostruzioneCompletataHandler;
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.FinePartitaHandler;
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.InizioGiocoHandler;
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.MossaNonValidaHandler;
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdatePositionHandler;
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdateRotationHandler;
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdateTurnoHandler;
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
-import it.polimi.dei.swknights.carcassonne.Events.Controller;
-import it.polimi.dei.swknights.carcassonne.Events.View;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.EventListener;
-import java.util.EventObject;
-import java.util.List;
 import java.util.Map;
 
-public abstract class ModuloView implements View
+public abstract class ModuloView extends AbstractView
 {
 	public ModuloView()
 	{
-		this.listeners = new ArrayList<Controller>();
+		super();
 		this.scenario = new ScenarioDiGioco();
-		this.visitorHandlers = this.attivaHandler();
 	}
 
-	public void riceviInput(ControllerEvent event)
-	{
-		for (ViewHandler visitorHandler : this.visitorHandlers)
-		{
-			event.accept(visitorHandler);
-		}
-	}
-
-	private List<ViewHandler> attivaHandler()
-	{
-		List<ViewHandler> handlerList = new ArrayList<ViewHandler>();
-		handlerList.add(new InizioGiocoHandler(this));
-		handlerList.add(new UpdateTurnoHandler(this));
-		handlerList.add(new UpdatePositionHandler(this));
-		handlerList.add(new UpdateRotationHandler(this));
-		handlerList.add(new MossaNonValidaHandler(this));
-		handlerList.add(new CostruzioneCompletataHandler(this));
-		handlerList.add(new FinePartitaHandler(this));
-		return handlerList;
-	}
-	
-	/*
-	 * handlerList.add(new PlaceHandler(this, this.model));
-	 *		handlerList.add(new TileHandler(this, this.model));
-	 *		handlerList.add(new PassHandler());
-	 * 
-	 */
-
-	public void run()
-	{
-		System.out.println("sono la view vera. che bello. ah no... sono astratta!");
-	}
-
-	public synchronized void riceviModificheModel(EventObject event)
-	{
-		System.out.println("sono la view, ho ricevuto " + event.toString());
-
-		if (event instanceof ControllerEvent)
+/*
+ * if (event instanceof ControllerEvent)
 		{
 
 			if (event instanceof InizioGiocoEvent)
@@ -133,32 +73,7 @@ public abstract class ModuloView implements View
 				Map<AdapterTessera, Coordinate> tessereAggiornate = cce.getTessereAggiornate();
 				this.ridaiSegnaliniDiTessere(tessereAggiornate);
 			}
-
-		}
-
-		this.attendiInput();
-	}
-
-	public void addListener(EventListener eventListener)
-	{
-		if (eventListener instanceof Controller)
-		{
-			this.listeners.add((Controller) eventListener);
-		}
-	}
-
-	public void removeListener(EventListener eventListener)
-	{
-		this.listeners.remove(eventListener);
-	}
-
-	public void fire(ViewEvent event)
-	{
-		for (Controller listener : listeners)
-		{
-			listener.riceviInput(event);
-		}
-	}
+ */
 
 	public abstract void attendiInput();
 
@@ -231,14 +146,10 @@ public abstract class ModuloView implements View
 
 	private final ScenarioDiGioco	scenario;
 
-	private List<Controller>		listeners;
-
 	private Coordinate				coordinataNordOvest;
 
 	private AdapterTessera			tesseraCorrente;
 
 	private Color					coloreGiocatore;
-
-	private List<ViewHandler>		visitorHandlers;
 
 }

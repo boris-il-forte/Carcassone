@@ -2,15 +2,15 @@ package it.polimi.dei.swknights.carcassonne.server.Model;
 
 import it.polimi.dei.swknights.carcassonne.Events.Model;
 import it.polimi.dei.swknights.carcassonne.Events.View;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 
 import java.util.ArrayList;
 import java.util.EventListener;
-import java.util.EventObject;
 import java.util.List;
 
-public abstract class AbstractModuloModel implements Model
+public abstract class AbstractModel implements Model
 {
-	public AbstractModuloModel()
+	public AbstractModel()
 	{
 		this.listeners = new ArrayList<View>();
 	}
@@ -47,7 +47,7 @@ public abstract class AbstractModuloModel implements Model
 		this.listeners.remove(eventListener);
 	}
 
-	public void fire(EventObject event)
+	public void fire(ControllerEvent event)
 	{
 		for (View listener : this.listeners)
 		{

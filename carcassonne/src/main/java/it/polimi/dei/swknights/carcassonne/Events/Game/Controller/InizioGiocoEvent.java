@@ -5,7 +5,6 @@ import java.awt.Color;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 
 public class InizioGiocoEvent extends ControllerEvent
 {
