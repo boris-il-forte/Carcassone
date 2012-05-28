@@ -87,7 +87,7 @@ public class ScenarioDiGioco
 		final int ovest = PuntoCardinale.ovest.toInt();
 		final int est = PuntoCardinale.est.toInt();
 
-		boolean vicinato[] = new boolean[4];
+		boolean vicinato[] = new boolean[PuntoCardinale.NUMERO_DIREZIONI];
 		for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
 		{
 			Coordinate coordinateVicino = coordinate.getCoordinateA(puntoCardinale);
