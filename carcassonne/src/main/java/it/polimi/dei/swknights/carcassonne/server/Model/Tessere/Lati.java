@@ -13,7 +13,7 @@ import java.util.Map;
  * @author Edo & Dave
  * 
  */
-public class Lati
+public class Lati implements Cloneable
 {
 
 	public Lati(Elemento nord, Elemento sud, Elemento ovest, Elemento est)
@@ -23,6 +23,19 @@ public class Lati
 		this.ovest = ovest;
 		this.est = est;
 		this.datiSegnalino = new DatiSegnalino();
+	}
+	
+	@Override
+	public Lati clone()
+	{
+		try
+		{
+			return (Lati) super.clone();
+		}
+		catch (CloneNotSupportedException e)
+		{
+			return null;
+		}
 	}
 
 	public Lati(Elemento[] elementiTessera)

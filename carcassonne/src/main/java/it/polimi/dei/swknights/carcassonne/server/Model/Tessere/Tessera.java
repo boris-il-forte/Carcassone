@@ -20,7 +20,7 @@ import java.util.Map;
  * 
  */
 
-public abstract class Tessera
+public abstract class Tessera implements Cloneable
 {
 	Tessera(Lati lati, Link link)
 	{
@@ -29,6 +29,9 @@ public abstract class Tessera
 		Map<String, String> m = new HashMap<String, String>();
 		m.remove(null);
 	}
+	
+	@Override
+	public abstract Tessera clone();
 
 	/**
 	 * This method is used to make a clockwise rotation of the card

@@ -16,4 +16,10 @@ public class TesseraNormale extends Tessera
 		return stringaLati + stringaConnessioni;
 	}
 
+	@Override
+	public Tessera clone()
+	{
+		return new TesseraNormale(this.lati.clone(), this.link.clone());
+	}
+
 }
