@@ -81,7 +81,6 @@ public class Cli extends ModuloView
 	protected void posizionaTessera(Coordinate coordinatePosizione)
 	{
 		System.out.println("CLI POSIZIONO TESSERA");
-
 		this.getScenario().setTessera(coordinatePosizione, this.getTesseraCorrente());
 	}
 
@@ -97,7 +96,7 @@ public class Cli extends ModuloView
 	{
 		if (this.getFaseTurno() != FasiTurno.PreparazioneGioco)
 		{
-			System.out.println("GIOCA FASE");
+			System.out.println("GIOCA FASE" + this.getFaseTurno().toString());
 			this.informaUser.setPhase(this.getFaseTurno());
 			this.getInput();
 		}
