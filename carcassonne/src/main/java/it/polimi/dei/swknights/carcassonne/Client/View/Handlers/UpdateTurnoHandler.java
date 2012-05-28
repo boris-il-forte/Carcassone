@@ -13,11 +13,11 @@ public class UpdateTurnoHandler extends ViewHandler
 	{
 		this.moduloView = moduloView;
 	}
-	
-	
+
 	@Override
-	public void visit (UpdateTurnoEvent ute) {
-		
+	public void visit(UpdateTurnoEvent ute)
+	{
+
 		this.moduloView.aggiornaMappa();
 
 		UpdateTurnoEvent utev = (UpdateTurnoEvent) ute;
@@ -29,6 +29,6 @@ public class UpdateTurnoHandler extends ViewHandler
 		this.moduloView.aggiornaColoreCorrente(colGiocatoreCorrente);
 	}
 
-	private final ModuloView moduloView;
+	private final ModuloView	moduloView;
 
 }

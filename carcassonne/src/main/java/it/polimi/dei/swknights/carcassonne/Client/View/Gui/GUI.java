@@ -60,49 +60,49 @@ public class GUI extends ModuloView implements ActionListener
 	}
 
 	@Override
-	protected void ridaiSegnaliniDiTessere( Map<AdapterTessera, Coordinate> tessereAggiornate)
+	public void ridaiSegnaliniDiTessere( Map<AdapterTessera, Coordinate> tessereAggiornate)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
+	public void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void notificaFinePartita()
+	public void notificaFinePartita()
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void notificaMossaNonValida()
+	public void notificaMossaNonValida()
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void aggiornaColoreCorrente(Color colore)
+	public void aggiornaColoreCorrente(Color colore)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
+	public void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	protected void attendiInput()
+	public void attendiInput()
 	{
 		// TODO Auto-generated method stub
 		

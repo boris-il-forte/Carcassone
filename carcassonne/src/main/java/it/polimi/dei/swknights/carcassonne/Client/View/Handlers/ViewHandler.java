@@ -14,7 +14,7 @@ public abstract class ViewHandler
 	
 	public void visit (UpdateRotationEvent ure) {}
 	
-	public void visit(UpdatePositionEvent upe) {}
+	public void visit (UpdatePositionEvent upe) {}
 	
 	public void visit (MossaNonValidaEvent mne) {}
 	
