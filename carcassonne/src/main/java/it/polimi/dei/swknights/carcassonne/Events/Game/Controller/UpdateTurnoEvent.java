@@ -1,12 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
-import java.awt.Color;
-
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
-import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
+
+import java.awt.Color;
 
 public class UpdateTurnoEvent extends UpdateEvent
 {

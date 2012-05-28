@@ -1,8 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
-import java.util.EventObject;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 
 public interface Model extends EventSource
 {
-	void fire(EventObject event);
+	void fire(ControllerEvent event);
 }

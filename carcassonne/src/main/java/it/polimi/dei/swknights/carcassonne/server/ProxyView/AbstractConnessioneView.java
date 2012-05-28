@@ -1,8 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.server.ProxyView;
 
 import it.polimi.dei.swknights.carcassonne.Events.View;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
+
 import java.util.EventListener;
-import java.util.EventObject;
 import java.util.List;
 
 public class AbstractConnessioneView implements View
@@ -15,7 +16,7 @@ public class AbstractConnessioneView implements View
 
 	}
 	
-	public void riceviModificheModel(EventObject event)
+	public void riceviModificheModel(ControllerEvent event)
 	{
 
 	}

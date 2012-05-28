@@ -1,9 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
+
 import java.util.EventListener;
-import java.util.EventObject;
 
 public interface View extends EventListener, Runnable, EventSource
 {
-	void riceviModificheModel(EventObject event);
+	void riceviModificheModel(ControllerEvent event);
 }

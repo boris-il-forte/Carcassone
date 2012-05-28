@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ModuloModel extends AbstractModuloModel
+public class ModuloModel extends AbstractModel
 {
 	/**
 	 * Default constructor. Initialize the data structures
