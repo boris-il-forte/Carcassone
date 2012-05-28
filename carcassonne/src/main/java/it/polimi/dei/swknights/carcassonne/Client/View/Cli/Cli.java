@@ -150,7 +150,7 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	protected void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
+	public void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
 	{
 		System.out.println("CAMBIO TESSERA CORRENTE E LA MOSTRO");
 		this.setTesseraCorrente(tessera);

@@ -1,6 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 
 import java.awt.Color;
 import java.util.Map;
@@ -30,5 +32,11 @@ public class FinePartitaEvent extends ControllerEvent
 
 	private Map<Color, Integer>	mappaPunteggi;
 	private static final long	serialVersionUID	= 7228959705104329672L;
+	@Override
+	public void accept(ViewHandler handler)
+	{
+		handler.visit(this);
+		
+	}
 
 }

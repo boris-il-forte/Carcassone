@@ -1,8 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 
 import java.util.Map;
 
@@ -20,6 +22,13 @@ public class CostruzioneCompletataEvent extends ControllerEvent
 		super(source);
 		this.setComando(MessaggiController.costruction);
 		this.tessereAggiornate = tessereAggiornate;
+	}
+
+	@Override
+	public void accept(ViewHandler handler)
+	{
+		handler.visit(this);
+		
 	}
 
 	public  Map<AdapterTessera, Coordinate>  getTessereAggiornate()

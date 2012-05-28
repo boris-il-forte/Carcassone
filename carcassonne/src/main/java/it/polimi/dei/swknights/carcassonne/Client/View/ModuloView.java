@@ -2,6 +2,8 @@ package it.polimi.dei.swknights.carcassonne.Client.View;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdatePositionHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
@@ -14,6 +16,11 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePosition
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PassHandler;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PlaceHandler;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.RuotaHandler;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.TileHandler;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -28,7 +35,27 @@ public abstract class ModuloView implements View
 	{
 		this.listeners = new ArrayList<Controller>();
 		this.scenario = new ScenarioDiGioco();
+		this.visitorHandlers =  this.attivaHandler();
 	}
+		
+		public void riceviInput(ControllerEvent event)
+		{
+			for (ViewHandler visitorHandler : this.visitorHandlers)
+			{
+				event.accept(visitorHandler);
+			}
+		}
+		
+		
+		private List<ViewHandler> attivaHandler()
+		{
+			List<ViewHandler> handlerList = new ArrayList<ViewHandler>();
+			handlerList.add(new UpdatePositionHandler());
+			handlerList.add(new PlaceHandler(this, this.model));
+			handlerList.add(new TileHandler(this, this.model));
+			handlerList.add(new PassHandler());
+			return handlerList;
+		}
 
 	public void run()
 	{
@@ -78,7 +105,6 @@ public abstract class ModuloView implements View
 			if (event instanceof UpdateRotationEvent)
 			{
 				this.aggiornaMappa();
-
 				UpdateRotationEvent ure = (UpdateRotationEvent) event;
 				AdapterTessera tesseraNuova = ure.getTessera();
 				this.cambiaEMostraTesseraCorrente(tesseraNuova);
@@ -124,25 +150,25 @@ public abstract class ModuloView implements View
 		}
 	}
 
-	protected abstract void attendiInput();
+	public abstract void attendiInput();
 
-	protected abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
+	public abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
 
-	protected abstract void mettiEMostraPrimaTessera(AdapterTessera tessIniziale);
+	public abstract void mettiEMostraPrimaTessera(AdapterTessera tessIniziale);
 
-	protected abstract void notificaFinePartita();
+	public abstract void notificaFinePartita();
 
-	protected abstract void notificaMossaNonValida();
+	public abstract void notificaMossaNonValida();
 
-	protected abstract void aggiornaColoreCorrente(Color colore);
+	public abstract void aggiornaColoreCorrente(Color colore);
 
-	protected abstract void cambiaEMostraTesseraCorrente(AdapterTessera tessera);
+	public abstract void cambiaEMostraTesseraCorrente(AdapterTessera tessera);
 
-	protected abstract void aggiornaMappa();
+	public abstract void aggiornaMappa();
 
-	protected abstract void posizionaTessera(Coordinate coordinatePosizione);
+	public abstract void posizionaTessera(Coordinate coordinatePosizione);
 
-	protected abstract void muoviViewA(PuntoCardinale puntoCardinale, int quantita);
+	public abstract void muoviViewA(PuntoCardinale puntoCardinale, int quantita);
 
 	protected Color getColoreGiocatore()
 	{
@@ -191,7 +217,7 @@ public abstract class ModuloView implements View
 
 	protected final Coordinate		centroScenario	= new Coordinate(0, 0);
 
-	private FasiTurno				faseTurno;
+	public FasiTurno				faseTurno;
 
 	private final ScenarioDiGioco	scenario;
 
@@ -202,5 +228,7 @@ public abstract class ModuloView implements View
 	private AdapterTessera			tesseraCorrente;
 
 	private Color					coloreGiocatore;
+	
+	private List<ViewHandler>     visitorHandlers;
 
 }

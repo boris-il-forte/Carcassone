@@ -1,6 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
@@ -22,4 +24,10 @@ public class UpdateRotationEvent extends UpdateEvent
 
 	private static final long	serialVersionUID	= -7350182684969632910L;
 
+	@Override
+	public void accept(ViewHandler handler)
+	{
+		handler.visit(this);
+		
+	}
 }
