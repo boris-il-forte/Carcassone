@@ -10,23 +10,9 @@ import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
  * @author Edo & Dave
  * 
  */
-public class Link
+public class Link implements Cloneable
 {
-	/**
-	 * rotate the connections according to a clockwise 90° rotation
-	 */
-	public void ruota()
-	{
-		boolean tempSN = this.direzioni[Bussola.NS.ordinal()];
-		this.direzioni[Bussola.NS.ordinal()] = this.direzioni[Bussola.WE.ordinal()];
-		this.direzioni[Bussola.WE.ordinal()] = tempSN;
-		boolean tempSE = this.direzioni[Bussola.SE.ordinal()];
-		this.direzioni[Bussola.SE.ordinal()] = this.direzioni[Bussola.NE.ordinal()];
-		this.direzioni[Bussola.NE.ordinal()] = this.direzioni[Bussola.NW.ordinal()];
-		this.direzioni[Bussola.NW.ordinal()] = this.direzioni[Bussola.SW.ordinal()];
-		this.direzioni[Bussola.SW.ordinal()] = tempSE;
-	}
-
+	
 	/**
 	 * Array of six booleans to be passed in the following order NS(0), NE(1),
 	 * NW(2), WE(3), SE(4), SW(5);
@@ -43,15 +29,37 @@ public class Link
 			direzioni[direzione.toInt()] = links[direzione.toInt()];
 		}
 	}
-
-	public Link(boolean NS, boolean NE, boolean NW, boolean WE, boolean SE, boolean SW)
+	
+	@Override
+	public Link clone()
 	{
-		this.direzioni[Bussola.NS.toInt()] =NS;
-		this.direzioni[Bussola.NE.toInt()] =NE;
-		this.direzioni[Bussola.NW.toInt()] =NW;
-		this.direzioni[Bussola.WE.toInt()] =WE;
-		this.direzioni[Bussola.SE.toInt()] =SE;
-		this.direzioni[Bussola.SW.toInt()] =SW;
+		Link copia;
+		try
+		{
+			copia = (Link) super.clone();
+			copia.direzioni= this.direzioni.clone();
+			return copia;
+		}
+		catch (CloneNotSupportedException e)
+		{
+			return null;
+		}
+		
+	}
+
+	/**
+	 * rotate the connections according to a clockwise 90° rotation
+	 */
+	public void ruota()
+	{
+		boolean tempSN = this.direzioni[Bussola.NS.ordinal()];
+		this.direzioni[Bussola.NS.ordinal()] = this.direzioni[Bussola.WE.ordinal()];
+		this.direzioni[Bussola.WE.ordinal()] = tempSN;
+		boolean tempSE = this.direzioni[Bussola.SE.ordinal()];
+		this.direzioni[Bussola.SE.ordinal()] = this.direzioni[Bussola.NE.ordinal()];
+		this.direzioni[Bussola.NE.ordinal()] = this.direzioni[Bussola.NW.ordinal()];
+		this.direzioni[Bussola.NW.ordinal()] = this.direzioni[Bussola.SW.ordinal()];
+		this.direzioni[Bussola.SW.ordinal()] = tempSE;
 	}
 
 	/**

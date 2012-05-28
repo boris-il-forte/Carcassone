@@ -13,7 +13,7 @@ public class AdapterTesseraObject extends AdapterTessera
 {
 	public AdapterTesseraObject(Tessera tessera)
 	{
-		this.tessera = tessera; // TODO clona! (per eventi immutabili)
+		this.tessera = (Tessera) tessera.clone();
 	}
 
 	@Override
