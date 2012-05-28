@@ -1,19 +1,24 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Handlers;
 
+import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 
 public class UpdateRotationHandler extends ViewHandler
 {
-
-	@Override
-	public void visit(UpdatePositionEvent event)
+	public UpdateRotationHandler(ModuloView view)
 	{
-		this.aggiornaMappa();
-		UpdateRotationEvent ure = (UpdateRotationEvent) event;
-		AdapterTessera tesseraNuova = ure.getTessera();
-		this.cambiaEMostraTesseraCorrente(tesseraNuova);
+		this.view = view;
 	}
+	
+	@Override
+	public void visit(UpdateRotationEvent event)
+	{
+		this.view.aggiornaMappa();
+		AdapterTessera tesseraNuova = event.getTessera();
+		this.view.cambiaEMostraTesseraCorrente(tesseraNuova);
+	}
+	
+	private ModuloView	view;
 	
 }

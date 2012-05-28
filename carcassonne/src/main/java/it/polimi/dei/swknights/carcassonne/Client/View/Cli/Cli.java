@@ -61,7 +61,7 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	protected void aggiornaMappa()
+	public void aggiornaMappa()
 	{
 
 		System.out.println("AGGIORNO MAPPA");
@@ -78,21 +78,21 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	protected void posizionaTessera(Coordinate coordinatePosizione)
+	public void posizionaTessera(Coordinate coordinatePosizione)
 	{
 		System.out.println("CLI POSIZIONO TESSERA");
 		this.getScenario().setTessera(coordinatePosizione, this.getTesseraCorrente());
 	}
 
 	@Override
-	protected void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
+	public void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
 	{
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	synchronized protected void attendiInput()
+	public synchronized void attendiInput()
 	{
 		if (this.getFaseTurno() != FasiTurno.PreparazioneGioco)
 		{
@@ -104,7 +104,7 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	protected void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereCostruzioneFinita)
+	public void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereCostruzioneFinita)
 	{
 		ScenarioDiGioco scenario = this.getScenario();
 		for (Entry<AdapterTessera, Coordinate> entryAdapterCoord : tessereCostruzioneFinita.entrySet())
@@ -118,7 +118,7 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	protected void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
+	public void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
 	{
 		System.out.println("cli METTO LA PRIMA TESSERA IN CENTRO");
 
@@ -131,20 +131,20 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	protected void notificaFinePartita()
+	public void notificaFinePartita()
 	{
 		this.informaUser.notificaFinePartita();
 	}
 
 	@Override
-	protected void notificaMossaNonValida()
+	public void notificaMossaNonValida()
 	{
 		this.informaUser.notificaMossaNonValida();
 
 	}
 
 	@Override
-	protected void aggiornaColoreCorrente(Color colore)
+	public void aggiornaColoreCorrente(Color colore)
 	{
 		this.informaUser.setColore(colore);
 	}

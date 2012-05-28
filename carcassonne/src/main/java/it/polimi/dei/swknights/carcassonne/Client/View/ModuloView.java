@@ -2,11 +2,17 @@ package it.polimi.dei.swknights.carcassonne.Client.View;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.CostruzioneCompletataHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.FinePartitaHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.InizioGiocoHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.MossaNonValidaHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdatePositionHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdateRotationHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdateTurnoHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
-import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
+import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
@@ -16,11 +22,6 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePosition
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PassHandler;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PlaceHandler;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.RuotaHandler;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.TileHandler;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -35,27 +36,36 @@ public abstract class ModuloView implements View
 	{
 		this.listeners = new ArrayList<Controller>();
 		this.scenario = new ScenarioDiGioco();
-		this.visitorHandlers =  this.attivaHandler();
+		this.visitorHandlers = this.attivaHandler();
 	}
-		
-		public void riceviInput(ControllerEvent event)
+
+	public void riceviInput(ControllerEvent event)
+	{
+		for (ViewHandler visitorHandler : this.visitorHandlers)
 		{
-			for (ViewHandler visitorHandler : this.visitorHandlers)
-			{
-				event.accept(visitorHandler);
-			}
+			event.accept(visitorHandler);
 		}
-		
-		
-		private List<ViewHandler> attivaHandler()
-		{
-			List<ViewHandler> handlerList = new ArrayList<ViewHandler>();
-			handlerList.add(new UpdatePositionHandler());
-			handlerList.add(new PlaceHandler(this, this.model));
-			handlerList.add(new TileHandler(this, this.model));
-			handlerList.add(new PassHandler());
-			return handlerList;
-		}
+	}
+
+	private List<ViewHandler> attivaHandler()
+	{
+		List<ViewHandler> handlerList = new ArrayList<ViewHandler>();
+		handlerList.add(new InizioGiocoHandler(this));
+		handlerList.add(new UpdateTurnoHandler(this));
+		handlerList.add(new UpdatePositionHandler(this));
+		handlerList.add(new UpdateRotationHandler(this));
+		handlerList.add(new MossaNonValidaHandler(this));
+		handlerList.add(new CostruzioneCompletataHandler(this));
+		handlerList.add(new FinePartitaHandler(this));
+		return handlerList;
+	}
+	
+	/*
+	 * handlerList.add(new PlaceHandler(this, this.model));
+	 *		handlerList.add(new TileHandler(this, this.model));
+	 *		handlerList.add(new PassHandler());
+	 * 
+	 */
 
 	public void run()
 	{
@@ -228,7 +238,7 @@ public abstract class ModuloView implements View
 	private AdapterTessera			tesseraCorrente;
 
 	private Color					coloreGiocatore;
-	
-	private List<ViewHandler>     visitorHandlers;
+
+	private List<ViewHandler>		visitorHandlers;
 
 }
