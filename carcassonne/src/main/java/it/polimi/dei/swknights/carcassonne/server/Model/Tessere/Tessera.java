@@ -116,30 +116,6 @@ public abstract class Tessera
 	}
 
 	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
-
-	/**@Override
-	public boolean equals(Object obj) {
-	
-		if(obj instanceof Tessera)
-		{
-			Tessera t = (Tessera)obj;
-			if(t.lati.equals(this.lati) && t.link.equals(this.link))
-			{
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-			
-		}
-		else
-		{
-			return false;
-		}
-		
-	}
-	**/
 	
 	
 	@Override

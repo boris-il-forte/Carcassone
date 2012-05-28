@@ -124,7 +124,7 @@ class Stampante
 			char confine = (vicinato.haVicinoA(punto)) ? '.' : '#';
 			Lato lato = mapLati.get(punto);
 			Coordinate puntoInternoLato = lato.getPuntoMedioLato();
-			if (this.vuotoA(puntoInternoLato))
+			if (this.vuotoA(puntoInternoLato) || confine=='#')
 			{
 				this.builder.fillConCarattere(lato.getStart(), lato.getEnd(), confine);
 			}
