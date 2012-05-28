@@ -22,7 +22,7 @@ public class InizioGiocoHandler extends ViewHandler
 
 		Color coloreIniziale = ige.getGiocatore();
 		AdapterTessera tessIniziale = ige.getTesseraIniziale();
-		this.moduloView.faseTurno = FasiTurno.PreparazioneGioco;
+		this.moduloView.setFaseTurno(FasiTurno.PreparazioneGioco);
 		this.moduloView.mettiEMostraPrimaTessera(tessIniziale);
 		this.moduloView.aggiornaColoreCorrente(coloreIniziale);
 	}

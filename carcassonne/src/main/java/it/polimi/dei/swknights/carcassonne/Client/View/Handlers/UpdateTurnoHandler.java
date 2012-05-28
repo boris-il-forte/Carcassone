@@ -24,7 +24,7 @@ public class UpdateTurnoHandler extends ViewHandler
 		Color colGiocatoreCorrente = utev.getGiocatoreCorrente();
 		AdapterTessera tesseraNuova = utev.getTessera();
 
-		this.moduloView.faseTurno = FasiTurno.Inizio;
+		this.moduloView.setFaseTurno(FasiTurno.Inizio);
 		this.moduloView.cambiaEMostraTesseraCorrente(tesseraNuova);
 		this.moduloView.aggiornaColoreCorrente(colGiocatoreCorrente);
 	}
