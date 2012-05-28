@@ -2,6 +2,13 @@ package it.polimi.dei.swknights.carcassonne.Client.View;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.CostruzioneCompletataHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.FinePartitaHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.InizioGiocoHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.MossaNonValidaHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdatePositionHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdateRotationHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdateTurnoHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 
 import java.awt.Color;
@@ -13,67 +20,8 @@ public abstract class ModuloView extends AbstractView
 	{
 		super();
 		this.scenario = new ScenarioDiGioco();
+		this.attivaHanlders();
 	}
-
-/*
- * if (event instanceof ControllerEvent)
-		{
-
-			if (event instanceof InizioGiocoEvent)
-			{
-
-				InizioGiocoEvent ige = (InizioGiocoEvent) event;
-
-				Color coloreIniziale = ige.getGiocatore();
-				AdapterTessera tessIniziale = ige.getTesseraIniziale();
-				this.faseTurno = FasiTurno.PreparazioneGioco;
-				this.mettiEMostraPrimaTessera(tessIniziale);
-				this.aggiornaColoreCorrente(coloreIniziale);
-
-			}
-			if (event instanceof MossaNonValidaEvent)
-			{
-				this.notificaMossaNonValida();
-			}
-			if (event instanceof FinePartitaEvent)
-			{
-				this.notificaFinePartita();
-			}
-			if (event instanceof UpdateTurnoEvent)
-			{
-				this.aggiornaMappa();
-
-				UpdateTurnoEvent ute = (UpdateTurnoEvent) event;
-				Color colGiocatoreCorrente = ute.getGiocatoreCorrente();
-				AdapterTessera tesseraNuova = ute.getTessera();
-
-				this.faseTurno = FasiTurno.Inizio;
-				this.cambiaEMostraTesseraCorrente(tesseraNuova);
-				this.aggiornaColoreCorrente(colGiocatoreCorrente);
-
-			}
-			if (event instanceof UpdateRotationEvent)
-			{
-				this.aggiornaMappa();
-				UpdateRotationEvent ure = (UpdateRotationEvent) event;
-				AdapterTessera tesseraNuova = ure.getTessera();
-				this.cambiaEMostraTesseraCorrente(tesseraNuova);
-			}
-			if (event instanceof UpdatePositionEvent)
-			{
-
-				UpdatePositionEvent upe = (UpdatePositionEvent) event;
-				Coordinate coord = upe.getCoordinate();
-				this.posizionaTessera(coord);
-				this.aggiornaMappa();
-			}
-			if (event instanceof CostruzioneCompletataEvent)
-			{
-				CostruzioneCompletataEvent cce = (CostruzioneCompletataEvent) event;
-				Map<AdapterTessera, Coordinate> tessereAggiornate = cce.getTessereAggiornate();
-				this.ridaiSegnaliniDiTessere(tessereAggiornate);
-			}
- */
 
 	public abstract void attendiInput();
 
@@ -94,6 +42,11 @@ public abstract class ModuloView extends AbstractView
 	public abstract void posizionaTessera(Coordinate coordinatePosizione);
 
 	public abstract void muoviViewA(PuntoCardinale puntoCardinale, int quantita);
+
+	public void setFaseTurno(FasiTurno fase)
+	{
+		this.faseTurno = fase;
+	}
 
 	protected Color getColoreGiocatore()
 	{
@@ -135,14 +88,20 @@ public abstract class ModuloView extends AbstractView
 		return this.faseTurno;
 	}
 
-	protected void setFaseTurno(FasiTurno fase)
+	private void attivaHanlders()
 	{
-		this.faseTurno = fase;
+		this.addVisitorHandler(new InizioGiocoHandler(this));
+		this.addVisitorHandler(new UpdateTurnoHandler(this));
+		this.addVisitorHandler(new UpdateRotationHandler(this));
+		this.addVisitorHandler(new UpdatePositionHandler(this));
+		this.addVisitorHandler(new MossaNonValidaHandler(this));
+		this.addVisitorHandler(new CostruzioneCompletataHandler(this));
+		this.addVisitorHandler(new FinePartitaHandler(this));
 	}
 
 	protected final Coordinate		centroScenario	= new Coordinate(0, 0);
 
-	public FasiTurno				faseTurno;
+	private FasiTurno				faseTurno;
 
 	private final ScenarioDiGioco	scenario;
 
