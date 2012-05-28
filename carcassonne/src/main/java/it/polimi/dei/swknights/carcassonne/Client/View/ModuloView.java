@@ -49,7 +49,7 @@ public abstract class ModuloView implements View
 
 				Color coloreIniziale = ige.getGiocatore();
 				AdapterTessera tessIniziale = ige.getTesseraIniziale();
-				this.faseTurno = FasiTurno.Inizio;
+				this.faseTurno = FasiTurno.PreparazioneGioco;
 				this.mettiEMostraPrimaTessera(tessIniziale);
 				this.aggiornaColoreCorrente(coloreIniziale);
 

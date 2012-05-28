@@ -37,6 +37,7 @@ public class ModuloModel extends AbstractModuloModel
 	{
 		this.tesseraCorrente.ruota();
 		Color coloreGiocatoreCorrente = this.getColoreGiocatoreCorrente();
+		
 		this.fire(new UpdateRotationEvent(this.tesseraCorrente, coloreGiocatoreCorrente, this));
 	}
 
@@ -84,6 +85,7 @@ public class ModuloModel extends AbstractModuloModel
 		Color coloreGiocatore = this.getColoreGiocatoreCorrente();
 		this.getTesseraDaMazzo();
 		this.fire(new UpdateTurnoEvent(this, coloreGiocatore, this.tesseraCorrente));
+		this.notifyAll();
 	}
 
 	public void posizionaTessera(Tessera tessera, Coordinate coordinate)
