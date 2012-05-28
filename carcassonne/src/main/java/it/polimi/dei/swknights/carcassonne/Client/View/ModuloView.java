@@ -65,20 +65,20 @@ public abstract class ModuloView implements View
 			if (event instanceof UpdateTurnoEvent)
 			{
 				this.aggiornaMappa();
-				
+
 				UpdateTurnoEvent ute = (UpdateTurnoEvent) event;
 				Color colGiocatoreCorrente = ute.getGiocatoreCorrente();
 				AdapterTessera tesseraNuova = ute.getTessera();
-				
+
 				this.faseTurno = FasiTurno.Inizio;
 				this.cambiaEMostraTesseraCorrente(tesseraNuova);
 				this.aggiornaColoreCorrente(colGiocatoreCorrente);
-			
+
 			}
 			if (event instanceof UpdateRotationEvent)
 			{
 				this.aggiornaMappa();
-				
+
 				UpdateRotationEvent ure = (UpdateRotationEvent) event;
 				AdapterTessera tesseraNuova = ure.getTessera();
 				this.cambiaEMostraTesseraCorrente(tesseraNuova);
@@ -89,6 +89,7 @@ public abstract class ModuloView implements View
 				UpdatePositionEvent upe = (UpdatePositionEvent) event;
 				Coordinate coord = upe.getCoordinate();
 				this.posizionaTessera(coord);
+				this.aggiornaMappa();
 			}
 			if (event instanceof CostruzioneCompletataEvent)
 			{
@@ -128,7 +129,7 @@ public abstract class ModuloView implements View
 	protected abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
 
 	protected abstract void mettiEMostraPrimaTessera(AdapterTessera tessIniziale);
-	
+
 	protected abstract void notificaFinePartita();
 
 	protected abstract void notificaMossaNonValida();
@@ -176,8 +177,8 @@ public abstract class ModuloView implements View
 	protected Coordinate getCoordinataNordOvest()
 	{
 		return coordinataNordOvest;
-	}		
-	
+	}
+
 	protected FasiTurno getFaseTurno()
 	{
 		return this.faseTurno;
@@ -187,7 +188,7 @@ public abstract class ModuloView implements View
 	{
 		this.faseTurno = fase;
 	}
-	
+
 	protected final Coordinate		centroScenario	= new Coordinate(0, 0);
 
 	private FasiTurno				faseTurno;
