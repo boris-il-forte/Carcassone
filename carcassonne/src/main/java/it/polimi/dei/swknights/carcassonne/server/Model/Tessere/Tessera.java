@@ -53,7 +53,7 @@ public abstract class Tessera
 	public boolean buonVicino(Tessera tessera, PuntoCardinale puntoCardinale)
 	{
 		Elemento elementoMio = this.lati.getTipoElementoInDirezione(puntoCardinale);
-		Elemento elementoSuo = this.lati.getTipoElementoInDirezione(puntoCardinale.opposto());
+		Elemento elementoSuo = tessera.lati.getTipoElementoInDirezione(puntoCardinale.opposto());
 
 		return (elementoMio == elementoSuo);
 	}

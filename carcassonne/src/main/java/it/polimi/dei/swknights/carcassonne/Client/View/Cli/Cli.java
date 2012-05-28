@@ -63,9 +63,9 @@ public class Cli extends ModuloView
 	@Override
 	protected void aggiornaMappa()
 	{
-		
+
 		System.out.println("AGGIORNO MAPPA");
-		
+
 		ScenarioDiGioco scenario = this.getScenario();
 		Stampante stampante = this.inizializzaStampante();
 		Coordinate base = this.getCoordinataNordOvest();
@@ -80,8 +80,8 @@ public class Cli extends ModuloView
 	@Override
 	protected void posizionaTessera(Coordinate coordinatePosizione)
 	{
-		System.out.println("POSIZIONO TESSERA");
-		
+		System.out.println("CLI POSIZIONO TESSERA");
+
 		this.getScenario().setTessera(coordinatePosizione, this.getTesseraCorrente());
 	}
 
@@ -95,9 +95,12 @@ public class Cli extends ModuloView
 	@Override
 	synchronized protected void attendiInput()
 	{
-		System.out.println("GIOCA FASE");
-		this.informaUser.setPhase( this.getFaseTurno());
-		this.getInput();
+		if (this.getFaseTurno() != FasiTurno.PreparazioneGioco)
+		{
+			System.out.println("GIOCA FASE");
+			this.informaUser.setPhase(this.getFaseTurno());
+			this.getInput();
+		}
 
 	}
 
@@ -118,9 +121,9 @@ public class Cli extends ModuloView
 	@Override
 	protected void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
 	{
-		System.out.println("METTO LA PRIMA TESSERA IN CENTRO");
-		
-	     // in modulo View viene messo fase=inizio
+		System.out.println("cli METTO LA PRIMA TESSERA IN CENTRO");
+
+		// in modulo View viene messo fase=inizio
 		this.informaUser.setPhase(this.getFaseTurno());
 		this.setTesseraCorrente(tessIniziale);
 		this.posizionaTessera(this.centroScenario);
@@ -203,7 +206,7 @@ public class Cli extends ModuloView
 		do
 		{
 			this.informaUser.chiediComando();
-			
+
 			String comando = this.in.nextLine();
 			valido = this.parser.eseguiComando(comando);
 		} while (!valido);

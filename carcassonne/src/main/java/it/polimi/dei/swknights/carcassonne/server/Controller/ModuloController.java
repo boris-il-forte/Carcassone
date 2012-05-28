@@ -36,7 +36,7 @@ public class ModuloController implements Controller
 
 	public void run()
 	{
-		this.cominciaGioco();
+		this.iniziaGioco();
 		try
 		{
 			this.attendiPosizionamentoTessera();
@@ -66,9 +66,9 @@ public class ModuloController implements Controller
 		}
 	}
 
-	public void cominciaGioco()
+	public void iniziaGioco()
 	{
-		System.out.println("COMINCIA GIOCO");
+		System.out.println("INIZIA GIOCO");
 		this.primaMossaPartita();
 	}
 
@@ -91,7 +91,7 @@ public class ModuloController implements Controller
 	{
 		try
 		{
-			this.model.iniziaGioco(2);
+			this.model.iniziaGioco(NUMBER_OF_PLAYER);
 		}
 		catch (PartitaFinitaException e)
 		{
@@ -140,5 +140,7 @@ public class ModuloController implements Controller
 	private ContatoreCartografo		contaPunti;
 
 	private final ModuloModel		model;
+
+	private static final int	NUMBER_OF_PLAYER	= 2;  //TODO:  ask user.
 
 }
