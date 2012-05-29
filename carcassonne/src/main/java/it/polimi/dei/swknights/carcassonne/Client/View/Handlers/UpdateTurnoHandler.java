@@ -15,14 +15,12 @@ public class UpdateTurnoHandler extends ViewHandler
 	}
 
 	@Override
-	public void visit(UpdateTurnoEvent ute)
+	public void visit(UpdateTurnoEvent event)
 	{
 
 		this.view.aggiornaMappa();
-
-		UpdateTurnoEvent utev = (UpdateTurnoEvent) ute;
-		Color colGiocatoreCorrente = utev.getGiocatoreCorrente();
-		AdapterTessera tesseraNuova = utev.getTessera();
+		Color colGiocatoreCorrente = event.getGiocatoreCorrente();
+		AdapterTessera tesseraNuova = event.getTessera();
 
 		this.view.setFaseTurno(FasiTurno.Inizio);
 		this.view.cambiaEMostraTesseraCorrente(tesseraNuova);

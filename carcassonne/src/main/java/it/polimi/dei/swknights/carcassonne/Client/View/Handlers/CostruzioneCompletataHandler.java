@@ -17,8 +17,7 @@ public class CostruzioneCompletataHandler extends ViewHandler
 	@Override
 	public void visit(CostruzioneCompletataEvent event)
 	{
-		CostruzioneCompletataEvent cce = (CostruzioneCompletataEvent) event;
-		Map<AdapterTessera, Coordinate> tessereAggiornate = cce.getTessereAggiornate();
+		Map<AdapterTessera, Coordinate> tessereAggiornate = event.getTessereAggiornate();
 		this.view.ridaiSegnaliniDiTessere(tessereAggiornate);
 		this.sveglia();
 	}
