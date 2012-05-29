@@ -123,7 +123,7 @@ public class ModuloController implements Controller
 		handlerList.add(new RuotaHandler(this, this.model));
 		handlerList.add(new PlaceHandler(this, this.model));
 		handlerList.add(new TileHandler(this, this.model));
-		handlerList.add(new PassHandler());
+		handlerList.add(new PassHandler(this, this.model));
 		return handlerList;
 	}
 

@@ -15,9 +15,7 @@ public class PlaceHandler extends ControllerHandler
 
 	public PlaceHandler(ModuloController controller, ModuloModel model)
 	{
-		this.controller = controller;
-		
-		this.model = model;
+		super(controller, model);
 	}
 
 	@Override
@@ -34,6 +32,7 @@ public class PlaceHandler extends ControllerHandler
 		{
 			this.model.fire(new MossaNonValidaEvent(controller));
 		}
+		this.sveglia();
 	}
 
 	private boolean tuttoVicinatoDAccordo(Coordinate coordinate)
@@ -65,8 +64,4 @@ public class PlaceHandler extends ControllerHandler
 		}
 		return true;
 	}
-
-	private ModuloController	controller;
-
-	private ModuloModel				model;
 }

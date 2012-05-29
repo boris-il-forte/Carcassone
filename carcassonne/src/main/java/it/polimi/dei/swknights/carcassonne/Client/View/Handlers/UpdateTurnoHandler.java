@@ -27,7 +27,9 @@ public class UpdateTurnoHandler extends ViewHandler
 		this.view.setFaseTurno(FasiTurno.Inizio);
 		this.view.cambiaEMostraTesseraCorrente(tesseraNuova);
 		this.view.aggiornaColoreCorrente(colGiocatoreCorrente);
+		this.view.notificaPuoiParlare();
 		this.sveglia();
+		System.out.println("Update turno event finito");
 	}
 
 }

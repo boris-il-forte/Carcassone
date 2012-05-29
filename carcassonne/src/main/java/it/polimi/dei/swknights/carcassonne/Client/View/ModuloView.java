@@ -54,6 +54,11 @@ public abstract class ModuloView extends AbstractView
 		this.statoPartita.setPartitaCominciata(true);
 	}
 
+	public void notificaPuoiParlare()
+	{
+		this.statoPartita.setPossoParlare(true);
+	}
+
 	protected Color getColoreGiocatore()
 	{
 		return this.coloreGiocatore;

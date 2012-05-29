@@ -14,8 +14,7 @@ public class TileHandler extends ControllerHandler
 {
 	public TileHandler(ModuloController controller, ModuloModel model)
 	{
-		this.controller = controller;
-		this.model = model;
+		super(controller, model);
 	}
 
 	/**
@@ -42,6 +41,7 @@ public class TileHandler extends ControllerHandler
 		{
 			this.model.fire(new MossaNonValidaEvent(this.model));
 		}
+		this.sveglia();
 
 	}
 
@@ -59,9 +59,5 @@ public class TileHandler extends ControllerHandler
 			return false;
 		}
 	}
-
-	private ModuloModel			model;
-
-	private ModuloController	controller;
 
 }
