@@ -31,9 +31,9 @@ public class DatiPartita
 		this.factoryGiocatori = new FactoryGiocatore();
 		this.listFactoryTessere = new ArrayList<FactoryTessere>();
 		this.listFactoryTessere.add(new FactoryTessereNormali());
+		this.areaDiGioco = new AreaDiGioco();
 		this.inizializzaPilaTessere();
 		this.inizializzaGiocatori();
-		this.inizializzaAreaDiGioco();
 	}
 
 	/**
@@ -158,12 +158,6 @@ public class DatiPartita
 			System.exit(-1);
 		}
 
-	}
-
-	private void inizializzaAreaDiGioco()
-	{
-		this.areaDiGioco = new AreaDiGioco();
-		// TODO: mettere la tessera magica al centro
 	}
 
 	private void inizializzaPilaTessere()

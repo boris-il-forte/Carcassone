@@ -37,7 +37,7 @@ public class ModuloController implements Controller
 
 	public void run()
 	{
-		this.iniziaGioco();
+		this.primaMossaPartita();
 		try
 		{
 			this.nextTurno();
@@ -46,18 +46,11 @@ public class ModuloController implements Controller
 				this.primaMossaTurno();
 				this.nextTurno();
 			}
-
 		}
 		catch (InterruptedException e)
 		{
 			e.printStackTrace();
 		}
-	}
-
-	private void nextTurno() throws InterruptedException
-	{
-		this.attendiPosizionamentoTessera();
-		this.model.nextTurno();
 	}
 
 	/**
@@ -73,14 +66,9 @@ public class ModuloController implements Controller
 		}
 	}
 
-	public void comunicaPosizionamentoTessera()
+	public synchronized void comunicaPosizionamentoTessera()
 	{
 		this.tesseraPosizionata = true;
-	}
-
-	public void iniziaGioco()
-	{
-		this.primaMossaPartita();
 	}
 
 	public ContatoreCartografo getContapunti()
@@ -92,6 +80,12 @@ public class ModuloController implements Controller
 	{
 		// TODO controllare se puoi ruotare
 		return true;
+	}
+
+	private void nextTurno() throws InterruptedException
+	{
+		this.attendiPosizionamentoTessera();
+		this.model.nextTurno();
 	}
 
 	private void primaMossaPartita()

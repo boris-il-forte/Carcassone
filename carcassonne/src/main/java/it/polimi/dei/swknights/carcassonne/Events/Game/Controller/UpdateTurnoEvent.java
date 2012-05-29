@@ -36,6 +36,7 @@ public class UpdateTurnoEvent extends UpdateEvent
 	}
 
 	private final Color			color;
+	
 	private static final long	serialVersionUID	= -8277130187657287093L;
 
 }
