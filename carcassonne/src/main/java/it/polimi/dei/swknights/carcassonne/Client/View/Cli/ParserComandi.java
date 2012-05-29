@@ -1,7 +1,13 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
-
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+/** 
+ * This class is a Parser used to process the commands given from the
+ * user to the CLI
+ * @author edoardopasi & dave
+ *
+ */
+
 
 public class ParserComandi
 {
@@ -9,7 +15,18 @@ public class ParserComandi
 	{
 		this.cli = cli;
 	}
-
+	/**
+	 * Execute a command if it is a valid one and given in a valid phase
+	 * of the turn
+	 * @param stringComando  the given command
+	 * @return true if the command is executed, false otherwise
+	 * Accepted command are:
+	 * rotate
+	 * x,y
+	 * up, down left or right
+	 * tile C1|C2|S1|S2|...   
+	 * pass
+	 */
 	public boolean eseguiComando(String stringComando)
 	{
 		int quantitaSpostamento = 0;
