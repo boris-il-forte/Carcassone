@@ -14,8 +14,7 @@ public class UpdatePositionHandler extends ViewHandler
 	@Override
 	public void visit(UpdatePositionEvent  event)
 	{
-		UpdatePositionEvent upe = (UpdatePositionEvent) event;
-		Coordinate coord = upe.getCoordinate();
+		Coordinate coord = event.getCoordinate();
 		this.view.posizionaTessera(coord);
 		this.view.aggiornaMappa();
 		this.sveglia();

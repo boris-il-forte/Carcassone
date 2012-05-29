@@ -16,19 +16,19 @@ public abstract class ViewHandler
 		this.view=view;
 	}
 	
-	public void visit (UpdateTurnoEvent ute) {}
+	public void visit (UpdateTurnoEvent event) {}
 	
-	public void visit (UpdateRotationEvent ure) {}
+	public void visit (UpdateRotationEvent event) {}
 	
-	public void visit (UpdatePositionEvent upe) {}
+	public void visit (UpdatePositionEvent event) {}
 	
-	public void visit (MossaNonValidaEvent mne) {}
+	public void visit (MossaNonValidaEvent event) {}
 	
-	public void visit (InizioGiocoEvent ute) {}
+	public void visit (InizioGiocoEvent event) {}
 	
-	public void visit (FinePartitaEvent fpe) {}
+	public void visit (FinePartitaEvent event) {}
 	
-	public void visit (CostruzioneCompletataEvent cce) {}
+	public void visit (CostruzioneCompletataEvent event) {}
 
 	public synchronized void sveglia()
 	{
