@@ -1,14 +1,14 @@
 package it.polimi.dei.swknights.carcassonne;
 
+import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
+import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
+import it.polimi.dei.swknights.carcassonne.Events.Controller;
+import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
+import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
+
 import java.io.PrintWriter;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
-import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
-import it.polimi.dei.swknights.carcassonne.Events.Controller;
-import it.polimi.dei.swknights.carcassonne.Events.View;
-import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
-import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
 
 class Carcassonne
@@ -16,7 +16,7 @@ class Carcassonne
 	public static void main(String[] args)
 	{
 		Executor superStarDestroyer = Executors.newCachedThreadPool();  
-		View view = new Cli();
+		ModuloView view = new Cli();
 		PrintWriter out = new PrintWriter(System.out);
 		String risposta="";
 		do
@@ -30,10 +30,13 @@ class Carcassonne
 		while(!risposta.equalsIgnoreCase("CLI"));
 
 		
-		ModuloModel model = new ModuloModel();
-		Controller controller = new ModuloController(model);
+
 
 	    view = new Cli();		
+		
+	    ModuloModel model = new ModuloModel();
+		Controller controller = new ModuloController(model, view);
+		
 		view.addListener(controller);
 	 	model.addListener(view);
 	 	superStarDestroyer.execute(view);
