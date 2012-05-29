@@ -31,6 +31,8 @@ public class TileHandler extends ControllerHandler
 			if (costruzioneLibera(puntoCardinale))
 			{
 				this.model.addSegnalinoTesseraCorrente(puntoCardinale);
+				this.controller.comunicaPosizionamentoTessera();
+				this.sveglia();
 			}
 			else
 			{
@@ -41,7 +43,6 @@ public class TileHandler extends ControllerHandler
 		{
 			this.model.fire(new MossaNonValidaEvent(this.model));
 		}
-		this.sveglia();
 
 	}
 

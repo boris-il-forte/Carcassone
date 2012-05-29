@@ -41,10 +41,11 @@ public class ModuloController implements Controller
 		try
 		{
 			this.attendiPosizionamentoTessera();
+			this.nextTurno();
 			while (true)
 			{
 				this.primaMossaTurno();
-				this.attendiPosizionamentoTessera();
+				this.nextTurno();
 			}
 
 		}
@@ -52,6 +53,12 @@ public class ModuloController implements Controller
 		{
 			e.printStackTrace();
 		}
+	}
+
+	private void nextTurno() throws InterruptedException
+	{
+		this.attendiPosizionamentoTessera();
+		this.model.nextTurno();
 	}
 
 	/**
@@ -67,18 +74,15 @@ public class ModuloController implements Controller
 		}
 	}
 
-	
-	
+	public void comunicaPosizionamentoTessera()
+	{
+		this.tesseraPosizionata = true;
+	}
 
 	public void iniziaGioco()
 	{
-		System.out.println("INIZIA GIOCO");
 		this.primaMossaPartita();
 	}
-
-	/*
-	 * public Tessera getTesseraCorrente() { return this.tesseraCorrente; }
-	 */
 
 	public ContatoreCartografo getContapunti()
 	{
@@ -87,7 +91,7 @@ public class ModuloController implements Controller
 
 	public boolean ruotaOk()
 	{
-		//TODO controllare se puoi ruotare
+		// TODO controllare se puoi ruotare
 		return true;
 	}
 
@@ -108,14 +112,13 @@ public class ModuloController implements Controller
 
 	private void primaMossaTurno()
 	{
-		System.out.println("INIZIO TURNO");
 		try
 		{
 			this.model.cominciaTurno();
 		}
 		catch (PartitaFinitaException e)
 		{
-			//TODO: incompleto... mancano i punteggi ulteriori accumulati!
+			// TODO: incompleto... mancano i punteggi ulteriori accumulati!
 			this.model.notificaFinePartita();
 		}
 	}
@@ -134,7 +137,6 @@ public class ModuloController implements Controller
 	{
 		while (!this.tesseraPosizionata)
 		{
-			System.out.println("WAIT");
 			wait();
 		}
 	}
@@ -147,6 +149,7 @@ public class ModuloController implements Controller
 
 	private final ModuloModel		model;
 
-	private static final int	NUMBER_OF_PLAYER	= 2;  //TODO:  ask user.
+	private static final int		NUMBER_OF_PLAYER	= 2;	// TODO: ask
+																// user.
 
 }

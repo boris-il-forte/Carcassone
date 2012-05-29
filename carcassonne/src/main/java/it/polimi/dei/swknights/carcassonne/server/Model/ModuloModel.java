@@ -87,6 +87,11 @@ public class ModuloModel extends AbstractModel
 		this.fire(new UpdateTurnoEvent(this, coloreGiocatore, this.tesseraCorrente));
 		this.notifyAll();
 	}
+	
+	public void nextTurno()
+	{
+		this.datiPartita.nextTurno();
+	}
 
 	public void posizionaTesseraCorrente(Coordinate coordinate)
 	{
