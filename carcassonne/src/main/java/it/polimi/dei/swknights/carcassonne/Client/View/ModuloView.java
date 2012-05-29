@@ -110,7 +110,9 @@ public abstract class ModuloView extends AbstractView
 		this.addVisitorHandler(new FinePartitaHandler(this));
 	}
 
-	protected final Coordinate		centroScenario	= new Coordinate(0, 0);
+	protected static final Coordinate		centroScenario	= new Coordinate(0, 0);
+
+	protected StatoPartita			statoPartita;
 
 	private FasiTurno				faseTurno;
 
@@ -121,7 +123,5 @@ public abstract class ModuloView extends AbstractView
 	private AdapterTessera			tesseraCorrente;
 
 	private Color					coloreGiocatore;
-
-	protected StatoPartita			statoPartita;
 
 }

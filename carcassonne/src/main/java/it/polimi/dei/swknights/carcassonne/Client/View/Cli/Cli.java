@@ -41,10 +41,10 @@ public class Cli extends ModuloView
 	@Override
 	public void run()
 	{
-	
+
 		try
 		{
-			
+
 			this.out.println("Carcassonne: Aspetto che la partita cominci");
 			this.aspettaInizio();
 			this.out.println("Carcassonne: Partita cominciata");
@@ -64,33 +64,9 @@ public class Cli extends ModuloView
 
 	}
 
-	/**
-	 * Executed in response of x,y place the card only if the command is given
-	 * in a appropriate game phase
-	 * 
-	 * @param coordinate
-	 * @return true if the card is placed
-	 */
-	public boolean provaPosizionareTessera(Coordinate coordinate)
-	{
-		if (this.getFaseTurno() == FasiTurno.Inizio)
-		{
-			this.fire(new PlaceEvent(this, coordinate));
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-
-	}
-
 	@Override
 	public void aggiornaMappa()
 	{
-
-		System.out.println("AGGIORNO MAPPA");
-
 		ScenarioDiGioco scenario = this.getScenario();
 		Stampante stampante = this.inizializzaStampante();
 		Coordinate base = this.getCoordinataNordOvest();
@@ -105,7 +81,6 @@ public class Cli extends ModuloView
 	@Override
 	public void posizionaTessera(Coordinate coordinatePosizione)
 	{
-		System.out.println("CLI POSIZIONO TESSERA");
 		this.getScenario().setTessera(coordinatePosizione, this.getTesseraCorrente());
 	}
 
@@ -121,7 +96,6 @@ public class Cli extends ModuloView
 	{
 		if (this.getFaseTurno() != FasiTurno.PreparazioneGioco)
 		{
-			System.out.println("GIOCA FASE " + this.getFaseTurno());
 			this.informaUser.setPhase(this.getFaseTurno());
 			this.getInput();
 		}
@@ -145,12 +119,9 @@ public class Cli extends ModuloView
 	@Override
 	public void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
 	{
-		System.out.println("cli METTO LA PRIMA TESSERA IN CENTRO");
-
-		// in modulo View viene messo fase=inizio
 		this.informaUser.setPhase(this.getFaseTurno());
 		this.setTesseraCorrente(tessIniziale);
-		this.posizionaTessera(this.centroScenario);
+		this.posizionaTessera(centroScenario);
 		this.aggiornaMappa();
 
 	}
@@ -177,10 +148,34 @@ public class Cli extends ModuloView
 	@Override
 	public void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
 	{
-		System.out.println("CAMBIO TESSERA CORRENTE E LA MOSTRO");
 		this.setTesseraCorrente(tessera);
 		this.informaUser.setTesseraCorrente(tessera);
 		this.informaUser.mostraTesseraCorrente();
+	}
+
+	/**
+	 * Executed in response of x,y place the card only if the command is given
+	 * in a appropriate game phase
+	 * 
+	 * @param coordinate
+	 * @return true if the card is placed
+	 */
+
+	// TODO: per tutti questi sotto: PULIZIAAAAA. codice duplicato... Male!
+	boolean provaPosizionareTessera(Coordinate coordinate)
+	{
+		if (this.getFaseTurno() == FasiTurno.Inizio)
+		{
+			this.fire(new PlaceEvent(this, coordinate));
+			FasiTurno prossima = this.getFaseTurno().nextPhase();
+			this.setFaseTurno(prossima);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
 	}
 
 	boolean ruotaTessera()
@@ -201,6 +196,8 @@ public class Cli extends ModuloView
 		if (this.getFaseTurno() == FasiTurno.Media)
 		{
 			this.fire(new PassEvent(this));
+			FasiTurno prossima = this.getFaseTurno().nextPhase();
+			this.setFaseTurno(prossima);
 			return true;
 		}
 		else
@@ -217,6 +214,8 @@ public class Cli extends ModuloView
 			if (elementi[punto.toInt()].equals(stringComando))
 			{
 				this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
+				FasiTurno prossima = this.getFaseTurno().nextPhase();
+				this.setFaseTurno(prossima);
 				return true;
 			}
 		}
@@ -225,7 +224,7 @@ public class Cli extends ModuloView
 
 	private synchronized void aspettaInizio() throws InterruptedException
 	{
-		while( this.statoPartita.isPartitaCominciata() == false)
+		while (!this.statoPartita.isPartitaCominciata())
 		{
 			wait();
 		}
@@ -233,16 +232,15 @@ public class Cli extends ModuloView
 
 	private synchronized void attendiRispostaController() throws InterruptedException
 	{
-		while (! this.statoPartita.possoParlare() )
-		{	
+		while (!this.statoPartita.possoParlare())
+		{
 			wait();
 		}
-		
+
 	}
 
 	synchronized private void getInput()
 	{
-		System.out.println("GET INPUT");
 		boolean valido;
 		do
 		{
@@ -261,7 +259,6 @@ public class Cli extends ModuloView
 		return new Stampante(datiMappa);
 	}
 
-
 	private Scanner				in;
 
 	private PrintWriter			out;
@@ -270,9 +267,9 @@ public class Cli extends ModuloView
 
 	private final AvvisiUser	informaUser;
 
-	private static final int	ALTEZZA				= 5;
+	private static final int	ALTEZZA		= 5;
 
-	private static final int	LARGHEZZA			= 10;
+	private static final int	LARGHEZZA	= 10;
 
 	private final Coordinate	coordinataRelativaSE;
 

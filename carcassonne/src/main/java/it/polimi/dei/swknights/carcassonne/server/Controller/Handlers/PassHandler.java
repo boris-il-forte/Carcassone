@@ -14,6 +14,7 @@ public class PassHandler extends ControllerHandler
 	@Override
 	public void visit(PassEvent event)
 	{
+		this.controller.comunicaPosizionamentoTessera();
 		this.sveglia();
 	}
 }
