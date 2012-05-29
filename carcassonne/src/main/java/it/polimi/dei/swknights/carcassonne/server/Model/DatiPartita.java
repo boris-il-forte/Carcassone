@@ -99,6 +99,7 @@ public class DatiPartita
 	{
 		this.giocatoreCorrente = this.giocatori.poll();
 		this.giocatori.add(this.giocatoreCorrente);
+		
 	}
 
 	/**

@@ -45,8 +45,7 @@ public class ModuloModel extends AbstractModel
 	{
 		Segnalino segnalino = this.getGiocatoreCorrente().getSegnalino();
 		this.tesseraCorrente.setSegnalino(segnalino, puntoCardinale);
-		// TODO errore! null è sbagliato!
-		this.fire(new UpdatePositionEvent(this.tesseraCorrente, null, this.getColoreGiocatoreCorrente(), this));
+		this.fire(new UpdatePositionEvent(this.tesseraCorrente, this.coordinateTesseraCorrente, this.getColoreGiocatoreCorrente(), this));
 	}
 
 	public Tessera getTesseraCorrente()
@@ -98,8 +97,8 @@ public class ModuloModel extends AbstractModel
 		AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
 		Giocatore giocatore = this.datiPartita.getGiocatoreCorrente();
 		areaDiGioco.addTessera(coordinate, this.tesseraCorrente);
+		this.coordinateTesseraCorrente = coordinate;
 		this.fire(new UpdatePositionEvent(this.tesseraCorrente, coordinate, giocatore.getColore(), this));
-		this.tesseraCorrente = null;
 	}
 
 	public Tessera getTessera(Coordinate coordinate) throws TesseraNonTrovataException
@@ -148,5 +147,7 @@ public class ModuloModel extends AbstractModel
 	private DatiPartita	datiPartita;
 
 	private Tessera		tesseraCorrente;
+	
+	private Coordinate coordinateTesseraCorrente;
 
 }
