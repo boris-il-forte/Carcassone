@@ -11,7 +11,7 @@ public class CostruzioneCompletataHandler extends ViewHandler
 {
 	public CostruzioneCompletataHandler(ModuloView view)
 	{
-		this.view = view;
+		super(view);
 	}
 
 	@Override
@@ -20,8 +20,7 @@ public class CostruzioneCompletataHandler extends ViewHandler
 		CostruzioneCompletataEvent cce = (CostruzioneCompletataEvent) event;
 		Map<AdapterTessera, Coordinate> tessereAggiornate = cce.getTessereAggiornate();
 		this.view.ridaiSegnaliniDiTessere(tessereAggiornate);
+		this.sveglia();
 	}
-
-	private ModuloView	view;
 	
 }

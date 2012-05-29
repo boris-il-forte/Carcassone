@@ -108,4 +108,11 @@ public class GUI extends ModuloView implements ActionListener
 		
 	}
 
+	@Override
+	public void run()
+	{
+		this.showGui();
+		
+	}
+
 }

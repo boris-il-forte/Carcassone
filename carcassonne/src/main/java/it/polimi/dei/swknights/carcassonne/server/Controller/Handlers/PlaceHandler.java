@@ -16,18 +16,18 @@ public class PlaceHandler extends ControllerHandler
 	public PlaceHandler(ModuloController controller, ModuloModel model)
 	{
 		this.controller = controller;
+		
 		this.model = model;
 	}
 
 	@Override
 	public void visit(PlaceEvent event)
 	{
-		Tessera tessera = this.model.getTesseraCorrente();
 		Coordinate coordinate = event.getCoordinateDestinazione();
-		if (this.tuttoVicinatoDAccordo(coordinate, tessera))
+		if (this.tuttoVicinatoDAccordo(coordinate))
 		{
 			ContatoreCartografo contaPunti = this.controller.getContapunti();
-			this.model.posizionaTessera(tessera, coordinate);
+			this.model.posizionaTesseraCorrente(coordinate);
 			contaPunti.riceviCoordinateTessera(coordinate);
 		}
 		else
@@ -36,27 +36,34 @@ public class PlaceHandler extends ControllerHandler
 		}
 	}
 
-	private boolean tuttoVicinatoDAccordo(Coordinate coordinate, Tessera tessera)
+	private boolean tuttoVicinatoDAccordo(Coordinate coordinate)
 	{
-		boolean dAccordo = true;
+		Tessera tesseraCorrente = this.model.getTesseraCorrente();
 		Tessera tesseraVicino = null;
+		int viciniVuoti = 0;
 		for (PuntoCardinale punto : PuntoCardinale.values())
 		{
 			try
 			{
 				tesseraVicino = this.model.getTessera(coordinate.getCoordinateA(punto));
-				if (!tessera.buonVicino(tesseraVicino, punto))
+				if (!tesseraCorrente.buonVicino(tesseraVicino, punto))
 				{
-					dAccordo = false;
+					return false;
 				}
 
 			}
 			catch (TesseraNonTrovataException e)
 			{
+				viciniVuoti++;
 				continue;
 			}
 		}
-		return dAccordo;
+		
+		if(viciniVuoti == PuntoCardinale.NUMERO_DIREZIONI)
+		{
+			return false;
+		}
+		return true;
 	}
 
 	private ModuloController	controller;

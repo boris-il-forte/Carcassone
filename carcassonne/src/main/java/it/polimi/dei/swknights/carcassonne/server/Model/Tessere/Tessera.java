@@ -58,7 +58,7 @@ public abstract class Tessera implements Cloneable
 		Elemento elementoMio = this.lati.getTipoElementoInDirezione(puntoCardinale);
 		Elemento elementoSuo = tessera.lati.getTipoElementoInDirezione(puntoCardinale.opposto());
 
-		return (elementoMio == elementoSuo);
+		return (elementoMio.equals(elementoSuo));
 	}
 
 	/**

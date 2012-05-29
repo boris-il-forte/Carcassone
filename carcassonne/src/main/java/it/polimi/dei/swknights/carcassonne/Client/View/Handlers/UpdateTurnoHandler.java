@@ -9,26 +9,25 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEve
 
 public class UpdateTurnoHandler extends ViewHandler
 {
-	public UpdateTurnoHandler(ModuloView moduloView)
+	public UpdateTurnoHandler(ModuloView view)
 	{
-		this.moduloView = moduloView;
+		super(view);
 	}
 
 	@Override
 	public void visit(UpdateTurnoEvent ute)
 	{
 
-		this.moduloView.aggiornaMappa();
+		this.view.aggiornaMappa();
 
 		UpdateTurnoEvent utev = (UpdateTurnoEvent) ute;
 		Color colGiocatoreCorrente = utev.getGiocatoreCorrente();
 		AdapterTessera tesseraNuova = utev.getTessera();
 
-		this.moduloView.setFaseTurno(FasiTurno.Inizio);
-		this.moduloView.cambiaEMostraTesseraCorrente(tesseraNuova);
-		this.moduloView.aggiornaColoreCorrente(colGiocatoreCorrente);
+		this.view.setFaseTurno(FasiTurno.Inizio);
+		this.view.cambiaEMostraTesseraCorrente(tesseraNuova);
+		this.view.aggiornaColoreCorrente(colGiocatoreCorrente);
+		this.sveglia();
 	}
-
-	private final ModuloView	moduloView;
 
 }

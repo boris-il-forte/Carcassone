@@ -39,6 +39,29 @@ public class Cli extends ModuloView
 
 	}
 
+	@Override
+	public void run()
+	{
+		this.attendiInput();
+		try
+		{
+			do
+			{
+				while (this.possoParlare == false)
+				{
+					wait();
+				}
+
+			} while (!this.getScenario().isPartitaFinita());
+		}
+
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+
+	}
+
 	/**
 	 * Executed in response of x,y place the card only if the command is given
 	 * in a appropriate game phase
@@ -96,7 +119,7 @@ public class Cli extends ModuloView
 	{
 		if (this.getFaseTurno() != FasiTurno.PreparazioneGioco)
 		{
-			System.out.println("GIOCA FASE" + this.getFaseTurno().toString());
+			System.out.println("GIOCA FASE " + this.getFaseTurno().toString());
 			this.informaUser.setPhase(this.getFaseTurno());
 			this.getInput();
 		}
@@ -218,6 +241,13 @@ public class Cli extends ModuloView
 		DatiMappa datiMappa = new DatiMappa(min, max);
 		return new Stampante(datiMappa);
 	}
+
+	public void abilitaParola(boolean permesso)
+	{
+		this.possoParlare = false;
+	}
+
+	private boolean				possoParlare;
 
 	private Scanner				in;
 

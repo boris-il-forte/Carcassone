@@ -7,14 +7,14 @@ public class FinePartitaHandler extends ViewHandler
 {
 	public FinePartitaHandler(ModuloView view)
 	{
-		this.view = view;
+		super(view);
 	}
 
 	@Override
 	public void visit(FinePartitaEvent event)
 	{
 		this.view.notificaFinePartita();
+		this.sveglia();
 	}
 
-	private ModuloView	view;
 }

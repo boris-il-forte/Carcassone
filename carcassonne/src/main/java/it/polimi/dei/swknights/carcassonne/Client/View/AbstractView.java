@@ -17,7 +17,7 @@ public abstract class AbstractView implements View
 		this.visitorHandlers = new ArrayList<ViewHandler>();
 		this.listeners = new ArrayList<Controller>();
 	}
-	
+
 	public void riceviInput(ControllerEvent event)
 	{
 		for (ViewHandler visitorHandler : this.visitorHandlers)
@@ -26,21 +26,17 @@ public abstract class AbstractView implements View
 		}
 	}
 
-	public void run()
-	{
-		System.out.println("sono la view vera. che bello. ah no... sono astratta!");
-	}
+	public abstract void run();
 
 	public synchronized void riceviModificheModel(ControllerEvent event)
 	{
 		System.out.println("sono la view, ho ricevuto " + event.toString());
-		for(ViewHandler handler : this.visitorHandlers)
+		for (ViewHandler handler : this.visitorHandlers)
 		{
 			event.accept(handler);
 		}
-		this.attendiInput();
 	}
-	
+
 	public void addListener(EventListener eventListener)
 	{
 		if (eventListener instanceof Controller)
@@ -61,15 +57,16 @@ public abstract class AbstractView implements View
 			listener.riceviInput(event);
 		}
 	}
-	
+
 	public abstract void attendiInput();
-	
+
 	protected void addVisitorHandler(ViewHandler handler)
 	{
 		this.visitorHandlers.add(handler);
 	}
 
-	private List<Controller>		listeners;
-	
-	private List<ViewHandler>		visitorHandlers;
+
+	private List<Controller>	listeners;
+
+	private List<ViewHandler>	visitorHandlers;
 }
