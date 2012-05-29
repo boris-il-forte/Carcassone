@@ -10,7 +10,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
-
+/**
+ * This class is a simple model for the View,
+ * it contains a representation of the board game.
+ * @author edoardopasi & dave
+ *
+ */
 public class ScenarioDiGioco
 {
 	public ScenarioDiGioco()
