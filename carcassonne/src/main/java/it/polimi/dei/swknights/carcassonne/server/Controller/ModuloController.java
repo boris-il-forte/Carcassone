@@ -40,7 +40,6 @@ public class ModuloController implements Controller
 		this.iniziaGioco();
 		try
 		{
-			this.attendiPosizionamentoTessera();
 			this.nextTurno();
 			while (true)
 			{
