@@ -30,9 +30,12 @@ public abstract class ViewHandler
 	
 	public void visit (CostruzioneCompletataEvent event) {}
 
-	public synchronized void sveglia()
+	public void sveglia()
 	{
-		this.view.notifyAll();
+		synchronized (this.view)
+		{
+			this.view.notifyAll();
+		}
 
 	}
 	

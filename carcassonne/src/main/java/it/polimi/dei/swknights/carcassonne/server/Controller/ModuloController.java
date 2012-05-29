@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
@@ -92,9 +93,11 @@ public class ModuloController implements Controller
 
 	private void primaMossaPartita()
 	{
+		final Coordinate origine = new Coordinate(0, 0);
 		try
 		{
 			this.model.iniziaGioco(NUMBER_OF_PLAYER);
+			this.contaPunti.riceviCoordinateTessera(origine);
 		}
 		catch (PartitaFinitaException e)
 		{

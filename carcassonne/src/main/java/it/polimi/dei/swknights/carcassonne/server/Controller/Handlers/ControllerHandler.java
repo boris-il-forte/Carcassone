@@ -28,9 +28,12 @@ public abstract class ControllerHandler
 	{
 	}
 
-	public synchronized void sveglia()
+	public void sveglia()
 	{
-		this.notifyAll();
+		synchronized (this.controller)
+		{
+			this.controller.notifyAll();
+		}
 	}
 
 	protected ModuloController	controller;
