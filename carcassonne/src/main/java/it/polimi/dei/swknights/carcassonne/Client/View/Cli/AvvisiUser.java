@@ -8,10 +8,18 @@ import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 
 import java.awt.Color;
 import java.io.PrintWriter;
-
+/**
+ * This class is a component of the CLI that handles the basic communication
+ * with the user
+ * @author edoardopasi
+ *
+ */
 public class AvvisiUser
 {
-
+	/**
+	 * Gives the user a little description of the requested input,
+	 * specifying the sintax of it
+	 */
 	public void chiediComando()
 	{
 		AdapterColore colore = new AdapterColore(this.coloreGiocatore);
@@ -20,7 +28,10 @@ public class AvvisiUser
 		this.notificaVideo(faseTurno.toString());
 
 	}
-
+	/**
+	 * set the color of the current player
+	 * @param colore
+	 */
 	public void setColore(Color colore)
 	{
 		this.coloreGiocatore = colore;
@@ -31,12 +42,15 @@ public class AvvisiUser
 	{
 		this.out = out;
 	}
-
+	
 	public void notificaMossaNonValida()
 	{
 		this.notificaVideo("Mossa non valida!");
 	}
-
+	/**
+	 * Show in the CLI the current card as an indipendent card to be placed
+	 * or rotated
+	 */
 	public void mostraTesseraCorrente()
 	{
 
@@ -49,7 +63,10 @@ public class AvvisiUser
 		this.out.flush();
 
 	}
-
+	/**
+	 * set the current phase of the turn
+	 * @param faseTurno
+	 */
 	public void setPhase(FasiTurno faseTurno)
 	{
 		this.faseTurno = faseTurno;

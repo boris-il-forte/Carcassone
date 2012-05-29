@@ -10,7 +10,11 @@ import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
-
+/**
+ * This class is used to print on the screen the cards in CLI mode
+ * @author edoardopasi & dave
+ *
+ */
 class Stampante
 {
 
@@ -28,7 +32,11 @@ class Stampante
 		this(new DatiMappa(new Coordinate(0, 0), new Coordinate(0, 0)));
 
 	}
-
+	/**
+	 * Add a list of entries that then may be printed
+	 * @see EntryTessera
+	 * @param listaTessere the list of entry to be added
+	 */
 	public void addListTessera(List<EntryTessera> listaTessere)
 	{
 		for (EntryTessera entryTessera : listaTessere)
@@ -36,7 +44,11 @@ class Stampante
 			this.addTessera(entryTessera);
 		}
 	}
-
+	/**
+	 * Add a single entry that then may be printed
+	 * @see EntryTessera
+	 * @param entryTessera
+	 */
 	public void addTessera(EntryTessera entryTessera)
 	{
 		Coordinate coordinate = entryTessera.getCoordinate();
@@ -44,7 +56,12 @@ class Stampante
 		Vicinato vicinato = entryTessera.getVicinato();
 		this.addTessera(coordinate, tessera, vicinato);
 	}
-
+	/**
+	 * Add a single entry that then may be printed, but given its 3 components
+	 * @param coordinate
+	 * @param tessera
+	 * @param vicinato
+	 */
 	public void addTessera(Coordinate coordinate, String tessera, Vicinato vicinato)
 	{
 		Coordinate primoPuntoTessera = this.getPrimoPuntoTessera(coordinate);

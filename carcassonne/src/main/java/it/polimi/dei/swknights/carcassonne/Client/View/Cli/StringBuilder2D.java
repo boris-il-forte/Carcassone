@@ -6,6 +6,22 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A graphical tool used in CLI mode to simulate a 2D space, it basically
+ * provide a 2D buffer.
+ * in where write. It is easy with it print something like that
+ * 
+ *   ****************
+ *   *		C1		*
+ *   *				*
+ *   ****************
+ *   
+ *   or hopefully even better.
+ *   
+ * @author edoardopasi & dave
+ *
+ */
+
 public class StringBuilder2D
 {
 	public StringBuilder2D(Dimension dimensione)
@@ -13,13 +29,24 @@ public class StringBuilder2D
 		this.dimensione = dimensione;
 		this.creaLinee();
 	}
-
+	/**
+	 * Writes a character in the given coordinates of the buffer.
+	 * @param coordinate
+	 * @param c  the character to write
+	 */
 	public void scriviCarattere(Coordinate coordinate, char c)
 	{
 		StringBuilder linea = this.linee.get(coordinate.getY());
 		linea.setCharAt(coordinate.getX(), c);
 	}
-
+	/**
+	 * Used to write a row or a column of symbols in the buffer.
+	 * eg    ################
+	 * @param start  the coordinate to start from
+	 * @param end	the destination coordinate
+	 * @param c   the character to fill with
+	 * @throws IllegalArgumentException
+	 */
 	public void fillConCarattere(Coordinate start, Coordinate end, char c) throws IllegalArgumentException
 	{
 		if (!coordinateAccettabili(start, end)) { throw new IllegalArgumentException(
@@ -34,20 +61,32 @@ public class StringBuilder2D
 			this.scriviCarattere(coordinate, c);
 		}
 	}
-
+	/**
+	 * Write a string in the given position
+	 * @param coordinataInserimento
+	 * @param string
+	 */
 	public void scriviStringa(Coordinate coordinataInserimento, String string)
 	{
 		StringBuilder linea = this.linee.get(coordinataInserimento.getY());
 		linea.insert(coordinataInserimento.getX(), string);
 	}
-
+	/**
+	 *  Write a string in the given position, in the center of the drawn card
+	 * @param coordinate
+	 * @param coordinateString
+	 */
 	public void scriviStringaCentrata(Coordinate coordinate, String coordinateString)
 	{
 		StringBuilder linea = this.linee.get(coordinate.getY());
 		int inizio = coordinate.getX() - coordinateString.length() / 2;
 		linea.replace(inizio, inizio + coordinateString.length(), coordinateString);
 	}
-
+	/**
+	 * returns a char in the given position
+	 * @param coordinate
+	 * @return
+	 */
 	public char getCharAt(Coordinate coordinate)
 	{
 		StringBuilder linea = this.linee.get(coordinate.getY());
