@@ -36,23 +36,25 @@ public class Cli extends ModuloView
 		this.setCoordinataNordOvest(new Coordinate(-LARGHEZZA / 2, -ALTEZZA / 2));
 		this.parser = new ParserComandi(this);
 		this.informaUser = new AvvisiUser(out);
-
 	}
 
 	@Override
 	public void run()
 	{
-		this.attendiInput();
+	
 		try
 		{
+			
+			this.out.println("Carcassonne: Aspetto che la partita cominci");
+			this.aspettaInizio();
+			this.out.println("Carcassonne: Partita cominciata");
+			this.out.flush();
 			do
 			{
-				while (this.possoParlare == false)
-				{
-					wait();
-				}
+				this.attendiInput();
+				this.attendiRispostaController();
 
-			} while (!this.getScenario().isPartitaFinita());
+			} while (!this.statoPartita.isPartitaFinita());
 		}
 
 		catch (InterruptedException e)
@@ -115,11 +117,11 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	public synchronized void attendiInput()
+	public void attendiInput()
 	{
 		if (this.getFaseTurno() != FasiTurno.PreparazioneGioco)
 		{
-			System.out.println("GIOCA FASE " + this.getFaseTurno().toString());
+			System.out.println("GIOCA FASE " + this.getFaseTurno());
 			this.informaUser.setPhase(this.getFaseTurno());
 			this.getInput();
 		}
@@ -221,6 +223,26 @@ public class Cli extends ModuloView
 		return false;
 	}
 
+	private synchronized void aspettaInizio() throws InterruptedException
+	{
+		System.out.println("partita cominciata = " 
+				+  this.statoPartita.isPartitaCominciata());
+		while( this.statoPartita.isPartitaCominciata() == false)
+		{
+			System.out.println("entro while");
+			wait();
+		}
+	}
+
+	private synchronized void attendiRispostaController() throws InterruptedException
+	{
+		while (! this.statoPartita.possoParlare() )
+		{	
+			wait();
+		}
+		
+	}
+
 	synchronized private void getInput()
 	{
 		System.out.println("GET INPUT");
@@ -242,12 +264,6 @@ public class Cli extends ModuloView
 		return new Stampante(datiMappa);
 	}
 
-	public void abilitaParola(boolean permesso)
-	{
-		this.possoParlare = false;
-	}
-
-	private boolean				possoParlare;
 
 	private Scanner				in;
 
@@ -257,9 +273,9 @@ public class Cli extends ModuloView
 
 	private final AvvisiUser	informaUser;
 
-	private static final int	ALTEZZA		= 5;
+	private static final int	ALTEZZA				= 5;
 
-	private static final int	LARGHEZZA	= 10;
+	private static final int	LARGHEZZA			= 10;
 
 	private final Coordinate	coordinataRelativaSE;
 

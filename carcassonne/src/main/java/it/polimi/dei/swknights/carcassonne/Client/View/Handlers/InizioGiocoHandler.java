@@ -13,11 +13,10 @@ public class InizioGiocoHandler extends ViewHandler
 	{
 		super(view);
 	}
-	
-	
+
 	@Override
-	public void visit (InizioGiocoEvent event) {
-		
+	public void visit(InizioGiocoEvent event)
+	{
 		InizioGiocoEvent ige = (InizioGiocoEvent) event;
 
 		Color coloreIniziale = ige.getGiocatore();
@@ -25,6 +24,7 @@ public class InizioGiocoHandler extends ViewHandler
 		this.view.setFaseTurno(FasiTurno.PreparazioneGioco);
 		this.view.mettiEMostraPrimaTessera(tessIniziale);
 		this.view.aggiornaColoreCorrente(coloreIniziale);
+		this.view.setPartitaCominciata();
 		this.sveglia();
 	}
 
