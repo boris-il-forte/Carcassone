@@ -1,5 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Client.View;
-
+/**
+ * This enum describes the possible phases of the turn and associate a simple explanation
+ *  to give to the user.
+ * @author edoardopasi & dave
+ *
+ */
 public enum FasiTurno {
 	Inizio("Place card or rotate"), Media("Tile or pass"), Attesa("wait server response..."), PreparazioneGioco("loading, please wait");
 
@@ -14,6 +19,10 @@ public enum FasiTurno {
 		return this.messaggioUtente;
 	}
 
+	/**
+	 * return the next turn phase
+	 * @return
+	 */
 	// TODO: controllare
 	public FasiTurno nextPhase()
 	{
