@@ -1,7 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
-import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
@@ -13,9 +12,9 @@ import java.util.Map;
 
 public class TileHandler extends ControllerHandler
 {
-	public TileHandler(ModuloController controller, ModuloModel model, ModuloView view)
+	public TileHandler(ModuloController controller, ModuloModel model)
 	{
-		super(controller, model, view);
+		super(controller, model);
 	}
 
 	/**

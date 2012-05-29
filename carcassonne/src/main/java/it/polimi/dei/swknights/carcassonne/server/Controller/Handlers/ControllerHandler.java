@@ -1,18 +1,15 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.*;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
 public abstract class ControllerHandler
 {
-	public ControllerHandler(ModuloController controller, ModuloModel model,
-			ModuloView view)
+	public ControllerHandler(ModuloController controller, ModuloModel model)
 	{
 		this.controller = controller;
 		this.model = model;
-		this.view = view;
 	}
 
 	public void visit(PassEvent event)
@@ -33,14 +30,11 @@ public abstract class ControllerHandler
 
 	protected synchronized void sveglia()
 	{
-		System.out.println("notifico");
-		this.view.notifyAll();
+		this.controller.notifyAll();
 	}
 
 	protected ModuloController	controller;
 
 	protected ModuloModel		model;
-	
-	protected ModuloView   view;
 
 }

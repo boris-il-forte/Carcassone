@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
@@ -28,13 +27,11 @@ public class ModuloController implements Controller
 	 * Default Constructor. Initialize data structures
 	 * 
 	 */
-	public ModuloController(ModuloModel model, ModuloView view)
+	public ModuloController(ModuloModel model)
 	{
 		this.model = model;
-		this.view = view;
 		this.contaPunti = new ContatoreCartografo(this.model);
 		this.visitorHandlers = this.attivaHandler();
-
 	}
 
 	public void run()
@@ -69,6 +66,9 @@ public class ModuloController implements Controller
 		}
 	}
 
+	
+	
+
 	public void iniziaGioco()
 	{
 		System.out.println("INIZIA GIOCO");
@@ -86,7 +86,7 @@ public class ModuloController implements Controller
 
 	public boolean ruotaOk()
 	{
-		// TODO controllare se puoi ruotare
+		//TODO controllare se puoi ruotare
 		return true;
 	}
 
@@ -112,7 +112,7 @@ public class ModuloController implements Controller
 		}
 		catch (PartitaFinitaException e)
 		{
-			// TODO: incompleto... mancano i punteggi ulteriori accumulati!
+			//TODO: incompleto... mancano i punteggi ulteriori accumulati!
 			this.model.notificaFinePartita();
 		}
 	}
@@ -120,11 +120,10 @@ public class ModuloController implements Controller
 	private List<ControllerHandler> attivaHandler()
 	{
 		List<ControllerHandler> handlerList = new ArrayList<ControllerHandler>();
-		System.out.println(" this . view = " + this.view.toString());
-		handlerList.add(new RuotaHandler(this, this.model, this.view));
-		handlerList.add(new PlaceHandler(this, this.model, this.view));
-		handlerList.add(new TileHandler(this, this.model, this.view));
-		handlerList.add(new PassHandler(this, this.model, this.view));
+		handlerList.add(new RuotaHandler(this, this.model));
+		handlerList.add(new PlaceHandler(this, this.model));
+		handlerList.add(new TileHandler(this, this.model));
+		handlerList.add(new PassHandler(this, this.model));
 		return handlerList;
 	}
 
@@ -144,9 +143,7 @@ public class ModuloController implements Controller
 	private ContatoreCartografo		contaPunti;
 
 	private final ModuloModel		model;
-	private final ModuloView		view;
 
-	private static final int		NUMBER_OF_PLAYER	= 2;	// TODO: ask
-																// user.
+	private static final int	NUMBER_OF_PLAYER	= 2;  //TODO:  ask user.
 
 }

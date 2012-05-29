@@ -25,7 +25,6 @@ public class InizioGiocoHandler extends ViewHandler
 		this.view.mettiEMostraPrimaTessera(tessIniziale);
 		this.view.aggiornaColoreCorrente(coloreIniziale);
 		this.view.setPartitaCominciata();
-		System.out.println("Inzio gioco - sveglia!!");
 		this.sveglia();
 	}
 
