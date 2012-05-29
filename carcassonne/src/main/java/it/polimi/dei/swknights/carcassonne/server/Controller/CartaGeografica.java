@@ -18,7 +18,7 @@ public class CartaGeografica
 		Costruzione costruzioneConfinante = this.mappaConfini.get(confinante);
 		costruzioneConfinante.joinCostruzioni(pezzoCostruzione);
 		this.aggiornaConfini(confinante, costruzioneConfinante);
-		return null;
+		return costruzioneConfinante;
 	}
 
 	public void put(ConfineTessera nuovoConfine, Costruzione costruzione)
@@ -37,8 +37,7 @@ public class CartaGeografica
 	{
 		Costruzione costruzione = this.mappaConfini.remove(confine);
 		List<ConfineTessera> listaConfini = this.mappaCostruzioni.remove(costruzione);
-		this.mappaCostruzioni.get(nuovaCostruzione).addAll(listaConfini);
-
+		this.mappaCostruzioni.put(nuovaCostruzione,listaConfini);
 	}
 
 	private Map<ConfineTessera, Costruzione>		mappaConfini;
