@@ -14,6 +14,7 @@ public class RuotaHandler extends ControllerHandler
 	public RuotaHandler(ModuloController controller, ModuloModel model)
 	{
 		this.controller = controller;
+		
 		this.model = model;
 	}
 

@@ -8,7 +8,7 @@ public class UpdatePositionHandler extends ViewHandler
 {
 	public UpdatePositionHandler(ModuloView view)
 	{
-		this.view=view;
+		super(view);
 	}
 	
 	@Override
@@ -18,7 +18,7 @@ public class UpdatePositionHandler extends ViewHandler
 		Coordinate coord = upe.getCoordinate();
 		this.view.posizionaTessera(coord);
 		this.view.aggiornaMappa();
+		this.sveglia();
 	}
 	
-	private ModuloView	view;
 }

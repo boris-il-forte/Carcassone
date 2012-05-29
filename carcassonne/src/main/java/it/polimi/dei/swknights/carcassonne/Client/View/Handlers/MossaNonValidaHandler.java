@@ -7,14 +7,14 @@ public class MossaNonValidaHandler extends ViewHandler
 {
 	public MossaNonValidaHandler(ModuloView view)
 	{
-		this.view = view;
+		super(view);
 	}
 
 	@Override
 	public void visit(MossaNonValidaEvent event)
 	{
 		this.view.notificaMossaNonValida();
+		this.sveglia();
 	}
 
-	private ModuloView	view;
 }

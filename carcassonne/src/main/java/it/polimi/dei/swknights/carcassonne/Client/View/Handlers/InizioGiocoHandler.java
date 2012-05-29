@@ -9,9 +9,9 @@ import java.awt.Color;
 
 public class InizioGiocoHandler extends ViewHandler
 {
-	public InizioGiocoHandler(ModuloView moduloView)
+	public InizioGiocoHandler(ModuloView view)
 	{
-		this.moduloView = moduloView;
+		super(view);
 	}
 	
 	
@@ -22,10 +22,10 @@ public class InizioGiocoHandler extends ViewHandler
 
 		Color coloreIniziale = ige.getGiocatore();
 		AdapterTessera tessIniziale = ige.getTesseraIniziale();
-		this.moduloView.setFaseTurno(FasiTurno.PreparazioneGioco);
-		this.moduloView.mettiEMostraPrimaTessera(tessIniziale);
-		this.moduloView.aggiornaColoreCorrente(coloreIniziale);
+		this.view.setFaseTurno(FasiTurno.PreparazioneGioco);
+		this.view.mettiEMostraPrimaTessera(tessIniziale);
+		this.view.aggiornaColoreCorrente(coloreIniziale);
+		this.sveglia();
 	}
 
-	private final ModuloView moduloView;
 }

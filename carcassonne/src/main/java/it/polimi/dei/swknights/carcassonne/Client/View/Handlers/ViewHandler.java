@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Handlers;
 
+import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
@@ -10,6 +11,11 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEve
 
 public abstract class ViewHandler
 {
+	public ViewHandler(ModuloView view)
+	{
+		this.view=view;
+	}
+	
 	public void visit (UpdateTurnoEvent ute) {}
 	
 	public void visit (UpdateRotationEvent ure) {}
@@ -24,4 +30,11 @@ public abstract class ViewHandler
 	
 	public void visit (CostruzioneCompletataEvent cce) {}
 
+	public synchronized void sveglia()
+	{
+		notifyAll();
+
+	}
+	
+	protected ModuloView view;
 }

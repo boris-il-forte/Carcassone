@@ -80,7 +80,7 @@ public class ModuloModel extends AbstractModel
 		this.cominciaTurno();
 	}
 
-	public void cominciaTurno() throws PartitaFinitaException
+	public synchronized void cominciaTurno() throws PartitaFinitaException
 	{
 		Color coloreGiocatore = this.getColoreGiocatoreCorrente();
 		this.getTesseraDaMazzo();
@@ -88,12 +88,13 @@ public class ModuloModel extends AbstractModel
 		this.notifyAll();
 	}
 
-	public void posizionaTessera(Tessera tessera, Coordinate coordinate)
+	public void posizionaTesseraCorrente(Coordinate coordinate)
 	{
 		AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
 		Giocatore giocatore = this.datiPartita.getGiocatoreCorrente();
-		areaDiGioco.addTessera(coordinate, tessera);
-		this.fire(new UpdatePositionEvent(tessera, coordinate, giocatore.getColore(), this));
+		areaDiGioco.addTessera(coordinate, this.tesseraCorrente);
+		this.fire(new UpdatePositionEvent(this.tesseraCorrente, coordinate, giocatore.getColore(), this));
+		this.tesseraCorrente = null;
 	}
 
 	public Tessera getTessera(Coordinate coordinate) throws TesseraNonTrovataException

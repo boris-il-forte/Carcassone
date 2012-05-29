@@ -136,6 +136,16 @@ public class ScenarioDiGioco
 		return riga;
 	}
 
+	public boolean isPartitaFinita()
+	{
+		return partitaFinita;
+	}
+
+	public void setPartitaFinita(boolean partitaFinita)
+	{
+		this.partitaFinita = partitaFinita;
+	}
+
 	private SortedMap<Integer, Riga>	mappaRighe;
 
 	private static class Riga
@@ -177,7 +187,7 @@ public class ScenarioDiGioco
 
 
 
-
+	private boolean				partitaFinita	= false;
 
 
 

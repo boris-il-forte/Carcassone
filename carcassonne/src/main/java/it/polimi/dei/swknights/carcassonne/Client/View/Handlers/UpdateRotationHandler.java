@@ -8,7 +8,7 @@ public class UpdateRotationHandler extends ViewHandler
 {
 	public UpdateRotationHandler(ModuloView view)
 	{
-		this.view = view;
+		super(view);
 	}
 	
 	@Override
@@ -17,8 +17,7 @@ public class UpdateRotationHandler extends ViewHandler
 		this.view.aggiornaMappa();
 		AdapterTessera tesseraNuova = event.getTessera();
 		this.view.cambiaEMostraTesseraCorrente(tesseraNuova);
+		this.sveglia();
 	}
-	
-	private ModuloView	view;
 	
 }
