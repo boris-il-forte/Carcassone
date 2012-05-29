@@ -7,15 +7,9 @@ import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
 public class RuotaHandler extends ControllerHandler
 {
-	private ModuloController	controller;
-
-	private ModuloModel				model;
-
 	public RuotaHandler(ModuloController controller, ModuloModel model)
 	{
-		this.controller = controller;
-		
-		this.model = model;
+		super(controller, model);
 	}
 
 	@Override
@@ -29,5 +23,6 @@ public class RuotaHandler extends ControllerHandler
 		{
 			this.model.fire(new MossaNonValidaEvent(this.model));
 		}
+		this.sveglia();
 	}
 }

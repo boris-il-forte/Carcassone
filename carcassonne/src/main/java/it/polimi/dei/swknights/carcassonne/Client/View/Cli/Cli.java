@@ -225,11 +225,8 @@ public class Cli extends ModuloView
 
 	private synchronized void aspettaInizio() throws InterruptedException
 	{
-		System.out.println("partita cominciata = " 
-				+  this.statoPartita.isPartitaCominciata());
 		while( this.statoPartita.isPartitaCominciata() == false)
 		{
-			System.out.println("entro while");
 			wait();
 		}
 	}

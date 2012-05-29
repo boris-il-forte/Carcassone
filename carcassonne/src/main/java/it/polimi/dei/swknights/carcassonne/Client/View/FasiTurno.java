@@ -28,6 +28,8 @@ public enum FasiTurno {
 	{
 		switch (this)
 		{
+			case PreparazioneGioco:
+				return Inizio;
 			case Inizio:
 				return Media;
 			case Media:
