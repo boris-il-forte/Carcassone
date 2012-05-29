@@ -20,6 +20,7 @@ public abstract class ModuloView extends AbstractView
 	{
 		super();
 		this.scenario = new ScenarioDiGioco();
+		this.statoPartita = new StatoPartita();
 		this.attivaHanlders();
 	}
 
@@ -46,6 +47,11 @@ public abstract class ModuloView extends AbstractView
 	public void setFaseTurno(FasiTurno fase)
 	{
 		this.faseTurno = fase;
+	}
+
+	public void setPartitaCominciata()
+	{
+		this.statoPartita.setPartitaCominciata(true);
 	}
 
 	protected Color getColoreGiocatore()
@@ -110,5 +116,7 @@ public abstract class ModuloView extends AbstractView
 	private AdapterTessera			tesseraCorrente;
 
 	private Color					coloreGiocatore;
+
+	protected StatoPartita			statoPartita;
 
 }

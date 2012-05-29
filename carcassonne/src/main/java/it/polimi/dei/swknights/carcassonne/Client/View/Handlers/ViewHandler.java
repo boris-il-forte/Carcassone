@@ -32,7 +32,8 @@ public abstract class ViewHandler
 
 	public synchronized void sveglia()
 	{
-		notifyAll();
+		System.out.println("sveglia!!!");
+		this.view.notifyAll();
 
 	}
 	
