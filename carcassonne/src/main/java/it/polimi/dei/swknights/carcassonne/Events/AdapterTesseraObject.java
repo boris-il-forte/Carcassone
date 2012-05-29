@@ -13,7 +13,7 @@ public class AdapterTesseraObject extends AdapterTessera
 {
 	public AdapterTesseraObject(Tessera tessera)
 	{
-		this.tessera = (Tessera) tessera.clone();
+		this.tessera = tessera.clone();
 	}
 
 	@Override
