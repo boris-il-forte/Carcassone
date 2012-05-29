@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
@@ -13,9 +14,9 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 public class PlaceHandler extends ControllerHandler
 {
 
-	public PlaceHandler(ModuloController controller, ModuloModel model)
+	public PlaceHandler(ModuloController controller, ModuloModel model, ModuloView view)
 	{
-		super(controller, model);
+		super(controller, model, view);
 	}
 
 	@Override
