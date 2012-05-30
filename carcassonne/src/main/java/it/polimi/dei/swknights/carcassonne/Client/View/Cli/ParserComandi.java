@@ -32,7 +32,7 @@ public class ParserComandi
 		int quantitaSpostamento = 0;
 		System.out.println(stringComando);
 		if (stringComando.matches("[SCsc][1-4]")) // es c1 s2
-		{ return this.cli.posizionaSengalino(stringComando); }
+		{ return this.cli.provaPosizionareSengalino(stringComando); }
 		if (stringComando.matches("\\-?\\d+\\,\\-?\\d+")) // es (2,-4)
 		{
 			int x, y;
@@ -43,8 +43,8 @@ public class ParserComandi
 			return this.cli.provaPosizionareTessera(new Coordinate(x, y));
 		}
 
-		if (stringComando.matches("rotate")) { return this.cli.ruotaTessera(); }
-		if (stringComando.matches("pass")) { return this.cli.nonMettereSegnalino(); }
+		if (stringComando.matches("rotate")) { return this.cli.provaRuotareTessera(); }
+		if (stringComando.matches("pass")) { return this.cli.provaNonMettereSegnalino(); }
 
 		if (stringComando.matches("(up|down|left|right)\\=\\d+"))
 		{
