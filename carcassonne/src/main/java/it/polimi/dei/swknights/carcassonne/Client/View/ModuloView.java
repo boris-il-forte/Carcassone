@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.GestoreFasi;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.CostruzioneCompletataHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.FinePartitaHandler;
@@ -21,6 +22,7 @@ public abstract class ModuloView extends AbstractView
 		super();
 		this.scenario = new ScenarioDiGioco();
 		this.statoPartita = new StatoPartita();
+		this.gestoreFasi = new GestoreFasi();
 		this.attivaHanlders();
 	}
 
@@ -28,7 +30,7 @@ public abstract class ModuloView extends AbstractView
 
 	public abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
 
-	public abstract void mettiEMostraPrimaTessera(AdapterTessera tessIniziale);
+	public abstract void mettiPrimaTessera(AdapterTessera tessIniziale);
 
 	public abstract void notificaFinePartita();
 
@@ -43,11 +45,6 @@ public abstract class ModuloView extends AbstractView
 	public abstract void posizionaTessera(Coordinate coordinatePosizione);
 
 	public abstract void muoviViewA(PuntoCardinale puntoCardinale, int quantita);
-
-	public void setFaseTurno(FasiTurno fase)
-	{
-		this.faseTurno = fase;
-	}
 
 	public void setPartitaCominciata()
 	{
@@ -94,11 +91,6 @@ public abstract class ModuloView extends AbstractView
 		return coordinataNordOvest;
 	}
 
-	protected FasiTurno getFaseTurno()
-	{
-		return this.faseTurno;
-	}
-
 	private void attivaHanlders()
 	{
 		this.addVisitorHandler(new InizioGiocoHandler(this));
@@ -110,18 +102,18 @@ public abstract class ModuloView extends AbstractView
 		this.addVisitorHandler(new FinePartitaHandler(this));
 	}
 
-	protected static final Coordinate		centroScenario	= new Coordinate(0, 0);
+	protected static final Coordinate	centroScenario	= new Coordinate(0, 0);
 
-	protected StatoPartita			statoPartita;
+	protected StatoPartita				statoPartita;
 
-	private FasiTurno				faseTurno;
+	protected GestoreFasi				gestoreFasi;
 
-	private final ScenarioDiGioco	scenario;
+	private final ScenarioDiGioco		scenario;
 
-	private Coordinate				coordinataNordOvest;
+	private Coordinate					coordinataNordOvest;
 
-	private AdapterTessera			tesseraCorrente;
+	private AdapterTessera				tesseraCorrente;
 
-	private Color					coloreGiocatore;
+	private Color						coloreGiocatore;
 
 }

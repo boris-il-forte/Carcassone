@@ -2,7 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
 import it.polimi.dei.swknights.carcassonne.AdapterColore;
 import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.Client.View.FasiTurno;
+import it.polimi.dei.swknights.carcassonne.FaseTurno;
 import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 
@@ -67,7 +67,7 @@ public class AvvisiUser
 	 * set the current phase of the turn
 	 * @param faseTurno
 	 */
-	public void setPhase(FasiTurno faseTurno)
+	public void setPhase(FaseTurno faseTurno)
 	{
 		this.faseTurno = faseTurno;
 	}
@@ -93,7 +93,7 @@ public class AvvisiUser
 
 	private PrintWriter		out;
 	
-	private FasiTurno		faseTurno;
+	private FaseTurno		faseTurno;
 
 	private Color			coloreGiocatore;
 

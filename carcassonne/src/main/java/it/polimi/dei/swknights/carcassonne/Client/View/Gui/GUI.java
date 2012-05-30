@@ -67,7 +67,7 @@ public class GUI extends ModuloView implements ActionListener
 	}
 
 	@Override
-	public void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
+	public void mettiPrimaTessera(AdapterTessera tessIniziale)
 	{
 		// TODO Auto-generated method stub
 		
