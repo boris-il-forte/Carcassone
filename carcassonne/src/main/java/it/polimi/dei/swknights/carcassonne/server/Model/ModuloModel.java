@@ -93,7 +93,7 @@ public class ModuloModel extends AbstractModel
 
 	public void posizionaTesseraCorrente(Coordinate coordinate)
 	{
-		posizionaTessera(tesseraCorrente, coordinate);
+		this.posizionaTessera(tesseraCorrente, coordinate);
 	}
 	
 	public void posizionaTessera(Tessera tessera, Coordinate coordinate)

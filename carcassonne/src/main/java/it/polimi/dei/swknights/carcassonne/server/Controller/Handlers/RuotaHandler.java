@@ -15,7 +15,7 @@ public class RuotaHandler extends ControllerHandler
 	@Override
 	public void visit(RotateEvent event)
 	{
-		if(this.controller.ruotaOk())
+		if(this.controller.getGestoreFasi().ruotaOk())
 		{
 			this.model.ruotaTessera();
 		}
