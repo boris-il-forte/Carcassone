@@ -9,8 +9,7 @@ public class GestoreFasi
 
 	public void cominciaTurno()
 	{
-		this.faseCorrente = FaseTurno.Inizio;
-		
+		this.faseCorrente = FaseTurno.Inizio;	
 	}
 
 	public void finePartita()
@@ -25,7 +24,6 @@ public class GestoreFasi
 
 	public boolean partitaOk()
 	{
-		// TODO Auto-generated method stub
 		return !this.faseCorrente.equals(FaseTurno.FinePartita);
 	}
 

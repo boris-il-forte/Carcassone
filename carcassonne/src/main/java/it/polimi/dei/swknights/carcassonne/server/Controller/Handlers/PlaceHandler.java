@@ -27,6 +27,7 @@ public class PlaceHandler extends ControllerHandler
 			ContatoreCartografo contaPunti = this.controller.getContapunti();
 			this.model.posizionaTesseraCorrente(coordinate);
 			contaPunti.riceviCoordinateTessera(coordinate);
+			this.controller.comunicaPosizionamentoTessera();
 		}
 		else
 		{

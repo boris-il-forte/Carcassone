@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.GestoreFasi;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
@@ -31,6 +32,7 @@ public class ModuloController implements Controller
 	public ModuloController(ModuloModel model)
 	{
 		this.model = model;
+		this.gestoreFasi = new GestoreFasi();
 		this.contaPunti = new ContatoreCartografo(this.model);
 		this.visitorHandlers = this.attivaHandler();
 	}
@@ -68,25 +70,25 @@ public class ModuloController implements Controller
 
 	public synchronized void comunicaPosizionamentoTessera()
 	{
-		this.tesseraPosizionata = true;
+		this.gestoreFasi.nextFase();
 	}
 
 	public ContatoreCartografo getContapunti()
 	{
 		return this.contaPunti;
 	}
-
-	//TODO togliere..
-	public boolean ruotaOk()
+	
+	public GestoreFasi getGestoreFasi()
 	{
-		// TODO controllare se puoi ruotare
-		return true;
+		return this.gestoreFasi;
 	}
 
 	private void nextTurno() throws InterruptedException
 	{
 		this.attendiPosizionamentoTessera();
 		this.model.nextTurno();
+		this.gestoreFasi.cominciaTurno();
+		System.out.println("controller: fase-" +this.gestoreFasi.getCurrentFase().ordinal());
 	}
 
 	private void primaMossaPartita()
@@ -96,6 +98,8 @@ public class ModuloController implements Controller
 		{
 			this.model.iniziaGioco(NUMBER_OF_PLAYER);
 			this.contaPunti.riceviCoordinateTessera(origine);
+			this.gestoreFasi.cominciaTurno();
+			System.out.println("controller: fase-" +this.gestoreFasi.getCurrentFase().ordinal());
 		}
 		catch (PartitaFinitaException e)
 		{
@@ -109,7 +113,6 @@ public class ModuloController implements Controller
 		try
 		{
 			this.model.cominciaTurno();
-			this.tesseraPosizionata = false;
 		}
 		catch (PartitaFinitaException e)
 		{
@@ -130,18 +133,19 @@ public class ModuloController implements Controller
 
 	synchronized private void attendiPosizionamentoTessera() throws InterruptedException
 	{
-		while (!this.tesseraPosizionata)
+		while (this.gestoreFasi.inputOk())
 		{
 			wait();
 		}
 	}
 
-	private boolean					tesseraPosizionata;
 
 	private List<ControllerHandler>	visitorHandlers;
 
 	private ContatoreCartografo		contaPunti;
 
+	private final GestoreFasi		gestoreFasi;
+	
 	private final ModuloModel		model;
 
 	private static final int		NUMBER_OF_PLAYER	= 2;	// TODO: ask
