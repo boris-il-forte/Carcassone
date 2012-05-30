@@ -93,7 +93,7 @@ public class ExtraParser extends Parser
 			final int extraDataIndex = 1;
 			if (this.parsedData[i].length() > 1)
 			{
-				String dataToParse[] = parsedData[i].split(",");
+				String dataToParse[] = parsedData[i].split("+");
 				this.parsedData[i] = dataToParse[normalDataIndex];
 				this.extraData[i] = dataToParse[extraDataIndex];
 			}

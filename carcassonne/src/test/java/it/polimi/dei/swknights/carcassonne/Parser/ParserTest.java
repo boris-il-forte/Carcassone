@@ -28,16 +28,16 @@ public class ParserTest
 		listaTestOKOracolo = new ArrayDeque<String>();
 		listaTestKO = new ArrayList<String>();
 		String arrayOK[] = { "N=N S=C W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0",
-				"NW=0 S=C W=S E=S NS=0 NE=0 WE=1 SE=0 SW=0 N=N,R",
-				"N=N,R S=C W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0",
-				"N=N S=C W=S E=S,R NS=0 NE=0 NW=0 WE=1 SE=0 SW=0 U",
-				"N=N S=C W=S E=S,R NS=0 NE=0 NW=0 WE=1 SE=0 SW=0 U" };
+				"NW=0 S=C W=S E=S NS=0 NE=0 WE=1 SE=0 SW=0 N=N+R",
+				"N=N+R S=C W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0",
+				"N=N S=C W=S E=S+R NS=0 NE=0 NW=0 WE=1 SE=0 SW=0 U",
+				"N=N S=C W=S E=S+R NS=0 NE=0 NW=0 WE=1 SE=0 SW=0 U" };
 		for (String stringa : arrayOK)
 		{
 			listaTestOK.add(stringa);
 		}
-		String arrayOKOracolo[] = { "N C S S 0 0 0 1 0 0 ", "N,R C S S 0 0 0 1 0 0 ",
-				"N,R C S S 0 0 0 1 0 0 ", "N C S S,R 0 0 0 1 0 0 U", "N C S S,R 0 0 0 1 0 0 U" };
+		String arrayOKOracolo[] = { "N C S S 0 0 0 1 0 0 ", "N+R C S S 0 0 0 1 0 0 ",
+				"N+R C S S 0 0 0 1 0 0 ", "N C S S+R 0 0 0 1 0 0 U", "N C S S+R 0 0 0 1 0 0 U" };
 		for (String stringa : arrayOKOracolo)
 		{
 			listaTestOKOracolo.add(stringa);

@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
-import it.polimi.dei.swknights.carcassonne.Events.Game.ComandoView;
+import it.polimi.dei.swknights.carcassonne.AzioneGioco;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 
 /**
@@ -17,7 +17,7 @@ public class RotateEvent extends ViewEvent
 	public RotateEvent(Object source)
 	{
 		super(source);
-		setComando(ComandoView.rotate);
+		setComando(AzioneGioco.rotate);
 	}
 
 	private static final long	serialVersionUID	= 2085506187547788810L;

@@ -2,7 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Handlers;
 
 import java.awt.Color;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.FasiTurno;
+import it.polimi.dei.swknights.carcassonne.FaseTurno;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
@@ -21,8 +21,7 @@ public class UpdateTurnoHandler extends ViewHandler
 		this.view.aggiornaMappa();
 		Color colGiocatoreCorrente = event.getGiocatoreCorrente();
 		AdapterTessera tesseraNuova = event.getTessera();
-
-		this.view.setFaseTurno(FasiTurno.Inizio);
+		 //TODO fasi...
 		this.view.cambiaEMostraTesseraCorrente(tesseraNuova);
 		this.view.aggiornaColoreCorrente(colGiocatoreCorrente);
 		this.view.notificaPuoiParlare();

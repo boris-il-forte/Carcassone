@@ -1,10 +1,11 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
+import it.polimi.dei.swknights.carcassonne.AzioneGioco;
 import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.FaseTurno;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
-import it.polimi.dei.swknights.carcassonne.Client.View.FasiTurno;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
@@ -94,9 +95,9 @@ public class Cli extends ModuloView
 	@Override
 	public void attendiInput()
 	{
-		if (this.getFaseTurno() != FasiTurno.PreparazioneGioco)
+		if (this.gestoreFasi.getCurrentFase() != FaseTurno.PreparazioneGioco)
 		{
-			this.informaUser.setPhase(this.getFaseTurno());
+			this.informaUser.setPhase(this.gestoreFasi.getCurrentFase() );
 			this.getInput();
 		}
 
@@ -117,13 +118,11 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	public void mettiEMostraPrimaTessera(AdapterTessera tessIniziale)
+	public void mettiPrimaTessera(AdapterTessera tessIniziale)
 	{
-		this.informaUser.setPhase(this.getFaseTurno());
+		this.informaUser.setPhase(this.gestoreFasi.getCurrentFase());
 		this.setTesseraCorrente(tessIniziale);
 		this.posizionaTessera(centroScenario);
-		this.aggiornaMappa();
-
 	}
 
 	@Override
@@ -164,11 +163,10 @@ public class Cli extends ModuloView
 	// TODO: per tutti questi sotto: PULIZIAAAAA. codice duplicato... Male!
 	boolean provaPosizionareTessera(Coordinate coordinate)
 	{
-		if (this.getFaseTurno() == FasiTurno.Inizio)
+		if (this.gestoreFasi.getCurrentFase() == FaseTurno.Inizio)
 		{
 			this.fire(new PlaceEvent(this, coordinate));
-			FasiTurno prossima = this.getFaseTurno().nextPhase();
-			this.setFaseTurno(prossima);
+			this.gestoreFasi.getNextFase(AzioneGioco.place);
 			return true;
 		}
 		else
@@ -180,7 +178,8 @@ public class Cli extends ModuloView
 
 	boolean ruotaTessera()
 	{
-		if (this.getFaseTurno() == FasiTurno.Inizio || this.getFaseTurno() == FasiTurno.Media)
+		FaseTurno currentFase = this.gestoreFasi.getCurrentFase();
+		if (currentFase == FaseTurno.Inizio || currentFase == FaseTurno.Media)
 		{
 			this.fire(new RotateEvent(this));
 			return true;
@@ -193,11 +192,10 @@ public class Cli extends ModuloView
 
 	boolean nonMettereSegnalino()
 	{
-		if (this.getFaseTurno() == FasiTurno.Media)
+		if (this.gestoreFasi.getCurrentFase() == FaseTurno.Media)
 		{
 			this.fire(new PassEvent(this));
-			FasiTurno prossima = this.getFaseTurno().nextPhase();
-			this.setFaseTurno(prossima);
+			this.gestoreFasi.getNextFase(AzioneGioco.pass);
 			return true;
 		}
 		else
@@ -214,8 +212,7 @@ public class Cli extends ModuloView
 			if (elementi[punto.toInt()].equals(stringComando))
 			{
 				this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
-				FasiTurno prossima = this.getFaseTurno().nextPhase();
-				this.setFaseTurno(prossima);
+				this.gestoreFasi.getNextFase(AzioneGioco.tile);
 				return true;
 			}
 		}
