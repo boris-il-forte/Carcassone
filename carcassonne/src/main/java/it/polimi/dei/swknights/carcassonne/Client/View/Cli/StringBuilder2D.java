@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 import java.awt.Dimension;
 import java.util.ArrayList;

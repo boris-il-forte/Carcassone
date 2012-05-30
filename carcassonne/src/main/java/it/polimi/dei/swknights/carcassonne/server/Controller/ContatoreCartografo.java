@@ -1,7 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
 import java.util.List;

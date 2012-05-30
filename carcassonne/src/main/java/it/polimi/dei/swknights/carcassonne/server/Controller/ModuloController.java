@@ -1,10 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.GestoreFasi;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
+import it.polimi.dei.swknights.carcassonne.Fasi.GestoreFasi;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PassHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PlaceHandler;

@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 

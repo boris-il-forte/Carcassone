@@ -1,7 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
-import it.polimi.dei.swknights.carcassonne.Bussola;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Util.Bussola;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 /**
  * That class represent all the connections on a card e.g. a street that cross

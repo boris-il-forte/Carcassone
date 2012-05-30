@@ -1,6 +1,8 @@
-package it.polimi.dei.swknights.carcassonne;
+package it.polimi.dei.swknights.carcassonne.Util;
 
 import static org.junit.Assert.assertTrue;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
+
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.BeforeClass;

@@ -2,7 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Events;
 
 import java.awt.Color;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 public class DecoraTessera
 {

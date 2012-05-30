@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game;
 
-import it.polimi.dei.swknights.carcassonne.FaseTurno;
+import it.polimi.dei.swknights.carcassonne.Fasi.FaseTurno;
 
 /**
  * Enum to group user command rotate: rotate the tile place: place the tile

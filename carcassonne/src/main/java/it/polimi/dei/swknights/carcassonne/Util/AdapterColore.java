@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne;
+package it.polimi.dei.swknights.carcassonne.Util;
 
 import java.awt.Color;
 import java.util.Map;

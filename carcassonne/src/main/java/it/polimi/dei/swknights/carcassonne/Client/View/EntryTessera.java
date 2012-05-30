@@ -1,7 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 /**
  * This class just joins data needed to printer to print the map
  * in CLI mode

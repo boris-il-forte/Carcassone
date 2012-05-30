@@ -1,4 +1,5 @@
-package it.polimi.dei.swknights.carcassonne;
+package it.polimi.dei.swknights.carcassonne.Fasi;
+
 
 public class GestoreFasi
 {

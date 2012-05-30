@@ -7,9 +7,9 @@ import java.util.ListIterator;
 
 import javax.management.BadAttributeValueExpException;
 
-import it.polimi.dei.swknights.carcassonne.Bussola;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
+import it.polimi.dei.swknights.carcassonne.Util.Bussola;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 /**
  * Class used to parse extra arguments of each fragment of code

@@ -3,8 +3,8 @@ package it.polimi.dei.swknights.carcassonne.Client.View;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 /**
  * This class describes the skeleton of the Command Line map
  * 

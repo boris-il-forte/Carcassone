@@ -1,8 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Client.View;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.util.Map.Entry;
 import java.util.ArrayList;
