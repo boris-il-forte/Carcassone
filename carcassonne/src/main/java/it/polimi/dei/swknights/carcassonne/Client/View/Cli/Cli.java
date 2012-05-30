@@ -48,7 +48,6 @@ public class Cli extends ModuloView
 			{
 				this.attendiInput(); //attende e gestisce l'input
 				this.attendiRispostaController(); //attente il ritorno della fase inizio
-
 			} while (!this.statoPartita.isPartitaFinita());
 		}
 
@@ -223,7 +222,7 @@ public class Cli extends ModuloView
 
 	private synchronized void attendiRispostaController() throws InterruptedException
 	{
-		while (!this.gestoreFasi.iniziaNuovoTurnoOk())
+		while (!this.gestoreFasi.inputOk())
 		{
 			wait();
 		}
