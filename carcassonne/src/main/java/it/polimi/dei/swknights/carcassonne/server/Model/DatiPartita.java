@@ -116,7 +116,7 @@ public class DatiPartita
 		if (index > 0)
 		{
 			index--;
-			return this.pilaTessere.get(index);
+			return this.pilaTessere.remove(index);
 		}
 		else
 		{

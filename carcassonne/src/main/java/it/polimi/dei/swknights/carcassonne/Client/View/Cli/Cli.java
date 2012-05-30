@@ -95,9 +95,10 @@ public class Cli extends ModuloView
 	@Override
 	public void attendiInput()
 	{
-		if (this.gestoreFasi.getCurrentFase() != FaseTurno.PreparazioneGioco)
+		FaseTurno faseCorrente= this.gestoreFasi.getCurrentFase();
+		if (faseCorrente != FaseTurno.PreparazioneGioco && faseCorrente != FaseTurno.Attesa)
 		{
-			this.informaUser.setPhase(this.gestoreFasi.getCurrentFase() );
+			this.informaUser.setPhase(this.gestoreFasi.getCurrentFase());
 			this.getInput();
 		}
 
@@ -236,7 +237,7 @@ public class Cli extends ModuloView
 
 	}
 
-	synchronized private void getInput()
+	private void getInput()
 	{
 		boolean valido;
 		do

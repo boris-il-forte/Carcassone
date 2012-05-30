@@ -33,6 +33,9 @@ public class ExtraParser extends Parser
 		super(stringToParse);
 		this.extraData = new String[this.parsedData.length];
 		this.extraParse();
+		System.out.println(stringToParse);
+		System.out.println(parsedData.length);
+		System.out.println(this.extraData.length);
 	}
 
 	/**
@@ -91,9 +94,10 @@ public class ExtraParser extends Parser
 		{
 			final int normalDataIndex = 0;
 			final int extraDataIndex = 1;
+			//TODO controllare che l'espressione abbia la forma giusta...
 			if (this.parsedData[i].length() > 1)
 			{
-				String dataToParse[] = parsedData[i].split("+");
+				String dataToParse[] = parsedData[i].split("\\+");
 				this.parsedData[i] = dataToParse[normalDataIndex];
 				this.extraData[i] = dataToParse[extraDataIndex];
 			}

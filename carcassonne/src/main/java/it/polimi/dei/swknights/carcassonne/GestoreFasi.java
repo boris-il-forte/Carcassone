@@ -17,6 +17,11 @@ public class GestoreFasi
 		this.faseCorrente = azione.getNextFase();
 		return this.faseCorrente;
 	}
+	
+	public void cominciaTurno()
+	{
+		this.faseCorrente = FaseTurno.Inizio;
+	}
 
 	private FaseTurno	faseCorrente;
 
