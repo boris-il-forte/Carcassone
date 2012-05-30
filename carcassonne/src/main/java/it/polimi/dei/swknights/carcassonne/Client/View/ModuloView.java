@@ -46,15 +46,21 @@ public abstract class ModuloView extends AbstractView
 
 	public abstract void muoviViewA(PuntoCardinale puntoCardinale, int quantita);
 
+	public void aggiornaTurno(Color colGiocatoreCorrente, AdapterTessera tesseraNuova)
+	{
+		this.cambiaEMostraTesseraCorrente(tesseraNuova);
+		this.aggiornaColoreCorrente(colGiocatoreCorrente);
+		this.gestoreFasi.nextFase();
+	}
+
 	public void setPartitaCominciata()
 	{
 		this.statoPartita.setPartitaCominciata(true);
 	}
 
-	public void cominciaTurno()
+	public GestoreFasi getGestoreFasi()
 	{
-		this.gestoreFasi.nextFase();
-		this.statoPartita.setPossoParlare(true);
+		return this.gestoreFasi;
 	}
 
 	protected Color getColoreGiocatore()
