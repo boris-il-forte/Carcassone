@@ -23,7 +23,7 @@ import java.util.Queue;
  * 
  */
 
-public class DatiPartita
+public final class DatiPartita
 {
 
 	public DatiPartita()
@@ -76,7 +76,7 @@ public class DatiPartita
 
 	public Giocatore getGiocatoreCorrente()
 	{
-		return this.giocatoreCorrente;
+		return this.giocatori.peek();
 	}
 
 	/**
@@ -97,9 +97,8 @@ public class DatiPartita
 	 */
 	public void nextTurno()
 	{
-		this.giocatoreCorrente = this.giocatori.poll();
-		this.giocatori.add(this.giocatoreCorrente);
-		
+		Giocatore vecchio =this.giocatori.poll();
+		this.giocatori.add(vecchio);
 	}
 
 	/**
@@ -137,7 +136,7 @@ public class DatiPartita
 	 * @throws FinitiColoriDisponibiliException
 	 */
 
-	public final void addGiocatore() throws FinitiColoriDisponibiliException
+	public void addGiocatore() throws FinitiColoriDisponibiliException
 	{
 		Giocatore playerToAdd;
 		playerToAdd = this.factoryGiocatori.getGiocatore();
@@ -150,7 +149,6 @@ public class DatiPartita
 		try
 		{
 			this.addGiocatore();
-			this.giocatoreCorrente = this.getGiocatore(Color.RED);
 		}
 		catch (FinitiColoriDisponibiliException e)
 		{ // non dovrebbe mai avvenire perchè un colore c'è per forza all'inizio
@@ -190,8 +188,6 @@ public class DatiPartita
 	private Tessera						tesseraMagic;
 
 	private List<Tessera>				pilaTessere;
-
-	private Giocatore					giocatoreCorrente;
 
 	private Queue<Giocatore>			giocatori;
 
