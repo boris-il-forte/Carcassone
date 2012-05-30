@@ -1,7 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
 import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.FaseTurno;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
@@ -44,11 +43,7 @@ public class Cli extends ModuloView
 
 		try
 		{
-
-			this.out.println("Carcassonne: Aspetto che la partita cominci");
 			this.aspettaInizio();
-			this.out.println("Carcassonne: Partita cominciata");
-			this.out.flush();
 			do
 			{
 				this.attendiInput();
@@ -82,6 +77,7 @@ public class Cli extends ModuloView
 	public void posizionaTessera(Coordinate coordinatePosizione)
 	{
 		this.getScenario().setTessera(coordinatePosizione, this.getTesseraCorrente());
+		this.gestoreFasi.nextFase();
 	}
 
 	@Override
@@ -94,8 +90,7 @@ public class Cli extends ModuloView
 	@Override
 	public void attendiInput()
 	{
-		FaseTurno faseCorrente= this.gestoreFasi.getCurrentFase();
-		if (faseCorrente != FaseTurno.PreparazioneGioco && faseCorrente != FaseTurno.Attesa)
+		if (this.gestoreFasi.inputOk())
 		{
 			this.informaUser.setPhase(this.gestoreFasi.getCurrentFase());
 			this.getInput();
@@ -166,7 +161,6 @@ public class Cli extends ModuloView
 		if (this.gestoreFasi.posizionaOk())
 		{
 			this.fire(new PlaceEvent(this, coordinate));
-			this.gestoreFasi.nextFase();
 			return true;
 		}
 		else
@@ -194,7 +188,6 @@ public class Cli extends ModuloView
 		if (this.gestoreFasi.fineTurnoOk())
 		{
 			this.fire(new PassEvent(this));
-			this.gestoreFasi.nextFase();
 			return true;
 		}
 		else
@@ -213,7 +206,6 @@ public class Cli extends ModuloView
 				if (elementi[punto.toInt()].equals(stringComando))
 				{
 					this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
-					this.gestoreFasi.nextFase();
 					return true;
 				}
 			}
@@ -223,7 +215,7 @@ public class Cli extends ModuloView
 
 	private synchronized void aspettaInizio() throws InterruptedException
 	{
-		while (!this.statoPartita.isPartitaCominciata())
+		while (!this.gestoreFasi.partitaCominciata())
 		{
 			wait();
 		}
@@ -231,7 +223,7 @@ public class Cli extends ModuloView
 
 	private synchronized void attendiRispostaController() throws InterruptedException
 	{
-		while (!this.statoPartita.possoParlare())
+		while (!this.gestoreFasi.iniziaNuovoTurnoOk())
 		{
 			wait();
 		}
