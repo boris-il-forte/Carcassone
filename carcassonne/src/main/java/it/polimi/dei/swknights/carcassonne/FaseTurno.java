@@ -9,7 +9,7 @@ package it.polimi.dei.swknights.carcassonne;
  */
 public enum FaseTurno {
 	Inizio("Place card or rotate"), Media("Tile or pass"), Attesa("wait server response..."), PreparazioneGioco(
-			"loading, please wait");
+			"loading, please wait"), FinePartita("Partita Finita");
 
 	private FaseTurno(String messaggio)
 	{
@@ -32,6 +32,9 @@ public enum FaseTurno {
 				return Media;
 			case Attesa:
 				return Inizio;
+				
+			case FinePartita:
+				return FinePartita;
 			default:
 				return Attesa;
 		}

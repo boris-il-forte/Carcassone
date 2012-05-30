@@ -13,9 +13,20 @@ public class GestoreFasi
 		
 	}
 
+	public void finePartita()
+	{
+		this.faseCorrente = FaseTurno.FinePartita;
+	}
+
 	public void nextFase()
 	{
 		this.faseCorrente = this.faseCorrente.next();
+	}
+
+	public boolean partitaOk()
+	{
+		// TODO Auto-generated method stub
+		return !this.faseCorrente.equals(FaseTurno.FinePartita);
 	}
 
 	public boolean posizionaOk()

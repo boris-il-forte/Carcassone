@@ -21,7 +21,6 @@ public abstract class ModuloView extends AbstractView
 	{
 		super();
 		this.scenario = new ScenarioDiGioco();
-		this.statoPartita = new StatoPartita();
 		this.gestoreFasi = new GestoreFasi();
 		this.attivaHanlders();
 	}
@@ -51,11 +50,6 @@ public abstract class ModuloView extends AbstractView
 		this.cambiaEMostraTesseraCorrente(tesseraNuova);
 		this.aggiornaColoreCorrente(colGiocatoreCorrente);
 		this.gestoreFasi.cominciaTurno();
-	}
-
-	public void setPartitaCominciata()
-	{
-		this.statoPartita.setPartitaCominciata(true);
 	}
 
 	public GestoreFasi getGestoreFasi()
@@ -110,8 +104,6 @@ public abstract class ModuloView extends AbstractView
 	}
 
 	protected static final Coordinate	centroScenario	= new Coordinate(0, 0);
-
-	protected StatoPartita				statoPartita;
 
 	protected GestoreFasi				gestoreFasi;
 
