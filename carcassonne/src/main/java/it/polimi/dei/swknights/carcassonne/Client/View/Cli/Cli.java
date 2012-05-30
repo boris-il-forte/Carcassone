@@ -38,16 +38,16 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	public void run()
+	public void run() //OK
 	{
 
 		try
 		{
-			this.aspettaInizio();
+			this.aspettaInizio(); //aspetta che la partita cominci...
 			do
 			{
-				this.attendiInput();
-				this.attendiRispostaController();
+				this.attendiInput(); //attende e gestisce l'input
+				this.attendiRispostaController(); //attente il ritorno della fase inizio
 
 			} while (!this.statoPartita.isPartitaFinita());
 		}
@@ -170,7 +170,7 @@ public class Cli extends ModuloView
 
 	}
 
-	boolean ruotaTessera()
+	boolean provaRuotareTessera()
 	{
 		if (this.gestoreFasi.ruotaOk())
 		{
@@ -183,7 +183,7 @@ public class Cli extends ModuloView
 		}
 	}
 
-	boolean nonMettereSegnalino()
+	boolean provaNonMettereSegnalino()
 	{
 		if (this.gestoreFasi.fineTurnoOk())
 		{
@@ -196,7 +196,7 @@ public class Cli extends ModuloView
 		}
 	}
 
-	boolean posizionaSengalino(String stringComando)
+	boolean provaPosizionareSengalino(String stringComando)
 	{
 		if(this.gestoreFasi.fineTurnoOk())
 		{

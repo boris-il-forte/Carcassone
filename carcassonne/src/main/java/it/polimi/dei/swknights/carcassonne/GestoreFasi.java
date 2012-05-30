@@ -30,7 +30,7 @@ public class GestoreFasi
 	
 	public boolean iniziaNuovoTurnoOk()
 	{
-		return this.faseCorrente.equals(FaseTurno.Attesa);
+		return this.faseCorrente.equals(FaseTurno.Inizio);
 	}
 
 	public boolean inputOk()
