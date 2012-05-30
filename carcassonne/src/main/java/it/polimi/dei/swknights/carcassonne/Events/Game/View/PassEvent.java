@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
-import it.polimi.dei.swknights.carcassonne.AzioneGioco;
+import it.polimi.dei.swknights.carcassonne.Events.Game.ComandiView;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 
 /**
@@ -17,7 +17,7 @@ public class PassEvent extends ViewEvent
 	public PassEvent(Object source)
 	{
 		super(source);
-		this.setComando(AzioneGioco.pass);
+		this.setComando(ComandiView.pass);
 	}
 
 	@Override

@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne;
 
+import it.polimi.dei.swknights.carcassonne.Events.Game.ComandiView;
+
 public class GestoreFasi
 {
 	public GestoreFasi()
@@ -12,7 +14,7 @@ public class GestoreFasi
 		return this.faseCorrente;
 	}
 
-	public FaseTurno getNextFase(AzioneGioco azione)
+	public FaseTurno getNextFase(ComandiView azione)
 	{
 		this.faseCorrente = azione.getNextFase();
 		return this.faseCorrente;
