@@ -3,7 +3,7 @@ package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 public class TesseraNormale extends Tessera
 {
 
-	TesseraNormale(Lati lati, Link link)
+	public TesseraNormale(Lati lati, Link link)
 	{
 		super(lati, link);
 	}

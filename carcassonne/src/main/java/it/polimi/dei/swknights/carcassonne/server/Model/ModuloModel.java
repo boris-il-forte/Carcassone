@@ -93,12 +93,19 @@ public class ModuloModel extends AbstractModel
 
 	public void posizionaTesseraCorrente(Coordinate coordinate)
 	{
+		posizionaTessera(tesseraCorrente, coordinate);
+	}
+	
+	public void posizionaTessera(Tessera tessera, Coordinate coordinate)
+	{
 		AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
 		Giocatore giocatore = this.datiPartita.getGiocatoreCorrente();
-		areaDiGioco.addTessera(coordinate, this.tesseraCorrente);
+		areaDiGioco.addTessera(coordinate, tessera);
 		this.coordinateTesseraCorrente = coordinate;
-		this.fire(new UpdatePositionEvent(this.tesseraCorrente, coordinate, giocatore.getColore(), this));
+		this.fire(new UpdatePositionEvent(tessera, coordinate, giocatore.getColore(), this));
+	
 	}
+	
 
 	public Tessera getTessera(Coordinate coordinate) throws TesseraNonTrovataException
 	{
