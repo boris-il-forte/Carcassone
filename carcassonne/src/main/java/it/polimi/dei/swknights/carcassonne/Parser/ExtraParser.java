@@ -33,9 +33,6 @@ public class ExtraParser extends Parser
 		super(stringToParse);
 		this.extraData = new String[this.parsedData.length];
 		this.extraParse();
-		System.out.println(stringToParse);
-		System.out.println(parsedData.length);
-		System.out.println(this.extraData.length);
 	}
 
 	/**
