@@ -149,6 +149,24 @@ public abstract class Costruzione
 	 * }
 	 */
 	
+	@Override
+	public String toString()
+	{
+		String s = " tessere componenti :";
+		for(Tessera t : elementi)
+		{
+			s = s + t.toString();
+		}
+		s = s + "segnalini :";
+		for(Segnalino m : listaSegnalini)
+		{
+			s = s + m.toString();
+		}
+		return s;
+	}
+	
+	
+	
 	
 
 	protected Set<Tessera>	elementi;
