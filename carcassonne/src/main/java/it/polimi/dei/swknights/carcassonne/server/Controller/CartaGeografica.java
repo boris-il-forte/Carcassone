@@ -16,6 +16,7 @@ public class CartaGeografica
 	public Costruzione getCostruzioneAggregata(Costruzione pezzoCostruzione, ConfineTessera confinante)
 	{
 		Costruzione costruzioneConfinante = this.mappaConfini.get(confinante);
+		//TOFIX : if costruz confinante == null    ?? (al momento errore !! )
 		costruzioneConfinante.joinCostruzioni(pezzoCostruzione);
 		this.aggiornaConfini(confinante, costruzioneConfinante);
 		return costruzioneConfinante;

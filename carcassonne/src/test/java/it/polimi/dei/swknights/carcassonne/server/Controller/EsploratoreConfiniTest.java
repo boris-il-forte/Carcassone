@@ -42,7 +42,7 @@ public class EsploratoreConfiniTest
 
 	}
 	
-	@Test
+	//@Test
 	public void esplora() throws Exception
 	{
 		CostruzioneCoord[] stradella = this.stradella();
@@ -63,13 +63,13 @@ public class EsploratoreConfiniTest
 		
 		Map<Costruzione, List<ConfineTessera>> mapConfinanti = esploratore.getConfinantiScoperti();
 		
-		System.out.println("_________________________________");
+		System.out.println("_________TUTTE LE COSTRUZIONI___________");
 		
 		for (Costruzione c : costruzioni)
 		{
 			System.out.println( c.toString() ) ;
 		}
-		System.out.println("_________________________________");
+		System.out.println("____________VICINI VUOTI_________________");
 		for( Entry<Costruzione, List<ConfineTessera>> entry : mappaVicVuoti.entrySet() )
 		{
 			System.out.println(" key = " + entry.getKey().toString() );
@@ -77,7 +77,7 @@ public class EsploratoreConfiniTest
 			System.out.println(" la lista è " + entry.getValue().toString());
 		}
 		
-		
+		System.out.println("____________CONFINI EFFETTIVI_________________");
 		for( Entry<Costruzione, List<ConfineTessera>> entry : mapConfinanti.entrySet() )
 		{
 			System.out.println(" key = " + entry.getKey().toString() );
@@ -105,6 +105,7 @@ public class EsploratoreConfiniTest
 		stradella = this.stradella();
 		
 		System.out.println("\n stradella  =  "  + stradella.toString());
+		System.out.println("========");
 		
 		for(int i=0; i<stradella.length; i++)
 		{
@@ -119,13 +120,13 @@ public class EsploratoreConfiniTest
 
 	}
 
-	@Test
+	//@Test
 	public void testCostruzioniCorrette() throws Exception
 	{
 
 	}
 
-	@Test
+	//@Test
 	public void testCostruzioniScorrette() throws Exception
 	{
 		
