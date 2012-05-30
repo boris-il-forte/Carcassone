@@ -24,4 +24,6 @@ public class CostruzioneCitta extends Costruzione
 		return new CostruzioneCitta(tessera);
 	}
 
+
+	
 }

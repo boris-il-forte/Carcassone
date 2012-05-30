@@ -20,6 +20,8 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
 
@@ -30,7 +32,7 @@ public class EsploratoreConfiniTest
 	@BeforeClass
 	public static void initializeTest() throws Exception
 	{
-		ModuloModel model = new ModuloModel();
+		model = new ModuloModel();
 	}
 
 	@Test
@@ -47,6 +49,9 @@ public class EsploratoreConfiniTest
 
 		for (int i = 0; i < stradella.length; i++)
 		{
+			System.out.println(stradella[i].tessera.toString() + "   "+
+					stradella[i].coord + "  " );
+			System.out.println(model.toString());
 			model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
 		}
 		
@@ -54,10 +59,38 @@ public class EsploratoreConfiniTest
 		EsploratoreConfini esploratore = new EsploratoreConfini(c2, model);
 		Set<Costruzione> costruzioni =  esploratore.getCostruzioni();
 		
+		Map<Costruzione, List<ConfineTessera>>  mappaVicVuoti =	esploratore.getViciniVuoti();
+		
+		Map<Costruzione, List<ConfineTessera>> mapConfinanti = esploratore.getConfinantiScoperti();
+		
+		System.out.println("_________________________________");
+		
 		for (Costruzione c : costruzioni)
 		{
 			System.out.println( c.toString() ) ;
 		}
+		System.out.println("_________________________________");
+		for( Entry<Costruzione, List<ConfineTessera>> entry : mappaVicVuoti.entrySet() )
+		{
+			System.out.println(" key = " + entry.getKey().toString() );
+			System.out.println(" value = lista di " + entry.getValue().size() + " elementi" );
+			System.out.println(" la lista è " + entry.getValue().toString());
+		}
+		
+		
+		for( Entry<Costruzione, List<ConfineTessera>> entry : mapConfinanti.entrySet() )
+		{
+			System.out.println(" key = " + entry.getKey().toString() );
+			System.out.println(" value = lista di " + entry.getValue().size() + " elementi" );
+			System.out.println(" la lista è " + entry.getValue().toString());
+			for(ConfineTessera ct : entry.getValue())
+			{
+				System.out.println(" confine tessera = " + ct.toString());
+				
+			}
+		}
+		
+		System.out.println("\n \n _______________________________________");
 		
 	}
 	
@@ -66,12 +99,21 @@ public class EsploratoreConfiniTest
 	public void stradaPiccola() throws Exception
 	{
 		ContatoreCartografo contatore = new ContatoreCartografo(model);
-
+		System.out.println("\n " + " cont = " + contatore);
+		
 		CostruzioneCoord[] stradella ;
 		stradella = this.stradella();
-
+		
+		System.out.println("\n stradella  =  "  + stradella.toString());
+		
+		for(int i=0; i<stradella.length; i++)
+		{
+			model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
+		}
+		
 		for (int i = 0; i < stradella.length; i++)
 		{
+			stradella[i].toString();
 			contatore.riceviCoordinateTessera(stradella[i].coord);
 		}
 

@@ -98,6 +98,7 @@ public class ModuloModel extends AbstractModel
 	
 	public void posizionaTessera(Tessera tessera, Coordinate coordinate)
 	{
+		
 		AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
 		Giocatore giocatore = this.datiPartita.getGiocatoreCorrente();
 		areaDiGioco.addTessera(coordinate, tessera);

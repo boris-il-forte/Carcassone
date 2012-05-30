@@ -148,6 +148,8 @@ public abstract class Costruzione
 	 * 
 	 * }
 	 */
+	
+	
 
 	protected Set<Tessera>	elementi;
 	private List<Segnalino>	listaSegnalini;
