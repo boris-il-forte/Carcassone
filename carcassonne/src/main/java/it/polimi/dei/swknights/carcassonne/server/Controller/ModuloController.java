@@ -76,6 +76,7 @@ public class ModuloController implements Controller
 		return this.contaPunti;
 	}
 
+	//TODO togliere..
 	public boolean ruotaOk()
 	{
 		// TODO controllare se puoi ruotare
@@ -108,6 +109,7 @@ public class ModuloController implements Controller
 		try
 		{
 			this.model.cominciaTurno();
+			this.tesseraPosizionata = false;
 		}
 		catch (PartitaFinitaException e)
 		{
@@ -128,10 +130,12 @@ public class ModuloController implements Controller
 
 	synchronized private void attendiPosizionamentoTessera() throws InterruptedException
 	{
+		System.out.println("Controller: attendoPosizionamentotessera");
 		while (!this.tesseraPosizionata)
 		{
 			wait();
 		}
+		System.out.println("Controller:  fine attendoPosizionamentotessera");
 	}
 
 	private boolean					tesseraPosizionata;

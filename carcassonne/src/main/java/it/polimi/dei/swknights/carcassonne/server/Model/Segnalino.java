@@ -33,7 +33,7 @@ public class Segnalino
 	public String toString()
 	{
 		AdapterColore decoraColore = new AdapterColore(this.colore);
-		return "," + decoraColore.toString();
+		return "+" + decoraColore.toString();
 	}
 
 	private Color	colore;
