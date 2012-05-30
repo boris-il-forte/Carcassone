@@ -188,6 +188,7 @@ public class Cli extends ModuloView
 		if (this.gestoreFasi.fineTurnoOk())
 		{
 			this.fire(new PassEvent(this));
+			this.gestoreFasi.nextFase();
 			return true;
 		}
 		else

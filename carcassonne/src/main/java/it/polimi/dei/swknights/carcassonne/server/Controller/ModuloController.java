@@ -88,7 +88,6 @@ public class ModuloController implements Controller
 		this.attendiPosizionamentoTessera();
 		this.model.nextTurno();
 		this.gestoreFasi.cominciaTurno();
-		System.out.println("controller: fase-" +this.gestoreFasi.getCurrentFase().ordinal());
 	}
 
 	private void primaMossaPartita()
@@ -99,7 +98,6 @@ public class ModuloController implements Controller
 			this.model.iniziaGioco(NUMBER_OF_PLAYER);
 			this.contaPunti.riceviCoordinateTessera(origine);
 			this.gestoreFasi.cominciaTurno();
-			System.out.println("controller: fase-" +this.gestoreFasi.getCurrentFase().ordinal());
 		}
 		catch (PartitaFinitaException e)
 		{
