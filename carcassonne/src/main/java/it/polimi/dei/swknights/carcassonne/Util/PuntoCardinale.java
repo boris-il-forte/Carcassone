@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne;
+package it.polimi.dei.swknights.carcassonne.Util;
 
 /**
  * this enum gives a simple implementation of the Cardinal Points, it also gives

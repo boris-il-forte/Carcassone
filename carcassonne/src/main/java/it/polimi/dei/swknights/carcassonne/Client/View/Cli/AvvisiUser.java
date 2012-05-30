@@ -1,10 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
-import it.polimi.dei.swknights.carcassonne.AdapterColore;
-import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.FaseTurno;
 import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Fasi.FaseTurno;
+import it.polimi.dei.swknights.carcassonne.Util.AdapterColore;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 import java.awt.Color;
 import java.io.PrintWriter;

@@ -3,9 +3,9 @@ package it.polimi.dei.swknights.carcassonne.Parser;
 import java.util.Arrays;
 import java.util.List;
 import javax.management.BadAttributeValueExpException;
-import it.polimi.dei.swknights.carcassonne.Bussola;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
+import it.polimi.dei.swknights.carcassonne.Util.Bussola;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 /**
  * Class that makes the basic parse of the tile string

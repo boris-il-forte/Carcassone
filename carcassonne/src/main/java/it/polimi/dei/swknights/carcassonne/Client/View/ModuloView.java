@@ -1,8 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.View;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.GestoreFasi;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.CostruzioneCompletataHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.FinePartitaHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.InizioGiocoHandler;
@@ -11,6 +8,9 @@ import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdatePositionHa
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdateRotationHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdateTurnoHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Fasi.GestoreFasi;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
 import java.util.Map;

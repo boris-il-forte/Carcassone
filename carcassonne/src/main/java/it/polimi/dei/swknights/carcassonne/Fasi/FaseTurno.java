@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne;
+package it.polimi.dei.swknights.carcassonne.Fasi;
 
 /**
  * This enum describes the possible phases of the turn and associate a simple
@@ -30,11 +30,13 @@ public enum FaseTurno {
 		{
 			case Inizio:
 				return Media;
+				
 			case Attesa:
-				return Inizio;
+				return Inizio;	
 				
 			case FinePartita:
 				return FinePartita;
+				
 			default:
 				return Attesa;
 		}

@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
-import it.polimi.dei.swknights.carcassonne.Coordinate;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 /** 
  * This class is a Parser used to process the commands given from the
  * user to the CLI

@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Exceptions;
 
-import it.polimi.dei.swknights.carcassonne.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 public class TesseraNonTrovataException extends Exception
 {

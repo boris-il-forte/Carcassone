@@ -6,9 +6,9 @@ import static org.junit.Assert.fail;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import it.polimi.dei.swknights.carcassonne.Bussola;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
+import it.polimi.dei.swknights.carcassonne.Util.Bussola;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

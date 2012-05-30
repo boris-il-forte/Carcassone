@@ -1,10 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
-import it.polimi.dei.swknights.carcassonne.Bussola;
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.NoFirstCardException;
 import it.polimi.dei.swknights.carcassonne.Parser.Parser;
+import it.polimi.dei.swknights.carcassonne.Util.Bussola;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

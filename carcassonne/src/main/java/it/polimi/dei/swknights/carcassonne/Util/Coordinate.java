@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne;
+package it.polimi.dei.swknights.carcassonne.Util;
 
 public class Coordinate
 {

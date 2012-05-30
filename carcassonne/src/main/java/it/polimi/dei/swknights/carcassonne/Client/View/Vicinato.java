@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Client.View;
 
-import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.util.HashMap;
 import java.util.Map;

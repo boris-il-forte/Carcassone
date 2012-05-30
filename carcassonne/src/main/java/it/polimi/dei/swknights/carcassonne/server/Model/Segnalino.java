@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
-import it.polimi.dei.swknights.carcassonne.AdapterColore;
+import it.polimi.dei.swknights.carcassonne.Util.AdapterColore;
 
 import java.awt.Color;
 
