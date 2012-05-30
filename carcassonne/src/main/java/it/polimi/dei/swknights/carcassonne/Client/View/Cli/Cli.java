@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
-import it.polimi.dei.swknights.carcassonne.AzioneGioco;
 import it.polimi.dei.swknights.carcassonne.Coordinate;
 import it.polimi.dei.swknights.carcassonne.FaseTurno;
 import it.polimi.dei.swknights.carcassonne.PuntoCardinale;
@@ -9,6 +8,7 @@ import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Events.Game.ComandiView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
@@ -167,7 +167,7 @@ public class Cli extends ModuloView
 		if (this.gestoreFasi.getCurrentFase() == FaseTurno.Inizio)
 		{
 			this.fire(new PlaceEvent(this, coordinate));
-			this.gestoreFasi.getNextFase(AzioneGioco.place);
+			this.gestoreFasi.getNextFase(ComandiView.place);
 			return true;
 		}
 		else
@@ -196,7 +196,7 @@ public class Cli extends ModuloView
 		if (this.gestoreFasi.getCurrentFase() == FaseTurno.Media)
 		{
 			this.fire(new PassEvent(this));
-			this.gestoreFasi.getNextFase(AzioneGioco.pass);
+			this.gestoreFasi.getNextFase(ComandiView.pass);
 			return true;
 		}
 		else
@@ -213,7 +213,7 @@ public class Cli extends ModuloView
 			if (elementi[punto.toInt()].equals(stringComando))
 			{
 				this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
-				this.gestoreFasi.getNextFase(AzioneGioco.tile);
+				this.gestoreFasi.getNextFase(ComandiView.tile);
 				return true;
 			}
 		}

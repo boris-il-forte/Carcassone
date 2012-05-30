@@ -1,4 +1,6 @@
-package it.polimi.dei.swknights.carcassonne;
+package it.polimi.dei.swknights.carcassonne.Events.Game;
+
+import it.polimi.dei.swknights.carcassonne.FaseTurno;
 
 /**
  * Enum to group user command rotate: rotate the tile place: place the tile
@@ -7,10 +9,10 @@ package it.polimi.dei.swknights.carcassonne;
  * @author edoardopasi & dave
  * 
  */
-public enum AzioneGioco {
+public enum ComandiView {
 	rotate(FaseTurno.Inizio), place(FaseTurno.Media), pass(FaseTurno.Attesa), tile(FaseTurno.Attesa);
 	
-	private AzioneGioco(FaseTurno nextFase)
+	private ComandiView(FaseTurno nextFase)
 	{
 		this.nextFase = nextFase;
 	}
