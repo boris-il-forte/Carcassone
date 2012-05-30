@@ -48,7 +48,7 @@ public class Cli extends ModuloView
 			{
 				this.attendiInput(); //attende e gestisce l'input
 				this.attendiRispostaController(); //attente il ritorno della fase inizio
-			} while (!this.statoPartita.isPartitaFinita());
+			} while (this.gestoreFasi.partitaOk());
 		}
 
 		catch (InterruptedException e)
@@ -122,6 +122,7 @@ public class Cli extends ModuloView
 	@Override
 	public void notificaFinePartita()
 	{
+		this.gestoreFasi.finePartita();
 		this.informaUser.notificaFinePartita();
 	}
 

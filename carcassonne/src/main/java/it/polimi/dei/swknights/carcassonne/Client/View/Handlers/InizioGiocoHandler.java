@@ -21,7 +21,6 @@ public class InizioGiocoHandler extends ViewHandler
 		this.view.mettiPrimaTessera(tessIniziale);
 		this.view.aggiornaColoreCorrente(coloreIniziale);
 		this.view.aggiornaMappa();
-		this.view.setPartitaCominciata();
 		this.sveglia();
 	}
 
