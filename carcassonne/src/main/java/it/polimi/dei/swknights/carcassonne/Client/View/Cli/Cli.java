@@ -8,7 +8,6 @@ import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
-import it.polimi.dei.swknights.carcassonne.Events.Game.ComandiView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
@@ -164,10 +163,10 @@ public class Cli extends ModuloView
 	// TODO: per tutti questi sotto: PULIZIAAAAA. codice duplicato... Male!
 	boolean provaPosizionareTessera(Coordinate coordinate)
 	{
-		if (this.gestoreFasi.getCurrentFase() == FaseTurno.Inizio)
+		if (this.gestoreFasi.posizionaOk())
 		{
 			this.fire(new PlaceEvent(this, coordinate));
-			this.gestoreFasi.getNextFase(ComandiView.place);
+			this.gestoreFasi.nextFase();
 			return true;
 		}
 		else
@@ -179,8 +178,7 @@ public class Cli extends ModuloView
 
 	boolean ruotaTessera()
 	{
-		FaseTurno currentFase = this.gestoreFasi.getCurrentFase();
-		if (currentFase == FaseTurno.Inizio || currentFase == FaseTurno.Media)
+		if (this.gestoreFasi.ruotaOk())
 		{
 			this.fire(new RotateEvent(this));
 			return true;
@@ -193,10 +191,10 @@ public class Cli extends ModuloView
 
 	boolean nonMettereSegnalino()
 	{
-		if (this.gestoreFasi.getCurrentFase() == FaseTurno.Media)
+		if (this.gestoreFasi.fineTurnoOk())
 		{
 			this.fire(new PassEvent(this));
-			this.gestoreFasi.getNextFase(ComandiView.pass);
+			this.gestoreFasi.nextFase();
 			return true;
 		}
 		else
@@ -207,14 +205,17 @@ public class Cli extends ModuloView
 
 	boolean posizionaSengalino(String stringComando)
 	{
-		String elementi[] = this.getTesseraCorrente().toCliString().split(" ");
-		for (PuntoCardinale punto : PuntoCardinale.values())
+		if(this.gestoreFasi.fineTurnoOk())
 		{
-			if (elementi[punto.toInt()].equals(stringComando))
+			String elementi[] = this.getTesseraCorrente().toCliString().split(" ");
+			for (PuntoCardinale punto : PuntoCardinale.values())
 			{
-				this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
-				this.gestoreFasi.getNextFase(ComandiView.tile);
-				return true;
+				if (elementi[punto.toInt()].equals(stringComando))
+				{
+					this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
+					this.gestoreFasi.nextFase();
+					return true;
+				}
 			}
 		}
 		return false;

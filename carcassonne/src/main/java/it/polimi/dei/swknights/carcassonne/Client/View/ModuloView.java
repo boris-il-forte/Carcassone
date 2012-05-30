@@ -53,7 +53,7 @@ public abstract class ModuloView extends AbstractView
 
 	public void cominciaTurno()
 	{
-		this.gestoreFasi.cominciaTurno();
+		this.gestoreFasi.nextFase();
 		this.statoPartita.setPossoParlare(true);
 	}
 
