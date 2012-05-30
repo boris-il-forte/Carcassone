@@ -24,4 +24,17 @@ public enum FaseTurno {
 
 	private String	messaggioUtente;
 
+	public FaseTurno next()
+	{
+		switch (this)
+		{
+			case Inizio:
+				return Media;
+			case Media:
+				return Attesa;
+			default:
+				return Inizio;
+		}
+	}
+
 }
