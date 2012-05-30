@@ -79,12 +79,11 @@ public class ModuloModel extends AbstractModel
 		this.cominciaTurno();
 	}
 
-	public synchronized void cominciaTurno() throws PartitaFinitaException
+	public void cominciaTurno() throws PartitaFinitaException
 	{
 		Color coloreGiocatore = this.getColoreGiocatoreCorrente();
 		this.getTesseraDaMazzo();
 		this.fire(new UpdateTurnoEvent(this, coloreGiocatore, this.tesseraCorrente));
-		this.notifyAll();
 	}
 	
 	public void nextTurno()
