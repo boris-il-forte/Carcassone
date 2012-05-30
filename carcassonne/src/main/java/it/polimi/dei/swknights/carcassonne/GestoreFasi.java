@@ -7,10 +7,15 @@ public class GestoreFasi
 		this.faseCorrente = FaseTurno.PreparazioneGioco;
 	}
 
+	public void cominciaTurno()
+	{
+		this.faseCorrente = FaseTurno.Inizio;
+		
+	}
+
 	public void nextFase()
 	{
 		this.faseCorrente = this.faseCorrente.next();
-		System.out.println("chiamata next...");
 	}
 
 	public boolean posizionaOk()
@@ -22,15 +27,10 @@ public class GestoreFasi
 	{
 		return this.posizionaOk();
 	}
-	
+
 	public boolean fineTurnoOk()
 	{
 		return this.faseCorrente.equals(FaseTurno.Media);
-	}
-	
-	public boolean iniziaNuovoTurnoOk()
-	{
-		return this.faseCorrente.equals(FaseTurno.Inizio);
 	}
 
 	public boolean inputOk()

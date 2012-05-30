@@ -130,12 +130,10 @@ public class ModuloController implements Controller
 
 	synchronized private void attendiPosizionamentoTessera() throws InterruptedException
 	{
-		System.out.println("Controller: attendoPosizionamentotessera");
 		while (!this.tesseraPosizionata)
 		{
 			wait();
 		}
-		System.out.println("Controller:  fine attendoPosizionamentotessera");
 	}
 
 	private boolean					tesseraPosizionata;

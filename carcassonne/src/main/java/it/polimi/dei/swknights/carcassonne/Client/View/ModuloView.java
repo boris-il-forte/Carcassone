@@ -50,7 +50,7 @@ public abstract class ModuloView extends AbstractView
 	{
 		this.cambiaEMostraTesseraCorrente(tesseraNuova);
 		this.aggiornaColoreCorrente(colGiocatoreCorrente);
-		this.gestoreFasi.nextFase();
+		this.gestoreFasi.cominciaTurno();
 	}
 
 	public void setPartitaCominciata()
