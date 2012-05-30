@@ -55,6 +55,7 @@ public class AreaDiGioco
 	 */
 	public void addTessera(Coordinate coordinate, Tessera tessera)
 	{
+		//TODO: controlla che sia vuoto prima
 		this.mappa.put(coordinate, tessera);
 	}
 
