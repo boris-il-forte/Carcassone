@@ -3,7 +3,7 @@ package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ConfineTessera;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.Costruzione;
-import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
+import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Segnalino;
 
 import java.util.ArrayList;
 import java.util.HashMap;
