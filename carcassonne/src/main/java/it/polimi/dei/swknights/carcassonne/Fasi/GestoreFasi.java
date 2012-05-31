@@ -1,5 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Fasi;
-
+/**
+ * Phase Handler, gives simple methods (getters basically) to know 
+ * weather the player can do some action.
+ * @author dave
+ *
+ */
 
 public class GestoreFasi
 {

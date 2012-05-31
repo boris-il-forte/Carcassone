@@ -57,12 +57,22 @@ public class Coordinate
 		}
 		return new Coordinate(x + incrementoX, y + incrementoY);
 	}
-
+	/**
+	 * Returns the coordinate near this in the given direction (coordinate)
+	 * e.g. if this = 1,1   this.getCoordinateAt ( 0,1)  returns
+	 * 0, 1
+	 * @param coordinateRelativa
+	 * @return
+	 */
 	public Coordinate getCoordinateA(Coordinate coordinateRelativa)
 	{
 		return new Coordinate(this.x + coordinateRelativa.x, this.y + coordinateRelativa.y);
 	}
-
+    /**
+     * return this coordinate, to be intended as a versor; used to navigate
+     * from a position to another using that vector
+     * @return
+     */
 	public Coordinate getVersore()
 	{
 		int x = (this.x != 0) ? (this.x / Math.abs(this.x)) : 0;

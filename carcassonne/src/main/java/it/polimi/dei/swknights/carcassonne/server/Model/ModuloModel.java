@@ -21,6 +21,13 @@ import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+/**
+ * This class gives the implementation of the Model of the MVC pattern
+ * It gives all important methods to handle the data and basic low level function
+ * of the game
+ * @author edoardopasi & dave
+ *
+ */
 
 public class ModuloModel extends AbstractModel
 {
@@ -54,7 +61,10 @@ public class ModuloModel extends AbstractModel
 	{
 		return this.tesseraCorrente;
 	}
-
+	/**
+	 * Creates the requested number of players
+	 * @param numeroGiocatori
+	 */
 	public void creaGiocatori(int numeroGiocatori)
 	{
 		try
@@ -70,7 +80,12 @@ public class ModuloModel extends AbstractModel
 		}
 
 	}
-
+	/**
+	 * Basic operation to set up first things of the game:
+	 * place the first card and creates players.
+	 * @param numeroGiocatori: how many people are playing
+	 * @throws PartitaFinitaException
+	 */
 	public void iniziaGioco(int numeroGiocatori) throws PartitaFinitaException
 	{
 		try
@@ -90,24 +105,39 @@ public class ModuloModel extends AbstractModel
 			return;
 		}
 	}
-
+	/**
+	 * Begins the turn:
+	 * change to current color and draw a card from deck
+	 * @throws PartitaFinitaException
+	 */
 	public void cominciaTurno() throws PartitaFinitaException
 	{
 		Color coloreGiocatore = this.getColoreGiocatoreCorrente();
 		this.getTesseraDaMazzo();
 		this.fire(new UpdateTurnoEvent(this, coloreGiocatore, this.tesseraCorrente));
 	}
-
+	/**
+	 * pass to next turn
+	 */
 	public void nextTurno()
 	{
 		this.datiPartita.nextTurno();
 	}
-
+	/**
+	 * place the current card on the given coordinates
+	 * @param coordinate where place the card
+	 * @throws MossaNonValidaException
+	 */
 	public void posizionaTesseraCorrente(Coordinate coordinate) throws MossaNonValidaException
 	{
 		this.posizionaTessera(tesseraCorrente, coordinate);
 	}
-
+	/**
+	 * Used to a generic card place a card in generic coordinates
+	 * @param tessera  the card
+	 * @param coordinate  the coordinates
+	 * @throws MossaNonValidaException
+	 */
 	public void posizionaTessera(Tessera tessera, Coordinate coordinate) throws MossaNonValidaException
 	{
 
@@ -118,7 +148,12 @@ public class ModuloModel extends AbstractModel
 		this.fire(new UpdatePositionEvent(tessera, coordinate, giocatore.getColore(), this));
 
 	}
-
+	/**
+	 * gets the current card
+	 * @param coordinate
+	 * @return
+	 * @throws TesseraNonTrovataException
+	 */
 	public Tessera getTessera(Coordinate coordinate) throws TesseraNonTrovataException
 	{
 		return this.datiPartita.getAreaDiGioco().getTessera(coordinate);
