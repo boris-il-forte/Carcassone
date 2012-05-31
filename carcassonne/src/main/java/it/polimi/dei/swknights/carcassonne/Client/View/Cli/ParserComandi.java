@@ -30,7 +30,6 @@ public class ParserComandi
 	public boolean eseguiComando(String stringComando)
 	{
 		int quantitaSpostamento = 0;
-		System.out.println(stringComando);
 		if (stringComando.matches("[SCsc][1-4]")) // es c1 s2
 		{ return this.cli.provaPosizionareSengalino(stringComando); }
 		if (stringComando.matches("\\-?\\d+\\,\\-?\\d+")) // es (2,-4)
@@ -55,26 +54,54 @@ public class ParserComandi
 
 		if (stringComando.matches("up\\=\\d+"))
 		{
+			quantitaSpostamento=this.getInteger(stringComando);
 			this.cli.muoviViewA(PuntoCardinale.nord, quantitaSpostamento);
 		}
 		if (stringComando.matches("down\\=\\d+"))
 		{
+			quantitaSpostamento=this.getInteger(stringComando);
 			this.cli.muoviViewA(PuntoCardinale.sud, quantitaSpostamento);
 		}
 		if (stringComando.matches("left\\=\\d+"))
 		{
+			quantitaSpostamento=this.getInteger(stringComando);
 			this.cli.muoviViewA(PuntoCardinale.ovest, quantitaSpostamento);
 		}
 		if (stringComando.matches("right\\=\\d+"))
 		{
+			quantitaSpostamento=this.getInteger(stringComando);
 			this.cli.muoviViewA(PuntoCardinale.est, quantitaSpostamento);
 		}
 		if (stringComando.matches("goto=\\-?\\d+\\,\\-?\\d+"))
 		{
-
+			Coordinate coordinate = this.getCoordinate(stringComando);
+			this.cli.muoviViewA(coordinate);
 		}
 
 		return false;
+	}
+	
+	
+	
+	private String getArgument(String stringComando)
+	{
+		String elementi[] = stringComando.split("=");
+		return elementi[elementi.length-1];
+	}
+	
+	private Integer getInteger(String stringComando)
+	{
+		String string = this.getArgument(stringComando);
+		return Integer.parseInt(string);
+	}
+	
+	private Coordinate getCoordinate(String stringComando)
+	{
+		String parse1 = this.getArgument(stringComando);
+		String parse2[] = parse1.split(",");
+		int x = Integer.parseInt(parse2[STRINGA_X]);
+		int y = Integer.parseInt(parse2[STRINGA_Y]);
+		return new Coordinate(x, y);
 	}
 
 	private Cli					cli;
