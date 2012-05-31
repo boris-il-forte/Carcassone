@@ -13,6 +13,7 @@ import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
@@ -164,10 +165,15 @@ public class ModuloModel extends AbstractModel
 		this.tesseraCorrente = this.datiPartita.pescaTesseraDalMazzo();
 	}
 
-	public void notificaFinePartita()
+	public void notificaFinePartita(Punteggi punteggi)
 	{
-		// TODO: manca sommare i punteggi di fine partita!
+		this.datiPartita.aggiornaPunteggioGiocatori(punteggi);
 		this.fire(new FinePartitaEvent(this, this.getMappaPunteggi()));
+	}
+
+	public void notificaCostruzioneCompletata(List<Tessera> tessere, Punteggi punteggi)
+	{
+		//TODO: manca da segnalare alla view!
 	}
 
 	private List<Giocatore> getListaGiocatori()

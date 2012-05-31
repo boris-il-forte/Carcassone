@@ -2,8 +2,11 @@ package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 /**
  * This class is used to keep track the complex building in the game board
  * like streets or cities
@@ -16,19 +19,27 @@ public class CartaGeografica
 	{
 		this.mappaConfini = new HashMap<ConfineTessera, Costruzione>();
 		this.mappaCostruzioni = new HashMap<Costruzione, List<ConfineTessera>>();
+		this.costruzioniCompletate = new HashSet<Costruzione>();
 	}
 
 	public Costruzione getCostruzioneAggregata(Costruzione pezzoCostruzione, ConfineTessera confinante)
 	{
 		Costruzione costruzioneConfinante = this.mappaConfini.get(confinante);
-		//TOFIX : if costruz confinante == null    ?? (al momento errore !! )
-		if (costruzioneConfinante == null)
-		{
-			System.out.println("confine non trovato " + confinante);
-		}
 		costruzioneConfinante.joinCostruzioni(pezzoCostruzione);
 		this.aggiornaConfini(confinante, costruzioneConfinante);
 		return costruzioneConfinante;
+	}
+
+	public Set<Costruzione> getCostruzioni()
+	{
+		return this.mappaCostruzioni.keySet();
+	}
+
+	public Set<Costruzione> getCostruzioniCompletate()
+	{
+		Set<Costruzione> completate = this.costruzioniCompletate;
+		this.costruzioniCompletate.clear();
+		return completate;
 	}
 
 	public void put(ConfineTessera nuovoConfine, Costruzione costruzione)
@@ -43,14 +54,29 @@ public class CartaGeografica
 		listaConfini.add(nuovoConfine);
 	}
 
+	public boolean areCostruzioniCompletate()
+	{
+		return this.costruzioniCompletate.size() > 0;
+	}
+
 	private void aggiornaConfini(ConfineTessera confine, Costruzione nuovaCostruzione)
 	{
 		Costruzione costruzione = this.mappaConfini.remove(confine);
 		List<ConfineTessera> listaConfini = this.mappaCostruzioni.remove(costruzione);
-		this.mappaCostruzioni.put(nuovaCostruzione,listaConfini);
+		listaConfini.remove(confine);
+		if (listaConfini.isEmpty())
+		{
+			this.costruzioniCompletate.add(nuovaCostruzione);
+		}
+		else
+		{
+			this.mappaCostruzioni.put(nuovaCostruzione, listaConfini);
+		}
 	}
 
 	private Map<ConfineTessera, Costruzione>		mappaConfini;
 
 	private Map<Costruzione, List<ConfineTessera>>	mappaCostruzioni;
+
+	private Set<Costruzione>						costruzioniCompletate;
 }

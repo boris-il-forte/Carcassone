@@ -5,6 +5,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Fasi.GestoreFasi;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PassHandler;
@@ -17,6 +18,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Class that implements theController of the MVC pattern Contains all the
@@ -46,7 +48,7 @@ public class ModuloController implements Controller
 		try
 		{
 			this.nextTurno();
-			while (true)
+			while (this.gestoreFasi.partitaOk())
 			{
 				this.primaMossaTurno();
 				this.nextTurno();
@@ -113,8 +115,20 @@ public class ModuloController implements Controller
 	private void nextTurno() throws InterruptedException
 	{
 		this.attendiPosizionamentoTessera();
+		if(this.contaPunti.areCostruzioniCompletate())
+		{
+			this.comunicaCostruzioneCompletata();
+		}
 		this.model.nextTurno();
 		this.gestoreFasi.cominciaTurno();
+	}
+
+	private void comunicaCostruzioneCompletata()
+	{
+		Set<Costruzione> costruzioniCompletate = this.contaPunti.getCostruzioniCompletate();
+		Punteggi punteggi = this.contaPunti.getPunteggioTurno();
+		//TODO: mandare la roba giusta al model. di certo NO costruzioni...
+		this.model.notificaCostruzioneCompletata(null, punteggi);
 	}
 
 	private void primaMossaPartita()
@@ -141,8 +155,8 @@ public class ModuloController implements Controller
 		}
 		catch (PartitaFinitaException e)
 		{
-			// TODO: incompleto... mancano i punteggi ulteriori accumulati!
-			this.model.notificaFinePartita();
+			Punteggi punteggi = this.contaPunti.getPunteggioFinale();
+			this.model.notificaFinePartita(punteggi);
 		}
 	}
 
