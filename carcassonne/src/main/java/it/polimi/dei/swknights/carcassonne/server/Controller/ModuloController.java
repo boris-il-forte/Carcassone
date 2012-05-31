@@ -12,8 +12,8 @@ import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PlaceHandl
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.RuotaHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.TileHandler;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
-import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -76,12 +76,12 @@ public class ModuloController implements Controller
 		this.gestoreFasi.nextFase();
 	}
 
-	public void addSegnalinoTessera(PuntoCardinale puntoCardinale)
+	public void addSegnalinoTessera(Color colore, PuntoCardinale puntoCardinale)
 	{
-		//TODO: incompleto
-		Map<PuntoCardinale, Costruzione>  mappaCostruzioni = this.contaPunti.getMapCostruzioniUltimaTessera();
+		this.contaPunti.addSegnalino(colore, puntoCardinale);
 		
 	}
+	
 	public boolean costruzioneLibera(PuntoCardinale punto)
 	{
 		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
@@ -176,9 +176,5 @@ public class ModuloController implements Controller
 
 	private static final int		NUMBER_OF_PLAYER	= 2;	// TODO: ask
 																// user.
-
-
-
-
 
 }

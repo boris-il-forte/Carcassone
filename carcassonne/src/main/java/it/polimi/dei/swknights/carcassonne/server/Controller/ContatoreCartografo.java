@@ -4,6 +4,7 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
+import java.awt.Color;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -58,7 +59,22 @@ public class ContatoreCartografo
 		}
 	}
 
-	public Map<PuntoCardinale, Costruzione> getMapCostruzioniUltimaTessera()
+	/**
+	 * This method add a marker to the specified border of the last tile
+	 * 
+	 * @param colore
+	 *            the color of the current player
+	 * @param puntoCardinale
+	 *            the border the player choose for adding the tile
+	 */
+
+	public void addSegnalino(Color colore, PuntoCardinale puntoCardinale)
+	{
+		Costruzione costruzione = this.getMapCostruzioniUltimaTessera().get(puntoCardinale);
+		costruzione.addSegnalino(colore);
+	}
+
+	Map<PuntoCardinale, Costruzione> getMapCostruzioniUltimaTessera()
 	{
 		return this.cartello.getIndicazioni();
 	}

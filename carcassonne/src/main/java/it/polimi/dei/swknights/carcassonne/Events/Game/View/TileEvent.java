@@ -30,9 +30,9 @@ public class TileEvent extends ViewEvent
 	 * 
 	 * @return
 	 */
-	public String getColoreSegnalino()
+	public Color getColoreSegnalino()
 	{
-		return this.color.toString();
+		return this.color;
 	}
 
 	public PuntoCardinale getPuntoDestinazione()

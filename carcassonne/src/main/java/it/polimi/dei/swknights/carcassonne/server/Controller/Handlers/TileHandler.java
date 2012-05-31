@@ -28,8 +28,8 @@ public class TileHandler extends ControllerHandler
 			if (this.controller.costruzioneLibera(puntoCardinale))
 			{
 				this.model.addSegnalinoTesseraCorrente(puntoCardinale);
+				this.controller.addSegnalinoTessera(event.getColoreSegnalino(),puntoCardinale);
 				this.controller.comunicaPosizionamentoTessera();
-				this.controller.addSegnalinoTessera(puntoCardinale);
 				this.sveglia();
 			}
 			else
