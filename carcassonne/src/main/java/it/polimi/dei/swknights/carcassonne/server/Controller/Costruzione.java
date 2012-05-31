@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
+import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
@@ -31,15 +31,29 @@ public abstract class Costruzione
 
 	public Costruzione(Tessera tessera)
 	{
-		this.listaSegnalini = new ArrayList<Segnalino>();
+		this.contatoreSegnalini = this.inizializzaContatore();
 		this.elementi = new HashSet<Tessera>();
 
 		this.elementi.add(tessera);
 	}
 
-	// TODO: ma che serve? ora è meglio, comunque...
-	public abstract Costruzione getCopy(Tessera tessera);
-
+	/**
+	 * Method that calculates the victory points generated from structure.
+	 * 
+	 * @return the point generated from this construction by the player
+	 */
+	
+	public Map<Color, Integer> getPunteggi(boolean costruzioneCompletata)
+	{
+		List<Color> controllori = this.controllataDa();
+		Map<Color, Integer> mappaPunteggi = this.inizializzaContatore();
+		for(Color colore : controllori)
+		{
+			mappaPunteggi.put(colore, this.getPuntiCostruzione(costruzioneCompletata));
+		}
+		return mappaPunteggi;
+	}
+	
 	/**
 	 * Method used to join two constructions
 	 * 
@@ -50,7 +64,12 @@ public abstract class Costruzione
 	public void joinCostruzioni(Costruzione costruzione)
 	{
 		this.elementi.addAll(costruzione.elementi);
-		this.listaSegnalini.addAll(costruzione.listaSegnalini);
+		for (Color colore : ColoriGioco.getListaColori())
+		{
+			int numeroSegnalini = this.contatoreSegnalini.get(colore)
+					+ costruzione.contatoreSegnalini.get(colore);
+			this.contatoreSegnalini.put(colore, numeroSegnalini);
+		}
 	}
 
 	/**
@@ -60,9 +79,11 @@ public abstract class Costruzione
 	 *            The marker to be added to this construction
 	 */
 
-	public void addSegnalino(Segnalino segnalino)
+	public void addSegnalino(Color coloresegnalino)
 	{
-		this.listaSegnalini.add(segnalino);
+		int numSegnalini = this.contatoreSegnalini.get(coloresegnalino);
+		numSegnalini++;
+		this.contatoreSegnalini.put(coloresegnalino, numSegnalini);
 	}
 
 	/**
@@ -74,53 +95,9 @@ public abstract class Costruzione
 
 	public List<Color> controllataDa()
 	{
-		final int nuovo = 1; // TODO di troppo?
-		Map<Color, Integer> contatore = this.inizializzaContatore();
-		for (Segnalino segnalino : this.listaSegnalini)
-		{
-			Color colore = segnalino.getColore();
-			int contato = contatore.get(colore) + nuovo;
-			contatore.put(colore, contato);
-		}
-		
-		List<Color> lista = this.getListaControllori(contatore);
-		System.out.println(" lista.size " + lista.size()	);
-		return this.getListaControllori(contatore);
-	}
-
-	/**
-	 * Method that calculates the victory points generated from structure.
-	 * 
-	 * @param colore
-	 *            the color of the considered player
-	 * @return the point generated from this construction by the player
-	 */
-
-	public abstract int contaPuntiGiocatore(Color colore); // TODO ripensare!
-
-	public int contaElementi()
-	{
-		return this.elementi.size();
-	}
-
-	private Map<Color, Integer> inizializzaContatore()
-	{
-		// TODO copia incolla è il male!
-		Color colori[] = new Color[] { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK };
-		Map<Color, Integer> contatore = new HashMap<Color, Integer>();
-		for (Color colore : colori)
-		{
-			contatore.put(colore, 0);
-		}
-		return contatore;
-	}
-
-	// TODO da valutare
-	private List<Color> getListaControllori(Map<Color, Integer> contatore)
-	{
 		int max = 1;
 		List<Color> controllori = new ArrayList<Color>();
-		for (Entry<Color, Integer> entryColore : contatore.entrySet())
+		for (Entry<Color, Integer> entryColore : this.contatoreSegnalini.entrySet())
 		{
 			int numeroSegnalini = entryColore.getValue();
 			if (numeroSegnalini > max)
@@ -128,7 +105,7 @@ public abstract class Costruzione
 				max = numeroSegnalini;
 			}
 		}
-		for (Entry<Color, Integer> entryColore : contatore.entrySet())
+		for (Entry<Color, Integer> entryColore : this.contatoreSegnalini.entrySet())
 		{
 			if (entryColore.getValue() == max)
 			{
@@ -138,27 +115,45 @@ public abstract class Costruzione
 		return controllori;
 	}
 
-	
+	public int contaElementi()
+	{
+		return this.elementi.size();
+	}
+
 	@Override
 	public String toString()
 	{
 		String s = " tessere componenti :";
-		for(Tessera t : elementi)
+		for (Tessera t : elementi)
 		{
 			s = s + t.toString();
 		}
 		s = s + "segnalini :";
-		for(Segnalino m : listaSegnalini)
+		for (Color segnalino : this.contatoreSegnalini.keySet())
 		{
-			s = s + m.toString();
+			s = s + segnalino.toString();
 		}
 		return s;
 	}
-	
-	
-	
-	
 
-	protected Set<Tessera>	elementi;
-	private List<Segnalino>	listaSegnalini;
+	protected abstract int getPuntiCostruzione(boolean costruzioneCompletata);
+	
+	protected int getSize()
+	{
+		return this.elementi.size();
+	}
+
+	private Map<Color, Integer> inizializzaContatore()
+	{
+		Map<Color, Integer> contatore = new HashMap<Color, Integer>();
+		for (Color colore : ColoriGioco.getListaColori())
+		{
+			contatore.put(colore, 0);
+		}
+		return contatore;
+	}
+
+	private Set<Tessera>		elementi;
+	
+	private Map<Color, Integer>	contatoreSegnalini;
 }

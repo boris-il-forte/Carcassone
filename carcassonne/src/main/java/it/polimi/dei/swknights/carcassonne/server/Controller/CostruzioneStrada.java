@@ -2,8 +2,6 @@ package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
-import java.awt.Color;
-
 public class CostruzioneStrada extends Costruzione
 {
 	public CostruzioneStrada(Tessera tessera)
@@ -11,23 +9,17 @@ public class CostruzioneStrada extends Costruzione
 		super(tessera);
 	}
 
-	@Override
-	public int contaPuntiGiocatore(Color colore)
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Costruzione getCopy(Tessera tessera)
-	{
-		return new CostruzioneStrada(tessera);
-	}
-	
 	@Override 
 	public String toString()
 	{
 		return "Strada" +super.toString();
+	}
+
+
+	@Override
+	protected int getPuntiCostruzione(boolean costruzioneCompletata)
+	{
+		return this.getSize();
 	}
 
 }
