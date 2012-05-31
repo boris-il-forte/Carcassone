@@ -114,17 +114,17 @@ public abstract class Costruzione
 	@Override
 	public String toString()
 	{
-		String s = " tessere componenti :";
-		for (Tessera t : elementi)
+		StringBuilder builder = new StringBuilder(" tessere componenti :");
+		for (Tessera t : this.elementi)
 		{
-			s = s + t.toString();
+			builder.append(t.toString());
 		}
-		s = s + "segnalini :";
+		builder.append("segnalini :");
 		for (Color segnalino : this.contatoreSegnalini.keySet())
 		{
-			s = s + segnalino.toString();
+			builder.append(segnalino.toString());
 		}
-		return s;
+		return builder.toString();
 	}
 
 	protected abstract int getPuntiCostruzione(boolean costruzioneCompletata);
