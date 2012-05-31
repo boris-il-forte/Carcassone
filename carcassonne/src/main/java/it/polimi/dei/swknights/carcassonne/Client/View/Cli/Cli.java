@@ -39,16 +39,17 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	public void run() //OK
+	public void run() // OK
 	{
 
 		try
 		{
-			this.aspettaInizio(); //aspetta che la partita cominci...
+			this.aspettaInizio(); // aspetta che la partita cominci...
 			do
 			{
-				this.attendiInput(); //attende e gestisce l'input
-				this.attendiRispostaController(); //attente il ritorno della fase inizio
+				this.attendiInput(); // attende e gestisce l'input
+				this.attendiRispostaController(); // attente il ritorno della
+													// fase inizio
 			} while (this.gestoreFasi.partitaOk());
 		}
 
@@ -83,8 +84,22 @@ public class Cli extends ModuloView
 	@Override
 	public void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
 	{
-		// TODO Auto-generated method stub
+		Coordinate coordinate;
+		do
+		{
+			coordinate = this.getCoordinataNordOvest().getCoordinateA(puntoCardinale);
+		} while (coordinate.getX() < quantita && coordinate.getY() < quantita && nelBoundingBox(coordinate));
+		this.setCoordinataNordOvest(coordinate);
+		this.aggiornaMappa();
+	}
 
+	public void muoviViewA(Coordinate coordinate)
+	{
+		if(this.nelBoundingBox(coordinate))
+		{
+			this.setCoordinataNordOvest(coordinate);
+		}
+		this.aggiornaMappa();
 	}
 
 	@Override
@@ -200,12 +215,12 @@ public class Cli extends ModuloView
 
 	boolean provaPosizionareSengalino(String stringComando)
 	{
-		if(this.gestoreFasi.fineTurnoOk())
+		if (this.gestoreFasi.fineTurnoOk())
 		{
 			String elementi[] = this.getTesseraCorrente().toCliString().split(" ");
 			for (PuntoCardinale punto : PuntoCardinale.values())
 			{
-				if (elementi[punto.toInt()].equals(stringComando))
+				if (elementi[punto.toInt()].equalsIgnoreCase(stringComando))
 				{
 					this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
 					return true;
@@ -250,6 +265,17 @@ public class Cli extends ModuloView
 		Coordinate max = this.getCoordinataNordOvest().getCoordinateA(coordinataRelativaSE);
 		DatiMappa datiMappa = new DatiMappa(min, max);
 		return new Stampante(datiMappa);
+	}
+
+	private boolean nelBoundingBox(Coordinate coordinate)
+	{
+		ScenarioDiGioco scenario = this.getScenario();
+		Coordinate min = scenario.getMin();
+		Coordinate max = scenario.getMax();
+		boolean isIn = min.getX() <= coordinate.getX();
+		isIn = isIn && min.getY() <= coordinate.getY();
+		isIn = isIn && max.getX() >= coordinate.getX();
+		return isIn && max.getY() >= coordinate.getY();
 	}
 
 	private Scanner				in;
