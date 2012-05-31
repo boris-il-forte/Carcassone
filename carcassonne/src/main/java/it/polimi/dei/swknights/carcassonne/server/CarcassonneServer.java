@@ -21,10 +21,10 @@ public class CarcassonneServer implements Runnable
 	{
 		try
 		{
-			this.serverSocket = new ServerSocket(1984);
+			ServerSocket serverSocket = new ServerSocket(PORTA_DEL_GRANDE_FRATELLO);
 			while(true)
 			{
-				Socket socket = this.serverSocket.accept();
+				Socket socket = serverSocket.accept();
 				this.gestisciConnessione(socket);
 			}
 		}
@@ -43,11 +43,10 @@ public class CarcassonneServer implements Runnable
 	private void gestisciConnessione(Socket socket)
 	{
 		// TODO passare la socket al proxy del server...
-		
 	}
 
 	private List<Partita>	partite;
 
-	private ServerSocket	serverSocket;
+	private static final int	PORTA_DEL_GRANDE_FRATELLO	= 1984;
 
 }

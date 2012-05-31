@@ -106,7 +106,7 @@ public class ParserComandi
 
 	private Cli					cli;
 	
-	private final static int	STRINGA_X	= 0;
+	private static final int	STRINGA_X	= 0;
 	
-	private final static int	STRINGA_Y	= 1;
+	private static final int	STRINGA_Y	= 1;
 }

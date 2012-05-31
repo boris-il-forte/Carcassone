@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne.server.Model;
+package it.polimi.dei.swknights.carcassonne.server.Model.Giocatore;
 
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 

@@ -16,6 +16,7 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
+import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;

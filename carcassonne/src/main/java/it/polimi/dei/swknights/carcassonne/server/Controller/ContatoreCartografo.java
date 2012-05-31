@@ -50,7 +50,7 @@ public class ContatoreCartografo
 
 	public Punteggi getPunteggioTurno()
 	{
-		Punteggi punteggiAggregati = this.getPunteggiAggregati(this.completate, costruzioneCompletata);
+		Punteggi punteggiAggregati = this.getPunteggiAggregati(this.completate, COSTRUZIONE_COMPLETATA);
 		this.completate = null;
 		return punteggiAggregati;
 	}
@@ -58,7 +58,7 @@ public class ContatoreCartografo
 	public Punteggi getPunteggioFinale()
 	{
 		Set<Costruzione> costruzioni = this.cartaGeografica.getCostruzioni();
-		return this.getPunteggiAggregati(costruzioni, !costruzioneCompletata);
+		return this.getPunteggiAggregati(costruzioni, !COSTRUZIONE_COMPLETATA);
 	}
 
 	/**
@@ -145,6 +145,6 @@ public class ContatoreCartografo
 
 	private Set<Costruzione>		completate;
 
-	private final static boolean	costruzioneCompletata	= true;
+	private static final  boolean	COSTRUZIONE_COMPLETATA	= true;
 
 }
