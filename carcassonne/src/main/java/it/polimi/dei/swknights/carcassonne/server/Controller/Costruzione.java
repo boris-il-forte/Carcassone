@@ -1,14 +1,12 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -31,7 +29,7 @@ public abstract class Costruzione
 
 	public Costruzione(Tessera tessera)
 	{
-		this.contatoreSegnalini = this.inizializzaContatore();
+		this.contatoreSegnalini = new Punteggi();
 		this.elementi = new HashSet<Tessera>();
 
 		this.elementi.add(tessera);
@@ -42,18 +40,18 @@ public abstract class Costruzione
 	 * 
 	 * @return the point generated from this construction by the player
 	 */
-	
-	public Map<Color, Integer> getPunteggi(boolean costruzioneCompletata)
+
+	public Punteggi getPunteggi(boolean costruzioneCompletata)
 	{
 		List<Color> controllori = this.controllataDa();
-		Map<Color, Integer> mappaPunteggi = this.inizializzaContatore();
-		for(Color colore : controllori)
+		Punteggi mappaPunteggi = new Punteggi();
+		for (Color colore : controllori)
 		{
-			mappaPunteggi.put(colore, this.getPuntiCostruzione(costruzioneCompletata));
+			mappaPunteggi.addPunteggi(colore, this.getPuntiCostruzione(costruzioneCompletata));
 		}
 		return mappaPunteggi;
 	}
-	
+
 	/**
 	 * Method used to join two constructions
 	 * 
@@ -64,12 +62,7 @@ public abstract class Costruzione
 	public void joinCostruzioni(Costruzione costruzione)
 	{
 		this.elementi.addAll(costruzione.elementi);
-		for (Color colore : ColoriGioco.getListaColori())
-		{
-			int numeroSegnalini = this.contatoreSegnalini.get(colore)
-					+ costruzione.contatoreSegnalini.get(colore);
-			this.contatoreSegnalini.put(colore, numeroSegnalini);
-		}
+		this.contatoreSegnalini.addPunteggi(costruzione.contatoreSegnalini);
 	}
 
 	/**
@@ -81,9 +74,7 @@ public abstract class Costruzione
 
 	public void addSegnalino(Color coloresegnalino)
 	{
-		int numSegnalini = this.contatoreSegnalini.get(coloresegnalino);
-		numSegnalini++;
-		this.contatoreSegnalini.put(coloresegnalino, numSegnalini);
+		this.contatoreSegnalini.addPunteggi(coloresegnalino, 1);
 	}
 
 	/**
@@ -137,23 +128,13 @@ public abstract class Costruzione
 	}
 
 	protected abstract int getPuntiCostruzione(boolean costruzioneCompletata);
-	
+
 	protected int getSize()
 	{
 		return this.elementi.size();
 	}
 
-	private Map<Color, Integer> inizializzaContatore()
-	{
-		Map<Color, Integer> contatore = new HashMap<Color, Integer>();
-		for (Color colore : ColoriGioco.getListaColori())
-		{
-			contatore.put(colore, 0);
-		}
-		return contatore;
-	}
+	private Set<Tessera>	elementi;
 
-	private Set<Tessera>		elementi;
-	
-	private Map<Color, Integer>	contatoreSegnalini;
+	private Punteggi		contatoreSegnalini;
 }

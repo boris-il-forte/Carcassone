@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
@@ -33,6 +34,30 @@ public class ContatoreCartografo
 	{
 		this.model = model;
 		this.cartaGeografica = new CartaGeografica();
+	}
+
+	public boolean areCostruzioniCompletate()
+	{
+		return this.cartaGeografica.areCostruzioniCompletate();
+	}
+
+	public Set<Costruzione> getCostruzioniCompletate()
+	{
+		this.completate = this.cartaGeografica.getCostruzioniCompletate();
+		return this.completate;
+	}
+
+	public Punteggi getPunteggioTurno()
+	{
+		Punteggi punteggiAggregati = this.getPunteggiAggregati(this.completate, costruzioneCompletata);
+		this.completate = null;
+		return punteggiAggregati;
+	}
+
+	public Punteggi getPunteggioFinale()
+	{
+		Set<Costruzione> costruzioni = this.cartaGeografica.getCostruzioni();
+		return this.getPunteggiAggregati(costruzioni, !costruzioneCompletata);
 	}
 
 	/**
@@ -79,6 +104,17 @@ public class ContatoreCartografo
 		return this.cartello.getIndicazioni();
 	}
 
+	private Punteggi getPunteggiAggregati(Set<Costruzione> costruzioni, boolean costruzioneCompletata)
+	{
+		Punteggi punteggi = new Punteggi();
+		for (Costruzione costruzione : costruzioni)
+		{
+			Punteggi punteggiParziali = costruzione.getPunteggi(costruzioneCompletata);
+			punteggi.addPunteggi(punteggiParziali);
+		}
+		return punteggi;
+	}
+
 	private Costruzione getCostruzioneAggregata(List<ConfineTessera> listaConfinanti,
 			Costruzione nuovoPezzoCostruzione)
 	{
@@ -100,10 +136,14 @@ public class ContatoreCartografo
 		}
 	}
 
-	private ModuloModel			model;
+	private ModuloModel				model;
 
-	private CartaGeografica		cartaGeografica;
+	private CartaGeografica			cartaGeografica;
 
-	private CartelloStradale	cartello;
+	private CartelloStradale		cartello;
+
+	private Set<Costruzione>		completate;
+
+	private final static boolean	costruzioneCompletata	= true;
 
 }

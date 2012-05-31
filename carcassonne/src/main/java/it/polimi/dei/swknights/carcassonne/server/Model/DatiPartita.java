@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.server.Model;
 
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.FactoryGiocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.FactoryTessere;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
+import java.util.Map.Entry;
 
 /**
  * This class is the representation of the game data, it allows basic operations
@@ -128,6 +130,15 @@ public final class DatiPartita
 	public Tessera pescaPrimaTessera()
 	{
 		return this.tesseraMagic;
+	}
+
+	public void aggiornaPunteggioGiocatori(Punteggi punteggi)
+	{
+		for(Entry<Color, Integer> entry : punteggi.entrySet())
+		{
+			Giocatore giocatore = this.getGiocatore(entry.getKey());
+			giocatore.addPunti(entry.getValue());
+		}
 	}
 
 	/**
