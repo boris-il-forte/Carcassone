@@ -69,7 +69,8 @@ public class StringBuilder2D
 	public void scriviStringa(Coordinate coordinataInserimento, String string)
 	{
 		StringBuilder linea = this.linee.get(coordinataInserimento.getY());
-		linea.insert(coordinataInserimento.getX(), string);
+		int inizio = coordinataInserimento.getX();
+		linea.replace(inizio, inizio + string.length(), string);
 	}
 	/**
 	 *  Write a string in the given position, in the center of the drawn card
