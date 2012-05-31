@@ -23,7 +23,12 @@ public class CostruzioneCitta extends Costruzione
 	{
 		return new CostruzioneCitta(tessera);
 	}
-
+	
+	@Override 
+	public String toString()
+	{
+		return "Città" +super.toString();
+	}
 
 	
 }

@@ -13,10 +13,16 @@ public class CartelloStradale
 	public CartelloStradale(Map<Costruzione, List<PuntoCardinale>> mappaCostruzioni)
 	{
 		this.mappaCostruzioni = mappaCostruzioni;
+	
+		for( Entry<Costruzione, List<PuntoCardinale>> entry : mappaCostruzioni.entrySet() )
+		{
+			System.out.println(entry.getKey()  + " punti Cardinali = " + entry.getValue() + "\n\n");
+		}
 	}
 
 	public void aggiorna(Costruzione costruzioneAggregata, Costruzione costruzione)
 	{
+		
 		List<PuntoCardinale> listaPunti = this.mappaCostruzioni.remove(costruzione);
 		this.mappaCostruzioni.put(costruzioneAggregata, listaPunti); 	
 	}
@@ -26,6 +32,7 @@ public class CartelloStradale
 		Map<PuntoCardinale, Costruzione> indicazioni = new HashMap<PuntoCardinale, Costruzione>();
 		for(Entry<Costruzione, List<PuntoCardinale>> entry:this.mappaCostruzioni.entrySet())
 		{
+			
 			for(PuntoCardinale punto : entry.getValue())
 			{
 				indicazioni.put(punto, entry.getKey());

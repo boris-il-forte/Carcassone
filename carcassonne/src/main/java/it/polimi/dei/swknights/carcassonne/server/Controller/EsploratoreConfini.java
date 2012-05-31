@@ -67,6 +67,7 @@ public class EsploratoreConfini
 
 	public Map<Costruzione, List<PuntoCardinale>> getMappaCostruzioni()
 	{
+		final boolean scambia = true;
 		Map<Costruzione, List<PuntoCardinale>> mappaCostruzioni = new HashMap<Costruzione, List<PuntoCardinale>>();
 		Set<Costruzione> costruzioni = this.getCostruzioni();
 		for (Costruzione costruzione : costruzioni)
@@ -74,19 +75,21 @@ public class EsploratoreConfini
 			List<PuntoCardinale> listaPunti = new ArrayList<PuntoCardinale>();
 			List<ConfineTessera> confini = this.confini.get(costruzione);
 			List<ConfineTessera> confinanti = this.confinanti.get(costruzione);
-			listaPunti.addAll(this.getPunticardinaliDi(confini));
-			listaPunti.addAll(this.getPunticardinaliDi(confinanti));
+			listaPunti.addAll(this.getPunticardinaliDi(confini, !scambia));
+			listaPunti.addAll(this.getPunticardinaliDi(confinanti, scambia));
 			mappaCostruzioni.put(costruzione, listaPunti);
 		}
 		return mappaCostruzioni;
 	}
 
-	private List<PuntoCardinale> getPunticardinaliDi(List<ConfineTessera> confini)
+	private List<PuntoCardinale> getPunticardinaliDi(List<ConfineTessera> confini, boolean scambia)
 	{
 		List<PuntoCardinale> lista = new ArrayList<PuntoCardinale>();
-		for(ConfineTessera confine : confini)
+		for (ConfineTessera confine : confini)
 		{
-			lista.add(confine.getPuntoCardinale());
+			PuntoCardinale punto = confine.getPuntoCardinale();
+			punto = scambia ? punto.opposto() : punto;
+			lista.add(punto);
 		}
 		return lista;
 	}

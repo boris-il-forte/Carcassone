@@ -3,7 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Fasi.FaseTurno;
-import it.polimi.dei.swknights.carcassonne.Util.AdapterColore;
+import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 import java.awt.Color;
@@ -22,8 +22,7 @@ public class AvvisiUser
 	 */
 	public void chiediComando()
 	{
-		AdapterColore colore = new AdapterColore(this.coloreGiocatore);
-		this.notificaVideo("Tocca a te giocatore " + colore.toName() + "!");
+		this.notificaVideo("Tocca a te giocatore " + ColoriGioco.getName(this.coloreGiocatore) + "!");
 		this.notificaVideo("Inserisci comando");
 		this.notificaVideo(faseTurno.toString());
 
