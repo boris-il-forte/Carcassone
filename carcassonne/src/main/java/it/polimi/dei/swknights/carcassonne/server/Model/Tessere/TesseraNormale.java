@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
+
 public class TesseraNormale extends Tessera
 {
 
@@ -20,6 +22,11 @@ public class TesseraNormale extends Tessera
 	public Tessera clone()
 	{
 		return new TesseraNormale(this.lati.clone(), this.link.clone());
+	}
+	
+	public Elemento getElementoA(PuntoCardinale punto)
+	{
+		return this.lati.getTipoElementoInDirezione(punto);
 	}
 
 }

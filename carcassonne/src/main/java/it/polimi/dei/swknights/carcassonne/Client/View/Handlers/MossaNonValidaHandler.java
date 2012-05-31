@@ -9,7 +9,9 @@ public class MossaNonValidaHandler extends ViewHandler
 	{
 		super(view);
 	}
-
+	/**
+	 * Notify the View about a non-valid command was given
+	 */
 	@Override
 	public void visit(MossaNonValidaEvent event)
 	{

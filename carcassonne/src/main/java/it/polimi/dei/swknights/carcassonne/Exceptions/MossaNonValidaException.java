@@ -1,5 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.Exceptions;
-
+/**
+ * 
+ * @author edoardopasi & dave
+ *
+ */
 public class MossaNonValidaException extends Exception
 {
 	public MossaNonValidaException(String message)

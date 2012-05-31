@@ -12,7 +12,10 @@ public class UpdateTurnoHandler extends ViewHandler
 	{
 		super(view);
 	}
-
+	/**
+	 * Notify the view that a new turn has begun
+	 * It updates the color and notify the view about the new card
+	 */
 	@Override
 	public void visit(UpdateTurnoEvent event)
 	{

@@ -33,7 +33,11 @@ public abstract class UpdateEvent extends ControllerEvent
 	{
 		this.dati = new DecoraTessera(tessera, coordinate, giocatore);
 	}
-
+	/**
+	 * 
+	 * @return a {@link DecoraTessera} to notify the caller what is changed 
+	 * after the user command
+	 */
 	protected DecoraTessera getDati()
 	{
 		return this.dati;

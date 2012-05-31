@@ -21,7 +21,10 @@ public class UpdatePositionEvent extends UpdateEvent
 		super(tessera, coordinate, giocatore, source);
 		this.setComando(MessaggiController.update_position);
 	}
-
+	/**
+	 * {@link Coordinate} of the placed card
+	 * @return
+	 */
 	public Coordinate getCoordinate()
 	{
 		return this.getDati().getCoordinate();

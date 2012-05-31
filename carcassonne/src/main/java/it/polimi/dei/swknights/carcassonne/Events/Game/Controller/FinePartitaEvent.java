@@ -22,7 +22,10 @@ public class FinePartitaEvent extends ControllerEvent
 		this.setComando(MessaggiController.end);
 		this.mappaPunteggi = mappaPunteggi;
 	}
-
+	/**
+	 * Map that associates to each Color-Player a score
+	 * @return
+	 */
 	public Map<Color, Integer> getMappaPunteggi()
 	{
 		return mappaPunteggi;

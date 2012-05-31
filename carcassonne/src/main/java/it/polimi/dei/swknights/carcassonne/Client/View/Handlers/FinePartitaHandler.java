@@ -9,7 +9,9 @@ public class FinePartitaHandler extends ViewHandler
 	{
 		super(view);
 	}
-
+	/**
+	 * Just notify the view the end of the game
+	 */
 	@Override
 	public void visit(FinePartitaEvent event)
 	{
