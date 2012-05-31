@@ -8,6 +8,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePosition
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
@@ -37,7 +38,7 @@ public class ModuloModel extends AbstractModel
 	{
 		this.tesseraCorrente.ruota();
 		Color coloreGiocatoreCorrente = this.getColoreGiocatoreCorrente();
-		
+
 		this.fire(new UpdateRotationEvent(this.tesseraCorrente, coloreGiocatoreCorrente, this));
 	}
 
@@ -45,7 +46,8 @@ public class ModuloModel extends AbstractModel
 	{
 		Segnalino segnalino = this.getGiocatoreCorrente().getSegnalino();
 		this.tesseraCorrente.setSegnalino(segnalino, puntoCardinale);
-		this.fire(new UpdatePositionEvent(this.tesseraCorrente, this.coordinateTesseraCorrente, this.getColoreGiocatoreCorrente(), this));
+		this.fire(new UpdatePositionEvent(this.tesseraCorrente, this.coordinateTesseraCorrente, this
+				.getColoreGiocatoreCorrente(), this));
 	}
 
 	public Tessera getTesseraCorrente()
@@ -71,12 +73,22 @@ public class ModuloModel extends AbstractModel
 
 	public void iniziaGioco(int numeroGiocatori) throws PartitaFinitaException
 	{
-		Tessera primaTessera = this.datiPartita.pescaPrimaTessera();
-		AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
-		this.creaGiocatori(numeroGiocatori);
-		this.datiPartita.getAreaDiGioco().addTessera(new Coordinate(0, 0), primaTessera);
-		this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore()));
-		this.cominciaTurno();
+		try
+		{
+			Tessera primaTessera = this.datiPartita.pescaPrimaTessera();
+			AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
+			this.creaGiocatori(numeroGiocatori);
+
+			this.datiPartita.getAreaDiGioco().addTessera(new Coordinate(0, 0), primaTessera);
+
+			this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore()));
+			this.cominciaTurno();
+		}
+		catch (MossaNonValidaException e)
+		{
+			System.exit(0);
+			return;
+		}
 	}
 
 	public void cominciaTurno() throws PartitaFinitaException
@@ -85,28 +97,27 @@ public class ModuloModel extends AbstractModel
 		this.getTesseraDaMazzo();
 		this.fire(new UpdateTurnoEvent(this, coloreGiocatore, this.tesseraCorrente));
 	}
-	
+
 	public void nextTurno()
 	{
 		this.datiPartita.nextTurno();
 	}
 
-	public void posizionaTesseraCorrente(Coordinate coordinate)
+	public void posizionaTesseraCorrente(Coordinate coordinate) throws MossaNonValidaException
 	{
 		this.posizionaTessera(tesseraCorrente, coordinate);
 	}
-	
-	public void posizionaTessera(Tessera tessera, Coordinate coordinate)
+
+	public void posizionaTessera(Tessera tessera, Coordinate coordinate) throws MossaNonValidaException
 	{
-		
+
 		AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
 		Giocatore giocatore = this.datiPartita.getGiocatoreCorrente();
 		areaDiGioco.addTessera(coordinate, tessera);
 		this.coordinateTesseraCorrente = coordinate;
 		this.fire(new UpdatePositionEvent(tessera, coordinate, giocatore.getColore(), this));
-	
+
 	}
-	
 
 	public Tessera getTessera(Coordinate coordinate) throws TesseraNonTrovataException
 	{
@@ -154,7 +165,7 @@ public class ModuloModel extends AbstractModel
 	private DatiPartita	datiPartita;
 
 	private Tessera		tesseraCorrente;
-	
-	private Coordinate coordinateTesseraCorrente;
+
+	private Coordinate	coordinateTesseraCorrente;
 
 }
