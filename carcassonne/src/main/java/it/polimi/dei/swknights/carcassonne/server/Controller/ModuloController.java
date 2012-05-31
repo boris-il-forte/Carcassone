@@ -7,6 +7,7 @@ import it.polimi.dei.swknights.carcassonne.Fasi.GestoreFasi;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PassHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PlaceHandler;
@@ -88,7 +89,6 @@ public class ModuloController implements Controller
 	{
 		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
 		mappaCostruzioni = this.contaPunti.getMapCostruzioniUltimaTessera();
-
 		Costruzione costruzione = mappaCostruzioni.get(punto);
 		System.out.println(" costruione = " + costruzione + ", punto = " + punto);
 		if (costruzione.controllataDa().size() == 0)

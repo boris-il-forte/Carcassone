@@ -1,11 +1,13 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
 import java.security.KeyStore.Entry;
-import java.util.List;
 import java.util.*;
 
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.Costruzione;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.CostruzioneCitta;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.CostruzioneStrada;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Lati;

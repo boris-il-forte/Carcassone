@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.Costruzione;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
