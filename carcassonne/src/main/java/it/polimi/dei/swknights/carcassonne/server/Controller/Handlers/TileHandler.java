@@ -4,11 +4,8 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValida
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
-
-import java.util.Map;
 
 public class TileHandler extends ControllerHandler
 {
@@ -28,10 +25,11 @@ public class TileHandler extends ControllerHandler
 		PuntoCardinale puntoCardinale = event.getPuntoDestinazione();
 		try
 		{
-			if (costruzioneLibera(puntoCardinale))
+			if (this.controller.costruzioneLibera(puntoCardinale))
 			{
 				this.model.addSegnalinoTesseraCorrente(puntoCardinale);
 				this.controller.comunicaPosizionamentoTessera();
+				this.controller.addSegnalinoTessera(puntoCardinale);
 				this.sveglia();
 			}
 			else
@@ -46,19 +44,5 @@ public class TileHandler extends ControllerHandler
 
 	}
 
-	private boolean costruzioneLibera(PuntoCardinale punto)
-	{
-		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
-		mappaCostruzioni = this.controller.getContapunti().getMapCostruzioniUltimaTessera();
-
-		if (mappaCostruzioni.get(punto).controllataDa().size() == 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
+	
 }

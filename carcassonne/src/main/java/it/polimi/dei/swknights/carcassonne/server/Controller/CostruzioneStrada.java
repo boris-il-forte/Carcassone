@@ -23,5 +23,11 @@ public class CostruzioneStrada extends Costruzione
 	{
 		return new CostruzioneStrada(tessera);
 	}
+	
+	@Override 
+	public String toString()
+	{
+		return "Strada" +super.toString();
+	}
 
 }

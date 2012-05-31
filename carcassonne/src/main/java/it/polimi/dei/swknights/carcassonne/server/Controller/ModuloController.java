@@ -5,15 +5,18 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Fasi.GestoreFasi;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PassHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PlaceHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.RuotaHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.TileHandler;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
+import it.polimi.dei.swknights.carcassonne.server.Model.Segnalino;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Class that implements theController of the MVC pattern Contains all the
@@ -73,11 +76,35 @@ public class ModuloController implements Controller
 		this.gestoreFasi.nextFase();
 	}
 
+	public void addSegnalinoTessera(PuntoCardinale puntoCardinale)
+	{
+		//TODO: incompleto
+		Map<PuntoCardinale, Costruzione>  mappaCostruzioni = this.contaPunti.getMapCostruzioniUltimaTessera();
+		
+	}
+	public boolean costruzioneLibera(PuntoCardinale punto)
+	{
+		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
+		mappaCostruzioni = this.contaPunti.getMapCostruzioniUltimaTessera();
+
+		Costruzione costruzione = mappaCostruzioni.get(punto);
+		System.out.println(" costruione = " + costruzione + ", punto = " + punto);
+		if (costruzione.controllataDa().size() == 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+	
 	public ContatoreCartografo getContapunti()
 	{
 		return this.contaPunti;
 	}
-	
+
 	public GestoreFasi getGestoreFasi()
 	{
 		return this.gestoreFasi;
@@ -137,16 +164,21 @@ public class ModuloController implements Controller
 		}
 	}
 
-
+	
+	
 	private List<ControllerHandler>	visitorHandlers;
 
 	private ContatoreCartografo		contaPunti;
 
 	private final GestoreFasi		gestoreFasi;
-	
+
 	private final ModuloModel		model;
 
 	private static final int		NUMBER_OF_PLAYER	= 2;	// TODO: ask
 																// user.
+
+
+
+
 
 }
