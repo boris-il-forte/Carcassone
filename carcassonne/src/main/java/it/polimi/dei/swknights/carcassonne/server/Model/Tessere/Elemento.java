@@ -1,8 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
-import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
-import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneCitta;
-import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneStrada;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.Costruzione;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.CostruzioneCitta;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.CostruzioneStrada;
 
 /**
  * Each element of this enum represent one of the possible Buildings, like City

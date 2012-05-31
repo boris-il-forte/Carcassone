@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.server.Controller;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
 import java.awt.Color;

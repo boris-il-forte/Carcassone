@@ -12,6 +12,7 @@ import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseExcept
 import it.polimi.dei.swknights.carcassonne.Util.Bussola;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Lati;

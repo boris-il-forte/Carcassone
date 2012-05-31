@@ -1,9 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
 
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzione;
-import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneCitta;
-import it.polimi.dei.swknights.carcassonne.server.Controller.CostruzioneStrada;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.Costruzione;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.CostruzioneCitta;
+import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.CostruzioneStrada;
 
 import java.util.ArrayList;
 import java.util.Collections;
