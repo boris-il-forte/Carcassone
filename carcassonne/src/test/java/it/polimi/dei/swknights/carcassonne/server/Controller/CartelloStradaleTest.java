@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.*;
 
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
-import it.polimi.dei.swknights.carcassonne.Util.PuntiCardinaliTest;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
@@ -17,7 +16,7 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CartaGeograficaTest
+public class CartelloStradaleTest
 {
 	private  ModuloModel model;
 	
@@ -38,22 +37,18 @@ public class CartaGeograficaTest
 	public void stradaPiccola() throws Exception
 	{
 		ContatoreCartografo contatore = new ContatoreCartografo(model);
-		
+		CartelloStradale cartello = new CartelloStradale(null);
 		CostruzioneCoord[] stradella = this.stradella();
 		
 		CartaGeografica carta = new CartaGeografica();
 		
 		for(int i=0; i<stradella.length; i++)
 		{
-			
-			for(PuntoCardinale punto : PuntoCardinale.values())
-			{
-				carta.put(stradella[i].getCofine(punto), stradella[i].getCostruzione(punto));
-			}
+		
 			
 		}
 		
-		carta.getCostruzioneAggregata(null, null);
+		
 		 
 		
 	}

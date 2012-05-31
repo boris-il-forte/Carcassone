@@ -29,7 +29,11 @@ public class CostruzioneCompletataEvent extends ControllerEvent
 		handler.visit(this);
 		
 	}
-
+	/**
+	 * Gives the caller information to update all the Cards interested by the 
+	 * completation of the building
+	 * @return A Map associating each {@link AdapterTessera} to its {@link Coordinate} 
+	 */
 	public  Map<AdapterTessera, Coordinate>  getTessereAggiornate()
 	{
 		return this.tessereAggiornate;

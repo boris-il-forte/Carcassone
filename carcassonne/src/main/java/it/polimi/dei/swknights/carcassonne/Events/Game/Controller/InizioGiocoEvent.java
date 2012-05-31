@@ -1,11 +1,14 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
-
 import java.awt.Color;
 
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
-
+/**
+ * Event to be triggered at the beginning of the game
+ * @author edoardopasi
+ *
+ */
 public class InizioGiocoEvent extends ControllerEvent
 {
 

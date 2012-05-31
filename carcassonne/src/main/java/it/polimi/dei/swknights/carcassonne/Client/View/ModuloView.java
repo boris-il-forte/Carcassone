@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View;
 
+import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
+import it.polimi.dei.swknights.carcassonne.Client.View.Gui.GUI;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.CostruzioneCompletataHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.FinePartitaHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.InizioGiocoHandler;
@@ -14,6 +16,12 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
 import java.util.Map;
+/**
+ * This class gives a schema for the View
+ * @see: {@link Cli} {@link GUI}
+ * @author edoardopasi & dave
+ *
+ */
 
 public abstract class ModuloView extends AbstractView
 {
@@ -24,27 +32,57 @@ public abstract class ModuloView extends AbstractView
 		this.gestoreFasi = new GestoreFasi();
 		this.attivaHanlders();
 	}
-
+	/**
+	 * Wait for a user input
+	 * eg in the Cli can wait for the "rotate" command 
+	 */
 	public abstract void attendiInput();
-
+	/**
+	 * After a costruction is completed, each controller of that construction
+	 * has his/her controlling markers back;
+	 * this method  returns a map of each Card with no more marker on it
+	 * @param tessereAggiornate  map of the Cards interested by the completion of the 
+	 * construction
+	 */
 	public abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
-
+	/**
+	 * Used in the beginning of the game, place the first card
+	 * @param tessIniziale the first card
+	 */
 	public abstract void mettiPrimaTessera(AdapterTessera tessIniziale);
 
+	/**
+	 * Notify the user the end of the game
+	 */
 	public abstract void notificaFinePartita();
-
+	
+	/**
+	 * Notify the user a non-valid move
+	 * eg 2,1 if 2,1 is not a free position
+	 * eg a  non-valid command like potate
+	 */
 	public abstract void notificaMossaNonValida();
 
 	public abstract void aggiornaColoreCorrente(Color colore);
 
 	public abstract void cambiaEMostraTesseraCorrente(AdapterTessera tessera);
-
+	/**
+	 * A sort of Refresh of the map, to be called after a place card for instance 
+	 */
 	public abstract void aggiornaMappa();
-
+	/**
+	 * Place a card in the given position, just graphical: does not implies
+	 * any change in the model
+	 * @param coordinatePosizione
+	 */
 	public abstract void posizionaTessera(Coordinate coordinatePosizione);
 
 	public abstract void muoviViewA(PuntoCardinale puntoCardinale, int quantita);
-
+	/**
+	 * Change player and show the new drawn Card
+	 * @param colGiocatoreCorrente
+	 * @param tesseraNuova
+	 */
 	public void aggiornaTurno(Color colGiocatoreCorrente, AdapterTessera tesseraNuova)
 	{
 		this.cambiaEMostraTesseraCorrente(tesseraNuova);

@@ -8,7 +8,12 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValida
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
-
+/**
+ * A basic schema for View events,
+ * Used mainly to implement the visitor pattern
+ * @author edoardopasi
+ *
+ */
 public abstract class ViewHandler
 {
 	public ViewHandler(ModuloView view)

@@ -31,6 +31,7 @@ class Carcassonne
 		
 		ModuloModel model = new ModuloModel();
 		Controller controller = new ModuloController(model);
+
 		View view = new Cli();		
 		view.addListener(controller);
 	 	model.addListener(view);

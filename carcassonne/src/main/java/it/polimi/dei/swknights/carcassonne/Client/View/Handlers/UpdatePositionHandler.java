@@ -10,7 +10,9 @@ public class UpdatePositionHandler extends ViewHandler
 	{
 		super(view);
 	}
-	
+	/**
+	 * Notify the view that a card has just been placed
+	 */
 	@Override
 	public void visit(UpdatePositionEvent  event)
 	{

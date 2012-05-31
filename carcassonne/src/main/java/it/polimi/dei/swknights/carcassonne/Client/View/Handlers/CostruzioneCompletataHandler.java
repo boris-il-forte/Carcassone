@@ -13,7 +13,10 @@ public class CostruzioneCompletataHandler extends ViewHandler
 	{
 		super(view);
 	}
-
+	/**
+	 * When CompletedBuildingEvent is triggered,
+	 * the visit method notify the view about which Cards update
+	 */
 	@Override
 	public void visit(CostruzioneCompletataEvent event)
 	{

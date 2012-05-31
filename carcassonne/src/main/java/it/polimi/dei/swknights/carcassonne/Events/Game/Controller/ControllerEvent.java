@@ -25,9 +25,15 @@ public abstract class ControllerEvent extends EventObject
 	{
 		return messaggio.toString();
 	}
-
+	/**
+	 * Used to ask the handler to "take care" of the event
+	 * @param handler
+	 */
 	public abstract void accept(ViewHandler handler);
-	
+	/**
+	 * Set the command, used to avoid instanceof and give the Event a nicer toString
+	 * @param messaggio
+	 */
 	protected void setComando(MessaggiController messaggio)
 	{
 		this.messaggio = messaggio;

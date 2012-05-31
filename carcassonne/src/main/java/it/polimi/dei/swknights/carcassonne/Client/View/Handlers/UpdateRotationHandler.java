@@ -10,7 +10,9 @@ public class UpdateRotationHandler extends ViewHandler
 	{
 		super(view);
 	}
-	
+	/**
+	 * Notify the view that a card has just been rotated
+	 */
 	@Override
 	public void visit(UpdateRotationEvent event)
 	{

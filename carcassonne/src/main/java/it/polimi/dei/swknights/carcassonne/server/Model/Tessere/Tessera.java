@@ -142,6 +142,8 @@ public abstract class Tessera implements Cloneable
 		return puntiConnessi;
 
 	}
+	
+
 
 	protected final Lati	lati;
 
