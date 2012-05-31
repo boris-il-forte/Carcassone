@@ -17,6 +17,10 @@ public class CartaGeografica
 	{
 		Costruzione costruzioneConfinante = this.mappaConfini.get(confinante);
 		//TOFIX : if costruz confinante == null    ?? (al momento errore !! )
+		if (costruzioneConfinante == null)
+		{
+			System.out.println("confine non trovato " + confinante);
+		}
 		costruzioneConfinante.joinCostruzioni(pezzoCostruzione);
 		this.aggiornaConfini(confinante, costruzioneConfinante);
 		return costruzioneConfinante;

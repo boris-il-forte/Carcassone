@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.server.Controller.Handlers;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
+import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
@@ -21,19 +22,29 @@ public class PlaceHandler extends ControllerHandler
 	@Override
 	public void visit(PlaceEvent event)
 	{
-		Coordinate coordinate = event.getCoordinateDestinazione();
-		if (this.tuttoVicinatoDAccordo(coordinate))
+		try
 		{
-			ContatoreCartografo contaPunti = this.controller.getContapunti();
-			this.model.posizionaTesseraCorrente(coordinate);
-			contaPunti.riceviCoordinateTessera(coordinate);
-			this.controller.comunicaPosizionamentoTessera();
+			Coordinate coordinate = event.getCoordinateDestinazione();
+			if (this.tuttoVicinatoDAccordo(coordinate))
+			{
+				ContatoreCartografo contaPunti = this.controller.getContapunti();
+				this.model.posizionaTesseraCorrente(coordinate);
+				contaPunti.riceviCoordinateTessera(coordinate);
+				this.controller.comunicaPosizionamentoTessera();
+			}
+			else
+			{
+				throw new MossaNonValidaException("vicinato non d'accordo");
+			}
+
 		}
-		else
+		catch (MossaNonValidaException e)
 		{
 			this.model.fire(new MossaNonValidaEvent(controller));
 		}
+
 		this.sveglia();
+
 	}
 
 	private boolean tuttoVicinatoDAccordo(Coordinate coordinate)
@@ -46,10 +57,7 @@ public class PlaceHandler extends ControllerHandler
 			try
 			{
 				tesseraVicino = this.model.getTessera(coordinate.getCoordinateA(punto));
-				if (!tesseraCorrente.buonVicino(tesseraVicino, punto))
-				{
-					return false;
-				}
+				if (!tesseraCorrente.buonVicino(tesseraVicino, punto)) { return false; }
 
 			}
 			catch (TesseraNonTrovataException e)
@@ -58,11 +66,8 @@ public class PlaceHandler extends ControllerHandler
 				continue;
 			}
 		}
-		
-		if(viciniVuoti == PuntoCardinale.NUMERO_DIREZIONI)
-		{
-			return false;
-		}
+
+		if (viciniVuoti == PuntoCardinale.NUMERO_DIREZIONI) { return false; }
 		return true;
 	}
 }

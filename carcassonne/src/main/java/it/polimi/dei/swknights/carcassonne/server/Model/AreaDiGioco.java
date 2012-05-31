@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
+import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
@@ -52,11 +53,18 @@ public class AreaDiGioco
 	 *            : coordinate where place the card
 	 * @param tessera
 	 *            card to be placed
+	 * @throws MossaNonValidaException 
 	 */
-	public void addTessera(Coordinate coordinate, Tessera tessera)
+	public void addTessera(Coordinate coordinate, Tessera tessera) throws MossaNonValidaException
 	{
-		//TODO: controlla che sia vuoto prima
-		this.mappa.put(coordinate, tessera);
+		if (this.mappa.get(coordinate) == null)
+		{
+				this.mappa.put(coordinate, tessera);
+		}
+		else
+		{
+			throw new MossaNonValidaException("casella già occupata");
+		}
 	}
 
 	private Map<Coordinate, Tessera>	mappa;

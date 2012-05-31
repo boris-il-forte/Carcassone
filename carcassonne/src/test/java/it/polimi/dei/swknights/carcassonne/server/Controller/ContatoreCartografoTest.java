@@ -1,15 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
-import it.polimi.dei.swknights.carcassonne.Util.Bussola;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
-import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Lati;
@@ -17,19 +8,17 @@ import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Link;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ContatoreCartografoTest
 {
-	public static ModuloModel model;
+	private  ModuloModel model;
 	
-	@BeforeClass
-	public static void initializeTest() throws Exception
+	@Before
+	public  void initializeTest() throws Exception
 	{
-		ModuloModel model = new ModuloModel();
+		model = new ModuloModel();
 	}
 	
 	@Test
@@ -46,11 +35,16 @@ public class ContatoreCartografoTest
 		
 		CostruzioneCoord[] stradella = this.stradella();
 		
+		
+		
+		
 		for(int i=0; i<stradella.length; i++)
 		{
+			this.model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
+			System.out.println(" Tessera Numero: " + i );
 			contatore.riceviCoordinateTessera(stradella[i].coord);
 		}
-		
+		 
 		
 	}
 
@@ -69,6 +63,11 @@ public class ContatoreCartografoTest
      public CostruzioneCoord[]  stradella()
 	{
 		CostruzioneCoord[] stradaPiccola = new CostruzioneCoord[5];
+		
+		for(int i=0; i<5; i++)
+		{
+			stradaPiccola[i] = new CostruzioneCoord();
+		}
 		
 		Tessera incrocio0 = 
 				new TesseraNormale(creaLatiIncrocioAQuattro(), creaLinkIncrocioAQuattro());

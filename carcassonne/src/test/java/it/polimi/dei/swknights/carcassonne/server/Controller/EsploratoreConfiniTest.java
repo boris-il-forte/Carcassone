@@ -3,6 +3,8 @@ package it.polimi.dei.swknights.carcassonne.server.Controller;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -27,10 +29,10 @@ import java.util.Set;
 
 public class EsploratoreConfiniTest
 {
-	public static ModuloModel	model;
+	public  ModuloModel	model;
 
-	@BeforeClass
-	public static void initializeTest() throws Exception
+	@Before
+	public  void initializeTest() throws Exception
 	{
 		model = new ModuloModel();
 	}
@@ -42,7 +44,7 @@ public class EsploratoreConfiniTest
 
 	}
 	
-	//@Test
+	@Test
 	public void esplora() throws Exception
 	{
 		CostruzioneCoord[] stradella = this.stradella();
@@ -98,6 +100,7 @@ public class EsploratoreConfiniTest
 	@Test
 	public void stradaPiccola() throws Exception
 	{
+		model = new ModuloModel();
 		ContatoreCartografo contatore = new ContatoreCartografo(model);
 		System.out.println("\n " + " cont = " + contatore);
 		
@@ -109,12 +112,10 @@ public class EsploratoreConfiniTest
 		
 		for(int i=0; i<stradella.length; i++)
 		{
-			model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
-		}
-		
-		for (int i = 0; i < stradella.length; i++)
-		{
+			System.out.println(" tessera numero : "  + i + "stradella. coordinata = " + stradella[i].coord);
 			stradella[i].toString();
+		
+			model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
 			contatore.riceviCoordinateTessera(stradella[i].coord);
 		}
 
