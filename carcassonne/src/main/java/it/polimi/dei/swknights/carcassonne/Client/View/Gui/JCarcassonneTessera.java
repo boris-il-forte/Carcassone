@@ -3,9 +3,9 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
-import javax.swing.JPanel;
+import javax.swing.JLayeredPane;
 
-public class JCarcassonneTessera extends JPanel
+public class JCarcassonneTessera extends JLayeredPane
 {
 	public JCarcassonneTessera()
 	{

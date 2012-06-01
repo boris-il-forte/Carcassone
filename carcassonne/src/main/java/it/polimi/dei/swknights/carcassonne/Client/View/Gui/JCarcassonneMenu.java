@@ -1,37 +1,54 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import java.util.EventListener;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
-public class JCarcassonneMenu extends JMenuBar 
+public class JCarcassonneMenu extends JMenuBar
 {
-
-	public void addListener()
+	public JCarcassonneMenu()
 	{
-		// TODO Auto-generated method stub
-
+		this.creaMenuBar();
 	}
 
-	public void removeListener()
+	private void creaMenuBar()
 	{
-		// TODO Auto-generated method stub
 
+		for (Entry<String, String[]> entry : ITEM_MAP.entrySet())
+		{
+			this.creaMenu(entry.getKey(), entry.getValue());
+		}
 	}
 
-	public void addListener(EventListener eventListener)
+	private void creaMenu(String testo, String etichetteItem[])
 	{
-		// TODO Auto-generated method stub
-
+		JMenu menu = new JMenu(testo);
+		for (int i = 0; i < etichetteItem.length; i++)
+		{
+			JMenuItem menuItem = new JMenuItem(etichetteItem[i]);
+			menu.add(menuItem);
+		}
+		this.add(menu);
 	}
 
-	public void removeListener(EventListener eventListener)
+	private static Map<String, String[]> inizializzaItemMap()
 	{
-		// TODO Auto-generated method stub
-
+		String elementiFile[] = { "NuovaPartita" };
+		String elementiOpzioni[] = { "Modalità" };
+		String elementiCredits[] = { "Credits" };
+		Map<String, String[]> mappa = new HashMap<String, String[]>();
+		mappa.put("file", elementiFile);
+		mappa.put("opzioni", elementiOpzioni);
+		mappa.put("credits", elementiCredits);
+		return mappa;
 	}
 
+	private static final Map<String, String[]>	ITEM_MAP			= inizializzaItemMap();
 
-	private static final long	serialVersionUID	= 4524292800026510575L;
+	private static final long					serialVersionUID	= 4524292800026510575L;
 
 }
