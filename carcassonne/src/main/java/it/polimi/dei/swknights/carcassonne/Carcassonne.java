@@ -8,6 +8,7 @@ import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.View;
+import it.polimi.dei.swknights.carcassonne.ImageLoader.ImageLoader;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
@@ -21,6 +22,7 @@ class Carcassonne
 		String risposta="";
 		View view;
 		
+		new ImageLoader();
 		do
 		{
 			out.println("Interfaccia grafica a finestra o Interfaccia testuale?");
