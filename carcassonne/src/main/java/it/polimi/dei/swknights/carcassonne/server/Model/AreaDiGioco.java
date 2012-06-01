@@ -21,6 +21,7 @@ public class AreaDiGioco
 	public AreaDiGioco()
 	{
 		this.mappa = new HashMap<Coordinate, Tessera>();
+		this.GPS = new HashMap<Tessera, Coordinate>();
 	}
 
 	/**
@@ -46,6 +47,11 @@ public class AreaDiGioco
 
 	}
 
+	public Coordinate getCoordinateTessera(Tessera tessera)
+	{
+		return this.GPS.get(tessera);
+	}
+
 	/**
 	 * Add a card at the specified coordinate
 	 * 
@@ -60,6 +66,7 @@ public class AreaDiGioco
 		if (this.mappa.get(coordinate) == null)
 		{
 				this.mappa.put(coordinate, tessera);
+				this.GPS.put(tessera, coordinate);
 		}
 		else
 		{
@@ -68,5 +75,6 @@ public class AreaDiGioco
 	}
 
 	private Map<Coordinate, Tessera>	mappa;
+	private Map<Tessera, Coordinate>  GPS;
 
 }

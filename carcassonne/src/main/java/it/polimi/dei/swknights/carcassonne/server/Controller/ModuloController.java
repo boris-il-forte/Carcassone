@@ -14,6 +14,7 @@ import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.PlaceHandl
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.RuotaHandler;
 import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.TileHandler;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
+import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -82,7 +83,6 @@ public class ModuloController implements Controller
 	public void addSegnalinoTessera(Color colore, PuntoCardinale puntoCardinale)
 	{
 		this.contaPunti.addSegnalino(colore, puntoCardinale);
-		
 	}
 	
 	public boolean costruzioneLibera(PuntoCardinale punto)
@@ -90,7 +90,6 @@ public class ModuloController implements Controller
 		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
 		mappaCostruzioni = this.contaPunti.getMapCostruzioniUltimaTessera();
 		Costruzione costruzione = mappaCostruzioni.get(punto);
-		System.out.println(" costruione = " + costruzione + ", punto = " + punto);
 		if (costruzione.controllataDa().size() == 0)
 		{
 			return true;
@@ -127,10 +126,24 @@ public class ModuloController implements Controller
 	{
 		Set<Costruzione> costruzioniCompletate = this.contaPunti.getCostruzioniCompletate();
 		Punteggi punteggi = this.contaPunti.getPunteggioTurno();
-		//TODO: mandare la roba giusta al model. di certo NO costruzioni...
-		this.model.notificaCostruzioneCompletata(null, punteggi);
+		List<Tessera> listaTessere = this.getListaTessereCostruzioni(costruzioniCompletate);
+		this.model.notificaCostruzioneCompletata(listaTessere, punteggi);
 	}
 
+	private List<Tessera> getListaTessereCostruzioni(Set<Costruzione> costruzioniCompletate)
+	{
+		List<Tessera> listaTessere = new ArrayList<Tessera>();
+		for(Costruzione costruzione : costruzioniCompletate)
+		{
+			for(Tessera tessera : costruzione.getTessere())
+			{ 
+				listaTessere.add(tessera);
+			}
+		}
+		return listaTessere;
+	}
+
+	
 	private void primaMossaPartita()
 	{
 		final Coordinate origine = new Coordinate(0, 0);

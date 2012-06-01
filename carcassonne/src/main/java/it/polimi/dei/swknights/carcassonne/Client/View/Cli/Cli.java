@@ -10,9 +10,9 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
-import java.awt.Color;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
@@ -79,6 +79,13 @@ public class Cli extends ModuloView
 	{
 		this.getScenario().setTessera(coordinatePosizione, this.getTesseraCorrente());
 		this.gestoreFasi.nextFase();
+	}
+
+	@Override
+	public void visualizzaPunteggi(Punteggi punteggio)
+	{
+		this.informaUser.notificaPunteggi(punteggio);
+		
 	}
 
 	@Override
@@ -150,9 +157,9 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	public void aggiornaColoreCorrente(Color colore)
+	public void visualizzaColoreCorrente()
 	{
-		this.informaUser.setColore(colore);
+			this.informaUser.setColore(this.getColoreGiocatore());
 	}
 
 	@Override
@@ -222,6 +229,7 @@ public class Cli extends ModuloView
 			{
 				if (elementi[punto.toInt()].equalsIgnoreCase(stringComando))
 				{
+			
 					this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
 					return true;
 				}

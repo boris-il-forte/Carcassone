@@ -1,10 +1,14 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import java.util.List;
 
-public class JCarcassonneScorrimentoMappa
+import javax.swing.JPanel;
+
+public class JCarcassonneScorrimentoMappa extends JPanel
 {
 
-	public List	myJCarcassonneLaterale;
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 6405877376841871358L;
 
 }

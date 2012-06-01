@@ -22,6 +22,8 @@ public class UpdateTurnoHandler extends ViewHandler
 		Color colGiocatoreCorrente = event.getGiocatoreCorrente();
 		AdapterTessera tesseraNuova = event.getTessera();
 		tesseraNuova.toString();
+		this.view.setColore(event.getGiocatoreCorrente());
+		this.view.visualizzaColoreCorrente();
 		this.view.aggiornaTurno(colGiocatoreCorrente,tesseraNuova);
 		this.sveglia();
 	}

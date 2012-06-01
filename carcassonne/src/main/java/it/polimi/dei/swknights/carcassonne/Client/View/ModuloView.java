@@ -1,7 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View;
 
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
-import it.polimi.dei.swknights.carcassonne.Client.View.Gui.GUI;
+import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.CostruzioneCompletataHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.FinePartitaHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.InizioGiocoHandler;
@@ -12,13 +12,14 @@ import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdateTurnoHandl
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Fasi.GestoreFasi;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
 import java.util.Map;
 /**
  * This class gives a schema for the View
- * @see: {@link Cli} {@link GUI}
+ * @see: {@link Cli} {@link Gui}
  * @author edoardopasi & dave
  *
  */
@@ -32,6 +33,9 @@ public abstract class ModuloView extends AbstractView
 		this.gestoreFasi = new GestoreFasi();
 		this.attivaHanlders();
 	}
+	
+	public abstract void visualizzaPunteggi(Punteggi punteggio);
+	
 	/**
 	 * Wait for a user input
 	 * eg in the Cli can wait for the "rotate" command 
@@ -63,7 +67,7 @@ public abstract class ModuloView extends AbstractView
 	 */
 	public abstract void notificaMossaNonValida();
 
-	public abstract void aggiornaColoreCorrente(Color colore);
+	public abstract void visualizzaColoreCorrente();
 
 	public abstract void cambiaEMostraTesseraCorrente(AdapterTessera tessera);
 	/**
@@ -86,7 +90,7 @@ public abstract class ModuloView extends AbstractView
 	public void aggiornaTurno(Color colGiocatoreCorrente, AdapterTessera tesseraNuova)
 	{
 		this.cambiaEMostraTesseraCorrente(tesseraNuova);
-		this.aggiornaColoreCorrente(colGiocatoreCorrente);
+		this.visualizzaColoreCorrente();
 		this.gestoreFasi.cominciaTurno();
 	}
 
@@ -100,7 +104,7 @@ public abstract class ModuloView extends AbstractView
 		return this.coloreGiocatore;
 	}
 
-	protected void setColore(Color coloreGiocatore)
+	public void setColore(Color coloreGiocatore)
 	{
 		this.coloreGiocatore = coloreGiocatore;
 	}

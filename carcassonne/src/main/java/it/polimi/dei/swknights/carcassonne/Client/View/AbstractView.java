@@ -43,7 +43,7 @@ public abstract class AbstractView implements View
 	 */
 	public synchronized void riceviModificheModel(ControllerEvent event)
 	{
-		System.out.println("sono la view, ho ricevuto " + event.toString());
+		
 		for (ViewHandler handler : this.visitorHandlers)
 		{
 			event.accept(handler);

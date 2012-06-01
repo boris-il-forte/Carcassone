@@ -149,4 +149,9 @@ public abstract class Tessera implements Cloneable
 
 	protected final Link	link;
 
+	public Segnalino removeSegnalino()
+	{
+		return this.lati.removeSegnalino();	
+	}
+
 }

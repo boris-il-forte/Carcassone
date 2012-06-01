@@ -23,7 +23,8 @@ public class InizioGiocoHandler extends ViewHandler
 		Color coloreIniziale = event.getGiocatore();
 		AdapterTessera tessIniziale = event.getTesseraIniziale();
 		this.view.mettiPrimaTessera(tessIniziale);
-		this.view.aggiornaColoreCorrente(coloreIniziale);
+		this.view.setColore(coloreIniziale);
+		this.view.visualizzaColoreCorrente();
 		this.view.aggiornaMappa();
 		this.sveglia();
 	}

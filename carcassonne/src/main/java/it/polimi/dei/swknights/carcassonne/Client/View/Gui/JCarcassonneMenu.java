@@ -1,14 +1,11 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import it.polimi.dei.swknights.carcassonne.Events.EventSource;
-
 import java.util.EventListener;
-import java.util.List;
 
-public class JCarcassonneMenu implements EventSource
+import javax.swing.JMenuBar;
+
+public class JCarcassonneMenu extends JMenuBar 
 {
-
-	public List	myGUI;
 
 	public void addListener()
 	{
@@ -33,5 +30,8 @@ public class JCarcassonneMenu implements EventSource
 		// TODO Auto-generated method stub
 
 	}
+
+
+	private static final long	serialVersionUID	= 4524292800026510575L;
 
 }

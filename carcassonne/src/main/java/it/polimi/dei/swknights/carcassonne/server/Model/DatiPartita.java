@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.server.Model;
 
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.FactoryGiocatore;
 import it.polimi.dei.swknights.carcassonne.server.Model.Giocatore.Giocatore;
@@ -205,5 +206,11 @@ public final class DatiPartita
 	private final List<FactoryTessere>	listFactoryTessere;
 
 	private final FactoryGiocatore		factoryGiocatori;
+
+
+	public Coordinate getCoordinateTessera(Tessera tessera)
+	{
+		return this.areaDiGioco.getCoordinateTessera(tessera);
+	}
 
 }
