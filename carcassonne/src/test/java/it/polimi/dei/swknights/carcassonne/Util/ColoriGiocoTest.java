@@ -37,9 +37,44 @@ public class ColoriGiocoTest
 	}
 	
 	@Test
-	public  void x()
+	public  void nomiColoriGiusti() throws Exception
 	{
+		List<String> nomiColoriGot = new LinkedList<String>() ;
+		List<String> nomiColoriExp  = new LinkedList<String>();
 		
+		for(Color colore : ColoriGioco.getListaColori())
+		{
+			nomiColoriGot.add( ColoriGioco.getName(colore));
+		}
+		
+		nomiColoriExp.add("Rosso");
+		nomiColoriExp.add("Blu");
+		nomiColoriExp.add("Verde");
+		nomiColoriExp.add("Giallo");
+		nomiColoriExp.add("Nero");
+		
+		assertEquals(nomiColoriExp, nomiColoriGot);	
+	
+	}
+	
+	@Test
+	public  void sigleColoriGiusti() throws Exception
+	{
+		List<String> sigleColoriGot = new LinkedList<String>() ;
+		List<String> sigleColoriExp  = new LinkedList<String>();
+		
+		for(Color colore : ColoriGioco.getListaColori())
+		{
+			sigleColoriGot.add( ColoriGioco.getSigla(colore));
+		}
+		
+		sigleColoriExp.add("R");
+		sigleColoriExp.add("B");
+		sigleColoriExp.add("G");
+		sigleColoriExp.add("Y");
+		sigleColoriExp.add("K");
+		
+		assertEquals(sigleColoriExp, sigleColoriGot);	
 	}
 	
 	
