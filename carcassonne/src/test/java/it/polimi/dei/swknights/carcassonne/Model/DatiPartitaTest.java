@@ -151,6 +151,7 @@ public class DatiPartitaTest
 	
 	}
 	
+	
 
 	private Tessera tesseraCitta()
 	{
