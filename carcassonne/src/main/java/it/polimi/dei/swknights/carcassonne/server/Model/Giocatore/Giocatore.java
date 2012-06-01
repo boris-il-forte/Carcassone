@@ -49,6 +49,11 @@ public class Giocatore
 		}
 	}
 
+	public void addSegnalino(Segnalino segnalino)
+	{
+		this.listaSegnalini.add(segnalino);
+	}
+
 	/**
 	 * sum scores to current
 	 * 

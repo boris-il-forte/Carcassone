@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.server.Model;
 
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
@@ -169,12 +170,28 @@ public class ModuloModel extends AbstractModel
 	public void notificaFinePartita(Punteggi punteggi)
 	{
 		this.datiPartita.aggiornaPunteggioGiocatori(punteggi);
-		this.fire(new FinePartitaEvent(this, this.getMappaPunteggi()));
+		this.fire(new FinePartitaEvent(this, this.getPunteggi()));
 	}
 
 	public void notificaCostruzioneCompletata(List<Tessera> tessere, Punteggi punteggi)
 	{
-		//TODO: manca da segnalare alla view!
+		Map<AdapterTessera, Coordinate> mapTessere = new HashMap<AdapterTessera, Coordinate>();
+		for(Tessera tessera : tessere)
+		{
+			this.removeSegnalino(tessera);
+			
+			Coordinate coordinate = this.datiPartita.getCoordinateTessera(tessera);
+			mapTessere.put(new AdapterTesseraObject(tessera), coordinate);
+		}
+		
+		this.fire(new CostruzioneCompletataEvent(this,mapTessere, punteggi));
+	}
+
+	private void removeSegnalino(Tessera tessera)
+	{
+		Segnalino segnalino = tessera.removeSegnalino();
+		Giocatore giocatore = this.datiPartita.getGiocatore(segnalino.getColore());
+		giocatore.addSegnalino(segnalino);
 	}
 
 	private List<Giocatore> getListaGiocatori()
@@ -193,15 +210,15 @@ public class ModuloModel extends AbstractModel
 		return this.datiPartita.getGiocatoreCorrente();
 	}
 
-	private Map<Color, Integer> getMappaPunteggi()
+	private Punteggi getPunteggi()
 	{
-		Map<Color, Integer> mapPunteggi = new HashMap<Color, Integer>();
+		Punteggi punteggi = new Punteggi();
 		List<Giocatore> giocatori = this.getListaGiocatori();
 		for (Giocatore giocatore : giocatori)
 		{
-			mapPunteggi.put(giocatore.getColore(), giocatore.getPunti());
+			punteggi.addPunteggi(giocatore.getColore(), giocatore.getPunti());
 		}
-		return mapPunteggi;
+		return punteggi;
 	}
 
 	private DatiPartita	datiPartita;

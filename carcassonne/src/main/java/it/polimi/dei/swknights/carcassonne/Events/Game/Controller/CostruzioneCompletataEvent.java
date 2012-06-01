@@ -4,6 +4,7 @@ import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 import java.util.Map;
 
@@ -16,11 +17,18 @@ import java.util.Map;
 public class CostruzioneCompletataEvent extends ControllerEvent
 {
 
-	public CostruzioneCompletataEvent(Object source, Map<AdapterTessera, Coordinate> tessereAggiornate)
+	public CostruzioneCompletataEvent(Object source, Map<AdapterTessera, Coordinate> tessereAggiornate, Punteggi punteggi)
 	{
 		super(source);
 		this.setComando(MessaggiController.costruction);
 		this.tessereAggiornate = tessereAggiornate;
+		this.punteggi = punteggi;
+	
+	}
+
+	public Punteggi getPunteggi()
+	{
+		return this.punteggi;
 	}
 
 	@Override
@@ -39,7 +47,7 @@ public class CostruzioneCompletataEvent extends ControllerEvent
 		return this.tessereAggiornate;
 
 	}
-
+	private Punteggi punteggi;
 	private  Map<AdapterTessera, Coordinate> tessereAggiornate;
 	private static final long		serialVersionUID	= -7907111208766111881L;
 

@@ -86,7 +86,7 @@ public abstract class Costruzione
 
 	public List<Color> controllataDa()
 	{
-		int max = 1;
+		int max = 0;
 		List<Color> controllori = new ArrayList<Color>();
 		for (Entry<Color, Integer> entryColore : this.contatoreSegnalini.entrySet())
 		{
@@ -109,6 +109,11 @@ public abstract class Costruzione
 	public int contaElementi()
 	{
 		return this.elementi.size();
+	}
+
+	public Set<Tessera> getTessere()
+	{
+		return elementi;
 	}
 
 	@Override

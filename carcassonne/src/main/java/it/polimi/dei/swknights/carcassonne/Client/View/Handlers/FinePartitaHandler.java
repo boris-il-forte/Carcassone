@@ -15,6 +15,7 @@ public class FinePartitaHandler extends ViewHandler
 	@Override
 	public void visit(FinePartitaEvent event)
 	{
+		this.view.visualizzaPunteggi( event.getPunteggi());
 		this.view.notificaFinePartita();
 		this.sveglia();
 	}

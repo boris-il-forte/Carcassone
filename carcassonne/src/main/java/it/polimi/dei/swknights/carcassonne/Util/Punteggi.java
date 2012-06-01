@@ -41,6 +41,21 @@ public class Punteggi
 	{
 		return this.mappaPunteggi.keySet();
 	}
+	
+	@Override
+	public String toString()
+	{
+		StringBuilder stringaPunti = new StringBuilder();
+		for(Entry<Color, Integer> entry : this.mappaPunteggi.entrySet())
+		{
+			stringaPunti.append(ColoriGioco.getName(entry.getKey()));
+			stringaPunti.append(": " );
+			stringaPunti.append(entry.getValue());
+			stringaPunti.append("   ");
+		}
+		return stringaPunti.toString();
+		
+	}
 
 	private Map<Color, Integer> inizializza()
 	{

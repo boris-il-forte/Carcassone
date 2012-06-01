@@ -14,11 +14,7 @@ public class CartelloStradale
 	public CartelloStradale(Map<Costruzione, List<PuntoCardinale>> mappaCostruzioni)
 	{
 		this.mappaCostruzioni = mappaCostruzioni;
-	
-		for( Entry<Costruzione, List<PuntoCardinale>> entry : mappaCostruzioni.entrySet() )
-		{
-			System.out.println(entry.getKey()  + " punti Cardinali = " + entry.getValue() + "\n\n");
-		}
+
 	}
 
 	public void aggiorna(Costruzione costruzioneAggregata, Costruzione costruzione)

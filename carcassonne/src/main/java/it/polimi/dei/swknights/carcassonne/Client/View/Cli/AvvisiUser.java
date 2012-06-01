@@ -5,6 +5,7 @@ import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Fasi.FaseTurno;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 import java.awt.Color;
 import java.io.PrintWriter;
@@ -95,5 +96,11 @@ public class AvvisiUser
 	private FaseTurno		faseTurno;
 
 	private Color			coloreGiocatore;
+
+	public void notificaPunteggi(Punteggi punteggio)
+	{
+		this.out.println(punteggio.toString());
+		
+	}
 
 }

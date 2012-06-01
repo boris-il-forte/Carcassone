@@ -22,6 +22,7 @@ public class CostruzioneCompletataHandler extends ViewHandler
 	{
 		Map<AdapterTessera, Coordinate> tessereAggiornate = event.getTessereAggiornate();
 		this.view.ridaiSegnaliniDiTessere(tessereAggiornate);
+		this.view.visualizzaPunteggi(event.getPunteggi());
 		this.sveglia();
 	}
 	

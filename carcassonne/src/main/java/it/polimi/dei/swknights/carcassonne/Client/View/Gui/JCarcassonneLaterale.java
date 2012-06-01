@@ -1,12 +1,56 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import java.util.List;
+import java.awt.FlowLayout;
 
-public class JCarcassonneLaterale
+import javax.swing.Box;
+import javax.swing.JPanel;
+
+public class JCarcassonneLaterale extends JPanel
 {
 
-	public List	myGUI;
-	public List	myJCarcassonneScorrimentoMappa;
-	public List	myJCarcassonneZoom;
+	public JCarcassonneLaterale()
+	{
+		this.setLayout(new FlowLayout());
+		this.aggiungiBox();
+
+	}
+	
+	private void aggiungiBox()
+	{
+		this.box = Box.createHorizontalBox();
+		this.add(this.box);
+		this.aggiungiComponenti();
+	}
+	
+	private void aggiungiComponenti()
+	{
+		this.aggiungiScorrimento();
+		this.aggiungiZoom();
+	}
+
+	private void aggiungiScorrimento()
+	{
+		this.scorrimentoMappa = new JCarcassonneScorrimentoMappa();
+		this.box.add(this.scorrimentoMappa);
+		
+		
+	}
+	
+	private void aggiungiZoom()
+	{
+		this.zoom = new JCarcassonneZoom();
+		this.box.add(this.zoom);
+	}
+
+
+
+	private Box								box;
+	
+	private JCarcassonneScorrimentoMappa	scorrimentoMappa;
+	
+	private JCarcassonneZoom				zoom;
+	
+	private static final long	serialVersionUID	= -1423697317579326895L;
+	
 
 }

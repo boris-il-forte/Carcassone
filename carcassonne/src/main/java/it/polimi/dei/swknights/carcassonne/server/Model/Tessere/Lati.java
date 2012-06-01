@@ -109,6 +109,13 @@ public class Lati implements Cloneable
 		this.datiSegnalino.puntoCardinale = puntoCardinale;
 	}
 
+	public Segnalino removeSegnalino()
+	{
+		Segnalino segnalino = this.datiSegnalino.segnalino;
+		this.datiSegnalino.segnalino = null;	
+		return segnalino;
+	}
+
 	@Override
 	public String toString()
 	{
