@@ -46,7 +46,7 @@ public class JCarcassoneFrame extends JFrame
 	private void creaBarraComandi()
 	{
 		this.barraLaterale = new JCarcassonneLaterale();
-		this.add(this.barraLaterale, BorderLayout.EAST);
+		this.add(this.barraLaterale, BorderLayout.WEST);
 	}
 
 	public void showGui()
