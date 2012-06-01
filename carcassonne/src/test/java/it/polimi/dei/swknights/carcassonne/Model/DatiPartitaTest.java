@@ -72,20 +72,24 @@ public class DatiPartitaTest
 	 */
 
 	@Test
-	public void prova()
+	public void pescaPrimaTessera()
 	{
 		DatiPartita dati = new DatiPartita();
-		Tessera tessera = dati.pescaPrimaTessera();
+		TesseraNormale tessera = (TesseraNormale)dati.pescaPrimaTessera();
 
-		List<ConfineTessera> lconf = new LinkedList<ConfineTessera>();
-
-		for (PuntoCardinale punto : PuntoCardinale.values())
-		{
-			lconf.add(tessera.getConfineA(punto));
-		}
-
-		// COME CAPISCO SE E' LA PRIMA!???
-
+		if ( tessera.getElementoA(PuntoCardinale.nord) != Elemento.prato)
+			fail("non prato a nord, prima tessera 0,0");
+		
+		if ( tessera.getElementoA(PuntoCardinale.est) != Elemento.strada)
+			fail("non strada a est, prima tessera 0,0");
+		
+		if ( tessera.getElementoA(PuntoCardinale.ovest) != Elemento.strada)
+			fail("non strada a ovest, prima tessera 0,0");
+		
+		if ( tessera.getElementoA(PuntoCardinale.sud) != Elemento.citta)
+			fail("non citta a sud, prima tessera 0,0");
+		
+		assertTrue(true);
 	}
 
 	@Test
@@ -95,7 +99,7 @@ public class DatiPartitaTest
 		Tessera tessera = dati.pescaPrimaTessera();
 
 		AreaDiGioco area = dati.getAreaDiGioco();
-		area.addTessera(new Coordinate(3, 4), tesseraCitta());
+		area.addTessera(new Coordinate(3, 4), tessera);
 
 		Coordinate coord = dati.getCoordinateTessera(tessera);
 
@@ -126,7 +130,7 @@ public class DatiPartitaTest
 	}
 	
 	@Test
-	public void p() throws Exception
+	public void pesca56DalMazzo() throws Exception
 	{
 		DatiPartita dati = new DatiPartita();
 		int cartePesc =0;
@@ -146,6 +150,7 @@ public class DatiPartitaTest
 		
 	
 	}
+	
 
 	private Tessera tesseraCitta()
 	{
