@@ -9,7 +9,6 @@ public class JCarcassonneTessera extends JPanel
 {
 	public JCarcassonneTessera()
 	{
-		this.setSize(50, 50);
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 	}
 	

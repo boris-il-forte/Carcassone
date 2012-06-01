@@ -12,10 +12,9 @@ public class JCarcassonneTavolo extends JPanel
 	
 	public JCarcassonneTavolo()
 	{
-		this.container = new JPanel();
-		this.add(container);
-		this.container.setLayout(new GridLayout(ALTEZZA, LARGHEZZA));
-		this.container.setSize(new Dimension(300,300));
+		this.setLayout(new GridLayout(ALTEZZA, LARGHEZZA));
+		this.setMinimumSize(new Dimension(LARGHEZZA*DIMENSIONE_CELLE, ALTEZZA*DIMENSIONE_CELLE));
+		this.setMaximumSize(new Dimension(LARGHEZZA*DIMENSIONE_CELLE, ALTEZZA*DIMENSIONE_CELLE));
 		this.listaTessere = new ArrayList<JCarcassonneTessera>();
 		this.creaCaselle();
 	}
@@ -26,18 +25,18 @@ public class JCarcassonneTavolo extends JPanel
 		{
 			JCarcassonneTessera tessera = new JCarcassonneTessera();
 			this.listaTessere.add(tessera);
-			this.container.add(tessera);
+			this.add(tessera);
 		}		
 	}
 
-	
-	private JPanel	container;
 
 	private List<JCarcassonneTessera>	listaTessere;
 	
 	private static final int ALTEZZA = 6;
 	
 	private static final int LARGHEZZA = 12;
+	
+	private static final int DIMENSIONE_CELLE = 80;
 	
 	private static final int NUMERO_CASELLE = ALTEZZA*LARGHEZZA;
 	
