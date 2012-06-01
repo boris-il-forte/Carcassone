@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.swing.Box;
 import javax.swing.JFrame;
 
 public class JCarcassoneFrame extends JFrame
@@ -27,7 +28,7 @@ public class JCarcassoneFrame extends JFrame
 		this.setTitle("Carcassonne - swKnights");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
-		this.setMinimumSize(new Dimension(600, 600));
+		this.setMinimumSize(new Dimension(1200, 600));
 
 	}
 
@@ -39,8 +40,10 @@ public class JCarcassoneFrame extends JFrame
 
 	private void creaTavolo()
 	{
+		Box box = Box.createHorizontalBox();
+		this.add(box);
 		this.tavolo = new JCarcassonneTavolo();
-		this.add(this.tavolo);
+		box.add(this.tavolo);
 	}
 
 	private void creaBarraComandi()
