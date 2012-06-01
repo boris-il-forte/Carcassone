@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Model;
 
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
@@ -51,90 +52,100 @@ public class DatiPartitaTest
 		int i = 1;
 		try
 		{
-			for(i=1; i<=11; i++)
+			for (i = 1; i <= 11; i++)
 			{
 				dati.addGiocatore();
 			}
 		}
-		catch(FinitiColoriDisponibiliException e)
+		catch (FinitiColoriDisponibiliException e)
 		{
 			if (i != 6)
-			  fail("l'errore finiti color disponibili dovrebbe scattare dopo " +
-			  		"il tentativo di aggiunta del quinto (5°)  " + " i = "  + i);
-			else
-				assertTrue(true);
+				fail("l'errore finiti color disponibili dovrebbe scattare dopo "
+						+ "il tentativo di aggiunta del quinto (5°)  " + " i = " + i);
+			else assertTrue(true);
 		}
 	}
-	
-	/* java.lang.AssertionError: l'errore finiti color disponibili dovrebbe scattare dopo 
-	 * il tentativo di aggiunta del quinto (5°)   i = 5
-	*/
+
+	/*
+	 * java.lang.AssertionError: l'errore finiti color disponibili dovrebbe
+	 * scattare dopo il tentativo di aggiunta del quinto (5°) i = 5
+	 */
 
 	@Test
 	public void prova()
 	{
 		DatiPartita dati = new DatiPartita();
-		Tessera tessera =  dati.pescaPrimaTessera();
-		
+		Tessera tessera = dati.pescaPrimaTessera();
+
 		List<ConfineTessera> lconf = new LinkedList<ConfineTessera>();
-		
-		for(PuntoCardinale punto : PuntoCardinale.values())
+
+		for (PuntoCardinale punto : PuntoCardinale.values())
 		{
-			lconf.add( tessera.getConfineA(punto));
+			lconf.add(tessera.getConfineA(punto));
 		}
-		
-		//COME CAPISCO SE E' LA PRIMA!???
-	
+
+		// COME CAPISCO SE E' LA PRIMA!???
+
 	}
-	
+
 	@Test
 	public void coordTesseraFromTessera() throws Exception
 	{
 		DatiPartita dati = new DatiPartita();
-		Tessera tessera =  dati.pescaPrimaTessera();
-		
+		Tessera tessera = dati.pescaPrimaTessera();
+
 		AreaDiGioco area = dati.getAreaDiGioco();
 		area.addTessera(new Coordinate(3, 4), tesseraCitta());
-		
+
 		Coordinate coord = dati.getCoordinateTessera(tessera);
-		
+
 		assertEquals(new Coordinate(3, 4), coord);
 	}
-	
+
 	@Test
 	public void getGiocatore() throws Exception
 	{
 		DatiPartita dati = new DatiPartita();
-		
+
 		do
 		{
 			dati.addGiocatore();
-		}
-		while(dati.getListaGiocatori().size() < 3);
-		
-		
+		} while (dati.getListaGiocatori().size() < 3);
+
 		Giocatore g0 = dati.getGiocatore(ColoriGioco.getListaColori().get(0));
-		if (g0.getColore() != Color.RED)
-			fail("g0 non è rosso");
-		
+		if (g0.getColore() != Color.RED) fail("g0 non è rosso");
+
 		Giocatore g1 = dati.getGiocatore(ColoriGioco.getListaColori().get(1));
-		if (g1.getColore() != Color.BLUE)
-			fail("g1 non è Blu");
-		
+		if (g1.getColore() != Color.BLUE) fail("g1 non è Blu");
+
 		Giocatore g2 = dati.getGiocatore(ColoriGioco.getListaColori().get(2));
-		if (g2.getColore() != Color.GREEN)
-			fail("g2 non è verde");
-			
+		if (g2.getColore() != Color.GREEN) fail("g2 non è verde");
+
+		assertTrue(true);
+
 	}
 	
+	@Test
 	public void p() throws Exception
 	{
+		DatiPartita dati = new DatiPartita();
+		int cartePesc =0;
+		try
+		{
+			while(true)	
+			{
+				dati.pescaTesseraDalMazzo();
+				cartePesc ++;
+			}
+		}
+		catch(PartitaFinitaException e)
+		{
+			if (cartePesc == 55)
+				assertTrue(true);  // 1 pescata di base (la prima) + 55 
+		}
 		
+	
 	}
-	
-	
-	
-	
 
 	private Tessera tesseraCitta()
 	{
@@ -215,7 +226,7 @@ public class DatiPartitaTest
 		boolean[] bl = { true, true, true, true, true, true };
 		Link l = new Link(bl);
 		return l;
-	
+
 	}
 
 }
