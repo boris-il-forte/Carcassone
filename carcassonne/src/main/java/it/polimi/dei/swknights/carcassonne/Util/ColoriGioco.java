@@ -16,7 +16,8 @@ public class ColoriGioco
 {
 	/**
 	 * 
-	 * @return an ArrayList of the game Color
+	 * @return an ArrayList of the game Color in the exact order in wich they
+	 *         have to be assigned to players: R B G Y K
 	 */
 	public static List<Color> getListaColori()
 	{
@@ -25,7 +26,8 @@ public class ColoriGioco
 	}
 
 	/**
-	 * returns R, B, G, Y or K according to the Color
+	 * returns R, B, G, Y or K according to the Color (K is BLACK, this beacause
+	 * Blue and Black has the same initial )
 	 */
 	public static String getSigla(Color colore)
 	{
@@ -58,7 +60,17 @@ public class ColoriGioco
 
 	private static String[] getStringhe(Color color)
 	{
-		return mappaColori.get(color).split(" ");
+		String s = ""; 
+		s = mappaColori.get(color);
+		if (s != null)
+		{
+			return s.split(" ");
+		}
+		else
+		{
+			throw new IllegalArgumentException(" passed color is not good to be parsed as string in nice way ");
+		}
+		
 	}
 
 	private static final Map<Color, String>	mappaColori	= inizializzaColori();
