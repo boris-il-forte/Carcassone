@@ -136,7 +136,10 @@ public final class DatiPartita
 
 	}
 	
-	
+	/**
+	 * 
+	 * @return the first card, to be placed
+	 */
 	public Tessera pescaPrimaTessera()
 	{
 		return this.tesseraMagic;
