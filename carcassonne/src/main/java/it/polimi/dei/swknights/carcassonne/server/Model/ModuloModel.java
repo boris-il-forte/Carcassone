@@ -152,16 +152,19 @@ public class ModuloModel extends AbstractModel
 
 	}
 	/**
-	 * gets the current card
+	 * gets the card at the given coordinates from {@link AreaDiGioco}
 	 * @param coordinate
-	 * @return
+	 * @return the card
 	 * @throws TesseraNonTrovataException
 	 */
 	public Tessera getTessera(Coordinate coordinate) throws TesseraNonTrovataException
 	{
 		return this.datiPartita.getAreaDiGioco().getTessera(coordinate);
 	}
-
+	/**
+	 * Draws a card from the deck and updates the current card with the drawn one
+	 * @throws PartitaFinitaException
+	 */
 	public void getTesseraDaMazzo() throws PartitaFinitaException
 	{
 		this.tesseraCorrente = this.datiPartita.pescaTesseraDalMazzo();
