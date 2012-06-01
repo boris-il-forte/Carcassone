@@ -1,7 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JPanel;
 
@@ -20,13 +22,28 @@ public class JCarcassonneLaterale extends JPanel
 		this.box = Box.createVerticalBox();
 		this.aggiungiComponenti();
 		this.add(this.box);
-		
+
 	}
 
 	private void aggiungiComponenti()
 	{
+		this.aggiugiTesseraCorrente();
 		this.aggiungiScorrimento();
 		this.aggiungiZoom();
+	}
+
+	private void aggiugiTesseraCorrente()
+	{
+		final Dimension dimensione = new Dimension(LATO_TESSERA, LATO_TESSERA);
+		final int spazio = 50;
+		this.tesseraCorrente = new JCarcassonneTessera();
+		this.tesseraCorrente.setBorder(BorderFactory.createEtchedBorder());
+		this.tesseraCorrente.setMinimumSize(dimensione);
+		this.tesseraCorrente.setPreferredSize(dimensione);
+		this.tesseraCorrente.setMaximumSize(dimensione);
+		this.box.add(this.tesseraCorrente);
+		this.box.add(Box.createRigidArea(new Dimension(0,spazio)));
+
 	}
 
 	private void aggiungiScorrimento()
@@ -45,10 +62,14 @@ public class JCarcassonneLaterale extends JPanel
 
 	private Box								box;
 
+	private JCarcassonneTessera				tesseraCorrente;
+
 	private JCarcassonneScorrimentoMappa	scorrimentoMappa;
 
 	private JCarcassonneZoom				zoom;
 
-	private static final long						serialVersionUID	= -1423697317579326895L;
+	private static final int				LATO_TESSERA		= 150;
+
+	private static final long				serialVersionUID	= -1423697317579326895L;
 
 }
