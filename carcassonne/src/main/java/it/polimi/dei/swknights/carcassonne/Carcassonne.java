@@ -5,6 +5,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
+import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
@@ -18,6 +19,8 @@ class Carcassonne
 		Executor superStarDestroyer = Executors.newCachedThreadPool();  
 		PrintWriter out = new PrintWriter(System.out);
 		String risposta="";
+		View view;
+		
 		do
 		{
 			out.println("Interfaccia grafica a finestra o Interfaccia testuale?");
@@ -26,13 +29,20 @@ class Carcassonne
 			java.util.Scanner scannerIO = new java.util.Scanner(System.in);
 			risposta = scannerIO.nextLine();
 		}
-		while(!risposta.equalsIgnoreCase("CLI"));
+		while(!risposta.equalsIgnoreCase("CLI") && !risposta.equalsIgnoreCase("GUI")  );
 
+		if(risposta.equalsIgnoreCase("CLI"))
+		{
+			view = new Cli();
+		}
+		else
+		{
+			view = new Gui();
+		}
 		
 		ModuloModel model = new ModuloModel();
 		Controller controller = new ModuloController(model);
-
-		View view = new Cli();		
+		
 		view.addListener(controller);
 	 	model.addListener(view);
 	 	superStarDestroyer.execute(view);

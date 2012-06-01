@@ -1,13 +1,18 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import javax.swing.JLayeredPane;
+import java.awt.Color;
 
-public class JCarcassonneTessera extends JLayeredPane
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+
+public class JCarcassonneTessera extends JPanel
 {
-
-	/**
-	 * 
-	 */
+	public JCarcassonneTessera()
+	{
+		this.setSize(50, 50);
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+	}
+	
 	private static final long	serialVersionUID	= -3373418009078875015L;
 
 }

@@ -17,7 +17,7 @@ public class JCarcassonneLaterale extends JPanel
 	
 	private void aggiungiBox()
 	{
-		this.box = Box.createHorizontalBox();
+		this.box = Box.createVerticalBox();
 		this.add(this.box);
 		this.aggiungiComponenti();
 	}
