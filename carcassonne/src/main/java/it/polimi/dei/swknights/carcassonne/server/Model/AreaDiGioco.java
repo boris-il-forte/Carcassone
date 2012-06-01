@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
 import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.NullCardException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
@@ -36,7 +37,7 @@ public class AreaDiGioco
 	public Tessera getTessera(Coordinate coordinate) throws TesseraNonTrovataException
 	{
 		Tessera tessera = this.mappa.get(coordinate);
-		if(tessera != null)
+		if (tessera != null)
 		{
 			return tessera;
 		}
@@ -59,22 +60,29 @@ public class AreaDiGioco
 	 *            : coordinate where place the card
 	 * @param tessera
 	 *            card to be placed
-	 * @throws MossaNonValidaException 
+	 * @throws MossaNonValidaException
 	 */
 	public void addTessera(Coordinate coordinate, Tessera tessera) throws MossaNonValidaException
 	{
-		if (this.mappa.get(coordinate) == null)
+		if (tessera == null)
 		{
-				this.mappa.put(coordinate, tessera);
-				this.GPS.put(tessera, coordinate);
+			throw new NullCardException("null card was passed");
 		}
 		else
 		{
-			throw new MossaNonValidaException("casella già occupata");
+			if (this.mappa.get(coordinate) == null)
+			{
+				this.mappa.put(coordinate, tessera);
+				this.GPS.put(tessera, coordinate);
+			}
+			else
+			{
+				throw new MossaNonValidaException("casella già occupata");
+			}
 		}
 	}
 
 	private Map<Coordinate, Tessera>	mappa;
-	private Map<Tessera, Coordinate>  GPS;
+	private Map<Tessera, Coordinate>	GPS;
 
 }

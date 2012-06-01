@@ -38,6 +38,15 @@ public final class DatiPartita
 		this.inizializzaPilaTessere();
 		this.inizializzaGiocatori();
 	}
+	/**
+	 * gets coordinates of a given card
+	 * @param tessera
+	 * @return the coordinate of that card
+	 */
+	public Coordinate getCoordinateTessera(Tessera tessera)
+	{
+		return this.areaDiGioco.getCoordinateTessera(tessera);
+	}
 
 	/**
 	 * Getter for AreaDiGioco
@@ -206,11 +215,5 @@ public final class DatiPartita
 	private final List<FactoryTessere>	listFactoryTessere;
 
 	private final FactoryGiocatore		factoryGiocatori;
-
-
-	public Coordinate getCoordinateTessera(Tessera tessera)
-	{
-		return this.areaDiGioco.getCoordinateTessera(tessera);
-	}
 
 }
