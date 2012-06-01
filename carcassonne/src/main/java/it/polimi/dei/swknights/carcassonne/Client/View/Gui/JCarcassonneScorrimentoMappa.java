@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,8 +16,13 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 {
 	public JCarcassonneScorrimentoMappa()
 	{
-		this.setLayout(new GridLayout(3, 3));
-		this.setSize(CELLE_RIGA*DIMENSIONE_PULSANTE, CELLE_RIGA*DIMENSIONE_PULSANTE);
+		final int larghezza = CELLE_RIGA*DIMENSIONE_PULSANTE;
+		final int altezza = CELLE_RIGA*DIMENSIONE_PULSANTE;
+		Dimension dimensione = new Dimension(larghezza,altezza);
+		this.setLayout(new GridLayout(CELLE_RIGA, CELLE_RIGA));
+		this.setMinimumSize(dimensione);
+		this.setPreferredSize(dimensione);
+		this.setMaximumSize(dimensione);
 		this.listaPulsanti = new ArrayList<JButton>();
 		this.addPulsanti();
 	}
@@ -25,9 +31,11 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 	{
 		for (int i = 0; i < CELLE_RIGA * CELLE_RIGA; i++)
 		{
-			if (i % 2 == 1)
+			
+			String label = labelPulsante.get(i);
+			if (label != null)
 			{
-				JButton pulsante = new JButton(labelPulsante.get(i));
+				JButton pulsante = new JButton(label);
 				this.listaPulsanti.add(pulsante);
 				this.add(pulsante);
 			}
@@ -43,7 +51,7 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 
 	private static final Map<Integer, String>	labelPulsante		= inizializzaLabelPulsante();
 
-	private static final int					DIMENSIONE_PULSANTE	= 20;
+	private static final int					DIMENSIONE_PULSANTE	= 60;
 
 	private static final int					CELLE_RIGA			= 3;
 

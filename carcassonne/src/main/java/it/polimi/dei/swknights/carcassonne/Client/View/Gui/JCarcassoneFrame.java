@@ -15,6 +15,12 @@ public class JCarcassoneFrame extends JFrame
 		this.inizializzaFinestra();
 	}
 
+	public void showGui()
+	{
+		this.pack();
+		this.setVisible(true);
+	}
+
 	private void inizializzaFinestra()
 	{
 		this.creaFinestra();
@@ -28,8 +34,7 @@ public class JCarcassoneFrame extends JFrame
 		this.setTitle("Carcassonne - swKnights");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
-		this.setMinimumSize(new Dimension(1200, 600));
-
+		this.setMinimumSize(DIMENSIONE_MINIMA);
 	}
 
 	private void creaMenu()
@@ -40,10 +45,12 @@ public class JCarcassoneFrame extends JFrame
 
 	private void creaTavolo()
 	{
-		Box box = Box.createHorizontalBox();
-		this.add(box);
 		this.tavolo = new JCarcassonneTavolo();
+		Box box = Box.createHorizontalBox();
+		box.add(Box.createHorizontalGlue());
 		box.add(this.tavolo);
+		box.add(Box.createHorizontalGlue());
+		this.add(box);
 	}
 
 	private void creaBarraComandi()
@@ -52,17 +59,13 @@ public class JCarcassoneFrame extends JFrame
 		this.add(this.barraLaterale, BorderLayout.WEST);
 	}
 
-	public void showGui()
-	{
-		this.pack();
-		this.setVisible(true);
-	}
-
 	private JCarcassonneMenu		menu;
 
 	private JCarcassonneLaterale	barraLaterale;
 
 	private JCarcassonneTavolo		tavolo;
+
+	private static final Dimension	DIMENSIONE_MINIMA	= new Dimension(1200, 600);
 
 	private static final long		serialVersionUID	= -5492055857856379920L;
 

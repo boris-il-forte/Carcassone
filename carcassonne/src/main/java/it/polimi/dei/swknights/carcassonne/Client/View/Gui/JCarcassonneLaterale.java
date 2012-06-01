@@ -14,14 +14,15 @@ public class JCarcassonneLaterale extends JPanel
 		this.aggiungiBox();
 
 	}
-	
+
 	private void aggiungiBox()
 	{
 		this.box = Box.createVerticalBox();
-		this.add(this.box);
 		this.aggiungiComponenti();
+		this.add(this.box);
+		
 	}
-	
+
 	private void aggiungiComponenti()
 	{
 		this.aggiungiScorrimento();
@@ -30,27 +31,24 @@ public class JCarcassonneLaterale extends JPanel
 
 	private void aggiungiScorrimento()
 	{
+		this.box.add(Box.createVerticalGlue());
 		this.scorrimentoMappa = new JCarcassonneScorrimentoMappa();
 		this.box.add(this.scorrimentoMappa);
-		
-		
 	}
-	
+
 	private void aggiungiZoom()
 	{
+		this.box.add(Box.createVerticalGlue());
 		this.zoom = new JCarcassonneZoom();
 		this.box.add(this.zoom);
 	}
 
-
-
 	private Box								box;
-	
+
 	private JCarcassonneScorrimentoMappa	scorrimentoMappa;
-	
+
 	private JCarcassonneZoom				zoom;
-	
-	private static final long	serialVersionUID	= -1423697317579326895L;
-	
+
+	private static final long						serialVersionUID	= -1423697317579326895L;
 
 }

@@ -17,6 +17,13 @@ public class Gui extends ModuloView implements ActionListener
 		this.finestra = new JCarcassoneFrame();
 	}
 
+	@Override
+	public void run()
+	{
+		this.finestra.showGui();
+	
+	}
+
 	public void actionPerformed(ActionEvent arg0)
 	{
 		// TODO Auto-generated method stub
@@ -83,13 +90,6 @@ public class Gui extends ModuloView implements ActionListener
 	public void attendiInput()
 	{
 		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void run()
-	{
-		this.finestra.showGui();
 
 	}
 
