@@ -85,6 +85,7 @@ public class Gui extends ModuloView implements ActionListener
 	@Override
 	public void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
 	{
+		System.out.println("nuova tessera " + tessera.toProtocolString());
 		Icon iconaTessera = this.immagini.getIcon(tessera.toProtocolString());
 		this.finestra.aggiornaTesseraCorrente(iconaTessera);
 	}
