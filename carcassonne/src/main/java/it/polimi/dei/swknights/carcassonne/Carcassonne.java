@@ -1,18 +1,17 @@
 package it.polimi.dei.swknights.carcassonne;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.View;
-import it.polimi.dei.swknights.carcassonne.ImageLoader.ImageLoader;
+import it.polimi.dei.swknights.carcassonne.ImageLoader.IconGetter;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+import javax.swing.Icon;
 
 class Carcassonne
 {
@@ -21,8 +20,8 @@ class Carcassonne
 		Executor superStarDestroyer = Executors.newCachedThreadPool();
 		String risposta = "";
 		View view;
-		ImageLoader imageLoader = new ImageLoader();
-		Icon icon = new ImageIcon(imageLoader.getOriginalImage(""));
+		IconGetter iconGetter = new IconGetter();
+		Icon icon = iconGetter.getIcon("");
 		JCarcassonneBegin begin = new JCarcassonneBegin(icon);
 		
 		

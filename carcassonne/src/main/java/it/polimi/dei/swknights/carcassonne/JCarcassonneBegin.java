@@ -15,6 +15,19 @@ public class JCarcassonneBegin
 		String risposta = (String) JOptionPane.showInputDialog(null, DOMANDA, NOME_DIALOGO,
 				JOptionPane.PLAIN_MESSAGE, this.icon, TIPO_AVVIO, PREDEFINITO);
 		
+		if(risposta != null)
+		{
+			return this.parseRisposta(risposta);
+		}
+		else 
+		{
+			return "";
+		}
+		
+	}
+
+	private String parseRisposta(String risposta)
+	{
 		if( risposta.equals("solo la CLI"))
 		{
 			return "Cli";
@@ -39,6 +52,7 @@ public class JCarcassonneBegin
 		{
 			return "";
 		}
+		
 	}
 
 	private Icon					icon;
