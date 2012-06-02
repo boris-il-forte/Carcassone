@@ -23,7 +23,7 @@ public class ProxyView extends AbstractConnessioneView
 
 	public ProxyView()
 	{
-		this.interpreteSocket = new InterpreteSocket();
+		this.interpreteSocket = new InterpreteSocket(this);
 	}
 	
 	@Override
