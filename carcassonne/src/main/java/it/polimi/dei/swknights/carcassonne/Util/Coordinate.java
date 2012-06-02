@@ -60,7 +60,7 @@ public class Coordinate
 	/**
 	 * Returns the coordinate near this in the given direction (coordinate)
 	 * e.g. if this = 1,1   this.getCoordinateAt ( 0,1)  returns
-	 * 0, 1
+	 * 1, 2
 	 * @param coordinateRelativa
 	 * @return
 	 */
