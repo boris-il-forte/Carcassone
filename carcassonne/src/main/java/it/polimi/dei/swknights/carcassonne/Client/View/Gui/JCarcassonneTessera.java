@@ -20,6 +20,7 @@ public class JCarcassonneTessera extends JLayeredPane
 	
 	public void setTessera(Icon icon)
 	{
+
 		this.immagineTessera.setIcon(icon);
 	}
 	

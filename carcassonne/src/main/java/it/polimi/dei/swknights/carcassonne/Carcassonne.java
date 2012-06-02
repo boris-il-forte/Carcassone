@@ -3,6 +3,9 @@ package it.polimi.dei.swknights.carcassonne;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
@@ -19,7 +22,8 @@ class Carcassonne
 		String risposta = "";
 		View view;
 		ImageLoader imageLoader = new ImageLoader();
-		JCarcassonneBegin begin = new JCarcassonneBegin(imageLoader.getIcon(""));
+		Icon icon = new ImageIcon(imageLoader.getOriginalImage(""));
+		JCarcassonneBegin begin = new JCarcassonneBegin(icon);
 		
 		
 		do
