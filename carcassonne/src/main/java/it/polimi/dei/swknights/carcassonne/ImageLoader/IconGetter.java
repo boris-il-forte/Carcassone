@@ -13,6 +13,13 @@ public class IconGetter
 		this.currentDim = ScaledImageGetter.DIM_STANDARD;
 	}
 	
+	public Icon getOriginalIcon(String stringToFind)
+	{
+		IconFinder finder = new IconFinder(stringToFind);
+		Image image = this.immagini.getOriginalImage(finder.toString());
+		return new ImageIcon(image);
+	}
+	
 	public Icon getIcon(String stringToFind)
 	{
 		return this.getIcon(stringToFind,this.currentDim);

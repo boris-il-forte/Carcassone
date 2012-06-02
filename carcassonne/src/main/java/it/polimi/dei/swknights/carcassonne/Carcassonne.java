@@ -21,7 +21,7 @@ class Carcassonne
 		String risposta = "";
 		View view;
 		IconGetter iconGetter = new IconGetter();
-		Icon icon = iconGetter.getIcon("");
+		Icon icon = iconGetter.getOriginalIcon("");
 		JCarcassonneBegin begin = new JCarcassonneBegin(icon);
 		
 		

@@ -1,6 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -69,10 +72,20 @@ public class ImageLoader
 		return this.errorImage;
 	}
 
+	protected Image scalaImmagine(BufferedImage original, int dim)
+	{
+		BufferedImage resized = new BufferedImage(dim, dim, original.getType());
+	    Graphics2D g = resized.createGraphics();
+	    g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+	    g.drawImage(original, 0, 0, dim, dim, 0, 0, original.getWidth(), original.getHeight(), null);
+	    g.dispose();
+	    return resized;
+	}
+
 	private void aggiungiRuotate()
 	{
 		RuotaImmagini ruotatore = new RuotaImmagini(this.mappaImmagini, DIM_ORIGINALE);
-		System.out.println("ottenute "+ruotatore.getMapRuotate().size()+ " tessere ruotate");
+		System.out.println("ottenute " + ruotatore.getMapRuotate().size() + " tessere ruotate");
 		this.mappaImmagini.putAll(ruotatore.getMapRuotate());
 	}
 
@@ -80,12 +93,8 @@ public class ImageLoader
 	{
 		for (Entry<String, URL> entryURL : this.mappaURL.entrySet())
 		{
-			Image image = ImageIO.read(entryURL.getValue());
+			Image image  = this.scalaImmagine(ImageIO.read(entryURL.getValue()), DIM_ORIGINALE);
 			this.mappaImmagini.put(entryURL.getKey(), image);
-			if (image == null)
-			{
-				System.out.println(entryURL.getKey() + "non caricata...");
-			}
 		}
 	}
 
@@ -107,6 +116,7 @@ public class ImageLoader
 
 	private void setErrore() throws IOException
 	{
+		System.out.println("chiamato set errore");
 		this.errorURL = ImageLoader.class.getResource("/error.jpg");
 		this.errorImage = ImageIO.read(this.errorURL);
 	}
@@ -119,5 +129,5 @@ public class ImageLoader
 
 	private Map<String, URL>	mappaURL;
 
-	private static final int	DIM_ORIGINALE	= 300;
+	private static final int	DIM_ORIGINALE	= 150;
 }

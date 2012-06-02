@@ -41,7 +41,7 @@ public class RuotaImmagini
 
 	private Image ruotaImmagine(Image immagine)
 	{
-		if(immagine instanceof Image) //il male è a volte inevitabile...
+		if(immagine instanceof BufferedImage) //il male è a volte inevitabile...
 		{
 			BufferedImage vecchia = (BufferedImage)immagine;
 			BufferedImage biFlip = new BufferedImage(this.dimensioneImmagini, this.dimensioneImmagini, vecchia.getType());
