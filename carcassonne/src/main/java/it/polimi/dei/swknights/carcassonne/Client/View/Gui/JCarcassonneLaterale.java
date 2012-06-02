@@ -20,7 +20,7 @@ public class JCarcassonneLaterale extends JPanel
 
 	public void aggiornaTesseraCorrente(Icon tessera)
 	{
-		this.tesseraCorrente.setTessera(tessera);	
+		this.tesseraCorrente.setTessera(tessera);
 	}
 
 	private void aggiungiBox()
@@ -42,13 +42,13 @@ public class JCarcassonneLaterale extends JPanel
 	{
 		final Dimension dimensione = new Dimension(LATO_TESSERA, LATO_TESSERA);
 		final int spazio = 50;
-		this.tesseraCorrente = new JCarcassonneTessera(new Rectangle(2,2,148,148));
+		this.tesseraCorrente = new JCarcassonneTessera(BOUNDING_BOX);
 		this.tesseraCorrente.setBorder(BorderFactory.createEtchedBorder());
 		this.tesseraCorrente.setMinimumSize(dimensione);
 		this.tesseraCorrente.setPreferredSize(dimensione);
 		this.tesseraCorrente.setMaximumSize(dimensione);
 		this.box.add(this.tesseraCorrente);
-		this.box.add(Box.createRigidArea(new Dimension(0,spazio)));
+		this.box.add(Box.createRigidArea(new Dimension(0, spazio)));
 
 	}
 
@@ -75,6 +75,8 @@ public class JCarcassonneLaterale extends JPanel
 	private JCarcassonneZoom				zoom;
 
 	private static final int				LATO_TESSERA		= 150;
+
+	private static final Rectangle			BOUNDING_BOX		= new Rectangle(1, 1, 147, 147);
 
 	private static final long				serialVersionUID	= -1423697317579326895L;
 
