@@ -52,6 +52,7 @@ public class RuotaImmagini
 		}
 		else 
 		{
+			System.out.println("MAAAALEEEE");
 			return immagine;
 		}
 	}

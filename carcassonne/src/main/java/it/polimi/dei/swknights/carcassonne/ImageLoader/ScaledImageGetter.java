@@ -10,20 +10,24 @@ public class ScaledImageGetter extends ImageLoader
 	public ScaledImageGetter()
 	{
 		super();
-		this.mappaAttuale = null;
+		this.mappaImmaginiScalate = null;
+		this.currentDim = 0;
 		this.setImageDim(DIM_STANDARD);
-		this.currentDim = DIM_STANDARD;
+		System.out.println("la mappa contiene le seguenti tessere");
+		for(String string : this.mappaImmaginiScalate.keySet()) System.out.println(string);
 	}
 
 	public Image getImage(String string)
 	{
-		Image immagine = this.mappaAttuale.get(string);
+		System.out.println("cerco immagine " + string );
+		Image immagine = this.mappaImmaginiScalate.get(string);
 		if (immagine != null)
 		{
 			return immagine;
 		}
 		else
 		{
+			System.out.println("c'è stato un errore, carico un'immagine sostitutiva");
 			return this.getErrore();
 		}
 	}
@@ -33,19 +37,19 @@ public class ScaledImageGetter extends ImageLoader
 		if(dimensione != this.currentDim)
 		{
 			this.currentDim = dimensione;
-			this.mappaAttuale = new HashMap<String, Image>();
+			this.mappaImmaginiScalate = new HashMap<String, Image>();
 			for (Entry<String, Image> entryImage : this.getOriginalSet())
 			{
 				Image standardImage = entryImage.getValue().getScaledInstance(dimensione, dimensione,
 						Image.SCALE_FAST);
-				this.mappaAttuale.put(entryImage.getKey(), standardImage);
+				this.mappaImmaginiScalate.put(entryImage.getKey(), standardImage);
 			}
 		}
 	}
 
 	private int					currentDim;
 
-	private Map<String, Image>	mappaAttuale;
+	private Map<String, Image>	mappaImmaginiScalate;
 
 
 	public static final int	DIM_STANDARD	= 60;

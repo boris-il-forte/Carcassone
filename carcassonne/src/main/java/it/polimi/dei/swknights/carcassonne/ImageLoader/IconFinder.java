@@ -13,6 +13,12 @@ public class IconFinder
 		this.trovaStringa(stringToFind);		
 	}
 	
+	@Override
+	public String toString()
+	{
+		return this.string.toString();
+	}
+	
 	private void trovaStringa(String stringToFind)
 	{
 		
@@ -37,11 +43,5 @@ public class IconFinder
 		
 	}
 
-	@Override
-	public String toString()
-	{
-		return this.string.toString();
-	}
-	
 	private StringBuilder string;
 }

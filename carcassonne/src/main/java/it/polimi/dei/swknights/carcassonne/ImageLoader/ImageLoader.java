@@ -24,6 +24,7 @@ public class ImageLoader
 			this.leggiFileCartella();
 			this.apriFilesCartella();
 			this.aggiungiRuotate();
+			System.out.println("trovate "+this.mappaImmagini.size()+" immagini");
 		}
 		catch (IOException e)
 		{
@@ -75,7 +76,7 @@ public class ImageLoader
 
 	private void apriFilesCartella() throws IOException
 	{
-		for (Entry<String, URL> entryURL : mappaURL.entrySet())
+		for (Entry<String, URL> entryURL : this.mappaURL.entrySet())
 		{
 			Image image = ImageIO.read(this.errorURL);
 			this.mappaImmagini.put(entryURL.getKey(), image);

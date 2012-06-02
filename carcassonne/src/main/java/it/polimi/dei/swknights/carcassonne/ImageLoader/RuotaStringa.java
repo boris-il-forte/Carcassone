@@ -24,7 +24,6 @@ public class RuotaStringa
 
 	private String ruota(String daRuotare)
 	{
-		System.out.println(daRuotare);
 		StringBuilder builder = new StringBuilder();
 		char costruzioni[] = this.getCostruzioniPunticardinali(daRuotare);
 		char collegamenti[] = this.getCollegamenti(daRuotare);
