@@ -16,24 +16,40 @@ public class ImageLoader
 	{
 		this.mappaURL = new HashMap<String, URL>();
 		this.mappaFiles = new HashMap<String, Icon>();
+		this.setErrore();
 		this.leggiFileCartella();
 		this.apriFilesCartella();
 	}
-	
+
 	public URL getUrl(String stringa)
 	{
-		return this.mappaURL.get(stringa);
+		URL url = this.mappaURL.get(stringa);
+		if (url != null)
+		{
+			return url;
+		}
+		else
+		{
+			return this.errorURL;
+		}
 	}
-	
-	public Icon getIcon(String Stringa)
+
+	public Icon getIcon(String stringa)
 	{
-		return this.mappaFiles.get(Stringa);
+		Icon icon = this.mappaFiles.get(stringa);
+		if (icon != null)
+		{
+			return icon;
+		}
+		else
+		{
+			return this.errorIcon;
+		}
 	}
-	
 
 	private void apriFilesCartella()
 	{
-		for(Entry<String, URL> entryURL : mappaURL.entrySet())
+		for (Entry<String, URL> entryURL : mappaURL.entrySet())
 		{
 			Icon icona = new ImageIcon(entryURL.getValue());
 			this.mappaFiles.put(entryURL.getKey(), icona);
@@ -52,6 +68,16 @@ public class ImageLoader
 			this.mappaURL.put(stringImmagine.split("\\.")[0], urlImmagine);
 		}
 	}
+
+	private void setErrore()
+	{
+		this.errorURL = ImageLoader.class.getResource("/error.jpg");
+		this.errorIcon = new ImageIcon(this.errorURL);
+	}
+
+	private Icon				errorIcon;
+
+	private URL					errorURL;
 
 	private Map<String, Icon>	mappaFiles;
 
