@@ -2,9 +2,11 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Rectangle;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.Icon;
 import javax.swing.JPanel;
 
 public class JCarcassonneLaterale extends JPanel
@@ -14,7 +16,11 @@ public class JCarcassonneLaterale extends JPanel
 	{
 		this.setLayout(new FlowLayout());
 		this.aggiungiBox();
+	}
 
+	public void aggiornaTesseraCorrente(Icon tessera)
+	{
+		this.tesseraCorrente.setTessera(tessera);	
 	}
 
 	private void aggiungiBox()
@@ -36,7 +42,7 @@ public class JCarcassonneLaterale extends JPanel
 	{
 		final Dimension dimensione = new Dimension(LATO_TESSERA, LATO_TESSERA);
 		final int spazio = 50;
-		this.tesseraCorrente = new JCarcassonneTessera();
+		this.tesseraCorrente = new JCarcassonneTessera(new Rectangle(2,2,148,148));
 		this.tesseraCorrente.setBorder(BorderFactory.createEtchedBorder());
 		this.tesseraCorrente.setMinimumSize(dimensione);
 		this.tesseraCorrente.setPreferredSize(dimensione);

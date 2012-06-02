@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class JCarcassonneTavolo extends JPanel
 
 		for (int i = 0; i < NUMERO_CASELLE; i++)
 		{
-			JCarcassonneTessera tessera = new JCarcassonneTessera();
+			JCarcassonneTessera tessera = new JCarcassonneTessera(new Rectangle(0,0,DIMENSIONE_CELLE,DIMENSIONE_CELLE));
 			this.listaTessere.add(tessera);
 			this.add(tessera);
 		}

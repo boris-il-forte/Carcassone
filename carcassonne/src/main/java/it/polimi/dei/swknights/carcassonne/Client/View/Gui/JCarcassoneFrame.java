@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.Box;
+import javax.swing.Icon;
 import javax.swing.JFrame;
 
 public class JCarcassoneFrame extends JFrame
@@ -19,6 +20,11 @@ public class JCarcassoneFrame extends JFrame
 	{
 		this.pack();
 		this.setVisible(true);
+	}
+
+	public void aggiornaTesseraCorrente(Icon tessera)
+	{
+		this.barraLaterale.aggiornaTesseraCorrente(tessera);
 	}
 
 	private void inizializzaFinestra()
