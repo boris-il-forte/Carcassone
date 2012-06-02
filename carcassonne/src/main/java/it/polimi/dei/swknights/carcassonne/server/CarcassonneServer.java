@@ -50,9 +50,8 @@ public class CarcassonneServer implements Runnable
 	private void gestisciConnessione(Socket socket)
 	{
 		// TODO passare la socket al proxy del server...
-		ProxyView proxy = new ProxyView();
-		proxy.elabora(socket);
-		
+		ProxyView proxy = new ProxyView(socket);
+		proxy.run();
 	}
 
 	private void print(String screenMessage)

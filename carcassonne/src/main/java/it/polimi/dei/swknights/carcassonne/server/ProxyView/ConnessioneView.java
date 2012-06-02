@@ -1,14 +1,19 @@
 package it.polimi.dei.swknights.carcassonne.server.ProxyView;
 
-import it.polimi.dei.swknights.carcassonne.Connessioni.Connessione;
 
+import java.io.IOException;
+import java.util.EventObject;
 import java.util.List;
 
-public class ConnessioneView extends AbstractConnessioneView
+public abstract class ConnessioneView extends AbstractConnessioneView
 {
+	
+	public abstract void inizializza();
+	
+	public abstract EventObject generaEvento();
 
-	public Connessione	connessione;
+	public abstract void riceviInput() throws IOException;
 
-	public List			myConnessione;
-
+	public abstract void close();
+	
 }
