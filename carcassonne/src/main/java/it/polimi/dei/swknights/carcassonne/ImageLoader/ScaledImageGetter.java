@@ -48,5 +48,5 @@ public class ScaledImageGetter extends ImageLoader
 	private Map<String, Image>	mappaAttuale;
 
 
-	private static final int	DIM_STANDARD	= 60;
+	public static final int	DIM_STANDARD	= 60;
 }
