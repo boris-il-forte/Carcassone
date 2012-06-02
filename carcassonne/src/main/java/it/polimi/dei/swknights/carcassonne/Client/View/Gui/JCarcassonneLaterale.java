@@ -26,14 +26,14 @@ public class JCarcassonneLaterale extends JPanel
 	private void aggiungiBox()
 	{
 		this.box = Box.createVerticalBox();
-		this.aggiungiComponenti();
 		this.add(this.box);
-
+		this.aggiungiComponenti();
 	}
 
 	private void aggiungiComponenti()
 	{
 		this.aggiugiTesseraCorrente();
+		this.aggiungiRotate();
 		this.aggiungiScorrimento();
 		this.aggiungiZoom();
 	}
@@ -50,6 +50,13 @@ public class JCarcassonneLaterale extends JPanel
 		this.box.add(this.tesseraCorrente);
 		this.box.add(Box.createRigidArea(new Dimension(0, spazio)));
 
+	}
+
+	private void aggiungiRotate()
+	{
+		this.box.add(Box.createVerticalGlue());
+		this.pulsanteRotate = new JCarcassonneRotate();
+		this.box.add(this.pulsanteRotate);
 	}
 
 	private void aggiungiScorrimento()
@@ -69,6 +76,8 @@ public class JCarcassonneLaterale extends JPanel
 	private Box								box;
 
 	private JCarcassonneTessera				tesseraCorrente;
+
+	private JCarcassonneRotate				pulsanteRotate;
 
 	private JCarcassonneScorrimentoMappa	scorrimentoMappa;
 

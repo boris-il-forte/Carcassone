@@ -26,9 +26,7 @@ public class ImageLoader
 			this.setErrore();
 			this.leggiFileCartella();
 			this.apriFilesCartella();
-			System.out.println("1) trovate " + this.mappaImmagini.size() + " immagini");
 			this.aggiungiRuotate();
-			System.out.println("2) trovate " + this.mappaImmagini.size() + " immagini");
 		}
 		catch (IOException e)
 		{
@@ -85,7 +83,6 @@ public class ImageLoader
 	private void aggiungiRuotate()
 	{
 		RuotaImmagini ruotatore = new RuotaImmagini(this.mappaImmagini, DIM_ORIGINALE);
-		System.out.println("ottenute " + ruotatore.getMapRuotate().size() + " tessere ruotate");
 		this.mappaImmagini.putAll(ruotatore.getMapRuotate());
 	}
 
@@ -116,9 +113,8 @@ public class ImageLoader
 
 	private void setErrore() throws IOException
 	{
-		System.out.println("chiamato set errore");
 		this.errorURL = ImageLoader.class.getResource("/error.jpg");
-		this.errorImage = ImageIO.read(this.errorURL);
+		this.errorImage = this.scalaImmagine(ImageIO.read(this.errorURL),DIM_ORIGINALE);
 	}
 
 	private Image				errorImage;
