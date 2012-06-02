@@ -7,55 +7,62 @@ import java.util.List;
 import java.util.Scanner;
 
 
-
-/*
- */
-public class ProxyView extends AbstractConnessioneView
+public class ProxyView extends AbstractConnessioneView 
 {
 
-	public ConnessioneView	realSubject;
+	public ConnessioneView	connessione;
 
-	public List				myConnessione;
-	public List				myConnessioneAView;
-	
-	InterpreteSocket  interpreteSocket;
-	//TODO?: InterpreteRMI interpreteRMI;
-
-	public ProxyView()
+	public ProxyView(Socket socket)
 	{
-		this.interpreteSocket = new InterpreteSocket(this);
+		this.connessione = new ConnessioneViewSocket(socket);
 	}
+	public ProxyView() //RMI
+	{
+		this.connessione = new ConnessioneViewRMI();
+	}
+	
 	
 	@Override
 	public void request()
 	{
 	}
-
-
-	public void elabora(Socket socket)
-	{
-		//legge e chiede al parser di capirla
-		try
+	
+	@Override
+	public void run()
+	{   
+		boolean  nonCacciatoUser=true;
+		while(nonCacciatoUser)
 		{
-			socket.getOutputStream();
 			
-			Scanner in = new Scanner(socket.getInputStream());
-			PrintWriter out = new PrintWriter(socket.getOutputStream());
-
-			while (in.hasNextLine()) {
-				String line = in.nextLine();
-				System.out.println("Proxy view, ricevuta: " + line);
-				//se line == connect inizia la partita
-				interpreteSocket.capisci(line);
-				
+			while(true)
+			{
+				try
+				{
+					connessione.riceviInput();
+					connessione.generaEvento();
+				}
+				catch (IOException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				finally
+				{
+					connessione.close();
+				}
 			}
+			
 		}
-		catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 	}
+
+
+	
+	
+	private Socket socket;
+	
+	
+	
+	
+	
 
 }

@@ -1,7 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
-import it.polimi.dei.swknights.carcassonne.Connessioni.Connessione;
 
+import java.net.Socket;
 import java.util.List;
 
 /*
@@ -9,13 +9,21 @@ import java.util.List;
 public class ProxyController extends AbstractConnessioneController
 {
 
-	public Connessione	realSubject;
-
-	public List			myConnessioneAController;
-
+	
+	public ProxyController(Socket socket)
+	{
+		this.connessione = new ConnessioneControllerSocket(socket);
+	}
+	public ProxyController() //RMI
+	{
+	
+	}
+	
 	@Override
 	public void request()
 	{
 	}
-
+	
+	private ConnessioneController connessione;
+	
 }

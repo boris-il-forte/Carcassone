@@ -12,7 +12,6 @@ public class CarcassonneClient
 	
 	public static void main(String [] a)
 	{
-		InterpreteSocket capisciRisposte = new InterpreteSocket();
 		
 		try
 		{
@@ -31,7 +30,7 @@ public class CarcassonneClient
 				socketOut.flush();
 				String socketLine = socketIn.nextLine();
 				System.out.println("socket line : " + socketLine);
-				capisciRisposte.interpreta(socketLine);
+				
 				
 			}
 			
