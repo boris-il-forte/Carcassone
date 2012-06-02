@@ -15,7 +15,7 @@ public class InterpreteSocket extends InterpreteClient
 	private static final int	PARTITA			= 1;
 	private static final int	COLOR			= 0;
 
-	public InterpreteSocket()
+	public InterpreteSocket(ProxyView proxyView)
 	{
 		comandiConnessione = null;
 		comandiView = null;
