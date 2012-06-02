@@ -44,15 +44,14 @@ public class RuotaImmagini
 		if(immagine instanceof BufferedImage) //il male è a volte inevitabile...
 		{
 			BufferedImage vecchia = (BufferedImage)immagine;
-			BufferedImage biFlip = new BufferedImage(this.dimensioneImmagini, this.dimensioneImmagini, vecchia.getType());
+			BufferedImage nuova = new BufferedImage(this.dimensioneImmagini, this.dimensioneImmagini, vecchia.getType());
 			for (int i = 0; i < this.dimensioneImmagini; i++)
 				for (int j = 0; j < this.dimensioneImmagini; j++)
-					biFlip.setRGB(this.dimensioneImmagini - 1 - j, this.dimensioneImmagini - 1 - i, vecchia.getRGB(i, j));
-			return biFlip;
+					nuova.setRGB(this.dimensioneImmagini - 1 - j, this.dimensioneImmagini - 1 - i, vecchia.getRGB(i, j));
+			return nuova;
 		}
 		else 
 		{
-			System.out.println("MAAAALEEEE");
 			return immagine;
 		}
 	}

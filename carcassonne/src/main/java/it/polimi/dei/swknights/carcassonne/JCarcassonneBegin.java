@@ -1,13 +1,26 @@
 package it.polimi.dei.swknights.carcassonne;
 
+import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class JCarcassonneBegin
 {
-	public JCarcassonneBegin(Icon icon)
+	public JCarcassonneBegin()
 	{
-		this.icon = icon;
+		URL url = JCarcassonneBegin.class.getResource("/error.jpg");
+		try
+		{
+			this.icon = new ImageIcon(ImageIO.read(url));
+		}
+		catch (IOException e)
+		{
+			this.icon = null;
+		}
 	}
 
 	public String ShowDialog()

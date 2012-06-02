@@ -4,14 +4,11 @@ import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.View;
-import it.polimi.dei.swknights.carcassonne.ImageLoader.IconGetter;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
-
-import javax.swing.Icon;
 
 class Carcassonne
 {
@@ -20,10 +17,8 @@ class Carcassonne
 		Executor superStarDestroyer = Executors.newCachedThreadPool();
 		String risposta = "";
 		View view;
-		IconGetter iconGetter = new IconGetter();
-		Icon icon = iconGetter.getOriginalIcon("");
-		JCarcassonneBegin begin = new JCarcassonneBegin(icon);
 		
+		JCarcassonneBegin begin = new JCarcassonneBegin();
 		
 		do
 		{

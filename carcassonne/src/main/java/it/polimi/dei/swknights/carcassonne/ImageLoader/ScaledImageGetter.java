@@ -18,7 +18,6 @@ public class ScaledImageGetter extends ImageLoader
 
 	public Image getImage(String string)
 	{
-		System.out.println("cerco immagine " + string );
 		Image immagine = this.mappaImmaginiScalate.get(string);
 		if (immagine != null)
 		{
@@ -26,7 +25,6 @@ public class ScaledImageGetter extends ImageLoader
 		}
 		else
 		{
-			System.out.println("c'è stato un errore, carico un'immagine sostitutiva");
 			return this.getErrore();
 		}
 	}
