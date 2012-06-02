@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -11,26 +12,36 @@ public class RuotaImmagini
 	{
 		this.dimensioneImmagini = dimensioneImmagini;
 		this.mappaImmagini = mappaImmagini;
+		this.immaginiRuotate = new HashMap<String, Image>();
 	}
 
-	public void ruotaImmagini()
+	public Map<String, Image> getMapRuotate()
 	{
-		for (Entry<String, Image> entry : mappaImmagini.entrySet())
+		for (Entry<String, Image> entry : this.mappaImmagini.entrySet())
 		{
-			RuotaStringa rotator = new RuotaStringa(entry.getKey());
-			for (int i = 1; i < NUMERO_LATI; i++)
+			if(entry.getKey().length() == 10)
 			{
-				rotator.ruotaStringa();
-				String stringaRuotata = rotator.toString();
-				Image immagineruotata = this.ruotaImmagine(entry.getValue());
-				this.immaginiRuotate.put(stringaRuotata, immagineruotata);
+				this.ruotaEntry(entry);
 			}
+		}
+		return this.immaginiRuotate;
+	}
+
+	private void ruotaEntry(Entry<String, Image> entry)
+	{
+		RuotaStringa rotator = new RuotaStringa(entry.getKey());
+		for (int i = 1; i < NUMERO_LATI; i++)
+		{
+			rotator.ruotaStringa();
+			String stringaRuotata = rotator.toString();
+			Image immagineruotata = this.ruotaImmagine(entry.getValue());
+			this.immaginiRuotate.put(stringaRuotata, immagineruotata);
 		}
 	}
 
 	private Image ruotaImmagine(Image immagine)
 	{
-		if(immagine instanceof Image)
+		if(immagine instanceof Image) //il male è a volte inevitabile...
 		{
 			BufferedImage vecchia = (BufferedImage)immagine;
 			BufferedImage biFlip = new BufferedImage(this.dimensioneImmagini, this.dimensioneImmagini, vecchia.getType());
@@ -43,7 +54,6 @@ public class RuotaImmagini
 		{
 			return immagine;
 		}
-
 	}
 
 	private Map<String, Image>	mappaImmagini;
