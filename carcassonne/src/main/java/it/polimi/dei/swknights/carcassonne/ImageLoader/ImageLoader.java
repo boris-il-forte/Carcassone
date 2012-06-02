@@ -23,6 +23,7 @@ public class ImageLoader
 			this.setErrore();
 			this.leggiFileCartella();
 			this.apriFilesCartella();
+			this.aggiungiRuotate();
 		}
 		catch (IOException e)
 		{
@@ -56,14 +57,20 @@ public class ImageLoader
 		}
 	}
 
-	protected Set<Entry<String,Image>> getOriginalSet()
+	protected Set<Entry<String, Image>> getOriginalSet()
 	{
 		return this.mappaImmagini.entrySet();
 	}
-	
+
 	protected Image getErrore()
 	{
 		return this.errorImage;
+	}
+
+	private void aggiungiRuotate()
+	{
+		RuotaImmagini ruotatore = new RuotaImmagini(this.mappaImmagini, DIM_ORIGINALE);
+		this.mappaImmagini.putAll(ruotatore.getMapRuotate());
 	}
 
 	private void apriFilesCartella() throws IOException
@@ -74,7 +81,7 @@ public class ImageLoader
 			this.mappaImmagini.put(entryURL.getKey(), image);
 		}
 	}
-	
+
 	private void leggiFileCartella()
 	{
 		InputStream cartella = ImageLoader.class.getResourceAsStream("/tiles");
@@ -88,18 +95,19 @@ public class ImageLoader
 		}
 	}
 
-	private Image				errorImage;
-
-	private URL					errorURL;
-
 	private void setErrore() throws IOException
 	{
 		this.errorURL = ImageLoader.class.getResource("/error.jpg");
 		this.errorImage = ImageIO.read(this.errorURL);
 	}
 
+	private Image				errorImage;
+
+	private URL					errorURL;
+
 	private Map<String, Image>	mappaImmagini;
 
 	private Map<String, URL>	mappaURL;
 
+	private static final int	DIM_ORIGINALE	= 300;
 }
