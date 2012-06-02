@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Util;
 
+import it.polimi.dei.swknights.carcassonne.Exceptions.ColoreNonTrovatoException;
+
 import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +17,16 @@ public class Punteggi
 	
 	public Integer get(Color colore)
 	{
-		return this.mappaPunteggi.get(colore);
+		if ( this.mappaPunteggi.get(colore) !=  null)
+		{
+			return this.mappaPunteggi.get(colore) ;
+		}
+		else
+		{
+			throw new ColoreNonTrovatoException(" non è stato possibile reperire il punteggio del colore : "
+					+ colore.toString());
+		}
+			
 	}
 	
 	public void addPunteggi(Punteggi punteggiParziali)
@@ -28,8 +39,15 @@ public class Punteggi
 
 	public void addPunteggi(Color colore, int punti)
 	{
-		int punteggio = this.mappaPunteggi.get(colore) + punti;
-		this.mappaPunteggi.put(colore, punteggio);
+		if (punti < 0 )
+		{
+			throw new IllegalArgumentException("non puoi avere un punteggio negativo!!");
+		}
+		else
+		{
+			int punteggio = this.mappaPunteggi.get(colore) + punti;
+			this.mappaPunteggi.put(colore, punteggio);
+		}
 	}
 
 	public Set<Entry<Color, Integer>> entrySet()
