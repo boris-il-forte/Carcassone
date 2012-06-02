@@ -3,7 +3,6 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.ImageLoader.IconGetter;
-import it.polimi.dei.swknights.carcassonne.ImageLoader.ImageLoader;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
@@ -13,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.util.Map;
 
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 public class Gui extends ModuloView implements ActionListener
 {
@@ -87,13 +85,7 @@ public class Gui extends ModuloView implements ActionListener
 	@Override
 	public void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
 	{
-		Icon iconaTessera = this.immagini.getIcon(tessera.toProtocolString());
-		//TODO: togliere, debug
-		ImageLoader loader = new ImageLoader();
-		iconaTessera = new ImageIcon(loader.getOriginalImage(tessera.toProtocolString()));
-		
-		//TODO: fino a qui
-	
+		Icon iconaTessera = this.immagini.getOriginalIcon(tessera.toProtocolString());
 		this.finestra.aggiornaTesseraCorrente(iconaTessera);
 	}
 

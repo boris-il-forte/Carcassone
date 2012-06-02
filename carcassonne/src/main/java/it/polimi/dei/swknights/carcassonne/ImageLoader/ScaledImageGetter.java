@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -13,8 +14,6 @@ public class ScaledImageGetter extends ImageLoader
 		this.mappaImmaginiScalate = null;
 		this.currentDim = 0;
 		this.setImageDim(DIM_STANDARD);
-		System.out.println("la mappa contiene le seguenti tessere");
-		for(String string : this.mappaImmaginiScalate.keySet()) System.out.println(string);
 	}
 
 	public Image getImage(String string)
@@ -40,8 +39,7 @@ public class ScaledImageGetter extends ImageLoader
 			this.mappaImmaginiScalate = new HashMap<String, Image>();
 			for (Entry<String, Image> entryImage : this.getOriginalSet())
 			{
-				Image standardImage = entryImage.getValue().getScaledInstance(dimensione, dimensione,
-						Image.SCALE_FAST);
+				Image standardImage = this.scalaImmagine((BufferedImage) entryImage.getValue(), dimensione);
 				this.mappaImmaginiScalate.put(entryImage.getKey(), standardImage);
 			}
 		}
