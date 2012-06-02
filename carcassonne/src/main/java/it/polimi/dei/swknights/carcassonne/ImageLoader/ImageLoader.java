@@ -1,24 +1,33 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
+import java.awt.Image;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
+import java.util.Set;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import javax.imageio.ImageIO;
 
 public class ImageLoader
 {
 	public ImageLoader()
 	{
 		this.mappaURL = new HashMap<String, URL>();
-		this.mappaFiles = new HashMap<String, Icon>();
-		this.setErrore();
-		this.leggiFileCartella();
-		this.apriFilesCartella();
+		this.mappaImmagini = new HashMap<String, Image>();
+		try
+		{
+			this.setErrore();
+			this.leggiFileCartella();
+			this.apriFilesCartella();
+		}
+		catch (IOException e)
+		{
+			return;
+		}
 	}
 
 	public URL getUrl(String stringa)
@@ -34,28 +43,38 @@ public class ImageLoader
 		}
 	}
 
-	public Icon getIcon(String stringa)
+	public Image getOriginalImage(String stringa)
 	{
-		Icon icon = this.mappaFiles.get(stringa);
-		if (icon != null)
+		Image image = this.mappaImmagini.get(stringa);
+		if (image != null)
 		{
-			return icon;
+			return image;
 		}
 		else
 		{
-			return this.errorIcon;
+			return this.errorImage;
 		}
 	}
 
-	private void apriFilesCartella()
+	protected Set<Entry<String,Image>> getOriginalSet()
+	{
+		return this.mappaImmagini.entrySet();
+	}
+	
+	protected Image getErrore()
+	{
+		return this.errorImage;
+	}
+
+	private void apriFilesCartella() throws IOException
 	{
 		for (Entry<String, URL> entryURL : mappaURL.entrySet())
 		{
-			Icon icona = new ImageIcon(entryURL.getValue());
-			this.mappaFiles.put(entryURL.getKey(), icona);
+			Image image = ImageIO.read(this.errorURL);
+			this.mappaImmagini.put(entryURL.getKey(), image);
 		}
 	}
-
+	
 	private void leggiFileCartella()
 	{
 		InputStream cartella = ImageLoader.class.getResourceAsStream("/tiles");
@@ -69,17 +88,17 @@ public class ImageLoader
 		}
 	}
 
-	private void setErrore()
-	{
-		this.errorURL = ImageLoader.class.getResource("/error.jpg");
-		this.errorIcon = new ImageIcon(this.errorURL);
-	}
-
-	private Icon				errorIcon;
+	private Image				errorImage;
 
 	private URL					errorURL;
 
-	private Map<String, Icon>	mappaFiles;
+	private void setErrore() throws IOException
+	{
+		this.errorURL = ImageLoader.class.getResource("/error.jpg");
+		this.errorImage = ImageIO.read(this.errorURL);
+	}
+
+	private Map<String, Image>	mappaImmagini;
 
 	private Map<String, URL>	mappaURL;
 
