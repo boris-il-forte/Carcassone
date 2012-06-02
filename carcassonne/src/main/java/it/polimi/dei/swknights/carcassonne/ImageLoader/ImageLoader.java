@@ -23,8 +23,9 @@ public class ImageLoader
 			this.setErrore();
 			this.leggiFileCartella();
 			this.apriFilesCartella();
+			System.out.println("1) trovate " + this.mappaImmagini.size() + " immagini");
 			this.aggiungiRuotate();
-			System.out.println("trovate "+this.mappaImmagini.size()+" immagini");
+			System.out.println("2) trovate " + this.mappaImmagini.size() + " immagini");
 		}
 		catch (IOException e)
 		{
@@ -71,6 +72,7 @@ public class ImageLoader
 	private void aggiungiRuotate()
 	{
 		RuotaImmagini ruotatore = new RuotaImmagini(this.mappaImmagini, DIM_ORIGINALE);
+		System.out.println("ottenute "+ruotatore.getMapRuotate().size()+ " tessere ruotate");
 		this.mappaImmagini.putAll(ruotatore.getMapRuotate());
 	}
 
@@ -78,8 +80,12 @@ public class ImageLoader
 	{
 		for (Entry<String, URL> entryURL : this.mappaURL.entrySet())
 		{
-			Image image = ImageIO.read(this.errorURL);
+			Image image = ImageIO.read(entryURL.getValue());
 			this.mappaImmagini.put(entryURL.getKey(), image);
+			if (image == null)
+			{
+				System.out.println(entryURL.getKey() + "non caricata...");
+			}
 		}
 	}
 
@@ -90,9 +96,12 @@ public class ImageLoader
 		while (scannerCartella.hasNext())
 		{
 			String stringImmagine = scannerCartella.nextLine();
-			StringBuilder builderPercorso = new StringBuilder("/tiles/").append(stringImmagine);
-			URL urlImmagine = ImageLoader.class.getResource(builderPercorso.toString());
-			this.mappaURL.put(stringImmagine.split("\\.")[0], urlImmagine);
+			if (!stringImmagine.startsWith("."))
+			{
+				StringBuilder builderPercorso = new StringBuilder("/tiles/").append(stringImmagine);
+				URL urlImmagine = ImageLoader.class.getResource(builderPercorso.toString());
+				this.mappaURL.put(stringImmagine.split("\\.")[0], urlImmagine);
+			}
 		}
 	}
 
