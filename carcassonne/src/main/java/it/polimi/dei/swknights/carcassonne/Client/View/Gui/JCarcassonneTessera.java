@@ -14,8 +14,8 @@ public class JCarcassonneTessera extends JLayeredPane
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		this.immagineTessera = new JLabel();
 		this.immagineSegnalino = new JLabel();
-		this.immagineTessera.add(immagineTessera, DEFAULT_LAYER);
-		this.immagineSegnalino.add(immagineSegnalino, PALETTE_LAYER);
+		this.add(immagineTessera, DEFAULT_LAYER);
+		this.add(immagineSegnalino, PALETTE_LAYER);
 	}
 	
 	public void setTessera(Icon icon)

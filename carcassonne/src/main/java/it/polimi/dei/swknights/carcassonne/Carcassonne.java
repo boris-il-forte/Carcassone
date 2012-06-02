@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne;
 
-import java.io.PrintWriter;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -12,28 +11,23 @@ import it.polimi.dei.swknights.carcassonne.ImageLoader.ImageLoader;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 
-
 class Carcassonne
 {
 	public static void main(String[] args)
 	{
-		Executor superStarDestroyer = Executors.newCachedThreadPool();  
-		PrintWriter out = new PrintWriter(System.out);
-		String risposta="";
+		Executor superStarDestroyer = Executors.newCachedThreadPool();
+		String risposta = "";
 		View view;
+		ImageLoader imageLoader = new ImageLoader();
+		JCarcassonneBegin begin = new JCarcassonneBegin(imageLoader.getIcon(""));
 		
-		new ImageLoader();
+		
 		do
 		{
-			out.println("Interfaccia grafica a finestra o Interfaccia testuale?");
-			out.println("Scrivi CLI per testuale o GUI per grafica");
-			out.flush();
-			java.util.Scanner scannerIO = new java.util.Scanner(System.in);
-			risposta = scannerIO.nextLine();
-		}
-		while(!risposta.equalsIgnoreCase("CLI") && !risposta.equalsIgnoreCase("GUI")  );
+			risposta = begin.ShowDialog();
+		} while (!risposta.equalsIgnoreCase("CLI") && !risposta.equalsIgnoreCase("GUI"));
 
-		if(risposta.equalsIgnoreCase("CLI"))
+		if (risposta.equalsIgnoreCase("CLI"))
 		{
 			view = new Cli();
 		}
@@ -41,26 +35,13 @@ class Carcassonne
 		{
 			view = new Gui();
 		}
-		
+
 		ModuloModel model = new ModuloModel();
 		Controller controller = new ModuloController(model);
-		
+
 		view.addListener(controller);
-	 	model.addListener(view);
-	 	superStarDestroyer.execute(view);
-	 	superStarDestroyer.execute(controller);	 	
+		model.addListener(view);
+		superStarDestroyer.execute(view);
+		superStarDestroyer.execute(controller);
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
