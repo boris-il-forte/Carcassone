@@ -31,12 +31,15 @@ public class JCarcassonneLaterale extends Box
 		this.aggiungiSpazio();
 		this.aggiungiRotate();
 		this.aggiungiSpazio();
+		this.aggiungiSpazio();
+		this.aggiungiPass();
+		this.aggiungiSpazio();
 		this.aggiungiScorrimento();
 		this.aggiungiSpazio();
 		this.aggiungiZoom();
 		this.aggiungiSpazio();
 	}
-	
+
 	private void aggiungiSpazio()
 	{
 		this.add(Box.createVerticalGlue());
@@ -60,6 +63,12 @@ public class JCarcassonneLaterale extends Box
 		this.add(this.pulsanteRotate);
 	}
 
+	private void aggiungiPass()
+	{
+		this.pulsantePass = new JCarcassonnePass();
+		this.add(this.pulsantePass);
+	}
+
 	private void aggiungiScorrimento()
 	{
 		this.scorrimentoMappa = new JCarcassonneScorrimentoMappa();
@@ -74,13 +83,15 @@ public class JCarcassonneLaterale extends Box
 
 	private JCarcassonneCasella				tesseraCorrente;
 
-	private JCarcassonneRotate				pulsanteRotate;
+	private JCarcassonneButton				pulsanteRotate;
+
+	private JCarcassonneButton				pulsantePass;
 
 	private JCarcassonneScorrimentoMappa	scorrimentoMappa;
 
 	private JCarcassonneZoom				zoom;
-	
-	private static final Dimension			MINIMO_SPAZIO 		= new Dimension(0, 50);
+
+	private static final Dimension			MINIMO_SPAZIO		= new Dimension(0, 50);
 
 	private static final int				LATO_TESSERA		= 150;
 
