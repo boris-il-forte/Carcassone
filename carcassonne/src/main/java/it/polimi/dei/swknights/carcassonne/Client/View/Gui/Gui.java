@@ -16,9 +16,10 @@ public class Gui extends ModuloView
 {
 	public Gui()
 	{
-		super(new Coordinate(12, 6));
+		super(new Coordinate(LARGHEZZA, ALTEZZA ));
 		this.finestra = new JCarcassoneFrame();
 		this.immagini = new IconGetter();
+		this.setCoordinataNordOvest(new Coordinate(-LARGHEZZA / 2, -ALTEZZA / 2));
 	}
 
 	@Override
@@ -88,5 +89,9 @@ public class Gui extends ModuloView
 	private JCarcassoneFrame	finestra;
 
 	private IconGetter			immagini;
+
+	private static final int	LARGHEZZA	= 12; //TODO calcola da risoluzione...
+
+	private static final int	ALTEZZA	= 6;
 
 }
