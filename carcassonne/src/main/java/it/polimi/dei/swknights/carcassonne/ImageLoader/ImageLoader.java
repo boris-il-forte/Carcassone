@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
+
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -55,6 +57,7 @@ public class ImageLoader
 		}
 		else
 		{
+			Debug.print("stringa immagine originale non trovata: " + stringa);
 			return this.errorImage;
 		}
 	}

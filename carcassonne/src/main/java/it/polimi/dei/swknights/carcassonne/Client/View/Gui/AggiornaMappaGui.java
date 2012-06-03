@@ -32,7 +32,7 @@ public class AggiornaMappaGui
 		for (EntryTessera entryTessera : listaTessere)
 		{
 			Coordinate coordinateTessera = entryTessera.getCoordinate();
-			String stringaTessera = entryTessera.getTessera().toString();
+			String stringaTessera = entryTessera.getTessera().toProtocolString();
 			Integer numeroCasella = this.traduciCoordinate(coordinateTessera);
 			mappaTessere.put(stringaTessera, numeroCasella);
 		}
