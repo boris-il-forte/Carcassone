@@ -30,11 +30,10 @@ public class CarcassonneClient
 				{
 					Debug.print("inserisci qualcosa di sensato! :");
 					String inputLine = stdin.nextLine();
-					socketOut.println(inputLine);
-					socketOut.flush();
-					//il server	non risponde qua (dove risponde?)
+					socketOut.println(inputLine); //invia in rete !  (o cmq in uscita dal socket)
+					socketOut.flush(); //si dico davvero, vai!
 					
-					
+					//il server	non risponde qua ()
 				}
 				
 			}

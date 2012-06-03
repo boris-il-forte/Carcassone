@@ -23,7 +23,7 @@ public class IniziaCliOnLine extends Inizio
 		//3) model . addlistener (view) da farsi su server
 		
 		superStarDestroyer.execute(view);  //4)
-		
+		superStarDestroyer.execute(controller);
 	}
 	
 	Socket socket = null;

@@ -25,7 +25,9 @@ public class IniziaServer extends Inizio
 		socket = CarcassonneSocket.dammiSocket();			
 		view = new ProxyView(socket);
 		model.addListener(view);
-		superStarDestroyer.execute(controller);	
+		
+		superStarDestroyer.execute(controller);
+		superStarDestroyer.execute(view);
 		
 	}
 	
