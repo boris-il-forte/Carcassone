@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -97,11 +98,11 @@ public class ImageLoader
 
 	private void leggiFileCartella()
 	{
-		InputStream cartella = ImageLoader.class.getResourceAsStream("/tiles");
-		Scanner scannerCartella = new Scanner(cartella);
-		while (scannerCartella.hasNext())
+		URL urlCartella = ImageLoader.class.getResource("/tiles");
+		File cartella = new File(urlCartella.getFile());
+		for( String stringImmagine : cartella.list())
 		{
-			String stringImmagine = scannerCartella.nextLine();
+			//TODO chiedere che mi sa che non va bene...
 			if (!stringImmagine.startsWith("."))
 			{
 				StringBuilder builderPercorso = new StringBuilder("/tiles/").append(stringImmagine);
