@@ -2,11 +2,12 @@ package it.polimi.dei.swknights.carcassonne.server.ProxyView;
 
 import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 
 import java.util.EventListener;
 import java.util.List;
 
-public class AbstractConnessioneView implements View
+public abstract class AbstractConnessioneView implements View
 {
 
 	public List	myPartita;
@@ -16,10 +17,8 @@ public class AbstractConnessioneView implements View
 
 	}
 	
-	public void riceviModificheModel(ControllerEvent event)
-	{
-		
-	}
+	public abstract void riceviModificheModel(ControllerEvent event) ;
+
 
 	public void run()
 	{

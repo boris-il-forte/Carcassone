@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.server.ProxyView;
 
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -58,5 +60,12 @@ public class ProxyView extends AbstractConnessioneView
 	}
 
 	private Socket	socket;
+
+	@Override
+	public void riceviModificheModel(ControllerEvent event)
+	{
+		connessione.inviaProtocolloPerEvento(event);
+		
+	}
 
 }

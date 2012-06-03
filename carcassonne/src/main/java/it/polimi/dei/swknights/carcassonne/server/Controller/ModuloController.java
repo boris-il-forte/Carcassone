@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
@@ -46,6 +47,7 @@ public class ModuloController implements Controller
 
 	public void run()
 	{
+		
 		this.primaMossaPartita();
 		try
 		{

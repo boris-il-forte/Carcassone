@@ -13,11 +13,14 @@ public class InizioGiocoEvent extends ControllerEvent
 {
 
 
-	public InizioGiocoEvent(Object source, AdapterTessera tesseraIniziale, Color giocatore)
+	public InizioGiocoEvent(Object source, AdapterTessera tesseraIniziale,
+			Color giocatore, Integer numeroGiocatori, String idPartita)
 	{
 		super(source);
 		this.giocatore=giocatore;
 		this.tesseraIniziale = tesseraIniziale;
+		this.idPartita = idPartita;
+		this.numeroGiocatori = numeroGiocatori;
 		this.setComando(MessaggiController.beginGame);
 		
 	}
@@ -25,6 +28,18 @@ public class InizioGiocoEvent extends ControllerEvent
 	public AdapterTessera getTesseraIniziale()
 	{
 		return this.tesseraIniziale;
+	}
+	
+	public String getIdPartita()
+	{
+		return this.idPartita;
+		
+	}
+
+	public int getNumGiocatori()
+	{
+		return this.numeroGiocatori;
+		
 	}
 	
 	public Color getGiocatore()
@@ -36,6 +51,8 @@ public class InizioGiocoEvent extends ControllerEvent
 
 	 private final AdapterTessera tesseraIniziale;
 	 private final Color giocatore;
+	 private final Integer numeroGiocatori;
+	 private final String idPartita;
 	
 	 @Override
 		public void accept(ViewHandler handler)
@@ -43,4 +60,6 @@ public class InizioGiocoEvent extends ControllerEvent
 			handler.visit(this);
 			
 		}
+
+
 }
