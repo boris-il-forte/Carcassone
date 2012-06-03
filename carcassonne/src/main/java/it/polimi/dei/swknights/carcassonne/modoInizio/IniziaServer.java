@@ -23,15 +23,15 @@ public class IniziaServer extends Inizio
 		System.out.println("Server");
 		CarcassonneServer cs = new CarcassonneServer();
 		socket = CarcassonneSocket.dammiSocket();			
-		proxyView = new ProxyView(socket);
-		model.addListener(proxyView);
+		view = new ProxyView(socket);
+		model.addListener(view);
 		superStarDestroyer.execute(controller);	
 		
 	}
 	
 	
 	Socket socket = null;
-	ProxyController proxyController = null;
-	ProxyView proxyView = null; 
+	ProxyController controller = null;
+	ProxyView view = null; 
 
 }

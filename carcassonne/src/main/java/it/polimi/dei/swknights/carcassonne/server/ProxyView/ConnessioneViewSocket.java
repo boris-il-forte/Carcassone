@@ -3,6 +3,8 @@ package it.polimi.dei.swknights.carcassonne.server.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.Connessione.ComandiConnessione;
 import it.polimi.dei.swknights.carcassonne.Events.Game.ComandiView;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -124,6 +126,18 @@ public class ConnessioneViewSocket extends ConnessioneView
 		this.capisci(datoCorrente);
 		return null;
 	}
+	
+	
+	@Override
+ 	public synchronized void riceviModificheModel(ControllerEvent event)
+	{
+		if (event instanceof InizioGiocoEvent)
+		{
+			InizioGiocoEvent ige = (InizioGiocoEvent) event;
+			Debug.print(ige.toString());
+		}
+	}
+	
 
 	@Override
 	public void close()
@@ -151,5 +165,24 @@ public class ConnessioneViewSocket extends ConnessioneView
 	private static final int	DOPO_RECONNECT	= 1;
 	private static final int	PARTITA			= 1;
 	private static final int	COLOR			= 0;
+	
+	@Override
+	public void inviaProtocolloPerEvento(ControllerEvent event)
+	{
+		if (event instanceof InizioGiocoEvent)
+		{
+			InizioGiocoEvent ige = (InizioGiocoEvent)event;
+			ige.getGiocatore();
+			ige.getTesseraIniziale();
+			ige.getIdPartita();
+			ige.getNumGiocatori();
+		}
+		
+	}
+	
+	
+	
+	
+	
 
 }

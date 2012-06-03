@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.Model;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
@@ -98,9 +99,11 @@ public class ModuloModel extends AbstractModel
 			this.creaGiocatori(numeroGiocatori);
 
 			this.datiPartita.getAreaDiGioco().addTessera(new Coordinate(0, 0), primaTessera);
-
-			this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore()));
+			Debug.print("inizia gioco - event");
+			this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore(),
+					this.getListaGiocatori().size(), this.getIdPartita()));
 			this.cominciaTurno();
+			
 		}
 		catch (MossaNonValidaException e)
 		{
@@ -108,6 +111,13 @@ public class ModuloModel extends AbstractModel
 			return;
 		}
 	}
+	
+	public void setIdPartita(String idValue)
+	{
+		this.idPartita = idValue;				
+	}
+
+
 	/**
 	 * Begins the turn:
 	 * change to current color and draw a card from deck
@@ -213,6 +223,11 @@ public class ModuloModel extends AbstractModel
 		return this.datiPartita.getGiocatoreCorrente();
 	}
 
+	private String getIdPartita()
+	{
+		return this.idPartita;
+	}
+	
 	private Punteggi getPunteggi()
 	{
 		Punteggi punteggi = new Punteggi();
@@ -224,6 +239,8 @@ public class ModuloModel extends AbstractModel
 		return punteggi;
 	}
 
+	private /*final*/ String idPartita;
+	
 	private DatiPartita	datiPartita;
 
 	private Tessera		tesseraCorrente;
