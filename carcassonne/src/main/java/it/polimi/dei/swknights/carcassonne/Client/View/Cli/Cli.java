@@ -16,8 +16,6 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Scanner;
 
 /**
@@ -30,11 +28,10 @@ public class Cli extends ModuloView
 {
 	public Cli()
 	{
-		super();
+		super(new Coordinate(LARGHEZZA, ALTEZZA));
 		Debug.print("sono la cli creo cli");
 		this.out = new PrintWriter(System.out);
 		this.in = new Scanner(System.in);
-		this.coordinataRelativaSE = new Coordinate(LARGHEZZA, ALTEZZA);
 		this.setCoordinataNordOvest(new Coordinate(-LARGHEZZA / 2, -ALTEZZA / 2));
 		this.parser = new ParserComandi(this);
 		this.informaUser = new AvvisiUser(out);
@@ -53,7 +50,7 @@ public class Cli extends ModuloView
 				this.attendiInput(); // attende e gestisce l'input
 				this.attendiRispostaController(); // attente il ritorno della
 													// fase inizio
-			} while (this.gestoreFasi.partitaOk());
+			} while (this.getGestoreFasi().partitaOk());
 		}
 
 		catch (InterruptedException e)
@@ -70,18 +67,11 @@ public class Cli extends ModuloView
 		Stampante stampante = this.inizializzaStampante();
 		Coordinate base = this.getCoordinataNordOvest();
 		List<EntryTessera> listaTessere = scenario.getEntryList(base,
-				base.getCoordinateA(this.coordinataRelativaSE));
+				base.getCoordinateA(this.getCoordinateRelativeSE()));
 		stampante.addListTessera(listaTessere);
 		String mappa = stampante.toString();
 		this.out.print(mappa);
 		this.out.flush();
-	}
-
-	@Override
-	public void posizionaTessera(Coordinate coordinatePosizione)
-	{
-		this.getScenario().setTessera(coordinatePosizione, this.getTesseraCorrente());
-		this.gestoreFasi.nextFase();
 	}
 
 	@Override
@@ -90,49 +80,17 @@ public class Cli extends ModuloView
 		this.informaUser.notificaPunteggi(punteggio);
 		
 	}
+	
+	/**
+	 * Wait for a user input eg can wait for the "rotate" command
+	 */
 
-	@Override
-	public void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
-	{
-		Coordinate coordinate;
-		do
-		{
-			coordinate = this.getCoordinataNordOvest().getCoordinateA(puntoCardinale);
-		} while (coordinate.getX() < quantita && coordinate.getY() < quantita && nelBoundingBox(coordinate));
-		this.setCoordinataNordOvest(coordinate);
-		this.aggiornaMappa();
-	}
-
-	public void muoviViewA(Coordinate coordinate)
-	{
-		if(this.nelBoundingBox(coordinate))
-		{
-			this.setCoordinataNordOvest(coordinate);
-		}
-		this.aggiornaMappa();
-	}
-
-	@Override
 	public void attendiInput()
 	{
-		if (this.gestoreFasi.inputOk())
+		if (this.getGestoreFasi().inputOk())
 		{
-			this.informaUser.setPhase(this.gestoreFasi.getCurrentFase());
+			this.informaUser.setPhase(this.getGestoreFasi().getCurrentFase());
 			this.getInput();
-		}
-
-	}
-
-	@Override
-	public void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereCostruzioneFinita)
-	{
-		ScenarioDiGioco scenario = this.getScenario();
-		for (Entry<AdapterTessera, Coordinate> entryAdapterCoord : tessereCostruzioneFinita.entrySet())
-		{
-			Coordinate coord = entryAdapterCoord.getValue();
-			AdapterTessera tessera = entryAdapterCoord.getKey();
-			scenario.setTessera(coord, tessera);
-
 		}
 
 	}
@@ -140,15 +98,14 @@ public class Cli extends ModuloView
 	@Override
 	public void mettiPrimaTessera(AdapterTessera tessIniziale)
 	{
-		this.informaUser.setPhase(this.gestoreFasi.getCurrentFase());
-		this.setTesseraCorrente(tessIniziale);
-		this.posizionaTessera(centroScenario);
+		this.informaUser.setPhase(this.getGestoreFasi().getCurrentFase());
+		super.mettiPrimaTessera(tessIniziale);
 	}
 
 	@Override
 	public void notificaFinePartita()
 	{
-		this.gestoreFasi.finePartita();
+		this.getGestoreFasi().finePartita();
 		this.informaUser.notificaFinePartita();
 	}
 
@@ -166,7 +123,7 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	public void cambiaEMostraTesseraCorrente(AdapterTessera tessera)
+	public void visualizzaTesseraCorrente(AdapterTessera tessera)
 	{
 		this.setTesseraCorrente(tessera);
 		this.informaUser.setTesseraCorrente(tessera);
@@ -184,7 +141,7 @@ public class Cli extends ModuloView
 	// TODO: per tutti questi sotto: PULIZIAAAAA. codice duplicato... Male!
 	boolean provaPosizionareTessera(Coordinate coordinate)
 	{
-		if (this.gestoreFasi.posizionaOk())
+		if (this.getGestoreFasi().posizionaOk())
 		{
 			this.fire(new PlaceEvent(this, coordinate));
 			return true;
@@ -198,7 +155,7 @@ public class Cli extends ModuloView
 
 	boolean provaRuotareTessera()
 	{
-		if (this.gestoreFasi.ruotaOk())
+		if (this.getGestoreFasi().ruotaOk())
 		{
 			this.fire(new RotateEvent(this));
 			return true;
@@ -211,10 +168,10 @@ public class Cli extends ModuloView
 
 	boolean provaNonMettereSegnalino()
 	{
-		if (this.gestoreFasi.fineTurnoOk())
+		if (this.getGestoreFasi().fineTurnoOk())
 		{
 			this.fire(new PassEvent(this));
-			this.gestoreFasi.nextFase();
+			this.getGestoreFasi().nextFase();
 			return true;
 		}
 		else
@@ -225,7 +182,7 @@ public class Cli extends ModuloView
 
 	boolean provaPosizionareSengalino(String stringComando)
 	{
-		if (this.gestoreFasi.fineTurnoOk())
+		if (this.getGestoreFasi().fineTurnoOk())
 		{
 			String elementi[] = this.getTesseraCorrente().toCliString().split(" ");
 			for (PuntoCardinale punto : PuntoCardinale.values())
@@ -243,7 +200,7 @@ public class Cli extends ModuloView
 
 	private synchronized void aspettaInizio() throws InterruptedException
 	{
-		while (!this.gestoreFasi.partitaCominciata())
+		while (!this.getGestoreFasi().partitaCominciata())
 		{
 			wait();
 		}
@@ -251,7 +208,7 @@ public class Cli extends ModuloView
 
 	private synchronized void attendiRispostaController() throws InterruptedException
 	{
-		while (!this.gestoreFasi.inputOk())
+		while (!this.getGestoreFasi().inputOk())
 		{
 			wait();
 		}
@@ -273,20 +230,9 @@ public class Cli extends ModuloView
 	private Stampante inizializzaStampante()
 	{
 		Coordinate min = this.getCoordinataNordOvest();
-		Coordinate max = this.getCoordinataNordOvest().getCoordinateA(coordinataRelativaSE);
+		Coordinate max = this.getCoordinataNordOvest().getCoordinateA(this.getCoordinateRelativeSE());
 		DatiMappa datiMappa = new DatiMappa(min, max);
 		return new Stampante(datiMappa);
-	}
-
-	private boolean nelBoundingBox(Coordinate coordinate)
-	{
-		ScenarioDiGioco scenario = this.getScenario();
-		Coordinate min = scenario.getMin();
-		Coordinate max = scenario.getMax();
-		boolean isIn = min.getX() <= coordinate.getX();
-		isIn = isIn && min.getY() <= coordinate.getY();
-		isIn = isIn && max.getX() >= coordinate.getX();
-		return isIn && max.getY() >= coordinate.getY();
 	}
 
 	private Scanner				in;
@@ -300,7 +246,5 @@ public class Cli extends ModuloView
 	private static final int	ALTEZZA		= 5;
 
 	private static final int	LARGHEZZA	= 10;
-
-	private final Coordinate	coordinataRelativaSE;
-
+	
 }

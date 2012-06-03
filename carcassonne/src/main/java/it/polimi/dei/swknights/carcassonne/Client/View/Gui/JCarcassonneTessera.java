@@ -1,18 +1,18 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import java.awt.Color;
 import java.awt.Rectangle;
 
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.border.EtchedBorder;
 
 public class JCarcassonneTessera extends JLayeredPane
 {
 	public JCarcassonneTessera(Rectangle bounds)
 	{
-		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		this.bounds = bounds;
 		this.immagineTessera = new JLabel();
 		this.immagineSegnalino = new JLabel();

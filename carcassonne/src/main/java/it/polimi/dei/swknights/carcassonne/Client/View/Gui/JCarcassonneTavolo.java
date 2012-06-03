@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
@@ -9,6 +8,7 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 
 public class JCarcassonneTavolo extends JPanel
 {
@@ -18,12 +18,11 @@ public class JCarcassonneTavolo extends JPanel
 		final int larghezza = LARGHEZZA * DIMENSIONE_CELLE;
 		final int altezza = ALTEZZA * DIMENSIONE_CELLE;
 		Dimension dimensione = new Dimension(larghezza, altezza);
-
 		this.setLayout(new GridLayout(ALTEZZA, LARGHEZZA));
 		this.setMinimumSize(dimensione);
 		this.setPreferredSize(dimensione);
 		this.setMaximumSize(dimensione);
-		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, THICKNESS));
+		this.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 		this.listaTessere = new ArrayList<JCarcassonneTessera>();
 		this.creaCaselle();
 	}
@@ -45,11 +44,10 @@ public class JCarcassonneTavolo extends JPanel
 
 	private static final int			LARGHEZZA			= 12;
 
-	private static final int			DIMENSIONE_CELLE	= 80;
+	private static final int			DIMENSIONE_CELLE	= 100;
 
 	private static final int			NUMERO_CASELLE		= ALTEZZA * LARGHEZZA;
 
-	private static final int			THICKNESS			= 2;
-
 	private static final long			serialVersionUID	= -8246924200035116931L;
+	
 }

@@ -9,13 +9,14 @@ public class JCarcassonneZoom extends JPanel
 {
 	public JCarcassonneZoom()
 	{
-		final int larghezza = 150;
+		final int larghezza = 100;
 		final int altezza = 45;
 		Dimension dimensione = new Dimension(larghezza,altezza);
 		this.setPreferredSize(dimensione);
 		JLabel label = new JLabel("Zoom");
 		this.add(label);
 		this.slider = new JSlider();
+		this.slider.setPreferredSize(dimensione);
 		this.add(this.slider);
 	}
 	

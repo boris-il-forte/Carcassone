@@ -35,8 +35,13 @@ public abstract class AbstractView implements View
 			event.accept(visitorHandler);
 		}
 	}
+	
+	/**
+	 * Run the view
+	 */
 
 	public abstract void run();
+	
 	/**
 	 * Receive an event from the Model
 	 * Makes the event accept to be visited by its handler as described in the visitor pattern
@@ -76,7 +81,6 @@ public abstract class AbstractView implements View
 		}
 	}
 
-	public abstract void attendiInput();
 	/**
 	 * Add a View Handler in the list of handlers
 	 * @param handler, the handler to be added
