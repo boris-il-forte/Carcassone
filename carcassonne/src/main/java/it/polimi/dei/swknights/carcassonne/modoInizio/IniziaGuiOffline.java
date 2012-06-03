@@ -1,0 +1,24 @@
+package it.polimi.dei.swknights.carcassonne.modoInizio;
+
+import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
+import it.polimi.dei.swknights.carcassonne.Events.Controller;
+import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
+import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
+
+public class IniziaGuiOffline extends Inizio
+{
+
+	@Override
+	public void inizia()
+	{
+		ModuloModel model = new ModuloModel();
+		Controller controller = new ModuloController(model);
+		
+		view = new Gui();
+		
+		superStarDestroyer.execute(view);
+		superStarDestroyer.execute(controller);
+		
+	}
+
+}
