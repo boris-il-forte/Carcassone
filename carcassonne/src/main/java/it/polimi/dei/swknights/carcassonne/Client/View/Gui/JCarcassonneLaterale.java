@@ -46,7 +46,7 @@ public class JCarcassonneLaterale extends Box
 	private void aggiugiTesseraCorrente()
 	{
 		final Dimension dimensione = new Dimension(LATO_TESSERA, LATO_TESSERA);
-		this.tesseraCorrente = new JCarcassonneTessera(BOUNDING_BOX);
+		this.tesseraCorrente = new JCarcassonneCasella(BOUNDING_BOX);
 		this.tesseraCorrente.setBorder(BorderFactory.createEtchedBorder());
 		this.tesseraCorrente.setMinimumSize(dimensione);
 		this.tesseraCorrente.setPreferredSize(dimensione);
@@ -72,7 +72,7 @@ public class JCarcassonneLaterale extends Box
 		this.add(this.zoom);
 	}
 
-	private JCarcassonneTessera				tesseraCorrente;
+	private JCarcassonneCasella				tesseraCorrente;
 
 	private JCarcassonneRotate				pulsanteRotate;
 

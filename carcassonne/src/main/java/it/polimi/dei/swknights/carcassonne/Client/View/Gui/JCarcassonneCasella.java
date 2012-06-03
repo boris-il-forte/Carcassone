@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.border.EtchedBorder;
 
-public class JCarcassonneTessera extends JLayeredPane
+public class JCarcassonneCasella extends JLayeredPane
 {
-	public JCarcassonneTessera(Rectangle bounds)
+	public JCarcassonneCasella(Rectangle bounds)
 	{
 		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		this.bounds = bounds;

@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
@@ -23,7 +25,7 @@ public class JCarcassonneTavolo extends JPanel
 		this.setPreferredSize(dimensione);
 		this.setMaximumSize(dimensione);
 		this.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
-		this.listaTessere = new ArrayList<JCarcassonneTessera>();
+		this.listaCaselle = new ArrayList<JCarcassonneCasella>();
 		this.creaCaselle();
 	}
 
@@ -32,13 +34,19 @@ public class JCarcassonneTavolo extends JPanel
 
 		for (int i = 0; i < NUMERO_CASELLE; i++)
 		{
-			JCarcassonneTessera tessera = new JCarcassonneTessera(new Rectangle(0,0,DIMENSIONE_CELLE,DIMENSIONE_CELLE));
-			this.listaTessere.add(tessera);
+			JCarcassonneCasella tessera = new JCarcassonneCasella(new Rectangle(0,0,DIMENSIONE_CELLE,DIMENSIONE_CELLE));
+			this.listaCaselle.add(tessera);
 			this.add(tessera);
 		}
 	}
 
-	private List<JCarcassonneTessera>	listaTessere;
+	public void aggiornamappa(List<EntryTessera> listaTessere2)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	private List<JCarcassonneCasella>	listaCaselle;
 
 	private static final int			ALTEZZA				= 6;
 
