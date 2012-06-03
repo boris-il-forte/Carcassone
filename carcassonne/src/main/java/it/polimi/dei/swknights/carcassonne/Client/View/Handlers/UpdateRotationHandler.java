@@ -18,7 +18,7 @@ public class UpdateRotationHandler extends ViewHandler
 	{
 		this.view.aggiornaMappa();
 		AdapterTessera tesseraNuova = event.getTessera();
-		this.view.cambiaEMostraTesseraCorrente(tesseraNuova);
+		this.view.visualizzaTesseraCorrente(tesseraNuova);
 		this.sveglia();
 	}
 	

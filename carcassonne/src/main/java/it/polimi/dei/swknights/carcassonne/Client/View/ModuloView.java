@@ -17,79 +17,127 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
 import java.util.Map;
+import java.util.Map.Entry;
+
 /**
  * This class gives a schema for the View
+ * 
  * @see: {@link Cli} {@link Gui}
  * @author edoardopasi & dave
- *
+ * 
  */
 
 public abstract class ModuloView extends AbstractView
 {
-	public ModuloView()
+	public ModuloView(Coordinate coordinateRelativeSE)
 	{
 		super();
+		this.coordinateRelativeSE = coordinateRelativeSE;
 		this.scenario = new ScenarioDiGioco();
 		this.gestoreFasi = new GestoreFasi();
 		this.attivaHanlders();
 	}
-	
+
 	public abstract void visualizzaPunteggi(Punteggi punteggio);
-	
-	/**
-	 * Wait for a user input
-	 * eg in the Cli can wait for the "rotate" command 
-	 */
-	public abstract void attendiInput();
-	/**
-	 * After a costruction is completed, each controller of that construction
-	 * has his/her controlling markers back;
-	 * this method  returns a map of each Card with no more marker on it
-	 * @param tessereAggiornate  map of the Cards interested by the completion of the 
-	 * construction
-	 */
-	public abstract void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereAggiornate);
-	/**
-	 * Used in the beginning of the game, place the first card
-	 * @param tessIniziale the first card
-	 */
-	public abstract void mettiPrimaTessera(AdapterTessera tessIniziale);
 
 	/**
 	 * Notify the user the end of the game
 	 */
 	public abstract void notificaFinePartita();
-	
+
 	/**
-	 * Notify the user a non-valid move
-	 * eg 2,1 if 2,1 is not a free position
-	 * eg a  non-valid command like potate
+	 * Notify the user a non-valid move eg 2,1 if 2,1 is not a free position eg
+	 * a non-valid command like potate
 	 */
 	public abstract void notificaMossaNonValida();
 
 	public abstract void visualizzaColoreCorrente();
 
-	public abstract void cambiaEMostraTesseraCorrente(AdapterTessera tessera);
+	public abstract void visualizzaTesseraCorrente(AdapterTessera tessera);
+
 	/**
-	 * A sort of Refresh of the map, to be called after a place card for instance 
+	 * A sort of Refresh of the map, to be called after a place card for
+	 * instance
 	 */
 	public abstract void aggiornaMappa();
+
 	/**
-	 * Place a card in the given position, just graphical: does not implies
-	 * any change in the model
+	 * Used in the beginning of the game, place the first card
+	 * 
+	 * @param tessIniziale
+	 *            the first card
+	 */
+	public void mettiPrimaTessera(AdapterTessera tessIniziale)
+	{
+		this.setTesseraCorrente(tessIniziale);
+		this.posizionaTessera(centroScenario);
+	}
+
+	/**
+	 * After a costruction is completed, each controller of that construction
+	 * has his/her controlling markers back; this method returns a map of each
+	 * Card with no more marker on it
+	 * 
+	 * @param tessereAggiornate
+	 *            map of the Cards interested by the completion of the
+	 *            construction
+	 */
+	public void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereCostruzioneFinita)
+	{
+		ScenarioDiGioco scenario = this.getScenario();
+		for (Entry<AdapterTessera, Coordinate> entryAdapterCoord : tessereCostruzioneFinita.entrySet())
+		{
+			Coordinate coord = entryAdapterCoord.getValue();
+			AdapterTessera tessera = entryAdapterCoord.getKey();
+			scenario.setTessera(coord, tessera);
+	
+		}
+		this.aggiornaMappa();
+	}
+
+	/**
+	 * Place a card in the given position, just graphical: does not implies any
+	 * change in the model
+	 * 
 	 * @param coordinatePosizione
 	 */
-	public abstract void posizionaTessera(Coordinate coordinatePosizione);
+	
+	public void posizionaTessera(Coordinate coordinatePosizione)
+	{
+		this.getScenario().setTessera(coordinatePosizione, this.getTesseraCorrente());
+		this.getGestoreFasi().nextFase();
+	}
 
-	public abstract void muoviViewA(PuntoCardinale puntoCardinale, int quantita);
+	public void muoviViewA(Coordinate coordinate)
+	{
+		if(this.nelBoundingBox(coordinate))
+		{
+			this.setCoordinataNordOvest(coordinate);
+		}
+		this.aggiornaMappa();
+	}
+	
+	public void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
+	{
+		Coordinate coordinate;
+		do
+		{
+			coordinate = this.getCoordinataNordOvest().getCoordinateA(puntoCardinale);
+		} while (coordinate.getX() < quantita && coordinate.getY() < quantita && nelBoundingBox(coordinate));
+		this.setCoordinataNordOvest(coordinate);
+		this.aggiornaMappa();
+	}
+	
+	
 	/**
 	 * Change player and show the new drawn Card
+	 * 
 	 * @param colGiocatoreCorrente
 	 * @param tesseraNuova
 	 */
 	public void aggiornaTurno(Color colGiocatoreCorrente, AdapterTessera tesseraNuova)
 	{
-		this.cambiaEMostraTesseraCorrente(tesseraNuova);
+		this.visualizzaTesseraCorrente(tesseraNuova);
 		this.visualizzaColoreCorrente();
 		this.gestoreFasi.cominciaTurno();
 	}
@@ -99,19 +147,14 @@ public abstract class ModuloView extends AbstractView
 		return this.gestoreFasi;
 	}
 
-	protected Color getColoreGiocatore()
-	{
-		return this.coloreGiocatore;
-	}
-
 	public void setColore(Color coloreGiocatore)
 	{
 		this.coloreGiocatore = coloreGiocatore;
 	}
 
-	protected void setCoordinataNordOvest(Coordinate coordinataNordOvest)
+	protected Color getColoreGiocatore()
 	{
-		this.coordinataNordOvest = coordinataNordOvest;
+		return this.coloreGiocatore;
 	}
 
 	protected AdapterTessera getTesseraCorrente()
@@ -129,9 +172,30 @@ public abstract class ModuloView extends AbstractView
 		return this.scenario;
 	}
 
+	protected void setCoordinataNordOvest(Coordinate coordinataNordOvest)
+	{
+		this.coordinataNordOvest = coordinataNordOvest;
+	}
+
 	protected Coordinate getCoordinataNordOvest()
 	{
 		return coordinataNordOvest;
+	}
+
+	protected Coordinate getCoordinateRelativeSE()
+	{
+		return coordinateRelativeSE;
+	}
+
+	private boolean nelBoundingBox(Coordinate coordinate)
+	{
+		ScenarioDiGioco scenario = this.getScenario();
+		Coordinate min = scenario.getMin();
+		Coordinate max = scenario.getMax();
+		boolean isIn = min.getX() <= coordinate.getX();
+		isIn = isIn && min.getY() <= coordinate.getY();
+		isIn = isIn && max.getX() >= coordinate.getX();
+		return isIn && max.getY() >= coordinate.getY();
 	}
 
 	private void attivaHanlders()
@@ -145,16 +209,18 @@ public abstract class ModuloView extends AbstractView
 		this.addVisitorHandler(new FinePartitaHandler(this));
 	}
 
-	protected static final Coordinate	centroScenario	= new Coordinate(0, 0);
-
-	protected GestoreFasi				gestoreFasi;
+	private GestoreFasi					gestoreFasi;
 
 	private final ScenarioDiGioco		scenario;
-
-	private Coordinate					coordinataNordOvest;
 
 	private AdapterTessera				tesseraCorrente;
 
 	private Color						coloreGiocatore;
+
+	private Coordinate					coordinataNordOvest;
+
+	private final Coordinate			coordinateRelativeSE;
+
+	protected static final Coordinate	centroScenario	= new Coordinate(0, 0);
 
 }
