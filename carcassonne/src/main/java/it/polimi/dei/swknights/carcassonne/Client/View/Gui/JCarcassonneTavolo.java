@@ -47,9 +47,9 @@ public class JCarcassonneTavolo extends JPanel
 
 	private List<JCarcassonneCasella>	listaCaselle;
 
-	private static final int			ALTEZZA				= 6;
+	private static final int			ALTEZZA				= 7;
 
-	private static final int			LARGHEZZA			= 12;
+	private static final int			LARGHEZZA			= 13;
 
 	private static final int			DIMENSIONE_CELLE	= 100;
 

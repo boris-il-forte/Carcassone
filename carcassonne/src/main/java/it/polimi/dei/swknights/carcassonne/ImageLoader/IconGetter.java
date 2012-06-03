@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
+
 import java.awt.Image;
 
 import javax.swing.Icon;
@@ -22,6 +24,7 @@ public class IconGetter
 	
 	public Icon getIcon(String stringToFind)
 	{
+		Debug.print("stringa in entrata: " + stringToFind);
 		return this.getIcon(stringToFind,this.currentDim);
 	}
 

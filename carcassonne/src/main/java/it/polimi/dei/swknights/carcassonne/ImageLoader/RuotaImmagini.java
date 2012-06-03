@@ -30,12 +30,13 @@ public class RuotaImmagini
 	private void ruotaEntry(Entry<String, Image> entry)
 	{
 		RuotaStringa rotator = new RuotaStringa(entry.getKey());
+		Image immagine = entry.getValue();
 		for (int i = 1; i < NUMERO_LATI; i++)
 		{
 			rotator.ruotaStringa();
 			String stringaRuotata = rotator.toString();
-			Image immagineruotata = this.ruotaImmagine(entry.getValue());
-			this.immaginiRuotate.put(stringaRuotata, immagineruotata);
+			immagine = this.ruotaImmagine(immagine);
+			this.immaginiRuotate.put(stringaRuotata, immagine);
 		}
 	}
 

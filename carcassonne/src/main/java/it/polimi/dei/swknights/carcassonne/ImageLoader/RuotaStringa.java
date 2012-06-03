@@ -35,9 +35,9 @@ public class RuotaStringa
 	private void ruotaCostruzioni(StringBuilder builder, char[] costruzioni)
 	{
 		builder.append(costruzioni[PuntoCardinale.ovest.toInt()]);
-		builder.append(costruzioni[PuntoCardinale.nord.toInt()]);
 		builder.append(costruzioni[PuntoCardinale.est.toInt()]);
 		builder.append(costruzioni[PuntoCardinale.sud.toInt()]);
+		builder.append(costruzioni[PuntoCardinale.nord.toInt()]);
 	}
 
 	private void ruotaCollegamenti(StringBuilder builder, char[] collegamenti)

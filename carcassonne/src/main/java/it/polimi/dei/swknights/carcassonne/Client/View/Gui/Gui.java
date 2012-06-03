@@ -7,6 +7,7 @@ import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.ImageLoader.IconGetter;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
+
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -80,7 +81,7 @@ public class Gui extends ModuloView
 		while(aggiornaMappa.hasNextTessera())
 		{
 			Entry<String, Integer> entry = aggiornaMappa.nextTessera();
-			Icon tessera = this.immagini.getIcon(entry.getKey());
+			Icon tessera = this.immagini.getIcon(entry.getKey(), SIZE_TESSERE);
 			int numeroTessera = entry.getValue();
 			this.finestra.aggiornaMappa(numeroTessera, tessera);
 		}	
@@ -90,8 +91,10 @@ public class Gui extends ModuloView
 
 	private IconGetter			immagini;
 
-	private static final int	LARGHEZZA	= 12; //TODO calcola da risoluzione...
+	private final static int	SIZE_TESSERE = 100; //TODO: coordinare questa dim con quella delle vere caselle...
 
-	private static final int	ALTEZZA	= 6;
+	private static final int	LARGHEZZA	= 13; //TODO calcola da risoluzione...
+
+	private static final int	ALTEZZA	= 7; //TODO come sopra...
 
 }
