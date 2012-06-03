@@ -1,7 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
-
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
@@ -9,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
@@ -40,10 +39,10 @@ public class JCarcassonneTavolo extends JPanel
 		}
 	}
 
-	public void aggiornamappa(List<EntryTessera> listaTessere2)
+	public void setIconTessera(int numeroCasella, Icon immagine)
 	{
-		// TODO Auto-generated method stub
-		
+		JCarcassonneCasella casella = this.listaCaselle.get(numeroCasella);
+		casella.setTessera(immagine);
 	}
 
 	private List<JCarcassonneCasella>	listaCaselle;

@@ -23,7 +23,6 @@ public class JCarcassonneCasella extends JLayeredPane
 	
 	public void setTessera(Icon icon)
 	{
-		System.out.println("provo a settare la tessera");
 		this.immagineTessera.setIcon(icon);
 	}
 	
