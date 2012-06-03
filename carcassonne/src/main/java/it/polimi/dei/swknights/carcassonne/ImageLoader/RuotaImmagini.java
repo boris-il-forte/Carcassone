@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
@@ -48,7 +50,7 @@ public class RuotaImmagini
 			BufferedImage nuova = new BufferedImage(this.dimensioneImmagini, this.dimensioneImmagini, vecchia.getType());
 			for (int i = 0; i < this.dimensioneImmagini; i++)
 				for (int j = 0; j < this.dimensioneImmagini; j++)
-					nuova.setRGB(this.dimensioneImmagini - 1 - j, this.dimensioneImmagini - 1 - i, vecchia.getRGB(i, j));
+					nuova.setRGB(this.dimensioneImmagini -1 - j, i, vecchia.getRGB(i, j));
 			return nuova;
 		}
 		else 
