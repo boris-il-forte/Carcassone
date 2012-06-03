@@ -5,6 +5,7 @@ import java.net.Socket;
 import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocket;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
+import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.server.ProxyView.ProxyView;
 
 public class IniziaCliOnLine extends Inizio
@@ -28,5 +29,5 @@ public class IniziaCliOnLine extends Inizio
 	Socket socket = null;
 	ProxyController proxyController = null;
 	ProxyView proxyView = null; 
-
+	View view;
 }
