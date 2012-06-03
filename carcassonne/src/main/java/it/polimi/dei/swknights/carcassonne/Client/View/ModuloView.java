@@ -51,8 +51,17 @@ public abstract class ModuloView extends AbstractView
 	 */
 	public abstract void notificaMossaNonValida();
 
+	/**
+	 * shows the current player's color
+	 */
 	public abstract void visualizzaColoreCorrente();
 
+	/**
+	 * Shows the current tile
+	 * 
+	 * @param tessera
+	 *            the current tile to show
+	 */
 	public abstract void visualizzaTesseraCorrente(AdapterTessera tessera);
 
 	/**
@@ -90,7 +99,7 @@ public abstract class ModuloView extends AbstractView
 			Coordinate coord = entryAdapterCoord.getValue();
 			AdapterTessera tessera = entryAdapterCoord.getKey();
 			scenario.setTessera(coord, tessera);
-	
+
 		}
 		this.aggiornaMappa();
 	}
@@ -101,7 +110,7 @@ public abstract class ModuloView extends AbstractView
 	 * 
 	 * @param coordinatePosizione
 	 */
-	
+
 	public void posizionaTessera(Coordinate coordinatePosizione)
 	{
 		this.getScenario().setTessera(coordinatePosizione, this.getTesseraCorrente());
@@ -110,13 +119,13 @@ public abstract class ModuloView extends AbstractView
 
 	public void muoviViewA(Coordinate coordinate)
 	{
-		if(this.nelBoundingBox(coordinate))
+		if (this.nelBoundingBox(coordinate))
 		{
 			this.setCoordinataNordOvest(coordinate);
 		}
 		this.aggiornaMappa();
 	}
-	
+
 	public void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
 	{
 		Coordinate coordinate;
@@ -127,8 +136,7 @@ public abstract class ModuloView extends AbstractView
 		this.setCoordinataNordOvest(coordinate);
 		this.aggiornaMappa();
 	}
-	
-	
+
 	/**
 	 * Change player and show the new drawn Card
 	 * 

@@ -32,8 +32,7 @@ public class JCarcassoneFrame extends JFrame
 
 	public void aggiornaMappa(List<EntryTessera> listaTessere)
 	{
-		// TODO Auto-generated method stub
-		
+		this.tavolo.aggiornamappa(listaTessere);
 	}
 
 	private void inizializzaFinestra()
