@@ -4,7 +4,7 @@ public class LanciaServer
 {
 	public static void main(String [] a)
 	{
-		CarcassonneServer cs = new CarcassonneServer();
+		new CarcassonneServer();
 		
 	}
 }

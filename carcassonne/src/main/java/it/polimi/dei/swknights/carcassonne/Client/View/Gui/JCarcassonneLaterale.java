@@ -1,21 +1,22 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Rectangle;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
-import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 
-public class JCarcassonneLaterale extends JPanel
+public class JCarcassonneLaterale extends Box
 {
 
 	public JCarcassonneLaterale()
 	{
-		this.setLayout(new FlowLayout());
-		this.aggiungiBox();
+		super(BoxLayout.Y_AXIS);
+		this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+		this.aggiungiComponenti();
 	}
 
 	public void aggiornaTesseraCorrente(Icon tessera)
@@ -23,57 +24,53 @@ public class JCarcassonneLaterale extends JPanel
 		this.tesseraCorrente.setTessera(tessera);
 	}
 
-	private void aggiungiBox()
-	{
-		this.box = Box.createVerticalBox();
-		this.add(this.box);
-		this.aggiungiComponenti();
-	}
-
 	private void aggiungiComponenti()
 	{
+		this.aggiungiSpazio();
 		this.aggiugiTesseraCorrente();
+		this.aggiungiSpazio();
 		this.aggiungiRotate();
+		this.aggiungiSpazio();
 		this.aggiungiScorrimento();
+		this.aggiungiSpazio();
 		this.aggiungiZoom();
+		this.aggiungiSpazio();
+	}
+	
+	private void aggiungiSpazio()
+	{
+		this.add(Box.createVerticalGlue());
+		this.add(Box.createRigidArea(MINIMO_SPAZIO));
 	}
 
 	private void aggiugiTesseraCorrente()
 	{
 		final Dimension dimensione = new Dimension(LATO_TESSERA, LATO_TESSERA);
-		final int spazio = 50;
 		this.tesseraCorrente = new JCarcassonneTessera(BOUNDING_BOX);
 		this.tesseraCorrente.setBorder(BorderFactory.createEtchedBorder());
 		this.tesseraCorrente.setMinimumSize(dimensione);
 		this.tesseraCorrente.setPreferredSize(dimensione);
 		this.tesseraCorrente.setMaximumSize(dimensione);
-		this.box.add(this.tesseraCorrente);
-		this.box.add(Box.createRigidArea(new Dimension(0, spazio)));
-
+		this.add(this.tesseraCorrente);
 	}
 
 	private void aggiungiRotate()
 	{
-		this.box.add(Box.createVerticalGlue());
 		this.pulsanteRotate = new JCarcassonneRotate();
-		this.box.add(this.pulsanteRotate);
+		this.add(this.pulsanteRotate);
 	}
 
 	private void aggiungiScorrimento()
 	{
-		this.box.add(Box.createVerticalGlue());
 		this.scorrimentoMappa = new JCarcassonneScorrimentoMappa();
-		this.box.add(this.scorrimentoMappa);
+		this.add(this.scorrimentoMappa);
 	}
 
 	private void aggiungiZoom()
 	{
-		this.box.add(Box.createVerticalGlue());
 		this.zoom = new JCarcassonneZoom();
-		this.box.add(this.zoom);
+		this.add(this.zoom);
 	}
-
-	private Box								box;
 
 	private JCarcassonneTessera				tesseraCorrente;
 
@@ -82,6 +79,8 @@ public class JCarcassonneLaterale extends JPanel
 	private JCarcassonneScorrimentoMappa	scorrimentoMappa;
 
 	private JCarcassonneZoom				zoom;
+	
+	private static final Dimension			MINIMO_SPAZIO 		= new Dimension(0, 50);
 
 	private static final int				LATO_TESSERA		= 150;
 

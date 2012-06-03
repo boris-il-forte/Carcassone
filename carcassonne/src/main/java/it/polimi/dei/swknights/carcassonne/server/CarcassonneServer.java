@@ -24,6 +24,7 @@ public class CarcassonneServer implements Runnable
 
 	public final void run()
 	{
+		System.out.println("walter gay");
 		try
 		{
 			this.print("Starting Server");

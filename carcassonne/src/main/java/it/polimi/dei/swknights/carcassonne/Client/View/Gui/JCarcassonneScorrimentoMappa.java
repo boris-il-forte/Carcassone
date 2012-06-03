@@ -44,7 +44,6 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 				this.add(new JLabel());
 			}
 		}
-
 	}
 
 	private List<JButton>						listaPulsanti;

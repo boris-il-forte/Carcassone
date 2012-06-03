@@ -4,9 +4,6 @@ import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
-import java.awt.Color;
-import java.util.Map;
-
 /**
  * Event to be triggered when the game finishes that is when no more cards are
  * available
