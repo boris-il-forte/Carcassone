@@ -5,9 +5,16 @@ import java.awt.Color;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
-
+/**
+ * Class to handl the turn update event
+ * @author edoardopasi
+ *
+ */
 public class UpdateTurnoHandler extends ViewHandler
-{
+{	
+	/**
+	 * This constructor just calls super on view
+	*/
 	public UpdateTurnoHandler(ModuloView view)
 	{
 		super(view);

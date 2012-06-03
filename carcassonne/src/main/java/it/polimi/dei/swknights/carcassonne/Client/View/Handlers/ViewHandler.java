@@ -21,6 +21,11 @@ public abstract class ViewHandler
 		this.view=view;
 	}
 	
+	public ViewHandler()
+	{
+		
+	}
+	
 	public void visit (UpdateTurnoEvent event) {}
 	
 	public void visit (UpdateRotationEvent event) {}
