@@ -1,7 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
-
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
