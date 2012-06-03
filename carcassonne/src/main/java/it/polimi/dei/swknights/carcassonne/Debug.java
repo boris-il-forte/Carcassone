@@ -16,7 +16,7 @@ public class Debug
 		printer.flush();
 	}
 
-	public static void visualizzaImmagineENota(Image imgTessera, String descrizione)
+	public static void showImg(Image imgTessera, String descrizione)
 	{
 		
 		String [] s = { descrizione };
