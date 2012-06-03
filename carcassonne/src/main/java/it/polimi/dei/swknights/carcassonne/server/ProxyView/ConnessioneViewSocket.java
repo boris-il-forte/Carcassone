@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server.ProxyView;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.Connessione.ComandiConnessione;
 import it.polimi.dei.swknights.carcassonne.Events.Game.ComandiView;
 
@@ -7,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.EventObject;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ConnessioneViewSocket extends ConnessioneView
@@ -81,15 +83,29 @@ public class ConnessioneViewSocket extends ConnessioneView
 	{
 		String line = "";
 		// connessione view socket
-		// legge e chiede al parser di capirla
 
 		this.socket.getOutputStream();
 		Scanner in = new Scanner(this.socket.getInputStream());
 		PrintWriter out = new PrintWriter(this.socket.getOutputStream());
 
-		// chiamata da proxy
-		line = in.nextLine();
-		System.out.println("Proxy view, ricevuta: " + line);
+		boolean got = false;
+		
+		while (got == false)
+		{
+			try
+			{
+				line = in.nextLine();
+				got = true;
+			}
+			catch (Exception e)
+			{
+				Debug.print("nulla");
+				got = false;
+				continue;
+			}
+		}
+
+		Debug.print("Connessione view Socket, ricevuta: " + line);
 		// se line == connect inizia la partita
 		return line;
 	}
@@ -97,7 +113,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 	@Override
 	public void riceviInput() throws IOException
 	{
-		System.out.println("ricevi inpu ");
+		Debug.print("ricevi input \n ");
 		this.datoCorrente = this.dammiUltimoDato();
 
 	}
@@ -105,10 +121,10 @@ public class ConnessioneViewSocket extends ConnessioneView
 	@Override
 	public EventObject generaEvento()
 	{
-		// TODO Auto-generated method stub
+		this.capisci(datoCorrente);
 		return null;
 	}
-	
+
 	@Override
 	public void close()
 	{
@@ -121,13 +137,13 @@ public class ConnessioneViewSocket extends ConnessioneView
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	private Socket				socket;
 
-	private String datoCorrente ;
-	
+	private String				datoCorrente;
+
 	private static final int	PLACE_COORD		= 1;
 	private static final int	X				= 0;
 	private static final int	Y				= 1;
@@ -135,6 +151,5 @@ public class ConnessioneViewSocket extends ConnessioneView
 	private static final int	DOPO_RECONNECT	= 1;
 	private static final int	PARTITA			= 1;
 	private static final int	COLOR			= 0;
-
 
 }

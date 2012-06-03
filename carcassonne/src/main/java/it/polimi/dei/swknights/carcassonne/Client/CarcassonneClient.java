@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.AbstractConnessioneController;
 import it.polimi.dei.swknights.carcassonne.server.ProxyView.AbstractConnessioneView;
 
@@ -12,36 +13,48 @@ public class CarcassonneClient
 	
 	public static void main(String [] a)
 	{
-		
-		try
+		boolean again = true;
+		while(again)
 		{
-			Socket socket = new Socket(indirizzoServer, PORTA_GF);
-			System.out.println("Connection established");
-			
-			Scanner socketIn = new Scanner(socket.getInputStream());
-			PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
-			Scanner stdin = new Scanner(System.in);
-			
-			while (true) 
+			try
+		
 			{
-				System.out.println("inserisci qualcosa di sensato! :");
-				String inputLine = stdin.nextLine();
-				socketOut.println(inputLine);
-				socketOut.flush();
-				String socketLine = socketIn.nextLine();
-				System.out.println("socket line : " + socketLine);
+				Socket socket = new Socket(indirizzoServer, PORTA_GF);
+				Debug.print("Connection established");
 				
+				Scanner socketIn = new Scanner(socket.getInputStream());
+				PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
+				Scanner stdin = new Scanner(System.in);
+				
+				while (true) 
+				{
+					Debug.print("inserisci qualcosa di sensato! :");
+					String inputLine = stdin.nextLine();
+					socketOut.println(inputLine);
+					socketOut.flush();
+					//il server	non risponde qua (dove risponde?)
+					
+					
+				}
 				
 			}
-			
-		}
-		catch(Exception e)
-		{
-			System.out.println("something wrogn happened..");
-			e.printStackTrace();
+			catch(Exception e)
+			{
+				Debug.print("something wrogn happened.. \n  Want to try again?");
+				e.printStackTrace();
+				Scanner s = new Scanner(System.in);
+				String risposta = s.nextLine();
+				if(risposta.compareToIgnoreCase("Y")==0 || risposta.compareToIgnoreCase("Yes") ==0
+						|| risposta.compareToIgnoreCase("si")==0 || risposta.compareToIgnoreCase("ok")==0)
+				{
+					again = true;
+				}
+			}
 		}
 	}
 	
+	
+	public static final int MAX_TRY = 100;
 	
 	public static final String indirizzoServer = "127.0.0.1";
 	

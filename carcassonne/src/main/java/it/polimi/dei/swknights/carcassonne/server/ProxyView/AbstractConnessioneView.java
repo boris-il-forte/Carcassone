@@ -18,7 +18,7 @@ public class AbstractConnessioneView implements View
 	
 	public void riceviModificheModel(ControllerEvent event)
 	{
-
+		
 	}
 
 	public void run()

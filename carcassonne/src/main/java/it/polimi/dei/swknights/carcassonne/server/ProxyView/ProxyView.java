@@ -6,8 +6,7 @@ import java.net.Socket;
 import java.util.List;
 import java.util.Scanner;
 
-
-public class ProxyView extends AbstractConnessioneView 
+public class ProxyView extends AbstractConnessioneView
 {
 
 	public ConnessioneView	connessione;
@@ -16,53 +15,48 @@ public class ProxyView extends AbstractConnessioneView
 	{
 		this.connessione = new ConnessioneViewSocket(socket);
 	}
-	public ProxyView() //RMI
+
+	public ProxyView() // RMI
 	{
 		this.connessione = new ConnessioneViewRMI();
 	}
-	
-	
+
 	@Override
 	public void request()
 	{
 	}
-	
+
 	@Override
 	public void run()
-	{   
-		boolean  nonCacciatoUser=true;
-		while(nonCacciatoUser)
+	{
+		int n = 0;
+		boolean nonCacciatoUser = true;
+		while (nonCacciatoUser && n<5)
 		{
-			
-			while(true)
+
+			while (true && n<5)
 			{
 				try
 				{
 					connessione.riceviInput();
 					connessione.generaEvento();
+					n++;
 				}
 				catch (IOException e)
 				{
+					n++;
+					//continue;
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
-				finally
-				{
-					connessione.close();
-				}
+
 			}
-			
+
 		}
+		
+		connessione.close();
 	}
 
-
-	
-	
-	private Socket socket;
-	
-	
-	
-	
-	
+	private Socket	socket;
 
 }
