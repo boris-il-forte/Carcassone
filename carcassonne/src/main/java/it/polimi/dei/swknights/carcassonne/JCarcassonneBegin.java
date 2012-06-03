@@ -1,5 +1,11 @@
 package it.polimi.dei.swknights.carcassonne;
 
+import it.polimi.dei.swknights.carcassonne.modoInizio.IniziaCliOffline;
+import it.polimi.dei.swknights.carcassonne.modoInizio.IniziaCliOnLine;
+import it.polimi.dei.swknights.carcassonne.modoInizio.IniziaGuiOffline;
+import it.polimi.dei.swknights.carcassonne.modoInizio.IniziaServer;
+import it.polimi.dei.swknights.carcassonne.modoInizio.Inizio;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -38,28 +44,50 @@ public class JCarcassonneBegin
 		}
 		
 	}
-
+	public Inizio getIniziatore(String risposta)
+	{
+		Inizio iniziatore= null ;
+		if (risposta.equalsIgnoreCase("CLI"))
+		{
+			iniziatore = new IniziaCliOffline();
+		}
+		else if (risposta.equalsIgnoreCase("GUI"))
+		{
+			iniziatore = new IniziaGuiOffline();
+		}
+		else if ( risposta.equalsIgnoreCase("Server"))
+		{
+			iniziatore = new IniziaServer();
+		}
+		else if( risposta.equalsIgnoreCase("CLI on line"))
+		{
+			iniziatore = new IniziaCliOnLine();
+			
+		}
+		return iniziatore;
+	}
+	
 	private String parseRisposta(String risposta)
 	{
-		if( risposta.equals("solo la CLI"))
+		if( risposta.equals("CLI off line"))
 		{
 			return "Cli";
 		}
-		else if(risposta.equals("solo la GUI"))
+		else if(risposta.equals("GUI off line"))
 		{
 			return "Gui";
 		}
-		else if(risposta.equals("Solo Server"))
+		else if(risposta.equals("Server"))
 		{
 			return "Server";
 		}
-		else if(risposta.equals("Server e CLI"))
+		else if(risposta.equals("CLI on line"))
 		{
-			return "Server+Cli";
+			return "Cli on line";
 		}
-		else if(risposta.equals("Server e GUI"))
+		else if(risposta.equals("GUI on line"))
 		{
-			return "Server+Gui";
+			return "Gui on line";
 		}
 		else
 		{
@@ -76,5 +104,7 @@ public class JCarcassonneBegin
 
 	private static final String		PREDEFINITO		= "CLI";
 
-	private static final String[]	TIPO_AVVIO		= { "solo la CLI", "solo la GUI", "Solo Server", "Server e CLI",  "Server e GUI" };
+	private static final String[]	TIPO_AVVIO		= { "CLI off line", "GUI off line", "Server", "CLI on line",  "GUI on line" };
+
+
 }
