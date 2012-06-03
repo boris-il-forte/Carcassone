@@ -41,7 +41,7 @@ public class ProxyView extends AbstractConnessioneView
 				try
 				{
 					connessione.riceviInput();
-					connessione.generaEvento();
+					//connessione.generaEvento();
 					n++;
 				}
 				catch (IOException e)

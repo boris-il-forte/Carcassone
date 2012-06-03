@@ -1,6 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
+
+import java.io.IOException;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class ConnessioneControllerSocket extends ConnessioneController
 {
@@ -117,4 +121,31 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	private final static int X=0;
 	private final static int Y=1;
 	private Socket socket;
+	@Override
+	public void riceviInput() 
+	{
+		Scanner socketIn = null;
+		try
+		{
+			socketIn = new Scanner(socket.getInputStream());
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String s = "";
+	
+			s = socketIn.nextLine();
+	
+			s = "socket non ha next";
+		Debug.print("Connessione Controller Socket, ho ricevuto  " + s);
+	}
+
+	@Override
+	public void close()
+	{
+		// TODO Auto-generated method stub
+		
+	}
 }

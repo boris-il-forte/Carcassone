@@ -27,7 +27,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 	{
 		this.socket = socket;
 		this.handlers = new ArrayList<ViewHandler>();
-		this.handlers.add(new InizioGiocoHandler());
+		this.handlers.add(new InizioGiocoHandler(this.socket));
 	}
 
 	@Override
@@ -124,7 +124,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 	@Override
 	public void riceviInput() throws IOException
 	{
-		Debug.print("ricevi input \n ");
+		Debug.print("Sono connessione view socket - ricevi input \n ");
 		this.datoCorrente = this.dammiUltimoDato();
 
 	}
@@ -140,11 +140,9 @@ public class ConnessioneViewSocket extends ConnessioneView
 	@Override
  	public synchronized void riceviModificheModel(ControllerEvent event)
 	{
-		if (event instanceof InizioGiocoEvent)
-		{
-			InizioGiocoEvent ige = (InizioGiocoEvent) event;
-			Debug.print(ige.toString());
-		}
+		Debug.print("connessione view socket - ricevi Modifiche model - invio Prot");
+		
+		this.inviaProtocolloPerEvento(event);
 	}
 	
 
