@@ -1,11 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.util.List;
-
 import javax.swing.Box;
 import javax.swing.Icon;
 import javax.swing.JFrame;
@@ -30,9 +26,9 @@ public class JCarcassoneFrame extends JFrame
 		this.barraLaterale.aggiornaTesseraCorrente(tessera);
 	}
 
-	public void aggiornaMappa(List<EntryTessera> listaTessere)
+	public void aggiornaMappa(int numeroCasella, Icon immagine)
 	{
-		this.tavolo.aggiornamappa(listaTessere);
+		this.tavolo.setIconTessera(numeroCasella, immagine);
 	}
 
 	private void inizializzaFinestra()

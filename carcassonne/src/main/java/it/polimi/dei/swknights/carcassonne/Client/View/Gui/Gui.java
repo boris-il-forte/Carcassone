@@ -8,6 +8,7 @@ import it.polimi.dei.swknights.carcassonne.ImageLoader.IconGetter;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.swing.Icon;
 
@@ -31,8 +32,9 @@ public class Gui extends ModuloView
 	{
 		ScenarioDiGioco scenario = this.getScenario();
 		Coordinate base = this.getCoordinataNordOvest();
-		List<EntryTessera> listaTessere = scenario.getEntryList(base,base.getCoordinateA(getCoordinateRelativeSE()));
-		this.finestra.aggiornaMappa(listaTessere);
+		List<EntryTessera> listaTessere = scenario.getEntryList(base,
+				base.getCoordinateA(getCoordinateRelativeSE()));
+		this.aggiornaCaselle(listaTessere);
 	}
 
 	@Override
@@ -70,8 +72,21 @@ public class Gui extends ModuloView
 
 	}
 
-	private JCarcassoneFrame finestra;
-	
-	private IconGetter	immagini;
+	private void aggiornaCaselle(List<EntryTessera> listaTessere)
+	{
+		AggiornaMappaGui aggiornaMappa = new AggiornaMappaGui(listaTessere, this.getCoordinataNordOvest(),
+				this.getCoordinateRelativeSE());
+		while(aggiornaMappa.hasNextTessera())
+		{
+			Entry<String, Integer> entry = aggiornaMappa.nextTessera();
+			Icon tessera = this.immagini.getIcon(entry.getKey());
+			int numeroTessera = entry.getValue();
+			this.finestra.aggiornaMappa(numeroTessera, tessera);
+		}	
+	}
+
+	private JCarcassoneFrame	finestra;
+
+	private IconGetter			immagini;
 
 }
