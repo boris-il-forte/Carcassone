@@ -7,8 +7,6 @@ class Carcassonne
 	public static void main(String[] args)
 	{
 
-		Debug d1 = new Debug();
-		d1.visualizzaImmagineENota("CNCN000000.jpg", "nome file: cncn000000");
 		
 		String risposta = "";
 
