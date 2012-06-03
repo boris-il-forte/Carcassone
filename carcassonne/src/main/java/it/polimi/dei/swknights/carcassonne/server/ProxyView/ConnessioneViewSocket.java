@@ -1,15 +1,22 @@
 package it.polimi.dei.swknights.carcassonne.server.ProxyView;
 
 import it.polimi.dei.swknights.carcassonne.Debug;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Connessione.ComandiConnessione;
 import it.polimi.dei.swknights.carcassonne.Events.Game.ComandiView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
+import it.polimi.dei.swknights.carcassonne.server.ProxyView.Handlers.InizioGiocoHandler;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -19,6 +26,8 @@ public class ConnessioneViewSocket extends ConnessioneView
 	public ConnessioneViewSocket(Socket socket)
 	{
 		this.socket = socket;
+		this.handlers = new ArrayList<ViewHandler>();
+		this.handlers.add(new InizioGiocoHandler());
 	}
 
 	@Override
@@ -166,16 +175,15 @@ public class ConnessioneViewSocket extends ConnessioneView
 	private static final int	PARTITA			= 1;
 	private static final int	COLOR			= 0;
 	
+	private List<ViewHandler>    handlers ;
+	
 	@Override
 	public void inviaProtocolloPerEvento(ControllerEvent event)
 	{
-		if (event instanceof InizioGiocoEvent)
+		
+		for(ViewHandler handler :  this.handlers)
 		{
-			InizioGiocoEvent ige = (InizioGiocoEvent)event;
-			ige.getGiocatore();
-			ige.getTesseraIniziale();
-			ige.getIdPartita();
-			ige.getNumGiocatori();
+			event.accept(handler);
 		}
 		
 	}
