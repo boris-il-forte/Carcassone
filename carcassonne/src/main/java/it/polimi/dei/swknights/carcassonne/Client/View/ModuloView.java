@@ -127,15 +127,17 @@ public abstract class ModuloView extends AbstractView
 
 	public void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
 	{
-		Coordinate coordinate = this.getCoordinateNordOvest();
-		int incrementoX = quantita + coordinate.getX();
-		int incrementoY = quantita + coordinate.getY();
-		do
+		Coordinate coordinate = this.coordinateNordOvest;
+		Coordinate nuoveCoordinate = coordinate.getCoordinateA(puntoCardinale);
+		
+		for(int i=0; i<quantita && this.nelBoundingBox(nuoveCoordinate); i++)
 		{
-			coordinate = coordinate.getCoordinateA(puntoCardinale);
-		} while (coordinate.getX() < incrementoX && coordinate.getY() < incrementoY
-				&& nelBoundingBox(coordinate));
-		this.setCoordinataNordOvest(coordinate);
+			coordinate = nuoveCoordinate;
+			nuoveCoordinate = nuoveCoordinate.getCoordinateA(puntoCardinale);
+		}
+		
+		this.coordinateNordOvest = coordinate;
+
 		this.aggiornaMappa();
 	}
 
@@ -191,7 +193,7 @@ public abstract class ModuloView extends AbstractView
 	{
 		return coordinateNordOvest;
 	}
-	
+
 	protected void setCoordinateRelativeSE(Coordinate coordinateRelativeSE)
 	{
 		this.coordinateRelativeSE = coordinateRelativeSE;
@@ -204,13 +206,16 @@ public abstract class ModuloView extends AbstractView
 
 	private boolean nelBoundingBox(Coordinate coordinate)
 	{
+		Coordinate nordOvest = coordinate;
+		Coordinate sudEst = coordinate.getCoordinateA(this.coordinateRelativeSE);
 		ScenarioDiGioco scenario = this.getScenario();
 		Coordinate min = scenario.getMin();
 		Coordinate max = scenario.getMax();
-		boolean isIn = min.getX() <= coordinate.getX();
-		isIn = isIn && min.getY() <= coordinate.getY();
-		isIn = isIn && max.getX() + coordinateRelativeSE.getX() >= coordinate.getX();
-		return isIn && max.getY() + coordinateRelativeSE.getY() >= coordinate.getY();
+		boolean isIn = min.getY() >= nordOvest.getY();
+		isIn = isIn && min.getX() >= nordOvest.getX();
+		isIn = isIn && max.getY() <= sudEst.getY();
+		return isIn && max.getX() <= sudEst.getX();
+
 	}
 
 	private void attivaHanlders()
