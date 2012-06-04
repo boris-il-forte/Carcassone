@@ -95,7 +95,7 @@ class Stampante //TODO: fix bug stampa vicini ai bordi...
 	{
 		for (PuntoCardinale punto : PuntoCardinale.values())
 		{
-			if (!vicinato.haVicinoA(punto) && this.coordinataStampabile(coordinate))
+			if (!vicinato.haVicinoA(punto) && this.coordinataStampabile(coordinate.getCoordinateA(punto)))
 			{
 				Coordinate coordinateDestinazione = coordinate.getCoordinateA(punto);
 				this.scriviTesseraVuota(coordinateDestinazione);
@@ -106,10 +106,10 @@ class Stampante //TODO: fix bug stampa vicini ai bordi...
 	
 	private boolean coordinataStampabile(Coordinate coordinate)
 	{
-		boolean daStampare = coordinate.getX()<this.datiMappa.getMaxA(PuntoCardinale.est);
-		daStampare = daStampare && coordinate.getX()>this.datiMappa.getMaxA(PuntoCardinale.ovest);
-		daStampare = daStampare && coordinate.getY()<this.datiMappa.getMaxA(PuntoCardinale.sud);
-		daStampare = daStampare && coordinate.getY()>this.datiMappa.getMaxA(PuntoCardinale.nord);
+		boolean daStampare = coordinate.getX()<=this.datiMappa.getMaxA(PuntoCardinale.est);
+		daStampare = daStampare && coordinate.getX()>=this.datiMappa.getMaxA(PuntoCardinale.ovest);
+		daStampare = daStampare && coordinate.getY()<=this.datiMappa.getMaxA(PuntoCardinale.sud);
+		daStampare = daStampare && coordinate.getY()>=this.datiMappa.getMaxA(PuntoCardinale.nord);
 		return daStampare;
 	}
 

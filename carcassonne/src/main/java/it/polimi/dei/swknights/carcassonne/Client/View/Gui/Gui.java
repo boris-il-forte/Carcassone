@@ -5,6 +5,8 @@ import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
 import it.polimi.dei.swknights.carcassonne.ImageLoader.IconGetter;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import javax.swing.Icon;
+import javax.swing.JOptionPane;
 
 public class Gui extends ModuloView
 {
@@ -25,7 +28,8 @@ public class Gui extends ModuloView
 		this.finestra = new JCarcassoneFrame(this, this.altezza, this.larghezza);
 		this.immagini = new IconGetter();
 		this.setCoordinataNordOvest(new Coordinate(-larghezza / 2, -altezza / 2));
-		this.setCoordinateRelativeSE(new Coordinate(larghezza, altezza));
+		this.setCoordinateRelativeSE(new Coordinate(larghezza - 1, altezza - 1));
+
 	}
 
 	@Override
@@ -47,15 +51,18 @@ public class Gui extends ModuloView
 	@Override
 	public void notificaFinePartita()
 	{
-		// TODO Auto-generated method stub
+		//TODO: visualizza vincitore
+		JOptionPane.showMessageDialog(this.finestra, "Fine partita!!", "Carcassonne - swKnights",
+				JOptionPane.INFORMATION_MESSAGE, this.immagini.getIcon("", this.dimesioneTessere)); 
 
 	}
 
 	@Override
 	public void notificaMossaNonValida()
 	{
-		// TODO Auto-generated method stub
-
+		//TODO: cambia immagine
+		JOptionPane.showMessageDialog(this.finestra, "Mossa non consentita!", "Carcassonne - swKnights",
+				JOptionPane.INFORMATION_MESSAGE, this.immagini.getIcon("", this.dimesioneTessere)); 
 	}
 
 	@Override
@@ -87,15 +94,19 @@ public class Gui extends ModuloView
 
 	public void passCliccato()
 	{
-		Debug.print("pass");
-
+		if (this.getGestoreFasi().fineTurnoOk())
+		{
+			this.fire(new PassEvent(this));
+			this.getGestoreFasi().nextFase();
+		}
 	}
 
 	public void rotateCliccato()
 	{
-		Debug.print("rotate");
-		// TODO Auto-generated method stub
-
+		if (this.getGestoreFasi().ruotaOk())
+		{
+			this.fire(new RotateEvent(this));
+		}
 	}
 
 	public void zoomModificato(int zoom)
@@ -108,10 +119,10 @@ public class Gui extends ModuloView
 	{
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension size = toolkit.getScreenSize();
-		this.larghezza = (size.width - 2*this.dimesioneTessere)/this.dimesioneTessere;
-		this.altezza = (size.height - 2*this.dimesioneTessere)/this.dimesioneTessere;
-		this.altezza = (this.altezza % 2 == 0) ? (this.altezza+1) : (this.altezza);
-		this.larghezza = (this.larghezza % 2 == 0) ? (this.larghezza+1) : (this.larghezza);
+		this.larghezza = (size.width - 2 * this.dimesioneTessere) / this.dimesioneTessere;
+		this.altezza = (size.height - 2 * this.dimesioneTessere) / this.dimesioneTessere;
+		this.altezza = (this.altezza % 2 == 0) ? (this.altezza + 1) : (this.altezza);
+		this.larghezza = (this.larghezza % 2 == 0) ? (this.larghezza + 1) : (this.larghezza);
 	}
 
 	private void aggiornaCaselle(List<EntryTessera> listaTessere)
@@ -143,7 +154,7 @@ public class Gui extends ModuloView
 
 	private int					larghezza;
 
-	private int					altezza	;
+	private int					altezza;
 	// TODO: coordinare questa dim con quella delle vere caselle...
 	private int					dimesioneTessere	= 100;
 
