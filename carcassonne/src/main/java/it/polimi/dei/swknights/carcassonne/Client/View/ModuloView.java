@@ -203,6 +203,19 @@ public abstract class ModuloView extends AbstractView
 	{
 		return coordinateRelativeSE;
 	}
+	
+	protected boolean isIn(Coordinate coordinate,  Coordinate min, Coordinate max)
+	{
+		return isIn(coordinate,coordinate,min,max);
+	}
+	
+	protected boolean isIn(Coordinate nordOvest, Coordinate sudEst, Coordinate min, Coordinate max)
+	{
+		boolean isIn = min.getY() >= nordOvest.getY();
+		isIn = isIn && min.getX() >= nordOvest.getX();
+		isIn = isIn && max.getY() <= sudEst.getY();
+		return isIn && max.getX() <= sudEst.getX();
+	}
 
 	private boolean nelBoundingBox(Coordinate coordinate)
 	{
@@ -211,10 +224,7 @@ public abstract class ModuloView extends AbstractView
 		ScenarioDiGioco scenario = this.getScenario();
 		Coordinate min = scenario.getMin();
 		Coordinate max = scenario.getMax();
-		boolean isIn = min.getY() >= nordOvest.getY();
-		isIn = isIn && min.getX() >= nordOvest.getX();
-		isIn = isIn && max.getY() <= sudEst.getY();
-		return isIn && max.getX() <= sudEst.getX();
+		return isIn(nordOvest, sudEst, min, max);
 
 	}
 

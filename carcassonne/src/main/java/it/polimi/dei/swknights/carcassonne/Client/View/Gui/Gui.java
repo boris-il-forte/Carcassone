@@ -29,7 +29,7 @@ public class Gui extends ModuloView
 		this.finestra = new JCarcassoneFrame(this, this.altezza, this.larghezza);
 		this.immagini = new IconGetter();
 		this.setCoordinataNordOvest(new Coordinate(-larghezza / 2, -altezza / 2));
-		this.setCoordinateRelativeSE(new Coordinate(larghezza -1, altezza -1 ));
+		this.setCoordinateRelativeSE(new Coordinate(larghezza - 1, altezza - 1));
 	}
 
 	@Override
@@ -45,14 +45,14 @@ public class Gui extends ModuloView
 		Coordinate base = this.getCoordinateNordOvest();
 		List<EntryTessera> listaTessere = scenario.getEntryList(base,
 				base.getCoordinateA(getCoordinateRelativeSE()));
-		Debug.print("listatessere "+listaTessere.size());
+		Debug.print("listatessere " + listaTessere.size());
 		this.aggiornaCaselle(listaTessere);
 	}
 
 	@Override
 	public void notificaFinePartita()
 	{
-		//TODO: visualizza vincitore e cambia immagine
+		// TODO: visualizza vincitore e cambia immagine
 		JOptionPane.showMessageDialog(this.finestra, "Fine partita!!", "Carcassonne - swKnights",
 				JOptionPane.INFORMATION_MESSAGE, this.immagini.getIcon("", this.dimesioneTessere));
 	}
@@ -60,9 +60,9 @@ public class Gui extends ModuloView
 	@Override
 	public void notificaMossaNonValida()
 	{
-		//TODO: cambia immagine
+		// TODO: cambia immagine
 		JOptionPane.showMessageDialog(this.finestra, "Mossa non consentita!", "Carcassonne - swKnights",
-				JOptionPane.INFORMATION_MESSAGE, this.immagini.getIcon("", this.dimesioneTessere)); 
+				JOptionPane.INFORMATION_MESSAGE, this.immagini.getIcon("", this.dimesioneTessere));
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class Gui extends ModuloView
 	@Override
 	public void visualizzaColoreCorrente()
 	{
-		//TODO numero segnalini corretto
+		// TODO numero segnalini corretto
 		this.finestra.aggiornaGiocatoreCorrente(this.getColoreGiocatore(), 0);
 
 	}
@@ -86,17 +86,18 @@ public class Gui extends ModuloView
 	{
 		this.finestra.aggiornaPunteggi(punteggio);
 	}
+
 	public void casellaCliccata(int numeroCasella, Coordinate coordinateMouse)
 	{
 		Debug.print("cliccata casella " + numeroCasella + "in " + coordinateMouse);
 
-	    if(this.getGestoreFasi().posizionaOk())
-	    {
-	    	Coordinate coordReale = this.convertiCoordinate(numeroCasella);
-	    	Debug.print(" coord = " + coordReale);
-	    	this.fire(new PlaceEvent(this, coordReale));
-	    }
-	
+		if (this.getGestoreFasi().posizionaOk())
+		{
+			Coordinate coordReale = this.convertiCoordinate(numeroCasella);
+			Debug.print(" coord = " + coordReale);
+			this.fire(new PlaceEvent(this, coordReale));
+		}
+
 	}
 
 	public void passCliccato()
@@ -126,10 +127,10 @@ public class Gui extends ModuloView
 	private Coordinate convertiCoordinate(int numeroCasella)
 	{
 		int x = numeroCasella % this.larghezza;
-		int y = numeroCasella / this.larghezza;	    	
+		int y = numeroCasella / this.larghezza;
 		Coordinate coordRelativa = new Coordinate(x, y);
-		return  this.getCoordinateNordOvest().getCoordinateA(coordRelativa);
-		
+		return this.getCoordinateNordOvest().getCoordinateA(coordRelativa);
+
 	}
 
 	private void setDimensioni()
@@ -146,7 +147,7 @@ public class Gui extends ModuloView
 	{
 		AggiornaMappaGui aggiornaMappa = new AggiornaMappaGui(listaTessere, this.getCoordinateNordOvest(),
 				this.getCoordinateRelativeSE());
-		this.svuotaTessere();
+		this.finestra.svuotaMappa();
 		while (aggiornaMappa.hasNextTessera())
 		{
 			Entry<String, Integer> entry = aggiornaMappa.nextTessera();
@@ -154,15 +155,19 @@ public class Gui extends ModuloView
 			int numeroTessera = entry.getValue();
 			this.finestra.aggiornaMappa(numeroTessera, tessera);
 		}
-	}
-
-	private void svuotaTessere()
-	{
-		for (int i = 0; i < altezza * larghezza; i++)
+		while(aggiornaMappa.hasNextVuoto())
 		{
-			this.finestra.aggiornaMappa(i, null);
+			Entry<Coordinate, Integer> entry = aggiornaMappa.nextVuoto();
+			Coordinate coordinateVuota = entry.getKey();
+			Coordinate min = this.getCoordinateNordOvest();
+			Coordinate max = this.getCoordinateNordOvest().getCoordinateA(this.getCoordinateRelativeSE());
+			if(this.isIn(coordinateVuota, max, min))
+			{
+				int numeroVuota = entry.getValue();
+				this.finestra.aggiornaMappa(numeroVuota, coordinateVuota);
+			}
+			
 		}
-
 	}
 
 	private JCarcassoneFrame	finestra;
