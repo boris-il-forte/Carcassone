@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne.modoInizio;
+package it.polimi.dei.swknights.carcassonne.ModoInizio;
 
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;

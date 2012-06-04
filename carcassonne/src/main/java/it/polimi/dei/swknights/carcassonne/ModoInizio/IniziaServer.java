@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne.modoInizio;
+package it.polimi.dei.swknights.carcassonne.ModoInizio;
 
 import java.net.Socket;
 
@@ -21,7 +21,7 @@ public class IniziaServer extends Inizio
 		Controller controller = new ModuloController(model);
 		
 		System.out.println("Server");
-		CarcassonneServer cs = new CarcassonneServer();
+		new CarcassonneServer(); //TODO: così fa abbastanza schifo...
 		socket = CarcassonneSocket.dammiSocket();			
 		view = new ProxyView(socket);
 		model.addListener(view);

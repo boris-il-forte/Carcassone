@@ -95,7 +95,7 @@ class Stampante //TODO: fix bug stampa vicini ai bordi...
 	{
 		for (PuntoCardinale punto : PuntoCardinale.values())
 		{
-			if (!vicinato.haVicinoA(punto) && this.coordinataStampabile(coordinate) )
+			if (!vicinato.haVicinoA(punto) && this.coordinataStampabile(coordinate))
 			{
 				Coordinate coordinateDestinazione = coordinate.getCoordinateA(punto);
 				this.scriviTesseraVuota(coordinateDestinazione);
