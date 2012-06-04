@@ -68,6 +68,7 @@ public class Gui extends ModuloView
 	@Override
 	public void visualizzaTesseraCorrente(AdapterTessera tessera)
 	{
+		this.setTesseraCorrente(tessera);
 		Icon iconaTessera = this.immagini.getOriginalIcon(tessera.toProtocolString());
 		this.finestra.aggiornaTesseraCorrente(iconaTessera);
 	}
@@ -113,6 +114,7 @@ public class Gui extends ModuloView
 		{
 			this.fire(new RotateEvent(this));
 		}
+		return;
 	}
 
 	public void zoomModificato(int zoom)
