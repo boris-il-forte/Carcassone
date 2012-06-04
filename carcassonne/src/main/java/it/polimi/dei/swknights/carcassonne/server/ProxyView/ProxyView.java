@@ -33,20 +33,21 @@ public class ProxyView extends AbstractConnessioneView
 	{
 		int n = 0;
 		boolean nonCacciatoUser = true;
-		while (nonCacciatoUser && n<5)
+		while (nonCacciatoUser)
 		{
 
-			while (true && n<5)
+			while (true)
 			{
 				try
 				{
 					connessione.riceviInput();
 					//connessione.generaEvento();
-					n++;
+					
 				}
 				catch (IOException e)
 				{
-					n++;
+					
+					
 					//continue;
 					// TODO Auto-generated catch block
 					//e.printStackTrace();

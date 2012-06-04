@@ -13,6 +13,7 @@ import it.polimi.dei.swknights.carcassonne.server.ProxyView.Handlers.InizioGioco
 import java.awt.Color;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.EventObject;
@@ -25,9 +26,13 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	public ConnessioneViewSocket(Socket socket)
 	{
+
+		
 		this.socket = socket;
 		this.handlers = new ArrayList<ViewHandler>();
 		this.handlers.add(new InizioGiocoHandler(this.socket));
+		
+		
 	}
 
 	@Override
@@ -90,30 +95,47 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	}
 
-	public String dammiUltimoDato() throws IOException
+	public String dammiUltimoDato()
 	{
 		String line = "";
 		// connessione view socket
 
-		this.socket.getOutputStream();
-		Scanner in = new Scanner(this.socket.getInputStream());
+		try
+		{
+			this.socket.getOutputStream();
+		}
+		catch (IOException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		Scanner in = null;
+		try
+		{
+			in = new Scanner(this.socket.getInputStream());
+	
 		PrintWriter out = new PrintWriter(this.socket.getOutputStream());
 
+		}
+		catch (IOException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		boolean got = false;
 		
 		while (got == false)
 		{
+			
 			try
 			{
-				line = in.nextLine();
-				got = true;
+			line = in.nextLine();
 			}
-			catch (Exception e)
-			{
-				Debug.print("nulla");
-				got = false;
-				continue;
-			}
+			 catch(NoSuchElementException e) 
+			 {
+				 System.out.println("Connection closed");
+			} 
+			got = true;
 		}
 
 		Debug.print("Connessione view Socket, ricevuta: " + line);

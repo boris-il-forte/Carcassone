@@ -5,7 +5,6 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEven
 
 import java.io.IOException;
 import java.util.EventObject;
-import java.util.List;
 
 public abstract class ConnessioneView extends AbstractConnessioneView
 {
