@@ -18,24 +18,19 @@ public class Debug
 
 	public static void showImg(Image imgTessera, String descrizione)
 	{
-		
-		String [] s = { descrizione };
-		//URL url  = ImageLoader.class.getResource("/tiles/" + nomeTessera);
 
-			icon = new ImageIcon(imgTessera);
-		
-		
-		String risposta = (String) JOptionPane.showInputDialog(null, "", descrizione,
-				JOptionPane.INFORMATION_MESSAGE, icon, s, descrizione);
-				
+		String[] s = { descrizione };
+		// URL url = ImageLoader.class.getResource("/tiles/" + nomeTessera);
+
+		icon = new ImageIcon(imgTessera);
+
+		JOptionPane.showInputDialog(null, "", descrizione, JOptionPane.INFORMATION_MESSAGE, icon, s,
+				descrizione);
 
 	}
 
-
-	private static PrintWriter	printer	= new PrintWriter(System.out);
-	private static Icon					icon;
+	private static PrintWriter		printer		= new PrintWriter(System.out);
 	
-	private static final String[]	TIPO_AVVIO		= {  "oooo",  "oooo" };
-	
+	private static Icon				icon;
 
 }
