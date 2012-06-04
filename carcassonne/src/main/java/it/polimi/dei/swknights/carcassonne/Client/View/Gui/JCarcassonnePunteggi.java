@@ -41,13 +41,8 @@ public class JCarcassonnePunteggi extends JPanel
 		for (Entry<Color, Integer> entry : punteggi.entrySet())
 		{
 			JCarcassonnePlayer player = this.players.get(entry.getKey());
-			if(player==null)
+			if(player != null)
 			{
-				Debug.print("player = null, key = " + entry.getKey());
-			}
-			else
-			{
-				Debug.print("player = null, key = " + entry.getKey());
 				player.setPunteggio(entry.getValue());
 			}
 		}
