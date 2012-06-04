@@ -71,7 +71,6 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 	private void aggiungiSpazio()
 	{
 		this.add(Box.createVerticalGlue());
-		this.add(Box.createRigidArea(MINIMO_SPAZIO));
 	}
 
 	private void aggiugiTesseraCorrente()
@@ -123,8 +122,6 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 	private JCarcassonneZoom				zoom;
 
 	private Gui								view;
-
-	private static final Dimension			MINIMO_SPAZIO		= new Dimension(0, 50);
 
 	private static final int				LATO_TESSERA		= 150;
 

@@ -4,7 +4,6 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -18,34 +17,23 @@ import javax.swing.border.BevelBorder;
 public class JCarcassonneTavolo extends JPanel implements MouseListener
 {
 
-	public JCarcassonneTavolo(Gui gui)
+	public JCarcassonneTavolo(Gui gui, int righe, int colonne)
 	{
 		super();
-		final int larghezza = LARGHEZZA * DIMENSIONE_CELLE;
-		final int altezza = ALTEZZA * DIMENSIONE_CELLE;
+		this.righe = righe;
+		this.colonne = colonne;
+		final int larghezza = this.colonne * DIMENSIONE_CELLE;
+		final int altezza = this.righe * DIMENSIONE_CELLE;
 		Dimension dimensione = new Dimension(larghezza, altezza);
-		this.setLayout(new GridLayout(ALTEZZA, LARGHEZZA));
+		this.setLayout(new GridLayout(righe, colonne));
 		this.setMinimumSize(dimensione);
 		this.setPreferredSize(dimensione);
 		this.setMaximumSize(dimensione);
 		this.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 		this.listaCaselle = new ArrayList<JCarcassonneCasella>();
 		this.creaCaselle();
-		
+
 		this.view = gui;
-	}
-
-	public void creaCaselle()
-	{
-
-		for (int i = 0; i < NUMERO_CASELLE; i++)
-		{
-			JCarcassonneCasella tessera = new JCarcassonneCasella(new Rectangle(0, 0, DIMENSIONE_CELLE,
-					DIMENSIONE_CELLE));
-			this.listaCaselle.add(tessera);
-			tessera.addMouseListener(this);
-			this.add(tessera);
-		}
 	}
 
 	public void setIconTessera(int numeroCasella, Icon immagine)
@@ -78,17 +66,27 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 	{
 	}
 
-	private Gui	view;
+	private void creaCaselle()
+	{
+		final int numeroCaselle = this.righe * this.colonne;
+		for (int i = 0; i < numeroCaselle; i++)
+		{
+			JCarcassonneCasella tessera = new JCarcassonneCasella(DIMENSIONE_CELLE);
+			this.listaCaselle.add(tessera);
+			tessera.addMouseListener(this);
+			this.add(tessera);
+		}
+	}
+
+	private Gui							view;
 
 	private List<JCarcassonneCasella>	listaCaselle;
 
-	private static final int			ALTEZZA				= 7;
+	private int							righe;
 
-	private static final int			LARGHEZZA			= 13;
+	private int							colonne;
 
 	private static final int			DIMENSIONE_CELLE	= 100;
-
-	private static final int			NUMERO_CASELLE		= ALTEZZA * LARGHEZZA;
 
 	private static final long			serialVersionUID	= -8246924200035116931L;
 

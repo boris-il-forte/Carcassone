@@ -9,11 +9,11 @@ import javax.swing.JFrame;
 public class JCarcassoneFrame extends JFrame
 {
 
-	public JCarcassoneFrame(Gui gui)
+	public JCarcassoneFrame(Gui gui, int righe, int colonne)
 	{
 		super();
 		this.view = gui;
-		this.inizializzaFinestra();
+		this.inizializzaFinestra(righe, colonne);
 	}
 
 	public void showGui()
@@ -32,12 +32,12 @@ public class JCarcassoneFrame extends JFrame
 		this.tavolo.setIconTessera(numeroCasella, immagine);
 	}
 
-	private void inizializzaFinestra()
+	private void inizializzaFinestra(int righe, int colonne)
 	{
 		this.creaFinestra();
 		this.creaMenu();
 		this.creaBarraComandi();
-		this.creaTavolo();
+		this.creaTavolo(righe, colonne);
 	}
 
 	private void creaFinestra()
@@ -54,9 +54,9 @@ public class JCarcassoneFrame extends JFrame
 		this.add(this.menu, BorderLayout.NORTH);
 	}
 
-	private void creaTavolo()
+	private void creaTavolo(int righe, int colonne)
 	{
-		this.tavolo = new JCarcassonneTavolo(this.view);
+		this.tavolo = new JCarcassonneTavolo(this.view,righe, colonne);
 		Box box = Box.createHorizontalBox();
 		box.add(Box.createHorizontalStrut(20));
 		box.add(Box.createHorizontalGlue());

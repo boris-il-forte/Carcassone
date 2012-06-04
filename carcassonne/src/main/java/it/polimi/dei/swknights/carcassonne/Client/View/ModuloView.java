@@ -29,10 +29,9 @@ import java.util.Map.Entry;
 
 public abstract class ModuloView extends AbstractView
 {
-	public ModuloView(Coordinate coordinateRelativeSE)
+	public ModuloView()
 	{
 		super();
-		this.coordinateRelativeSE = coordinateRelativeSE;
 		this.scenario = new ScenarioDiGioco();
 		this.gestoreFasi = new GestoreFasi();
 		this.attivaHanlders();
@@ -128,11 +127,14 @@ public abstract class ModuloView extends AbstractView
 
 	public void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
 	{
-		Coordinate coordinate;
+		Coordinate coordinate = this.getCoordinateNordOvest();
+		int incrementoX = quantita + coordinate.getX();
+		int incrementoY = quantita + coordinate.getY();
 		do
 		{
-			coordinate = this.getCoordinataNordOvest().getCoordinateA(puntoCardinale);
-		} while (coordinate.getX() < quantita && coordinate.getY() < quantita && nelBoundingBox(coordinate));
+			coordinate = coordinate.getCoordinateA(puntoCardinale);
+		} while (coordinate.getX() < incrementoX && coordinate.getY() < incrementoY
+				&& nelBoundingBox(coordinate));
 		this.setCoordinataNordOvest(coordinate);
 		this.aggiornaMappa();
 	}
@@ -182,12 +184,17 @@ public abstract class ModuloView extends AbstractView
 
 	protected void setCoordinataNordOvest(Coordinate coordinataNordOvest)
 	{
-		this.coordinataNordOvest = coordinataNordOvest;
+		this.coordinateNordOvest = coordinataNordOvest;
 	}
 
-	protected Coordinate getCoordinataNordOvest()
+	protected Coordinate getCoordinateNordOvest()
 	{
-		return coordinataNordOvest;
+		return coordinateNordOvest;
+	}
+	
+	protected void setCoordinateRelativeSE(Coordinate coordinateRelativeSE)
+	{
+		this.coordinateRelativeSE = coordinateRelativeSE;
 	}
 
 	protected Coordinate getCoordinateRelativeSE()
@@ -202,8 +209,8 @@ public abstract class ModuloView extends AbstractView
 		Coordinate max = scenario.getMax();
 		boolean isIn = min.getX() <= coordinate.getX();
 		isIn = isIn && min.getY() <= coordinate.getY();
-		isIn = isIn && max.getX() >= coordinate.getX();
-		return isIn && max.getY() >= coordinate.getY();
+		isIn = isIn && max.getX() + coordinateRelativeSE.getX() >= coordinate.getX();
+		return isIn && max.getY() + coordinateRelativeSE.getY() >= coordinate.getY();
 	}
 
 	private void attivaHanlders()
@@ -225,9 +232,9 @@ public abstract class ModuloView extends AbstractView
 
 	private Color						coloreGiocatore;
 
-	private Coordinate					coordinataNordOvest;
+	private Coordinate					coordinateNordOvest;
 
-	private final Coordinate			coordinateRelativeSE;
+	private Coordinate					coordinateRelativeSE;
 
 	protected static final Coordinate	centroScenario	= new Coordinate(0, 0);
 

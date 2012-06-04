@@ -21,6 +21,11 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.immagineTessera.setBounds(this.bounds);
 	}
 	
+	public JCarcassonneCasella(int dimLato)
+	{
+		this(new Rectangle(0,0,dimLato,dimLato));
+	}
+	
 	public void setTessera(Icon icon)
 	{
 		this.immagineTessera.setIcon(icon);

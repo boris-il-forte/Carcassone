@@ -11,11 +11,6 @@ import java.util.Map.Entry;
 
 public class AggiornaMappaGui
 {
-	private Coordinate							coordinateNordOvest;
-	private Integer								larghezza;
-	private Integer								altezza;
-	private Iterator<Entry<String, Integer>>	tessereIterator;
-
 	public AggiornaMappaGui(List<EntryTessera> listaTessere, Coordinate coordinateNordOvest,
 			Coordinate coordinateRelativeSE)
 	{
@@ -24,6 +19,16 @@ public class AggiornaMappaGui
 		this.altezza = coordinateRelativeSE.getY();
 		this.coordinateNordOvest = coordinateNordOvest;
 		this.creaMappaTessere(listaTessere);
+	}
+
+	public boolean hasNextTessera()
+	{
+		return this.tessereIterator.hasNext();
+	}
+
+	public Entry<String, Integer> nextTessera()
+	{
+		return this.tessereIterator.next();
 	}
 
 	private void creaMappaTessere(List<EntryTessera> listaTessere)
@@ -44,28 +49,27 @@ public class AggiornaMappaGui
 	{
 		int x = coordinateTessera.getX();
 		int y = coordinateTessera.getY();
-		x -= coordinateNordOvest.getX();
-		y -= coordinateNordOvest.getY();
-		if (x <= this.larghezza && x <= this.altezza)
+		x -= this.coordinateNordOvest.getX();
+		y -= this.coordinateNordOvest.getY();
+		if (x <= this.larghezza && y <= this.altezza)
 		{
 			return x + y * this.larghezza;
 		}
 		else
-		{
+		{ 
 			throw new IllegalArgumentException("coordinate tessera " + coordinateTessera
-					+ "sono fuori dal Bounding box");
+					+ "sono fuori dal Bounding box, larghezza: " + this.larghezza +" altezza: "+this.altezza
+					+ " CoordinateNO " + this.coordinateNordOvest);
 		}
 
 	}
 
-	public boolean hasNextTessera()
-	{
-		return this.tessereIterator.hasNext();
-	}
-
-	public Entry<String, Integer> nextTessera()
-	{
-		return this.tessereIterator.next();
-	}
+	private Coordinate							coordinateNordOvest;
+	
+	private Integer								larghezza;
+	
+	private Integer								altezza;
+	
+	private Iterator<Entry<String, Integer>>	tessereIterator;
 
 }
