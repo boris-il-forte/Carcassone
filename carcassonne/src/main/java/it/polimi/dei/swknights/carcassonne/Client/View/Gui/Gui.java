@@ -6,6 +6,7 @@ import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
 import it.polimi.dei.swknights.carcassonne.ImageLoader.IconGetter;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
@@ -29,7 +30,6 @@ public class Gui extends ModuloView
 		this.immagini = new IconGetter();
 		this.setCoordinataNordOvest(new Coordinate(-larghezza / 2, -altezza / 2));
 		this.setCoordinateRelativeSE(new Coordinate(larghezza - 1, altezza - 1));
-
 	}
 
 	@Override
@@ -45,16 +45,16 @@ public class Gui extends ModuloView
 		Coordinate base = this.getCoordinateNordOvest();
 		List<EntryTessera> listaTessere = scenario.getEntryList(base,
 				base.getCoordinateA(getCoordinateRelativeSE()));
+		Debug.print("listatessere "+listaTessere.size());
 		this.aggiornaCaselle(listaTessere);
 	}
 
 	@Override
 	public void notificaFinePartita()
 	{
-		//TODO: visualizza vincitore
+		//TODO: visualizza vincitore e cambia immagine
 		JOptionPane.showMessageDialog(this.finestra, "Fine partita!!", "Carcassonne - swKnights",
-				JOptionPane.INFORMATION_MESSAGE, this.immagini.getIcon("", this.dimesioneTessere)); 
-
+				JOptionPane.INFORMATION_MESSAGE, this.immagini.getIcon("", this.dimesioneTessere));
 	}
 
 	@Override
@@ -82,14 +82,19 @@ public class Gui extends ModuloView
 	@Override
 	public void visualizzaPunteggi(Punteggi punteggio)
 	{
-		// TODO Auto-generated method stub
-
+		this.finestra.aggiornaPunteggi(punteggio);
 	}
-
-	public void casellaCliccata(int numeroCasella, Coordinate coordinate)
+	public void casellaCliccata(int numeroCasella, Coordinate coordinateMouse)
 	{
-		Debug.print("cliccata casella " + numeroCasella + "in " + coordinate);
+		Debug.print("cliccata casella " + numeroCasella + "in " + coordinateMouse);
 
+	    if(this.getGestoreFasi().posizionaOk())
+	    {
+	    	Coordinate coordReale = this.convertiCoordinate(numeroCasella);
+	    	Debug.print(" coord = " + coordReale);
+	    	this.fire(new PlaceEvent(this, coordReale));
+	    }
+	
 	}
 
 	public void passCliccato()
@@ -113,6 +118,15 @@ public class Gui extends ModuloView
 	{
 		Debug.print("modificato: " + zoom);
 		// TODO Auto-generated method stub
+	}
+
+	private Coordinate convertiCoordinate(int numeroCasella)
+	{
+		int x = numeroCasella % this.larghezza;
+		int y = numeroCasella / this.larghezza;	    	
+		Coordinate coordRelativa = new Coordinate(x, y);
+		return  this.getCoordinateNordOvest().getCoordinateA(coordRelativa);
+		
 	}
 
 	private void setDimensioni()

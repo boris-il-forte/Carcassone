@@ -16,6 +16,8 @@ import javax.swing.border.BevelBorder;
 public class JCarcassonneLaterale extends Box implements ActionListener
 {
 
+	private JCarcassonneCurrentPlayer	giocatoreCorrente;
+
 	public JCarcassonneLaterale(Gui gui)
 	{
 		super(BoxLayout.Y_AXIS);
@@ -55,6 +57,8 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 	private void aggiungiComponenti()
 	{
 		this.aggiungiSpazio();
+		this.aggiungiGiocatoreCorrente();
+		this.aggiungiSpazio();
 		this.aggiugiTesseraCorrente();
 		this.aggiungiSpazio();
 		this.aggiungiRotate();
@@ -71,6 +75,13 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 	private void aggiungiSpazio()
 	{
 		this.add(Box.createVerticalGlue());
+	}
+
+	private void aggiungiGiocatoreCorrente()
+	{
+		this.giocatoreCorrente = new JCarcassonneCurrentPlayer();
+		this.add(this.giocatoreCorrente);
+		
 	}
 
 	private void aggiugiTesseraCorrente()

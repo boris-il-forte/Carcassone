@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import javax.swing.Box;
@@ -22,6 +24,12 @@ public class JCarcassoneFrame extends JFrame
 		this.setVisible(true);
 	}
 
+	public void aggiornaPunteggi(Punteggi punteggio)
+	{
+		this.contaPunti.aggiornaPunteggi(punteggio);
+		
+	}
+
 	public void aggiornaTesseraCorrente(Icon tessera)
 	{
 		this.barraLaterale.aggiornaTesseraCorrente(tessera);
@@ -38,6 +46,7 @@ public class JCarcassoneFrame extends JFrame
 		this.creaMenu();
 		this.creaBarraComandi();
 		this.creaTavolo(righe, colonne);
+		this.creaContaPunti();
 	}
 
 	private void creaFinestra()
@@ -56,7 +65,7 @@ public class JCarcassoneFrame extends JFrame
 
 	private void creaTavolo(int righe, int colonne)
 	{
-		this.tavolo = new JCarcassonneTavolo(this.view,righe, colonne);
+		this.tavolo = new JCarcassonneTavolo(this.view, righe, colonne);
 		Box box = Box.createHorizontalBox();
 		box.add(Box.createHorizontalStrut(20));
 		box.add(Box.createHorizontalGlue());
@@ -72,13 +81,24 @@ public class JCarcassoneFrame extends JFrame
 		this.add(this.barraLaterale, BorderLayout.WEST);
 	}
 
+	private void creaContaPunti()
+	{
+		this.contaPunti = new JCarcassonnePunteggi(this.numeroGiocatori);
+		this.add(this.contaPunti, BorderLayout.SOUTH);
+	
+	}
+
+	private JCarcassonnePunteggi	contaPunti;
+
 	private JCarcassonneMenu		menu;
 
 	private JCarcassonneLaterale	barraLaterale;
 
 	private JCarcassonneTavolo		tavolo;
 
-	private Gui	view;
+	private Gui						view;
+
+	private int						numeroGiocatori		= 2;
 
 	private static final Dimension	DIMENSIONE_MINIMA	= new Dimension(1200, 600);
 

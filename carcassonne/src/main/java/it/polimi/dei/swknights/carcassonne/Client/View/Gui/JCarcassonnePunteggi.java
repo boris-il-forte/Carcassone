@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -16,7 +17,9 @@ public class JCarcassonnePunteggi extends JPanel
 	public JCarcassonnePunteggi(int numGiocatori)
 	{
 		this.players = new HashMap<Color, JCarcassonnePlayer>();
+		this.setLayout(new FlowLayout());
 		this.creaColori(numGiocatori);
+		
 	}
 
 	private void creaColori(int numGiocatori)
@@ -27,6 +30,7 @@ public class JCarcassonnePunteggi extends JPanel
 			Color colore = iteratore.next();
 			JCarcassonnePlayer player = new JCarcassonnePlayer(colore);
 			this.players.put(colore,player);
+			this.add(player);
 		}
 		
 	}
