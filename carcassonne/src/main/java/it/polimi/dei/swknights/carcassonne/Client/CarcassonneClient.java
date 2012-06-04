@@ -11,7 +11,7 @@ import it.polimi.dei.swknights.carcassonne.server.ProxyView.AbstractConnessioneV
 public class CarcassonneClient
 {
 	
-	public static void main(String [] a)
+	public void run()
 	{
 		boolean again = true;
 		while(again)

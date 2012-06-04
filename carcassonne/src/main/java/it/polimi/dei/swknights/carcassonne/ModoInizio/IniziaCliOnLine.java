@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne.modoInizio;
+package it.polimi.dei.swknights.carcassonne.ModoInizio;
 
 import java.net.Socket;
 

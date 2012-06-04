@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne;
 
-import it.polimi.dei.swknights.carcassonne.modoInizio.Inizio;
+import it.polimi.dei.swknights.carcassonne.ModoInizio.Inizio;
 
 class Carcassonne
 {

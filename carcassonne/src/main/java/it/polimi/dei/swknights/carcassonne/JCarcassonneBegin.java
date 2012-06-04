@@ -1,10 +1,10 @@
 package it.polimi.dei.swknights.carcassonne;
 
-import it.polimi.dei.swknights.carcassonne.modoInizio.IniziaCliOffline;
-import it.polimi.dei.swknights.carcassonne.modoInizio.IniziaCliOnLine;
-import it.polimi.dei.swknights.carcassonne.modoInizio.IniziaGuiOffline;
-import it.polimi.dei.swknights.carcassonne.modoInizio.IniziaServer;
-import it.polimi.dei.swknights.carcassonne.modoInizio.Inizio;
+import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaCliOffline;
+import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaCliOnLine;
+import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaGuiOffline;
+import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaServer;
+import it.polimi.dei.swknights.carcassonne.ModoInizio.Inizio;
 
 import java.io.IOException;
 import java.net.URL;
