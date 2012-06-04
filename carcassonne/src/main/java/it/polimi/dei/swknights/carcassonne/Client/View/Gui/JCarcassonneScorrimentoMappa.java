@@ -69,10 +69,10 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 				index = 3;
 				break;
 			case est:
-				index = 1;
+				index = 2;
 				break;
 			case ovest:
-				index = 2;
+				index = 1;
 				break;
 		}
 		return this.listaPulsanti.get(index);

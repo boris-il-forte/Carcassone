@@ -28,13 +28,14 @@ public class Cli extends ModuloView
 {
 	public Cli()
 	{
-		super(new Coordinate(LARGHEZZA, ALTEZZA));
+		super();
 		Debug.print("sono la cli creo cli");
 		this.out = new PrintWriter(System.out);
 		this.in = new Scanner(System.in);
 		this.setCoordinataNordOvest(new Coordinate(-LARGHEZZA / 2, -ALTEZZA / 2));
 		this.parser = new ParserComandi(this);
 		this.informaUser = new AvvisiUser(out);
+		this.setCoordinateRelativeSE(new Coordinate(LARGHEZZA, ALTEZZA));
 	}
 
 	@Override
@@ -65,7 +66,7 @@ public class Cli extends ModuloView
 	{
 		ScenarioDiGioco scenario = this.getScenario();
 		Stampante stampante = this.inizializzaStampante();
-		Coordinate base = this.getCoordinataNordOvest();
+		Coordinate base = this.getCoordinateNordOvest();
 		List<EntryTessera> listaTessere = scenario.getEntryList(base,
 				base.getCoordinateA(this.getCoordinateRelativeSE()));
 		stampante.addListTessera(listaTessere);
@@ -229,8 +230,8 @@ public class Cli extends ModuloView
 
 	private Stampante inizializzaStampante()
 	{
-		Coordinate min = this.getCoordinataNordOvest();
-		Coordinate max = this.getCoordinataNordOvest().getCoordinateA(this.getCoordinateRelativeSE());
+		Coordinate min = this.getCoordinateNordOvest();
+		Coordinate max = this.getCoordinateNordOvest().getCoordinateA(this.getCoordinateRelativeSE());
 		DatiMappa datiMappa = new DatiMappa(min, max);
 		return new Stampante(datiMappa);
 	}
