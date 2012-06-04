@@ -23,7 +23,6 @@ public class CostruzioneCompletataEvent extends ControllerEvent
 		this.setComando(MessaggiController.costruction);
 		this.tessereAggiornate = tessereAggiornate;
 		this.punteggi = punteggi;
-	
 	}
 
 	public Punteggi getPunteggi()
