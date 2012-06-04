@@ -29,7 +29,7 @@ public class Gui extends ModuloView
 		this.finestra = new JCarcassoneFrame(this, this.altezza, this.larghezza);
 		this.immagini = new IconGetter();
 		this.setCoordinataNordOvest(new Coordinate(-larghezza / 2, -altezza / 2));
-		this.setCoordinateRelativeSE(new Coordinate(larghezza - 1, altezza - 1));
+		this.setCoordinateRelativeSE(new Coordinate(larghezza -1, altezza -1 ));
 	}
 
 	@Override
@@ -75,7 +75,8 @@ public class Gui extends ModuloView
 	@Override
 	public void visualizzaColoreCorrente()
 	{
-		// TODO Auto-generated method stub
+		//TODO numero segnalini corretto
+		this.finestra.aggiornaGiocatoreCorrente(this.getColoreGiocatore(), 0);
 
 	}
 
@@ -133,8 +134,8 @@ public class Gui extends ModuloView
 	{
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension size = toolkit.getScreenSize();
-		this.larghezza = (size.width - 2 * this.dimesioneTessere) / this.dimesioneTessere;
-		this.altezza = (size.height - 2 * this.dimesioneTessere) / this.dimesioneTessere;
+		this.larghezza = (size.width - 4 * this.dimesioneTessere) / this.dimesioneTessere;
+		this.altezza = (size.height - 4 * this.dimesioneTessere) / this.dimesioneTessere;
 		this.altezza = (this.altezza % 2 == 0) ? (this.altezza + 1) : (this.altezza);
 		this.larghezza = (this.larghezza % 2 == 0) ? (this.larghezza + 1) : (this.larghezza);
 	}

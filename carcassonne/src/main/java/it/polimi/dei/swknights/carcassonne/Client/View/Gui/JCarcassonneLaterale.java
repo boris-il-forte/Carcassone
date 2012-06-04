@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -16,8 +17,6 @@ import javax.swing.border.BevelBorder;
 public class JCarcassonneLaterale extends Box implements ActionListener
 {
 
-	private JCarcassonneCurrentPlayer	giocatoreCorrente;
-
 	public JCarcassonneLaterale(Gui gui)
 	{
 		super(BoxLayout.Y_AXIS);
@@ -29,6 +28,11 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 	public void aggiornaTesseraCorrente(Icon tessera)
 	{
 		this.tesseraCorrente.setTessera(tessera);
+	}
+	
+	public void aggiornaGiocatoreCorrente(Color colore, int numeroSegnalini)
+	{
+		this.giocatoreCorrente.setGiocatoreCorrente(colore, numeroSegnalini);
 	}
 
 	public void actionPerformed(ActionEvent e)
@@ -121,6 +125,8 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 		this.zoom = new JCarcassonneZoom(this.view);
 		this.add(this.zoom);
 	}
+
+	private JCarcassonneCurrentPlayer	giocatoreCorrente;
 
 	private JCarcassonneCasella				tesseraCorrente;
 

@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.Box;
 import javax.swing.Icon;
@@ -33,6 +34,11 @@ public class JCarcassoneFrame extends JFrame
 	public void aggiornaTesseraCorrente(Icon tessera)
 	{
 		this.barraLaterale.aggiornaTesseraCorrente(tessera);
+	}
+	
+	public void aggiornaGiocatoreCorrente(Color colore, int numeroSegnalini)
+	{
+		this.barraLaterale.aggiornaGiocatoreCorrente(colore, numeroSegnalini);
 	}
 
 	public void aggiornaMappa(int numeroCasella, Icon immagine)
