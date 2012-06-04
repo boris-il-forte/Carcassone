@@ -15,7 +15,7 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
  * @author edoardopasi & dave
  *
  */
-class Stampante
+class Stampante //TODO: fix bug stampa vicini ai bordi... 
 {
 
 	public Stampante(DatiMappa datiMappa)
