@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.ModoInizio;
 
+import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocket;
@@ -22,11 +24,28 @@ public class IniziaServer extends Inizio
 		
 		System.out.println("Server");
 		new CarcassonneServer(); //TODO: così fa abbastanza schifo...
-		socket = CarcassonneSocket.dammiSocket();			
+		
+		ServerSocket serverSocket;
+		Socket socket=null;
+		boolean fatto = false;
+		while(fatto == false)
+		{
+		try
+		{
+			serverSocket = new ServerSocket(1984);
+			socket = serverSocket.accept();
+			fatto = true;
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		}
+		}
+		
 		view = new ProxyView(socket);
 		model.addListener(view);
-		
-		superStarDestroyer.execute(controller);
+
 		superStarDestroyer.execute(view);
 		
 	}
