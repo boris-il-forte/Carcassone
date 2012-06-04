@@ -52,7 +52,7 @@ public class AggiornaMappaGui
 		y -= this.coordinateNordOvest.getY();
 		if (x <= this.larghezza && y <= this.altezza)
 		{
-			return x  + 11*y ;////////!!!!! &&&&&
+			return x  + this.larghezza*y ;////////!!!!! &&&&&
 		}
 		else
 		{ 
