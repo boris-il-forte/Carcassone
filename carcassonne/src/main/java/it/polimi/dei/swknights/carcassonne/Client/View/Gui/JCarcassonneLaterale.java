@@ -1,7 +1,11 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
+
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -9,12 +13,13 @@ import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.border.BevelBorder;
 
-public class JCarcassonneLaterale extends Box
+public class JCarcassonneLaterale extends Box implements ActionListener
 {
 
-	public JCarcassonneLaterale()
+	public JCarcassonneLaterale(Gui gui)
 	{
 		super(BoxLayout.Y_AXIS);
+		this.view = gui;
 		this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 		this.aggiungiComponenti();
 	}
@@ -22,6 +27,29 @@ public class JCarcassonneLaterale extends Box
 	public void aggiornaTesseraCorrente(Icon tessera)
 	{
 		this.tesseraCorrente.setTessera(tessera);
+	}
+
+	public void actionPerformed(ActionEvent e)
+	{
+		Object source = e.getSource();
+		if(source == this.pulsantePass.getEventSource())
+		{
+			this.view.passCliccato();
+		}
+		else if(source == this.pulsanteRotate.getEventSource())
+		{
+			this.view.rotateCliccato();
+		}
+		else
+		{
+			for(PuntoCardinale punto : PuntoCardinale.values())
+			{
+				if(this.scorrimentoMappa.getSource(punto) == source)
+				{
+					this.view.muoviViewA(punto, 1);
+				}
+			}
+		}
 	}
 
 	private void aggiungiComponenti()
@@ -60,24 +88,27 @@ public class JCarcassonneLaterale extends Box
 	private void aggiungiRotate()
 	{
 		this.pulsanteRotate = new JCarcassonneRotate();
+		this.pulsanteRotate.setActionListener(this);
 		this.add(this.pulsanteRotate);
 	}
 
 	private void aggiungiPass()
 	{
 		this.pulsantePass = new JCarcassonnePass();
+		this.pulsantePass.setActionListener(this);
 		this.add(this.pulsantePass);
 	}
 
 	private void aggiungiScorrimento()
 	{
 		this.scorrimentoMappa = new JCarcassonneScorrimentoMappa();
+		this.scorrimentoMappa.addActionListener(this);
 		this.add(this.scorrimentoMappa);
 	}
 
 	private void aggiungiZoom()
 	{
-		this.zoom = new JCarcassonneZoom();
+		this.zoom = new JCarcassonneZoom(this.view);
 		this.add(this.zoom);
 	}
 
@@ -90,6 +121,8 @@ public class JCarcassonneLaterale extends Box
 	private JCarcassonneScorrimentoMappa	scorrimentoMappa;
 
 	private JCarcassonneZoom				zoom;
+
+	private Gui								view;
 
 	private static final Dimension			MINIMO_SPAZIO		= new Dimension(0, 50);
 

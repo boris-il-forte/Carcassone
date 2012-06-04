@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -21,6 +22,17 @@ public class JCarcassonneButton extends JPanel
 		this.button.setMaximumSize(dimensione);
 	}
 	
+	public void setActionListener(ActionListener listener)
+	{
+		this.button.addActionListener(listener);
+		
+	}
+
+	public Object getEventSource()
+	{
+		return this.button;
+	}
+
 	private JButton button;
 	
 	private static final long	serialVersionUID	= 8724265205035677878L;
