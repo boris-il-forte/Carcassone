@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne;
 
+import it.polimi.dei.swknights.carcassonne.ModoInizio.Fine;
 import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaCliOffline;
 import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaCliOnLine;
 import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaGuiOffline;
@@ -46,7 +47,7 @@ public class JCarcassonneBegin
 	}
 	public Inizio getIniziatore(String risposta)
 	{
-		Inizio iniziatore= null ;
+		Inizio iniziatore= new Fine() ;
 		if (risposta.equalsIgnoreCase("CLI"))
 		{
 			iniziatore = new IniziaCliOffline();

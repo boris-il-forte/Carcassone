@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocket;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;
-import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.server.CarcassonneServer;
 import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
@@ -20,7 +18,7 @@ public class IniziaServer extends Inizio
 	public void inizia()
 	{
 		ModuloModel model = new ModuloModel();
-		Controller controller = new ModuloController(model);
+		/*Controller controller = */new ModuloController(model);
 		
 		System.out.println("Server");
 		new CarcassonneServer(); //TODO: così fa abbastanza schifo...
