@@ -14,7 +14,6 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
-import java.awt.event.KeyEvent;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Scanner;
