@@ -17,6 +17,8 @@ import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
 
 import java.awt.Color;
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +44,9 @@ public class ModuloController implements Controller
 		this.gestoreFasi = new GestoreFasi();
 		this.contaPunti = new ContatoreCartografo(this.model);
 		this.visitorHandlers = this.attivaHandler();
+		
+		 java.util.Date date= new java.util.Date();
+		this.model.setIdPartita("GAME" + new Timestamp(date.getTime()) );
 	}
 
 	public void run()
@@ -153,6 +158,7 @@ public class ModuloController implements Controller
 			this.model.iniziaGioco(NUMBER_OF_PLAYER);
 			this.contaPunti.riceviCoordinateTessera(origine);
 			this.gestoreFasi.cominciaTurno();
+		
 		}
 		catch (PartitaFinitaException e)
 		{

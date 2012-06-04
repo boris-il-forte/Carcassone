@@ -149,7 +149,7 @@ public abstract class ModuloView extends AbstractView
 	 */
 	public void aggiornaTurno(Color colGiocatoreCorrente, AdapterTessera tesseraNuova)
 	{
-		this.visualizzaTesseraCorrente(tesseraNuova);
+		this.visualizzaTesseraCorrente(tesseraNuova); // cli e view implementano diversamente!
 		this.visualizzaColoreCorrente();
 		this.gestoreFasi.cominciaTurno();
 	}
