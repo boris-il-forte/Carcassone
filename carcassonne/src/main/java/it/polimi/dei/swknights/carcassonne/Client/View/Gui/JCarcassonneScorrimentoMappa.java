@@ -1,8 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,9 +18,9 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 {
 	public JCarcassonneScorrimentoMappa()
 	{
-		final int larghezza = CELLE_RIGA*DIMENSIONE_PULSANTE;
-		final int altezza = CELLE_RIGA*DIMENSIONE_PULSANTE;
-		Dimension dimensione = new Dimension(larghezza,altezza);
+		final int larghezza = CELLE_RIGA * DIMENSIONE_PULSANTE;
+		final int altezza = CELLE_RIGA * DIMENSIONE_PULSANTE;
+		Dimension dimensione = new Dimension(larghezza, altezza);
 		this.setLayout(new GridLayout(CELLE_RIGA, CELLE_RIGA));
 		this.setMinimumSize(dimensione);
 		this.setPreferredSize(dimensione);
@@ -31,7 +33,7 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 	{
 		for (int i = 0; i < CELLE_RIGA * CELLE_RIGA; i++)
 		{
-			
+
 			String label = labelPulsante.get(i);
 			if (label != null)
 			{
@@ -44,6 +46,36 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 				this.add(new JLabel());
 			}
 		}
+	}
+
+	public void addActionListener(ActionListener listener)
+	{
+		for (JButton pulsante : this.listaPulsanti)
+		{
+			pulsante.addActionListener(listener);
+		}
+	}
+
+	public JButton getSource(PuntoCardinale puntoCardinale)
+	{
+		int index = 0;
+		switch (puntoCardinale)
+		// TODO soluzione.... hashmap?
+		{
+			case nord:
+				index = 0;
+				break;
+			case sud:
+				index = 3;
+				break;
+			case est:
+				index = 1;
+				break;
+			case ovest:
+				index = 2;
+				break;
+		}
+		return this.listaPulsanti.get(index);
 	}
 
 	private List<JButton>						listaPulsanti;

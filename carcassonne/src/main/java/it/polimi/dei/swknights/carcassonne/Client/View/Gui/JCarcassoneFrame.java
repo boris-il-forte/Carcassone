@@ -9,9 +9,10 @@ import javax.swing.JFrame;
 public class JCarcassoneFrame extends JFrame
 {
 
-	public JCarcassoneFrame()
+	public JCarcassoneFrame(Gui gui)
 	{
 		super();
+		this.view = gui;
 		this.inizializzaFinestra();
 	}
 
@@ -55,7 +56,7 @@ public class JCarcassoneFrame extends JFrame
 
 	private void creaTavolo()
 	{
-		this.tavolo = new JCarcassonneTavolo();
+		this.tavolo = new JCarcassonneTavolo(this.view);
 		Box box = Box.createHorizontalBox();
 		box.add(Box.createHorizontalStrut(20));
 		box.add(Box.createHorizontalGlue());
@@ -67,7 +68,7 @@ public class JCarcassoneFrame extends JFrame
 
 	private void creaBarraComandi()
 	{
-		this.barraLaterale = new JCarcassonneLaterale();
+		this.barraLaterale = new JCarcassonneLaterale(this.view);
 		this.add(this.barraLaterale, BorderLayout.WEST);
 	}
 
@@ -76,6 +77,8 @@ public class JCarcassoneFrame extends JFrame
 	private JCarcassonneLaterale	barraLaterale;
 
 	private JCarcassonneTavolo		tavolo;
+
+	private Gui	view;
 
 	private static final Dimension	DIMENSIONE_MINIMA	= new Dimension(1200, 600);
 

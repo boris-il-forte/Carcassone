@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
@@ -18,7 +19,11 @@ public class Gui extends ModuloView
 	public Gui()
 	{
 		super(new Coordinate(LARGHEZZA, ALTEZZA ));
-		this.finestra = new JCarcassoneFrame();
+		if(this == null)
+		{
+			Debug.print("ma perchè?");
+		}
+		this.finestra = new JCarcassoneFrame(this);
 		this.immagini = new IconGetter();
 		this.setCoordinataNordOvest(new Coordinate(-LARGHEZZA / 2, -ALTEZZA / 2));
 	}
@@ -72,6 +77,31 @@ public class Gui extends ModuloView
 	{
 		// TODO Auto-generated method stub
 
+	}
+
+	public void casellaCliccata(int numeroCasella, Coordinate coordinate)
+	{
+		Debug.print("cliccata casella " + numeroCasella +"in " + coordinate);
+		
+	}
+
+	public void passCliccato()
+	{
+		Debug.print("pass");
+		
+	}
+
+	public void rotateCliccato()
+	{
+		Debug.print("rotate");
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void zoomModificato(int zoom)
+	{
+		Debug.print("modificato: " + zoom);
+		// TODO Auto-generated method stub
 	}
 
 	private void aggiornaCaselle(List<EntryTessera> listaTessere)
