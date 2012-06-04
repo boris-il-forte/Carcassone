@@ -98,12 +98,56 @@ public class StringBuilder2D
 	public String toString()
 	{
 		StringBuilder builder = new StringBuilder();
+		builder.append(this.buildBound());
 		for (StringBuilder linea : this.linee)
 		{
+			builder.append(this.buildHeader());
 			builder.append(linea.toString());
-			builder.append(NEW_LINE);
+			builder.append(this.buildTrailer());
 		}
+		builder.append(this.buildBound());
 		return builder.toString();
+	}
+	
+	private String buildBound()
+	{
+		if(this.isTesseraSingola())
+		{
+			return "";
+		}
+		StringBuilder boundBuilder = new StringBuilder();
+		boundBuilder.append(this.buildHeader());
+		int lenght = this.linee.get(0).length();
+		for(int i=0; i< lenght; i++)
+		{
+			boundBuilder.append("-");
+		}
+		boundBuilder.append(this.buildTrailer());
+		return boundBuilder.toString();
+	}
+	
+	private boolean isTesseraSingola()
+	{
+		final int singleHeight = 8;
+		final int singleWidht = 15;
+		return dimensione.getHeight() == singleHeight && dimensione.getWidth() == singleWidht;
+	}
+	private String buildHeader()
+	{
+		if(isTesseraSingola())
+		{
+			return "";
+		}
+		else
+		{
+			return "|";
+		}
+		
+	}
+	
+	private String buildTrailer()
+	{
+		return this.buildHeader()+NEW_LINE;
 	}
 
 	private boolean coordinateAccettabili(Coordinate coordinata1, Coordinate coordinata2)
