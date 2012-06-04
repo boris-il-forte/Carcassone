@@ -42,6 +42,21 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 		casella.setTessera(immagine);
 	}
 
+	public void setTesseraVuota(int numeroVuota, Coordinate coordinateVuota)
+	{
+		JCarcassonneCasella casella = this.listaCaselle.get(numeroVuota);
+		casella.setVuota(coordinateVuota);
+	}
+
+	public void svuotaMappa()
+	{
+		for(JCarcassonneCasella cella : listaCaselle)
+		{
+			cella.svuota();
+		}
+		
+	}
+
 	public void mouseClicked(MouseEvent e)
 	{
 		Object source = e.getSource();

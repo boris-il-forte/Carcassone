@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 

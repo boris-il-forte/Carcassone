@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 import java.awt.BorderLayout;
@@ -44,6 +45,17 @@ public class JCarcassoneFrame extends JFrame
 	public void aggiornaMappa(int numeroCasella, Icon immagine)
 	{
 		this.tavolo.setIconTessera(numeroCasella, immagine);
+	}
+
+	public void aggiornaMappa(int numeroVuota, Coordinate coordinateVuota)
+	{
+		this.tavolo.setTesseraVuota(numeroVuota, coordinateVuota);
+		
+	}
+
+	public void svuotaMappa()
+	{
+		this.tavolo.svuotaMappa();		
 	}
 
 	private void inizializzaFinestra(int righe, int colonne)
