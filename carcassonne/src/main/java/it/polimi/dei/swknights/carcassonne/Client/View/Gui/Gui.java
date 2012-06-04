@@ -115,22 +115,12 @@ public class Gui extends ModuloView
 		{
 			this.fire(new RotateEvent(this));
 		}
-		return;
 	}
 
 	public void zoomModificato(int zoom)
 	{
 		Debug.print("modificato: " + zoom);
 		// TODO Auto-generated method stub
-	}
-
-	private Coordinate convertiCoordinate(int numeroCasella)
-	{
-		int x = numeroCasella % this.larghezza;
-		int y = numeroCasella / this.larghezza;
-		Coordinate coordRelativa = new Coordinate(x, y);
-		return this.getCoordinateNordOvest().getCoordinateA(coordRelativa);
-
 	}
 
 	private void setDimensioni()
@@ -143,11 +133,26 @@ public class Gui extends ModuloView
 		this.larghezza = (this.larghezza % 2 == 0) ? (this.larghezza + 1) : (this.larghezza);
 	}
 
+	private Coordinate convertiCoordinate(int numeroCasella)
+	{
+		int x = numeroCasella % this.larghezza;
+		int y = numeroCasella / this.larghezza;
+		Coordinate coordRelativa = new Coordinate(x, y);
+		return this.getCoordinateNordOvest().getCoordinateA(coordRelativa);
+
+	}
+
 	private void aggiornaCaselle(List<EntryTessera> listaTessere)
 	{
 		AggiornaMappaGui aggiornaMappa = new AggiornaMappaGui(listaTessere, this.getCoordinateNordOvest(),
 				this.getCoordinateRelativeSE());
 		this.finestra.svuotaMappa();
+		this.aggiornaPieni(aggiornaMappa);
+		this.aggiornaVuoti(aggiornaMappa);
+	}
+
+	private void aggiornaPieni(AggiornaMappaGui aggiornaMappa)
+	{
 		while (aggiornaMappa.hasNextTessera())
 		{
 			Entry<String, Integer> entry = aggiornaMappa.nextTessera();
@@ -155,6 +160,11 @@ public class Gui extends ModuloView
 			int numeroTessera = entry.getValue();
 			this.finestra.aggiornaMappa(numeroTessera, tessera);
 		}
+		
+	}
+
+	private void aggiornaVuoti(AggiornaMappaGui aggiornaMappa)
+	{
 		while(aggiornaMappa.hasNextVuoto())
 		{
 			Entry<Coordinate, Integer> entry = aggiornaMappa.nextVuoto();
