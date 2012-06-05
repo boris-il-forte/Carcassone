@@ -36,10 +36,10 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 		this.view = gui;
 	}
 
-	public void setIconTessera(int numeroCasella, Icon immagine)
+	public void setIconTessera(int numeroCasella, Icon immagine, boolean aggiornaStato)
 	{
 		JCarcassonneCasella casella = this.listaCaselle.get(numeroCasella);
-		casella.setTessera(immagine);
+		casella.setTessera(immagine, aggiornaStato);
 	}
 
 	public void setTesseraVuota(int numeroVuota, Coordinate coordinateVuota)
@@ -78,7 +78,7 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 		int numeroCasella = this.getNumeroCasella(e);
 		if(inStatoVuota(numeroCasella))
 		{
-			this.view.togliOverlayImmagine(numeroCasella);
+			this.view.togliOverlay(this.listaCaselle.get(numeroCasella), numeroCasella);
 		}
 	}
 

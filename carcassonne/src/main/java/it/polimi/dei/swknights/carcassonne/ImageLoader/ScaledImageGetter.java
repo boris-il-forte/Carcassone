@@ -32,6 +32,12 @@ public class ScaledImageGetter extends ImageLoader
 		}
 	}
 
+	public Image getAlphaImage(String string)
+	{
+		Image image = getImage(string);
+		return this.addAlpha(image);
+	}
+
 	public void setImageDim(int dimensione)
 	{
 		if(dimensione != this.currentDim)
@@ -44,6 +50,22 @@ public class ScaledImageGetter extends ImageLoader
 				this.mappaImmaginiScalate.put(entryImage.getKey(), standardImage);
 			}
 		}
+	}
+
+	private Image addAlpha(Image image)
+	{
+		BufferedImage immagine = (BufferedImage) image;
+		BufferedImage immagineTrasparente = new BufferedImage(immagine.getWidth(), immagine.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		for(int x=0 ; x<immagine.getWidth(); x++)
+		{
+			for(int y=0; y<immagine.getHeight(); y++)
+			{
+				int rgb = immagine.getRGB(x, y);
+				immagineTrasparente.setRGB(x, y, (rgb & 0x6FFFFFFF));
+			}
+		}
+		return immagineTrasparente;
+		
 	}
 
 	private int					currentDim;
