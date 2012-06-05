@@ -59,18 +59,27 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 
 	public void mouseClicked(MouseEvent e)
 	{
-		Object source = e.getSource();
+		int numeroCasella = this.getNumeroCasella(e);
 		Coordinate coordinate = new Coordinate(e.getPoint().x, e.getPoint().y);
-		int numeroCasella = this.listaCaselle.indexOf(source);
 		this.view.casellaCliccata(numeroCasella, coordinate);
 	}
 
-	public void mouseEntered(MouseEvent arg0)
+	public void mouseEntered(MouseEvent e)
 	{
+		int numeroCasella = this.getNumeroCasella(e);
+		if(inStatoVuota(numeroCasella))
+		{
+			this.view.overlayImmagine(numeroCasella);
+		}
 	}
 
-	public void mouseExited(MouseEvent arg0)
+	public void mouseExited(MouseEvent e)
 	{
+		int numeroCasella = this.getNumeroCasella(e);
+		if(inStatoVuota(numeroCasella))
+		{
+			this.view.togliOverlayImmagine(numeroCasella);
+		}
 	}
 
 	public void mousePressed(MouseEvent arg0)
@@ -79,6 +88,18 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 
 	public void mouseReleased(MouseEvent arg0)
 	{
+	}
+	
+	private int getNumeroCasella(MouseEvent e)
+	{
+		Object source = e.getSource();
+		return this.listaCaselle.indexOf(source);
+	}
+	
+	private boolean inStatoVuota(int numeroCasella)
+	{
+		StatoCasella stato = this.listaCaselle.get(numeroCasella).getStato();
+		return stato.equals(StatoCasella.vuota);
 	}
 
 	private void creaCaselle()

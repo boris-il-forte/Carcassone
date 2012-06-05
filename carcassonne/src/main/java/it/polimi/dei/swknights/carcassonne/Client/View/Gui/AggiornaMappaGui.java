@@ -42,11 +42,6 @@ public class AggiornaMappaGui
 		return this.vuotiIterator.next();
 	}
 
-	private boolean inBoundingBox(Integer posizione)
-	{
-		return posizione < this.altezza*this.larghezza && posizione >0;
-	}
-
 	private void creaMappaTessere(List<EntryTessera> listaTessere)
 	{
 		Map<String, Integer> mappaTessere = new HashMap<String, Integer>();
