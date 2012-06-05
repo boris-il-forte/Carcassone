@@ -1,27 +1,32 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView;
 
-
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.EventObject;
 
-public abstract class ConnessioneView extends AbstractConnessioneView
+
+
+public class ConnessioneView extends AbstractConnessioneView
 {
-	
-	public abstract void inizializza();
-	
-	public abstract EventObject generaEvento();
 
-	public abstract void riceviInput() throws IOException;
+	public void accettaConnessione(Socket socket)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 
-	public abstract void close();
+	public void riceviInput() throws IOException
+	{
+		// TODO Auto-generated method stub
+		
+	}
 
-	public abstract void inviaProtocolloPerEvento(ControllerEvent event);
-
-	public abstract void addGiocatore(Socket socket);
-	
-	public abstract void addGiocatore(Object o); //RMI
+	@Override
+	public void riceviModificheModel(ControllerEvent event)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

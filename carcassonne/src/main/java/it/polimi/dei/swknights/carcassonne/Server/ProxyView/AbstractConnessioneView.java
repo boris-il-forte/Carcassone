@@ -1,41 +1,23 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView;
 
-import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.AbstractView;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Controller;
 
-import java.util.EventListener;
-import java.util.List;
+import java.util.ArrayList;
 
-public abstract class AbstractConnessioneView implements View
+public abstract  class AbstractConnessioneView extends AbstractView
 {
 
-	public List	myPartita;
-
-	public void request()
+	public AbstractConnessioneView()
 	{
-
+		super(new ArrayList<Controller>());
 	}
-	
-	public abstract void riceviModificheModel(ControllerEvent event) ;
-
 
 	public void run()
-	{
-		// TODO Auto-generated method stub
-		
+	{		
 	}
 
-	public void addListener(EventListener eventListener)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void removeListener(EventListener eventListener)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
+	public abstract void riceviModificheModel(ControllerEvent event);
+	
 }

@@ -1,77 +1,88 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
+import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.InizioGiocoHandler;
+import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.ProxyViewHandler;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class ProxyView extends AbstractConnessioneView
 {
-
-	public ConnessioneView	connessione;
-
-	public ProxyView(Socket socket)
+	public ProxyView()
 	{
-		this.connessione = new ConnessioneViewSocket(socket);
+		this.listaConnessioniSocket = new ArrayList<ConnessioneViewSocket>();
+		this.listaConnessioniRMI = new ArrayList<ConnessioneViewRMI>();
+		this.inizializzaHandlers();
 	}
 
-	public ProxyView() // RMI
-	{
-		this.connessione = new ConnessioneViewRMI();
-	}
-
-	public void  addGiocatoreConnesso(Socket socket)
-	{
-		this.connessione.addGiocatore(socket);
-	}
-	
 	@Override
-	public void request()
+	public void riceviModificheModel(ControllerEvent event)
 	{
+		this.inviaRMI(event);
+		this.parseEvento(event);
+		this.inviaSocket();
 	}
 
 	@Override
 	public void run()
 	{
-		int n = 0;
-		boolean nonCacciatoUser = true;
-		while (nonCacciatoUser)
-		{
-
-			while (true)
-			{
-				try
-				{
-					connessione.riceviInput();
-					//connessione.generaEvento();
-					
-				}
-				catch (IOException e)
-				{
-					
-					
-					//continue;
-					// TODO Auto-generated catch block
-					//e.printStackTrace();
-				}
-
-			}
-
-		}
-		
-		connessione.close();
+		// TODO Auto-generated method stub	
 	}
 
-	private Socket	socket;
-
-	@Override
-	public void riceviModificheModel(ControllerEvent event)
+	public void accettaConnessione(Socket socket) throws IOException
 	{
-		connessione.inviaProtocolloPerEvento(event);
+		ConnessioneViewSocket connessioneSocket = new ConnessioneViewSocket(socket);
+		this.listaConnessioniSocket.add(connessioneSocket);
+	}
+	
+	public void accettaConnessione()
+	{
+		ConnessioneViewRMI connessione = new ConnessioneViewRMI();
+		this.listaConnessioniRMI.add(connessione);
+	}
+
+	public void setCommandString(String commandString)
+	{
+		this.commandString = commandString;
+	}
+
+	private void inizializzaHandlers()
+	{
+		this.listaHandlers = new ArrayList<ProxyViewHandler>();
+		this.listaHandlers.add(new InizioGiocoHandler(this));		
+	}
+
+	private void parseEvento(ControllerEvent event)
+	{
+		
 		
 	}
+
+	private void inviaSocket()
+	{
+		for(ConnessioneViewSocket connessione : this.listaConnessioniSocket)
+		{
+			connessione.invia(this.commandString);
+		}
+	}
+
+	private void inviaRMI(ControllerEvent event)
+	{
+		for(ConnessioneViewRMI connessione : this.listaConnessioniRMI)
+		{
+			connessione.invia(event);
+		}
+	}
+
+	private String	commandString;
+	
+	private ArrayList<ProxyViewHandler>	listaHandlers;
+
+	private List<ConnessioneViewSocket>	listaConnessioniSocket;
+	
+	private List<ConnessioneViewRMI>	listaConnessioniRMI;
 
 }
