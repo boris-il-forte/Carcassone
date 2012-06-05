@@ -44,8 +44,6 @@ public class ModuloController implements Controller
 		this.contaPunti = new ContatoreCartografo(this.model);
 		this.visitorHandlers = this.attivaHandler();
 		
-		 java.util.Date date= new java.util.Date();
-		this.model.setIdPartita("GAME" + new Timestamp(date.getTime()) );
 	}
 
 	public void run()

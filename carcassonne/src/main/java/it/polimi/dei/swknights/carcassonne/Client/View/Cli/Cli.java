@@ -41,7 +41,7 @@ public class Cli extends ModuloView
 	@Override
 	public void run() // OK
 	{
-
+		
 		try
 		{
 			Debug.print("Sono la view, aspetto che la partita abbia inizio");

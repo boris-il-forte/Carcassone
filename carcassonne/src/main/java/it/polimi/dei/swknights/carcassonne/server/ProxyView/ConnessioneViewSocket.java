@@ -207,6 +207,20 @@ public class ConnessioneViewSocket extends ConnessioneView
 		}
 		
 	}
+
+	@Override
+	public void addGiocatore(Socket socket)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addGiocatore(Object o)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

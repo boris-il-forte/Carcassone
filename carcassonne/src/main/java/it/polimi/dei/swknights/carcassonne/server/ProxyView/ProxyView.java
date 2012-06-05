@@ -23,6 +23,11 @@ public class ProxyView extends AbstractConnessioneView
 		this.connessione = new ConnessioneViewRMI();
 	}
 
+	public void  addGiocatoreConnesso(Socket socket)
+	{
+		this.connessione.addGiocatore(socket);
+	}
+	
 	@Override
 	public void request()
 	{
