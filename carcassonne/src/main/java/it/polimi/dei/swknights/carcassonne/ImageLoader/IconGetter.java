@@ -42,6 +42,13 @@ public class IconGetter
 		return new ImageIcon(image);
 	}
 
+	public Icon getAlphaTileIcon(String stringToFind)
+	{
+		IconFinder finder = new IconFinder(stringToFind);
+		Image image = this.immagini.getAlphaImage(finder.toString());
+		return new ImageIcon(image);
+	}
+
 	private void setDim(int dim)
 	{
 		if(dim != this.currentDim)

@@ -155,7 +155,7 @@ public class ImageLoader
 
 	private Map<String, URL>	mappaURLTiles;
 
-	private static final int	DIM_ORIGINALE_SEGNALINI	= 100;
+	private static final int	DIM_ORIGINALE_SEGNALINI	= 40;
 
 	private static final int	DIM_ORIGINALE_TILES	= 150;
 }

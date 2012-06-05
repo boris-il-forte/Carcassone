@@ -97,7 +97,8 @@ public class Gui extends ModuloView
 		Map<Color, Icon> mappaSegnalini = new HashMap<Color, Icon>();
 		for (Color colore : ColoriGioco.getListaColori())
 		{
-			this.immagini.getOriginalSegnalinoIcon(ColoriGioco.getSigla(colore));
+			Icon icon = this.immagini.getOriginalSegnalinoIcon(ColoriGioco.getSigla(colore));
+			mappaSegnalini.put(colore, icon);
 		}
 		return mappaSegnalini;
 	}
@@ -140,14 +141,19 @@ public class Gui extends ModuloView
 
 	public void overlayImmagine(int numeroCasella)
 	{
-		// TODO Auto-generated method stub
+		if(this.getGestoreFasi().posizionaOk())
+		{
+			Icon icon = this.immagini.getAlphaTileIcon(this.getTesseraCorrente().toProtocolString());
+			this.finestra.overlayTessera(numeroCasella, icon);	
+		}
 		
 	}
-
-	public void togliOverlayImmagine(int numeroCasella)
+	
+	public void togliOverlay(JCarcassonneCasella casella, int numeroCasella)
 	{
-		// TODO Auto-generated method stub
-
+		Coordinate coordinateVuota = this.convertiCoordinate(numeroCasella);
+		casella.svuota();
+		casella.setVuota(coordinateVuota);	
 	}
 
 	private void setDimensioni()
@@ -185,7 +191,7 @@ public class Gui extends ModuloView
 			Entry<String, Integer> entry = aggiornaMappa.nextTessera();
 			Icon tessera = this.immagini.getTileIcon(entry.getKey(), dimesioneTessere);
 			int numeroTessera = entry.getValue();
-			this.finestra.aggiornaMappa(numeroTessera, tessera);
+			this.finestra.aggiornaTessera(numeroTessera, tessera);
 		}
 		
 	}

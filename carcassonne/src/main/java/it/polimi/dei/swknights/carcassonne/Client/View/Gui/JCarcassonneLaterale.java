@@ -28,7 +28,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 
 	public void aggiornaTesseraCorrente(Icon tessera)
 	{
-		this.tesseraCorrente.setTessera(tessera);
+		this.tesseraCorrente.setTessera(tessera,true);
 	}
 
 	public void aggiornaGiocatoreCorrente(Color colore, int numeroSegnalini)

@@ -42,9 +42,15 @@ public class JCarcassoneFrame extends JFrame
 		this.barraLaterale.aggiornaGiocatoreCorrente(colore, numeroSegnalini);
 	}
 
-	public void aggiornaMappa(int numeroCasella, Icon immagine)
+	public void aggiornaTessera(int numeroCasella, Icon immagine)
 	{
-		this.tavolo.setIconTessera(numeroCasella, immagine);
+		this.tavolo.setIconTessera(numeroCasella, immagine, true);
+	}
+
+	public void overlayTessera(int numeroCasella, Icon icon)
+	{
+		this.tavolo.setIconTessera(numeroCasella, icon, false);
+		
 	}
 
 	public void aggiornaMappa(int numeroVuota, Coordinate coordinateVuota)

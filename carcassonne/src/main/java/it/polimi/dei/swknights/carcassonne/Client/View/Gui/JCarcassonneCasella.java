@@ -31,10 +31,13 @@ public class JCarcassonneCasella extends JLayeredPane
 		this(new Rectangle(0, 0, dimLato, dimLato));
 	}
 
-	public void setTessera(Icon icon)
+	public void setTessera(Icon icon, boolean aggiornaStato)
 	{
 		this.cella.setIcon(icon);
-		this.stato = StatoCasella.conTessera;
+		if(aggiornaStato)
+		{
+			this.stato = StatoCasella.conTessera;
+		}
 	}
 
 	public void setVuota(Coordinate coordinateVuota)
@@ -59,6 +62,7 @@ public class JCarcassonneCasella extends JLayeredPane
 	public void setSegnalino(Icon icon)
 	{
 		this.segnalino.setIcon(icon);
+		this.stato = StatoCasella.conTessera;
 	}
 	
 	public StatoCasella getStato()

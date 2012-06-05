@@ -25,8 +25,7 @@ public class JCarcassonneSegnalini extends JPanel
 
 	public void setGiocatore(Color colore, Integer numeroSegnalini)
 	{
-		//TODO: passa icona corretta
-		Icon icon = null;// this.mappaIcone.get(colore);
+		Icon icon = this.mappaIcone.get(colore);
 		this.segnalino.setIcon(icon);
 		this.contatore.setText(numeroSegnalini.toString());
 	}
