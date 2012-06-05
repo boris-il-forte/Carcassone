@@ -9,12 +9,16 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
 import it.polimi.dei.swknights.carcassonne.ImageLoader.IconGetter;
+import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.Icon;
@@ -26,8 +30,8 @@ public class Gui extends ModuloView
 	{
 		super();
 		this.setDimensioni();
-		this.finestra = new JCarcassoneFrame(this, this.altezza, this.larghezza);
 		this.immagini = new IconGetter();
+		this.finestra = new JCarcassoneFrame(this, this.altezza, this.larghezza);
 		this.setCoordinataNordOvest(new Coordinate(-larghezza / 2, -altezza / 2));
 		this.setCoordinateRelativeSE(new Coordinate(larghezza - 1, altezza - 1));
 	}
@@ -54,7 +58,7 @@ public class Gui extends ModuloView
 	{
 		// TODO: visualizza vincitore e cambia immagine
 		JOptionPane.showMessageDialog(this.finestra, "Fine partita!!", "Carcassonne - swKnights",
-				JOptionPane.INFORMATION_MESSAGE, this.immagini.getIcon("", this.dimesioneTessere));
+				JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", this.dimesioneTessere));
 	}
 
 	@Override
@@ -62,14 +66,15 @@ public class Gui extends ModuloView
 	{
 		// TODO: cambia immagine
 		JOptionPane.showMessageDialog(this.finestra, "Mossa non consentita!", "Carcassonne - swKnights",
-				JOptionPane.INFORMATION_MESSAGE, this.immagini.getIcon("", this.dimesioneTessere));
+		JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", this.dimesioneTessere));
 	}
 
 	@Override
 	public void visualizzaTesseraCorrente(AdapterTessera tessera)
 	{
+
 		this.setTesseraCorrente(tessera);
-		Icon iconaTessera = this.immagini.getOriginalIcon(tessera.toProtocolString());
+		Icon iconaTessera = this.immagini.getOriginalTileIcon(tessera.toProtocolString());
 		this.finestra.aggiornaTesseraCorrente(iconaTessera);
 	}
 
@@ -87,7 +92,17 @@ public class Gui extends ModuloView
 		this.finestra.aggiornaPunteggi(punteggio);
 	}
 
-	public void casellaCliccata(int numeroCasella, Coordinate coordinateMouse)
+	public Map<Color, Icon> getMappaSegnalini()
+	{
+		Map<Color, Icon> mappaSegnalini = new HashMap<Color, Icon>();
+		for (Color colore : ColoriGioco.getListaColori())
+		{
+			this.immagini.getOriginalSegnalinoIcon(ColoriGioco.getSigla(colore));
+		}
+		return mappaSegnalini;
+	}
+	public
+	void casellaCliccata(int numeroCasella, Coordinate coordinateMouse)
 	{
 		Debug.print("cliccata casella " + numeroCasella + "in " + coordinateMouse);
 
@@ -132,7 +147,7 @@ public class Gui extends ModuloView
 	public void togliOverlayImmagine(int numeroCasella)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void setDimensioni()
@@ -168,7 +183,7 @@ public class Gui extends ModuloView
 		while (aggiornaMappa.hasNextTessera())
 		{
 			Entry<String, Integer> entry = aggiornaMappa.nextTessera();
-			Icon tessera = this.immagini.getIcon(entry.getKey(), dimesioneTessere);
+			Icon tessera = this.immagini.getTileIcon(entry.getKey(), dimesioneTessere);
 			int numeroTessera = entry.getValue();
 			this.finestra.aggiornaMappa(numeroTessera, tessera);
 		}

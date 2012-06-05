@@ -2,21 +2,24 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.Map;
 
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 
+import javax.swing.Icon;
 import javax.swing.BorderFactory;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class JCarcassonneCurrentPlayer extends JPanel
 {
 
-	public JCarcassonneCurrentPlayer()
+	public JCarcassonneCurrentPlayer(Map<Color, Icon> mappaSegnalini)
 	{
 		this.addIntestazione();
 		//TODO passare icone segnalino
-		this.addSegnalini();
+		this.addSegnalini(mappaSegnalini);
 	}
 	
 	public void setGiocatoreCorrente(Color colore, int segnalini)
@@ -26,9 +29,9 @@ public class JCarcassonneCurrentPlayer extends JPanel
 		this.segnalini.setGiocatore(colore, segnalini);
 	}
 
-	private void addSegnalini()
+	private void addSegnalini(Map<Color, Icon> mappaSegnalini)
 	{
-		this.segnalini = new JCarcassonneSegnalini(null);
+		this.segnalini = new JCarcassonneSegnalini(mappaSegnalini);
 		this.add(this.segnalini);		
 	}
 

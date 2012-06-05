@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -83,7 +84,8 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 
 	private void aggiungiGiocatoreCorrente()
 	{
-		this.giocatoreCorrente = new JCarcassonneCurrentPlayer();
+		Map<Color, Icon> mappaSegnalini = this.view.getMappaSegnalini();
+		this.giocatoreCorrente = new JCarcassonneCurrentPlayer(mappaSegnalini);
 		this.add(this.giocatoreCorrente);
 
 	}

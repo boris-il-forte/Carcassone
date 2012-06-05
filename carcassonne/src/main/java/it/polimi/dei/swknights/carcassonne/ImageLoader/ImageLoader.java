@@ -20,13 +20,15 @@ public class ImageLoader
 {
 	public ImageLoader()
 	{
-		this.mappaURL = new HashMap<String, URL>();
-		this.mappaImmagini = new HashMap<String, Image>();
+		this.inizializzaMappe();
+		
 		try
 		{
 			this.setErrore();
-			this.leggiFileCartella();
-			this.apriFilesCartella();
+			this.leggiFileCartella("/tiles", this.mappaURLTiles);
+			this.leggiFileCartella("/segnalini", this.mappaURLSegnalini);
+			this.apriFilesCartella(this.mappaImmaginiTiles, this.mappaURLTiles, DIM_ORIGINALE_TILES);
+			this.apriFilesCartella(this.mappaImmaginiSegnalini, this.mappaURLSegnalini, DIM_ORIGINALE_SEGNALINI);
 			this.aggiungiRuotate();
 		}
 		catch (IOException e)
@@ -37,7 +39,7 @@ public class ImageLoader
 
 	public URL getUrl(String stringa)
 	{
-		URL url = this.mappaURL.get(stringa);
+		URL url = this.mappaURLTiles.get(stringa);
 		if (url != null)
 		{
 			return url;
@@ -48,23 +50,20 @@ public class ImageLoader
 		}
 	}
 
-	public Image getOriginalImage(String stringa)
+	public Image getOriginalTileImage(String stringa)
 	{
-		Image image = this.mappaImmagini.get(stringa);
-		if (image != null)
-		{
-			return image;
-		}
-		else
-		{
-			Debug.print("stringa immagine originale non trovata: " + stringa);
-			return this.errorImage;
-		}
+		return getImage(this.mappaImmaginiTiles, stringa);
 	}
-
+	
+	public Image getOriginalSegnalinoImage(String stringa)
+	{
+		return getImage(this.mappaImmaginiSegnalini, stringa);
+	}
+	
+	
 	protected Set<Entry<String, Image>> getOriginalSet()
 	{
-		return this.mappaImmagini.entrySet();
+		return this.mappaImmaginiTiles.entrySet();
 	}
 
 	protected Image getErrore()
@@ -82,33 +81,58 @@ public class ImageLoader
 	    return resized;
 	}
 
-	private void aggiungiRuotate()
+	private void inizializzaMappe()
 	{
-		RuotaImmagini ruotatore = new RuotaImmagini(this.mappaImmagini, DIM_ORIGINALE);
-		this.mappaImmagini.putAll(ruotatore.getMapRuotate());
+		this.mappaURLTiles = new HashMap<String, URL>();
+		this.mappaImmaginiTiles = new HashMap<String, Image>();
+		this.mappaURLSegnalini = new HashMap<String, URL>();
+		this.mappaImmaginiSegnalini = new HashMap<String, Image>();
+		
 	}
 
-	private void apriFilesCartella() throws IOException
+	private Image getImage(Map<String, Image> mappaImmagini, String stringa)
 	{
-		for (Entry<String, URL> entryURL : this.mappaURL.entrySet())
+		Image image = mappaImmagini.get(stringa);
+		if (image != null)
 		{
-			Image image  = this.scalaImmagine(ImageIO.read(entryURL.getValue()), DIM_ORIGINALE);
-			this.mappaImmagini.put(entryURL.getKey(), image);
+			return image;
+		}
+		else
+		{
+			Debug.print("stringa immagine originale non trovata: " + stringa);
+			return this.errorImage;
 		}
 	}
 
-	private void leggiFileCartella()
+	private void aggiungiRuotate()
 	{
-		URL urlCartella = ImageLoader.class.getResource("/tiles");
+		RuotaImmagini ruotatore = new RuotaImmagini(this.mappaImmaginiTiles, DIM_ORIGINALE_TILES);
+		this.mappaImmaginiTiles.putAll(ruotatore.getMapRuotate());
+	}
+
+	private void apriFilesCartella(Map<String, Image> mappaImmagini, Map<String, URL> mappaURL, int dimOriginale) throws IOException
+	{
+		for (Entry<String, URL> entryURL : mappaURL.entrySet())
+		{
+			Image image  = this.scalaImmagine(ImageIO.read(entryURL.getValue()), dimOriginale);
+			mappaImmagini.put(entryURL.getKey(), image);
+		}
+	}
+
+	private void leggiFileCartella(String stringCartella, Map<String, URL> map)
+	{
+		Debug.print("Apro cartella: "  + stringCartella);
+		URL urlCartella = ImageLoader.class.getResource(stringCartella);
 		File cartella = new File(urlCartella.getFile());
 		for( String stringImmagine : cartella.list())
 		{
 			//TODO chiedere che mi sa che non va bene...
 			if (!stringImmagine.startsWith("."))
 			{
-				StringBuilder builderPercorso = new StringBuilder("/tiles/").append(stringImmagine);
+				Debug.print(stringImmagine);
+				StringBuilder builderPercorso = new StringBuilder(stringCartella).append("/").append(stringImmagine);
 				URL urlImmagine = ImageLoader.class.getResource(builderPercorso.toString());
-				this.mappaURL.put(stringImmagine.split("\\.")[0], urlImmagine);
+				map.put(stringImmagine.split("\\.")[0], urlImmagine);
 			}
 		}
 	}
@@ -116,16 +140,22 @@ public class ImageLoader
 	private void setErrore() throws IOException
 	{
 		this.errorURL = ImageLoader.class.getResource("/error.jpg");
-		this.errorImage = this.scalaImmagine(ImageIO.read(this.errorURL),DIM_ORIGINALE);
+		this.errorImage = this.scalaImmagine(ImageIO.read(this.errorURL),DIM_ORIGINALE_TILES);
 	}
 
 	private Image				errorImage;
 
 	private URL					errorURL;
+	
+	private Map<String, Image>	mappaImmaginiSegnalini;
 
-	private Map<String, Image>	mappaImmagini;
+	private Map<String, URL>	mappaURLSegnalini;
 
-	private Map<String, URL>	mappaURL;
+	private Map<String, Image>	mappaImmaginiTiles;
 
-	private static final int	DIM_ORIGINALE	= 150;
+	private Map<String, URL>	mappaURLTiles;
+
+	private static final int	DIM_ORIGINALE_SEGNALINI	= 100;
+
+	private static final int	DIM_ORIGINALE_TILES	= 150;
 }
