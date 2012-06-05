@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.server;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.server.ProxyView.ProxyView;
 
 import java.io.IOException;
@@ -24,22 +25,33 @@ public class CarcassonneServer implements Runnable
 
 	public final void run()
 	{
-		System.out.println("walter gay");
-		try
-		{
+	
+
 			this.print("Starting Server");
 			
-			ServerSocket serverSocket = new ServerSocket(PORTA_DEL_GRANDE_FRATELLO);
+			ServerSocket serverSocket = null;
+
 			while(true)
 			{
-				Socket socket = serverSocket.accept();
+				try
+				{
+				serverSocket= new ServerSocket(PORTA_DEL_GRANDE_FRATELLO);
+				Socket socket;
+				socket = serverSocket.accept();
+				Debug.print("parte il timer!");
+				Timer timerConn = new Timer();
+				timerConn.setWhatIsLock(this);
+				Executor executor = Executors.newSingleThreadExecutor();
+				executor.execute(timerConn);
 				this.gestisciConnessione(socket);
+				}
+				catch(IOException e)
+				{
+					
+				}
 			}
-		}
-		catch (IOException e)
-		{
-			return;
-		}
+
+
 	}
 
 	public void creaNuovaPartita()
@@ -50,9 +62,18 @@ public class CarcassonneServer implements Runnable
 
 	private void gestisciConnessione(Socket socket)
 	{
-		// TODO passare la socket al proxy del server...
-		ProxyView proxy = new ProxyView(socket);
-		proxy.run();
+		this.giocatoriAttivi++;
+		
+		if(this.giocatoriAttivi <= GIOCATORI_PARTITA  )
+		{
+			this.proxyView = this.partite.get(this.giocatoriAttivi-1).getPorxyView();
+			proxyView.addGiocatoreConnesso(socket);
+		}
+		else
+		{
+			return;
+		}
+
 	}
 
 	private void print(String screenMessage)
@@ -61,8 +82,60 @@ public class CarcassonneServer implements Runnable
 		this.printer.flush();
 	}
 	
+	private final int GIOCATORI_PARTITA =5;
+	
+	private ProxyView proxyView ;
+	
+	private int giocatoriAttivi =0 ;
+	
 	private List<Partita>	partite;
 
 	private static final int	PORTA_DEL_GRANDE_FRATELLO	= 1984;
 
+	private class Timer implements Runnable
+	{
+
+		public void run()
+		{
+			while(true)
+			{
+				try
+				{
+					this.wait(TIMEOUT);
+
+					Debug.print("passati 2 sec");
+					synchronized (this.lock)
+					{
+						this.lock.notifyAll();
+					}
+					
+				}
+				catch (InterruptedException e)
+				{
+					
+					e.printStackTrace();
+				}
+			}
+			
+			
+			
+		}
+		
+		public void setWhatIsLock(Object o)
+		{
+			this.lock = o;
+		}
+		
+		private Object lock;
+		
+		private final int TIMEOUT = 20000; // millisec
+		
+	}
+
+
 }
+
+
+
+
+ 

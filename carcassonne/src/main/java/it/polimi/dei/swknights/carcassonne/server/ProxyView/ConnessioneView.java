@@ -4,6 +4,7 @@ package it.polimi.dei.swknights.carcassonne.server.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.util.EventObject;
 
 public abstract class ConnessioneView extends AbstractConnessioneView
@@ -18,5 +19,9 @@ public abstract class ConnessioneView extends AbstractConnessioneView
 	public abstract void close();
 
 	public abstract void inviaProtocolloPerEvento(ControllerEvent event);
+
+	public abstract void addGiocatore(Socket socket);
+	
+	public abstract void addGiocatore(Object o); //RMI
 	
 }
