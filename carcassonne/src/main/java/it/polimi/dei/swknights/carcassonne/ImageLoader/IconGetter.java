@@ -15,20 +15,26 @@ public class IconGetter
 		this.currentDim = ScaledImageGetter.DIM_STANDARD;
 	}
 	
-	public Icon getOriginalIcon(String stringToFind)
+	public Icon getOriginalTileIcon(String stringToFind)
 	{
 		IconFinder finder = new IconFinder(stringToFind);
-		Image image = this.immagini.getOriginalImage(finder.toString());
+		Image image = this.immagini.getOriginalTileImage(finder.toString());
 		return new ImageIcon(image);
 	}
 	
-	public Icon getIcon(String stringToFind)
+	public Icon getOriginalSegnalinoIcon(String stringToFind)
+	{
+		Image image = this.immagini.getOriginalSegnalinoImage(stringToFind);
+		return new ImageIcon(image);
+	}
+	
+	public Icon getTileIcon(String stringToFind)
 	{
 		Debug.print("stringa in entrata: " + stringToFind);
-		return this.getIcon(stringToFind,this.currentDim);
+		return this.getTileIcon(stringToFind,this.currentDim);
 	}
 
-	public Icon getIcon(String stringToFind, int dim)
+	public Icon getTileIcon(String stringToFind, int dim)
 	{
 		this.setDim(dim);
 		IconFinder finder = new IconFinder(stringToFind);
