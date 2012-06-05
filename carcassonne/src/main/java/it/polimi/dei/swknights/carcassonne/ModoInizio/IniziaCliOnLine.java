@@ -18,15 +18,12 @@ public class IniziaCliOnLine extends Inizio
 		view = new Cli(); //1)
 		socket = CarcassonneSocket.dammiSocket();	//2)
 		controller = new ProxyController(socket);  //2
-		view.addListener(controller);  //2)
-		
-		//3) model . addlistener (view) da farsi su server
-		
+		view.addListener(controller);  //2)		
 		superStarDestroyer.execute(view);  //4)
 		superStarDestroyer.execute(controller);
 	}
 	
-	Socket socket = null;
-	ProxyController controller = null;
-	View view;
+	private Socket socket = null;
+	private ProxyController controller = null;
+	private View view;
 }

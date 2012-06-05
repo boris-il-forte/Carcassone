@@ -3,8 +3,8 @@ package it.polimi.dei.swknights.carcassonne.ModoInizio;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.View;
-import it.polimi.dei.swknights.carcassonne.server.Controller.ModuloController;
-import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.ModuloController;
+import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 
 public class IniziaCliOffline extends Inizio
 {

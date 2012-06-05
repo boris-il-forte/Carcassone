@@ -1,12 +1,13 @@
 package it.polimi.dei.swknights.carcassonne.server.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografo;
+import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Lati;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Link;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
-import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Lati;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Link;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 
 import org.junit.Before;
 import org.junit.Test;

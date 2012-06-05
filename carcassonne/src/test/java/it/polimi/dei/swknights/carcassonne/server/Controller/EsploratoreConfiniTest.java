@@ -9,16 +9,19 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.ConfineTessera;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografo;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.EsploratoreConfini;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
+import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Lati;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Link;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
 import it.polimi.dei.swknights.carcassonne.Util.Bussola;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.Costruzione;
-import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Lati;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Link;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

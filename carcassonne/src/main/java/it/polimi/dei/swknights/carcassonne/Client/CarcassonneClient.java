@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.AbstractConnessioneController;
-import it.polimi.dei.swknights.carcassonne.server.ProxyView.AbstractConnessioneView;
+import it.polimi.dei.swknights.carcassonne.Server.ProxyView.AbstractConnessioneView;
 
 public class CarcassonneClient
 {

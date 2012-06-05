@@ -2,16 +2,16 @@ package it.polimi.dei.swknights.carcassonne.Model;
 
 import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.CostruzioneCitta;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.CostruzioneStrada;
+import it.polimi.dei.swknights.carcassonne.Server.Model.AreaDiGioco;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Lati;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Link;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.Costruzione;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.CostruzioneCitta;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Costruzioni.CostruzioneStrada;
-import it.polimi.dei.swknights.carcassonne.server.Model.AreaDiGioco;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Lati;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Link;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 
 import java.util.ArrayList;
 import java.util.Collections;

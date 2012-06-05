@@ -1,11 +1,11 @@
 package it.polimi.dei.swknights.carcassonne.Model;
 
+import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
-import it.polimi.dei.swknights.carcassonne.server.Model.ModuloModel;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Elemento;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.TesseraNormale;
 
 import java.util.List;
 import java.util.Map;
