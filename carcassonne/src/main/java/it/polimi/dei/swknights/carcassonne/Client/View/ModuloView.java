@@ -27,7 +27,7 @@ import java.util.Map.Entry;
  * 
  */
 
-public abstract class ModuloView extends AbstractView
+public abstract class ModuloView extends AbstractModuloView
 {
 	public ModuloView()
 	{

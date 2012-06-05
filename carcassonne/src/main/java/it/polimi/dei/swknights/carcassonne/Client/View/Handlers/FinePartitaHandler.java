@@ -3,7 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Handlers;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 
-public class FinePartitaHandler extends ViewHandler
+public class FinePartitaHandler extends ModuloViewHandler
 {
 	public FinePartitaHandler(ModuloView view)
 	{

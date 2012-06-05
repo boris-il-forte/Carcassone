@@ -7,7 +7,7 @@ import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
-public class CostruzioneCompletataHandler extends ViewHandler
+public class CostruzioneCompletataHandler extends ModuloViewHandler
 {
 	public CostruzioneCompletataHandler(ModuloView view)
 	{

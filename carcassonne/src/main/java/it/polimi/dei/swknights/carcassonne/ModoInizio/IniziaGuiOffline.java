@@ -1,8 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.ModoInizio;
 
 import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
-import it.polimi.dei.swknights.carcassonne.Events.Controller;
-import it.polimi.dei.swknights.carcassonne.Events.View;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Controller;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.View;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 

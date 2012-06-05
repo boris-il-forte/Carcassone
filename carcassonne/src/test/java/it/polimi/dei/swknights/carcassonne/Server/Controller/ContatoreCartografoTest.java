@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne.server.Controller;
+package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografo;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;

@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
@@ -33,7 +33,7 @@ public class UpdatePositionEvent extends UpdateEvent
 	private static final long	serialVersionUID	= -461479380615200557L;
 
 	@Override
-	public void accept(ViewHandler handler)
+	public void accept(ModuloViewHandler handler)
 	{
 		handler.visit(this);
 		

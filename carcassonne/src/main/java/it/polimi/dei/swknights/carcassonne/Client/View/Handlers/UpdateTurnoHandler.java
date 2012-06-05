@@ -10,7 +10,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEve
  * @author edoardopasi
  *
  */
-public class UpdateTurnoHandler extends ViewHandler
+public class UpdateTurnoHandler extends ModuloViewHandler
 {	
 	/**
 	 * This constructor just calls super on view
