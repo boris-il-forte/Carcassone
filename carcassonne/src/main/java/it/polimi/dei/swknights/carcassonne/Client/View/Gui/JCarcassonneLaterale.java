@@ -29,7 +29,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 	{
 		this.tesseraCorrente.setTessera(tessera);
 	}
-	
+
 	public void aggiornaGiocatoreCorrente(Color colore, int numeroSegnalini)
 	{
 		this.giocatoreCorrente.setGiocatoreCorrente(colore, numeroSegnalini);
@@ -38,19 +38,19 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		Object source = e.getSource();
-		if(source == this.pulsantePass.getEventSource())
+		if (source == this.pulsantePass.getEventSource())
 		{
 			this.view.passCliccato();
 		}
-		else if(source == this.pulsanteRotate.getEventSource())
+		else if (source == this.pulsanteRotate.getEventSource())
 		{
 			this.view.rotateCliccato();
 		}
 		else
 		{
-			for(PuntoCardinale punto : PuntoCardinale.values())
+			for (PuntoCardinale punto : PuntoCardinale.values())
 			{
-				if(this.scorrimentoMappa.getSource(punto) == source)
+				if (this.scorrimentoMappa.getSource(punto) == source)
 				{
 					this.view.muoviViewA(punto, 1);
 				}
@@ -85,7 +85,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 	{
 		this.giocatoreCorrente = new JCarcassonneCurrentPlayer();
 		this.add(this.giocatoreCorrente);
-		
+
 	}
 
 	private void aggiugiTesseraCorrente()
@@ -126,7 +126,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 		this.add(this.zoom);
 	}
 
-	private JCarcassonneCurrentPlayer	giocatoreCorrente;
+	private JCarcassonneCurrentPlayer		giocatoreCorrente;
 
 	private JCarcassonneCasella				tesseraCorrente;
 

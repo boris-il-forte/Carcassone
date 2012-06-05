@@ -23,6 +23,7 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.add(this.cella, DEFAULT_LAYER);
 		this.add(this.segnalino, PALETTE_LAYER);
 		this.cella.setBounds(this.bounds);
+		this.stato = StatoCasella.nonUsata;
 	}
 
 	public JCarcassonneCasella(int dimLato)
@@ -33,6 +34,7 @@ public class JCarcassonneCasella extends JLayeredPane
 	public void setTessera(Icon icon)
 	{
 		this.cella.setIcon(icon);
+		this.stato = StatoCasella.conTessera;
 	}
 
 	public void setVuota(Coordinate coordinateVuota)
@@ -42,7 +44,8 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.cella.setHorizontalTextPosition(SwingConstants.CENTER);
 		Rectangle newBounds = (Rectangle) this.bounds.clone();
 		newBounds.grow(-1, -1);
-		this.cella.setBounds(newBounds);		
+		this.cella.setBounds(newBounds);
+		this.stato = StatoCasella.vuota;
 	}
 
 	public void svuota()
@@ -50,11 +53,17 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.cella.setText("");
 		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		this.cella.setIcon(null);
+		this.stato = StatoCasella.nonUsata;
 	}
 
 	public void setSegnalino(Icon icon)
 	{
 		this.segnalino.setIcon(icon);
+	}
+	
+	public StatoCasella getStato()
+	{
+		return this.stato;
 	}
 
 	private Rectangle			bounds;
@@ -63,6 +72,12 @@ public class JCarcassonneCasella extends JLayeredPane
 
 	private JLabel				segnalino;
 
+	private StatoCasella		stato;
+
 	private static final long	serialVersionUID	= -3373418009078875015L;
 
+}
+
+enum StatoCasella {
+	nonUsata, conTessera, vuota, attendeSegnalino;
 }

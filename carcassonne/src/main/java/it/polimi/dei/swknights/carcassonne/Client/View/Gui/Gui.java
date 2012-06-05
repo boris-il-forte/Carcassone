@@ -123,6 +123,18 @@ public class Gui extends ModuloView
 		// TODO Auto-generated method stub
 	}
 
+	public void overlayImmagine(int numeroCasella)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void togliOverlayImmagine(int numeroCasella)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void setDimensioni()
 	{
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
