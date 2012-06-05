@@ -1,5 +1,6 @@
-package it.polimi.dei.swknights.carcassonne.Events;
+package it.polimi.dei.swknights.carcassonne.ModuliAstratti;
 
+import it.polimi.dei.swknights.carcassonne.Events.EventSource;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 
 import java.util.EventListener;

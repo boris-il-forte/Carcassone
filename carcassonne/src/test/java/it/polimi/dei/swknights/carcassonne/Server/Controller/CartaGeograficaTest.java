@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne.server.Controller;
+package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
 import java.security.KeyStore.Entry;
 import java.util.*;

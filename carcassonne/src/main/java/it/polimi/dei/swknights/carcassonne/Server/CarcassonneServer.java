@@ -55,23 +55,29 @@ public class CarcassonneServer implements Runnable
 
 	private void gestisciConnessione(Socket socket)
 	{
-		this.giocatoriAttivi++;
-		if (giocatoriAttivi == 1)
+		try
 		{
-			this.creaNuovaPartita();
-		}
-
-		Partita partita = this.partite.peekLast();
-		partita.addPlayer();
-		this.proxyView = partita.getProxyView();
-		this.proxyView.addGiocatoreConnesso(socket);
-		if (this.giocatoriAttivi == GIOCATORI_PARTITA)
-		{
-			this.giocatoriAttivi = 0;
-			synchronized (this)
+			this.giocatoriAttivi++;
+			if (giocatoriAttivi == 1)
 			{
-				this.notifyAll();
+				this.creaNuovaPartita();
 			}
+			Partita partita = this.partite.peekLast();
+			partita.addPlayer();
+			this.proxyView = partita.getProxyView();
+			this.proxyView.accettaConnessione(socket);
+			if (this.giocatoriAttivi == GIOCATORI_PARTITA)
+			{
+				this.giocatoriAttivi = 0;
+				synchronized (this)
+				{
+					this.notifyAll();
+				}
+			}
+		}
+		catch (IOException e)
+		{
+			// TODO: annulla lo sbaglio fatto!
 		}
 	}
 

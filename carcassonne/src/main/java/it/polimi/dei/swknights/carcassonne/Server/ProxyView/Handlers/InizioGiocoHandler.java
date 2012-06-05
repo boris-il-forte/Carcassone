@@ -1,40 +1,20 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-import java.net.Socket;
-
-import it.polimi.dei.swknights.carcassonne.Debug;
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
+import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 
-public class InizioGiocoHandler extends ViewHandler
+public class InizioGiocoHandler extends ProxyViewHandler
 {
 
-	public InizioGiocoHandler(Socket socket)
+	public InizioGiocoHandler(ProxyView proxy)
 	{
-		this.socket = socket;
+		super(proxy);
 	}
 	
 	@Override
 	public void visit (InizioGiocoEvent event) 
 	{
-		Debug.print(event.toString());
-		try
-		{
-			PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
-			socketOut.println("view handler - inizio gioco handler - " + event.getGiocatore().toString());
-			socketOut.flush();
-		}
-		catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		StringBuilder stringCommand = new StringBuilder();
+		this.proxy.setCommandString(stringCommand.toString());
 	}
-
-	Socket socket;
-
 }

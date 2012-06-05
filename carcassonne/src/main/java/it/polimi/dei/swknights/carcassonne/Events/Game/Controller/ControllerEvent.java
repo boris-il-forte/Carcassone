@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 import java.util.EventObject;
 
@@ -29,7 +29,7 @@ public abstract class ControllerEvent extends EventObject
 	 * Used to ask the handler to "take care" of the event
 	 * @param handler
 	 */
-	public abstract void accept(ViewHandler handler);
+	public abstract void accept(ModuloViewHandler handler);
 	/**
 	 * Set the command, used to avoid instanceof and give the Event a nicer toString
 	 * @param messaggio

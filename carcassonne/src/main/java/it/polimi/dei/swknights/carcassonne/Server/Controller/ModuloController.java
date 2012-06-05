@@ -1,9 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Events.Controller;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Fasi.GestoreFasi;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.AbstractController;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.PassHandler;
@@ -17,7 +17,6 @@ import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +30,7 @@ import java.util.Set;
  * 
  */
 
-public class ModuloController implements Controller
+public class ModuloController extends AbstractController
 {
 	/**
 	 * Default Constructor. Initialize data structures
@@ -68,7 +67,7 @@ public class ModuloController implements Controller
 	/**
 	 * Method that should be called when firing an event to the Controller
 	 * 
-	 * @see it.polimi.dei.swknights.carcassonne.Events.Controller#riceviInput()
+	 * @see it.polimi.dei.swknights.carcassonne.ModuliAstratti.Controller#riceviInput()
 	 */
 	public void riceviInput(ViewEvent event)
 	{

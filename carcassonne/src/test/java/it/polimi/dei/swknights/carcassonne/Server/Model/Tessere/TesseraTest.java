@@ -1,4 +1,4 @@
-package it.polimi.dei.swknights.carcassonne.server.Model.Tessere;
+package it.polimi.dei.swknights.carcassonne.Server.Model.Tessere;
 
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.CostruzioneCitta;

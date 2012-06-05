@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ViewHandler;
+import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
@@ -33,7 +33,7 @@ public class FinePartitaEvent extends ControllerEvent
 	private Punteggi punteggi;
 	private static final long	serialVersionUID	= 7228959705104329672L;
 	@Override
-	public void accept(ViewHandler handler)
+	public void accept(ModuloViewHandler handler)
 	{
 		handler.visit(this);
 		

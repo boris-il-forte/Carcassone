@@ -4,7 +4,7 @@ import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
-public class UpdatePositionHandler extends ViewHandler
+public class UpdatePositionHandler extends ModuloViewHandler
 {
 	public UpdatePositionHandler(ModuloView view)
 	{

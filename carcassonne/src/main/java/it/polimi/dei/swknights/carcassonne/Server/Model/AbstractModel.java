@@ -1,8 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model;
 
-import it.polimi.dei.swknights.carcassonne.Events.Model;
-import it.polimi.dei.swknights.carcassonne.Events.View;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Model;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.View;
 
 import java.util.ArrayList;
 import java.util.EventListener;

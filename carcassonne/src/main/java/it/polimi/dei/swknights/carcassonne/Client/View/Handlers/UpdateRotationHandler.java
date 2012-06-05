@@ -4,7 +4,7 @@ import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 
-public class UpdateRotationHandler extends ViewHandler
+public class UpdateRotationHandler extends ModuloViewHandler
 {
 	public UpdateRotationHandler(ModuloView view)
 	{
