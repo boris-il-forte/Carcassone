@@ -1,0 +1,5 @@
+#surefire
+#Tue Jun 05 13:06:20 CEST 2012
+user.dir=/home/dave/java/Carcassonne
+localRepository=/home/dave/.m2/repository
+basedir=/home/dave/java/Carcassonne
