@@ -132,6 +132,7 @@ public class StringBuilder2D
 		final int singleWidht = 15;
 		return dimensione.getHeight() == singleHeight && dimensione.getWidth() == singleWidht;
 	}
+	
 	private String buildHeader()
 	{
 		if(isTesseraSingola())

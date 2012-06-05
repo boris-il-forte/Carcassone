@@ -1,8 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.ComandiView;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
-import it.polimi.dei.swknights.carcassonne.server.Controller.Handlers.ControllerHandler;
 
 /**
  * Event triggered by the view to notify that the current player wants to place

@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
-import it.polimi.dei.swknights.carcassonne.server.Model.Tessere.Tessera;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 
 /**
  * A version of AdapterTessera thought to be used with RMI communication
