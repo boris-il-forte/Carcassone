@@ -2,7 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
 import java.awt.Color;
 
-import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ControllerHandler;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ModuloControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 /**
@@ -44,7 +44,7 @@ public class TileEvent extends ViewEvent
 	private static final long		serialVersionUID	= 2085506187547788810L;
 
 	@Override
-	public void accept(ControllerHandler handler)
+	public void accept(ModuloControllerHandler handler)
 	{
 		handler.visit(this);
 	}

@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
-import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ControllerHandler;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ModuloControllerHandler;
 
 /**
  * Event triggered by the view to notify that the current player wants to rotate
@@ -21,7 +21,7 @@ public class RotateEvent extends ViewEvent
 	private static final long	serialVersionUID	= 2085506187547788810L;
 
 	@Override
-	public void accept(ControllerHandler handler)
+	public void accept(ModuloControllerHandler handler)
 	{
 		handler.visit(this);
 	}

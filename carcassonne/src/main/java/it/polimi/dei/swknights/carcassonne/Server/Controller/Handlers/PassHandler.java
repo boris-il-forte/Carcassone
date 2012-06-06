@@ -4,7 +4,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 
-public class PassHandler extends ControllerHandler
+public class PassHandler extends ModuloControllerHandler
 {
 	public PassHandler(ModuloController controller, ModuloModel model)
 	{

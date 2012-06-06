@@ -9,7 +9,7 @@ import it.polimi.dei.swknights.carcassonne.Server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
-public class PlaceHandler extends ControllerHandler
+public class PlaceHandler extends ModuloControllerHandler
 {
 
 	public PlaceHandler(ModuloController controller, ModuloModel model)

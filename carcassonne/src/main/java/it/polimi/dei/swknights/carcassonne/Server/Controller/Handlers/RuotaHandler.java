@@ -5,7 +5,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 
-public class RuotaHandler extends ControllerHandler
+public class RuotaHandler extends ModuloControllerHandler
 {
 	public RuotaHandler(ModuloController controller, ModuloModel model)
 	{
