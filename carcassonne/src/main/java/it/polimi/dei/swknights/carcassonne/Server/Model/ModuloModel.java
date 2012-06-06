@@ -216,8 +216,12 @@ public class ModuloModel extends AbstractModel
 	private void removeSegnalino(Tessera tessera)
 	{
 		Segnalino segnalino = tessera.removeSegnalino();
-		Giocatore giocatore = this.datiPartita.getGiocatore(segnalino.getColore());
-		giocatore.addSegnalino(segnalino);
+		if(segnalino != null)
+		{
+			Giocatore giocatore = this.datiPartita.getGiocatore(segnalino.getColore());
+			giocatore.addSegnalino(segnalino);
+		}
+		
 	}
 
 	private List<Giocatore> getListaGiocatori()

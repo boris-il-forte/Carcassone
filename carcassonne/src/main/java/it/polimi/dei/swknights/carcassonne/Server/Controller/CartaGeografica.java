@@ -39,19 +39,27 @@ public class CartaGeografica
 
 	public Set<Costruzione> getCostruzioniCompletate()
 	{
-		Set<Costruzione> completate = this.costruzioniCompletate;
+		Set<Costruzione> completate = new HashSet<Costruzione>(this.costruzioniCompletate);
 		this.costruzioniCompletate.clear();
 		return completate;
 	}
 
+	public void aggiornaCompletate(Costruzione costruzione)
+	{
+		if(this.mappaCostruzioni.get(costruzione) == null)
+		{
+			this.costruzioniCompletate.add(costruzione);
+		}
+	}
+
 	public void put(ConfineTessera nuovoConfine, Costruzione costruzione)
 	{
-		mappaConfini.put(nuovoConfine, costruzione);
+		this.mappaConfini.put(nuovoConfine, costruzione);
 		List<ConfineTessera> listaConfini = this.mappaCostruzioni.get(costruzione);
 		if (listaConfini == null)
 		{
 			listaConfini = new ArrayList<ConfineTessera>();
-			mappaCostruzioni.put(costruzione, listaConfini);
+			this.mappaCostruzioni.put(costruzione, listaConfini);
 		}
 		listaConfini.add(nuovoConfine);
 	}
@@ -66,11 +74,7 @@ public class CartaGeografica
 		Costruzione costruzione = this.mappaConfini.remove(confine);
 		List<ConfineTessera> listaConfini = this.mappaCostruzioni.remove(costruzione);
 		listaConfini.remove(confine);
-		if (listaConfini.isEmpty())
-		{
-			this.costruzioniCompletate.add(nuovaCostruzione);
-		}
-		else
+		if (!listaConfini.isEmpty())
 		{
 			this.mappaCostruzioni.put(nuovaCostruzione, listaConfini);
 		}

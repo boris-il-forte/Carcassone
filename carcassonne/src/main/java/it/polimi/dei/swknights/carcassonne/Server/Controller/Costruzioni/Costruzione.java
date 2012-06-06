@@ -86,7 +86,7 @@ public abstract class Costruzione
 
 	public List<Color> controllataDa()
 	{
-		int max = 0;
+		int max = 1;
 		List<Color> controllori = new ArrayList<Color>();
 		for (Entry<Color, Integer> entryColore : this.contatoreSegnalini.entrySet())
 		{
