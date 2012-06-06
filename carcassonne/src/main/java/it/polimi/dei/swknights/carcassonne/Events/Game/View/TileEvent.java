@@ -2,7 +2,6 @@ package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
 import java.awt.Color;
 
-import it.polimi.dei.swknights.carcassonne.Events.Game.ComandiView;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
@@ -20,7 +19,6 @@ public class TileEvent extends ViewEvent
 	public TileEvent(Object source, Color colore, PuntoCardinale punto)
 	{
 		super(source);
-		setComando(ComandiView.tile);
 		this.puntoDestinazione = punto;
 		this.color = colore;
 	}

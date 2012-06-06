@@ -1,7 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandler;
-import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 /**
@@ -18,7 +17,6 @@ public class FinePartitaEvent extends ControllerEvent
 	public FinePartitaEvent(Object source, Punteggi punteggi)
 	{
 		super(source);
-		this.setComando(MessaggiController.end);
 		this.punteggi = punteggi;
 	}
 	/**

@@ -2,7 +2,6 @@ package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
-import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
@@ -20,7 +19,6 @@ public class CostruzioneCompletataEvent extends ControllerEvent
 	public CostruzioneCompletataEvent(Object source, Map<AdapterTessera, Coordinate> tessereAggiornate, Punteggi punteggi)
 	{
 		super(source);
-		this.setComando(MessaggiController.costruction);
 		this.tessereAggiornate = tessereAggiornate;
 		this.punteggi = punteggi;
 	}

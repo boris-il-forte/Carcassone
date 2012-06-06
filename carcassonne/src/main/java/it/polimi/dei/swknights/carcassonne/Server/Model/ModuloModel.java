@@ -39,10 +39,16 @@ public class ModuloModel extends AbstractModel
 	 * Default constructor. Initialize the data structures
 	 */
 
-	public ModuloModel()
+	public ModuloModel(String idPartita)
 	{
 		super();
 		this.datiPartita = new DatiPartita();
+		this.idPartita = idPartita;
+	}
+
+	public ModuloModel()
+	{
+		this("");
 	}
 
 	public void ruotaTessera()
@@ -110,11 +116,6 @@ public class ModuloModel extends AbstractModel
 			System.exit(0);
 			return;
 		}
-	}
-	
-	public void setIdPartita(String idValue)
-	{
-		this.idPartita = idValue;				
 	}
 
 
@@ -251,7 +252,7 @@ public class ModuloModel extends AbstractModel
 		return punteggi;
 	}
 
-	private /*final*/ String idPartita;
+	private final String idPartita;
 	
 	private DatiPartita	datiPartita;
 
