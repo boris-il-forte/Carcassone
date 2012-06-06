@@ -1,7 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandler;
-import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 
 import java.awt.Color;
@@ -12,14 +11,12 @@ public class UpdateTurnoEvent extends UpdateEvent
 	public UpdateTurnoEvent(Object source, Color color, Tessera tessera)
 	{
 		super(tessera, null, color, source);
-		this.setComando(MessaggiController.turn);
 		this.color = color;
 	}
 
 	public UpdateTurnoEvent(Object source, Color color, String tessera)
 	{
 		super(tessera, null, color, source);
-		this.setComando(MessaggiController.turn);
 		this.color = color;
 	}
 

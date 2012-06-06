@@ -1,7 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandler;
-import it.polimi.dei.swknights.carcassonne.Events.Game.MessaggiController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
@@ -19,7 +18,7 @@ public class UpdatePositionEvent extends UpdateEvent
 	public UpdatePositionEvent(Tessera tessera, Coordinate coordinate, Color giocatore, Object source)
 	{
 		super(tessera, coordinate, giocatore, source);
-		this.setComando(MessaggiController.update_position);
+	
 	}
 	/**
 	 * {@link Coordinate} of the placed card

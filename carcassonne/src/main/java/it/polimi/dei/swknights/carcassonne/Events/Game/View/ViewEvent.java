@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
-import it.polimi.dei.swknights.carcassonne.Events.Game.ComandiView;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ControllerHandler;
 
 import java.util.EventObject;
@@ -18,20 +17,10 @@ public abstract class ViewEvent extends EventObject
 		super(source);
 	}
 
-	@Override
-	public String toString()
-	{
-		return this.comando.toString();
-	}
 
-	protected final void setComando(ComandiView comando)
-	{
-		this.comando = comando;
-	}
 
 	public abstract void accept(ControllerHandler handler);
 
-	private ComandiView			comando;
 
 	private static final long	serialVersionUID	= -5387280202389373513L;
 

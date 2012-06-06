@@ -46,14 +46,19 @@ public class ColoriGioco
 		return stringhe[1];
 	}
 
+	public static String getProtocolName(Color colore)
+	{
+		String[] stringhe = getStringhe(colore);
+		return stringhe[2];
+	}
 	private static Map<Color, String> inizializzaColori()
 	{
 		Map<Color, String> mappa = new LinkedHashMap<Color, String>();
-		mappa.put(Color.RED, "R Rosso");
-		mappa.put(Color.BLUE, "B Blu");
-		mappa.put(Color.GREEN, "G Verde");
-		mappa.put(Color.YELLOW, "Y Giallo");
-		mappa.put(Color.BLACK, "K Nero");
+		mappa.put(Color.RED, "R Rosso red");
+		mappa.put(Color.BLUE, "B Blu blue");
+		mappa.put(Color.GREEN, "G Verde green");
+		mappa.put(Color.YELLOW, "Y Giallo yellow");
+		mappa.put(Color.BLACK, "K Nero black");
 
 		return mappa;
 	}

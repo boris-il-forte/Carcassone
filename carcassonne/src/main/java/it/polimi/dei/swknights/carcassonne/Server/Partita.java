@@ -16,14 +16,11 @@ public class Partita
 	 */
 	public Partita()
 	{
-		this.model = new ModuloModel();
-		this.controller = new ModuloController(model);
-
 		java.util.Date date = new java.util.Date();
 		this.idPartita = ("GAME" + new Timestamp(date.getTime()));
-
-		this.model.setIdPartita(this.idPartita);
-
+		
+		this.model = new ModuloModel(this.idPartita);
+		this.controller = new ModuloController(model);
 		this.view = new ProxyView();
 
 		this.view.addListener(this.controller);

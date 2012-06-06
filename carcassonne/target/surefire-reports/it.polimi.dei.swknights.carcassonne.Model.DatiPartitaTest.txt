@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: it.polimi.dei.swknights.carcassonne.Model.DatiPartitaTest
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.04 sec <<< FAILURE!
+Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.037 sec <<< FAILURE!
 addSquadraDiCalcio(it.polimi.dei.swknights.carcassonne.Model.DatiPartitaTest)  Time elapsed: 0.008 sec  <<< FAILURE!
 java.lang.AssertionError: l'errore finiti color disponibili dovrebbe scattare dopo il tentativo di aggiunta del quinto (5°)   i = 5
 	at org.junit.Assert.fail(Assert.java:91)

@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
-import it.polimi.dei.swknights.carcassonne.Events.Game.ComandiView;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
@@ -17,7 +16,6 @@ public class PlaceEvent extends ViewEvent
 	public PlaceEvent(Object source, Coordinate coordinate)
 	{
 		super(source);
-		this.setComando(ComandiView.place);
 		this.coordinateDestinazione = coordinate;
 	}
 
