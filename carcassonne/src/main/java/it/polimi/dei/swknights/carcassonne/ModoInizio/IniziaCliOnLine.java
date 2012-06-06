@@ -14,16 +14,13 @@ public class IniziaCliOnLine extends Inizio
 	@Override
 	public void inizia()
 	{
-		System.out.println("cli on line");
-		view = new Cli(); //1)
-		socket = CarcassonneSocket.dammiSocket();	//2)
-		controller = new ProxyController(socket);  //2
+		this.printer.println("cli on line");
+		View view = new Cli(); //1)
+		Socket socket = CarcassonneSocket.dammiSocket();	//2)
+		ProxyController controller = new ProxyController(socket);  //2
 		view.addListener(controller);  //2)		
-		superStarDestroyer.execute(view);  //4)
-		superStarDestroyer.execute(controller);
+		this.superStarDestroyer.execute(view);  //4)
+		this.superStarDestroyer.execute(controller);
 	}
 	
-	private Socket socket = null;
-	private ProxyController controller = null;
-	private View view;
 }

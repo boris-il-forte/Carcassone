@@ -7,7 +7,6 @@ public class Fine extends Inizio
 	public void inizia()
 	{
 		return;
-
 	}
 
 }

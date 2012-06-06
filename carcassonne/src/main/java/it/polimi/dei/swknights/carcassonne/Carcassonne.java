@@ -6,7 +6,6 @@ class Carcassonne
 {
 	public static void main(String[] args)
 	{
-		//prova commit nuova versione
 		
 		String risposta = "";
 
@@ -14,7 +13,7 @@ class Carcassonne
 
 		risposta = begin.ShowDialog();
 
-		System.out.println(" risposta = " + risposta);
+		Debug.print(" risposta = " + risposta);
 		Inizio iniziatore = begin.getIniziatore(risposta);
 
 		iniziatore.inizia();

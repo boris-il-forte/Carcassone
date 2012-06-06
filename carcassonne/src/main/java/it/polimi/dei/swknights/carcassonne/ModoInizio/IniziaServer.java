@@ -11,7 +11,7 @@ public class IniziaServer extends Inizio
 	public void inizia()
 	{	
 		System.out.println("Server");
-		CarcassonneServer server =new CarcassonneServer();
+		CarcassonneServer server = new CarcassonneServer();
 		Executor superStarDestroyer = Executors.newFixedThreadPool(1);
 		superStarDestroyer.execute(server);	
 	}
