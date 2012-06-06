@@ -51,7 +51,8 @@ public class CartaGeograficaTest
 			
 		}
 		
-		carta.getCostruzioneAggregata(null, null);
+		//TODO continuare
+		//carta.getCostruzioneAggregata(null, null);
 		 
 		
 	}

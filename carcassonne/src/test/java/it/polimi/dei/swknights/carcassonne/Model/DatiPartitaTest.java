@@ -57,7 +57,7 @@ public class DatiPartitaTest
 		}
 		catch (FinitiColoriDisponibiliException e)
 		{
-			if (i != 6)
+			if (i != 5)
 				fail("l'errore finiti color disponibili dovrebbe scattare dopo "
 						+ "il tentativo di aggiunta del quinto (5°)  " + " i = " + i);
 			else assertTrue(true);

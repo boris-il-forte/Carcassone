@@ -95,7 +95,7 @@ public class AreaDiGiocoTest
 		int contaSuccessi=0;
 		
 		area.addTessera(new Coordinate(3, -5), t1);
-		area.addTessera(new Coordinate(-3, 15), t1);
+		area.addTessera(new Coordinate(-3, -15), t1);
 		area.addTessera(new Coordinate(0, 0), t1);
 		
 		try
@@ -104,6 +104,7 @@ public class AreaDiGiocoTest
 		}
 		catch(TesseraNonTrovataException e)
 		{
+			System.out.println("non trovata");
 			contaSuccessi ++;
 		}
 		
