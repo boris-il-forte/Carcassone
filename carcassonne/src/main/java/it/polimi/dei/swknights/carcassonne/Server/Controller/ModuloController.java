@@ -6,7 +6,7 @@ import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException
 import it.polimi.dei.swknights.carcassonne.Fasi.GestoreFasi;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.AbstractController;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ControllerHandler;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ModuloControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.PassHandler;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.PlaceHandler;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.RuotaHandler;
@@ -72,7 +72,7 @@ public class ModuloController extends AbstractController
 	 */
 	public void riceviInput(ViewEvent event)
 	{
-		for (ControllerHandler visitorHandler : this.visitorHandlers)
+		for (ModuloControllerHandler visitorHandler : this.visitorHandlers)
 		{
 			event.accept(visitorHandler);
 		}
@@ -238,9 +238,9 @@ public class ModuloController extends AbstractController
 		return true;
 	}
 
-	private List<ControllerHandler> attivaHandler()
+	private List<ModuloControllerHandler> attivaHandler()
 	{
-		List<ControllerHandler> handlerList = new ArrayList<ControllerHandler>();
+		List<ModuloControllerHandler> handlerList = new ArrayList<ModuloControllerHandler>();
 		handlerList.add(new RuotaHandler(this, this.model));
 		handlerList.add(new PlaceHandler(this, this.model));
 		handlerList.add(new TileHandler(this, this.model));
@@ -258,7 +258,7 @@ public class ModuloController extends AbstractController
 
 	
 	
-	private List<ControllerHandler>	visitorHandlers;
+	private List<ModuloControllerHandler>	visitorHandlers;
 
 	private ContatoreCartografo		contaPunti;
 
