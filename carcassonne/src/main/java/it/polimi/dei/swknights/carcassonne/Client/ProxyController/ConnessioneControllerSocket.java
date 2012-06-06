@@ -103,6 +103,12 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public void invia()
+	{
+		//TODO: do it!
+	}
 
 	private static final int ARGOMENTI=1;
 	
