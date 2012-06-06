@@ -43,12 +43,12 @@ public class ModuloController extends AbstractController
 		this.gestoreFasi = new GestoreFasi();
 		this.contaPunti = new ContatoreCartografo(this.model);
 		this.visitorHandlers = this.attivaHandler();
-		
+
 	}
 
 	public void run()
 	{
-		
+
 		this.primaMossaPartita();
 		try
 		{
@@ -87,13 +87,12 @@ public class ModuloController extends AbstractController
 	{
 		this.contaPunti.addSegnalino(colore, puntoCardinale);
 	}
-	
-	
+
 	public boolean tuttoVicinatoDAccordo(Coordinate coordinate)
 	{
 		return this.tuttoVicinatoDAccordo(coordinate, this.model.getTesseraCorrente());
 	}
-	
+
 	public boolean costruzioneLibera(PuntoCardinale punto)
 	{
 		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
@@ -108,8 +107,7 @@ public class ModuloController extends AbstractController
 			return false;
 		}
 	}
-	
-	
+
 	public ContatoreCartografo getContapunti()
 	{
 		return this.contaPunti;
@@ -123,7 +121,7 @@ public class ModuloController extends AbstractController
 	private void nextTurno() throws InterruptedException
 	{
 		this.attendiPosizionamentoTessera();
-		if(this.contaPunti.areCostruzioniCompletate())
+		if (this.contaPunti.areCostruzioniCompletate())
 		{
 			this.comunicaCostruzioneCompletata();
 		}
@@ -142,23 +140,22 @@ public class ModuloController extends AbstractController
 	private List<Tessera> getListaTessereCostruzioni(Set<Costruzione> costruzioniCompletate)
 	{
 		List<Tessera> listaTessere = new ArrayList<Tessera>();
-		for(Costruzione costruzione : costruzioniCompletate)
+		for (Costruzione costruzione : costruzioniCompletate)
 		{
-			for(Tessera tessera : costruzione.getTessere())
-			{ 
+			for (Tessera tessera : costruzione.getTessere())
+			{
 				listaTessere.add(tessera);
 			}
 		}
 		return listaTessere;
 	}
 
-	
 	private void primaMossaPartita()
 	{
 		final Coordinate origine = new Coordinate(0, 0);
 		try
 		{
-			this.model.iniziaGioco(NUMBER_OF_PLAYER);
+			this.model.iniziaGioco();
 			this.contaPunti.riceviCoordinateTessera(origine);
 			this.gestoreFasi.cominciaTurno();
 		}
@@ -176,7 +173,7 @@ public class ModuloController extends AbstractController
 			do
 			{
 				this.model.getTesseraDaMazzo();
-			}while(this.tesseraEstrattaValida());
+			} while (this.tesseraEstrattaValida());
 			this.model.cominciaTurno();
 		}
 		catch (PartitaFinitaException e)
@@ -191,25 +188,19 @@ public class ModuloController extends AbstractController
 		Tessera tesseraEstratta = this.model.getTesseraCorrente();
 		Tessera tesseraCopia = tesseraEstratta.clone();
 		Set<Coordinate> setVuote = this.contaPunti.getSetVuote();
-		for(Coordinate coordinate : setVuote)
+		for (Coordinate coordinate : setVuote)
 		{
-			if(this.posizionabile(coordinate,tesseraCopia))
-			{
-				return true;
-			}
+			if (this.posizionabile(coordinate, tesseraCopia)) { return true; }
 		}
 		return false;
-			
+
 	}
 
 	private boolean posizionabile(Coordinate coordinate, Tessera tesseraCopia)
 	{
-		for(int i=0 ; i< PuntoCardinale.NUMERO_DIREZIONI; i++)
+		for (int i = 0; i < PuntoCardinale.NUMERO_DIREZIONI; i++)
 		{
-			if(this.tuttoVicinatoDAccordo(coordinate))
-			{
-				return true;
-			}
+			if (this.tuttoVicinatoDAccordo(coordinate)) { return true; }
 			tesseraCopia.ruota();
 		}
 		return false;
@@ -225,7 +216,7 @@ public class ModuloController extends AbstractController
 			{
 				tesseraVicino = this.model.getTessera(coordinate.getCoordinateA(punto));
 				if (!tessera.buonVicino(tesseraVicino, punto)) { return false; }
-	
+
 			}
 			catch (TesseraNonTrovataException e)
 			{
@@ -233,7 +224,7 @@ public class ModuloController extends AbstractController
 				continue;
 			}
 		}
-	
+
 		if (viciniVuoti == PuntoCardinale.NUMERO_DIREZIONI) { return false; }
 		return true;
 	}
@@ -256,17 +247,12 @@ public class ModuloController extends AbstractController
 		}
 	}
 
-	
-	
 	private List<ModuloControllerHandler>	visitorHandlers;
 
-	private ContatoreCartografo		contaPunti;
+	private ContatoreCartografo				contaPunti;
 
-	private final GestoreFasi		gestoreFasi;
+	private final GestoreFasi				gestoreFasi;
 
-	private final ModuloModel		model;
-
-	private static final int		NUMBER_OF_PLAYER	= 2;	// TODO: ask
-																// user.
+	private final ModuloModel				model;
 
 }

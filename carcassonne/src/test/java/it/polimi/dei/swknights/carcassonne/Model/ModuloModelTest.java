@@ -60,8 +60,10 @@ public class ModuloModelTest
 	@Test
 	public void iniziaGioco() throws Exception
 	{
+		model.addPlayer();
+		model.addPlayer();
 		
-		model.iniziaGioco(2);
+		model.iniziaGioco();
 		TesseraNormale tessera = (TesseraNormale)  model.getTessera(new Coordinate(0, 0));
 		
 		if(isPrimaTessera(tessera) == false)

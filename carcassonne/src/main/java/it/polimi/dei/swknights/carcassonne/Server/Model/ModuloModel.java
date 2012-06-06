@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
@@ -72,41 +71,20 @@ public class ModuloModel extends AbstractModel
 	{
 		return this.tesseraCorrente;
 	}
-	/**
-	 * Creates the requested number of players
-	 * @param numeroGiocatori
-	 */
-	public void creaGiocatori(int numeroGiocatori)
-	{
-		try
-		{
-			for (int i = 1; i < numeroGiocatori; i++)
-			{
-				this.datiPartita.addGiocatore();
-			}
-		}
-		catch (FinitiColoriDisponibiliException e)
-		{
-			throw new IllegalArgumentException("hai chiesto troppi giocatori");
-		}
-
-	}
+	
 	/**
 	 * Basic operation to set up first things of the game:
 	 * place the first card and creates players.
 	 * @param numeroGiocatori: how many people are playing
 	 * @throws PartitaFinitaException
 	 */
-	public void iniziaGioco(int numeroGiocatori) throws PartitaFinitaException
+	public void iniziaGioco() throws PartitaFinitaException
 	{
 		try
 		{
 			Tessera primaTessera = this.datiPartita.pescaPrimaTessera();
 			AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
-			this.creaGiocatori(numeroGiocatori);
-
 			this.datiPartita.getAreaDiGioco().addTessera(new Coordinate(0, 0), primaTessera);
-			Debug.print("inizia gioco - event");
 			this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore(),
 					this.getListaGiocatori().size(), this.getIdPartita()));
 			this.getTesseraDaMazzo();
@@ -270,12 +248,12 @@ public class ModuloModel extends AbstractModel
 		return punteggi;
 	}
 
-	private final String idPartita;
-	
 	private DatiPartita	datiPartita;
 
 	private Tessera		tesseraCorrente;
 
 	private Coordinate	coordinateTesseraCorrente;
+
+	private final String idPartita;
 
 }
