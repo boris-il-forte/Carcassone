@@ -1,10 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Model;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
-import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
-import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.ConfineTessera;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.CostruzioneCitta;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.CostruzioneStrada;
@@ -24,12 +24,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

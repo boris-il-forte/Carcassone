@@ -43,11 +43,11 @@ public class RuotaStringa
 	private void ruotaCollegamenti(StringBuilder builder, char[] collegamenti)
 	{
 		builder.append(collegamenti[Bussola.WE.toInt()]);
-		builder.append(collegamenti[Bussola.SE.toInt()]);
-		builder.append(collegamenti[Bussola.NE.toInt()]);
-		builder.append(collegamenti[Bussola.NS.toInt()]);
 		builder.append(collegamenti[Bussola.SW.toInt()]);
 		builder.append(collegamenti[Bussola.NW.toInt()]);
+		builder.append(collegamenti[Bussola.NS.toInt()]);
+		builder.append(collegamenti[Bussola.NE.toInt()]);
+		builder.append(collegamenti[Bussola.SE.toInt()]);
 	}
 
 	private char[] getCostruzioniPunticardinali(String daRuotare)

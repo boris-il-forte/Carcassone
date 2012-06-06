@@ -1,9 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Util;
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertTrue;
-import java.awt.Color;
-import java.util.LinkedList;
-import java.util.List;
+import static org.junit.Assert.fail;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 

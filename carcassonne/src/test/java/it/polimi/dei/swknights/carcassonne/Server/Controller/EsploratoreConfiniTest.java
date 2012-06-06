@@ -1,17 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.ConfineTessera;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografo;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.EsploratoreConfini;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
@@ -19,17 +7,15 @@ import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Lati;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Link;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
-import it.polimi.dei.swknights.carcassonne.Util.Bussola;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
-import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Queue;
 import java.util.Set;
+
+import org.junit.Before;
+import org.junit.Test;
 
 public class EsploratoreConfiniTest
 {

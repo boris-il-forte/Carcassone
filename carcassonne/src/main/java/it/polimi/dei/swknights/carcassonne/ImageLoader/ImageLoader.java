@@ -1,7 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
-
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
@@ -99,7 +97,6 @@ public class ImageLoader
 		}
 		else
 		{
-			Debug.print("stringa immagine originale non trovata: " + stringa);
 			return this.errorImage;
 		}
 	}
@@ -121,7 +118,6 @@ public class ImageLoader
 
 	private void leggiFileCartella(String stringCartella, Map<String, URL> map)
 	{
-		Debug.print("Apro cartella: "  + stringCartella);
 		URL urlCartella = ImageLoader.class.getResource(stringCartella);
 		File cartella = new File(urlCartella.getFile());
 		for( String stringImmagine : cartella.list())
@@ -129,7 +125,6 @@ public class ImageLoader
 			//TODO chiedere che mi sa che non va bene...
 			if (!stringImmagine.startsWith("."))
 			{
-				Debug.print(stringImmagine);
 				StringBuilder builderPercorso = new StringBuilder(stringCartella).append("/").append(stringImmagine);
 				URL urlImmagine = ImageLoader.class.getResource(builderPercorso.toString());
 				map.put(stringImmagine.split("\\.")[0], urlImmagine);

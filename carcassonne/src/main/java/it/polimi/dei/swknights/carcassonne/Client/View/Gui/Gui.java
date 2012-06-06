@@ -111,6 +111,7 @@ public class Gui extends ModuloView
 		{
 			Coordinate coordReale = this.convertiCoordinate(numeroCasella);
 			Debug.print(" coord = " + coordReale);
+			this.getGestoreFasi().nextFase();
 			this.fire(new PlaceEvent(this, coordReale));
 		}
 

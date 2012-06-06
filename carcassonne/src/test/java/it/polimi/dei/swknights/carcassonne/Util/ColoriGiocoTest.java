@@ -1,10 +1,11 @@
 package it.polimi.dei.swknights.carcassonne.Util;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+
 import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 

@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
 import it.polimi.dei.swknights.carcassonne.Parser.ExtraParser;
 import it.polimi.dei.swknights.carcassonne.Util.Bussola;
@@ -17,13 +16,11 @@ public class IconFinder
 	@Override
 	public String toString()
 	{
-		Debug.print("stringa in uscita a IconFinder: " + string);
 		return this.string.toString();
 	}
 	
 	private void trovaStringa(String stringToFind)
 	{
-		Debug.print("stringa in ingresso a IconFinder: " + stringToFind);
 		try
 		{
 			ExtraParser parser = new ExtraParser(stringToFind);
