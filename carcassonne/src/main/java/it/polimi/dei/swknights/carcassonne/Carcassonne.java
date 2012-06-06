@@ -6,7 +6,7 @@ class Carcassonne
 {
 	public static void main(String[] args)
 	{
-
+		//prova commit nuova versione
 		
 		String risposta = "";
 
