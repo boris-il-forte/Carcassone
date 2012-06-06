@@ -7,7 +7,7 @@ package it.polimi.dei.swknights.carcassonne.Util;
  * 
  */
 public enum Bussola {
-	NS(0), NE(1), NW(2), WE(3), SE(4), SW(5);
+	NS(0), NW(1), NE(2), WE(3), SE(4), SW(5);
 
 	private Bussola(int numero)
 	{

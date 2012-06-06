@@ -1,11 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
-import java.security.KeyStore.Entry;
-import java.util.*;
-
-import it.polimi.dei.swknights.carcassonne.Server.Controller.CartaGeografica;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.ConfineTessera;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografo;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.CostruzioneCitta;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.CostruzioneStrada;
@@ -16,7 +10,6 @@ import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Link;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
-import it.polimi.dei.swknights.carcassonne.Util.PuntiCardinaliTest;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import org.junit.Before;
