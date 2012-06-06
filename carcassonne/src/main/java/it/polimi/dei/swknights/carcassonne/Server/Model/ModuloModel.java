@@ -109,6 +109,7 @@ public class ModuloModel extends AbstractModel
 			Debug.print("inizia gioco - event");
 			this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore(),
 					this.getListaGiocatori().size(), this.getIdPartita()));
+			this.getTesseraDaMazzo();
 			this.cominciaTurno();
 			
 		}
@@ -128,7 +129,6 @@ public class ModuloModel extends AbstractModel
 	public void cominciaTurno() throws PartitaFinitaException
 	{
 		Color coloreGiocatore = this.getColoreGiocatoreCorrente();
-		this.getTesseraDaMazzo();
 		this.fire(new UpdateTurnoEvent(this, coloreGiocatore, this.tesseraCorrente));
 	}
 	/**
@@ -138,6 +138,11 @@ public class ModuloModel extends AbstractModel
 	{
 		this.datiPartita.nextTurno();
 	}
+	public Coordinate getCoordinateTessera(Tessera tessera)
+	{
+		return this.datiPartita.getCoordinateTessera(tessera);
+	}
+
 	/**
 	 * place the current card on the given coordinates
 	 * @param coordinate where place the card

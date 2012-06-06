@@ -2,11 +2,13 @@ package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -35,6 +37,17 @@ public class ContatoreCartografo
 	{
 		this.model = model;
 		this.cartaGeografica = new CartaGeografica();
+	}
+
+	public Set<Coordinate> getSetVuote()
+	{
+		Set<Coordinate> setVuote = new HashSet<Coordinate>();		
+		for(ConfineTessera confine : this.cartaGeografica.getConfini())
+		{
+			Coordinate coordinate = this.getCoordinateVuote(confine);
+			setVuote.add(coordinate);
+		}		
+		return setVuote;
 	}
 
 	public boolean areCostruzioniCompletate()
@@ -104,6 +117,14 @@ public class ContatoreCartografo
 	Map<PuntoCardinale, Costruzione> getMapCostruzioniUltimaTessera()
 	{
 		return this.cartello.getIndicazioni();
+	}
+
+	private Coordinate getCoordinateVuote(ConfineTessera confine)
+	{
+		PuntoCardinale puntoCardinale = confine.getPuntoCardinale();
+		Tessera tesseraBase = confine.getTessera(); 
+		Coordinate coordinateBase = this.model.getCoordinateTessera(tesseraBase);
+		return coordinateBase.getCoordinateA(puntoCardinale);
 	}
 
 	private Punteggi getPunteggiAggregati(Set<Costruzione> costruzioni, boolean costruzioneCompletata)
