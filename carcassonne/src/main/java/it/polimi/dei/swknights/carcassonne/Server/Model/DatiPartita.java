@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model;
 
+import it.polimi.dei.swknights.carcassonne.Exceptions.ColoreNonPresenteException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.FactoryGiocatore;
@@ -7,6 +8,7 @@ import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.FactoryTessere;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.FactoryTessereNormali;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
+import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
@@ -65,9 +67,10 @@ public final class DatiPartita
 	 * @param colore
 	 *            : the color of the player to be found
 	 * @return the player of that color
+	 * @throws ColoreNonPresenteException 
 	 */
 
-	public Giocatore getGiocatore(Color colore)
+	public Giocatore getGiocatore(Color colore) throws ColoreNonPresenteException
 	{
 
 		for (Giocatore giocatore : this.giocatori)
@@ -76,7 +79,7 @@ public final class DatiPartita
 
 		}
 
-		throw new IllegalArgumentException(colore.toString());
+		throw new ColoreNonPresenteException(ColoriGioco.getName(colore));
 
 	}
 
@@ -149,8 +152,15 @@ public final class DatiPartita
 	{
 		for(Entry<Color, Integer> entry : punteggi.entrySet())
 		{
-			Giocatore giocatore = this.getGiocatore(entry.getKey());
-			giocatore.addPunti(entry.getValue());
+			try
+			{
+				Giocatore giocatore = this.getGiocatore(entry.getKey());
+				giocatore.addPunti(entry.getValue());
+			}
+			catch(ColoreNonPresenteException e)
+			{
+				continue;
+			}
 		}
 	}
 

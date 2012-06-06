@@ -9,6 +9,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEve
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
+import it.polimi.dei.swknights.carcassonne.Exceptions.ColoreNonPresenteException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
@@ -189,6 +190,7 @@ public class ModuloModel extends AbstractModel
 
 	public void notificaCostruzioneCompletata(List<Tessera> tessere, Punteggi punteggi)
 	{
+		this.datiPartita.aggiornaPunteggioGiocatori(punteggi);
 		Map<AdapterTessera, Coordinate> mapTessere = new HashMap<AdapterTessera, Coordinate>();
 		for(Tessera tessera : tessere)
 		{
@@ -198,7 +200,7 @@ public class ModuloModel extends AbstractModel
 			mapTessere.put(new AdapterTesseraObject(tessera), coordinate);
 		}
 		
-		this.fire(new CostruzioneCompletataEvent(this,mapTessere, punteggi));
+		this.fire(new CostruzioneCompletataEvent(this,mapTessere, this.getPunteggi()));
 	}
 
 	public void addPlayer()
@@ -218,8 +220,15 @@ public class ModuloModel extends AbstractModel
 		Segnalino segnalino = tessera.removeSegnalino();
 		if(segnalino != null)
 		{
-			Giocatore giocatore = this.datiPartita.getGiocatore(segnalino.getColore());
-			giocatore.addSegnalino(segnalino);
+			try
+			{
+				Giocatore giocatore = this.datiPartita.getGiocatore(segnalino.getColore());
+				giocatore.addSegnalino(segnalino);
+			}
+			catch (ColoreNonPresenteException e) 
+			{
+				e.printStackTrace();
+			}
 		}
 		
 	}
