@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.Fasi.GestoreFasi;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.AbstractController;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
@@ -87,6 +88,12 @@ public class ModuloController extends AbstractController
 		this.contaPunti.addSegnalino(colore, puntoCardinale);
 	}
 	
+	
+	public boolean tuttoVicinatoDAccordo(Coordinate coordinate)
+	{
+		return this.tuttoVicinatoDAccordo(coordinate, this.model.getTesseraCorrente());
+	}
+	
 	public boolean costruzioneLibera(PuntoCardinale punto)
 	{
 		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
@@ -154,7 +161,6 @@ public class ModuloController extends AbstractController
 			this.model.iniziaGioco(NUMBER_OF_PLAYER);
 			this.contaPunti.riceviCoordinateTessera(origine);
 			this.gestoreFasi.cominciaTurno();
-		
 		}
 		catch (PartitaFinitaException e)
 		{
@@ -167,6 +173,10 @@ public class ModuloController extends AbstractController
 	{
 		try
 		{
+			do
+			{
+				this.model.getTesseraDaMazzo();
+			}while(this.tesseraEstrattaValida());
 			this.model.cominciaTurno();
 		}
 		catch (PartitaFinitaException e)
@@ -174,6 +184,58 @@ public class ModuloController extends AbstractController
 			Punteggi punteggi = this.contaPunti.getPunteggioFinale();
 			this.model.notificaFinePartita(punteggi);
 		}
+	}
+
+	private boolean tesseraEstrattaValida()
+	{
+		Tessera tesseraEstratta = this.model.getTesseraCorrente();
+		Tessera tesseraCopia = tesseraEstratta.clone();
+		Set<Coordinate> setVuote = this.contaPunti.getSetVuote();
+		for(Coordinate coordinate : setVuote)
+		{
+			if(this.posizionabile(coordinate,tesseraCopia))
+			{
+				return true;
+			}
+		}
+		return false;
+			
+	}
+
+	private boolean posizionabile(Coordinate coordinate, Tessera tesseraCopia)
+	{
+		for(int i=0 ; i< PuntoCardinale.NUMERO_DIREZIONI; i++)
+		{
+			if(this.tuttoVicinatoDAccordo(coordinate))
+			{
+				return true;
+			}
+			tesseraCopia.ruota();
+		}
+		return false;
+	}
+
+	private boolean tuttoVicinatoDAccordo(Coordinate coordinate, Tessera tessera)
+	{
+		Tessera tesseraVicino = null;
+		int viciniVuoti = 0;
+		for (PuntoCardinale punto : PuntoCardinale.values())
+		{
+			try
+			{
+				tesseraVicino = this.model.getTessera(coordinate.getCoordinateA(punto));
+				if (!tessera.buonVicino(tesseraVicino, punto)) { return false; }
+	
+			}
+			catch (TesseraNonTrovataException e)
+			{
+				viciniVuoti++;
+				continue;
+			}
+		}
+	
+		if (viciniVuoti == PuntoCardinale.NUMERO_DIREZIONI) { return false; }
+		return true;
 	}
 
 	private List<ControllerHandler> attivaHandler()
