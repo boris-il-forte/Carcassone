@@ -81,6 +81,7 @@ public class ContatoreCartografo
 			List<ConfineTessera> confinanti = mapConfinanti.get(costruzione);
 			Costruzione costruzioneAggregata = this.getCostruzioneAggregata(confinanti, costruzione);
 			this.aggiungiNuoviConfini(nuoviConfini, costruzioneAggregata);
+			this.cartaGeografica.aggiornaCompletate(costruzioneAggregata);
 			this.cartello.aggiorna(costruzioneAggregata, costruzione);
 		}
 	}
