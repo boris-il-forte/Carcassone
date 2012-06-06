@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
-import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ControllerHandler;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ModuloControllerHandler;
 
 /**
  * Event triggered by the view to notify that the current player does not want
@@ -19,7 +19,7 @@ public class PassEvent extends ViewEvent
 	}
 
 	@Override
-	public void accept(ControllerHandler handler)
+	public void accept(ModuloControllerHandler handler)
 	{
 		handler.visit(this);
 	}

@@ -7,7 +7,7 @@ import it.polimi.dei.swknights.carcassonne.Server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
-public class TileHandler extends ControllerHandler
+public class TileHandler extends ModuloControllerHandler
 {
 	public TileHandler(ModuloController controller, ModuloModel model)
 	{
