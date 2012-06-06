@@ -8,6 +8,10 @@ import java.util.Scanner;
 
 public class ConnessioneControllerSocket extends ConnessioneController
 {
+	/**
+	 * Basic constructor, just assign the passed variable to private field
+	 * @param socket
+	 */
 	public ConnessioneControllerSocket(Socket socket)
 	{
 		this.socket = socket;
