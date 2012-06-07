@@ -61,11 +61,12 @@ public class JCarcassonneCasella extends JLayeredPane
 
 	public void setSegnalino(Icon icon, Coordinate coordinateSegnalino)
 	{
+		final int latoSegnalino = 30; //TODO: passare da parametro magari...
 		this.segnalino.setIcon(icon);
 		this.stato = StatoCasella.conTessera;
-		int x = coordinateSegnalino.getX() - this.bounds.width/6;
-		int y = coordinateSegnalino.getX() - this.bounds.height/6;
-		this.segnalino.setBounds(x,y, this.bounds.width/3, this.bounds.height/3);
+		int x = coordinateSegnalino.getX() - latoSegnalino/2;
+		int y = coordinateSegnalino.getY() - latoSegnalino/2;
+		this.segnalino.setBounds(x,y, latoSegnalino, latoSegnalino);
 	}
 	
 	public StatoCasella getStato()
@@ -86,5 +87,5 @@ public class JCarcassonneCasella extends JLayeredPane
 }
 
 enum StatoCasella {
-	nonUsata, conTessera, vuota, attendeSegnalino;
+	nonUsata, conTessera, vuota;
 }
