@@ -16,14 +16,6 @@ public class DatiMappa
 		this.creaBoundingMap(min, max);	
 	}
 	
-	private void creaBoundingMap(Coordinate min, Coordinate max)
-	{
-		this.boundingMap = new HashMap<PuntoCardinale, Integer>();
-		this.boundingMap.put(PuntoCardinale.nord, min.getY());
-		this.boundingMap.put(PuntoCardinale.sud, max.getY());
-		this.boundingMap.put(PuntoCardinale.ovest, min.getX());
-		this.boundingMap.put(PuntoCardinale.est, max.getX());
-	}
 	/**
 	 * 
 	 * @return height of the map
@@ -50,6 +42,15 @@ public class DatiMappa
 		return this.boundingMap.get(puntoCardinale);
 	}
 	
+	private void creaBoundingMap(Coordinate min, Coordinate max)
+	{
+		this.boundingMap = new HashMap<PuntoCardinale, Integer>();
+		this.boundingMap.put(PuntoCardinale.nord, min.getY());
+		this.boundingMap.put(PuntoCardinale.sud, max.getY());
+		this.boundingMap.put(PuntoCardinale.ovest, min.getX());
+		this.boundingMap.put(PuntoCardinale.est, max.getX());
+	}
+
 	private Map<PuntoCardinale, Integer> boundingMap;
 	
 }

@@ -109,22 +109,23 @@ public class Gui extends ModuloView
 		return mappaSegnalini;
 	}
 
-	public void casellaCliccata(int numeroCasella, Coordinate coordinateMouse)
+	public void clicPosizionaTessera(int numeroCasella)
 	{
-		Debug.print("cliccana casella n " + numeroCasella + "coordinate" + coordinateMouse);
-		Coordinate coordReale = this.convertiCoordinate(numeroCasella);
 		if (this.getGestoreFasi().posizionaOk())
 		{
-			Debug.print("fire place event");
+			Coordinate coordReale = this.convertiCoordinate(numeroCasella);
 			this.fire(new PlaceEvent(this, coordReale));
 		}
-		else if (this.getGestoreFasi().fineTurnoOk())
+	}
+
+	public void clicPosizionaSegnalino(int numeroCasella, Coordinate coordinateMouse)
+	{
+		if (this.getGestoreFasi().fineTurnoOk())
 		{
-			PuntoCardinale puntoInserimento;
 			try
 			{
-				Debug.print("Fire segnalino");
-				puntoInserimento = this.getPuntocardinaleIserimento(coordinateMouse);
+				Coordinate coordReale = this.convertiCoordinate(numeroCasella);
+				PuntoCardinale puntoInserimento = this.getPuntocardinaleIserimento(coordinateMouse);
 				this.coordinateInserimentoSegnalini.put(coordReale, coordinateMouse);
 				this.fire(new TileEvent(this, this.getColoreGiocatore(), puntoInserimento));
 			}
@@ -133,7 +134,6 @@ public class Gui extends ModuloView
 				Debug.print("Posizionamento Invalido");
 			}
 		}
-
 	}
 
 	public void passCliccato()
