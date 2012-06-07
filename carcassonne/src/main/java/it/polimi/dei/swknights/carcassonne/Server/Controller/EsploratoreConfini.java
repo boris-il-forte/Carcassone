@@ -65,6 +65,11 @@ public class EsploratoreConfini
 		semiSetCostruzioni1.addAll(semiSetCostruzioni2);
 		return semiSetCostruzioni1;
 	}
+	
+	/**
+	 * Getter method, retrives the information produced by the algorithm
+	 * @return the map of all cardinal points of each construction
+	 */
 
 	public Map<Costruzione, List<PuntoCardinale>> getMappaCostruzioni()
 	{
