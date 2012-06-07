@@ -182,7 +182,7 @@ public class Parser
 	private static final int	FIRST_CHAR	= 0;
 
 	private enum Token {
-		N, S, W, E, NS, NW, NE, WE, SE, SW;
+		N, S, W, E, NS, NE, NW, WE, SE, SW;
 
 		public static final int	DATA_TOKENS	= 10;
 	};
