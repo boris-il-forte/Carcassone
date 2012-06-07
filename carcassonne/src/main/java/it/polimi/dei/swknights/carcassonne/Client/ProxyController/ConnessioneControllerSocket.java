@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ConnessioneControllerSocket extends ConnessioneController
@@ -238,8 +239,14 @@ public class ConnessioneControllerSocket extends ConnessioneController
 			e.printStackTrace();
 		}
 		String s = "";
-
-		s = socketIn.nextLine();
+		try
+		{
+			s = socketIn.nextLine();
+		}
+		catch(NoSuchElementException nsee)
+		{
+			Debug.print("mi sa che è morto il server ");
+		}
 
 		s = "socket non ha next";
 		Debug.print("Connessione Controller Socket, ho ricevuto  " + s);
