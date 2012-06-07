@@ -72,7 +72,10 @@ public class Gui extends ModuloView
 	@Override
 	public void visualizzaTesseraCorrente(AdapterTessera tessera)
 	{
-
+		if(!this.getGestoreFasi().ruotaOk())
+		{
+			this.getGestoreFasi().cominciaTurno();
+		}
 		this.setTesseraCorrente(tessera);
 		Icon iconaTessera = this.immagini.getOriginalTileIcon(tessera.toProtocolString());
 		this.finestra.aggiornaTesseraCorrente(iconaTessera);
@@ -105,13 +108,11 @@ public class Gui extends ModuloView
 	public
 	void casellaCliccata(int numeroCasella, Coordinate coordinateMouse)
 	{
-		Debug.print("cliccata casella " + numeroCasella + "in " + coordinateMouse);
 
 		if (this.getGestoreFasi().posizionaOk())
 		{
 			Coordinate coordReale = this.convertiCoordinate(numeroCasella);
 			Debug.print(" coord = " + coordReale);
-			this.getGestoreFasi().nextFase();
 			this.fire(new PlaceEvent(this, coordReale));
 		}
 
