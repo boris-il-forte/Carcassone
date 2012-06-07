@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 import java.awt.Color;
@@ -56,13 +55,17 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.cella.setText("");
 		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		this.cella.setIcon(null);
+		this.segnalino.setIcon(null);
 		this.stato = StatoCasella.nonUsata;
 	}
 
-	public synchronized void setSegnalino(Icon icon)
+	public void setSegnalino(Icon icon, Coordinate coordinateSegnalino)
 	{
 		this.segnalino.setIcon(icon);
 		this.stato = StatoCasella.conTessera;
+		int x = coordinateSegnalino.getX() - this.bounds.width/6;
+		int y = coordinateSegnalino.getX() - this.bounds.height/6;
+		this.segnalino.setBounds(x,y, this.bounds.width/3, this.bounds.height/3);
 	}
 	
 	public StatoCasella getStato()

@@ -48,6 +48,13 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 		casella.setVuota(coordinateVuota);
 	}
 
+	public void setSegnalino(int numeroCasella, Icon segnalino, Coordinate coordinateSegnalino)
+	{
+		JCarcassonneCasella casella = this.listaCaselle.get(numeroCasella);
+		casella.setSegnalino(segnalino, coordinateSegnalino);
+		
+	}
+
 	public void svuotaMappa()
 	{
 		for(JCarcassonneCasella cella : listaCaselle)
@@ -82,11 +89,11 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 		}
 	}
 
-	public void mousePressed(MouseEvent arg0)
+	public void mousePressed(MouseEvent e)
 	{
 	}
 
-	public void mouseReleased(MouseEvent arg0)
+	public void mouseReleased(MouseEvent e)
 	{
 	}
 	
