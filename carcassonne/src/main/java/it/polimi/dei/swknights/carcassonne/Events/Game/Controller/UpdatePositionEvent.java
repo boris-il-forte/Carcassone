@@ -20,6 +20,11 @@ public class UpdatePositionEvent extends UpdateEvent
 		super(tessera, coordinate, giocatore, source);
 	
 	}
+	public UpdatePositionEvent(String tessera, Coordinate coordinate, Color coloreGiocatore,
+			Object source)
+	{
+		super(tessera, coordinate, coloreGiocatore, source);
+	}
 	/**
 	 * {@link Coordinate} of the placed card
 	 * @return

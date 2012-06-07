@@ -7,23 +7,24 @@ import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControlle
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.RuotaHandler;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.TileHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Model;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 /*
  */
-public class ProxyController extends AbstractConnessioneController
+public class ProxyController extends AbstractConnessioneController implements Model
 {
 
-	public ProxyController(Socket socket)
+	public ProxyController(Socket socket) throws IOException
 	{
+		
+		this.connessione = new ConnessioneControllerSocket(socket, this);
 		this.inizializzaHandlers();
-		this.connessione = new ConnessioneControllerSocket(socket);
 		this.contattaServerInizia(socket);
 	}
 
@@ -37,7 +38,9 @@ public class ProxyController extends AbstractConnessioneController
 	{
 		this.requestString = requestString;
 	}
-
+	
+	
+	
 	@Override
 	public void run()
 	{
@@ -87,6 +90,13 @@ public class ProxyController extends AbstractConnessioneController
 	{
 	}
 
+	public void fire(ControllerEvent event)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 	// inizio fatto comunque via socket?
 	private void contattaServerInizia(Socket socket)
 	{
