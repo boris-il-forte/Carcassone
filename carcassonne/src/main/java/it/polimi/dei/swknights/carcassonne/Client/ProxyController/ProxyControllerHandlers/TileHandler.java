@@ -13,10 +13,10 @@ public class TileHandler extends ProxyControllerHandler
 	@Override
 	public void visit(TileEvent event)
 	{
-		StringBuilder tileString = new StringBuilder();
-		tileString.append("tile: ");
-		tileString.append( event.getPuntoDestinazione().toString());
-		this.proxy.setRequestString(tileString.toString());
+		StringBuilder segnalinoString = new StringBuilder();
+		segnalinoString.append("tile: ");
+		segnalinoString.append( event.getPuntoDestinazione().toString());
+		this.proxy.setRequestString(segnalinoString.toString());
 	}
 
 }

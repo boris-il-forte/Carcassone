@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /*
  */
@@ -28,6 +29,7 @@ public class ProxyController extends AbstractConnessioneController
 
 	public ProxyController() // RMI
 	{
+		
 		this.connessione = new ConnessioneControllerRMI();
 	}
 

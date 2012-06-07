@@ -114,7 +114,7 @@ public class CarcassonneServer implements Runnable
 		{
 			do
 			{
-				this.wait(TIMEOUT);
+				Thread.sleep(TIMEOUT);
 				Debug.print("passati 20 sec");
 				if (giocatoriAttivi < GIOCATORI_PARTITA)
 				{
