@@ -12,7 +12,7 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
  */
 public class Link implements Cloneable
 {
-	
+
 	/**
 	 * Array of six booleans to be passed in the following order NS(0), NE(1),
 	 * NW(2), WE(3), SE(4), SW(5);
@@ -26,10 +26,10 @@ public class Link implements Cloneable
 				"You are supposed to pass six booleans to Link!"); }
 		for (Bussola direzione : Bussola.values())
 		{
-			direzioni[direzione.toInt()] = links[direzione.toInt()];
+			this.direzioni[direzione.toInt()] = links[direzione.toInt()];
 		}
 	}
-	
+
 	@Override
 	public Link clone()
 	{
@@ -37,14 +37,14 @@ public class Link implements Cloneable
 		try
 		{
 			copia = (Link) super.clone();
-			copia.direzioni= this.direzioni.clone();
+			copia.direzioni = this.direzioni.clone();
 			return copia;
 		}
 		catch (CloneNotSupportedException e)
 		{
 			return null;
 		}
-		
+
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class Link implements Cloneable
 		else
 		{
 			Bussola agoBussola = Bussola.componi(puntoCardinale1, puntoCardinale2);
-			return direzioni[agoBussola.toInt()];
+			return this.direzioni[agoBussola.toInt()];
 		}
 	}
 
@@ -100,8 +100,8 @@ public class Link implements Cloneable
 		return stringBuilder.toString();
 	}
 
-	private boolean[]	direzioni	= new boolean[Bussola.NUMERO_DIREZIONI];
-	
-	private static final int LINKS_NUMBER = 6;
+	private boolean[]			direzioni		= new boolean[Bussola.NUMERO_DIREZIONI];
+
+	private static final int	LINKS_NUMBER	= 6;
 
 }

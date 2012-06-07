@@ -58,9 +58,14 @@ public class DatiPartitaTest
 		catch (FinitiColoriDisponibiliException e)
 		{
 			if (i != 5)
+			{
 				fail("l'errore finiti color disponibili dovrebbe scattare dopo "
 						+ "il tentativo di aggiunta del quinto (5°)  " + " i = " + i);
-			else assertTrue(true);
+			}
+			else
+			{
+				assertTrue(true);
+			}
 		}
 	}
 
@@ -73,20 +78,28 @@ public class DatiPartitaTest
 	public void pescaPrimaTessera()
 	{
 		DatiPartita dati = new DatiPartita();
-		TesseraNormale tessera = (TesseraNormale)dati.pescaPrimaTessera();
+		TesseraNormale tessera = (TesseraNormale) dati.pescaPrimaTessera();
 
-		if ( tessera.getElementoA(PuntoCardinale.nord) != Elemento.prato)
+		if (tessera.getElementoA(PuntoCardinale.nord) != Elemento.prato)
+		{
 			fail("non prato a nord, prima tessera 0,0");
-		
-		if ( tessera.getElementoA(PuntoCardinale.est) != Elemento.strada)
+		}
+
+		if (tessera.getElementoA(PuntoCardinale.est) != Elemento.strada)
+		{
 			fail("non strada a est, prima tessera 0,0");
-		
-		if ( tessera.getElementoA(PuntoCardinale.ovest) != Elemento.strada)
+		}
+
+		if (tessera.getElementoA(PuntoCardinale.ovest) != Elemento.strada)
+		{
 			fail("non strada a ovest, prima tessera 0,0");
-		
-		if ( tessera.getElementoA(PuntoCardinale.sud) != Elemento.citta)
+		}
+
+		if (tessera.getElementoA(PuntoCardinale.sud) != Elemento.citta)
+		{
 			fail("non citta a sud, prima tessera 0,0");
-		
+		}
+
 		assertTrue(true);
 	}
 
@@ -115,53 +128,61 @@ public class DatiPartitaTest
 		} while (dati.getListaGiocatori().size() < 3);
 
 		Giocatore g0 = dati.getGiocatore(ColoriGioco.getListaColori().get(0));
-		if (g0.getColore() != Color.RED) fail("g0 non è rosso");
+		if (g0.getColore() != Color.RED)
+		{
+			fail("g0 non è rosso");
+		}
 
 		Giocatore g1 = dati.getGiocatore(ColoriGioco.getListaColori().get(1));
-		if (g1.getColore() != Color.BLUE) fail("g1 non è Blu");
+		if (g1.getColore() != Color.BLUE)
+		{
+			fail("g1 non è Blu");
+		}
 
 		Giocatore g2 = dati.getGiocatore(ColoriGioco.getListaColori().get(2));
-		if (g2.getColore() != Color.GREEN) fail("g2 non è verde");
+		if (g2.getColore() != Color.GREEN)
+		{
+			fail("g2 non è verde");
+		}
 
 		assertTrue(true);
 
 	}
-	
+
 	@Test
 	public void pesca56DalMazzo() throws Exception
 	{
 		DatiPartita dati = new DatiPartita();
-		int cartePesc =0;
+		int cartePesc = 0;
 		try
 		{
-			while(true)	
+			while (true)
 			{
 				dati.pescaTesseraDalMazzo();
-				cartePesc ++;
+				cartePesc++;
 			}
 		}
-		catch(PartitaFinitaException e)
+		catch (PartitaFinitaException e)
 		{
 			if (cartePesc == 55)
-				assertTrue(true);  // 1 pescata di base (la prima) + 55 
+			{
+				assertTrue(true); // 1 pescata di base (la prima) + 55
+			}
 		}
-		
-	
+
 	}
-	
-	
 
 	private Tessera tesseraCitta()
 	{
-		Tessera t1 = new TesseraNormale(creaLatiCittaGrande(), creaLinkCittaGrande());
+		Tessera t1 = new TesseraNormale(this.creaLatiCittaGrande(), this.creaLinkCittaGrande());
 		return t1;
 	}
 
 	private boolean stesseListePuntiCardinali(List<Costruzione> CostruzioniExp,
 			List<Costruzione> CostruzioniGot)
 	{
-		ordinaCostruzioni(CostruzioniGot);
-		ordinaCostruzioni(CostruzioniExp);
+		this.ordinaCostruzioni(CostruzioniGot);
+		this.ordinaCostruzioni(CostruzioniExp);
 
 		if (CostruzioniExp.size() == CostruzioniGot.size())
 		{

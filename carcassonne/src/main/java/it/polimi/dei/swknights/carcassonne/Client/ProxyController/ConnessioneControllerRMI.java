@@ -7,20 +7,20 @@ public class ConnessioneControllerRMI extends ConnessioneController
 	public void riceviInput()
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void invia(Object o)
 	{
-		//TODO: do it!
+		// TODO: do it!
 	}
-	
+
 	@Override
 	public void close()
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

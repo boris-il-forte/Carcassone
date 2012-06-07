@@ -30,13 +30,13 @@ public enum FaseTurno {
 		{
 			case Inizio:
 				return Media;
-				
+
 			case Attesa:
-				return Inizio;	
-				
+				return Inizio;
+
 			case FinePartita:
 				return FinePartita;
-				
+
 			default:
 				return Attesa;
 		}

@@ -20,13 +20,13 @@ public class JCarcassonnePlayer extends JPanel
 		this.addLabelColore(colore);
 		this.addLabelNome(colore);
 		this.addLabelPunteggio();
-		
+
 	}
 
 	public void setPunteggio(Integer value)
 	{
 		this.labelPunteggio.setText(value.toString());
-		
+
 	}
 
 	private void addLabelColore(Color colore)
@@ -37,7 +37,7 @@ public class JCarcassonnePlayer extends JPanel
 		labelColore.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		labelColore.setPreferredSize(DIMENSIONE_QUADRATO);
 		this.add(labelColore);
-		
+
 	}
 
 	private void addLabelNome(Color colore)
@@ -45,18 +45,18 @@ public class JCarcassonnePlayer extends JPanel
 		String nome = ColoriGioco.getName(colore);
 		JLabel labelNome = new JLabel(nome);
 		this.add(labelNome);
-		
+
 	}
-	
+
 	private void addLabelPunteggio()
 	{
 		this.labelPunteggio = new JLabel("0");
-		this.add(labelPunteggio);
+		this.add(this.labelPunteggio);
 	}
 
-	private JLabel	labelPunteggio;
+	private JLabel					labelPunteggio;
 	private static final Dimension	DIMENSIONE_QUADRATO	= new Dimension(30, 30);
-	private static Dimension DIMENSIONE = new Dimension(150, 50);
-	private static final long	serialVersionUID	= 1038809477224426681L;
+	private static Dimension		DIMENSIONE			= new Dimension(150, 50);
+	private static final long		serialVersionUID	= 1038809477224426681L;
 
 }

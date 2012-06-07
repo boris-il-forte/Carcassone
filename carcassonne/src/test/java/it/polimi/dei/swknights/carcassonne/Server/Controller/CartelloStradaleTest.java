@@ -17,49 +17,45 @@ import org.junit.Test;
 
 public class CartelloStradaleTest
 {
-	private  ModuloModel model;
-	
+	private ModuloModel	model;
+
 	@Before
-	public  void initializeTest() throws Exception
+	public void initializeTest() throws Exception
 	{
-		model = new ModuloModel();
+		this.model = new ModuloModel();
 	}
-	
+
 	@Test
 	public void atLeastStart() throws Exception
 	{
-		ContatoreCartografo contatore = new ContatoreCartografo(model);
-	
+		ContatoreCartografo contatore = new ContatoreCartografo(this.model);
+
 	}
-	
-	@Test 
+
+	@Test
 	public void stradaPiccola() throws Exception
 	{
-		ContatoreCartografo contatore = new ContatoreCartografo(model);
+		ContatoreCartografo contatore = new ContatoreCartografo(this.model);
 		CartelloStradale cartello = new CartelloStradale(null);
 		CostruzioneCoord[] stradella = this.stradella();
-		
+
 		CartaGeografica carta = new CartaGeografica();
-		
-		for(int i=0; i<stradella.length; i++)
+
+		for (int i = 0; i < stradella.length; i++)
 		{
-		
-			
+
 		}
-		
-		
-		 
-		
+
 	}
 
 	private ConfineTessera creaConfineDA(Tessera tessera, PuntoCardinale punto)
 	{
-		
+
 		ConfineTessera confine = new ConfineTessera(tessera, punto);
 		return confine;
-		
+
 	}
-	
+
 	@Test
 	public void testCostruzioniCorrette() throws Exception
 	{
@@ -71,39 +67,39 @@ public class CartelloStradaleTest
 	{
 
 	}
-	
-     public CostruzioneCoord[]  stradella()
+
+	public CostruzioneCoord[] stradella()
 	{
 		CostruzioneCoord[] stradaPiccola = new CostruzioneCoord[5];
-		
-		for(int i=0; i<5; i++)
+
+		for (int i = 0; i < 5; i++)
 		{
 			stradaPiccola[i] = new CostruzioneCoord();
 		}
-		
-		Tessera incrocio0 = 
-				new TesseraNormale(creaLatiIncrocioAQuattro(), creaLinkIncrocioAQuattro());
+
+		Tessera incrocio0 = new TesseraNormale(this.creaLatiIncrocioAQuattro(),
+				this.creaLinkIncrocioAQuattro());
 		Coordinate c0 = new Coordinate(-1, 0);
-		
-		Tessera t1 = new TesseraNormale(creaLatiStradaEO(), creaLinkStradaEO());
+
+		Tessera t1 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
 		Coordinate c1 = new Coordinate(0, 0);
-		
-		Tessera t2 = new TesseraNormale(creaLatiStradaEO(), creaLinkStradaEO());
+
+		Tessera t2 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
 		Coordinate c2 = new Coordinate(1, 0);
-		
-		Tessera t3 = new TesseraNormale(creaLatiStradaEO(), creaLinkStradaEO());
+
+		Tessera t3 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
 		Coordinate c3 = new Coordinate(2, 0);
-		
-		Tessera incrocio4 = 
-				new TesseraNormale(creaLatiIncrocioAQuattro(), creaLinkIncrocioAQuattro());
+
+		Tessera incrocio4 = new TesseraNormale(this.creaLatiIncrocioAQuattro(),
+				this.creaLinkIncrocioAQuattro());
 		Coordinate c4 = new Coordinate(3, 0);
-		
+
 		stradaPiccola[0].daiCoppia(incrocio0, c0);
 		stradaPiccola[1].daiCoppia(t1, c1);
 		stradaPiccola[2].daiCoppia(t2, c2);
 		stradaPiccola[3].daiCoppia(t3, c3);
 		stradaPiccola[4].daiCoppia(incrocio4, c4);
-	
+
 		return stradaPiccola;
 	}
 
@@ -124,7 +120,7 @@ public class CartelloStradaleTest
 		boolean[] bl = { false, false, false, true, false, false };
 		Link l = new Link(bl);
 		return l;
-	
+
 	}
 
 	private Lati creaLatiIncrocioAQuattro()
@@ -144,31 +140,31 @@ public class CartelloStradaleTest
 		boolean[] bl = { false, false, false, false, false, false };
 		Link l = new Link(bl);
 		return l;
-	
+
 	}
 
 	public static class CostruzioneCoord
 	{
-		
-		public Tessera tessera;
-		public Coordinate coord;
-		
+
+		public Tessera		tessera;
+		public Coordinate	coord;
+
 		public void daiCoppia(Tessera t1, Coordinate c1)
 		{
 			this.tessera = t1;
 			this.coord = c1;
-			
+
 		}
 
 		public Costruzione getCostruzione(PuntoCardinale punto)
 		{
 			Costruzione c = null;
-			if (tessera instanceof TesseraNormale)
+			if (this.tessera instanceof TesseraNormale)
 			{
-				tessera = (TesseraNormale) tessera;
-				Elemento el =  ((TesseraNormale) tessera).getElementoA(punto);
-				
-				if(el == Elemento.citta)
+				this.tessera = this.tessera;
+				Elemento el = ((TesseraNormale) this.tessera).getElementoA(punto);
+
+				if (el == Elemento.citta)
 				{
 					c = new CostruzioneCitta(this.tessera);
 				}
@@ -176,21 +172,17 @@ public class CartelloStradaleTest
 				{
 					c = new CostruzioneStrada(this.tessera);
 				}
-			
-			
+
 			}
 			return c;
 		}
 
 		public ConfineTessera getCofine(PuntoCardinale punto)
 		{
-			
+
 			return this.tessera.getConfineA(punto);
 		}
-		
+
 	}
-	
 
 }
-
-

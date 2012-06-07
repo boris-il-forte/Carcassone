@@ -9,13 +9,14 @@ public class FinePartitaHandler extends ModuloViewHandler
 	{
 		super(view);
 	}
+
 	/**
 	 * Just notify the view the end of the game
 	 */
 	@Override
 	public void visit(FinePartitaEvent event)
 	{
-		this.view.visualizzaPunteggi( event.getPunteggi());
+		this.view.visualizzaPunteggi(event.getPunteggi());
 		this.view.notificaFinePartita();
 		this.sveglia();
 	}

@@ -14,15 +14,14 @@ public class IniziaGuiOffline extends Inizio
 	{
 		ModuloModel model = new ModuloModel();
 		Controller controller = new ModuloController(model);
-	
+
 		View view = new Gui();
 		view.addListener(controller);
 		model.addListener(view);
-		
-		
-		superStarDestroyer.execute(view);
-		superStarDestroyer.execute(controller);
-		
+
+		this.superStarDestroyer.execute(view);
+		this.superStarDestroyer.execute(controller);
+
 	}
 
 }

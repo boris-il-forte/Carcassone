@@ -9,27 +9,31 @@ import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 import java.awt.Color;
 import java.io.PrintWriter;
+
 /**
  * This class is a component of the CLI that handles the basic communication
  * with the user
+ * 
  * @author edoardopasi
- *
+ * 
  */
 public class AvvisiUser
 {
 	/**
-	 * Gives the user a little description of the requested input,
-	 * specifying the sintax of it
+	 * Gives the user a little description of the requested input, specifying
+	 * the sintax of it
 	 */
 	public void chiediComando()
 	{
 		this.notificaVideo("Tocca a te giocatore " + ColoriGioco.getName(this.coloreGiocatore) + "!");
 		this.notificaVideo("Inserisci comando");
-		this.notificaVideo(faseTurno.toString());
+		this.notificaVideo(this.faseTurno.toString());
 
 	}
+
 	/**
 	 * set the color of the current player
+	 * 
 	 * @param colore
 	 */
 	public void setColore(Color colore)
@@ -42,14 +46,15 @@ public class AvvisiUser
 	{
 		this.out = out;
 	}
-	
+
 	public void notificaMossaNonValida()
 	{
 		this.notificaVideo("Mossa non valida!");
 	}
+
 	/**
-	 * Show in the CLI the current card as an indipendent card to be placed
-	 * or rotated
+	 * Show in the CLI the current card as an indipendent card to be placed or
+	 * rotated
 	 */
 	public void mostraTesseraCorrente()
 	{
@@ -63,8 +68,10 @@ public class AvvisiUser
 		this.out.flush();
 
 	}
+
 	/**
 	 * set the current phase of the turn
+	 * 
 	 * @param faseTurno
 	 */
 	public void setPhase(FaseTurno faseTurno)
@@ -92,7 +99,7 @@ public class AvvisiUser
 	private AdapterTessera	tesseraCorrente;
 
 	private PrintWriter		out;
-	
+
 	private FaseTurno		faseTurno;
 
 	private Color			coloreGiocatore;
@@ -100,7 +107,7 @@ public class AvvisiUser
 	public void notificaPunteggi(Punteggi punteggio)
 	{
 		this.out.println(punteggio.toString());
-		
+
 	}
 
 }

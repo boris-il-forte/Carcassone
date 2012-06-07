@@ -2,8 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
 public class JCarcassonnePass extends JCarcassonneButton
 {
-	
-	
+
 	public JCarcassonnePass()
 	{
 		super("Pass");

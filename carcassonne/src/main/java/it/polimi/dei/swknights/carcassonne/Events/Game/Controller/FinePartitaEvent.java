@@ -19,22 +19,25 @@ public class FinePartitaEvent extends ControllerEvent
 		super(source);
 		this.punteggi = punteggi;
 	}
+
 	/**
 	 * Map that associates to each Color-Player a score
+	 * 
 	 * @return
 	 */
 	public Punteggi getPunteggi()
 	{
-		return punteggi;
+		return this.punteggi;
 	}
 
-	private Punteggi punteggi;
+	private Punteggi			punteggi;
 	private static final long	serialVersionUID	= 7228959705104329672L;
+
 	@Override
 	public void accept(ModuloViewHandler handler)
 	{
 		handler.visit(this);
-		
+
 	}
 
 }

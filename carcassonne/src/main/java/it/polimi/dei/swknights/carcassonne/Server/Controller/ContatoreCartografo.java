@@ -146,6 +146,6 @@ public class ContatoreCartografo
 
 	private Set<Costruzione>		completate;
 
-	private static final  boolean	COSTRUZIONE_COMPLETATA	= true;
+	private static final boolean	COSTRUZIONE_COMPLETATA	= true;
 
 }

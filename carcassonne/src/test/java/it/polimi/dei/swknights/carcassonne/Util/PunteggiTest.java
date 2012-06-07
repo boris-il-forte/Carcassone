@@ -15,32 +15,38 @@ public class PunteggiTest
 	@Before
 	public void setUp()
 	{
-		punti = new Punteggi();
+		this.punti = new Punteggi();
 	}
 
 	@Test
 	public void addPunteggi()
 	{
 
-		punti.addPunteggi(Color.BLACK, 10);
+		this.punti.addPunteggi(Color.BLACK, 10);
 
 		try
 		{
-			punti.addPunteggi(Color.BLACK, -10);
+			this.punti.addPunteggi(Color.BLACK, -10);
 		}
 		catch (IllegalArgumentException e)
 		{
 			// do nothing
 		}
-		int pBlue = punti.get(Color.BLACK);
+		int pBlue = this.punti.get(Color.BLACK);
 
-		if (pBlue != 10) fail(" il blue dovrebbe avere 10 punti!");
+		if (pBlue != 10)
+		{
+			fail(" il blue dovrebbe avere 10 punti!");
+		}
 
-		punti.addPunteggi(Color.RED, 0);
+		this.punti.addPunteggi(Color.RED, 0);
 
-		int pRed = punti.get(Color.RED);
+		int pRed = this.punti.get(Color.RED);
 
-		if (pRed != 0) fail("il red dovrebbe avere 0 punti !");
+		if (pRed != 0)
+		{
+			fail("il red dovrebbe avere 0 punti !");
+		}
 
 	}
 
@@ -49,27 +55,19 @@ public class PunteggiTest
 	{
 		Punteggi puntiParziali = new Punteggi();
 		puntiParziali.addPunteggi(Color.BLACK, 10);
-		
-		punti.addPunteggi(Color.RED, 18);
-		punti.addPunteggi(puntiParziali);
-		
-		if (punti.get(Color.BLACK) != 10)
+
+		this.punti.addPunteggi(Color.RED, 18);
+		this.punti.addPunteggi(puntiParziali);
+
+		if (this.punti.get(Color.BLACK) != 10)
+		{
 			fail("il black dovrebbe avere 10 punti");
-		if(punti.get(Color.RED ) != 18)
+		}
+		if (this.punti.get(Color.RED) != 18)
+		{
 			fail("il rosso dovrebbe avere 18 punti");
+		}
 
 	}
-
-
-
-
-
-	
-	
-	
-
-
-
-
 
 }

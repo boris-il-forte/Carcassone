@@ -116,9 +116,9 @@ public abstract class Costruzione
 
 	public Set<Tessera> getTessere()
 	{
-		return elementi;
+		return this.elementi;
 	}
-	
+
 	public boolean daTogliere(Segnalino segnalino)
 	{
 		return this.setSegnalini.contains(segnalino);

@@ -2,13 +2,11 @@ package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
 import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
-import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraString;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
-import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
@@ -96,7 +94,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				int y = Integer.parseInt(partiArgomenti[Y]);
 
 				Color coloreGiocatore = null; // TODO get Current player color
-				proxy.fire(new UpdatePositionEvent(tessera, new Coordinate(x, y), coloreGiocatore, this));
+				this.proxy
+						.fire(new UpdatePositionEvent(tessera, new Coordinate(x, y), coloreGiocatore, this));
 
 				return false;
 			}
@@ -189,15 +188,12 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				if (line.matches("leave: (black|green|red|yellow|blue)")) // es
 																			// leave:
 																			// yellow
-				{ 
-					return false;
-				}
+				{ return false; }
 				if (line.matches("end: " + regScores)) // es next: red=10
 														// blue=30
-				{ 
-					
-					return false;
-				}
+				{
+
+				return false; }
 
 			}
 			else
@@ -231,7 +227,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		Scanner socketIn = null;
 		try
 		{
-			socketIn = new Scanner(socket.getInputStream());
+			socketIn = new Scanner(this.socket.getInputStream());
 		}
 		catch (IOException e)
 		{
@@ -243,7 +239,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		{
 			s = socketIn.nextLine();
 		}
-		catch(NoSuchElementException nsee)
+		catch (NoSuchElementException nsee)
 		{
 			Debug.print("mi sa che è morto il server ");
 		}

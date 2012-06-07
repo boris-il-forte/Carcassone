@@ -3,15 +3,15 @@ package it.polimi.dei.swknights.carcassonne.Events;
 import java.awt.Color;
 
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+
 /**
- * This class is used to have the abstraction of a Card
- * but without some information
- * Used in communication not to pass too much data.
- * It is possible for the user of that class get:
- * All information it can have from {@link AdapterTessera} plus Player, Coordinates
- * and Card Id
+ * This class is used to have the abstraction of a Card but without some
+ * information Used in communication not to pass too much data. It is possible
+ * for the user of that class get: All information it can have from
+ * {@link AdapterTessera} plus Player, Coordinates and Card Id
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
 public class DecoraTessera
 {
@@ -29,23 +29,23 @@ public class DecoraTessera
 
 	public AdapterTessera getTessera()
 	{
-		return tessera;
+		return this.tessera;
 
 	}
 
 	public Color getGiocatore()
 	{
-		return giocatore;
+		return this.giocatore;
 	}
 
 	public Coordinate getCoordinate()
 	{
-		return coordinate;
+		return this.coordinate;
 	}
 
 	public int getIdTessera()
 	{
-		return idTessera;
+		return this.idTessera;
 	}
 
 }

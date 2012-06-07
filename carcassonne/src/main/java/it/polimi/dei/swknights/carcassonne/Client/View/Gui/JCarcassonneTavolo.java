@@ -57,7 +57,7 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 
 	public void svuotaMappa()
 	{
-		for (JCarcassonneCasella cella : listaCaselle)
+		for (JCarcassonneCasella cella : this.listaCaselle)
 		{
 			cella.svuota();
 		}
@@ -73,7 +73,7 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 			this.lastPlaced = numeroCasella;
 			this.view.clicPosizionaTessera(numeroCasella);
 		}
-		else if(casella.getStato().equals(StatoCasella.conTessera) && numeroCasella == this.lastPlaced)
+		else if (casella.getStato().equals(StatoCasella.conTessera) && numeroCasella == this.lastPlaced)
 		{
 			Coordinate coordinateMouse = new Coordinate(e.getPoint().x, e.getPoint().y);
 			this.view.clicPosizionaSegnalino(numeroCasella, coordinateMouse);
@@ -83,7 +83,7 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 	public void mouseEntered(MouseEvent e)
 	{
 		int numeroCasella = this.getNumeroCasella(e);
-		if (inStatoVuota(numeroCasella))
+		if (this.inStatoVuota(numeroCasella))
 		{
 			this.view.overlayImmagine(numeroCasella);
 		}
@@ -92,7 +92,7 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 	public void mouseExited(MouseEvent e)
 	{
 		int numeroCasella = this.getNumeroCasella(e);
-		if (inStatoVuota(numeroCasella))
+		if (this.inStatoVuota(numeroCasella))
 		{
 			this.view.togliOverlay(this.listaCaselle.get(numeroCasella), numeroCasella);
 		}
@@ -138,7 +138,7 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 
 	private int							colonne;
 
-	private int	lastPlaced;
+	private int							lastPlaced;
 
 	private static final int			DIMENSIONE_CELLE	= 100;
 

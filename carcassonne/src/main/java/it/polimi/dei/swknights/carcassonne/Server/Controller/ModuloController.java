@@ -70,6 +70,7 @@ public class ModuloController extends AbstractController
 	 * 
 	 * @see it.polimi.dei.swknights.carcassonne.ModuliAstratti.Controller#riceviInput()
 	 */
+	@Override
 	public void riceviInput(ViewEvent event)
 	{
 		for (ModuloControllerHandler visitorHandler : this.visitorHandlers)
@@ -98,12 +99,9 @@ public class ModuloController extends AbstractController
 		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
 		mappaCostruzioni = this.contaPunti.getMapCostruzioniUltimaTessera();
 		Costruzione costruzione = mappaCostruzioni.get(punto);
-		if(costruzione!=null)
+		if (costruzione != null)
 		{
-			if (costruzione.controllataDa().size() == 0)
-			{
-				return true;
-			}
+			if (costruzione.controllataDa().size() == 0) { return true; }
 		}
 		return false;
 
@@ -145,7 +143,7 @@ public class ModuloController extends AbstractController
 		{
 			for (Tessera tessera : costruzione.getTessere())
 			{
-				if(costruzione.daTogliere(tessera.getSegnalino()))
+				if (costruzione.daTogliere(tessera.getSegnalino()))
 				{
 					listaTessere.add(tessera);
 				}
@@ -204,7 +202,7 @@ public class ModuloController extends AbstractController
 	{
 		for (int i = 0; i < PuntoCardinale.NUMERO_DIREZIONI; i++)
 		{
-			if (this.tuttoVicinatoDAccordo(coordinate,tesseraCopia)) { return true; }
+			if (this.tuttoVicinatoDAccordo(coordinate, tesseraCopia)) { return true; }
 			tesseraCopia.ruota();
 		}
 		return false;
@@ -245,7 +243,7 @@ public class ModuloController extends AbstractController
 	{
 		while (this.gestoreFasi.inputOk())
 		{
-			wait();
+			this.wait();
 		}
 	}
 

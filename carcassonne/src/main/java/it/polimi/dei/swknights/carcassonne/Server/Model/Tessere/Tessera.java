@@ -29,7 +29,7 @@ public abstract class Tessera implements Cloneable
 		Map<String, String> m = new HashMap<String, String>();
 		m.remove(null);
 	}
-	
+
 	@Override
 	public abstract Tessera clone();
 
@@ -71,7 +71,7 @@ public abstract class Tessera implements Cloneable
 	{
 
 		Map<Costruzione, List<PuntoCardinale>> mappaCostruzioniPunti = new HashMap<Costruzione, List<PuntoCardinale>>();
-		Map<Costruzione, PuntoCardinale> mappaCostruzioni = lati.getMappaCostruzioniPrimitive(this);
+		Map<Costruzione, PuntoCardinale> mappaCostruzioni = this.lati.getMappaCostruzioniPrimitive(this);
 		List<Costruzione> listCostruzione = new ArrayList<Costruzione>(mappaCostruzioni.keySet());
 
 		List<List<PuntoCardinale>> giaMesse = new ArrayList<List<PuntoCardinale>>();
@@ -120,10 +120,9 @@ public abstract class Tessera implements Cloneable
 
 	public Segnalino removeSegnalino()
 	{
-		return this.lati.removeSegnalino();	
+		return this.lati.removeSegnalino();
 	}
-	
-	
+
 	public Segnalino getSegnalino()
 	{
 		return this.lati.getSegnalino();
@@ -148,8 +147,6 @@ public abstract class Tessera implements Cloneable
 		return puntiConnessi;
 
 	}
-	
-
 
 	protected final Lati	lati;
 

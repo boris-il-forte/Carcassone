@@ -43,7 +43,7 @@ public class IconGetter
 	{
 		IconFinder finder = new IconFinder(stringToFind);
 		BufferedImage image = this.immagini.getSegnalino(finder.getSegnalino(), dimensioneSegnalino);
-		if(image != null)
+		if (image != null)
 		{
 			return new ImageIcon(image);
 		}

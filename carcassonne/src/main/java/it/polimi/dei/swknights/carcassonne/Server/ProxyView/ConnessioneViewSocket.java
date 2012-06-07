@@ -5,8 +5,6 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ModuloControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
@@ -29,10 +27,10 @@ public class ConnessioneViewSocket extends ConnessioneView
 		this.in = new Scanner(input);
 		this.out = new PrintWriter(output);
 		this.proxy = proxy;
-		
+
 	}
 
-
+	@Override
 	public void run()
 	{
 		Debug.print("sono connessione socket numero " + this.getNumeroConnessione());
@@ -74,7 +72,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 				String[] partiCoord = coord.split(",");
 				int x = Integer.parseInt(partiCoord[X]);
 				int y = Integer.parseInt(partiCoord[Y]);
-				proxy.fire(new PlaceEvent(this, new Coordinate(x, y)));
+				this.proxy.fire(new PlaceEvent(this, new Coordinate(x, y)));
 			}// es. reconnect: yellow,PARTITA02
 
 			if (line.matches("reconnect: (black|green|red|yellow|blue),.+"))
@@ -95,8 +93,8 @@ public class ConnessioneViewSocket extends ConnessioneView
 				{
 					String[] partiTile = line.split(": ");
 					String side = partiTile[SIDE];
-					PuntoCardinale punto = puntoDaSigla(side);
-					proxy.fire(new TileEvent(this, null, punto));
+					PuntoCardinale punto = this.puntoDaSigla(side);
+					this.proxy.fire(new TileEvent(this, null, punto));
 
 				}
 			}
@@ -108,11 +106,11 @@ public class ConnessioneViewSocket extends ConnessioneView
 				}
 				if (line.equalsIgnoreCase("rotate"))
 				{
-					proxy.fire(new RotateEvent(this));
+					this.proxy.fire(new RotateEvent(this));
 				}
 				if (line.equalsIgnoreCase("pass"))
 				{
-					proxy.fire(new PassEvent(this));
+					this.proxy.fire(new PassEvent(this));
 				}
 
 			}
@@ -123,10 +121,10 @@ public class ConnessioneViewSocket extends ConnessioneView
 	private PuntoCardinale puntoDaSigla(String side)
 	{
 
-		if (side.compareTo("N") == 0) return PuntoCardinale.nord;
-		if (side.compareTo("S") == 0) return PuntoCardinale.sud;
-		if (side.compareTo("W") == 0) return PuntoCardinale.ovest;
-		if (side.compareTo("E") == 0) return PuntoCardinale.est;
+		if (side.compareTo("N") == 0) { return PuntoCardinale.nord; }
+		if (side.compareTo("S") == 0) { return PuntoCardinale.sud; }
+		if (side.compareTo("W") == 0) { return PuntoCardinale.ovest; }
+		if (side.compareTo("E") == 0) { return PuntoCardinale.est; }
 
 		return null; // TODO throw new cccc
 

@@ -9,12 +9,11 @@ public class CostruzioneStrada extends Costruzione
 		super(tessera);
 	}
 
-	@Override 
+	@Override
 	public String toString()
 	{
-		return "Strada" +super.toString();
+		return "Strada" + super.toString();
 	}
-
 
 	@Override
 	protected int getPuntiCostruzione(boolean costruzioneCompletata)

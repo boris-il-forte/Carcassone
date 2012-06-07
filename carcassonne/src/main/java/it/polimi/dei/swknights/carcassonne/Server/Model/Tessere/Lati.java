@@ -24,7 +24,7 @@ public class Lati implements Cloneable
 		this.est = est;
 		this.datiSegnalino = new DatiSegnalino();
 	}
-	
+
 	@Override
 	public Lati clone()
 	{
@@ -112,7 +112,7 @@ public class Lati implements Cloneable
 	public Segnalino removeSegnalino()
 	{
 		Segnalino segnalino = this.datiSegnalino.segnalino;
-		this.datiSegnalino.segnalino = null;	
+		this.datiSegnalino.segnalino = null;
 		return segnalino;
 	}
 
@@ -132,7 +132,7 @@ public class Lati implements Cloneable
 			String stringElemento = elementi[puntoCardinale.toInt()].toString();
 			componiStringhe.append(stringPuntoCardinale + '=' + stringElemento + ' ');
 		}
-		String stringSegnalino = printSegnalino();
+		String stringSegnalino = this.printSegnalino();
 		if (stringSegnalino.length() > 0)
 		{
 			final int caratteriPerElemento = 4;
@@ -170,7 +170,7 @@ public class Lati implements Cloneable
 	private static class DatiSegnalino
 	{
 		public Segnalino		segnalino;
-		
+
 		public PuntoCardinale	puntoCardinale;
 	}
 

@@ -38,12 +38,15 @@ public class ScaledImageGetter extends ImageLoader
 			BufferedImage image = this.getOriginalSegnalinoImage(segnalino);
 			return this.scalaImmagine(image, dimensioneSegnalino);
 		}
-		else return null;
+		else
+		{
+			return null;
+		}
 	}
 
 	public BufferedImage getAlphaImage(String string)
 	{
-		BufferedImage image = getImage(string);
+		BufferedImage image = this.getImage(string);
 		return this.addAlpha(image);
 	}
 

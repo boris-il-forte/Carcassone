@@ -30,6 +30,6 @@ public class UpdateRotationEvent extends UpdateEvent
 	public void accept(ModuloViewHandler handler)
 	{
 		handler.visit(this);
-		
+
 	}
 }

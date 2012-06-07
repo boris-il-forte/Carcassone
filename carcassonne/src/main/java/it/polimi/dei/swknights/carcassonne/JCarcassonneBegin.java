@@ -34,20 +34,21 @@ public class JCarcassonneBegin
 	{
 		String risposta = (String) JOptionPane.showInputDialog(null, DOMANDA, NOME_DIALOGO,
 				JOptionPane.PLAIN_MESSAGE, this.icon, TIPO_AVVIO, PREDEFINITO);
-		
-		if(risposta != null)
+
+		if (risposta != null)
 		{
 			return this.parseRisposta(risposta);
 		}
-		else 
+		else
 		{
 			return "";
 		}
-		
+
 	}
+
 	public Inizio getIniziatore(String risposta)
 	{
-		Inizio iniziatore= new Fine() ;
+		Inizio iniziatore = new Fine();
 		if (risposta.equalsIgnoreCase("CLI"))
 		{
 			iniziatore = new IniziaCliOffline();
@@ -56,37 +57,37 @@ public class JCarcassonneBegin
 		{
 			iniziatore = new IniziaGuiOffline();
 		}
-		else if ( risposta.equalsIgnoreCase("Server"))
+		else if (risposta.equalsIgnoreCase("Server"))
 		{
 			iniziatore = new IniziaServer();
 		}
-		else if( risposta.equalsIgnoreCase("CLI on line"))
+		else if (risposta.equalsIgnoreCase("CLI on line"))
 		{
 			iniziatore = new IniziaCliOnLine();
-			
+
 		}
 		return iniziatore;
 	}
-	
+
 	private String parseRisposta(String risposta)
 	{
-		if( risposta.equals("CLI off line"))
+		if (risposta.equals("CLI off line"))
 		{
 			return "Cli";
 		}
-		else if(risposta.equals("GUI off line"))
+		else if (risposta.equals("GUI off line"))
 		{
 			return "Gui";
 		}
-		else if(risposta.equals("Server"))
+		else if (risposta.equals("Server"))
 		{
 			return "Server";
 		}
-		else if(risposta.equals("CLI on line"))
+		else if (risposta.equals("CLI on line"))
 		{
 			return "Cli on line";
 		}
-		else if(risposta.equals("GUI on line"))
+		else if (risposta.equals("GUI on line"))
 		{
 			return "Gui on line";
 		}
@@ -94,7 +95,7 @@ public class JCarcassonneBegin
 		{
 			return "";
 		}
-		
+
 	}
 
 	private Icon					icon;
@@ -105,7 +106,7 @@ public class JCarcassonneBegin
 
 	private static final String		PREDEFINITO		= "CLI";
 
-	private static final String[]	TIPO_AVVIO		= { "CLI off line", "GUI off line", "Server", "CLI on line",  "GUI on line" };
-
+	private static final String[]	TIPO_AVVIO		= { "CLI off line", "GUI off line", "Server",
+			"CLI on line", "GUI on line"			};
 
 }

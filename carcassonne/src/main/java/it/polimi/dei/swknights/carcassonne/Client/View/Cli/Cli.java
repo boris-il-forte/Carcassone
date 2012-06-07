@@ -34,14 +34,14 @@ public class Cli extends ModuloView
 		this.in = new Scanner(System.in);
 		this.setCoordinataNordOvest(new Coordinate(-LARGHEZZA / 2, -ALTEZZA / 2));
 		this.parser = new ParserComandi(this);
-		this.informaUser = new AvvisiUser(out);
+		this.informaUser = new AvvisiUser(this.out);
 		this.setCoordinateRelativeSE(new Coordinate(LARGHEZZA, ALTEZZA));
 	}
 
 	@Override
 	public void run() // OK
 	{
-		
+
 		try
 		{
 			Debug.print("Sono la view, aspetto che la partita abbia inizio");
@@ -79,9 +79,9 @@ public class Cli extends ModuloView
 	public void visualizzaPunteggi(Punteggi punteggio)
 	{
 		this.informaUser.notificaPunteggi(punteggio);
-		
+
 	}
-	
+
 	/**
 	 * Wait for a user input eg can wait for the "rotate" command
 	 */
@@ -120,7 +120,7 @@ public class Cli extends ModuloView
 	@Override
 	public void visualizzaColoreCorrente()
 	{
-			this.informaUser.setColore(this.getColoreGiocatore());
+		this.informaUser.setColore(this.getColoreGiocatore());
 	}
 
 	@Override
@@ -190,7 +190,7 @@ public class Cli extends ModuloView
 			{
 				if (elementi[punto.toInt()].equalsIgnoreCase(stringComando))
 				{
-			
+
 					this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
 					return true;
 				}
@@ -203,7 +203,7 @@ public class Cli extends ModuloView
 	{
 		while (!this.getGestoreFasi().partitaCominciata())
 		{
-			wait();
+			this.wait();
 		}
 	}
 
@@ -211,7 +211,7 @@ public class Cli extends ModuloView
 	{
 		while (!this.getGestoreFasi().inputOk())
 		{
-			wait();
+			this.wait();
 		}
 
 	}
@@ -248,6 +248,4 @@ public class Cli extends ModuloView
 
 	private static final int	LARGHEZZA	= 10;
 
-
-	
 }

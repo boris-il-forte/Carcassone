@@ -62,11 +62,11 @@ public class RuotaStringa
 
 	private char[] getCollegamenti(String daRuotare)
 	{
-		final int overHead =  PuntoCardinale.NUMERO_DIREZIONI;
+		final int overHead = PuntoCardinale.NUMERO_DIREZIONI;
 		char collegamenti[] = new char[Bussola.NUMERO_DIREZIONI];
 		for (Bussola indice : Bussola.values())
 		{
-			collegamenti[indice.toInt()] = daRuotare.charAt(indice.toInt()+overHead);
+			collegamenti[indice.toInt()] = daRuotare.charAt(indice.toInt() + overHead);
 		}
 		return collegamenti;
 	}

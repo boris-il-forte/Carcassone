@@ -13,7 +13,7 @@ public class JCarcassonneButton extends JPanel
 		super();
 		final int larghezza = 150;
 		final int altezza = 45;
-		Dimension dimensione = new Dimension(larghezza,altezza);
+		Dimension dimensione = new Dimension(larghezza, altezza);
 		this.setPreferredSize(dimensione);
 		this.button = new JButton(name);
 		this.add(this.button);
@@ -21,11 +21,11 @@ public class JCarcassonneButton extends JPanel
 		this.button.setPreferredSize(dimensione);
 		this.button.setMaximumSize(dimensione);
 	}
-	
+
 	public void setActionListener(ActionListener listener)
 	{
 		this.button.addActionListener(listener);
-		
+
 	}
 
 	public Object getEventSource()
@@ -33,7 +33,7 @@ public class JCarcassonneButton extends JPanel
 		return this.button;
 	}
 
-	private JButton button;
-	
+	private JButton				button;
+
 	private static final long	serialVersionUID	= 8724265205035677878L;
 }

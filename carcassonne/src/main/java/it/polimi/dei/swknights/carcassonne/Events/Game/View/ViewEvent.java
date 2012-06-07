@@ -17,10 +17,7 @@ public abstract class ViewEvent extends EventObject
 		super(source);
 	}
 
-
-
 	public abstract void accept(ModuloControllerHandler handler);
-
 
 	private static final long	serialVersionUID	= -5387280202389373513L;
 

@@ -51,6 +51,7 @@ public class ColoriGioco
 		String[] stringhe = getStringhe(colore);
 		return stringhe[2];
 	}
+
 	private static Map<Color, String> inizializzaColori()
 	{
 		Map<Color, String> mappa = new LinkedHashMap<Color, String>();
@@ -65,7 +66,7 @@ public class ColoriGioco
 
 	private static String[] getStringhe(Color color)
 	{
-		String s = ""; 
+		String s = "";
 		s = mappaColori.get(color);
 		if (s != null)
 		{
@@ -73,37 +74,23 @@ public class ColoriGioco
 		}
 		else
 		{
-			throw new IllegalArgumentException(" passed color is not good to be parsed as string in nice way ");
+			throw new IllegalArgumentException(
+					" passed color is not good to be parsed as string in nice way ");
 		}
-		
+
 	}
 
 	private static final Map<Color, String>	mappaColori	= inizializzaColori();
 
 	public static Color getColor(String color)
 	{
-		if(color.compareToIgnoreCase("RED") == 0)
-		{	
-			return Color.red;
-		}
-		if(color.compareToIgnoreCase("Green") == 0)
-		{	
-			return Color.green;
-		}
-		if(color.compareToIgnoreCase("Yellow") == 0)
-		{	
-			return Color.yellow;
-		}
-		if(color.compareToIgnoreCase("Blue") == 0)
-		{	
-			return Color.blue;
-		}
-		
-		if(color.compareToIgnoreCase("Black") == 0)
-		{	
-			return Color.black;
-		}
-		
+		if (color.compareToIgnoreCase("RED") == 0) { return Color.red; }
+		if (color.compareToIgnoreCase("Green") == 0) { return Color.green; }
+		if (color.compareToIgnoreCase("Yellow") == 0) { return Color.yellow; }
+		if (color.compareToIgnoreCase("Blue") == 0) { return Color.blue; }
+
+		if (color.compareToIgnoreCase("Black") == 0) { return Color.black; }
+
 		return null;
 	}
 

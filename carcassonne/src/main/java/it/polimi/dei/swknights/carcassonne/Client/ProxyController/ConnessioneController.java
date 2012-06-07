@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
-
 import java.io.IOException;
 
 public abstract class ConnessioneController extends AbstractConnessioneController
@@ -10,12 +9,16 @@ public abstract class ConnessioneController extends AbstractConnessioneControlle
 	{
 	}
 
-	public  void invia() {}
-	
-	public  void invia(Object o) {}
-	
+	public void invia()
+	{
+	}
+
+	public void invia(Object o)
+	{
+	}
+
 	public abstract void riceviInput() throws IOException;
 
-	public abstract void close() ;
+	public abstract void close();
 
 }

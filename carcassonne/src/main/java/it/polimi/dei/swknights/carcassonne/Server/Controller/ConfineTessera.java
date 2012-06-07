@@ -62,9 +62,9 @@ public class ConfineTessera
 	@Override
 	public String toString()
 	{
-		return " card : " +  this.tessera.toString() +  " point: " + this.puntoCardinale.toString();
+		return " card : " + this.tessera.toString() + " point: " + this.puntoCardinale.toString();
 	}
-	
+
 	public PuntoCardinale getPuntoCardinale()
 	{
 		return this.puntoCardinale;

@@ -14,7 +14,7 @@ public abstract class AbstractModel implements Model
 	{
 		this.listeners = new ArrayList<View>();
 	}
-	
+
 	/**
 	 * Add Listener to the listerner list
 	 * 
@@ -54,6 +54,6 @@ public abstract class AbstractModel implements Model
 			listener.riceviModificheModel(event);
 		}
 	}
-	
+
 	private List<View>	listeners;
 }

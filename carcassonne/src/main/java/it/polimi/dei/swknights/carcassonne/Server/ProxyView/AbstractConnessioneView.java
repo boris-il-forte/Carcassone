@@ -6,7 +6,7 @@ import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Controller;
 
 import java.util.ArrayList;
 
-public abstract  class AbstractConnessioneView extends AbstractView
+public abstract class AbstractConnessioneView extends AbstractView
 {
 
 	public AbstractConnessioneView()
@@ -15,9 +15,9 @@ public abstract  class AbstractConnessioneView extends AbstractView
 	}
 
 	public void run()
-	{		
+	{
 	}
 
 	public abstract void riceviModificheModel(ControllerEvent event);
-	
+
 }

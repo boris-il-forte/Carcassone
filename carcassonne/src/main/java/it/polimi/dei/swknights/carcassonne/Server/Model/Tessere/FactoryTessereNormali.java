@@ -77,8 +77,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		}
 
 		if (tesseraMagic == null) { throw new NoFirstCardException(
-				"controlla il file tessere e la factory perchè manca la tessera iniziale");
-		}
+				"controlla il file tessere e la factory perchè manca la tessera iniziale"); }
 
 		this.setTesseraMagick(tesseraMagic);
 
@@ -150,7 +149,7 @@ public class FactoryTessereNormali extends FactoryTessere
 		Scanner scanner;
 		inputStreamReader = new InputStreamReader(resourceTxtFile.openStream());
 		scanner = new Scanner(inputStreamReader);
-		scriviTessereDaReader(scanner);
+		this.scriviTessereDaReader(scanner);
 		scanner.close();
 	}
 
@@ -160,8 +159,8 @@ public class FactoryTessereNormali extends FactoryTessere
 
 		while ((in.hasNext()))
 		{
-			inputLine= in.nextLine();
-			descrizioniTessere.add(inputLine);
+			inputLine = in.nextLine();
+			this.descrizioniTessere.add(inputLine);
 		}
 
 		in.close();

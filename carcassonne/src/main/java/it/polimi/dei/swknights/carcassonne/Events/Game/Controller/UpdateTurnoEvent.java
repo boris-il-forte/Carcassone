@@ -24,7 +24,7 @@ public class UpdateTurnoEvent extends UpdateEvent
 	public void accept(ModuloViewHandler handler)
 	{
 		handler.visit(this);
-		
+
 	}
 
 	public Color getGiocatoreCorrente()
@@ -33,7 +33,7 @@ public class UpdateTurnoEvent extends UpdateEvent
 	}
 
 	private final Color			color;
-	
+
 	private static final long	serialVersionUID	= -8277130187657287093L;
 
 }

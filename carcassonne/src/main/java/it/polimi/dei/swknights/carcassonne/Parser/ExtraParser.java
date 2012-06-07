@@ -47,7 +47,7 @@ public class ExtraParser extends Parser
 	public String getExtraData(PuntoCardinale puntoCardinale)
 	{
 		int index = this.getIndex(puntoCardinale);
-		return extraData[index];
+		return this.extraData[index];
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class ExtraParser extends Parser
 	public String getExtraData(Bussola agoBussola)
 	{
 		int index = this.getIndex(agoBussola);
-		return extraData[index];
+		return this.extraData[index];
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class ExtraParser extends Parser
 		int numerazioni[] = this.getNumerazioni();
 		for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
 		{
-			builder.append(getData(puntoCardinale));
+			builder.append(this.getData(puntoCardinale));
 			builder.append(numerazioni[puntoCardinale.toInt()]);
 			String extradata = this.getExtraData(puntoCardinale);
 			if (extradata.length() > 0)
@@ -91,10 +91,10 @@ public class ExtraParser extends Parser
 		{
 			final int normalDataIndex = 0;
 			final int extraDataIndex = 1;
-			//TODO controllare che l'espressione abbia la forma giusta...
+			// TODO controllare che l'espressione abbia la forma giusta...
 			if (this.parsedData[i].length() > 1)
 			{
-				String dataToParse[] = parsedData[i].split("\\+");
+				String dataToParse[] = this.parsedData[i].split("\\+");
 				this.parsedData[i] = dataToParse[normalDataIndex];
 				this.extraData[i] = dataToParse[extraDataIndex];
 			}
@@ -114,7 +114,7 @@ public class ExtraParser extends Parser
 		List<PuntoCardinale> puntiDaProvare = new ArrayList<PuntoCardinale>();
 		puntiDaProvare.addAll(Arrays.asList(PuntoCardinale.values()));
 		ListIterator<PuntoCardinale> iteraPunto = puntiDaProvare.listIterator();
-		while(iteraPunto.hasNext())
+		while (iteraPunto.hasNext())
 		{
 			PuntoCardinale punto = iteraPunto.next();
 			switch (this.getDataChar(punto))
@@ -130,12 +130,12 @@ public class ExtraParser extends Parser
 			}
 			numerazione[punto.toInt()] = counter;
 			PuntoCardinale old = punto;
-			while(iteraPunto.hasNext())
+			while (iteraPunto.hasNext())
 			{
 				PuntoCardinale punto2 = iteraPunto.next();
 				if (this.areConnected(punto, punto2))
 				{
-					
+
 					numerazione[punto2.toInt()] = counter;
 					iteraPunto.remove();
 				}
@@ -145,24 +145,21 @@ public class ExtraParser extends Parser
 		return numerazione;
 	}
 
-	private ListIterator<PuntoCardinale> riavvolgiIterator(List<PuntoCardinale> puntiDaProvare, PuntoCardinale old)
+	private ListIterator<PuntoCardinale> riavvolgiIterator(List<PuntoCardinale> puntiDaProvare,
+			PuntoCardinale old)
 	{
-		ListIterator<PuntoCardinale> iteraPunto =  puntiDaProvare.listIterator();
+		ListIterator<PuntoCardinale> iteraPunto = puntiDaProvare.listIterator();
 		PuntoCardinale next;
 		do
 		{
 			next = iteraPunto.next();
-		}
-		while (!next.equals(old));
+		} while (!next.equals(old));
 		return iteraPunto;
 	}
 
 	private boolean areConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
 	{
-		if(puntoCardinale1.equals(puntoCardinale2)) 
-		{
-			return true;
-		}
+		if (puntoCardinale1.equals(puntoCardinale2)) { return true; }
 		Bussola agoBussola = Bussola.componi(puntoCardinale1, puntoCardinale2);
 		try
 		{

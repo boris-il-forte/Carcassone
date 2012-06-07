@@ -23,12 +23,12 @@ public class FactoryGiocatore
 	public FactoryGiocatore()
 	{
 		int i = 0;
-		Color colori[] = new Color[] {Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK };
-		codaColoriDisponibili = new ArrayDeque<Color>();
+		Color colori[] = new Color[] { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK };
+		this.codaColoriDisponibili = new ArrayDeque<Color>();
 
 		for (i = 0; i < colori.length; i++)
 		{
-			codaColoriDisponibili.add(colori[i]);
+			this.codaColoriDisponibili.add(colori[i]);
 		}
 
 	}
@@ -46,8 +46,9 @@ public class FactoryGiocatore
 	{
 		Color colore;
 
-		colore = codaColoriDisponibili.poll();
-		if (colore != null) {
+		colore = this.codaColoriDisponibili.poll();
+		if (colore != null)
+		{
 			return new Giocatore(colore);
 		}
 		else

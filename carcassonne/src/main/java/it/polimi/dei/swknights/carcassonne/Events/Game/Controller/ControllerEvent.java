@@ -19,20 +19,20 @@ public abstract class ControllerEvent extends EventObject
 
 	}
 
-
 	/**
 	 * Used to ask the handler to "take care" of the event
+	 * 
 	 * @param handler
 	 */
 	public abstract void accept(ModuloViewHandler handler);
+
 	/**
-	 * Set the command, used to avoid instanceof and give the Event a nicer toString
+	 * Set the command, used to avoid instanceof and give the Event a nicer
+	 * toString
+	 * 
 	 * @param messaggio
 	 */
 
-
 	private static final long	serialVersionUID	= 3191102477186388256L;
-
-
 
 }

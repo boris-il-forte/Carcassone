@@ -39,7 +39,7 @@ public class PlaceHandler extends ModuloControllerHandler
 		}
 		catch (MossaNonValidaException e)
 		{
-			this.model.fire(new MossaNonValidaEvent(controller));
+			this.model.fire(new MossaNonValidaEvent(this.controller));
 		}
 
 		this.sveglia();

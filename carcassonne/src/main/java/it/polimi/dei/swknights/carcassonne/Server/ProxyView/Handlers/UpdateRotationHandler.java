@@ -11,16 +11,16 @@ public class UpdateRotationHandler extends ProxyViewHandler
 		super(proxy);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public void visit(UpdateRotationEvent event)
 	{
 		StringBuilder stringCommand = new StringBuilder();
 		stringCommand.append("rotated: ");
 		stringCommand.append(event.getTessera().toProtocolString());
-		
+
 		this.proxy.setCommandString(stringCommand.toString());
-		
+
 	}
 
 }

@@ -1,13 +1,15 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
+
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
-/** 
- * This class is a Parser used to process the commands given from the
- * user to the CLI
- * @author edoardopasi & dave
- *
- */
 
+/**
+ * This class is a Parser used to process the commands given from the user to
+ * the CLI
+ * 
+ * @author edoardopasi & dave
+ * 
+ */
 
 public class ParserComandi
 {
@@ -15,17 +17,15 @@ public class ParserComandi
 	{
 		this.cli = cli;
 	}
+
 	/**
-	 * Execute a command if it is a valid one and given in a valid phase
-	 * of the turn
-	 * @param stringComando  the given command
-	 * @return true if the command is executed, false otherwise
-	 * Accepted command are:
-	 * rotate
-	 * x,y
-	 * up, down left or right
-	 * tile C1|C2|S1|S2|...   
-	 * pass
+	 * Execute a command if it is a valid one and given in a valid phase of the
+	 * turn
+	 * 
+	 * @param stringComando
+	 *            the given command
+	 * @return true if the command is executed, false otherwise Accepted command
+	 *         are: rotate x,y up, down left or right tile C1|C2|S1|S2|... pass
 	 */
 	public boolean eseguiComando(String stringComando)
 	{
@@ -54,22 +54,22 @@ public class ParserComandi
 
 		if (stringComando.matches("up\\=\\d+"))
 		{
-			quantitaSpostamento=this.getInteger(stringComando);
+			quantitaSpostamento = this.getInteger(stringComando);
 			this.cli.muoviViewA(PuntoCardinale.nord, quantitaSpostamento);
 		}
 		if (stringComando.matches("down\\=\\d+"))
 		{
-			quantitaSpostamento=this.getInteger(stringComando);
+			quantitaSpostamento = this.getInteger(stringComando);
 			this.cli.muoviViewA(PuntoCardinale.sud, quantitaSpostamento);
 		}
 		if (stringComando.matches("left\\=\\d+"))
 		{
-			quantitaSpostamento=this.getInteger(stringComando);
+			quantitaSpostamento = this.getInteger(stringComando);
 			this.cli.muoviViewA(PuntoCardinale.ovest, quantitaSpostamento);
 		}
 		if (stringComando.matches("right\\=\\d+"))
 		{
-			quantitaSpostamento=this.getInteger(stringComando);
+			quantitaSpostamento = this.getInteger(stringComando);
 			this.cli.muoviViewA(PuntoCardinale.est, quantitaSpostamento);
 		}
 		if (stringComando.matches("goto=\\-?\\d+\\,\\-?\\d+"))
@@ -80,21 +80,19 @@ public class ParserComandi
 
 		return false;
 	}
-	
-	
-	
+
 	private String getArgument(String stringComando)
 	{
 		String elementi[] = stringComando.split("=");
-		return elementi[elementi.length-1];
+		return elementi[elementi.length - 1];
 	}
-	
+
 	private Integer getInteger(String stringComando)
 	{
 		String string = this.getArgument(stringComando);
 		return Integer.parseInt(string);
 	}
-	
+
 	private Coordinate getCoordinate(String stringComando)
 	{
 		String parse1 = this.getArgument(stringComando);
@@ -105,8 +103,8 @@ public class ParserComandi
 	}
 
 	private Cli					cli;
-	
+
 	private static final int	STRINGA_X	= 0;
-	
+
 	private static final int	STRINGA_Y	= 1;
 }

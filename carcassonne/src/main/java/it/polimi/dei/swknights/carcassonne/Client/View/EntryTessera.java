@@ -2,17 +2,19 @@ package it.polimi.dei.swknights.carcassonne.Client.View;
 
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+
 /**
- * This class just joins data needed to printer to print the map
- * in CLI mode
- * Data are:  coordinates, adapter card  and neighbourhood of the card
+ * This class just joins data needed to printer to print the map in CLI mode
+ * Data are: coordinates, adapter card and neighbourhood of the card
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
 public class EntryTessera
 {
 	/**
-	 * Data are:  coordinates, adapter card  and neighbourhood of the card
+	 * Data are: coordinates, adapter card and neighbourhood of the card
+	 * 
 	 * @param coordinate
 	 * @param tessera
 	 * @param vicinato
@@ -23,24 +25,24 @@ public class EntryTessera
 		this.tessera = tessera;
 		this.vicinato = vicinato;
 	}
-	
+
 	public Coordinate getCoordinate()
 	{
 		return this.coordinate;
 	}
-	
+
 	public AdapterTessera getTessera()
 	{
 		return this.tessera;
 	}
-	
+
 	public Vicinato getVicinato()
 	{
 		return this.vicinato;
 	}
 
-	private Coordinate	coordinate;
-	private Vicinato	vicinato;
+	private Coordinate		coordinate;
+	private Vicinato		vicinato;
 	private AdapterTessera	tessera;
 
 }

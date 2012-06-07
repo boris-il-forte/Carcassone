@@ -42,8 +42,10 @@ public final class DatiPartita
 		this.inizializzaPilaTessere();
 		this.inizializzaGiocatori();
 	}
+
 	/**
 	 * gets coordinates of a given card
+	 * 
 	 * @param tessera
 	 * @return the coordinate of that card
 	 */
@@ -60,7 +62,7 @@ public final class DatiPartita
 
 	public AreaDiGioco getAreaDiGioco()
 	{
-		return areaDiGioco;
+		return this.areaDiGioco;
 	}
 
 	/**
@@ -69,7 +71,7 @@ public final class DatiPartita
 	 * @param colore
 	 *            : the color of the player to be found
 	 * @return the player of that color
-	 * @throws ColoreNonPresenteException 
+	 * @throws ColoreNonPresenteException
 	 */
 
 	public Giocatore getGiocatore(Color colore) throws ColoreNonPresenteException
@@ -113,12 +115,13 @@ public final class DatiPartita
 	{
 		return this.areaDiGioco.getSetCoordinateVuote();
 	}
+
 	/**
 	 * changes the current turn to the next
 	 */
 	public void nextTurno()
 	{
-		Giocatore vecchio =this.giocatori.poll();
+		Giocatore vecchio = this.giocatori.poll();
 		this.giocatori.add(vecchio);
 	}
 
@@ -132,7 +135,7 @@ public final class DatiPartita
 
 	public Tessera pescaTesseraDalMazzo() throws PartitaFinitaException
 	{
-		int index = pilaTessere.size();
+		int index = this.pilaTessere.size();
 		if (index > 0)
 		{
 			index--;
@@ -145,7 +148,7 @@ public final class DatiPartita
 		}
 
 	}
-	
+
 	/**
 	 * 
 	 * @return the first card, to be placed
@@ -157,14 +160,14 @@ public final class DatiPartita
 
 	public void aggiornaPunteggioGiocatori(Punteggi punteggi)
 	{
-		for(Entry<Color, Integer> entry : punteggi.entrySet())
+		for (Entry<Color, Integer> entry : punteggi.entrySet())
 		{
 			try
 			{
 				Giocatore giocatore = this.getGiocatore(entry.getKey());
 				giocatore.addPunti(entry.getValue());
 			}
-			catch(ColoreNonPresenteException e)
+			catch (ColoreNonPresenteException e)
 			{
 				continue;
 			}
@@ -202,9 +205,9 @@ public final class DatiPartita
 	private void inizializzaPilaTessere()
 	{
 		this.pilaTessere = new ArrayList<Tessera>();
-		for(FactoryTessere factory : this.listFactoryTessere)
+		for (FactoryTessere factory : this.listFactoryTessere)
 		{
-			//TODO cambiare modo di assegnare percorso...
+			// TODO cambiare modo di assegnare percorso...
 			factory.acquisisciMazzoDaFile("/Carcassonne.txt");
 			while (factory.tesseraDisponibile())
 			{
@@ -215,10 +218,10 @@ public final class DatiPartita
 		}
 
 	}
-	
+
 	private void setPrimaTessera(Tessera primaTessera)
 	{
-		if(primaTessera!=null && this.tesseraMagic == null)
+		if (primaTessera != null && this.tesseraMagic == null)
 		{
 			this.tesseraMagic = primaTessera;
 		}

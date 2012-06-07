@@ -35,8 +35,8 @@ public class Gui extends ModuloView
 		this.setDimensioni();
 		this.immagini = new IconGetter();
 		this.finestra = new JCarcassoneFrame(this, this.altezza, this.larghezza);
-		this.setCoordinataNordOvest(new Coordinate(-larghezza / 2, -altezza / 2));
-		this.setCoordinateRelativeSE(new Coordinate(larghezza - 1, altezza - 1));
+		this.setCoordinataNordOvest(new Coordinate(-this.larghezza / 2, -this.altezza / 2));
+		this.setCoordinateRelativeSE(new Coordinate(this.larghezza - 1, this.altezza - 1));
 		this.coordinateInserimentoSegnalini = new HashMap<Coordinate, Coordinate>();
 	}
 

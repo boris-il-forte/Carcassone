@@ -16,7 +16,8 @@ import java.util.Map;
 public class CostruzioneCompletataEvent extends ControllerEvent
 {
 
-	public CostruzioneCompletataEvent(Object source, Map<AdapterTessera, Coordinate> tessereAggiornate, Punteggi punteggi)
+	public CostruzioneCompletataEvent(Object source, Map<AdapterTessera, Coordinate> tessereAggiornate,
+			Punteggi punteggi)
 	{
 		super(source);
 		this.tessereAggiornate = tessereAggiornate;
@@ -32,20 +33,24 @@ public class CostruzioneCompletataEvent extends ControllerEvent
 	public void accept(ModuloViewHandler handler)
 	{
 		handler.visit(this);
-		
+
 	}
+
 	/**
-	 * Gives the caller information to update all the Cards interested by the 
+	 * Gives the caller information to update all the Cards interested by the
 	 * completation of the building
-	 * @return A Map associating each {@link AdapterTessera} to its {@link Coordinate} 
+	 * 
+	 * @return A Map associating each {@link AdapterTessera} to its
+	 *         {@link Coordinate}
 	 */
-	public  Map<AdapterTessera, Coordinate>  getTessereAggiornate()
+	public Map<AdapterTessera, Coordinate> getTessereAggiornate()
 	{
 		return this.tessereAggiornate;
 
 	}
-	private Punteggi punteggi;
-	private  Map<AdapterTessera, Coordinate> tessereAggiornate;
-	private static final long		serialVersionUID	= -7907111208766111881L;
+
+	private Punteggi						punteggi;
+	private Map<AdapterTessera, Coordinate>	tessereAggiornate;
+	private static final long				serialVersionUID	= -7907111208766111881L;
 
 }

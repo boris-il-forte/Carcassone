@@ -28,13 +28,13 @@ public class AbstractConnessioneController implements Controller
 	public void addListener(EventListener eventListener)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void removeListener(EventListener eventListener)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

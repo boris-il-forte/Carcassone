@@ -19,21 +19,21 @@ import org.junit.Test;
 
 public class EsploratoreConfiniTest
 {
-	public  ModuloModel	model;
+	public ModuloModel	model;
 
 	@Before
-	public  void initializeTest() throws Exception
+	public void initializeTest() throws Exception
 	{
-		model = new ModuloModel();
+		this.model = new ModuloModel();
 	}
 
 	@Test
 	public void atLeastStart() throws Exception
 	{
-		ContatoreCartografo contatore = new ContatoreCartografo(model);
+		ContatoreCartografo contatore = new ContatoreCartografo(this.model);
 
 	}
-	
+
 	@Test
 	public void esplora() throws Exception
 	{
@@ -41,105 +41,105 @@ public class EsploratoreConfiniTest
 
 		for (int i = 0; i < stradella.length; i++)
 		{
-			System.out.println(stradella[i].tessera.toString() + "   "+
-					stradella[i].coord + "  " );
-			System.out.println(model.toString());
-			model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
+			System.out.println(stradella[i].tessera.toString() + "   " + stradella[i].coord + "  ");
+			System.out.println(this.model.toString());
+			this.model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
 		}
-		
-		Coordinate c2 = new Coordinate(1, 0);		
-		EsploratoreConfini esploratore = new EsploratoreConfini(c2, model);
-		Set<Costruzione> costruzioni =  esploratore.getCostruzioni();
-		
-		Map<Costruzione, List<ConfineTessera>>  mappaVicVuoti =	esploratore.getViciniVuoti();
-		
+
+		Coordinate c2 = new Coordinate(1, 0);
+		EsploratoreConfini esploratore = new EsploratoreConfini(c2, this.model);
+		Set<Costruzione> costruzioni = esploratore.getCostruzioni();
+
+		Map<Costruzione, List<ConfineTessera>> mappaVicVuoti = esploratore.getViciniVuoti();
+
 		Map<Costruzione, List<ConfineTessera>> mapConfinanti = esploratore.getConfinantiScoperti();
-		
+
 		System.out.println("_________TUTTE LE COSTRUZIONI___________");
-		
+
 		for (Costruzione c : costruzioni)
 		{
-			System.out.println( c.toString() ) ;
+			System.out.println(c.toString());
 		}
 		System.out.println("____________VICINI VUOTI_________________");
-		for( Entry<Costruzione, List<ConfineTessera>> entry : mappaVicVuoti.entrySet() )
+		for (Entry<Costruzione, List<ConfineTessera>> entry : mappaVicVuoti.entrySet())
 		{
-			System.out.println(" key = " + entry.getKey().toString() );
-			System.out.println(" value = lista di " + entry.getValue().size() + " elementi" );
+			System.out.println(" key = " + entry.getKey().toString());
+			System.out.println(" value = lista di " + entry.getValue().size() + " elementi");
 			System.out.println(" la lista è " + entry.getValue().toString());
 		}
-		
+
 		System.out.println("____________CONFINI EFFETTIVI_________________");
-		for( Entry<Costruzione, List<ConfineTessera>> entry : mapConfinanti.entrySet() )
+		for (Entry<Costruzione, List<ConfineTessera>> entry : mapConfinanti.entrySet())
 		{
-			System.out.println(" key = " + entry.getKey().toString() );
-			System.out.println(" value = lista di " + entry.getValue().size() + " elementi" );
+			System.out.println(" key = " + entry.getKey().toString());
+			System.out.println(" value = lista di " + entry.getValue().size() + " elementi");
 			System.out.println(" la lista è " + entry.getValue().toString());
-			for(ConfineTessera ct : entry.getValue())
+			for (ConfineTessera ct : entry.getValue())
 			{
 				System.out.println(" confine tessera = " + ct.toString());
-				
+
 			}
 		}
-		
+
 		System.out.println("\n \n _______________________________________");
-		
+
 	}
-	
 
 	@Test
 	public void stradaPiccola() throws Exception
 	{
-		model = new ModuloModel();
-		ContatoreCartografo contatore = new ContatoreCartografo(model);
+		this.model = new ModuloModel();
+		ContatoreCartografo contatore = new ContatoreCartografo(this.model);
 		System.out.println("\n " + " cont = " + contatore);
-		
-		CostruzioneCoord[] stradella ;
+
+		CostruzioneCoord[] stradella;
 		stradella = this.stradella();
-		
-		System.out.println("\n stradella  =  "  + stradella.toString());
+
+		System.out.println("\n stradella  =  " + stradella.toString());
 		System.out.println("========");
-		
-		for(int i=0; i<stradella.length; i++)
+
+		for (int i = 0; i < stradella.length; i++)
 		{
-			System.out.println(" tessera numero : "  + i + "stradella. coordinata = " + stradella[i].coord);
+			System.out.println(" tessera numero : " + i + "stradella. coordinata = " + stradella[i].coord);
 			stradella[i].toString();
-		
-			model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
+
+			this.model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
 			contatore.riceviCoordinateTessera(stradella[i].coord);
 		}
 
 	}
 
-	//@Test
+	// @Test
 	public void testCostruzioniCorrette() throws Exception
 	{
 
 	}
 
-	//@Test
+	// @Test
 	public void testCostruzioniScorrette() throws Exception
 	{
-		
+
 	}
 
 	public CostruzioneCoord[] stradella()
 	{
-		CostruzioneCoord[] stradaPiccola = predisponiVuotiCostruzione(5);
+		CostruzioneCoord[] stradaPiccola = this.predisponiVuotiCostruzione(5);
 
-		Tessera incrocio0 = new TesseraNormale(creaLatiIncrocioAQuattro(), creaLinkIncrocioAQuattro());
+		Tessera incrocio0 = new TesseraNormale(this.creaLatiIncrocioAQuattro(),
+				this.creaLinkIncrocioAQuattro());
 		Coordinate c0 = new Coordinate(-1, 0);
 
-		Tessera t1 = new TesseraNormale(creaLatiStradaEO(), creaLinkStradaEO());
+		Tessera t1 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
 		Coordinate c1 = new Coordinate(0, 0);
 
-		Tessera t2 = new TesseraNormale(creaLatiStradaEO(), creaLinkStradaEO());
+		Tessera t2 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
 		Coordinate c2 = new Coordinate(1, 0);
 
-		Tessera t3 = new TesseraNormale(creaLatiStradaEO(), creaLinkStradaEO());
+		Tessera t3 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
 		Coordinate c3 = new Coordinate(2, 0);
 
-		Tessera incrocio4 = new TesseraNormale(creaLatiIncrocioAQuattro(), creaLinkIncrocioAQuattro());
+		Tessera incrocio4 = new TesseraNormale(this.creaLatiIncrocioAQuattro(),
+				this.creaLinkIncrocioAQuattro());
 		Coordinate c4 = new Coordinate(3, 0);
 
 		stradaPiccola[0].daiCoppia(incrocio0, c0);
@@ -154,13 +154,13 @@ public class EsploratoreConfiniTest
 	private CostruzioneCoord[] predisponiVuotiCostruzione(int quanti)
 	{
 		CostruzioneCoord[] c = new CostruzioneCoord[quanti];
-		for(int i=0;i<quanti; i++)
+		for (int i = 0; i < quanti; i++)
 		{
 			c[i] = new CostruzioneCoord();
 		}
 		return c;
 	}
-	
+
 	private Lati creaLatiStradaEO()
 	{
 		Lati latiCreandi;

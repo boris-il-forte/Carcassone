@@ -7,6 +7,7 @@ public class ColoreNonTrovatoException extends RuntimeException
 	{
 		super(message);
 	}
+
 	/**
 	 * 
 	 */

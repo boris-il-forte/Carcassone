@@ -6,9 +6,10 @@ public class NullCardException extends RuntimeException
 	{
 		super(s);
 	}
+
 	/**
 	 * 
 	 */
 	private static final long	serialVersionUID	= 3486013880316256170L;
-	
+
 }
