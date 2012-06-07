@@ -162,7 +162,7 @@ public class Gui extends ModuloView
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension size = toolkit.getScreenSize();
 		this.larghezza = (size.width - 4 * this.dimesioneTessere) / this.dimesioneTessere;
-		this.altezza = (size.height - 4 * this.dimesioneTessere) / this.dimesioneTessere;
+		this.altezza = (size.height - 3 * this.dimesioneTessere) / this.dimesioneTessere;
 		this.altezza = (this.altezza % 2 == 0) ? (this.altezza + 1) : (this.altezza);
 		this.larghezza = (this.larghezza % 2 == 0) ? (this.larghezza + 1) : (this.larghezza);
 	}
