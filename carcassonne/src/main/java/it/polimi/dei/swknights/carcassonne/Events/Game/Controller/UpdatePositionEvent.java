@@ -18,15 +18,17 @@ public class UpdatePositionEvent extends UpdateEvent
 	public UpdatePositionEvent(Tessera tessera, Coordinate coordinate, Color giocatore, Object source)
 	{
 		super(tessera, coordinate, giocatore, source);
-	
+
 	}
-	public UpdatePositionEvent(String tessera, Coordinate coordinate, Color coloreGiocatore,
-			Object source)
+
+	public UpdatePositionEvent(String tessera, Coordinate coordinate, Color coloreGiocatore, Object source)
 	{
 		super(tessera, coordinate, coloreGiocatore, source);
 	}
+
 	/**
 	 * {@link Coordinate} of the placed card
+	 * 
 	 * @return
 	 */
 	public Coordinate getCoordinate()
@@ -40,7 +42,7 @@ public class UpdatePositionEvent extends UpdateEvent
 	public void accept(ModuloViewHandler handler)
 	{
 		handler.visit(this);
-		
+
 	}
 
 }

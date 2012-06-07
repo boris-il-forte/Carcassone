@@ -23,7 +23,7 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 
 	public ProxyController(Socket socket) throws IOException
 	{
-		
+
 		this.connessione = new ConnessioneControllerSocket(socket, this);
 		this.inizializzaHandlers();
 		this.contattaServerInizia(socket);
@@ -31,7 +31,7 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 
 	public ProxyController() // RMI
 	{
-		
+
 		this.connessione = new ConnessioneControllerRMI();
 	}
 
@@ -39,9 +39,7 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 	{
 		this.requestString = requestString;
 	}
-	
-	
-	
+
 	@Override
 	public void run()
 	{
@@ -56,7 +54,7 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 
 				try
 				{
-					connessione.riceviInput();
+					this.connessione.riceviInput();
 				}
 				catch (IOException e)
 				{
@@ -69,23 +67,21 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 
 		}
 
-		connessione.close();
+		this.connessione.close();
 	}
 
-	
 	private void inviaSocket()
 	{
 
-		connessione.invia(this.requestString);
+		this.connessione.invia(this.requestString);
 	}
 
 	private void inviaRMI(ControllerEvent event)
 	{
-		connessione.invia(event);
+		this.connessione.invia(event);
 
 	}
-	
-	
+
 	@Override
 	public void request()
 	{
@@ -94,17 +90,16 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 	public void fire(ControllerEvent event)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
+
 	// inizio fatto comunque via socket?
 	private void contattaServerInizia(Socket socket)
 	{
-		boolean contatto=false;
+		boolean contatto = false;
 		Debug.print(" sono proxy controller - contattaServer ");
-		
-		while(contatto=false)
+
+		while (contatto = false)
 		{
 			try
 			{
@@ -113,15 +108,17 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 				printer.println("connection request by " + socket.getLocalAddress() + ": "
 						+ socket.getLocalPort());
 				printer.flush();
-				Scanner scann = new Scanner( socket.getInputStream());
+				Scanner scann = new Scanner(socket.getInputStream());
 				String s = scann.nextLine();
 				if (s.length() > 0)
+				{
 					contatto = true;
+				}
 			}
 			catch (IOException e)
 			{
 				// TODO Auto-generated catch block
-				//e.printStackTrace();
+				// e.printStackTrace();
 			}
 		}
 	}

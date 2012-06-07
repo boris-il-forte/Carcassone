@@ -19,20 +19,20 @@ public class JCarcassonnePunteggi extends JPanel
 		this.players = new HashMap<Color, JCarcassonnePlayer>();
 		this.setLayout(new FlowLayout());
 		this.creaColori(numGiocatori);
-		
+
 	}
 
 	private void creaColori(int numGiocatori)
 	{
 		Iterator<Color> iteratore = ColoriGioco.getListaColori().iterator();
-		for(int i=0; iteratore.hasNext() && i<numGiocatori; i++)
+		for (int i = 0; iteratore.hasNext() && i < numGiocatori; i++)
 		{
 			Color colore = iteratore.next();
 			JCarcassonnePlayer player = new JCarcassonnePlayer(colore);
-			this.players.put(colore,player);
+			this.players.put(colore, player);
 			this.add(player);
 		}
-		
+
 	}
 
 	public void aggiornaPunteggi(Punteggi punteggi)
@@ -40,7 +40,7 @@ public class JCarcassonnePunteggi extends JPanel
 		for (Entry<Color, Integer> entry : punteggi.entrySet())
 		{
 			JCarcassonnePlayer player = this.players.get(entry.getKey());
-			if(player != null)
+			if (player != null)
 			{
 				player.setPunteggio(entry.getValue());
 			}

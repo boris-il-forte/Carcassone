@@ -1,8 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.Exceptions;
+
 /**
  * 
  * @author edoardopasi & dave
- *
+ * 
  */
 public class InvalidStringToParseException extends Exception
 {

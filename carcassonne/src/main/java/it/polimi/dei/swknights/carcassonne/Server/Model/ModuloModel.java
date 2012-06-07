@@ -26,12 +26,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 /**
- * This class gives the implementation of the Model of the MVC pattern
- * It gives all important methods to handle the data and basic low level function
- * of the game
+ * This class gives the implementation of the Model of the MVC pattern It gives
+ * all important methods to handle the data and basic low level function of the
+ * game
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
 
 public class ModuloModel extends AbstractModel
@@ -60,7 +62,8 @@ public class ModuloModel extends AbstractModel
 		this.fire(new UpdateRotationEvent(this.tesseraCorrente, coloreGiocatoreCorrente, this));
 	}
 
-	public Segnalino addSegnalinoTesseraCorrente(PuntoCardinale puntoCardinale) throws SegnaliniFinitiException
+	public Segnalino addSegnalinoTesseraCorrente(PuntoCardinale puntoCardinale)
+			throws SegnaliniFinitiException
 	{
 		Segnalino segnalino = this.getGiocatoreCorrente().getSegnalino();
 		this.tesseraCorrente.setSegnalino(segnalino, puntoCardinale);
@@ -73,11 +76,13 @@ public class ModuloModel extends AbstractModel
 	{
 		return this.tesseraCorrente;
 	}
-	
+
 	/**
-	 * Basic operation to set up first things of the game:
-	 * place the first card and creates players.
-	 * @param numeroGiocatori: how many people are playing
+	 * Basic operation to set up first things of the game: place the first card
+	 * and creates players.
+	 * 
+	 * @param numeroGiocatori
+	 *            : how many people are playing
 	 * @throws PartitaFinitaException
 	 */
 	public void iniziaGioco() throws PartitaFinitaException
@@ -87,11 +92,11 @@ public class ModuloModel extends AbstractModel
 			Tessera primaTessera = this.datiPartita.pescaPrimaTessera();
 			AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
 			this.datiPartita.getAreaDiGioco().addTessera(new Coordinate(0, 0), primaTessera);
-			this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore(),
-					this.getListaGiocatori().size(), this.getIdPartita()));
+			this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore(), this
+					.getListaGiocatori().size(), this.getIdPartita()));
 			this.getTesseraDaMazzo();
 			this.cominciaTurno();
-			
+
 		}
 		catch (MossaNonValidaException e)
 		{
@@ -100,10 +105,9 @@ public class ModuloModel extends AbstractModel
 		}
 	}
 
-
 	/**
-	 * Begins the turn:
-	 * change to current color and draw a card from deck
+	 * Begins the turn: change to current color and draw a card from deck
+	 * 
 	 * @throws PartitaFinitaException
 	 */
 	public void cominciaTurno() throws PartitaFinitaException
@@ -111,6 +115,7 @@ public class ModuloModel extends AbstractModel
 		Color coloreGiocatore = this.getColoreGiocatoreCorrente();
 		this.fire(new UpdateTurnoEvent(this, coloreGiocatore, this.tesseraCorrente));
 	}
+
 	/**
 	 * pass to next turn
 	 */
@@ -118,6 +123,7 @@ public class ModuloModel extends AbstractModel
 	{
 		this.datiPartita.nextTurno();
 	}
+
 	public Coordinate getCoordinateTessera(Tessera tessera)
 	{
 		return this.datiPartita.getCoordinateTessera(tessera);
@@ -130,17 +136,23 @@ public class ModuloModel extends AbstractModel
 
 	/**
 	 * place the current card on the given coordinates
-	 * @param coordinate where place the card
+	 * 
+	 * @param coordinate
+	 *            where place the card
 	 * @throws MossaNonValidaException
 	 */
 	public void posizionaTesseraCorrente(Coordinate coordinate) throws MossaNonValidaException
 	{
-		this.posizionaTessera(tesseraCorrente, coordinate);
+		this.posizionaTessera(this.tesseraCorrente, coordinate);
 	}
+
 	/**
 	 * Used to a generic card place a card in generic coordinates
-	 * @param tessera  the card
-	 * @param coordinate  the coordinates
+	 * 
+	 * @param tessera
+	 *            the card
+	 * @param coordinate
+	 *            the coordinates
 	 * @throws MossaNonValidaException
 	 */
 	public void posizionaTessera(Tessera tessera, Coordinate coordinate) throws MossaNonValidaException
@@ -153,8 +165,10 @@ public class ModuloModel extends AbstractModel
 		this.fire(new UpdatePositionEvent(tessera, coordinate, giocatore.getColore(), this));
 
 	}
+
 	/**
 	 * gets the card at the given coordinates from {@link AreaDiGioco}
+	 * 
 	 * @param coordinate
 	 * @return the card
 	 * @throws TesseraNonTrovataException
@@ -163,8 +177,11 @@ public class ModuloModel extends AbstractModel
 	{
 		return this.datiPartita.getAreaDiGioco().getTessera(coordinate);
 	}
+
 	/**
-	 * Draws a card from the deck and updates the current card with the drawn one
+	 * Draws a card from the deck and updates the current card with the drawn
+	 * one
+	 * 
 	 * @throws PartitaFinitaException
 	 */
 	public void getTesseraDaMazzo() throws PartitaFinitaException
@@ -182,15 +199,15 @@ public class ModuloModel extends AbstractModel
 	{
 		this.datiPartita.aggiornaPunteggioGiocatori(punteggi);
 		Map<AdapterTessera, Coordinate> mapTessere = new HashMap<AdapterTessera, Coordinate>();
-		for(Tessera tessera : tessere)
+		for (Tessera tessera : tessere)
 		{
 			this.removeSegnalino(tessera);
-			
+
 			Coordinate coordinate = this.datiPartita.getCoordinateTessera(tessera);
 			mapTessere.put(new AdapterTesseraObject(tessera), coordinate);
 		}
-		
-		this.fire(new CostruzioneCompletataEvent(this,mapTessere, this.getPunteggi()));
+
+		this.fire(new CostruzioneCompletataEvent(this, mapTessere, this.getPunteggi()));
 	}
 
 	public void addPlayer()
@@ -208,19 +225,19 @@ public class ModuloModel extends AbstractModel
 	private void removeSegnalino(Tessera tessera)
 	{
 		Segnalino segnalino = tessera.removeSegnalino();
-		if(segnalino != null)
+		if (segnalino != null)
 		{
 			try
 			{
 				Giocatore giocatore = this.datiPartita.getGiocatore(segnalino.getColore());
 				giocatore.addSegnalino(segnalino);
 			}
-			catch (ColoreNonPresenteException e) 
+			catch (ColoreNonPresenteException e)
 			{
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
 	private List<Giocatore> getListaGiocatori()
@@ -243,7 +260,7 @@ public class ModuloModel extends AbstractModel
 	{
 		return this.idPartita;
 	}
-	
+
 	private Punteggi getPunteggi()
 	{
 		Punteggi punteggi = new Punteggi();
@@ -255,12 +272,12 @@ public class ModuloModel extends AbstractModel
 		return punteggi;
 	}
 
-	private DatiPartita	datiPartita;
+	private DatiPartita		datiPartita;
 
-	private Tessera		tesseraCorrente;
+	private Tessera			tesseraCorrente;
 
-	private Coordinate	coordinateTesseraCorrente;
+	private Coordinate		coordinateTesseraCorrente;
 
-	private final String idPartita;
+	private final String	idPartita;
 
 }

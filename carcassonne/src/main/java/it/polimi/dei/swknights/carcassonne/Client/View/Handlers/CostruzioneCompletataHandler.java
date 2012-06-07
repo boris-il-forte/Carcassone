@@ -13,9 +13,10 @@ public class CostruzioneCompletataHandler extends ModuloViewHandler
 	{
 		super(view);
 	}
+
 	/**
-	 * When CompletedBuildingEvent is triggered,
-	 * the visit method notify the view about which Cards update
+	 * When CompletedBuildingEvent is triggered, the visit method notify the
+	 * view about which Cards update
 	 */
 	@Override
 	public void visit(CostruzioneCompletataEvent event)
@@ -25,5 +26,5 @@ public class CostruzioneCompletataHandler extends ModuloViewHandler
 		this.view.visualizzaPunteggi(event.getPunteggi());
 		this.sveglia();
 	}
-	
+
 }

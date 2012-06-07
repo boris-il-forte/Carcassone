@@ -10,7 +10,7 @@ public class UpdatePositionHandler extends ProxyViewHandler
 	public UpdatePositionHandler(ProxyView proxy)
 	{
 		super(proxy);
-		
+
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class UpdatePositionHandler extends ProxyViewHandler
 		String tile = event.getTessera().toProtocolString();
 		Coordinate coordinata = event.getCoordinate();
 		String stringaUpdate = this.getStringaUpdate(tile, coordinata);
-		this.proxy.setCommandString(stringaUpdate.toString());
+		this.proxy.setCommandString(stringaUpdate);
 	}
-	
+
 }

@@ -20,7 +20,7 @@ public class GestoreFasi
 	public void cominciaTurno()
 	{
 		this.faseCorrente = FaseTurno.Inizio;
-		Debug.print("fase: "+ this.faseCorrente.toString());
+		Debug.print("fase: " + this.faseCorrente.toString());
 	}
 
 	public void finePartita()
@@ -31,7 +31,7 @@ public class GestoreFasi
 	public void nextFase()
 	{
 		this.faseCorrente = this.faseCorrente.next();
-		Debug.print("fase: "+ this.faseCorrente.toString());
+		Debug.print("fase: " + this.faseCorrente.toString());
 	}
 
 	public boolean partitaOk()

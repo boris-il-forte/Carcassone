@@ -43,10 +43,9 @@ public class AggiornaMappaGui
 		return this.vuotiIterator.next();
 	}
 
-
 	private void creaMappaTessere(List<EntryTessera> listaTessere)
 	{
-		Map<Integer, String> mappaTessere = new HashMap<Integer,String>();
+		Map<Integer, String> mappaTessere = new HashMap<Integer, String>();
 		Map<Coordinate, Integer> mappaViciniVuoti = new HashMap<Coordinate, Integer>();
 		Map<Integer, Color> mappaSegnalini = new HashMap<Integer, Color>();
 		for (EntryTessera entryTessera : listaTessere)
@@ -66,14 +65,14 @@ public class AggiornaMappaGui
 			Map<Integer, Color> mappaSegnalini)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void aggiungiTessere(Coordinate coordinateTessera, String stringaTessera,
-			Map<Integer,String> mappaTessere)
+			Map<Integer, String> mappaTessere)
 	{
 		Integer numeroCasella = this.traduciCoordinate(coordinateTessera);
-		mappaTessere.put( numeroCasella,stringaTessera);
+		mappaTessere.put(numeroCasella, stringaTessera);
 	}
 
 	private void aggiungiViciniVuoti(Coordinate coordinateTessera, Vicinato vicinato,

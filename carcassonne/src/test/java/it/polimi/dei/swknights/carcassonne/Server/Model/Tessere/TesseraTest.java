@@ -55,7 +55,7 @@ public class TesseraTest
 	@Test
 	public void testCittaGrande() throws Exception
 	{
-		TesseraNormale tessera = new TesseraNormale(creaLatiCittaGrande(), creaLinkCittaGrande());
+		TesseraNormale tessera = new TesseraNormale(this.creaLatiCittaGrande(), this.creaLinkCittaGrande());
 
 		List<PuntoCardinale> punti = new ArrayList<PuntoCardinale>();
 		for (PuntoCardinale p : PuntoCardinale.values()) // tutti connessi e
@@ -68,18 +68,18 @@ public class TesseraTest
 		mappaExp.put(new CostruzioneCitta(tessera), punti);
 		mappaGot = tessera.getMapCostruzioniPunti();
 
-		List<Costruzione> CostruzioniExp = listaDa(mappaExp.keySet());
-		List<Costruzione> CostruzioniGot = listaDa(mappaGot.keySet());
+		List<Costruzione> CostruzioniExp = this.listaDa(mappaExp.keySet());
+		List<Costruzione> CostruzioniGot = this.listaDa(mappaGot.keySet());
 
-		assertTrue(stesseListePuntiCardinali(CostruzioniExp, CostruzioniGot));
+		assertTrue(this.stesseListePuntiCardinali(CostruzioniExp, CostruzioniGot));
 
 	}
 
 	private boolean stesseListePuntiCardinali(List<Costruzione> CostruzioniExp,
 			List<Costruzione> CostruzioniGot)
 	{
-		ordinaCostruzioni(CostruzioniGot);
-		ordinaCostruzioni(CostruzioniExp);
+		this.ordinaCostruzioni(CostruzioniGot);
+		this.ordinaCostruzioni(CostruzioniExp);
 
 		if (CostruzioniExp.size() == CostruzioniGot.size())
 		{
@@ -112,12 +112,8 @@ public class TesseraTest
 				}
 				else
 				{
-					if (c1 instanceof CostruzioneCitta && c2 instanceof CostruzioneStrada) {
-						return 1;
-					}
-					if (c1 instanceof CostruzioneStrada && c2 instanceof CostruzioneCitta) {
-						return -1;
-					}
+					if (c1 instanceof CostruzioneCitta && c2 instanceof CostruzioneStrada) { return 1; }
+					if (c1 instanceof CostruzioneStrada && c2 instanceof CostruzioneCitta) { return -1; }
 
 				}
 				return 0;

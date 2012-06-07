@@ -16,15 +16,19 @@ public enum Bussola {
 
 	public int toInt()
 	{
-		return numero;
+		return this.numero;
 	}
-    /**
-     * Return a composite cardinal point
-     * e.g. if   punto1  is N   and  punto2 is E, it returns NE
-     * @param punto1  first Cardinal point to compose
-     * @param punto2  second Cardinal point to compose
-     * @return the composite cardinal point
-     */
+
+	/**
+	 * Return a composite cardinal point e.g. if punto1 is N and punto2 is E, it
+	 * returns NE
+	 * 
+	 * @param punto1
+	 *            first Cardinal point to compose
+	 * @param punto2
+	 *            second Cardinal point to compose
+	 * @return the composite cardinal point
+	 */
 	public static Bussola componi(PuntoCardinale punto1, PuntoCardinale punto2)
 	{
 

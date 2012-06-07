@@ -12,9 +12,10 @@ public class InizioGiocoHandler extends ModuloViewHandler
 	{
 		super(view);
 	}
+
 	/**
-	 * At the begin of the game the BeginGameEvent is triggered, then this
-	 * set the initial color, place the first card in center of game board
+	 * At the begin of the game the BeginGameEvent is triggered, then this set
+	 * the initial color, place the first card in center of game board
 	 * 
 	 */
 	@Override

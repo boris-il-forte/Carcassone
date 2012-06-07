@@ -14,21 +14,21 @@ public class Punteggi
 	{
 		this.mappaPunteggi = this.inizializza();
 	}
-	
+
 	public Integer get(Color colore)
 	{
-		if ( this.mappaPunteggi.get(colore) !=  null)
+		if (this.mappaPunteggi.get(colore) != null)
 		{
-			return this.mappaPunteggi.get(colore) ;
+			return this.mappaPunteggi.get(colore);
 		}
 		else
 		{
 			throw new ColoreNonTrovatoException(" non è stato possibile reperire il punteggio del colore : "
 					+ colore.toString());
 		}
-			
+
 	}
-	
+
 	public void addPunteggi(Punteggi punteggiParziali)
 	{
 		for (Color colore : ColoriGioco.getListaColori())
@@ -39,7 +39,7 @@ public class Punteggi
 
 	public void addPunteggi(Color colore, int punti)
 	{
-		if (punti < 0 )
+		if (punti < 0)
 		{
 			throw new IllegalArgumentException("non puoi avere un punteggio negativo!!");
 		}
@@ -59,20 +59,20 @@ public class Punteggi
 	{
 		return this.mappaPunteggi.keySet();
 	}
-	
+
 	@Override
 	public String toString()
 	{
 		StringBuilder stringaPunti = new StringBuilder();
-		for(Entry<Color, Integer> entry : this.mappaPunteggi.entrySet())
+		for (Entry<Color, Integer> entry : this.mappaPunteggi.entrySet())
 		{
 			stringaPunti.append(ColoriGioco.getName(entry.getKey()));
-			stringaPunti.append(": " );
+			stringaPunti.append(": ");
 			stringaPunti.append(entry.getValue());
 			stringaPunti.append("   ");
 		}
 		return stringaPunti.toString();
-		
+
 	}
 
 	private Map<Color, Integer> inizializza()
@@ -84,7 +84,7 @@ public class Punteggi
 		}
 		return contatore;
 	}
-	
-	private Map<Color, Integer> mappaPunteggi;
-	
+
+	private Map<Color, Integer>	mappaPunteggi;
+
 }

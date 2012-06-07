@@ -29,7 +29,7 @@ public class TileHandler extends ModuloControllerHandler
 			if (this.controller.costruzioneLibera(puntoCardinale))
 			{
 				Segnalino segnalino = this.model.addSegnalinoTesseraCorrente(puntoCardinale);
-				this.controller.addSegnalinoTessera(segnalino,puntoCardinale);
+				this.controller.addSegnalinoTessera(segnalino, puntoCardinale);
 				this.controller.comunicaPosizionamentoTessera();
 				this.sveglia();
 			}
@@ -45,5 +45,4 @@ public class TileHandler extends ModuloControllerHandler
 
 	}
 
-	
 }

@@ -6,7 +6,7 @@ class Carcassonne
 {
 	public static void main(String[] args)
 	{
-		
+
 		String risposta = "";
 
 		JCarcassonneBegin begin = new JCarcassonneBegin();

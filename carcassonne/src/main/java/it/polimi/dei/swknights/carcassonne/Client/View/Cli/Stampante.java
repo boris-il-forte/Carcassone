@@ -10,12 +10,14 @@ import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
+
 /**
  * This class is used to print on the screen the cards in CLI mode
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
-class Stampante //TODO: fix bug stampa vicini ai bordi... 
+class Stampante // TODO: fix bug stampa vicini ai bordi...
 {
 
 	public Stampante(DatiMappa datiMappa)
@@ -23,7 +25,7 @@ class Stampante //TODO: fix bug stampa vicini ai bordi...
 		this.datiMappa = datiMappa;
 		int width = (datiMappa.getLarghezza()) * LARGHEZZA_TESSERA;
 		int height = (datiMappa.getAltezza()) * ALTEZZA_TESSERA;
-		this.builder = new StringBuilder2D(new Dimension(width+1, height+1));
+		this.builder = new StringBuilder2D(new Dimension(width + 1, height + 1));
 	}
 
 	public Stampante()
@@ -32,10 +34,13 @@ class Stampante //TODO: fix bug stampa vicini ai bordi...
 		this(new DatiMappa(new Coordinate(0, 0), new Coordinate(0, 0)));
 
 	}
+
 	/**
 	 * Add a list of entries that then may be printed
+	 * 
 	 * @see EntryTessera
-	 * @param listaTessere the list of entry to be added
+	 * @param listaTessere
+	 *            the list of entry to be added
 	 */
 	public void addListTessera(List<EntryTessera> listaTessere)
 	{
@@ -44,8 +49,10 @@ class Stampante //TODO: fix bug stampa vicini ai bordi...
 			this.addTessera(entryTessera);
 		}
 	}
+
 	/**
 	 * Add a single entry that then may be printed
+	 * 
 	 * @see EntryTessera
 	 * @param entryTessera
 	 */
@@ -56,8 +63,10 @@ class Stampante //TODO: fix bug stampa vicini ai bordi...
 		Vicinato vicinato = entryTessera.getVicinato();
 		this.addTessera(coordinate, tessera, vicinato);
 	}
+
 	/**
 	 * Add a single entry that then may be printed, but given its 3 components
+	 * 
 	 * @param coordinate
 	 * @param tessera
 	 * @param vicinato
@@ -103,13 +112,13 @@ class Stampante //TODO: fix bug stampa vicini ai bordi...
 		}
 
 	}
-	
+
 	private boolean coordinataStampabile(Coordinate coordinate)
 	{
-		boolean daStampare = coordinate.getX()<=this.datiMappa.getMaxA(PuntoCardinale.est);
-		daStampare = daStampare && coordinate.getX()>=this.datiMappa.getMaxA(PuntoCardinale.ovest);
-		daStampare = daStampare && coordinate.getY()<=this.datiMappa.getMaxA(PuntoCardinale.sud);
-		daStampare = daStampare && coordinate.getY()>=this.datiMappa.getMaxA(PuntoCardinale.nord);
+		boolean daStampare = coordinate.getX() <= this.datiMappa.getMaxA(PuntoCardinale.est);
+		daStampare = daStampare && coordinate.getX() >= this.datiMappa.getMaxA(PuntoCardinale.ovest);
+		daStampare = daStampare && coordinate.getY() <= this.datiMappa.getMaxA(PuntoCardinale.sud);
+		daStampare = daStampare && coordinate.getY() >= this.datiMappa.getMaxA(PuntoCardinale.nord);
 		return daStampare;
 	}
 
@@ -141,7 +150,7 @@ class Stampante //TODO: fix bug stampa vicini ai bordi...
 			char confine = (vicinato.haVicinoA(punto)) ? '.' : '#';
 			Lato lato = mapLati.get(punto);
 			Coordinate puntoInternoLato = lato.getPuntoMedioLato();
-			if (this.vuotoA(puntoInternoLato) || confine=='#')
+			if (this.vuotoA(puntoInternoLato) || confine == '#')
 			{
 				this.builder.fillConCarattere(lato.getStart(), lato.getEnd(), confine);
 			}
@@ -178,7 +187,7 @@ class Stampante //TODO: fix bug stampa vicini ai bordi...
 		String elementi[] = tessera.split(" ");
 		for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
 		{
-			if(!elementi[puntoCardinale.toInt()].equals("N0"))
+			if (!elementi[puntoCardinale.toInt()].equals("N0"))
 			{
 				Lato lato = mapLati.get(puntoCardinale);
 				Coordinate coordinataInserimento = lato.getCoordinateLabel(puntoCardinale,

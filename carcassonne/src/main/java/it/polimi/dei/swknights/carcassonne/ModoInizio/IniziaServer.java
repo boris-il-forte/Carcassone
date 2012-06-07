@@ -9,10 +9,10 @@ public class IniziaServer extends Inizio
 {
 	@Override
 	public void inizia()
-	{	
+	{
 		System.out.println("Server");
 		CarcassonneServer server = new CarcassonneServer();
 		Executor superStarDestroyer = Executors.newFixedThreadPool(1);
-		superStarDestroyer.execute(server);	
+		superStarDestroyer.execute(server);
 	}
 }

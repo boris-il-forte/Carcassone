@@ -43,12 +43,16 @@ public class RuotaImmagini
 	{
 		BufferedImage vecchia = immagine;
 		BufferedImage nuova = new BufferedImage(this.dimensioneImmagini, this.dimensioneImmagini,
-			vecchia.getType());
+				vecchia.getType());
 		for (int i = 0; i < this.dimensioneImmagini; i++)
-		for (int j = 0; j < this.dimensioneImmagini; j++)
-		nuova.setRGB(this.dimensioneImmagini - 1 - j, i, vecchia.getRGB(i, j));
+		{
+			for (int j = 0; j < this.dimensioneImmagini; j++)
+			{
+				nuova.setRGB(this.dimensioneImmagini - 1 - j, i, vecchia.getRGB(i, j));
+			}
+		}
 		return nuova;
-    }
+	}
 
 	private Map<String, BufferedImage>	mappaImmagini;
 

@@ -15,7 +15,7 @@ public class TileHandler extends ProxyControllerHandler
 	{
 		StringBuilder segnalinoString = new StringBuilder();
 		segnalinoString.append("tile: ");
-		segnalinoString.append( event.getPuntoDestinazione().toString());
+		segnalinoString.append(event.getPuntoDestinazione().toString());
 		this.proxy.setRequestString(segnalinoString.toString());
 	}
 

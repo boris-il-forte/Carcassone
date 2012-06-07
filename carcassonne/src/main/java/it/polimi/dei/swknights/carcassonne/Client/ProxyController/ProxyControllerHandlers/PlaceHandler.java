@@ -9,21 +9,20 @@ public class PlaceHandler extends ProxyControllerHandler
 	public PlaceHandler(ProxyController proxy)
 	{
 		super(proxy);
-		
+
 	}
 
 	@Override
 	public void visit(PlaceEvent event)
 	{
 		StringBuilder placeString = new StringBuilder();
-		Coordinate coord =  event.getCoordinateDestinazione();
+		Coordinate coord = event.getCoordinateDestinazione();
 		placeString.append("place: ");
 		placeString.append(coord.getX());
 		placeString.append(", ");
 		placeString.append(coord.getY());
-		
-		
-		this.proxy.setRequestString( placeString.toString() );
+
+		this.proxy.setRequestString(placeString.toString());
 	}
 
 }

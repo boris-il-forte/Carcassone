@@ -36,14 +36,13 @@ public class AreaDiGiocoTest
 
 	}
 
-	
 	@Test
 	public void collisionDetectAddTessera() throws Exception
 	{
 		AreaDiGioco area = new AreaDiGioco();
-		
+
 		TesseraNormale t1 = new TesseraNormale(this.creaLatiCittaGrande(), this.creaLinkCittaGrande());
-		
+
 		try
 		{
 			area.addTessera(new Coordinate(0, 0), t1);
@@ -52,7 +51,7 @@ public class AreaDiGiocoTest
 		{
 			e.printStackTrace();
 		}
-		
+
 		try
 		{
 			area.addTessera(new Coordinate(0, 0), t1);
@@ -61,16 +60,16 @@ public class AreaDiGiocoTest
 		catch (MossaNonValidaException e)
 		{
 			assertTrue(true);
-		}		
-		
+		}
+
 	}
-	
+
 	@Test
 	public void getCoordinateFromCard() throws Exception
 	{
 		AreaDiGioco area = new AreaDiGioco();
 		TesseraNormale t1 = new TesseraNormale(this.creaLatiCittaGrande(), this.creaLinkCittaGrande());
-		
+
 		try
 		{
 			area.addTessera(new Coordinate(2, 3), t1);
@@ -79,66 +78,65 @@ public class AreaDiGiocoTest
 		{
 			e.printStackTrace();
 		}
-		
+
 		Coordinate cTest = area.getCoordinateTessera(t1);
-		
+
 		assertEquals(cTest, new Coordinate(2, 3));
-	
+
 	}
-	
+
 	@Test
 	public void getTesseraTrovataONo() throws Exception
 	{
 		AreaDiGioco area = new AreaDiGioco();
 		TesseraNormale t1 = new TesseraNormale(this.creaLatiCittaGrande(), this.creaLinkCittaGrande());
-		
-		int contaSuccessi=0;
-		
+
+		int contaSuccessi = 0;
+
 		area.addTessera(new Coordinate(3, -5), t1);
 		area.addTessera(new Coordinate(-3, -15), t1);
 		area.addTessera(new Coordinate(0, 0), t1);
-		
+
 		try
 		{
 			area.getTessera(new Coordinate(1, 1));
 		}
-		catch(TesseraNonTrovataException e)
+		catch (TesseraNonTrovataException e)
 		{
 			System.out.println("non trovata");
-			contaSuccessi ++;
+			contaSuccessi++;
 		}
-		
+
 		try
 		{
 			area.getTessera(new Coordinate(3, -5));
-			contaSuccessi ++;
+			contaSuccessi++;
 			area.getTessera(new Coordinate(-3, -15));
-			contaSuccessi ++;
-			area.getTessera(new Coordinate(0,0));
+			contaSuccessi++;
+			area.getTessera(new Coordinate(0, 0));
 			contaSuccessi++;
 		}
-		catch(TesseraNonTrovataException e)
+		catch (TesseraNonTrovataException e)
 		{
-			
+
 		}
-		
-		if ( contaSuccessi == 4)
+
+		if (contaSuccessi == 4)
+		{
 			assertTrue(true);
+		}
 		else
+		{
 			fail("ma no!!");
-		
-		
+		}
+
 	}
-	
-	
-	
-	
 
 	private boolean stesseListePuntiCardinali(List<Costruzione> CostruzioniExp,
 			List<Costruzione> CostruzioniGot)
 	{
-		ordinaCostruzioni(CostruzioniGot);
-		ordinaCostruzioni(CostruzioniExp);
+		this.ordinaCostruzioni(CostruzioniGot);
+		this.ordinaCostruzioni(CostruzioniExp);
 
 		if (CostruzioniExp.size() == CostruzioniGot.size())
 		{
@@ -207,7 +205,7 @@ public class AreaDiGiocoTest
 		boolean[] bl = { true, true, true, true, true, true };
 		Link l = new Link(bl);
 		return l;
-	
+
 	}
 
 }

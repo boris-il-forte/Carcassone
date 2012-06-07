@@ -15,17 +15,17 @@ public class IniziaGuiOnLine extends Inizio
 	{
 		try
 		{
-		this.printer.println("gui on line");
-		View view = new Gui(); //1)
-		Socket socket = CarcassonneSocket.dammiSocket();	//2)
-		ProxyController controller = new ProxyController(socket);  //2
-		view.addListener(controller);  //2)		
-		this.superStarDestroyer.execute(view);  //4)
-		this.superStarDestroyer.execute(controller);
+			this.printer.println("gui on line");
+			View view = new Gui(); // 1)
+			Socket socket = CarcassonneSocket.dammiSocket(); // 2)
+			ProxyController controller = new ProxyController(socket); // 2
+			view.addListener(controller); // 2)
+			this.superStarDestroyer.execute(view); // 4)
+			this.superStarDestroyer.execute(controller);
 		}
-		catch(IOException e)
+		catch (IOException e)
 		{
-			
+
 		}
 	}
 }

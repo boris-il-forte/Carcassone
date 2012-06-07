@@ -1,9 +1,11 @@
 package it.polimi.dei.swknights.carcassonne.Exceptions;
+
 /**
- * No more colors are available,
- * Typically thrown when more then 5 player try to play
+ * No more colors are available, Typically thrown when more then 5 player try to
+ * play
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
 public class FinitiColoriDisponibiliException extends Exception
 {

@@ -55,12 +55,13 @@ public class Coordinate
 			default:
 				break;
 		}
-		return new Coordinate(x + incrementoX, y + incrementoY);
+		return new Coordinate(this.x + incrementoX, this.y + incrementoY);
 	}
+
 	/**
-	 * Returns the coordinate near this in the given direction (coordinate)
-	 * e.g. if this = 1,1   this.getCoordinateAt ( 0,1)  returns
-	 * 1, 2
+	 * Returns the coordinate near this in the given direction (coordinate) e.g.
+	 * if this = 1,1 this.getCoordinateAt ( 0,1) returns 1, 2
+	 * 
 	 * @param coordinateRelativa
 	 * @return
 	 */
@@ -68,11 +69,13 @@ public class Coordinate
 	{
 		return new Coordinate(this.x + coordinateRelativa.x, this.y + coordinateRelativa.y);
 	}
-    /**
-     * return this coordinate, to be intended as a versor; used to navigate
-     * from a position to another using that vector
-     * @return
-     */
+
+	/**
+	 * return this coordinate, to be intended as a versor; used to navigate from
+	 * a position to another using that vector
+	 * 
+	 * @return
+	 */
 	public Coordinate getVersore()
 	{
 		int x = (this.x != 0) ? (this.x / Math.abs(this.x)) : 0;
@@ -85,8 +88,8 @@ public class Coordinate
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((x == null) ? 0 : x.hashCode());
-		result = prime * result + ((y == null) ? 0 : y.hashCode());
+		result = prime * result + ((this.x == null) ? 0 : this.x.hashCode());
+		result = prime * result + ((this.y == null) ? 0 : this.y.hashCode());
 		return result;
 	}
 

@@ -11,9 +11,9 @@ public class MossaNonValidaHandler extends ProxyViewHandler
 		super(proxy);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
-	public void visit (MossaNonValidaEvent event) 
+	public void visit(MossaNonValidaEvent event)
 	{
 		this.proxy.setCommandString("move not valid");
 	}

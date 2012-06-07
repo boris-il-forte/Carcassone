@@ -30,6 +30,4 @@ public class Debug
 
 	private static PrintWriter	printer	= new PrintWriter(System.out);
 
-	private static Icon			icon;
-
 }

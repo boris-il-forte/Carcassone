@@ -10,9 +10,9 @@ public class IconFinder
 	public IconFinder(String stringToFind)
 	{
 		this.string = new StringBuilder();
-		this.trovaStringa(stringToFind);		
+		this.trovaStringa(stringToFind);
 	}
-	
+
 	public String getSegnalino()
 	{
 		return this.segnalino;
@@ -23,23 +23,23 @@ public class IconFinder
 	{
 		return this.string.toString();
 	}
-	
+
 	private void trovaStringa(String stringToFind)
 	{
 		try
 		{
 			ExtraParser parser = new ExtraParser(stringToFind);
-			for(PuntoCardinale puntoCardinale : PuntoCardinale.values())
+			for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
 			{
 				String string = parser.getData(puntoCardinale);
 				this.string.append(string);
 				String extraData = parser.getExtraData(puntoCardinale);
-				if(!extraData.equals(""))
+				if (!extraData.equals(""))
 				{
 					this.segnalino = extraData;
 				}
 			}
-			for(Bussola agoBussola : Bussola.values())
+			for (Bussola agoBussola : Bussola.values())
 			{
 				String string = parser.getData(agoBussola);
 				this.string.append(string);
@@ -49,10 +49,10 @@ public class IconFinder
 		{
 			this.string = new StringBuilder("");
 		}
-		
+
 	}
 
-	private StringBuilder string;
-	
-	private String segnalino = "";
+	private StringBuilder	string;
+
+	private String			segnalino	= "";
 }

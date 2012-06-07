@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
 public class JCarcassonneCasella extends JLayeredPane
@@ -22,7 +23,7 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.add(this.cella, DEFAULT_LAYER);
 		this.add(this.segnalino, PALETTE_LAYER);
 		this.cella.setBounds(this.bounds);
-		this.cella.setHorizontalTextPosition(JLabel.CENTER);
+		this.cella.setHorizontalTextPosition(SwingConstants.CENTER);
 		this.stato = StatoCasella.nonUsata;
 	}
 
@@ -34,7 +35,7 @@ public class JCarcassonneCasella extends JLayeredPane
 	public void setTessera(Icon icon, boolean aggiornaStato)
 	{
 		this.cella.setIcon(icon);
-		if(aggiornaStato)
+		if (aggiornaStato)
 		{
 			this.stato = StatoCasella.conTessera;
 		}
@@ -61,14 +62,14 @@ public class JCarcassonneCasella extends JLayeredPane
 
 	public void setSegnalino(Icon icon, Coordinate coordinateSegnalino)
 	{
-		final int latoSegnalino = 30; //TODO: passare da parametro magari...
+		final int latoSegnalino = 30; // TODO: passare da parametro magari...
 		this.segnalino.setIcon(icon);
 		this.stato = StatoCasella.conTessera;
-		int x = coordinateSegnalino.getX() - latoSegnalino/2;
-		int y = coordinateSegnalino.getY() - latoSegnalino/2;
-		this.segnalino.setBounds(x,y, latoSegnalino, latoSegnalino);
+		int x = coordinateSegnalino.getX() - latoSegnalino / 2;
+		int y = coordinateSegnalino.getY() - latoSegnalino / 2;
+		this.segnalino.setBounds(x, y, latoSegnalino, latoSegnalino);
 	}
-	
+
 	public StatoCasella getStato()
 	{
 		return this.stato;

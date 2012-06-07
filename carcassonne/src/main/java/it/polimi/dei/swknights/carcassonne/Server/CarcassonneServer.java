@@ -60,11 +60,11 @@ public class CarcassonneServer implements Runnable
 		try
 		{
 			this.giocatoriAttivi++;
-			if (giocatoriAttivi == 1)
+			if (this.giocatoriAttivi == 1)
 			{
 				this.creaNuovaPartita();
 			}
-			else if (giocatoriAttivi == 2)
+			else if (this.giocatoriAttivi == 2)
 			{
 				Debug.print("due giocatori connessi: parte il timer!");
 				Timer timerConn = new Timer();
@@ -125,7 +125,7 @@ public class CarcassonneServer implements Runnable
 				Debug.print("ciclo timer");
 				Thread.sleep(TIMEOUT);
 				Debug.print("passati 20 sec");
-				if (giocatoriAttivi < GIOCATORI_PARTITA)
+				if (CarcassonneServer.this.giocatoriAttivi < CarcassonneServer.this.GIOCATORI_PARTITA)
 				{
 					synchronized (this.lock)
 					{
@@ -135,7 +135,7 @@ public class CarcassonneServer implements Runnable
 					}
 				}
 
-			} while (giocatoriAttivi == 1);
+			} while (CarcassonneServer.this.giocatoriAttivi == 1);
 		}
 
 		private Object				lock;
@@ -149,7 +149,7 @@ public class CarcassonneServer implements Runnable
 
 		public void run() // posso cominciare?
 		{
-		
+
 			while (true)
 			{
 				if (CarcassonneServer.this.giocatoriAttivi == CarcassonneServer.this.GIOCATORI_PARTITA
@@ -158,7 +158,7 @@ public class CarcassonneServer implements Runnable
 					Debug.print("DONNNNNG, cominciamo ");
 					CarcassonneServer.this.partite.peekLast().cominciaPartita();
 					CarcassonneServer.this.timerScaduto = false;
-					CarcassonneServer.this.giocatoriAttivi=0;
+					CarcassonneServer.this.giocatoriAttivi = 0;
 				}
 				try
 				{

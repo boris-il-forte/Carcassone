@@ -23,7 +23,7 @@ public class TesseraNormale extends Tessera
 	{
 		return new TesseraNormale(this.lati.clone(), this.link.clone());
 	}
-	
+
 	public Elemento getElementoA(PuntoCardinale punto)
 	{
 		return this.lati.getTipoElementoInDirezione(punto);

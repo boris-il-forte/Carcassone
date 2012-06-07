@@ -10,11 +10,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
 /**
- * This class is a simple model for the View,
- * it contains a representation of the board game.
+ * This class is a simple model for the View, it contains a representation of
+ * the board game.
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
 public class ScenarioDiGioco
 {
@@ -22,11 +24,15 @@ public class ScenarioDiGioco
 	{
 		this.mappaRighe = new TreeMap<Integer, ScenarioDiGioco.Riga>();
 	}
-   /**
-    * Set the Adapter Card in the given position on the board
-    * @param coordinate  where place the card
-    * @param tessera to place
-    */
+
+	/**
+	 * Set the Adapter Card in the given position on the board
+	 * 
+	 * @param coordinate
+	 *            where place the card
+	 * @param tessera
+	 *            to place
+	 */
 	public void setTessera(Coordinate coordinate, AdapterTessera tessera)
 	{
 		Riga riga = this.getRigaInserimento(coordinate.getY());
@@ -35,10 +41,12 @@ public class ScenarioDiGioco
 
 	/**
 	 * Gets the card in the given position of the board
-	 * @param coordinate  coordinates of the card to get
+	 * 
+	 * @param coordinate
+	 *            coordinates of the card to get
 	 * @return Adapter card or null if no card is located in that position
 	 */
-	
+
 	public AdapterTessera getTessera(Coordinate coordinate)
 	{
 		int x = coordinate.getX();
@@ -53,8 +61,10 @@ public class ScenarioDiGioco
 			return null; // TODO o exception??
 		}
 	}
+
 	/**
 	 * Get the coordinate in the top-left corner
+	 * 
 	 * @return
 	 */
 	public Coordinate getMax()
@@ -63,8 +73,10 @@ public class ScenarioDiGioco
 		int y = this.mappaRighe.lastKey();
 		return new Coordinate(x, y);
 	}
+
 	/**
 	 * Get the coordinate in tthe top-left corner
+	 * 
 	 * @return
 	 */
 	public Coordinate getMin()
@@ -73,13 +85,15 @@ public class ScenarioDiGioco
 		int y = this.mappaRighe.firstKey();
 		return new Coordinate(x, y);
 	}
+
 	/**
 	 * 
-	 * @param min  the top-left corner
-	 * @param max the bottom-right corner
-	 * @return  a List of all the requested entries @see {@link EntryTessera}
-	 * from min to max
-	 * Used to Print all the cards of the board game
+	 * @param min
+	 *            the top-left corner
+	 * @param max
+	 *            the bottom-right corner
+	 * @return a List of all the requested entries @see {@link EntryTessera}
+	 *         from min to max Used to Print all the cards of the board game
 	 */
 	public List<EntryTessera> getEntryList(Coordinate min, Coordinate max)
 	{
@@ -162,8 +176,6 @@ public class ScenarioDiGioco
 		return riga;
 	}
 
-
-
 	private SortedMap<Integer, Riga>	mappaRighe;
 
 	private static class Riga
@@ -181,7 +193,7 @@ public class ScenarioDiGioco
 		public void setTessera(AdapterTessera tessera, Integer coordinataX)
 		{
 			this.caselleRiga.put(coordinataX, tessera);
-		
+
 		}
 
 		public Integer getMax()
@@ -202,7 +214,5 @@ public class ScenarioDiGioco
 		private SortedMap<Integer, AdapterTessera>	caselleRiga;
 
 	}
-
-
 
 }

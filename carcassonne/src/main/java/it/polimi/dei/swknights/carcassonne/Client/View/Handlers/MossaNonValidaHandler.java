@@ -9,6 +9,7 @@ public class MossaNonValidaHandler extends ModuloViewHandler
 	{
 		super(view);
 	}
+
 	/**
 	 * Notify the View about a non-valid command was given
 	 */

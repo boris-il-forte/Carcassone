@@ -12,16 +12,16 @@ public class FinePartitaHandler extends ProxyViewHandler
 		super(proxy);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	public void visit(FinePartitaEvent event)
 	{
 		StringBuilder stringCommand = new StringBuilder();
 		stringCommand.append("end: ");
-		Punteggi punteggi =  event.getPunteggi();
+		Punteggi punteggi = event.getPunteggi();
 		String stringaPunteggi = this.getStringaPunteggi(punteggi);
-		stringCommand.append(stringaPunteggi); 
-				
+		stringCommand.append(stringaPunteggi);
+
 		this.proxy.setCommandString(stringCommand.toString());
 	}
 

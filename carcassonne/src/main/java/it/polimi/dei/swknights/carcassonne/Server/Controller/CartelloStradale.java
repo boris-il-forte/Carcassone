@@ -7,10 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
 /**
- * The aim of this class is give to its user information about the buildings on cards
+ * The aim of this class is give to its user information about the buildings on
+ * cards
+ * 
  * @author dave
- *
+ * 
  */
 public class CartelloStradale
 {
@@ -23,18 +26,18 @@ public class CartelloStradale
 
 	public void aggiorna(Costruzione costruzioneAggregata, Costruzione costruzione)
 	{
-		
+
 		List<PuntoCardinale> listaPunti = this.mappaCostruzioni.remove(costruzione);
-		this.mappaCostruzioni.put(costruzioneAggregata, listaPunti); 	
+		this.mappaCostruzioni.put(costruzioneAggregata, listaPunti);
 	}
 
 	public Map<PuntoCardinale, Costruzione> getIndicazioni()
 	{
 		Map<PuntoCardinale, Costruzione> indicazioni = new HashMap<PuntoCardinale, Costruzione>();
-		for(Entry<Costruzione, List<PuntoCardinale>> entry:this.mappaCostruzioni.entrySet())
+		for (Entry<Costruzione, List<PuntoCardinale>> entry : this.mappaCostruzioni.entrySet())
 		{
-			
-			for(PuntoCardinale punto : entry.getValue())
+
+			for (PuntoCardinale punto : entry.getValue())
 			{
 				indicazioni.put(punto, entry.getKey());
 			}

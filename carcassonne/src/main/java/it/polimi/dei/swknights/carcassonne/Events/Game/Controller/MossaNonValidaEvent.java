@@ -15,7 +15,7 @@ public class MossaNonValidaEvent extends ControllerEvent
 	public MossaNonValidaEvent(Object source)
 	{
 		super(source);
-		
+
 	}
 
 	private static final long	serialVersionUID	= 3592976018587414189L;
@@ -24,7 +24,7 @@ public class MossaNonValidaEvent extends ControllerEvent
 	public void accept(ModuloViewHandler handler)
 	{
 		handler.visit(this);
-		
+
 	}
 
 }

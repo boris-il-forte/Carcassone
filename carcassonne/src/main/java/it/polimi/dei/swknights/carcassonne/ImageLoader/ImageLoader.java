@@ -50,12 +50,12 @@ public class ImageLoader
 
 	public BufferedImage getOriginalTileImage(String stringa)
 	{
-		return getImage(this.mappaImmaginiTiles, stringa);
+		return this.getImage(this.mappaImmaginiTiles, stringa);
 	}
 
 	public BufferedImage getOriginalSegnalinoImage(String stringa)
 	{
-		return getImage(this.mappaImmaginiSegnalini, stringa);
+		return this.getImage(this.mappaImmaginiSegnalini, stringa);
 	}
 
 	protected Set<Entry<String, BufferedImage>> getOriginalSet()
@@ -139,7 +139,7 @@ public class ImageLoader
 		this.errorImage = this.scalaImmagine(ImageIO.read(this.errorURL), DIM_ORIGINALE_TILES);
 	}
 
-	private BufferedImage						errorImage;
+	private BufferedImage				errorImage;
 
 	private URL							errorURL;
 

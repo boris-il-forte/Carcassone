@@ -11,7 +11,6 @@ import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControlle
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.View;
 
-
 public class IniziaCliOnLine extends Inizio
 {
 
@@ -20,30 +19,29 @@ public class IniziaCliOnLine extends Inizio
 	{
 		try
 		{
-		this.printer.println("cli on line");
-		String ip = this.chiediIndirizzoIP();
-		View view = new Cli(); //1)
-		Socket socket = CarcassonneSocket.dammiSocket(ip);	//2)
-		ProxyController controller;
-		
+			this.printer.println("cli on line");
+			String ip = this.chiediIndirizzoIP();
+			View view = new Cli(); // 1)
+			Socket socket = CarcassonneSocket.dammiSocket(ip); // 2)
+			ProxyController controller;
+
 			controller = new ProxyController(socket);
 
-		  //2
-		view.addListener(controller);  //2)		
-		this.superStarDestroyer.execute(view);  //4)
-		this.superStarDestroyer.execute(controller);
+			// 2
+			view.addListener(controller); // 2)
+			this.superStarDestroyer.execute(view); // 4)
+			this.superStarDestroyer.execute(controller);
 		}
-		catch(IOException e)
+		catch (IOException e)
 		{
-			
+
 		}
 	}
-	
-	
+
 	private String chiediIndirizzoIP()
 	{
 		IPAddressValidator ipValidator = new IPAddressValidator();
-		String ip=null;
+		String ip = null;
 		do
 		{
 			Scanner scanner = new Scanner(System.in);
@@ -55,11 +53,10 @@ public class IniziaCliOnLine extends Inizio
 			}
 			catch (InputMismatchException e)
 			{
-				printer.println("Input non valido");
+				this.printer.println("Input non valido");
 			}
-		} while (ipValidator.validate(ip)==false);
+		} while (ipValidator.validate(ip) == false);
 		return ip;
 	}
 
-	
 }

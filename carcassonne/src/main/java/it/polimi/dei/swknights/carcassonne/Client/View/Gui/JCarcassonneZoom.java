@@ -1,4 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
+
 import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,7 +14,7 @@ public class JCarcassonneZoom extends JPanel implements ChangeListener
 		this.view = gui;
 		final int larghezza = 100;
 		final int altezza = 45;
-		Dimension dimensione = new Dimension(larghezza,altezza);
+		Dimension dimensione = new Dimension(larghezza, altezza);
 		this.setPreferredSize(dimensione);
 		JLabel label = new JLabel("Zoom");
 		this.add(label);
@@ -21,24 +22,23 @@ public class JCarcassonneZoom extends JPanel implements ChangeListener
 		this.slider.setPreferredSize(dimensione);
 		this.add(this.slider);
 		this.slider.addChangeListener(this);
-		
+
 	}
 
 	public void stateChanged(ChangeEvent e)
 	{
 		Object source = e.getSource();
-		if(source == this.slider)
+		if (source == this.slider)
 		{
 			int zoom = this.slider.getValue();
-			this.view.zoomModificato(zoom/20);
+			this.view.zoomModificato(zoom / 20);
 		}
-		
-		
+
 	}
 
-	private JSlider	slider;
-	
-	private Gui	view;
+	private JSlider				slider;
+
+	private Gui					view;
 
 	private static final long	serialVersionUID	= -3086842872745087592L;
 }

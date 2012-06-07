@@ -46,10 +46,10 @@ public class IniziaCliOffline extends Inizio
 			}
 			catch (InputMismatchException e)
 			{
-				printer.println("Input non valido");
+				this.printer.println("Input non valido");
 			}
 		} while (numeroGiocatori < 2 || numeroGiocatori >= 5);
-		printer.println(numeroGiocatori);
+		this.printer.println(numeroGiocatori);
 		return numeroGiocatori;
 	}
 

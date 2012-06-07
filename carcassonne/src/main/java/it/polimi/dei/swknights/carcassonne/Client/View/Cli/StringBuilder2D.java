@@ -8,18 +8,15 @@ import java.util.List;
 
 /**
  * A graphical tool used in CLI mode to simulate a 2D space, it basically
- * provide a 2D buffer.
- * in where write. It is easy with it print something like that
+ * provide a 2D buffer. in where write. It is easy with it print something like
+ * that
  * 
- *   ****************
- *   *		C1		*
- *   *				*
- *   ****************
- *   
- *   or hopefully even better.
- *   
+ * **************** * C1 * * * ****************
+ * 
+ * or hopefully even better.
+ * 
  * @author edoardopasi & dave
- *
+ * 
  */
 
 public class StringBuilder2D
@@ -29,27 +26,35 @@ public class StringBuilder2D
 		this.dimensione = dimensione;
 		this.creaLinee();
 	}
+
 	/**
 	 * Writes a character in the given coordinates of the buffer.
+	 * 
 	 * @param coordinate
-	 * @param c  the character to write
+	 * @param c
+	 *            the character to write
 	 */
 	public void scriviCarattere(Coordinate coordinate, char c)
 	{
 		StringBuilder linea = this.linee.get(coordinate.getY());
 		linea.setCharAt(coordinate.getX(), c);
 	}
+
 	/**
-	 * Used to write a row or a column of symbols in the buffer.
-	 * eg    ################
-	 * @param start  the coordinate to start from
-	 * @param end	the destination coordinate
-	 * @param c   the character to fill with
+	 * Used to write a row or a column of symbols in the buffer. eg
+	 * ################
+	 * 
+	 * @param start
+	 *            the coordinate to start from
+	 * @param end
+	 *            the destination coordinate
+	 * @param c
+	 *            the character to fill with
 	 * @throws IllegalArgumentException
 	 */
 	public void fillConCarattere(Coordinate start, Coordinate end, char c) throws IllegalArgumentException
 	{
-		if (!coordinateAccettabili(start, end)) { throw new IllegalArgumentException(
+		if (!this.coordinateAccettabili(start, end)) { throw new IllegalArgumentException(
 				"Coordinate non accettabili"); }
 		int deltaX = end.getX() - start.getX();
 		int deltaY = end.getY() - start.getY();
@@ -61,8 +66,10 @@ public class StringBuilder2D
 			this.scriviCarattere(coordinate, c);
 		}
 	}
+
 	/**
 	 * Write a string in the given position
+	 * 
 	 * @param coordinataInserimento
 	 * @param string
 	 */
@@ -72,8 +79,10 @@ public class StringBuilder2D
 		int inizio = coordinataInserimento.getX();
 		linea.replace(inizio, inizio + string.length(), string);
 	}
+
 	/**
-	 *  Write a string in the given position, in the center of the drawn card
+	 * Write a string in the given position, in the center of the drawn card
+	 * 
 	 * @param coordinate
 	 * @param coordinateString
 	 */
@@ -83,8 +92,10 @@ public class StringBuilder2D
 		int inizio = coordinate.getX() - coordinateString.length() / 2;
 		linea.replace(inizio, inizio + coordinateString.length(), coordinateString);
 	}
+
 	/**
 	 * returns a char in the given position
+	 * 
 	 * @param coordinate
 	 * @return
 	 */
@@ -108,34 +119,31 @@ public class StringBuilder2D
 		builder.append(this.buildBound());
 		return builder.toString();
 	}
-	
+
 	private String buildBound()
 	{
-		if(this.isTesseraSingola())
-		{
-			return "";
-		}
+		if (this.isTesseraSingola()) { return ""; }
 		StringBuilder boundBuilder = new StringBuilder();
 		boundBuilder.append(this.buildHeader());
 		int lenght = this.linee.get(0).length();
-		for(int i=0; i< lenght; i++)
+		for (int i = 0; i < lenght; i++)
 		{
 			boundBuilder.append("-");
 		}
 		boundBuilder.append(this.buildTrailer());
 		return boundBuilder.toString();
 	}
-	
+
 	private boolean isTesseraSingola()
 	{
 		final int singleHeight = 8;
 		final int singleWidht = 15;
-		return dimensione.getHeight() == singleHeight && dimensione.getWidth() == singleWidht;
+		return this.dimensione.getHeight() == singleHeight && this.dimensione.getWidth() == singleWidht;
 	}
-	
+
 	private String buildHeader()
 	{
-		if(isTesseraSingola())
+		if (this.isTesseraSingola())
 		{
 			return "";
 		}
@@ -143,12 +151,12 @@ public class StringBuilder2D
 		{
 			return "|";
 		}
-		
+
 	}
-	
+
 	private String buildTrailer()
 	{
-		return this.buildHeader()+NEW_LINE;
+		return this.buildHeader() + NEW_LINE;
 	}
 
 	private boolean coordinateAccettabili(Coordinate coordinata1, Coordinate coordinata2)
@@ -165,7 +173,7 @@ public class StringBuilder2D
 		this.linee = new ArrayList<StringBuilder>();
 		for (int i = 0; i < this.dimensione.height; i++)
 		{
-			linee.add(new StringBuilder());
+			this.linee.add(new StringBuilder());
 		}
 		this.azzeraLinee();
 

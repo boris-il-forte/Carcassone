@@ -111,8 +111,8 @@ public class Parser
 
 		try
 		{
-			controlloNumeroTokens(stringToParse, pezzi.length);
-			parsingPerToken(pezzi);
+			this.controlloNumeroTokens(stringToParse, pezzi.length);
+			this.parsingPerToken(pezzi);
 		}
 		catch (IllegalArgumentException e)
 		{
@@ -123,9 +123,8 @@ public class Parser
 
 	private void controlloNumeroTokens(String stringToParse, int length) throws InvalidStringToParseException
 	{
-		if (!(length == Token.DATA_TOKENS + 1) && !(length == Token.DATA_TOKENS)) {
-			throw new InvalidStringToParseException(stringToParse);
-		}
+		if (!(length == Token.DATA_TOKENS + 1) && !(length == Token.DATA_TOKENS)) { throw new InvalidStringToParseException(
+				stringToParse); }
 	}
 
 	private void parsingPerToken(String pezzi[]) throws InvalidStringToParseException,
@@ -137,14 +136,14 @@ public class Parser
 			String dati[] = pezzo.split("=");
 			try
 			{
-				Token token = parseToken(dati[TOKEN]);
-				parsedData[token.ordinal()] = dati[DATA];
+				Token token = this.parseToken(dati[TOKEN]);
+				this.parsedData[token.ordinal()] = dati[DATA];
 			}
 			catch (IllegalArgumentException e)
 			{
 				String dataExtra[] = dati[TOKEN].split("=");
-				typeTokenParsed(dataExtra[TOKEN]);
-				typeData = pezzo;
+				this.typeTokenParsed(dataExtra[TOKEN]);
+				this.typeData = pezzo;
 			}
 		}
 	}
@@ -166,9 +165,7 @@ public class Parser
 			IllegalArgumentException
 	{
 		TypeToken.valueOf(stringToken);
-		if (!this.typeData .equals("")) {
-			throw new InvalidStringToParseException("TypeToken già parsato");
-		}
+		if (!this.typeData.equals("")) { throw new InvalidStringToParseException("TypeToken già parsato"); }
 	}
 
 	protected String			parsedData[];

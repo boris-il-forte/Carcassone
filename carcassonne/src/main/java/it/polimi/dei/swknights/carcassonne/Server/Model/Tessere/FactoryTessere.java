@@ -17,7 +17,7 @@ public abstract class FactoryTessere
 	{
 		this.mazzo = new ArrayList<Tessera>();
 	}
-	
+
 	public Tessera getTessera()
 	{
 		int lastIndex = this.mazzo.size() - 1;
@@ -51,15 +51,15 @@ public abstract class FactoryTessere
 
 	protected void setTesseraMagick(Tessera tesseraMagic)
 	{
-		this.tesseraMagic= tesseraMagic;
+		this.tesseraMagic = tesseraMagic;
 	}
-	
+
 	protected void aggiungiAlMazzo(Tessera tessera)
 	{
 		this.mazzo.add(tessera);
 	}
-	
-	private Tessera		tesseraMagic;
+
+	private Tessera			tesseraMagic;
 
 	private List<Tessera>	mazzo;
 

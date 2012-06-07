@@ -29,14 +29,14 @@ public class JCarcassoneFrame extends JFrame
 	public void aggiornaPunteggi(Punteggi punteggio)
 	{
 		this.contaPunti.aggiornaPunteggi(punteggio);
-		
+
 	}
 
 	public void aggiornaTesseraCorrente(Icon tessera)
 	{
 		this.barraLaterale.aggiornaTesseraCorrente(tessera);
 	}
-	
+
 	public void aggiornaGiocatoreCorrente(Color colore, int numeroSegnalini)
 	{
 		this.barraLaterale.aggiornaGiocatoreCorrente(colore, numeroSegnalini);
@@ -50,24 +50,24 @@ public class JCarcassoneFrame extends JFrame
 	public void aggiornaSegnalinoTessera(int numeroCasella, Icon segnalino, Coordinate coordinateSegnalino)
 	{
 		this.tavolo.setSegnalino(numeroCasella, segnalino, coordinateSegnalino);
-		
+
 	}
 
 	public void overlayTessera(int numeroCasella, Icon icon)
 	{
 		this.tavolo.setIconTessera(numeroCasella, icon, false);
-		
+
 	}
 
 	public void aggiornaMappa(int numeroVuota, Coordinate coordinateVuota)
 	{
 		this.tavolo.setTesseraVuota(numeroVuota, coordinateVuota);
-		
+
 	}
 
 	public void svuotaMappa()
 	{
-		this.tavolo.svuotaMappa();		
+		this.tavolo.svuotaMappa();
 	}
 
 	private void inizializzaFinestra(int righe, int colonne)
@@ -115,7 +115,7 @@ public class JCarcassoneFrame extends JFrame
 	{
 		this.contaPunti = new JCarcassonnePunteggi(this.numeroGiocatori);
 		this.add(this.contaPunti, BorderLayout.SOUTH);
-	
+
 	}
 
 	private JCarcassonnePunteggi	contaPunti;

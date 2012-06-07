@@ -7,7 +7,7 @@ public abstract class AbstractController implements Controller
 	public void riceviInput(ViewEvent event)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

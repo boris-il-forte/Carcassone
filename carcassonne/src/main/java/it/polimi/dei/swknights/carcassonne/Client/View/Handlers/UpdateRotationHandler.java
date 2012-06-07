@@ -10,6 +10,7 @@ public class UpdateRotationHandler extends ModuloViewHandler
 	{
 		super(view);
 	}
+
 	/**
 	 * Notify the view that a card has just been rotated
 	 */
@@ -21,5 +22,5 @@ public class UpdateRotationHandler extends ModuloViewHandler
 		this.view.visualizzaTesseraCorrente(tesseraNuova);
 		this.sveglia();
 	}
-	
+
 }

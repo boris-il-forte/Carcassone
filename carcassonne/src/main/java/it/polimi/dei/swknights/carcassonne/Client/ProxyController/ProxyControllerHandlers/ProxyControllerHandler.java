@@ -3,7 +3,6 @@ package it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControll
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ControllerHandler;
 
-
 public class ProxyControllerHandler extends ControllerHandler
 {
 
@@ -11,6 +10,6 @@ public class ProxyControllerHandler extends ControllerHandler
 	{
 		this.proxy = proxy;
 	}
-	
-	ProxyController proxy;
+
+	ProxyController	proxy;
 }

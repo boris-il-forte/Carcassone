@@ -172,7 +172,7 @@ public abstract class ModuloView extends AbstractModuloView
 
 	protected AdapterTessera getTesseraCorrente()
 	{
-		return tesseraCorrente;
+		return this.tesseraCorrente;
 	}
 
 	protected void setTesseraCorrente(AdapterTessera tesseraCorrente)
@@ -192,7 +192,7 @@ public abstract class ModuloView extends AbstractModuloView
 
 	protected Coordinate getCoordinateNordOvest()
 	{
-		return coordinateNordOvest;
+		return this.coordinateNordOvest;
 	}
 
 	protected void setCoordinateRelativeSE(Coordinate coordinateRelativeSE)
@@ -202,12 +202,12 @@ public abstract class ModuloView extends AbstractModuloView
 
 	protected Coordinate getCoordinateRelativeSE()
 	{
-		return coordinateRelativeSE;
+		return this.coordinateRelativeSE;
 	}
 
 	protected boolean isIn(Coordinate coordinate, Coordinate min, Coordinate max)
 	{
-		return isIn(coordinate, coordinate, max, min);
+		return this.isIn(coordinate, coordinate, max, min);
 	}
 
 	protected boolean isIn(Coordinate nordOvest, Coordinate sudEst, Coordinate max, Coordinate min)
@@ -227,7 +227,7 @@ public abstract class ModuloView extends AbstractModuloView
 		ScenarioDiGioco scenario = this.getScenario();
 		Coordinate min = scenario.getMin();
 		Coordinate max = scenario.getMax();
-		return isIn(nordOvest, sudEst, min, max);
+		return this.isIn(nordOvest, sudEst, min, max);
 
 	}
 

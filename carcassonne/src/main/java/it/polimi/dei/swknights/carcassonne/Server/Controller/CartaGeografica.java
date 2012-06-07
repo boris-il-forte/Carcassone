@@ -10,10 +10,11 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * This class is used to keep track the complex building in the game board
- * like streets or cities
+ * This class is used to keep track the complex building in the game board like
+ * streets or cities
+ * 
  * @author edoardopasi
- *
+ * 
  */
 public class CartaGeografica
 {
@@ -46,7 +47,7 @@ public class CartaGeografica
 
 	public void aggiornaCompletate(Costruzione costruzione)
 	{
-		if(this.mappaCostruzioni.get(costruzione) == null)
+		if (this.mappaCostruzioni.get(costruzione) == null)
 		{
 			this.costruzioniCompletate.add(costruzione);
 		}
