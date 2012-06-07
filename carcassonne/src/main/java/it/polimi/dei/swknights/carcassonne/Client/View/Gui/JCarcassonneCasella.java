@@ -9,7 +9,6 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
 public class JCarcassonneCasella extends JLayeredPane
@@ -23,6 +22,7 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.add(this.cella, DEFAULT_LAYER);
 		this.add(this.segnalino, PALETTE_LAYER);
 		this.cella.setBounds(this.bounds);
+		this.cella.setHorizontalTextPosition(JLabel.CENTER);
 		this.stato = StatoCasella.nonUsata;
 	}
 
@@ -44,7 +44,6 @@ public class JCarcassonneCasella extends JLayeredPane
 	{
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		this.cella.setText(coordinateVuota.toString());
-		this.cella.setHorizontalTextPosition(SwingConstants.CENTER);
 		Rectangle newBounds = (Rectangle) this.bounds.clone();
 		newBounds.grow(-1, -1);
 		this.cella.setBounds(newBounds);
@@ -59,7 +58,7 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.stato = StatoCasella.nonUsata;
 	}
 
-	public void setSegnalino(Icon icon)
+	public synchronized void setSegnalino(Icon icon)
 	{
 		this.segnalino.setIcon(icon);
 		this.stato = StatoCasella.conTessera;

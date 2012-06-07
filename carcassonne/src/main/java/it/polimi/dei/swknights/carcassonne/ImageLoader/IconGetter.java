@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
-import java.awt.Image;
+import java.awt.image.BufferedImage;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -16,13 +16,13 @@ public class IconGetter
 	public Icon getOriginalTileIcon(String stringToFind)
 	{
 		IconFinder finder = new IconFinder(stringToFind);
-		Image image = this.immagini.getOriginalTileImage(finder.toString());
+		BufferedImage image = this.immagini.getOriginalTileImage(finder.toString());
 		return new ImageIcon(image);
 	}
 	
 	public Icon getOriginalSegnalinoIcon(String stringToFind)
 	{
-		Image image = this.immagini.getOriginalSegnalinoImage(stringToFind);
+		BufferedImage image = this.immagini.getOriginalSegnalinoImage(stringToFind);
 		return new ImageIcon(image);
 	}
 	
@@ -35,14 +35,14 @@ public class IconGetter
 	{
 		this.setDim(dim);
 		IconFinder finder = new IconFinder(stringToFind);
-		Image image = this.immagini.getImage(finder.toString());
+		BufferedImage image = this.immagini.getImage(finder.toString());
 		return new ImageIcon(image);
 	}
 
 	public Icon getAlphaTileIcon(String stringToFind)
 	{
 		IconFinder finder = new IconFinder(stringToFind);
-		Image image = this.immagini.getAlphaImage(finder.toString());
+		BufferedImage image = this.immagini.getAlphaImage(finder.toString());
 		return new ImageIcon(image);
 	}
 
