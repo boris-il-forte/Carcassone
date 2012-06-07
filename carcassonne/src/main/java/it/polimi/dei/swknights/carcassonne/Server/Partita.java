@@ -5,6 +5,8 @@ import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 
 import java.sql.Timestamp;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /**
  * This class is used to start a new on-line game
@@ -16,6 +18,8 @@ public class Partita
 	 */
 	public Partita()
 	{
+		
+		
 		java.util.Date date = new java.util.Date();
 		this.idPartita = ("GAME" + new Timestamp(date.getTime()));
 		
@@ -25,9 +29,16 @@ public class Partita
 
 		this.view.addListener(this.controller);
 		this.model.addListener(this.view);
+		
+		this.executor = Executors.newCachedThreadPool();
 
 	}
-
+	
+	public void cominciaPartita()
+	{
+		this.executor.execute(this.controller);
+	}
+	
 	public ProxyView getProxyView()
 	{
 		return this.view;
@@ -38,6 +49,8 @@ public class Partita
 		this.model.addPlayer();
 
 	}
+	
+	Executor executor;
 
 	private ProxyView			view;
 

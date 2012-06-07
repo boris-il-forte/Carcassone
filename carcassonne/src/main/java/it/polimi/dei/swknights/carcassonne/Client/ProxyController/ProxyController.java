@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /*
  */
@@ -100,19 +101,28 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 	// inizio fatto comunque via socket?
 	private void contattaServerInizia(Socket socket)
 	{
-		try
+		boolean contatto=false;
+		Debug.print(" sono proxy controller - contattaServer ");
+		
+		while(contatto=false)
 		{
-			Debug.print(" sono proxy controller - contattaServer ");
-			PrintWriter printer = new PrintWriter(socket.getOutputStream());
-			printer.println("connection request by " + socket.getLocalAddress() + ": "
-					+ socket.getLocalPort());
-			printer.flush();
+			try
+			{
 
-		}
-		catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+				PrintWriter printer = new PrintWriter(socket.getOutputStream());
+				printer.println("connection request by " + socket.getLocalAddress() + ": "
+						+ socket.getLocalPort());
+				printer.flush();
+				Scanner scann = new Scanner( socket.getInputStream());
+				String s = scann.nextLine();
+				if (s.length() > 0)
+					contatto = true;
+			}
+			catch (IOException e)
+			{
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
 		}
 	}
 

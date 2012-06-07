@@ -67,6 +67,7 @@ public class ProxyView extends AbstractConnessioneView
 		giocatoriConnessi ++;
 		ConnessioneViewRMI connessione = new ConnessioneViewRMI(giocatoriConnessi);
 		this.listaConnessioniRMI.add(connessione);
+		
 	}
 
 	public void setCommandString(String commandString)
