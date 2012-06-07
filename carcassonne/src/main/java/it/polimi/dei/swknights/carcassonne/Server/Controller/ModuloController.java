@@ -12,12 +12,12 @@ import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.PlaceHandl
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.RuotaHandler;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.TileHandler;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -83,9 +83,9 @@ public class ModuloController extends AbstractController
 		this.gestoreFasi.nextFase();
 	}
 
-	public void addSegnalinoTessera(Color colore, PuntoCardinale puntoCardinale)
+	public void addSegnalinoTessera(Segnalino segnalino, PuntoCardinale puntoCardinale)
 	{
-		this.contaPunti.addSegnalino(colore, puntoCardinale);
+		this.contaPunti.addSegnalino(segnalino, puntoCardinale);
 	}
 
 	public boolean tuttoVicinatoDAccordo(Coordinate coordinate)
@@ -144,7 +144,10 @@ public class ModuloController extends AbstractController
 		{
 			for (Tessera tessera : costruzione.getTessere())
 			{
-				listaTessere.add(tessera);
+				if(costruzione.daTogliere(tessera.getSegnalino()))
+				{
+					listaTessere.add(tessera);
+				}
 			}
 		}
 		return listaTessere;
@@ -173,7 +176,7 @@ public class ModuloController extends AbstractController
 			do
 			{
 				this.model.getTesseraDaMazzo();
-			} while (this.tesseraEstrattaValida());
+			} while (!this.tesseraEstrattaValida());
 			this.model.cominciaTurno();
 		}
 		catch (PartitaFinitaException e)
@@ -200,7 +203,7 @@ public class ModuloController extends AbstractController
 	{
 		for (int i = 0; i < PuntoCardinale.NUMERO_DIREZIONI; i++)
 		{
-			if (this.tuttoVicinatoDAccordo(coordinate)) { return true; }
+			if (this.tuttoVicinatoDAccordo(coordinate,tesseraCopia)) { return true; }
 			tesseraCopia.ruota();
 		}
 		return false;

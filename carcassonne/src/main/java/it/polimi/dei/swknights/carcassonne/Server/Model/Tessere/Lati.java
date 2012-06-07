@@ -116,6 +116,11 @@ public class Lati implements Cloneable
 		return segnalino;
 	}
 
+	public Segnalino getSegnalino()
+	{
+		return this.datiSegnalino.segnalino;
+	}
+
 	@Override
 	public String toString()
 	{

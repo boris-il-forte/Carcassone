@@ -2,11 +2,11 @@ package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
-import java.awt.Color;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -95,10 +95,10 @@ public class ContatoreCartografo
 	 *            the border the player choose for adding the tile
 	 */
 
-	public void addSegnalino(Color colore, PuntoCardinale puntoCardinale)
+	public void addSegnalino(Segnalino segnalino, PuntoCardinale puntoCardinale)
 	{
 		Costruzione costruzione = this.getMapCostruzioniUltimaTessera().get(puntoCardinale);
-		costruzione.addSegnalino(colore);
+		costruzione.addSegnalino(segnalino);
 	}
 
 	Map<PuntoCardinale, Costruzione> getMapCostruzioniUltimaTessera()
