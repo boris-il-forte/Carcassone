@@ -17,8 +17,8 @@ public class AggiornaMappaGui
 			Coordinate coordinateRelativeSE)
 	{
 		this.coordinateNordOvest = coordinateNordOvest;
-		this.larghezza = coordinateRelativeSE.getX()+1;
-		this.altezza = coordinateRelativeSE.getY()+1;		
+		this.larghezza = coordinateRelativeSE.getX() + 1;
+		this.altezza = coordinateRelativeSE.getY() + 1;
 		this.creaMappaTessere(listaTessere);
 	}
 
@@ -26,7 +26,7 @@ public class AggiornaMappaGui
 	{
 		return this.tessereIterator.hasNext();
 	}
-	
+
 	public boolean hasNextVuoto()
 	{
 		return this.vuotiIterator.hasNext();
@@ -36,7 +36,7 @@ public class AggiornaMappaGui
 	{
 		return this.tessereIterator.next();
 	}
-	
+
 	public Entry<Coordinate, Integer> nextVuoto()
 	{
 		return this.vuotiIterator.next();
@@ -62,14 +62,15 @@ public class AggiornaMappaGui
 			Map<String, Integer> mappaTessere)
 	{
 		Integer numeroCasella = this.traduciCoordinate(coordinateTessera);
-		mappaTessere.put(stringaTessera, numeroCasella);		
+		mappaTessere.put(stringaTessera, numeroCasella);
 	}
 
-	private void aggiungiViciniVuoti(Coordinate coordinateTessera, Vicinato vicinato, Map<Coordinate, Integer> mappaViciniVuoti)
+	private void aggiungiViciniVuoti(Coordinate coordinateTessera, Vicinato vicinato,
+			Map<Coordinate, Integer> mappaViciniVuoti)
 	{
-		for(PuntoCardinale puntoCardinale : PuntoCardinale.values())
+		for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
 		{
-			if(!vicinato.haVicinoA(puntoCardinale))
+			if (!vicinato.haVicinoA(puntoCardinale))
 			{
 				Coordinate coordinateVuoti = coordinateTessera.getCoordinateA(puntoCardinale);
 				Integer numeroVicino = this.traduciCoordinate(coordinateVuoti);
@@ -86,25 +87,25 @@ public class AggiornaMappaGui
 		y -= this.coordinateNordOvest.getY();
 		if (x <= this.larghezza && y <= this.altezza)
 		{
-			return x  + this.larghezza*y ;
+			return x + this.larghezza * y;
 		}
 		else
-		{ 
+		{
 			throw new IllegalArgumentException("coordinate tessera " + coordinateTessera
-					+ "sono fuori dal Bounding box, larghezza: " + this.larghezza +" altezza: "+this.altezza
-					+ " CoordinateNO " + this.coordinateNordOvest);
+					+ "sono fuori dal Bounding box, larghezza: " + this.larghezza + " altezza: "
+					+ this.altezza + " CoordinateNO " + this.coordinateNordOvest);
 		}
 
 	}
 
-	private Coordinate							coordinateNordOvest;
-	
-	private Integer								larghezza;
-	
-	private Integer								altezza;
-	
+	private Coordinate								coordinateNordOvest;
+
+	private Integer									larghezza;
+
+	private Integer									altezza;
+
 	private Iterator<Entry<Coordinate, Integer>>	vuotiIterator;
 
-	private Iterator<Entry<String, Integer>>	tessereIterator;
+	private Iterator<Entry<String, Integer>>		tessereIterator;
 
 }

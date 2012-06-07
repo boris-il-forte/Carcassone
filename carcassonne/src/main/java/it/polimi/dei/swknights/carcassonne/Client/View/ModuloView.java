@@ -129,13 +129,13 @@ public abstract class ModuloView extends AbstractModuloView
 	{
 		Coordinate coordinate = this.coordinateNordOvest;
 		Coordinate nuoveCoordinate = coordinate.getCoordinateA(puntoCardinale);
-		
-		for(int i=0; i<quantita && this.nelBoundingBox(nuoveCoordinate); i++)
+
+		for (int i = 0; i < quantita && this.nelBoundingBox(nuoveCoordinate); i++)
 		{
 			coordinate = nuoveCoordinate;
 			nuoveCoordinate = nuoveCoordinate.getCoordinateA(puntoCardinale);
 		}
-		
+
 		this.coordinateNordOvest = coordinate;
 
 		this.aggiornaMappa();
@@ -149,7 +149,8 @@ public abstract class ModuloView extends AbstractModuloView
 	 */
 	public void aggiornaTurno(Color colGiocatoreCorrente, AdapterTessera tesseraNuova)
 	{
-		this.visualizzaTesseraCorrente(tesseraNuova); // cli e view implementano diversamente!
+		this.visualizzaTesseraCorrente(tesseraNuova); // cli e view implementano
+														// diversamente!
 		this.visualizzaColoreCorrente();
 		this.gestoreFasi.cominciaTurno();
 	}
@@ -203,19 +204,19 @@ public abstract class ModuloView extends AbstractModuloView
 	{
 		return coordinateRelativeSE;
 	}
-	
-	protected boolean isIn(Coordinate coordinate,  Coordinate min, Coordinate max)
+
+	protected boolean isIn(Coordinate coordinate, Coordinate min, Coordinate max)
 	{
-		return isIn(coordinate,coordinate,max,min);
+		return isIn(coordinate, coordinate, max, min);
 	}
-	
+
 	protected boolean isIn(Coordinate nordOvest, Coordinate sudEst, Coordinate max, Coordinate min)
 	{
-		boolean fuoriInBasso = min.getY() < nordOvest.getY(); 
+		boolean fuoriInBasso = min.getY() < nordOvest.getY();
 		boolean fuoriInAlto = max.getY() > sudEst.getY();
 		boolean fuoriADestra = min.getX() < nordOvest.getX();
 		boolean fuoriASinistra = max.getX() > sudEst.getX();
-		
+
 		return !(fuoriInBasso || fuoriInAlto || fuoriADestra || fuoriASinistra);
 	}
 
@@ -226,7 +227,7 @@ public abstract class ModuloView extends AbstractModuloView
 		ScenarioDiGioco scenario = this.getScenario();
 		Coordinate min = scenario.getMin();
 		Coordinate max = scenario.getMax();
-		return isIn(nordOvest,sudEst, min, max);
+		return isIn(nordOvest, sudEst, min, max);
 
 	}
 
@@ -241,10 +242,6 @@ public abstract class ModuloView extends AbstractModuloView
 		this.addVisitorHandler(new FinePartitaHandler(this));
 	}
 
-	private GestoreFasi					gestoreFasi;
-
-	private final ScenarioDiGioco		scenario;
-
 	private AdapterTessera				tesseraCorrente;
 
 	private Color						coloreGiocatore;
@@ -252,6 +249,10 @@ public abstract class ModuloView extends AbstractModuloView
 	private Coordinate					coordinateNordOvest;
 
 	private Coordinate					coordinateRelativeSE;
+
+	private final GestoreFasi			gestoreFasi;
+
+	private final ScenarioDiGioco		scenario;
 
 	protected static final Coordinate	centroScenario	= new Coordinate(0, 0);
 

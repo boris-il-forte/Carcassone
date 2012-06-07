@@ -33,7 +33,8 @@ public class Gui extends ModuloView
 		this.immagini = new IconGetter();
 		this.finestra = new JCarcassoneFrame(this, this.altezza, this.larghezza);
 		this.setCoordinataNordOvest(new Coordinate(-larghezza / 2, -altezza / 2));
-		this.setCoordinateRelativeSE(new Coordinate(larghezza - 1, altezza - 1));
+		this.setCoordinateRelativeSE(new Coordinate(larghezza-1, altezza-1));
+		Debug.print("larghezza = " + larghezza + "altezza = " + altezza);
 	}
 
 	@Override
@@ -46,10 +47,9 @@ public class Gui extends ModuloView
 	public void aggiornaMappa()
 	{
 		ScenarioDiGioco scenario = this.getScenario();
-		Coordinate base = this.getCoordinateNordOvest();
-		List<EntryTessera> listaTessere = scenario.getEntryList(base,
-				base.getCoordinateA(getCoordinateRelativeSE()));
-		Debug.print("listatessere " + listaTessere.size());
+		Coordinate nordOvest = this.getCoordinateNordOvest();
+		Coordinate sudEst = nordOvest.getCoordinateA(this.getCoordinateRelativeSE());
+		List<EntryTessera> listaTessere = scenario.getEntryList(nordOvest,sudEst);
 		this.aggiornaCaselle(listaTessere);
 	}
 
@@ -105,8 +105,7 @@ public class Gui extends ModuloView
 		}
 		return mappaSegnalini;
 	}
-	public
-	void casellaCliccata(int numeroCasella, Coordinate coordinateMouse)
+	public	void casellaCliccata(int numeroCasella, Coordinate coordinateMouse)
 	{
 
 		if (this.getGestoreFasi().posizionaOk())
@@ -148,7 +147,6 @@ public class Gui extends ModuloView
 			Icon icon = this.immagini.getAlphaTileIcon(this.getTesseraCorrente().toProtocolString());
 			this.finestra.overlayTessera(numeroCasella, icon);	
 		}
-		
 	}
 	
 	public void togliOverlay(JCarcassonneCasella casella, int numeroCasella)
