@@ -187,7 +187,7 @@ public class ModuloController extends AbstractController
 	{
 		Tessera tesseraEstratta = this.model.getTesseraCorrente();
 		Tessera tesseraCopia = tesseraEstratta.clone();
-		Set<Coordinate> setVuote = this.contaPunti.getSetVuote();
+		Set<Coordinate> setVuote = this.model.getSetVuote();
 		for (Coordinate coordinate : setVuote)
 		{
 			if (this.posizionabile(coordinate, tesseraCopia)) { return true; }
@@ -208,8 +208,8 @@ public class ModuloController extends AbstractController
 
 	private boolean tuttoVicinatoDAccordo(Coordinate coordinate, Tessera tessera)
 	{
-		Tessera tesseraVicino = null;
-		int viciniVuoti = 0;
+		Tessera tesseraVicino;
+		if (!this.model.getSetVuote().contains(coordinate)) { return false; }
 		for (PuntoCardinale punto : PuntoCardinale.values())
 		{
 			try
@@ -220,12 +220,10 @@ public class ModuloController extends AbstractController
 			}
 			catch (TesseraNonTrovataException e)
 			{
-				viciniVuoti++;
 				continue;
 			}
 		}
 
-		if (viciniVuoti == PuntoCardinale.NUMERO_DIREZIONI) { return false; }
 		return true;
 	}
 

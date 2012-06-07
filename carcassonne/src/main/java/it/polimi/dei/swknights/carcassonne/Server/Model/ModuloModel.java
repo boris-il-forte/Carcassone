@@ -25,6 +25,7 @@ import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 /**
  * This class gives the implementation of the Model of the MVC pattern
  * It gives all important methods to handle the data and basic low level function
@@ -119,6 +120,11 @@ public class ModuloModel extends AbstractModel
 	public Coordinate getCoordinateTessera(Tessera tessera)
 	{
 		return this.datiPartita.getCoordinateTessera(tessera);
+	}
+
+	public Set<Coordinate> getSetVuote()
+	{
+		return this.datiPartita.getSetCoordinateVuote();
 	}
 
 	/**

@@ -5,9 +5,11 @@ import it.polimi.dei.swknights.carcassonne.Exceptions.NullCardException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * This class is the representation of the game table, control basic methods to
@@ -53,6 +55,11 @@ public class AreaDiGioco
 		return this.GPS.get(tessera);
 	}
 
+	public Set<Coordinate> getSetCoordinateVuote()
+	{
+		return this.coordinateVuote;
+	}
+
 	/**
 	 * Add a card at the specified coordinate
 	 * 
@@ -74,6 +81,8 @@ public class AreaDiGioco
 			{
 				this.mappa.put(coordinate, tessera);
 				this.GPS.put(tessera, coordinate);
+				this.addCoordinateVuote(coordinate);
+				this.coordinateVuote.remove(coordinate);
 			}
 			else
 			{
@@ -82,7 +91,27 @@ public class AreaDiGioco
 		}
 	}
 
+	private void addCoordinateVuote(Coordinate coordinate)
+	{
+		for (PuntoCardinale punto : PuntoCardinale.values())
+		{
+			Coordinate coordinateDaTestare = coordinate.getCoordinateA(punto);
+			try
+			{
+				this.getTessera(coordinateDaTestare);
+			}
+			catch (TesseraNonTrovataException e)
+			{
+				this.coordinateVuote.add(coordinateDaTestare);
+			}
+		}
+
+	}
+
 	private Map<Coordinate, Tessera>	mappa;
+
 	private Map<Tessera, Coordinate>	GPS;
+
+	private Set<Coordinate>				coordinateVuote;
 
 }
