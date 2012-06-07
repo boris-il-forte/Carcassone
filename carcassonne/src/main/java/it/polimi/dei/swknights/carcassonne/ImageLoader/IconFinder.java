@@ -13,6 +13,11 @@ public class IconFinder
 		this.trovaStringa(stringToFind);		
 	}
 	
+	public String getSegnalino()
+	{
+		return this.segnalino;
+	}
+
 	@Override
 	public String toString()
 	{
@@ -28,6 +33,11 @@ public class IconFinder
 			{
 				String string = parser.getData(puntoCardinale);
 				this.string.append(string);
+				String extraData = parser.getExtraData(puntoCardinale);
+				if(!extraData.equals(""))
+				{
+					this.segnalino = extraData;
+				}
 			}
 			for(Bussola agoBussola : Bussola.values())
 			{
@@ -43,4 +53,6 @@ public class IconFinder
 	}
 
 	private StringBuilder string;
+	
+	private String segnalino = "";
 }

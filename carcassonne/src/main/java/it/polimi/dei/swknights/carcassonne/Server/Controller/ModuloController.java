@@ -98,14 +98,15 @@ public class ModuloController extends AbstractController
 		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
 		mappaCostruzioni = this.contaPunti.getMapCostruzioniUltimaTessera();
 		Costruzione costruzione = mappaCostruzioni.get(punto);
-		if (costruzione.controllataDa().size() == 0)
+		if(costruzione!=null)
 		{
-			return true;
+			if (costruzione.controllataDa().size() == 0)
+			{
+				return true;
+			}
 		}
-		else
-		{
-			return false;
-		}
+		return false;
+
 	}
 
 	public ContatoreCartografo getContapunti()

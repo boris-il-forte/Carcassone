@@ -31,6 +31,16 @@ public class ScaledImageGetter extends ImageLoader
 		}
 	}
 
+	public BufferedImage getSegnalino(String segnalino, int dimensioneSegnalino)
+	{
+		if (!segnalino.equals(""))
+		{
+			BufferedImage image = this.getOriginalSegnalinoImage(segnalino);
+			return this.scalaImmagine(image, dimensioneSegnalino);
+		}
+		else return null;
+	}
+
 	public BufferedImage getAlphaImage(String string)
 	{
 		BufferedImage image = getImage(string);

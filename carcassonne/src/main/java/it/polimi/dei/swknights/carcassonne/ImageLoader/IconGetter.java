@@ -12,23 +12,23 @@ public class IconGetter
 		this.immagini = new ScaledImageGetter();
 		this.currentDim = ScaledImageGetter.DIM_STANDARD;
 	}
-	
+
 	public Icon getOriginalTileIcon(String stringToFind)
 	{
 		IconFinder finder = new IconFinder(stringToFind);
 		BufferedImage image = this.immagini.getOriginalTileImage(finder.toString());
 		return new ImageIcon(image);
 	}
-	
+
 	public Icon getOriginalSegnalinoIcon(String stringToFind)
 	{
 		BufferedImage image = this.immagini.getOriginalSegnalinoImage(stringToFind);
 		return new ImageIcon(image);
 	}
-	
+
 	public Icon getTileIcon(String stringToFind)
 	{
-		return this.getTileIcon(stringToFind,this.currentDim);
+		return this.getTileIcon(stringToFind, this.currentDim);
 	}
 
 	public Icon getTileIcon(String stringToFind, int dim)
@@ -37,6 +37,20 @@ public class IconGetter
 		IconFinder finder = new IconFinder(stringToFind);
 		BufferedImage image = this.immagini.getImage(finder.toString());
 		return new ImageIcon(image);
+	}
+
+	public Icon getSegnalinoIcon(String stringToFind, int dimensioneSegnalino)
+	{
+		IconFinder finder = new IconFinder(stringToFind);
+		BufferedImage image = this.immagini.getSegnalino(finder.getSegnalino(), dimensioneSegnalino);
+		if(image != null)
+		{
+			return new ImageIcon(image);
+		}
+		else
+		{
+			return null;
+		}
 	}
 
 	public Icon getAlphaTileIcon(String stringToFind)
@@ -48,7 +62,7 @@ public class IconGetter
 
 	private void setDim(int dim)
 	{
-		if(dim != this.currentDim)
+		if (dim != this.currentDim)
 		{
 			this.currentDim = dim;
 			this.immagini.setImageDim(this.currentDim);
