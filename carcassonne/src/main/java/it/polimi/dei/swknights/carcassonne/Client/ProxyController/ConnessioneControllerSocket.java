@@ -84,17 +84,17 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				String name = partiArgomenti[NOME];
 				String color = partiArgomenti[COLORE_START];
 				String numero = partiArgomenti[NUMERO];
-				
+
 				return false;
 			}
 			if (line.matches("update: " + regTessera + ",\\-?\\d+\\,\\-?\\d+")) // es.
 																				// update:
 			// tile 2,3
 			{
-				int x = Integer.parseInt( partiArgomenti[X]);
+				int x = Integer.parseInt(partiArgomenti[X]);
 				int y = Integer.parseInt(partiArgomenti[Y]);
-	
-				Color coloreGiocatore = null; //TODO get Current player color
+
+				Color coloreGiocatore = null; // TODO get Current player color
 				proxy.fire(new UpdatePositionEvent(tessera, new Coordinate(x, y), coloreGiocatore, this));
 
 				return false;
@@ -145,17 +145,18 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				}
 				if (line.matches("rotated: " + regTessera)) // es rotate: blabla
 				{
-					Color giocatore = null; //TODO capire
+					Color giocatore = null; // TODO capire
 					String tessera = argomenti;
 					this.proxy.fire(new UpdateRotationEvent(tessera, giocatore, this));
 					return false;
-					
+
 				}
-				
+
 				if (line.matches("score: " + regScores)) // es score: red=10
 															// blu=20
 				{
-					//arrivato qua ha tutto ciò che serve per costruzioneCOmpletata event
+					// arrivato qua ha tutto ciò che serve per
+					// costruzioneCOmpletata event
 					Map<AdapterTessera, Coordinate> mappaAggiornate = new HashMap<AdapterTessera, Coordinate>();
 
 					for (int i = 0; i < this.partiDiEventoComposto.size(); i++)
@@ -168,31 +169,34 @@ public class ConnessioneControllerSocket extends ConnessioneController
 						int yCoord = Integer.parseInt(this.partiDiEventoComposto.get(i));
 						mappaAggiornate.put(adTessera, new Coordinate(xCoord, yCoord));
 					}
-					
-					Punteggi punti = new Punteggi();					
-					String [] coloriPunteggi = argomenti.split(", ");
-					
-					for(String colorePunteggio : coloriPunteggi)
+
+					Punteggi punti = new Punteggi();
+					String[] coloriPunteggi = argomenti.split(", ");
+
+					for (String colorePunteggio : coloriPunteggi)
 					{
-						String [] partiColPunt = colorePunteggio.split("=");
+						String[] partiColPunt = colorePunteggio.split("=");
 						String coloreG = partiColPunt[COLORE_SCORE];
-						int puneggioG = Integer.parseInt( partiColPunt[NUM_SCORE]);
+						int puneggioG = Integer.parseInt(partiColPunt[NUM_SCORE]);
 						punti.addPunteggi(ColoriGioco.getColor(coloreG), puneggioG);
 					}
-					
-					
-					this.proxy.fire(
-							new CostruzioneCompletataEvent(this, mappaAggiornate, punti));
+
+					this.proxy.fire(new CostruzioneCompletataEvent(this, mappaAggiornate, punti));
 					return false;
-				
+
 				}
 				if (line.matches("leave: (black|green|red|yellow|blue)")) // es
 																			// leave:
 																			// yellow
-				{ return false; }
+				{ 
+					return false;
+				}
 				if (line.matches("end: " + regScores)) // es next: red=10
 														// blue=30
-				{ return false; }
+				{ 
+					
+					return false;
+				}
 
 			}
 			else
@@ -266,8 +270,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	private final static int	NUMERO			= 3;
 	private final static int	X				= 0;
 	private final static int	Y				= 1;
-	private final static int    COLORE_SCORE =0;
-	private final static int    NUM_SCORE = 1;
+	private final static int	COLORE_SCORE	= 0;
+	private final static int	NUM_SCORE		= 1;
 	private Socket				socket;
 
 	private Scanner				in;

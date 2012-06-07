@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
@@ -34,7 +35,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	public void run()
 	{
-
+		Debug.print("sono connessione socket numero " + this.getNumeroConnessione());
 		while (this.in.hasNext())
 		{
 			String stringaDaSocket = this.in.nextLine();
