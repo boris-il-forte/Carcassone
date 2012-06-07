@@ -37,11 +37,6 @@ public class CartaGeografica
 		return this.mappaCostruzioni.keySet();
 	}
 
-	public Set<ConfineTessera> getConfini()
-	{
-		return this.mappaConfini.keySet();
-	}
-
 	public Set<Costruzione> getCostruzioniCompletate()
 	{
 		Set<Costruzione> completate = new HashSet<Costruzione>(this.costruzioniCompletate);

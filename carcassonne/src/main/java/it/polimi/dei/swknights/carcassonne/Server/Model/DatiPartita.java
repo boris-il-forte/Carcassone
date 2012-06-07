@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Queue;
 import java.util.Map.Entry;
+import java.util.Set;
 
 /**
  * This class is the representation of the game data, it allows basic operations
@@ -107,6 +108,10 @@ public final class DatiPartita
 		return giocatori;
 	}
 
+	public Set<Coordinate> getSetCoordinateVuote()
+	{
+		return this.areaDiGioco.getSetCoordinateVuote();
+	}
 	/**
 	 * changes the current turn to the next
 	 */

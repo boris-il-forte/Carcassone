@@ -70,11 +70,6 @@ public class ConfineTessera
 		return this.puntoCardinale;
 	}
 
-	public Tessera getTessera()
-	{
-		return this.tessera;
-	}
-
 	private final Tessera			tessera;
 
 	private final PuntoCardinale	puntoCardinale;
