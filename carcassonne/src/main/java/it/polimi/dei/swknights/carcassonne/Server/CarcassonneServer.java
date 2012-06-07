@@ -160,22 +160,16 @@ public class CarcassonneServer implements Runnable
 					CarcassonneServer.this.timerScaduto = false;
 					CarcassonneServer.this.giocatoriAttivi=0;
 				}
-				else
+				try
 				{
-					try
-					{
-						Thread.sleep(1000);
-					}
-					catch (InterruptedException e)
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					Debug.print(" attivi: " + CarcassonneServer.this.giocatoriAttivi + " "
-					+  CarcassonneServer.this.timerScaduto);
-				
-				
+					Thread.sleep(200);
 				}
+				catch (InterruptedException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 
 		}

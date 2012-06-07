@@ -2,7 +2,10 @@ package it.polimi.dei.swknights.carcassonne.ModoInizio;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
+import it.polimi.dei.swknights.carcassonne.IPAddressValidator;
 import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocket;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
@@ -18,8 +21,9 @@ public class IniziaCliOnLine extends Inizio
 		try
 		{
 		this.printer.println("cli on line");
+		String ip = this.chiediIndirizzoIP();
 		View view = new Cli(); //1)
-		Socket socket = CarcassonneSocket.dammiSocket();	//2)
+		Socket socket = CarcassonneSocket.dammiSocket(ip);	//2)
 		ProxyController controller;
 		
 			controller = new ProxyController(socket);
@@ -34,5 +38,28 @@ public class IniziaCliOnLine extends Inizio
 			
 		}
 	}
+	
+	
+	private String chiediIndirizzoIP()
+	{
+		IPAddressValidator ipValidator = new IPAddressValidator();
+		String ip=null;
+		do
+		{
+			Scanner scanner = new Scanner(System.in);
+			this.printer.println("Inserisci indirizzo ip del server: ");
+			this.printer.flush();
+			try
+			{
+				ip = scanner.nextLine();
+			}
+			catch (InputMismatchException e)
+			{
+				printer.println("Input non valido");
+			}
+		} while (ipValidator.validate(ip)==false);
+		return ip;
+	}
+
 	
 }
