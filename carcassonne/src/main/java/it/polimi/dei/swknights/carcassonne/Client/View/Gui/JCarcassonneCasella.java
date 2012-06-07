@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 import java.awt.Color;
