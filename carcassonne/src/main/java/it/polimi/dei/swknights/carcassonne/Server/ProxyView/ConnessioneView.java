@@ -10,6 +10,11 @@ import java.net.Socket;
 public class ConnessioneView extends AbstractConnessioneView
 {
 
+	public ConnessioneView(int numeroConnessione)
+	{
+		this.numeroConnessione= numeroConnessione;
+	}
+
 	public void accettaConnessione(Socket socket)
 	{
 		// TODO Auto-generated method stub
@@ -28,5 +33,12 @@ public class ConnessioneView extends AbstractConnessioneView
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public int getNumeroConnessione()
+	{
+		return this.numeroConnessione;
+	}
+	
+	private int numeroConnessione;
 	
 }

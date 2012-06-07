@@ -4,6 +4,11 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEven
 
 public class ConnessioneViewRMI extends ConnessioneView
 {
+	public ConnessioneViewRMI(int numeroConnessione)
+	{
+	   super(numeroConnessione);
+	}
+
 	@Override
 	public void riceviInput()
 	{
@@ -16,5 +21,12 @@ public class ConnessioneViewRMI extends ConnessioneView
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void inviaEventoIniziale(String messaggioIniziale)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }
