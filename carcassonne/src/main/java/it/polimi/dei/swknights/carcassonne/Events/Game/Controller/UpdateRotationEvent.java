@@ -19,6 +19,11 @@ public class UpdateRotationEvent extends UpdateEvent
 		super(tessera, null, giocatore, source);
 	}
 
+	public UpdateRotationEvent(String tessera, Color giocatore, Object source)
+	{
+		super(tessera, null, giocatore, source);
+	}
+
 	private static final long	serialVersionUID	= -7350182684969632910L;
 
 	@Override
