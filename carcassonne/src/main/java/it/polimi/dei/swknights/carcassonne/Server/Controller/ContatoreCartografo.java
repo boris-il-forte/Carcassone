@@ -37,10 +37,22 @@ public class ContatoreCartografo
 		this.cartaGeografica = new CartaGeografica();
 	}
 
+	/**
+	 * Observer method
+	 * 
+	 * @return true if there are completed constructions
+	 */
+
 	public boolean areCostruzioniCompletate()
 	{
 		return this.cartaGeografica.areCostruzioniCompletate();
 	}
+
+	/**
+	 * Getter method
+	 * 
+	 * @return the set of completed constructions
+	 */
 
 	public Set<Costruzione> getCostruzioniCompletate()
 	{
@@ -48,12 +60,24 @@ public class ContatoreCartografo
 		return this.completate;
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the score made in this turn by the palyers
+	 */
+
 	public Punteggi getPunteggioTurno()
 	{
 		Punteggi punteggiAggregati = this.getPunteggiAggregati(this.completate, COSTRUZIONE_COMPLETATA);
 		this.completate = null;
 		return punteggiAggregati;
 	}
+
+	/**
+	 * Getter method
+	 * 
+	 * @return the final turn score
+	 */
 
 	public Punteggi getPunteggioFinale()
 	{
@@ -101,7 +125,13 @@ public class ContatoreCartografo
 		costruzione.addSegnalino(segnalino);
 	}
 
-	Map<PuntoCardinale, Costruzione> getMapCostruzioniUltimaTessera()
+	/**
+	 * Retrives the indications produced by CartelloStradale
+	 * 
+	 * @return a map thath binds the cardinal points to the tile constructions
+	 * @see CartelloStradale
+	 */
+	public Map<PuntoCardinale, Costruzione> getMapCostruzioniUltimaTessera()
 	{
 		return this.cartello.getIndicazioni();
 	}

@@ -109,20 +109,42 @@ public abstract class Costruzione
 		return controllori;
 	}
 
+	/**
+	 * Observer method
+	 * 
+	 * @return the number of the tiles of the construction
+	 */
+
 	public int contaElementi()
 	{
 		return this.elementi.size();
 	}
 
+	/**
+	 * Getetr method
+	 * 
+	 * @return the list of the tiles of the construction
+	 */
+
 	public Set<Tessera> getTessere()
 	{
 		return this.elementi;
 	}
+	
+	/**
+	 * Method that return whereas the specified marker should be removed from a tile
+	 * @param segnalino marker found in tiles
+	 * @return true ifthe marker belongs to this constructions
+	 */
 
 	public boolean daTogliere(Segnalino segnalino)
 	{
 		return this.setSegnalini.contains(segnalino);
 	}
+	
+	/**
+	 * String serialization of this
+	 */
 
 	@Override
 	public String toString()

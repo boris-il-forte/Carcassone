@@ -18,12 +18,26 @@ import java.util.Set;
  */
 public class CartaGeografica
 {
+	/**
+	 * Default Constructor for CartaGeografica. It only initializes the
+	 * collections used by the object
+	 */
 	public CartaGeografica()
 	{
 		this.mappaConfini = new HashMap<ConfineTessera, Costruzione>();
 		this.mappaCostruzioni = new HashMap<Costruzione, List<ConfineTessera>>();
 		this.costruzioniCompletate = new HashSet<Costruzione>();
 	}
+
+	/**
+	 * Retrives the union of the given construction towards the given border
+	 * 
+	 * @param pezzoCostruzione
+	 *            the piece of construction we want to join
+	 * @param confinante
+	 *            the border considered for the join
+	 * @return the joined construction
+	 */
 
 	public Costruzione getCostruzioneAggregata(Costruzione pezzoCostruzione, ConfineTessera confinante)
 	{
@@ -33,10 +47,22 @@ public class CartaGeografica
 		return costruzioneConfinante;
 	}
 
+	/**
+	 * Getter
+	 * 
+	 * @return retrieves the construction key set
+	 */
+
 	public Set<Costruzione> getCostruzioni()
 	{
 		return this.mappaCostruzioni.keySet();
 	}
+
+	/**
+	 * Getter
+	 * 
+	 * @return retrieves completed construction set
+	 */
 
 	public Set<Costruzione> getCostruzioniCompletate()
 	{
@@ -45,6 +71,13 @@ public class CartaGeografica
 		return completate;
 	}
 
+	/**
+	 * add the construction to the completed ones if it is
+	 * 
+	 * @param costruzione
+	 *            the construction to work with
+	 */
+
 	public void aggiornaCompletate(Costruzione costruzione)
 	{
 		if (this.mappaCostruzioni.get(costruzione) == null)
@@ -52,6 +85,15 @@ public class CartaGeografica
 			this.costruzioniCompletate.add(costruzione);
 		}
 	}
+
+	/**
+	 * Setter
+	 * 
+	 * @param nuovoConfine
+	 *            a new border to be added
+	 * @param costruzione
+	 *            the corrispettive construction of the border
+	 */
 
 	public void put(ConfineTessera nuovoConfine, Costruzione costruzione)
 	{
@@ -64,6 +106,12 @@ public class CartaGeografica
 		}
 		listaConfini.add(nuovoConfine);
 	}
+
+	/**
+	 * Observer method
+	 * 
+	 * @return whereas there are completed constructions
+	 */
 
 	public boolean areCostruzioniCompletate()
 	{

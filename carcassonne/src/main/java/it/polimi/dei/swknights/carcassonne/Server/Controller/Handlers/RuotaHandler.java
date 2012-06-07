@@ -11,7 +11,7 @@ public class RuotaHandler extends ModuloControllerHandler
 	{
 		super(controller, model);
 	}
-
+	
 	@Override
 	public void visit(RotateEvent event)
 	{

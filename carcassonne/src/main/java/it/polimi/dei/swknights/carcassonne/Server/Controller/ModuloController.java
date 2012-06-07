@@ -46,6 +46,10 @@ public class ModuloController extends AbstractController
 
 	}
 
+	/**
+	 * Runs the controller main loop
+	 */
+
 	public void run()
 	{
 
@@ -79,20 +83,51 @@ public class ModuloController extends AbstractController
 		}
 	}
 
+	/**
+	 * Method called when the tile is sucessfully placed
+	 */
+
 	public synchronized void comunicaPosizionamentoTessera()
 	{
 		this.gestoreFasi.nextFase();
 	}
+
+	/**
+	 * Add a marker to the construction he belogs to
+	 * 
+	 * @param segnalino
+	 *            the marker to be added
+	 * @param puntoCardinale
+	 *            the cardinal points where the marked has been placed on the
+	 *            tile
+	 */
 
 	public void addSegnalinoTessera(Segnalino segnalino, PuntoCardinale puntoCardinale)
 	{
 		this.contaPunti.addSegnalino(segnalino, puntoCardinale);
 	}
 
+	/**
+	 * Method used to control whereas the current tile can be placed
+	 * 
+	 * @param coordinate
+	 *            the coordinates where the player wuold like to place the tile
+	 * @return true if the card can be placed
+	 */
+
 	public boolean tuttoVicinatoDAccordo(Coordinate coordinate)
 	{
 		return this.tuttoVicinatoDAccordo(coordinate, this.model.getTesseraCorrente());
 	}
+
+	/**
+	 * Controls if the construction is not controlled by anyone
+	 * 
+	 * @param punto
+	 *            the side of the current tile where the player want to place
+	 *            his marker
+	 * @return true if the marker can be placed
+	 */
 
 	public boolean costruzioneLibera(PuntoCardinale punto)
 	{
@@ -106,11 +141,21 @@ public class ModuloController extends AbstractController
 		return false;
 
 	}
+	
+	/**
+	 * getter method
+	 * @return the cartographer object embedded in this 
+	 */
 
 	public ContatoreCartografo getContapunti()
 	{
 		return this.contaPunti;
 	}
+	
+	/**
+	 * getter method
+	 * @return the Phase Manager embedded in this
+	 */
 
 	public GestoreFasi getGestoreFasi()
 	{

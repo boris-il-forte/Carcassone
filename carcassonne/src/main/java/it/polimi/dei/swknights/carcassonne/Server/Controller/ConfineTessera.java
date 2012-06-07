@@ -28,6 +28,10 @@ public class ConfineTessera
 		this.tessera = tessera;
 		this.puntoCardinale = puntoCardinale;
 	}
+	
+	/**
+	 * Hashcode needed to make ConfineTessera a good key for HashMap
+	 */
 
 	@Override
 	public int hashCode()
@@ -39,12 +43,13 @@ public class ConfineTessera
 		return hash;
 	}
 
-	@Override
+	
 	/**
 	 * two neighbours are equals iff the elements are of the same type 
 	 * e.g. city and city,  and the card is the same
 	 * more formally:  this.lato == confine.lato && this.card == confine.card
 	 */
+	@Override
 	public boolean equals(Object object)
 	{
 		boolean isEqual = false;
@@ -58,12 +63,21 @@ public class ConfineTessera
 		}
 		return isEqual;
 	}
+	
+	/**
+	 * String serialization of ConfineTessera
+	 */
 
 	@Override
 	public String toString()
 	{
 		return " card : " + this.tessera.toString() + " point: " + this.puntoCardinale.toString();
 	}
+	
+	/**
+	 * Getter method
+	 * @return the cardinal point representing the side of this border
+	 */
 
 	public PuntoCardinale getPuntoCardinale()
 	{
