@@ -8,6 +8,7 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,6 +26,7 @@ public class AreaDiGioco
 	{
 		this.mappa = new HashMap<Coordinate, Tessera>();
 		this.GPS = new HashMap<Tessera, Coordinate>();
+		this.coordinateVuote = new HashSet<Coordinate>();
 	}
 
 	/**
