@@ -6,7 +6,9 @@ import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraString;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
@@ -82,6 +84,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				String name = partiArgomenti[NOME];
 				String color = partiArgomenti[COLORE_START];
 				String numero = partiArgomenti[NUMERO];
+				
 				return false;
 			}
 			if (line.matches("update: " + regTessera + ",\\-?\\d+\\,\\-?\\d+")) // es.
@@ -141,7 +144,13 @@ public class ConnessioneControllerSocket extends ConnessioneController
 					return false;
 				}
 				if (line.matches("rotated: " + regTessera)) // es rotate: blabla
-				{ return false; }
+				{
+					Color giocatore = null; //TODO capire
+					String tessera = argomenti;
+					this.proxy.fire(new UpdateRotationEvent(tessera, giocatore, this));
+					return false;
+					
+				}
 				
 				if (line.matches("score: " + regScores)) // es score: red=10
 															// blu=20
@@ -166,11 +175,14 @@ public class ConnessioneControllerSocket extends ConnessioneController
 					for(String colorePunteggio : coloriPunteggi)
 					{
 						String [] partiColPunt = colorePunteggio.split("=");
-						
+						String coloreG = partiColPunt[COLORE_SCORE];
+						int puneggioG = Integer.parseInt( partiColPunt[NUM_SCORE]);
+						punti.addPunteggi(ColoriGioco.getColor(coloreG), puneggioG);
 					}
 					
 					
-					new CostruzioneCompletataEvent(this, mappaAggiornate, null);
+					this.proxy.fire(
+							new CostruzioneCompletataEvent(this, mappaAggiornate, punti));
 					return false;
 				
 				}
@@ -254,6 +266,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	private final static int	NUMERO			= 3;
 	private final static int	X				= 0;
 	private final static int	Y				= 1;
+	private final static int    COLORE_SCORE =0;
+	private final static int    NUM_SCORE = 1;
 	private Socket				socket;
 
 	private Scanner				in;
