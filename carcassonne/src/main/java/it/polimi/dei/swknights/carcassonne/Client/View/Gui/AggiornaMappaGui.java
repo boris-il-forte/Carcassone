@@ -32,7 +32,7 @@ public class AggiornaMappaGui
 		return this.vuotiIterator.hasNext();
 	}
 
-	public Entry<String, Integer> nextTessera()
+	public Entry<Integer, String> nextTessera()
 	{
 		return this.tessereIterator.next();
 	}
@@ -44,7 +44,7 @@ public class AggiornaMappaGui
 
 	private void creaMappaTessere(List<EntryTessera> listaTessere)
 	{
-		Map<String, Integer> mappaTessere = new HashMap<String, Integer>();
+		Map<Integer, String> mappaTessere = new HashMap<Integer,String>();
 		Map<Coordinate, Integer> mappaViciniVuoti = new HashMap<Coordinate, Integer>();
 		for (EntryTessera entryTessera : listaTessere)
 		{
@@ -59,10 +59,10 @@ public class AggiornaMappaGui
 	}
 
 	private void aggiungiTessere(Coordinate coordinateTessera, String stringaTessera,
-			Map<String, Integer> mappaTessere)
+			Map<Integer,String> mappaTessere)
 	{
 		Integer numeroCasella = this.traduciCoordinate(coordinateTessera);
-		mappaTessere.put(stringaTessera, numeroCasella);
+		mappaTessere.put( numeroCasella,stringaTessera);
 	}
 
 	private void aggiungiViciniVuoti(Coordinate coordinateTessera, Vicinato vicinato,
@@ -106,6 +106,6 @@ public class AggiornaMappaGui
 
 	private Iterator<Entry<Coordinate, Integer>>	vuotiIterator;
 
-	private Iterator<Entry<String, Integer>>		tessereIterator;
+	private Iterator<Entry<Integer, String>>		tessereIterator;
 
 }

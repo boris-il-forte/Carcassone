@@ -188,9 +188,9 @@ public class Gui extends ModuloView
 	{
 		while (aggiornaMappa.hasNextTessera())
 		{
-			Entry<String, Integer> entry = aggiornaMappa.nextTessera();
-			Icon tessera = this.immagini.getTileIcon(entry.getKey(), dimesioneTessere);
-			int numeroTessera = entry.getValue();
+			Entry<Integer,String> entry = aggiornaMappa.nextTessera();
+			Icon tessera = this.immagini.getTileIcon(entry.getValue(), dimesioneTessere);
+			int numeroTessera = entry.getKey();
 			this.finestra.aggiornaTessera(numeroTessera, tessera);
 		}
 		

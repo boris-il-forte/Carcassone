@@ -18,19 +18,18 @@ public class Debug
 
 	public static void showImg(Image imgTessera, String descrizione)
 	{
-
-		String[] s = { descrizione };
-		// URL url = ImageLoader.class.getResource("/tiles/" + nomeTessera);
-
-		icon = new ImageIcon(imgTessera);
-
-		JOptionPane.showInputDialog(null, "", descrizione, JOptionPane.INFORMATION_MESSAGE, icon, s,
-				descrizione);
+		Icon icona = new ImageIcon(imgTessera);
+		showImg(icona, descrizione);
 
 	}
 
-	private static PrintWriter		printer		= new PrintWriter(System.out);
-	
-	private static Icon				icon;
+	public static void showImg(Icon icon, String descrizione)
+	{
+		JOptionPane.showMessageDialog(null, "descrizione", "Debug", JOptionPane.INFORMATION_MESSAGE, icon);
+	}
+
+	private static PrintWriter	printer	= new PrintWriter(System.out);
+
+	private static Icon			icon;
 
 }
