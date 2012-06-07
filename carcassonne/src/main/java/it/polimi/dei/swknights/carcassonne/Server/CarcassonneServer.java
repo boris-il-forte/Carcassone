@@ -19,7 +19,11 @@ public class CarcassonneServer implements Runnable
 	public CarcassonneServer()
 	{
 		this.partite = new ArrayDeque<Partita>();
-		this.timerScaduto=false;
+		this.executor = Executors.newCachedThreadPool();
+		this.timerScaduto = false;
+		MonacoGong starter = new MonacoGong();
+		this.executor.execute(starter);
+
 	}
 
 	public final void run()
@@ -40,8 +44,7 @@ public class CarcassonneServer implements Runnable
 			{
 
 			}
-			
-			
+
 		}
 
 	}
@@ -66,16 +69,15 @@ public class CarcassonneServer implements Runnable
 				Debug.print("due giocatori connessi: parte il timer!");
 				Timer timerConn = new Timer();
 				timerConn.setWhatIsLock(this);
-				Executor executor = Executors.newSingleThreadExecutor();
-				executor.execute(timerConn);
+
+				this.executor.execute(timerConn);
 			}
-			
+
 			Partita partita = this.partite.peekLast();
 			partita.addPlayer();
 			this.proxyView = partita.getProxyView();
 			this.proxyView.accettaConnessione(socket);
 
-			
 		}
 		catch (IOException e)
 		{
@@ -83,21 +85,21 @@ public class CarcassonneServer implements Runnable
 		}
 	}
 
-	private boolean timerScaduto;
-	
+	private Executor			executor;
+
+	private boolean				timerScaduto;
+
 	private final int			GIOCATORI_PARTITA			= 5;
 
 	private ProxyView			proxyView;
 
-	private Integer					giocatoriAttivi				= 0;
+	private Integer				giocatoriAttivi				= 0;
 
 	private Deque<Partita>		partite;
 
 	private static final int	PORTA_DEL_GRANDE_FRATELLO	= 1984;
 
-	
-	
-	private  class Timer implements Runnable
+	private class Timer implements Runnable
 	{
 		public void setWhatIsLock(Object o)
 		{
@@ -120,6 +122,7 @@ public class CarcassonneServer implements Runnable
 		{
 			do
 			{
+				Debug.print("ciclo timer");
 				Thread.sleep(TIMEOUT);
 				Debug.print("passati 20 sec");
 				if (giocatoriAttivi < GIOCATORI_PARTITA)
@@ -128,7 +131,7 @@ public class CarcassonneServer implements Runnable
 					{
 						CarcassonneServer.this.timerScaduto = true;
 						this.lock.notifyAll();
-						
+
 					}
 				}
 
@@ -137,26 +140,46 @@ public class CarcassonneServer implements Runnable
 
 		private Object				lock;
 
-		private static final int	TIMEOUT	= 2000;	// millisec
+		private static final int	TIMEOUT	= 2000; // millisec
 
 	}
 
-	
 	private class MonacoGong implements Runnable
 	{
-		
-		public void run() //posso cominciare?
+
+		public void run() // posso cominciare?
 		{
-			if (CarcassonneServer.this.giocatoriAttivi ==  CarcassonneServer.this.GIOCATORI_PARTITA
-				  || false	
-					)
-			{
-				
-			}
-			
-		}
 		
+			while (true)
+			{
+				if (CarcassonneServer.this.giocatoriAttivi == CarcassonneServer.this.GIOCATORI_PARTITA
+						|| CarcassonneServer.this.timerScaduto)
+				{
+					Debug.print("DONNNNNG, cominciamo ");
+					CarcassonneServer.this.partite.peekLast().cominciaPartita();
+					CarcassonneServer.this.timerScaduto = false;
+					CarcassonneServer.this.giocatoriAttivi=0;
+				}
+				else
+				{
+					try
+					{
+						Thread.sleep(1000);
+					}
+					catch (InterruptedException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					Debug.print(" attivi: " + CarcassonneServer.this.giocatoriAttivi + " "
+					+  CarcassonneServer.this.timerScaduto);
+				
+				
+				}
+			}
+
+		}
+
 	}
-	
-	
+
 }
