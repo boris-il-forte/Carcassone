@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni;
 
+import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
@@ -31,7 +32,7 @@ public abstract class Costruzione
 	{
 		this.contatoreSegnalini = new Punteggi();
 		this.elementi = new HashSet<Tessera>();
-
+		this.setSegnalini = new HashSet<Segnalino>();
 		this.elementi.add(tessera);
 	}
 
@@ -63,6 +64,7 @@ public abstract class Costruzione
 	{
 		this.elementi.addAll(costruzione.elementi);
 		this.contatoreSegnalini.addPunteggi(costruzione.contatoreSegnalini);
+		this.setSegnalini.addAll(costruzione.setSegnalini);
 	}
 
 	/**
@@ -72,9 +74,10 @@ public abstract class Costruzione
 	 *            The marker to be added to this construction
 	 */
 
-	public void addSegnalino(Color coloresegnalino)
+	public void addSegnalino(Segnalino segnalino)
 	{
-		this.contatoreSegnalini.addPunteggi(coloresegnalino, 1);
+		this.contatoreSegnalini.addPunteggi(segnalino.getColore(), 1);
+		this.setSegnalini.add(segnalino);
 	}
 
 	/**
@@ -115,6 +118,11 @@ public abstract class Costruzione
 	{
 		return elementi;
 	}
+	
+	public boolean daTogliere(Segnalino segnalino)
+	{
+		return this.setSegnalini.contains(segnalino);
+	}
 
 	@Override
 	public String toString()
@@ -140,6 +148,8 @@ public abstract class Costruzione
 	}
 
 	private Set<Tessera>	elementi;
+
+	private Set<Segnalino>	setSegnalini;
 
 	private Punteggi		contatoreSegnalini;
 }

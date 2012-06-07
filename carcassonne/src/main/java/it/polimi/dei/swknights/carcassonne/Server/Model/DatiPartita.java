@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Exceptions.ColoreNonPresenteException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
@@ -135,6 +136,7 @@ public final class DatiPartita
 		if (index > 0)
 		{
 			index--;
+			Debug.print("tessere rimanenti" + index);
 			return this.pilaTessere.remove(index);
 		}
 		else

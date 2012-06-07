@@ -5,6 +5,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.SegnaliniFinitiException;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 public class TileHandler extends ModuloControllerHandler
@@ -27,8 +28,8 @@ public class TileHandler extends ModuloControllerHandler
 		{
 			if (this.controller.costruzioneLibera(puntoCardinale))
 			{
-				this.model.addSegnalinoTesseraCorrente(puntoCardinale);
-				this.controller.addSegnalinoTessera(event.getColoreSegnalino(),puntoCardinale);
+				Segnalino segnalino = this.model.addSegnalinoTesseraCorrente(puntoCardinale);
+				this.controller.addSegnalinoTessera(segnalino,puntoCardinale);
 				this.controller.comunicaPosizionamentoTessera();
 				this.sveglia();
 			}

@@ -60,12 +60,13 @@ public class ModuloModel extends AbstractModel
 		this.fire(new UpdateRotationEvent(this.tesseraCorrente, coloreGiocatoreCorrente, this));
 	}
 
-	public void addSegnalinoTesseraCorrente(PuntoCardinale puntoCardinale) throws SegnaliniFinitiException
+	public Segnalino addSegnalinoTesseraCorrente(PuntoCardinale puntoCardinale) throws SegnaliniFinitiException
 	{
 		Segnalino segnalino = this.getGiocatoreCorrente().getSegnalino();
 		this.tesseraCorrente.setSegnalino(segnalino, puntoCardinale);
 		this.fire(new UpdatePositionEvent(this.tesseraCorrente, this.coordinateTesseraCorrente, this
 				.getColoreGiocatoreCorrente(), this));
+		return segnalino;
 	}
 
 	public Tessera getTesseraCorrente()

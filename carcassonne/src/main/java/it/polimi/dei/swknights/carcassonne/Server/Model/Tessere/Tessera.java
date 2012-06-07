@@ -118,13 +118,19 @@ public abstract class Tessera implements Cloneable
 		this.lati.setSegnalino(segnalino, puntoCardinale);
 	}
 
-	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
+	public Segnalino removeSegnalino()
+	{
+		return this.lati.removeSegnalino();	
+	}
 	
 	
+	public Segnalino getSegnalino()
+	{
+		return this.lati.getSegnalino();
+	}
+
 	@Override
 	public abstract String toString();
-
-	// volendo qua andrebbero i metodi astratti per la gestione del monastero...
 
 	private List<PuntoCardinale> puntiConnessiACostruzione(Costruzione c,
 			Map<Costruzione, PuntoCardinale> mapCostruzPunto)
@@ -148,10 +154,5 @@ public abstract class Tessera implements Cloneable
 	protected final Lati	lati;
 
 	protected final Link	link;
-
-	public Segnalino removeSegnalino()
-	{
-		return this.lati.removeSegnalino();	
-	}
 
 }
