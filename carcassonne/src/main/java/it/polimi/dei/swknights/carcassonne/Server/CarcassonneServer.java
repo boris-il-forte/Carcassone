@@ -68,9 +68,10 @@ public class CarcassonneServer implements Runnable
 			this.proxyView.accettaConnessione(socket);
 			if (this.giocatoriAttivi == GIOCATORI_PARTITA)
 			{
-				this.giocatoriAttivi = 0;
+				
 				synchronized (this)
 				{
+					this.giocatoriAttivi = 0;
 					this.notifyAll();
 				}
 			}
@@ -85,7 +86,7 @@ public class CarcassonneServer implements Runnable
 
 	private ProxyView			proxyView;
 
-	private int					giocatoriAttivi				= 0;
+	private Integer					giocatoriAttivi				= 0;
 
 	private Deque<Partita>		partite;
 

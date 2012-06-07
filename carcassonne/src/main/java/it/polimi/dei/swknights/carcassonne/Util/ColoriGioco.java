@@ -80,4 +80,31 @@ public class ColoriGioco
 
 	private static final Map<Color, String>	mappaColori	= inizializzaColori();
 
+	public static Color getColor(String color)
+	{
+		if(color.compareToIgnoreCase("RED") == 0)
+		{	
+			return Color.red;
+		}
+		if(color.compareToIgnoreCase("Green") == 0)
+		{	
+			return Color.green;
+		}
+		if(color.compareToIgnoreCase("Yellow") == 0)
+		{	
+			return Color.yellow;
+		}
+		if(color.compareToIgnoreCase("Blue") == 0)
+		{	
+			return Color.blue;
+		}
+		
+		if(color.compareToIgnoreCase("Black") == 0)
+		{	
+			return Color.black;
+		}
+		
+		return null;
+	}
+
 }
