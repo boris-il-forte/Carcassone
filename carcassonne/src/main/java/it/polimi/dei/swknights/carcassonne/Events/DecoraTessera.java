@@ -1,8 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
-import java.awt.Color;
-
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+
+import java.awt.Color;
 
 /**
  * This class is used to have the abstraction of a Card but without some

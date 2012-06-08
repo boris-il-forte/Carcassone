@@ -1,9 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
-import java.awt.Color;
-
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ViewHandler;
+
+import java.awt.Color;
 
 /**
  * Event to be triggered at the beginning of the game
@@ -55,7 +55,7 @@ public class InizioGiocoEvent extends ControllerEvent
 	private final String			idPartita;
 
 	@Override
-	public void accept(ModuloViewHandler handler)
+	public void accept(ViewHandler handler)
 	{
 		handler.visit(this);
 

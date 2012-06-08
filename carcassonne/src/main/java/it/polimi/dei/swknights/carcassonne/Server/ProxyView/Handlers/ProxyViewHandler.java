@@ -1,13 +1,13 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers;
 
-import java.awt.Color;
-import java.util.Map.Entry;
-
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
+
+import java.awt.Color;
+import java.util.Map.Entry;
 
 public class ProxyViewHandler extends ViewHandler
 {

@@ -1,10 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers;
 
-import java.awt.Color;
-
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
+
+import java.awt.Color;
 
 public class InizioGiocoHandler extends ProxyViewHandler
 {

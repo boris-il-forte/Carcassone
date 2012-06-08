@@ -18,8 +18,7 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.
-awt.Toolkit;
+import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

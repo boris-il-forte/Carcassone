@@ -99,7 +99,7 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 		boolean contatto = false;
 		Debug.print(" sono proxy controller - contattaServer ");
 
-		while (contatto = false)
+		while (contatto == false)
 		{
 			try
 			{
