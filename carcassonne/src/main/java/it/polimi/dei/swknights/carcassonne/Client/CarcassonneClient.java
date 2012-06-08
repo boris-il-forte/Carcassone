@@ -23,7 +23,7 @@ public class CarcassonneClient
 				Debug.print("Connection established");
 
 				Scanner socketIn = new Scanner(socket.getInputStream());
-				PrintWriter socketOut = new PrintWriter(socket.getOutputStream());
+				socketOut = new  CarcassonneSocketPrinter(socket.getOutputStream());
 				Scanner stdin = new Scanner(System.in);
 
 				while (true)
@@ -32,7 +32,6 @@ public class CarcassonneClient
 					String inputLine = stdin.nextLine();
 					socketOut.println(inputLine); // invia in rete ! (o cmq in
 													// uscita dal socket)
-					socketOut.flush(); // si dico davvero, vai!
 
 					// il server non risponde qua ()
 				}
@@ -53,6 +52,8 @@ public class CarcassonneClient
 		}
 	}
 
+	private CarcassonneSocketPrinter        socketOut;
+	
 	public static final int					MAX_TRY			= 100;
 
 	public static final String				indirizzoServer	= "127.0.0.1";

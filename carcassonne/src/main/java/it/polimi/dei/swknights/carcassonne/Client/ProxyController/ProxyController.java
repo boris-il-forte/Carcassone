@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
 import it.polimi.dei.swknights.carcassonne.Debug;
+import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocketPrinter;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.PassHandler;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.PlaceHandler;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.ProxyControllerHandler;
@@ -10,7 +11,6 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEven
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Model;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,9 +99,9 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 		Debug.print(" sono proxy controller - contattaServer ");
 		try
 		{
-			printer = new PrintWriter( socket.getOutputStream());
+			printer = new CarcassonneSocketPrinter(socket.getOutputStream());
 			printer.println("connect");
-			printer.flush();
+
 		}
 		catch (IOException e)
 		{
@@ -143,7 +143,7 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 
 	}
 
-	PrintWriter printer;
+	CarcassonneSocketPrinter printer;
 	private List<ProxyControllerHandler>	handlers;
 	private String							requestString;
 	private ConnessioneController			connessione;

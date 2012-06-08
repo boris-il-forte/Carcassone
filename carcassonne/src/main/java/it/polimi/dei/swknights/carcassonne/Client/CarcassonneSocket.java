@@ -32,6 +32,7 @@ public class CarcassonneSocket
 		return socket;
 
 	}
+	
 
 	private static final String	indirizzoServer	= "127.0.0.1";
 

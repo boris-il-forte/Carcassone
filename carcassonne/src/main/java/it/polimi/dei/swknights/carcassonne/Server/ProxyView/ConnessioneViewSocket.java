@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView;
 
 import it.polimi.dei.swknights.carcassonne.Debug;
+import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocketPrinter;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
@@ -11,7 +12,6 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
@@ -25,7 +25,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 		InputStream input = socket.getInputStream();
 		OutputStream output = socket.getOutputStream();
 		this.in = new Scanner(input);
-		this.out = new PrintWriter(output);
+		this.out = new CarcassonneSocketPrinter(output);
 		this.proxy = proxy;
 
 	}
@@ -45,8 +45,8 @@ public class ConnessioneViewSocket extends ConnessioneView
 	public void invia(String string)
 	{
 		Debug.print(" Connessione view socket " + string);
-		this.out.print(string);
-		this.out.flush();
+		this.out.println(string);
+
 	}
 
 	public void close()
@@ -137,7 +137,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	private Scanner				in;
 
-	private PrintWriter			out;
+	private CarcassonneSocketPrinter		out;
 
 	private static final int	X				= 0;
 

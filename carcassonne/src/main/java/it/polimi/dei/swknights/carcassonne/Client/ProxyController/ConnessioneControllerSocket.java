@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
 import it.polimi.dei.swknights.carcassonne.Debug;
+import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocketPrinter;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraString;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
@@ -15,7 +16,6 @@ import java.awt.Color;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +38,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		InputStream input = socket.getInputStream();
 		OutputStream output = socket.getOutputStream();
 		this.in = new Scanner(input);
-		this.out = new PrintWriter(output);
+		this.out = new CarcassonneSocketPrinter(output);
 		this.proxy = proxy;
 		this.partiDiEventoComposto = new ArrayList<String>();
 	}
@@ -218,7 +218,6 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	public void invia(String message)
 	{
 		this.out.println(message);
-		this.out.flush();
 	}
 
 	@Override
@@ -279,7 +278,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 	private Scanner				in;
 
-	private PrintWriter			out;
+	private CarcassonneSocketPrinter			out;
 
 	private ProxyController		proxy;
 
