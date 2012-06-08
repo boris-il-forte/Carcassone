@@ -100,7 +100,7 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 		try
 		{
 			printer = new PrintWriter( socket.getOutputStream());
-			printer.print("connect");
+			printer.println("connect");
 			printer.flush();
 		}
 		catch (IOException e)
