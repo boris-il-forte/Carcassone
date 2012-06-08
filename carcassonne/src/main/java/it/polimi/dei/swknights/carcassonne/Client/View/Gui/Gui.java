@@ -18,7 +18,8 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.
+awt.Toolkit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -184,7 +185,7 @@ public class Gui extends ModuloView
 		Debug.print("condizione1 = " + (x * x - y * y));
 		Debug.print("condizione2 = " + (y * y - x * x));
 		if (x * x - y * y >= 1) { return (x > 0) ? PuntoCardinale.est : PuntoCardinale.ovest; }
-		if (y * y - x * x >= 1) { return (y > 0) ? PuntoCardinale.nord : PuntoCardinale.sud; }
+		if (y * y - x * x >= 1) { return (y > 0) ? PuntoCardinale.sud : PuntoCardinale.nord; }
 		throw new PosizionaMentoInvalidoException(coordinateMouse);
 	}
 

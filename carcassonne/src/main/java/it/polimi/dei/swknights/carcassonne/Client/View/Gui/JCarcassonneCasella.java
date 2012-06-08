@@ -39,6 +39,7 @@ public class JCarcassonneCasella extends JLayeredPane
 		{
 			this.stato = StatoCasella.conTessera;
 		}
+		this.cella.setHorizontalTextPosition(SwingConstants.CENTER);
 	}
 
 	public void setVuota(Coordinate coordinateVuota)
@@ -48,6 +49,7 @@ public class JCarcassonneCasella extends JLayeredPane
 		Rectangle newBounds = (Rectangle) this.bounds.clone();
 		newBounds.grow(-1, -1);
 		this.cella.setBounds(newBounds);
+		this.cella.setHorizontalTextPosition(SwingConstants.CENTER);
 		this.stato = StatoCasella.vuota;
 	}
 
@@ -57,6 +59,7 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		this.cella.setIcon(null);
 		this.segnalino.setIcon(null);
+		this.cella.setHorizontalTextPosition(SwingConstants.CENTER);
 		this.stato = StatoCasella.nonUsata;
 	}
 
@@ -68,6 +71,7 @@ public class JCarcassonneCasella extends JLayeredPane
 		int x = coordinateSegnalino.getX() - latoSegnalino / 2;
 		int y = coordinateSegnalino.getY() - latoSegnalino / 2;
 		this.segnalino.setBounds(x, y, latoSegnalino, latoSegnalino);
+		this.cella.setHorizontalTextPosition(SwingConstants.CENTER);
 	}
 
 	public StatoCasella getStato()
