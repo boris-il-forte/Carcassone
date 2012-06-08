@@ -20,7 +20,6 @@ public class Debug
 	{
 		Icon icona = new ImageIcon(imgTessera);
 		showImg(icona, descrizione);
-
 	}
 
 	public static void showImg(Icon icon, String descrizione)

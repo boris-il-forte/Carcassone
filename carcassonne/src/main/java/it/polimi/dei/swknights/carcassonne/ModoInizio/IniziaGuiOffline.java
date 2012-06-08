@@ -18,7 +18,11 @@ public class IniziaGuiOffline extends Inizio
 		View view = new Gui();
 		view.addListener(controller);
 		model.addListener(view);
-
+		
+		//TODO ask user
+		model.addPlayer();
+		model.addPlayer();
+		
 		this.superStarDestroyer.execute(view);
 		this.superStarDestroyer.execute(controller);
 

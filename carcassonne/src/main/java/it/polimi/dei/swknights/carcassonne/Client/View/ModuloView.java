@@ -207,7 +207,7 @@ public abstract class ModuloView extends AbstractModuloView
 
 	protected boolean isIn(Coordinate coordinate, Coordinate min, Coordinate max)
 	{
-		return this.isIn(coordinate, coordinate, max, min);
+		return this.isIn(max, min, coordinate, coordinate);
 	}
 
 	protected boolean isIn(Coordinate nordOvest, Coordinate sudEst, Coordinate max, Coordinate min)
@@ -228,7 +228,6 @@ public abstract class ModuloView extends AbstractModuloView
 		Coordinate min = scenario.getMin();
 		Coordinate max = scenario.getMax();
 		return this.isIn(nordOvest, sudEst, min, max);
-
 	}
 
 	private void attivaHanlders()
