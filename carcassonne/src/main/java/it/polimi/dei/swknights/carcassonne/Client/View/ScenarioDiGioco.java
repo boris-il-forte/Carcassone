@@ -106,7 +106,7 @@ public class ScenarioDiGioco
 				for (Entry<Integer, AdapterTessera> entryTessera : entryRiga.getValue().getEntrySet())
 				{
 					int x = entryTessera.getKey();
-					if (y >= min.getX() && y <= max.getX())
+					if (x >= min.getX() && x <= max.getX())
 					{
 						Coordinate coordinate = new Coordinate(x, y);
 						Vicinato vicinato = this.getVicinato(coordinate);

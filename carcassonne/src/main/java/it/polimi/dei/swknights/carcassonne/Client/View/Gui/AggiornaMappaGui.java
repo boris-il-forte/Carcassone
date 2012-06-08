@@ -18,8 +18,7 @@ public class AggiornaMappaGui
 			Coordinate coordinateRelativeSE)
 	{
 		this.coordinateNordOvest = coordinateNordOvest;
-		this.larghezza = coordinateRelativeSE.getX() + 1;
-		this.altezza = coordinateRelativeSE.getY() + 1;
+		this.larghezza = coordinateRelativeSE.getX()+1;
 		this.creaMappaTessere(listaTessere);
 	}
 
@@ -95,24 +94,12 @@ public class AggiornaMappaGui
 		int y = coordinateTessera.getY();
 		x -= this.coordinateNordOvest.getX();
 		y -= this.coordinateNordOvest.getY();
-		if (x <= this.larghezza && y <= this.altezza)
-		{
-			return x + this.larghezza * y;
-		}
-		else
-		{
-			throw new IllegalArgumentException("coordinate tessera " + coordinateTessera
-					+ "sono fuori dal Bounding box, larghezza: " + this.larghezza + " altezza: "
-					+ this.altezza + " CoordinateNO " + this.coordinateNordOvest);
-		}
-
+		return x + this.larghezza * y;
 	}
-
+		
 	private Coordinate								coordinateNordOvest;
 
 	private Integer									larghezza;
-
-	private Integer									altezza;
 
 	private Iterator<Entry<Integer, String>>		tessereIterator;
 

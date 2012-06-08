@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
@@ -131,7 +130,6 @@ public class Gui extends ModuloView
 			}
 			catch (PosizionaMentoInvalidoException e)
 			{
-				Debug.print("Posizionamento Invalido");
 			}
 		}
 	}
@@ -155,7 +153,6 @@ public class Gui extends ModuloView
 
 	public void zoomModificato(int zoom)
 	{
-		Debug.print("modificato: " + zoom);
 		// TODO Auto-generated method stub
 	}
 
@@ -180,9 +177,6 @@ public class Gui extends ModuloView
 	{
 		int x = coordinateMouse.getX() - this.dimesioneTessere / 2;
 		int y = coordinateMouse.getY() - this.dimesioneTessere / 2;
-		Debug.print("x = " + x + "y = " + y);
-		Debug.print("condizione1 = " + (x * x - y * y));
-		Debug.print("condizione2 = " + (y * y - x * x));
 		if (x * x - y * y >= 1) { return (x > 0) ? PuntoCardinale.est : PuntoCardinale.ovest; }
 		if (y * y - x * x >= 1) { return (y > 0) ? PuntoCardinale.sud : PuntoCardinale.nord; }
 		throw new PosizionaMentoInvalidoException(coordinateMouse);
@@ -204,7 +198,6 @@ public class Gui extends ModuloView
 		int y = numeroCasella / this.larghezza;
 		Coordinate coordRelativa = new Coordinate(x, y);
 		return this.getCoordinateNordOvest().getCoordinateA(coordRelativa);
-
 	}
 
 	private void aggiornaCaselle(List<EntryTessera> listaTessere)
