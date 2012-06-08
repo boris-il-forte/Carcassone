@@ -44,6 +44,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	public void invia(String string)
 	{
+		Debug.print(" Connessione view socket " + string);
 		this.out.print(string);
 		this.out.flush();
 	}

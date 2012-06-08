@@ -190,16 +190,6 @@ public final class DatiPartita
 	private void inizializzaGiocatori()
 	{
 		this.giocatori = new ArrayDeque<Giocatore>();
-		try
-		{
-			this.addGiocatore();
-		}
-		catch (FinitiColoriDisponibiliException e)
-		{ // non dovrebbe mai avvenire perchè un colore c'è per forza all'inizio
-			e.printStackTrace();
-			System.exit(-1);
-		}
-
 	}
 
 	private void inizializzaPilaTessere()

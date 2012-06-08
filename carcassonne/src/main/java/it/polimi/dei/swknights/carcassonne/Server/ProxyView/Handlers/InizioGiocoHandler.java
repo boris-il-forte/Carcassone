@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
@@ -17,20 +18,22 @@ public class InizioGiocoHandler extends ProxyViewHandler
 	@Override
 	public void visit(InizioGiocoEvent event)
 	{
+		StringBuilder stringCommand = null;
 		for (Color colore : ColoriGioco.getListaColori())
 		{
-			StringBuilder stringCommand = new StringBuilder();
-			stringCommand.append("start: ");
-			stringCommand.append(event.getTesseraIniziale());
+			stringCommand = new StringBuilder();
+			stringCommand.append("start:");
+			stringCommand.append(event.getTesseraIniziale().toProtocolString());
 			stringCommand.append(event.getIdPartita());
-			stringCommand.append(", ");
+			stringCommand.append(",");
 			stringCommand.append(ColoriGioco.getProtocolName(colore));
-			stringCommand.append(", ");
+			stringCommand.append(",");
 			stringCommand.append(event.getNumGiocatori());
-			stringCommand.append(", ");
 			this.proxy.setCommandString(stringCommand.toString());
 		}
 		this.proxy.mandaComandoAvvia();
+		
+		Debug.print(stringCommand.toString());
 	}
 
 }

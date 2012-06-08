@@ -75,6 +75,7 @@ public class CarcassonneServer implements Runnable
 
 			Partita partita = this.partite.peekLast();
 			partita.addPlayer();
+			
 			this.proxyView = partita.getProxyView();
 			this.proxyView.accettaConnessione(socket);
 

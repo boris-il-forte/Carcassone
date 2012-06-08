@@ -76,7 +76,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 			String[] partiArgomenti = argomenti.split(",");
 			String tessera = partiArgomenti[TESSERA];
 
-			if (line.matches("start: " + regTessera + ", .+" + ", (black|green|red|yellow|blue)" + ", "
+			if (line.matches("start:" + regTessera + ",.+" + ",(black|green|red|yellow|blue)" + ","
 					+ "\\d+")) // es start: tile,
 								// name, color, num
 			{
@@ -171,7 +171,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 					}
 
 					Punteggi punti = new Punteggi();
-					String[] coloriPunteggi = argomenti.split(", ");
+					String[] coloriPunteggi = argomenti.split(",");
 
 					for (String colorePunteggio : coloriPunteggi)
 					{
