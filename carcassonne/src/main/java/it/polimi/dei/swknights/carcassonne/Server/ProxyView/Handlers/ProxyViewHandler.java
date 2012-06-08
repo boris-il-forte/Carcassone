@@ -19,11 +19,11 @@ public class ProxyViewHandler extends ViewHandler
 	protected String getStringaUpdate(String tile, Coordinate coordinata)
 	{
 		StringBuilder builder = new StringBuilder();
-		builder.append("update: ");
+		builder.append("update:");
 		builder.append(tile);
-		builder.append(", ");
+		builder.append(",");
 		builder.append(coordinata.getX());
-		builder.append(", ");
+		builder.append(",");
 		builder.append(coordinata.getY());
 
 		return builder.toString();
@@ -38,7 +38,7 @@ public class ProxyViewHandler extends ViewHandler
 			builder.append(color);
 			builder.append('=');
 			builder.append(entry.getValue());
-			builder.append(", ");
+			builder.append(",");
 		}
 		builder.deleteCharAt(builder.lastIndexOf(","));
 

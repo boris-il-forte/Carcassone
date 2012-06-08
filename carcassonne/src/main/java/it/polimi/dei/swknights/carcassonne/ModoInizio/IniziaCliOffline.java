@@ -24,7 +24,7 @@ public class IniziaCliOffline extends Inizio
 		view.addListener(controller); // 2)
 		model.addListener(view); // 3)
 		int numeroGiocatori = this.setGiocatori();
-		for (int i = 0; i < numeroGiocatori - 1; i++)
+		for (int i = 0; i < numeroGiocatori ; i++)
 		{
 			model.addPlayer();
 		}
