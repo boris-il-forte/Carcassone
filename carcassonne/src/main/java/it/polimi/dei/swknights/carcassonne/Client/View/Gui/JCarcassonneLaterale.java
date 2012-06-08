@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
@@ -15,7 +17,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.border.BevelBorder;
 
-public class JCarcassonneLaterale extends Box implements ActionListener
+public class JCarcassonneLaterale extends Box implements ActionListener, KeyListener
 {
 
 	public JCarcassonneLaterale(Gui gui)
@@ -24,6 +26,8 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 		this.view = gui;
 		this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 		this.aggiungiComponenti();
+		this.setFocusable(true);
+		this.addKeyListener(this);
 	}
 
 	public void aggiornaTesseraCorrente(Icon tessera)
@@ -57,6 +61,36 @@ public class JCarcassonneLaterale extends Box implements ActionListener
 				}
 			}
 		}
+	}
+
+	public void keyPressed(KeyEvent e)
+	{
+		int key = e.getKeyCode();
+		switch (key)
+		{
+			case KeyEvent.VK_LEFT:
+				this.view.muoviViewA(PuntoCardinale.ovest, 1);
+				break;
+			case KeyEvent.VK_RIGHT:
+				this.view.muoviViewA(PuntoCardinale.est, 1);
+				break;
+			case KeyEvent.VK_UP:
+				this.view.muoviViewA(PuntoCardinale.nord, 1);
+				break;
+			case KeyEvent.VK_DOWN:
+				this.view.muoviViewA(PuntoCardinale.sud, 1);
+				break;
+			default:
+				break;
+		}
+	}
+
+	public void keyReleased(KeyEvent e)
+	{
+	}
+
+	public void keyTyped(KeyEvent e)
+	{
 	}
 
 	private void aggiungiComponenti()
