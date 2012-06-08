@@ -1,13 +1,13 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers;
 
-import java.util.Map;
-import java.util.Map.Entry;
-
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
+
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class CostruzioneCompletataHandler extends ProxyViewHandler
 {

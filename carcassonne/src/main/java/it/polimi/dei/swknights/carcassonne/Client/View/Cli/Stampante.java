@@ -1,15 +1,15 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
-import java.awt.Dimension;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
+
+import java.awt.Dimension;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This class is used to print on the screen the cards in CLI mode

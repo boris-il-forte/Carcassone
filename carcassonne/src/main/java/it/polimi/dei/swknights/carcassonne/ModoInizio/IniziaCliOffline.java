@@ -1,13 +1,13 @@
 package it.polimi.dei.swknights.carcassonne.ModoInizio;
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Controller;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.View;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class IniziaCliOffline extends Inizio
 {

@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandler;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ViewHandler;
 
 /**
  * Event to be triggered when a user tries to perform a non valid move
@@ -21,7 +21,7 @@ public class MossaNonValidaEvent extends ControllerEvent
 	private static final long	serialVersionUID	= 3592976018587414189L;
 
 	@Override
-	public void accept(ModuloViewHandler handler)
+	public void accept(ViewHandler handler)
 	{
 		handler.visit(this);
 

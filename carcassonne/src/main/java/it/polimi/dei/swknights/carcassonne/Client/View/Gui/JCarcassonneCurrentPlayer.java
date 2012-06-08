@@ -1,14 +1,13 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Map;
 
-import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
-
-import javax.swing.Icon;
 import javax.swing.BorderFactory;
-
+import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 

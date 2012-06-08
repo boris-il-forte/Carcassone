@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandler;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 
 import java.awt.Color;
@@ -21,7 +21,7 @@ public class UpdateTurnoEvent extends UpdateEvent
 	}
 
 	@Override
-	public void accept(ModuloViewHandler handler)
+	public void accept(ViewHandler handler)
 	{
 		handler.visit(this);
 

@@ -108,7 +108,10 @@ public class ProxyView extends AbstractConnessioneView
 
 	private void parseEvento(ControllerEvent event)
 	{
-
+		for(ProxyViewHandler handler : this.listaHandlers)
+		{
+			event.accept(handler);
+		}
 	}
 
 	private void inviaSocket()

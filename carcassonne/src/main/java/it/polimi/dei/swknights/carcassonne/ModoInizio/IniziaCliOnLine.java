@@ -1,15 +1,15 @@
 package it.polimi.dei.swknights.carcassonne.ModoInizio;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
 import it.polimi.dei.swknights.carcassonne.IPAddressValidator;
 import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocket;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.View;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class IniziaCliOnLine extends Inizio
 {
@@ -20,7 +20,7 @@ public class IniziaCliOnLine extends Inizio
 		try
 		{
 			this.printer.println("cli on line");
-			String ip = this.chiediIndirizzoIP();
+			String ip = "127.0.0.1"; //TODO: già fatto, lungo per debug // this.chiediIndirizzoIP();
 			View view = new Cli(); // 1)
 			Socket socket = CarcassonneSocket.dammiSocket(ip); // 2)
 			ProxyController controller;

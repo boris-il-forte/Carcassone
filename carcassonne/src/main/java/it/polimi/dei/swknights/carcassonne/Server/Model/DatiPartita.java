@@ -2,8 +2,8 @@ package it.polimi.dei.swknights.carcassonne.Server.Model;
 
 import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Exceptions.ColoreNonPresenteException;
-import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.FactoryGiocatore;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.FactoryTessere;
@@ -18,8 +18,8 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Queue;
 import java.util.Map.Entry;
+import java.util.Queue;
 import java.util.Set;
 
 /**

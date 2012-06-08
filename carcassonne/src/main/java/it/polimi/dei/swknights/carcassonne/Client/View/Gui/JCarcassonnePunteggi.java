@@ -1,14 +1,14 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
-import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 import javax.swing.JPanel;
 

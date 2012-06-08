@@ -4,6 +4,7 @@ import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandle
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.AbstractView;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Controller;
+
 import java.util.ArrayList;
 import java.util.List;
 
