@@ -81,7 +81,7 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 	private List<JButton>						listaPulsanti;
 
 	private static final Map<Integer, String>	labelPulsante		= inizializzaLabelPulsante();
-
+	
 	private static final int					DIMENSIONE_PULSANTE	= 60;
 
 	private static final int					CELLE_RIGA			= 3;
