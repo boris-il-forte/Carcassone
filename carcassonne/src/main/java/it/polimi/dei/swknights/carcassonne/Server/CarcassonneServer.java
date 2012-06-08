@@ -9,6 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Scanner;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -37,7 +38,7 @@ public class CarcassonneServer implements Runnable
 				serverSocket = new ServerSocket(PORTA_DEL_GRANDE_FRATELLO);
 				Socket socket;
 				socket = serverSocket.accept();
-
+				Debug.print("sono carcassonne server-  ora chiamo gestisci connessione");
 				this.gestisciConnessione(socket);
 			}
 			catch (IOException e)
@@ -57,27 +58,37 @@ public class CarcassonneServer implements Runnable
 
 	private void gestisciConnessione(Socket socket)
 	{
+
 		try
 		{
-			this.giocatoriAttivi++;
-			if (this.giocatoriAttivi == 1)
+			if (vuoleConnetteri(socket))
 			{
-				this.creaNuovaPartita();
+				Debug.print("Carcassonne Server - ho ricevuto un connect: qualcuno vuole giocare");
+				this.giocatoriAttivi++;
+				if (this.giocatoriAttivi == 1)
+				{
+					this.creaNuovaPartita();
+				}
+				else if (this.giocatoriAttivi == 2)
+				{
+					Debug.print("due giocatori connessi: parte il timer!");
+					Timer timerConn = new Timer();
+					timerConn.setWhatIsLock(this);
+
+					this.executor.execute(timerConn);
+				}
+
+				Partita partita = this.partite.peekLast();
+				partita.addPlayer();
+
+				this.proxyView = partita.getProxyView();
+				this.proxyView.accettaConnessione(socket);
 			}
-			else if (this.giocatoriAttivi == 2)
+			else
 			{
-				Debug.print("due giocatori connessi: parte il timer!");
-				Timer timerConn = new Timer();
-				timerConn.setWhatIsLock(this);
-
-				this.executor.execute(timerConn);
+				Debug.print("c' e qualcuno che mi manda roba sulla mia porta, al mio indirizzo, ma " +
+						"finche' non mi dice connect non lo faccio giocare!");
 			}
-
-			Partita partita = this.partite.peekLast();
-			partita.addPlayer();
-			
-			this.proxyView = partita.getProxyView();
-			this.proxyView.accettaConnessione(socket);
 
 		}
 		catch (IOException e)
@@ -85,6 +96,18 @@ public class CarcassonneServer implements Runnable
 			// TODO: annulla lo sbaglio fatto!
 		}
 	}
+	
+
+	
+
+	private boolean vuoleConnetteri(Socket socket)
+	{
+		EspertoInizioConnessione espertoInizi = new EspertoInizioConnessione();
+		return espertoInizi.vuoleConnettersi(socket);
+	}
+
+
+
 
 	private Executor			executor;
 

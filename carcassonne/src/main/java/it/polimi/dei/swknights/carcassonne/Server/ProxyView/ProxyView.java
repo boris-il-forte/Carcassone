@@ -91,6 +91,7 @@ public class ProxyView extends AbstractConnessioneView
 			String messaggioIniziale = this.codaComandi.get(indiceMessaggio - 1);
 			connSOCK.invia(messaggioIniziale);
 		}
+		codaComandi.clear();
 
 	}
 
@@ -116,12 +117,14 @@ public class ProxyView extends AbstractConnessioneView
 
 	private void inviaSocket()
 	{
-		String comando = this.codaComandi.poll();
+		String comando = null; 
 		while (!this.codaComandi.isEmpty())
 		{
+			comando = this.codaComandi.poll();
 			for (ConnessioneViewSocket connessione : this.listaConnessioniSocket)
 			{
 				connessione.invia(comando);
+				
 			}
 		}
 	}

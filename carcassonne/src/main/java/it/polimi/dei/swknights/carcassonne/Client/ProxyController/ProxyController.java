@@ -46,10 +46,10 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 		Debug.print(" sono proxy controller, run");
 		int n = 0;
 		boolean nonCacciatoUser = true;
-		while (nonCacciatoUser && n < 5)
+		while (nonCacciatoUser )
 		{
 
-			while (true && n < 5)
+			while (true)
 			{
 
 				try
@@ -61,8 +61,7 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				n++;
-
+			
 			}
 
 		}
@@ -98,7 +97,17 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 	{
 		boolean contatto = false;
 		Debug.print(" sono proxy controller - contattaServer ");
-
+		try
+		{
+			printer = new PrintWriter( socket.getOutputStream());
+			printer.print("connect");
+			printer.flush();
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		/*
 			try
 			{
@@ -134,6 +143,7 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 
 	}
 
+	PrintWriter printer;
 	private List<ProxyControllerHandler>	handlers;
 	private String							requestString;
 	private ConnessioneController			connessione;
