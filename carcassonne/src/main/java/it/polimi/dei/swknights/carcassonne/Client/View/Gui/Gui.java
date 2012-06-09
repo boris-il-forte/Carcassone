@@ -74,10 +74,6 @@ public class Gui extends ModuloView
 	@Override
 	public void visualizzaTesseraCorrente(AdapterTessera tessera)
 	{
-		if (!this.getGestoreFasi().ruotaOk())
-		{
-			this.getGestoreFasi().cominciaTurno();
-		}
 		this.setTesseraCorrente(tessera);
 		Icon iconaTessera = this.immagini.getOriginalTileIcon(tessera.toProtocolString());
 		this.finestra.aggiornaTesseraCorrente(iconaTessera);
@@ -139,7 +135,6 @@ public class Gui extends ModuloView
 		if (this.getGestoreFasi().fineTurnoOk())
 		{
 			this.fire(new PassEvent(this));
-			this.getGestoreFasi().nextFase();
 		}
 	}
 

@@ -7,6 +7,8 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Map;
@@ -17,7 +19,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.border.BevelBorder;
 
-public class JCarcassonneLaterale extends Box implements ActionListener, KeyListener
+public class JCarcassonneLaterale extends Box implements ActionListener, KeyListener, FocusListener
 {
 
 	public JCarcassonneLaterale(Gui gui)
@@ -28,6 +30,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 		this.aggiungiComponenti();
 		this.setFocusable(true);
 		this.addKeyListener(this);
+		this.addFocusListener(this);
 	}
 
 	public void aggiornaTesseraCorrente(Icon tessera)
@@ -181,5 +184,16 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	private static final Rectangle			BOUNDING_BOX		= new Rectangle(1, 1, 147, 147);
 
 	private static final long				serialVersionUID	= -1423697317579326895L;
+
+	public void focusGained(FocusEvent arg0)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void focusLost(FocusEvent arg0)
+	{
+		this.grabFocus();
+	}
 
 }
