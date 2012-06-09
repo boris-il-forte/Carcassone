@@ -156,19 +156,36 @@ public abstract class ModuloView extends AbstractModuloView
 		this.gestoreFasi.cominciaTurno();
 	}
 
+	public void setColore(Color colore)
+	{
+		this.myColore = colore;
+	}
+	
 	public GestoreFasi getGestoreFasi()
 	{
 		return this.gestoreFasi;
 	}
 
-	public void setColore(Color coloreGiocatore)
+	public void setColoreCorrente(Color coloreGiocatore)
 	{
-		this.coloreGiocatore = coloreGiocatore;
+		this.coloreGiocatoreCorrente = coloreGiocatore;
+	}
+	
+	protected boolean turnoCorretto()
+	{
+		if (this.myColore == null)
+		{
+			return true;
+		}
+		else
+		{
+			return this.myColore.equals(this.coloreGiocatoreCorrente);
+		}
 	}
 
-	protected Color getColoreGiocatore()
+	protected Color getColoreGiocatoreCorrente()
 	{
-		return this.coloreGiocatore;
+		return this.coloreGiocatoreCorrente;
 	}
 
 	protected AdapterTessera getTesseraCorrente()
@@ -242,9 +259,11 @@ public abstract class ModuloView extends AbstractModuloView
 		this.addVisitorHandler(new FinePartitaHandler(this));
 	}
 
+	private Color myColore = null;
+	
 	private AdapterTessera				tesseraCorrente;
 
-	private Color						coloreGiocatore;
+	private Color						coloreGiocatoreCorrente;
 
 	private Coordinate					coordinateNordOvest;
 

@@ -26,6 +26,7 @@ public class UpdateTurnoHandler extends ProxyViewHandler
 		stringCommand.append(event.getTessera().toProtocolString());
 
 		this.proxy.setCommandString(stringCommand.toString());
+		
 	}
 
 }

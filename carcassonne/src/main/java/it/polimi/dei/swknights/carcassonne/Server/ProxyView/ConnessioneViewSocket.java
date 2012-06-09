@@ -34,12 +34,19 @@ public class ConnessioneViewSocket extends ConnessioneView
 	public void run()
 	{
 		Debug.print("sono connessione socket numero " + this.getNumeroConnessione());
-		while (this.in.hasNext())
+		if(!this.getColoreConnessione().equals(this.proxy.getColoreCorrente() ))
 		{
-			String stringaDaSocket = this.in.nextLine();
-			this.parsingStringa(stringaDaSocket);
+			while (this.in.hasNext())
+			{
+				String stringaDaSocket = this.in.nextLine();
+				this.parsingStringa(stringaDaSocket);
+			}
 		}
-		// notifica chiusura al proxy
+		else
+		{
+			Debug.print(" connessione view socket - mio colore = " + this.getColoreConnessione() 	
+			+ " e' turno del  " + this.proxy.getColoreCorrente());
+		}
 	}
 
 	public void invia(String string)
@@ -130,7 +137,10 @@ public class ConnessioneViewSocket extends ConnessioneView
 		return null; // TODO throw new cccc
 
 	}
+	
 
+	
+	
 	private Socket				socket;
 
 	private ProxyView			proxy;

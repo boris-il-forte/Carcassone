@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Server.ProxyView;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
+import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.CambioTurnoHandler;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.CostruzioneCompletataHandler;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.FinePartitaHandler;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.InizioGiocoHandler;
@@ -11,6 +12,7 @@ import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.UpdatePosit
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.UpdateRotationHandler;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.UpdateTurnoHandler;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -33,9 +35,18 @@ public class ProxyView extends AbstractConnessioneView
 	@Override
 	public void riceviModificheModel(ControllerEvent event)
 	{
-		this.inviaRMI(event);
-		this.parseEvento(event);
-		this.inviaSocket();
+		if (this.listaConnessioniRMI.size() != 0)
+		{
+			this.inviaRMI(event);
+		}
+
+		if (this.listaConnessioniSocket.size() != 0)
+		{
+			this.parseEvento(event);
+			this.inviaSocket();
+		}
+		event.accept(this.cambioTurnoHandler);
+		
 	}
 
 	@Override
@@ -50,6 +61,16 @@ public class ProxyView extends AbstractConnessioneView
 		// TODO do it
 	}
 
+	public Color getColoreCorrente()
+	{
+		return this.coloreCorrente;
+	}
+	
+	public void setColoreCorrente(Color colore)
+	{
+		this.coloreCorrente = colore;
+	}
+	
 	public void accettaConnessione(Socket socket) throws IOException
 	{
 		this.giocatoriConnessi++;
@@ -109,7 +130,8 @@ public class ProxyView extends AbstractConnessioneView
 
 	private void parseEvento(ControllerEvent event)
 	{
-		for(ProxyViewHandler handler : this.listaHandlers)
+
+		for (ProxyViewHandler handler : this.listaHandlers)
 		{
 			event.accept(handler);
 		}
@@ -117,14 +139,14 @@ public class ProxyView extends AbstractConnessioneView
 
 	private void inviaSocket()
 	{
-		String comando = null; 
+		String comando = null;
 		while (!this.codaComandi.isEmpty())
 		{
 			comando = this.codaComandi.poll();
 			for (ConnessioneViewSocket connessione : this.listaConnessioniSocket)
 			{
 				connessione.invia(comando);
-				
+
 			}
 		}
 	}
@@ -137,9 +159,12 @@ public class ProxyView extends AbstractConnessioneView
 		}
 	}
 
+
+
+	private Color						coloreCorrente;
+
 	private int							giocatoriConnessi	= 0;
 
-	private final int					MAX_GIOCATORI		= 5;
 	private Executor					starDestroyer;
 
 	private LinkedList<String>			codaComandi;
@@ -147,7 +172,11 @@ public class ProxyView extends AbstractConnessioneView
 	private ArrayList<ProxyViewHandler>	listaHandlers;
 
 	private List<ConnessioneViewSocket>	listaConnessioniSocket;
-
+	
 	private List<ConnessioneViewRMI>	listaConnessioniRMI;
+	
+	private final int					MAX_GIOCATORI		= 5;
+	
+	private final ProxyViewHandler		cambioTurnoHandler		= new CambioTurnoHandler(this);
 
 }
