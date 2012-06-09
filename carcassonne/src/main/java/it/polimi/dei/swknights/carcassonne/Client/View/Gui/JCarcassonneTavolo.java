@@ -68,12 +68,13 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 	{
 		int numeroCasella = this.getNumeroCasella(e);
 		JCarcassonneCasella casella = this.listaCaselle.get(numeroCasella);
-		if (casella.getStato().equals(StatoCasella.vuota))
+		if (this.inStatoVuota(numeroCasella))
 		{
-			this.lastPlaced = numeroCasella;
+			this.lastPlaced = this.view.convertiCoordinate(numeroCasella);
 			this.view.clicPosizionaTessera(numeroCasella);
 		}
-		else if (casella.getStato().equals(StatoCasella.conTessera) && numeroCasella == this.lastPlaced)
+		else if (casella.getStato().equals(StatoCasella.conTessera)
+				&& this.view.convertiCoordinate(numeroCasella).equals(this.lastPlaced))
 		{
 			Coordinate coordinateMouse = new Coordinate(e.getPoint().x, e.getPoint().y);
 			this.view.clicPosizionaSegnalino(numeroCasella, coordinateMouse);
@@ -138,7 +139,7 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 
 	private int							colonne;
 
-	private int							lastPlaced;
+	private Coordinate					lastPlaced;
 
 	private static final int			DIMENSIONE_CELLE	= 100;
 
