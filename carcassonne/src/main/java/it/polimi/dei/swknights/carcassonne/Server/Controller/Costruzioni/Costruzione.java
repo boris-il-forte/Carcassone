@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
+import it.polimi.dei.swknights.carcassonne.Util.PunteggiSegnalini;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public abstract class Costruzione
 
 	public Costruzione(Tessera tessera)
 	{
-		this.contatoreSegnalini = new Punteggi();
+		this.contatoreSegnalini = new PunteggiSegnalini();
 		this.elementi = new HashSet<Tessera>();
 		this.setSegnalini = new HashSet<Segnalino>();
 		this.elementi.add(tessera);
@@ -89,6 +90,7 @@ public abstract class Costruzione
 
 	public List<Color> controllataDa()
 	{
+		/* uso contatoreSegnalini invece
 		int max = 1;
 		List<Color> controllori = new ArrayList<Color>();
 		for (Entry<Color, Integer> entryColore : this.contatoreSegnalini.entrySet())
@@ -105,8 +107,10 @@ public abstract class Costruzione
 			{
 				controllori.add(entryColore.getKey());
 			}
-		}
-		return controllori;
+		} 
+		*/
+		
+		return this.contatoreSegnalini.getVincitoriAttuale();
 	}
 
 	/**

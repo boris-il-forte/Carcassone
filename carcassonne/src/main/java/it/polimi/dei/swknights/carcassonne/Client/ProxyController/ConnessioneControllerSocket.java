@@ -49,14 +49,20 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	@Override
 	public void run()
 	{
-		boolean letsReadAgain;
+		boolean letsReadAgain = false;
 		while (this.in.hasNext())
 		{
 			String stringaDaSocket = this.in.nextLine();
-			Debug.print(" sono connessione controller socket - ho ricevuto qualcosa" +
-					 stringaDaSocket +"faccio il parsingStringa");
+			Debug.print(" sono connessione controller socket - ho ricevuto qualcosa  " +
+					 stringaDaSocket +"   -  faccio il parsingStringa");
 			do
 			{
+				if(letsReadAgain)
+				{
+					stringaDaSocket = this.in.nextLine();
+					Debug.print(" sono connessione controller socket - ho ricevuto qualcosa  " +
+							 stringaDaSocket +"   -  faccio il parsingStringa");
+				}
 				letsReadAgain = this.parsingStringa(stringaDaSocket); // true
 																		// sse
 																		// devo
