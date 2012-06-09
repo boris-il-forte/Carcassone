@@ -19,6 +19,7 @@ public class IniziaGuiOnLine extends Inizio
 			View view = new Gui(); // 1)
 			Socket socket = CarcassonneSocket.dammiSocket(); // 2)
 			ProxyController controller = new ProxyController(socket); // 2
+			controller.addListener(view);
 			view.addListener(controller); // 2)
 			this.superStarDestroyer.execute(view); // 4)
 			this.superStarDestroyer.execute(controller);

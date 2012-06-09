@@ -25,10 +25,13 @@ public class IniziaCliOnLine extends Inizio
 			Socket socket = CarcassonneSocket.dammiSocket(ip); // 2)
 			ProxyController controller;
 
+			
 			controller = new ProxyController(socket);
-
+			controller.addListener(view);
 			// 2
-			view.addListener(controller); // 2)
+			view.addListener(controller);
+
+			
 			this.superStarDestroyer.execute(view); // 4)
 			this.superStarDestroyer.execute(controller);
 		}

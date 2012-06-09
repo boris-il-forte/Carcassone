@@ -21,4 +21,6 @@ public abstract class ConnessioneController extends AbstractConnessioneControlle
 
 	public abstract void close();
 
+
+
 }

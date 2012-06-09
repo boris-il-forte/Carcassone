@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ModuloControllerHandler;
 
 /**
@@ -19,7 +20,7 @@ public class PassEvent extends ViewEvent
 	}
 
 	@Override
-	public void accept(ModuloControllerHandler handler)
+	public void accept(ControllerHandler handler)
 	{
 		handler.visit(this);
 	}

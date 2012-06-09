@@ -5,6 +5,7 @@ import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocketPrinter;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraString;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
@@ -26,6 +27,8 @@ import java.util.Scanner;
 
 public class ConnessioneControllerSocket extends ConnessioneController
 {
+	private static final int	TESSERA_START	= 0;
+
 	/**
 	 * Basic constructor, just assign the passed variable to private field
 	 * 
@@ -50,7 +53,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		while (this.in.hasNext())
 		{
 			String stringaDaSocket = this.in.nextLine();
-
+			Debug.print(" sono connessione controller socket - ho ricevuto qualcosa" +
+					 stringaDaSocket +"faccio il parsingStringa");
 			do
 			{
 				letsReadAgain = this.parsingStringa(stringaDaSocket); // true
@@ -63,6 +67,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 		}
 	}
+	
 
 	private boolean parsingStringa(String stringaDaSocket)
 	{
@@ -71,22 +76,28 @@ public class ConnessioneControllerSocket extends ConnessioneController
 																// update:
 																// tile,x,y
 		{
-			String[] comandoEArgomenti = line.split(": ");
+			String[] comandoEArgomenti = line.split(":");
 			String argomenti = comandoEArgomenti[ARGOMENTI];
 			String[] partiArgomenti = argomenti.split(",");
 			String tessera = partiArgomenti[TESSERA];
 
 			if (line.matches("start:" + regTessera + ",.+" + ",(black|green|red|yellow|blue)" + ","
-					+ "\\d+")) // es start: tile,
+					+ "\\d+")) // es start:tile,
 								// name, color, num
 			{
+				String tesseraStart = partiArgomenti[TESSERA_START];
 				String name = partiArgomenti[NOME];
 				String color = partiArgomenti[COLORE_START];
 				String numero = partiArgomenti[NUMERO];
-
-				return false;
+				
+				Color coloreGiocatore = ColoriGioco.getColor(color);
+				AdapterTesseraString ada = new AdapterTesseraString(tesseraStart);
+				
+				this.proxy.fire(new InizioGiocoEvent(this,
+						ada, coloreGiocatore, Integer.parseInt(numero), name));
+				
 			}
-			if (line.matches("update: " + regTessera + ",\\-?\\d+\\,\\-?\\d+")) // es.
+			if (line.matches("update:" + regTessera + ",\\-?\\d+\\,\\-?\\d+")) // es.
 																				// update:
 			// tile 2,3
 			{
@@ -100,9 +111,9 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				return false;
 			}
 
-			if (line.matches("update: " + regTessera + ",\\-?\\d+\\,\\-?\\d+,")) // es.
+			if (line.matches("update:" + regTessera + ",\\-?\\d+\\,\\-?\\d+,")) // es.
 																					// update:
-			// tile 2,3, update: tile 3,3, update: tile 4,3
+			// tile 2,3, update:tile 3,3, update: tile 4,3
 			{
 				String x = partiArgomenti[X];
 				String y = partiArgomenti[Y];
@@ -118,10 +129,10 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		{
 			if (line.indexOf(":") != -1)
 			{
-				String[] comandoEArgomenti = line.split(": ");
+				String[] comandoEArgomenti = line.split(":");
 				String argomenti = comandoEArgomenti[ARGOMENTI];
 
-				if (line.matches("turn: (black|green|red|yellow|blue)")) // es.
+				if (line.matches("turn:(black|green|red|yellow|blue)")) // es.
 																			// turn:
 																			// red
 				{
@@ -135,7 +146,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 					return true;
 
 				}
-				if (line.matches("next: " + regTessera)) // es next: blabla
+				if (line.matches("next:" + regTessera)) // es next: blabla
 				{
 					String colore = this.partiDiEventoComposto.get(0);
 					String tessera = argomenti;
@@ -143,7 +154,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 					return false;
 				}
-				if (line.matches("rotated: " + regTessera)) // es rotate: blabla
+				if (line.matches("rotated:" + regTessera)) // es rotate: blabla
 				{
 					Color giocatore = null; // TODO capire
 					String tessera = argomenti;
@@ -152,7 +163,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 				}
 
-				if (line.matches("score: " + regScores)) // es score: red=10
+				if (line.matches("score:" + regScores)) // es score: red=10
 															// blu=20
 				{
 					// arrivato qua ha tutto ciò che serve per
@@ -185,11 +196,11 @@ public class ConnessioneControllerSocket extends ConnessioneController
 					return false;
 
 				}
-				if (line.matches("leave: (black|green|red|yellow|blue)")) // es
+				if (line.matches("leave:(black|green|red|yellow|blue)")) // es
 																			// leave:
 																			// yellow
 				{ return false; }
-				if (line.matches("end: " + regScores)) // es next: red=10
+				if (line.matches("end:" + regScores)) // es next: red=10
 														// blue=30
 				{
 
@@ -233,7 +244,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String s = "";
+		String s = "nulla";
 		try
 		{
 			s = socketIn.nextLine();
@@ -243,7 +254,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 			Debug.print("mi sa che è morto il server ");
 		}
 
-		s = "socket non ha next";
+		
 		Debug.print("Connessione Controller Socket, ho ricevuto  " + s);
 	}
 
@@ -257,7 +268,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	private static final int	ARGOMENTI		= 1;
 
 	private static final String	regScores		= "￼red=\\d+, blue=\\d+, green=\\d+, yellow=\\d+, black=\\d+";
-	private static final String	regTessera		= "*";
+	private static final String	regTessera		= ".+";
 	/*
 	 * TODO: NO! I SEGNALINI !!
 	 * "N=(S|C|N) S=(S|C|N) W=(S|C|N) E=(S|C|N) NS=(0|1) NE=(0|1)" +
@@ -281,5 +292,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	private CarcassonneSocketPrinter			out;
 
 	private ProxyController		proxy;
+
+
 
 }
