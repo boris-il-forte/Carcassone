@@ -25,6 +25,7 @@ public class EsploratoreConfiniTest
 	public void initializeTest() throws Exception
 	{
 		this.model = new ModuloModel();
+		this.model.addPlayer();
 	}
 
 	@Test
@@ -88,7 +89,6 @@ public class EsploratoreConfiniTest
 	@Test
 	public void stradaPiccola() throws Exception
 	{
-		this.model = new ModuloModel();
 		ContatoreCartografo contatore = new ContatoreCartografo(this.model);
 		System.out.println("\n " + " cont = " + contatore);
 

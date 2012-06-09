@@ -20,6 +20,7 @@ public class ContatoreCartografoTest
 	public void initializeTest() throws Exception
 	{
 		this.model = new ModuloModel();
+		this.model.addPlayer();
 	}
 
 	@Test

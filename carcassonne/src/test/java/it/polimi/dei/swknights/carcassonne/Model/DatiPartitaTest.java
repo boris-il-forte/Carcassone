@@ -50,7 +50,7 @@ public class DatiPartitaTest
 		int i = 1;
 		try
 		{
-			for (i = 1; i <= 11; i++)
+			for (i = 0; i <= 11; i++)
 			{
 				dati.addGiocatore();
 			}
