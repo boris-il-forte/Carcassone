@@ -17,7 +17,7 @@ public class FinePartitaHandler extends ProxyViewHandler
 	public void visit(FinePartitaEvent event)
 	{
 		StringBuilder stringCommand = new StringBuilder();
-		stringCommand.append("end: ");
+		stringCommand.append("end:");
 		Punteggi punteggi = event.getPunteggi();
 		String stringaPunteggi = this.getStringaPunteggi(punteggi);
 		stringCommand.append(stringaPunteggi);

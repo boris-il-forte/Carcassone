@@ -3,7 +3,9 @@ package it.polimi.dei.swknights.carcassonne.Util;
 import it.polimi.dei.swknights.carcassonne.Exceptions.ColoreNonTrovatoException;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -27,6 +29,35 @@ public class Punteggi
 					+ colore.toString());
 		}
 
+	}
+	
+	public List<Color> getVincitoriAttuale()
+	{
+		int massimo = 0;
+		List<Color>  papabili = new ArrayList<Color>();
+		for(Entry<Color, Integer> entry : this.mappaPunteggi.entrySet())
+		{
+			int punteggio = entry.getValue();
+			if ( punteggio > massimo)
+			{
+				massimo = punteggio;
+			}
+			
+		}
+		
+		for(Entry<Color, Integer> entry : this.mappaPunteggi.entrySet())
+		{
+			int punteggio = entry.getValue();
+			if ( punteggio == massimo)
+			{
+				papabili.add(entry.getKey());
+			}
+			
+		}
+		
+		
+		
+		return papabili;
 	}
 
 	public void addPunteggi(Punteggi punteggiParziali)

@@ -16,7 +16,7 @@ public class UpdateRotationHandler extends ProxyViewHandler
 	public void visit(UpdateRotationEvent event)
 	{
 		StringBuilder stringCommand = new StringBuilder();
-		stringCommand.append("rotated: ");
+		stringCommand.append("rotated:");
 		stringCommand.append(event.getTessera().toProtocolString());
 
 		this.proxy.setCommandString(stringCommand.toString());

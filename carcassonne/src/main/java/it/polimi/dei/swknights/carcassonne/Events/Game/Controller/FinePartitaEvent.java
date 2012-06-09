@@ -1,5 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.Controller;
 
+import java.awt.Color;
+import java.util.List;
+
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
@@ -30,6 +33,11 @@ public class FinePartitaEvent extends ControllerEvent
 		return this.punteggi;
 	}
 
+	public List<Color> getVincitore()
+	{
+		return this.punteggi.getVincitoriAttuale();
+	}
+	
 	private Punteggi			punteggi;
 	private static final long	serialVersionUID	= 7228959705104329672L;
 
