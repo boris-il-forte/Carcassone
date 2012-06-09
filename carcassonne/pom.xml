@@ -34,7 +34,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>it.unimi.sacco.teatro.SoundManager.Soundmanager</mainClass>
+							<mainClass>it.polimi.dei.swknights.carcassonne.Carcassonne</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
