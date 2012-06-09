@@ -114,8 +114,7 @@ public class CarcassonneServer implements Runnable
 
 	private boolean vuoleConnettersi(Socket socket)
 	{
-		EspertoInizioConnessione espertoInizi = new EspertoInizioConnessione();
-		return espertoInizi.vuoleConnettersi(socket);
+		return EspertoInizioConnessione.vuoleConnettersi(socket);
 	}
 
 	private ExecutorService			executor;
@@ -173,7 +172,7 @@ public class CarcassonneServer implements Runnable
 
 		private Object				lock;
 
-		private static final int	TIMEOUT	= 2000;	// millisec
+		private static final int	TIMEOUT	= 60000;	// millisec
 
 	}
 
