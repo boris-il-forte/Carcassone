@@ -67,7 +67,7 @@ public class ProxyController extends AbstractConnessioneController
 		this.connessione.invia(this.requestString);
 	}
 
-	private void inviaRMI(ControllerEvent event)
+	public void inviaRMI(ControllerEvent event)
 	{
 		this.connessione.invia(event);
 
@@ -83,7 +83,6 @@ public class ProxyController extends AbstractConnessioneController
 	// inizio fatto comunque via socket?
 	private void contattaServerInizia(Socket socket)
 	{
-		boolean contatto = false;
 		Debug.print(" sono proxy controller - contattaServer ");
 		try
 		{

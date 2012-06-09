@@ -9,7 +9,7 @@ public class CarcassonneSocket
 
 	public static Socket dammiSocket()
 	{
-		return CarcassonneSocket.dammiSocket("127.0.0.1");
+		return CarcassonneSocket.dammiSocket(indirizzoServer);
 
 	}
 
