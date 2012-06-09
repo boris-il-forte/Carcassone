@@ -29,6 +29,7 @@ public class ModuloModelTest
 	public void initModel()
 	{
 		model = new ModuloModel();
+		model.addPlayer();
 	}
 
 	@After
