@@ -167,6 +167,15 @@ public class Gui extends ModuloView
 		casella.setVuota(coordinateVuota);
 	}
 
+	public Coordinate convertiCoordinate(int numeroCasella)
+	{
+		int x = numeroCasella % this.larghezza;
+		int y = numeroCasella / this.larghezza;
+		Coordinate coordRelativa = new Coordinate(x, y);
+		return this.getCoordinateNordOvest().getCoordinateA(coordRelativa);
+	
+	}
+
 	private PuntoCardinale getPuntocardinaleIserimento(Coordinate coordinateMouse)
 			throws PosizionaMentoInvalidoException
 	{
@@ -185,14 +194,6 @@ public class Gui extends ModuloView
 		this.altezza = (size.height - 3 * this.dimesioneTessere) / this.dimesioneTessere;
 		this.altezza = (this.altezza % 2 == 0) ? (this.altezza + 1) : (this.altezza);
 		this.larghezza = (this.larghezza % 2 == 0) ? (this.larghezza + 1) : (this.larghezza);
-	}
-
-	private Coordinate convertiCoordinate(int numeroCasella)
-	{
-		int x = numeroCasella % this.larghezza;
-		int y = numeroCasella / this.larghezza;
-		Coordinate coordRelativa = new Coordinate(x, y);
-		return this.getCoordinateNordOvest().getCoordinateA(coordRelativa);
 	}
 
 	private void aggiornaCaselle(List<EntryTessera> listaTessere)
@@ -242,7 +243,6 @@ public class Gui extends ModuloView
 				int numeroVuota = entry.getValue();
 				this.finestra.aggiornaMappa(numeroVuota, coordinateVuota);
 			}
-
 		}
 	}
 

@@ -20,7 +20,7 @@ public class IniziaCliOnLine extends Inizio
 		try
 		{
 			this.printer.println("cli on line");
-			String ip = "127.0.0.1"; //TODO: già fatto, lungo per debug // this.chiediIndirizzoIP();
+			String ip = this.chiediIndirizzoIP();
 			View view = new Cli(); // 1)
 			Socket socket = CarcassonneSocket.dammiSocket(ip); // 2)
 			ProxyController controller;
@@ -58,8 +58,8 @@ public class IniziaCliOnLine extends Inizio
 			{
 				this.printer.println("Input non valido");
 			}
-		} while (ipValidator.validate(ip) == false);
-		return ip;
+		} while (!(ipValidator.validate(ip) || ip.equals("")));
+		return (ip.equals(""))? "127.0.0.1" : ip;
 	}
 
 }
