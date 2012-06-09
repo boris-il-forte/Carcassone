@@ -91,21 +91,16 @@ public class ConnessioneViewSocket extends ConnessioneView
 		{
 			if (line.indexOf(":") != -1)
 			{
-				if (line.matches("tile: [SCsc][1-4]")) // es tile: c1
+				if (line.matches("tile:[NSWE]")) // es tile: c1
 				{
 					String[] partiTile = line.split(":");
 					String side = partiTile[SIDE];
-					PuntoCardinale punto = this.puntoDaSigla(side);
-					this.proxy.fire(new TileEvent(this, null, punto));
-
+					PuntoCardinale punto = PuntoCardinale.valueOf(side);
+					this.proxy.fire(new TileEvent(this,this.getColoreConnessione(), punto));
 				}
 			}
 			else
 			{
-				if (line.equalsIgnoreCase("connect"))
-				{
-
-				}
 				if (line.equalsIgnoreCase("rotate"))
 				{
 					this.proxy.fire(new RotateEvent(this));
@@ -114,21 +109,8 @@ public class ConnessioneViewSocket extends ConnessioneView
 				{
 					this.proxy.fire(new PassEvent(this));
 				}
-
 			}
 		}
-
-	}
-
-	private PuntoCardinale puntoDaSigla(String side)
-	{
-
-		if (side.compareTo("N") == 0) { return PuntoCardinale.nord; }
-		if (side.compareTo("S") == 0) { return PuntoCardinale.sud; }
-		if (side.compareTo("W") == 0) { return PuntoCardinale.ovest; }
-		if (side.compareTo("E") == 0) { return PuntoCardinale.est; }
-
-		return null; // TODO throw new cccc
 
 	}
 
