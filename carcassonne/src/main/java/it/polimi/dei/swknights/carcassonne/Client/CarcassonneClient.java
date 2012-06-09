@@ -4,7 +4,6 @@ import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.AbstractConnessioneController;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.AbstractConnessioneView;
 
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 

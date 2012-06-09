@@ -1,7 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
-import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.CambioTurnoHandler;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.CostruzioneCompletataHandler;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.FinePartitaHandler;
@@ -55,11 +54,6 @@ public class ProxyView extends AbstractConnessioneView
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public void fire(ViewEvent event)
-	{
-		// TODO do it
-	}
 
 	public Color getColoreCorrente()
 	{

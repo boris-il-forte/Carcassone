@@ -1,7 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ControllerHandler;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ModuloControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
