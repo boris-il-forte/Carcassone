@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class EspertoInizioConnessione
 {
 
-	public boolean vuoleConnettersi(Socket socket)
+	public static boolean vuoleConnettersi(Socket socket)
 	{
 		try
 		{
@@ -20,7 +20,15 @@ public class EspertoInizioConnessione
 			{
 				
 				String line = (scanner.nextLine());
-				return line.compareTo("connect")==0;
+				if (line.equals("connect"))
+				{
+					return true;
+				}
+				else
+				{
+					socket.close();
+					return false;
+				}
 			}
 			catch(NoSuchElementException e)
 			{
