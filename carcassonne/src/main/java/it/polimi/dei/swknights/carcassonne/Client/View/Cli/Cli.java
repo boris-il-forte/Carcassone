@@ -88,11 +88,14 @@ public class Cli extends ModuloView
 
 	public void attendiInput()
 	{
-		if (this.getGestoreFasi().inputOk())
-		{
-			this.informaUser.setPhase(this.getGestoreFasi().getCurrentFase());
-			this.getInput();
-		}
+		
+		
+			if (this.getGestoreFasi().inputOk() &&  this.turnoCorretto())
+			{
+				this.informaUser.setPhase(this.getGestoreFasi().getCurrentFase());
+				this.getInput();
+			}
+	
 
 	}
 
@@ -120,7 +123,7 @@ public class Cli extends ModuloView
 	@Override
 	public void visualizzaColoreCorrente()
 	{
-		this.informaUser.setColore(this.getColoreGiocatore());
+		this.informaUser.setColore(this.getColoreGiocatoreCorrente());
 	}
 
 	@Override
@@ -190,7 +193,7 @@ public class Cli extends ModuloView
 				if (elementi[punto.toInt()].equalsIgnoreCase(stringComando))
 				{
 
-					this.fire(new TileEvent(this, this.getColoreGiocatore(), punto));
+					this.fire(new TileEvent(this, this.getColoreGiocatoreCorrente(), punto));
 					return true;
 				}
 			}
@@ -217,6 +220,7 @@ public class Cli extends ModuloView
 
 	private void getInput()
 	{
+
 		boolean valido;
 		do
 		{
@@ -225,6 +229,7 @@ public class Cli extends ModuloView
 			String comando = this.in.nextLine();
 			valido = this.parser.eseguiComando(comando);
 		} while (!valido);
+
 	}
 
 	private Stampante inizializzaStampante()

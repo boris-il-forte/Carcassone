@@ -83,7 +83,7 @@ public class Gui extends ModuloView
 	public void visualizzaColoreCorrente()
 	{
 		// TODO numero segnalini corretto
-		this.finestra.aggiornaGiocatoreCorrente(this.getColoreGiocatore(), 0);
+		this.finestra.aggiornaGiocatoreCorrente(this.getColoreGiocatoreCorrente(), 0);
 
 	}
 
@@ -122,7 +122,7 @@ public class Gui extends ModuloView
 				Coordinate coordReale = this.convertiCoordinate(numeroCasella);
 				PuntoCardinale puntoInserimento = this.getPuntocardinaleIserimento(coordinateMouse);
 				this.coordinateInserimentoSegnalini.put(coordReale, coordinateMouse);
-				this.fire(new TileEvent(this, this.getColoreGiocatore(), puntoInserimento));
+				this.fire(new TileEvent(this, this.getColoreGiocatoreCorrente(), puntoInserimento));
 			}
 			catch (PosizionaMentoInvalidoException e)
 			{

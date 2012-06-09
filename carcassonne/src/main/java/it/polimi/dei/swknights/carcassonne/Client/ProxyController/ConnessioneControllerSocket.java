@@ -9,6 +9,8 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEve
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
+import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
+import it.polimi.dei.swknights.carcassonne.Parser.ExtraParser;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
@@ -27,8 +29,6 @@ import java.util.Scanner;
 
 public class ConnessioneControllerSocket extends ConnessioneController
 {
-	private static final int	TESSERA_START	= 0;
-
 	/**
 	 * Basic constructor, just assign the passed variable to private field
 	 * 
@@ -63,7 +63,14 @@ public class ConnessioneControllerSocket extends ConnessioneController
 					Debug.print(" sono connessione controller socket - ho ricevuto qualcosa  " +
 							 stringaDaSocket +"   -  faccio il parsingStringa");
 				}
-				letsReadAgain = this.parsingStringa(stringaDaSocket); // true
+				try
+				{
+					letsReadAgain = this.parsingStringa(stringaDaSocket);
+				}
+				catch (InvalidStringToParseException e)
+				{
+					break;
+				} // true
 																		// sse
 																		// devo
 																		// leggere
@@ -75,7 +82,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	}
 	
 
-	private boolean parsingStringa(String stringaDaSocket)
+	private boolean parsingStringa(String stringaDaSocket) throws InvalidStringToParseException
 	{
 		String line = stringaDaSocket;
 		if (line.indexOf(",") != -1 && line.indexOf(":") != -1) // composti
@@ -86,7 +93,9 @@ public class ConnessioneControllerSocket extends ConnessioneController
 			String argomenti = comandoEArgomenti[ARGOMENTI];
 			String[] partiArgomenti = argomenti.split(",");
 			String tessera = partiArgomenti[TESSERA];
-
+			
+			new ExtraParser(tessera);
+			
 			if (line.matches("start:" + regTessera + ",.+" + ",(black|green|red|yellow|blue)" + ","
 					+ "\\d+")) // es start:tile,
 								// name, color, num
@@ -156,6 +165,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				{
 					String colore = this.partiDiEventoComposto.get(0);
 					String tessera = argomenti;
+					new ExtraParser(tessera);
 					this.proxy.fire(new UpdateTurnoEvent(this, ColoriGioco.getColor(colore), tessera));
 
 					return false;
@@ -164,6 +174,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				{
 					Color giocatore = null; // TODO capire
 					String tessera = argomenti;
+					new ExtraParser(tessera);
 					this.proxy.fire(new UpdateRotationEvent(tessera, giocatore, this));
 					return false;
 
@@ -273,7 +284,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 	private static final int	ARGOMENTI		= 1;
 
-	private static final String	regScores		= "￼red=\\d+, blue=\\d+, green=\\d+, yellow=\\d+, black=\\d+";
+	private static final String	regScores		= "red=\\d+, blue=\\d+, green=\\d+, yellow=\\d+, black=\\d+";
 	private static final String	regTessera		= ".+";
 	/*
 	 * TODO: NO! I SEGNALINI !!
@@ -291,6 +302,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	private final static int	Y				= 1;
 	private final static int	COLORE_SCORE	= 0;
 	private final static int	NUM_SCORE		= 1;
+	private final  static int	TESSERA_START	= 0;
+
 	private Socket				socket;
 
 	private Scanner				in;

@@ -9,8 +9,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Scanner;
-import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class CarcassonneServer implements Runnable
@@ -30,22 +29,38 @@ public class CarcassonneServer implements Runnable
 	public final void run()
 	{
 		Debug.print("starting Server");
-		ServerSocket serverSocket;
-		while (true)
+		ServerSocket serverSocket=null;
+		try
 		{
-			try
+			serverSocket = new ServerSocket(PORTA_DEL_GRANDE_FRATELLO);
+			while (true)
 			{
-				serverSocket = new ServerSocket(PORTA_DEL_GRANDE_FRATELLO);
+
+				
 				Socket socket;
 				socket = serverSocket.accept();
 				Debug.print("sono carcassonne server-  ora chiamo gestisci connessione");
 				this.gestisciConnessione(socket);
+
+			}
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			Debug.print(" spengo server ");
+			this.executor.shutdownNow();
+		}
+		finally
+		{
+			try
+			{
+				serverSocket.close();
 			}
 			catch (IOException e)
 			{
-
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-
 		}
 
 	}
@@ -86,8 +101,8 @@ public class CarcassonneServer implements Runnable
 			}
 			else
 			{
-				Debug.print("c' e qualcuno che mi manda roba sulla mia porta, al mio indirizzo, ma " +
-						"finche' non mi dice connect non lo faccio giocare!");
+				Debug.print("c' e qualcuno che mi manda roba sulla mia porta, al mio indirizzo, ma "
+						+ "finche' non mi dice connect non lo faccio giocare!");
 			}
 
 		}
@@ -96,9 +111,6 @@ public class CarcassonneServer implements Runnable
 			// TODO: annulla lo sbaglio fatto!
 		}
 	}
-	
-
-	
 
 	private boolean vuoleConnetteri(Socket socket)
 	{
@@ -106,10 +118,7 @@ public class CarcassonneServer implements Runnable
 		return espertoInizi.vuoleConnettersi(socket);
 	}
 
-
-
-
-	private Executor			executor;
+	private ExecutorService			executor;
 
 	private boolean				timerScaduto;
 
@@ -164,7 +173,7 @@ public class CarcassonneServer implements Runnable
 
 		private Object				lock;
 
-		private static final int	TIMEOUT	= 2000; // millisec
+		private static final int	TIMEOUT	= 2000;	// millisec
 
 	}
 
@@ -190,8 +199,7 @@ public class CarcassonneServer implements Runnable
 				}
 				catch (InterruptedException e)
 				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					Debug.print(" hai interrotto il sonno del monaco, maledetto! ");
 				}
 
 			}

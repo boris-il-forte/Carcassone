@@ -21,10 +21,11 @@ public class InizioGiocoHandler extends ModuloViewHandler
 	@Override
 	public void visit(InizioGiocoEvent event)
 	{
-		Color coloreIniziale = event.getGiocatore();
+		Color coloreInterfaccia = event.getGiocatore();
 		AdapterTessera tessIniziale = event.getTesseraIniziale();
 		this.view.mettiPrimaTessera(tessIniziale);
-		this.view.setColore(coloreIniziale);
+		this.view.setColore(coloreInterfaccia);
+		
 		this.view.visualizzaColoreCorrente();
 		this.view.aggiornaMappa();
 		this.sveglia();
