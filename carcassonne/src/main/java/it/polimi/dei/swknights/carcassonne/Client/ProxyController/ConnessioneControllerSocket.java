@@ -300,8 +300,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	private final static int	NOME			= 1;
 	private final static int	COLORE_START	= 2;
 	private final static int	NUMERO			= 3;
-	private final static int	X				= 0;
-	private final static int	Y				= 1;
+	private final static int	X				= 1;
+	private final static int	Y				= 2;
 	private final static int	COLORE_SCORE	= 0;
 	private final static int	NUM_SCORE		= 1;
 	private final  static int	TESSERA_START	= 0;
