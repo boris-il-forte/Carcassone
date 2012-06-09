@@ -56,10 +56,10 @@ public class Gui extends ModuloView
 	}
 
 	@Override
-	public void notificaFinePartita()
+	public void notificaFinePartita(String vincitore)
 	{
 		// TODO: visualizza vincitore e cambia immagine
-		JOptionPane.showMessageDialog(this.finestra, "Fine partita!!", "Carcassonne - swKnights",
+		JOptionPane.showMessageDialog(this.finestra, "Fine partita!!" + vincitore, "Carcassonne - swKnights",
 				JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", this.dimesioneTessere));
 	}
 

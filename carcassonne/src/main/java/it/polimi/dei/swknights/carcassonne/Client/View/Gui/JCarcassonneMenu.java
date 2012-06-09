@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -7,8 +9,9 @@ import java.util.Map.Entry;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
-public class JCarcassonneMenu extends JMenuBar
+public class JCarcassonneMenu extends JMenuBar implements ActionListener
 {
 	public JCarcassonneMenu()
 	{
@@ -30,6 +33,7 @@ public class JCarcassonneMenu extends JMenuBar
 		for (int i = 0; i < etichetteItem.length; i++)
 		{
 			JMenuItem menuItem = new JMenuItem(etichetteItem[i]);
+			menuItem.addActionListener(this);
 			menu.add(menuItem);
 		}
 		this.add(menu);
@@ -50,5 +54,18 @@ public class JCarcassonneMenu extends JMenuBar
 	private static final Map<String, String[]>	ITEM_MAP			= inizializzaItemMap();
 
 	private static final long					serialVersionUID	= 4524292800026510575L;
+
+	public void actionPerformed(ActionEvent e)
+	{
+		String item = e.getActionCommand();
+		if (item.equals("Credits"))
+		{
+			JOptionPane
+					.showMessageDialog(
+							this,
+							"<html>Gioco creato da Edoardo Pasi e Davide Tateo.<br/> Questo gioco è stato testato con il metodo dell'amico di Ghezzi<html/>",
+							"Carcassonne - swKnights -credits", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
 
 }

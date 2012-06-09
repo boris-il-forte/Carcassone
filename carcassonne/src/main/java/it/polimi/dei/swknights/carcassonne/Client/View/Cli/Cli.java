@@ -104,7 +104,7 @@ public class Cli extends ModuloView
 	}
 
 	@Override
-	public void notificaFinePartita()
+	public void notificaFinePartita(String vincitore)
 	{
 		this.getGestoreFasi().finePartita();
 		this.informaUser.notificaFinePartita();

@@ -41,8 +41,9 @@ public abstract class ModuloView extends AbstractModuloView
 
 	/**
 	 * Notify the user the end of the game
+	 * @param vincitori TODO
 	 */
-	public abstract void notificaFinePartita();
+	public abstract void notificaFinePartita(String vincitori);
 
 	/**
 	 * Notify the user a non-valid move eg 2,1 if 2,1 is not a free position eg
