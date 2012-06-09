@@ -76,7 +76,7 @@ public class CarcassonneServer implements Runnable
 
 		try
 		{
-			if (vuoleConnetteri(socket))
+			if (vuoleConnettersi(socket))
 			{
 				Debug.print("Carcassonne Server - ho ricevuto un connect: qualcuno vuole giocare");
 				this.giocatoriAttivi++;
@@ -112,7 +112,7 @@ public class CarcassonneServer implements Runnable
 		}
 	}
 
-	private boolean vuoleConnetteri(Socket socket)
+	private boolean vuoleConnettersi(Socket socket)
 	{
 		EspertoInizioConnessione espertoInizi = new EspertoInizioConnessione();
 		return espertoInizi.vuoleConnettersi(socket);

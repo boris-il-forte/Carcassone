@@ -1,7 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ControllerHandler;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ModuloControllerHandler;
 
 /**
  * Event triggered by the view to notify that the current player wants to rotate

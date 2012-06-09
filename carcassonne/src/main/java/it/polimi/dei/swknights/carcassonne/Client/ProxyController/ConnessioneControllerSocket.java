@@ -243,8 +243,10 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 	}
 
+	@Override
 	public void invia(String message)
 	{
+		Debug.print(" connessione controller socket - invio " + message);
 		this.out.println(message);
 	}
 

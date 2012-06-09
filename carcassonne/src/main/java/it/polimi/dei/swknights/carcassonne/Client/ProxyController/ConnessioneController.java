@@ -9,13 +9,13 @@ public abstract class ConnessioneController extends AbstractConnessioneControlle
 	{
 	}
 
-	public void invia()
-	{
-	}
-
-	public void invia(Object o)
-	{
-	}
+		public void invia(String message)
+		{
+		}
+	
+		public void invia(Object o)
+		{
+		}
 
 	public abstract void riceviInput() throws IOException;
 

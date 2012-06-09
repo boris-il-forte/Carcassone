@@ -33,20 +33,23 @@ public class ConnessioneViewSocket extends ConnessioneView
 	@Override
 	public void run()
 	{
-		Debug.print("sono connessione socket numero " + this.getNumeroConnessione());
-		if(!this.getColoreConnessione().equals(this.proxy.getColoreCorrente() ))
+
+		while (this.in.hasNext())
 		{
-			while (this.in.hasNext())
+
+			String stringaDaSocket = this.in.nextLine();
+			Debug.print("sono connessione socket numero " + this.getNumeroConnessione());
+			if (this.getColoreConnessione().equals(this.proxy.getColoreCorrente()))
 			{
-				String stringaDaSocket = this.in.nextLine();
 				this.parsingStringa(stringaDaSocket);
 			}
+			else
+			{
+				Debug.print(" connessione view socket - mio colore = " + this.getColoreConnessione()
+						+ " e' turno del  " + this.proxy.getColoreCorrente());
+			}
 		}
-		else
-		{
-			Debug.print(" connessione view socket - mio colore = " + this.getColoreConnessione() 	
-			+ " e' turno del  " + this.proxy.getColoreCorrente());
-		}
+
 	}
 
 	public void invia(String string)
@@ -73,7 +76,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 	{
 		if (line.indexOf(",") != -1 && line.indexOf(":") != -1)
 		{
-			if (line.matches("place: \\-?\\d+\\,\\-?\\d+")) // es place: 2,3
+			if (line.matches("place:\\-?\\d+\\,\\-?\\d+")) // es place: 2,3
 			{
 				String[] partiPlace = line.split(":");
 				String coord = partiPlace[PLACE_COORD];
@@ -83,15 +86,6 @@ public class ConnessioneViewSocket extends ConnessioneView
 				this.proxy.fire(new PlaceEvent(this, new Coordinate(x, y)));
 			}// es. reconnect: yellow,PARTITA02
 
-			if (line.matches("reconnect: (black|green|red|yellow|blue),.+"))
-			{
-				String[] recoPart = line.split(":");
-				String dopoReco = recoPart[DOPO_RECONNECT];
-				String[] colorEPartita = dopoReco.split(",");
-				String colore = colorEPartita[COLOR];
-				String nomePartita = colorEPartita[PARTITA];
-				// /proxy.fire(new )
-			}
 		}
 		else
 		{
@@ -137,30 +131,21 @@ public class ConnessioneViewSocket extends ConnessioneView
 		return null; // TODO throw new cccc
 
 	}
-	
 
-	
-	
-	private Socket				socket;
+	private Socket						socket;
 
-	private ProxyView			proxy;
+	private ProxyView					proxy;
 
-	private Scanner				in;
+	private Scanner						in;
 
-	private CarcassonneSocketPrinter		out;
+	private CarcassonneSocketPrinter	out;
 
-	private static final int	X				= 0;
+	private static final int			X			= 0;
 
-	private static final int	Y				= 1;
+	private static final int			Y			= 1;
 
-	private static final int	SIDE			= 1;
+	private static final int			SIDE		= 1;
 
-	private static final int	PARTITA			= 1;
-
-	private static final int	COLOR			= 0;
-
-	private static final int	DOPO_RECONNECT	= 1;
-
-	private static final int	PLACE_COORD		= 1;
+	private static final int			PLACE_COORD	= 1;
 
 }

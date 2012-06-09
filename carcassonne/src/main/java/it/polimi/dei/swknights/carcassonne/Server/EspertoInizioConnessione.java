@@ -24,6 +24,7 @@ public class EspertoInizioConnessione
 			}
 			catch(NoSuchElementException e)
 			{
+				socket.close();
 				return false;
 			}
 
