@@ -24,6 +24,7 @@ public class InizioGiocoHandler extends ProxyViewHandler
 			stringCommand = new StringBuilder();
 			stringCommand.append("start:");
 			stringCommand.append(event.getTesseraIniziale().toProtocolString());
+			stringCommand.append(",");
 			stringCommand.append(event.getIdPartita());
 			stringCommand.append(",");
 			stringCommand.append(ColoriGioco.getProtocolName(colore));

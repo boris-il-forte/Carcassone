@@ -8,25 +8,29 @@ import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControlle
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.RuotaHandler;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.TileHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
-import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Model;
+import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /*
  */
-public class ProxyController extends AbstractConnessioneController implements Model
+public class ProxyController extends AbstractConnessioneController 
 {
 
 	public ProxyController(Socket socket) throws IOException
 	{
 
 		this.connessione = new ConnessioneControllerSocket(socket, this);
-		this.inizializzaHandlers();
 		this.contattaServerInizia(socket);
+		this.inizializzaHandlers();
+		Executor imperial =Executors.newFixedThreadPool(1); //lancia per ascoltare risp
+		imperial.execute(connessione);
+		
 	}
 
 	public ProxyController() // RMI
@@ -43,32 +47,20 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 	@Override
 	public void run()
 	{
-		Debug.print(" sono proxy controller, run");
-		int n = 0;
-		boolean nonCacciatoUser = true;
-		while (nonCacciatoUser )
-		{
-
-			while (true)
-			{
-
-				try
-				{
-					this.connessione.riceviInput();
-				}
-				catch (IOException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			
-			}
-
-		}
-
-		this.connessione.close();
+		//
 	}
-
+	
+	@Override
+	public void riceviInput(ViewEvent event) 
+	{
+		for(ProxyControllerHandler handler : this.handlers)
+		{
+			event.accept(handler); //tells proxy what has to send (string if socket)
+		}
+		this.inviaSocket();
+	}
+	
+	
 	private void inviaSocket()
 	{
 
@@ -86,11 +78,7 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 	{
 	}
 
-	public void fire(ControllerEvent event)
-	{
-		// TODO Auto-generated method stub
 
-	}
 
 	// inizio fatto comunque via socket?
 	private void contattaServerInizia(Socket socket)
@@ -109,6 +97,8 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 			e.printStackTrace();
 		}
 		/*
+			if(false)
+			{
 			try
 			{
 
@@ -127,6 +117,7 @@ public class ProxyController extends AbstractConnessioneController implements Mo
 			{
 				// TODO Auto-generated catch block
 				// e.printStackTrace();
+			}
 			}
 		}
 		*/

@@ -68,7 +68,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 		{
 			if (line.matches("place: \\-?\\d+\\,\\-?\\d+")) // es place: 2,3
 			{
-				String[] partiPlace = line.split(": ");
+				String[] partiPlace = line.split(":");
 				String coord = partiPlace[PLACE_COORD];
 				String[] partiCoord = coord.split(",");
 				int x = Integer.parseInt(partiCoord[X]);
@@ -78,7 +78,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 			if (line.matches("reconnect: (black|green|red|yellow|blue),.+"))
 			{
-				String[] recoPart = line.split(": ");
+				String[] recoPart = line.split(":");
 				String dopoReco = recoPart[DOPO_RECONNECT];
 				String[] colorEPartita = dopoReco.split(",");
 				String colore = colorEPartita[COLOR];
@@ -92,7 +92,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 			{
 				if (line.matches("tile: [SCsc][1-4]")) // es tile: c1
 				{
-					String[] partiTile = line.split(": ");
+					String[] partiTile = line.split(":");
 					String side = partiTile[SIDE];
 					PuntoCardinale punto = this.puntoDaSigla(side);
 					this.proxy.fire(new TileEvent(this, null, punto));

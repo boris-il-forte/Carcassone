@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events.Game.View;
 
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers.ModuloControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
@@ -44,7 +45,7 @@ public class TileEvent extends ViewEvent
 	private static final long		serialVersionUID	= 2085506187547788810L;
 
 	@Override
-	public void accept(ModuloControllerHandler handler)
+	public void accept(ControllerHandler handler)
 	{
 		handler.visit(this);
 	}

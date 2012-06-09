@@ -17,12 +17,12 @@ public class PlaceHandler extends ProxyControllerHandler
 	{
 		StringBuilder placeString = new StringBuilder();
 		Coordinate coord = event.getCoordinateDestinazione();
-		placeString.append("place: ");
+		placeString.append("place:");
 		placeString.append(coord.getX());
 		placeString.append(", ");
 		placeString.append(coord.getY());
 
 		this.proxy.setRequestString(placeString.toString());
 	}
-
+	
 }
