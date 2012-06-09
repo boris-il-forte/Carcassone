@@ -29,14 +29,13 @@ public class CarcassonneServer implements Runnable
 	public final void run()
 	{
 		Debug.print("starting Server");
-		ServerSocket serverSocket=null;
+		ServerSocket serverSocket = null;
 		try
 		{
 			serverSocket = new ServerSocket(PORTA_DEL_GRANDE_FRATELLO);
 			while (true)
 			{
 
-				
 				Socket socket;
 				socket = serverSocket.accept();
 				Debug.print("sono carcassonne server-  ora chiamo gestisci connessione");
@@ -117,7 +116,7 @@ public class CarcassonneServer implements Runnable
 		return EspertoInizioConnessione.vuoleConnettersi(socket);
 	}
 
-	private ExecutorService			executor;
+	private ExecutorService		executor;
 
 	private boolean				timerScaduto;
 

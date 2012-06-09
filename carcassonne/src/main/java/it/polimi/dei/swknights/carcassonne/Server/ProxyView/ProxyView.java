@@ -45,26 +45,24 @@ public class ProxyView extends AbstractConnessioneView
 			this.inviaSocket();
 		}
 		event.accept(this.cambioTurnoHandler);
-		
+
 	}
 
 	@Override
 	public void run()
 	{
-		// TODO Auto-generated method stub
 	}
-
 
 	public Color getColoreCorrente()
 	{
 		return this.coloreCorrente;
 	}
-	
+
 	public void setColoreCorrente(Color colore)
 	{
 		this.coloreCorrente = colore;
 	}
-	
+
 	public void accettaConnessione(Socket socket) throws IOException
 	{
 		this.giocatoriConnessi++;
@@ -153,8 +151,6 @@ public class ProxyView extends AbstractConnessioneView
 		}
 	}
 
-
-
 	private Color						coloreCorrente;
 
 	private int							giocatoriConnessi	= 0;
@@ -166,11 +162,11 @@ public class ProxyView extends AbstractConnessioneView
 	private ArrayList<ProxyViewHandler>	listaHandlers;
 
 	private List<ConnessioneViewSocket>	listaConnessioniSocket;
-	
+
 	private List<ConnessioneViewRMI>	listaConnessioniRMI;
-	
+
 	private final int					MAX_GIOCATORI		= 5;
-	
-	private final ProxyViewHandler		cambioTurnoHandler		= new CambioTurnoHandler(this);
+
+	private final ProxyViewHandler		cambioTurnoHandler	= new CambioTurnoHandler(this);
 
 }
