@@ -1,9 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
+import static org.junit.Assert.assertTrue;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.CostruzioneCitta;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.CostruzioneStrada;
-import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Lati;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Link;
@@ -17,50 +17,34 @@ import org.junit.Test;
 
 public class CartaGeograficaTest
 {
-	private ModuloModel	model;
+
+	private CartaGeografica	carta;
 
 	@Before
 	public void initializeTest() throws Exception
 	{
-		this.model = new ModuloModel();
-	}
-
-	@Test
-	public void atLeastStart() throws Exception
-	{
-		ContatoreCartografo contatore = new ContatoreCartografo(this.model);
-
+		this.carta = new CartaGeografica();
 	}
 
 	@Test
 	public void stradaPiccola() throws Exception
 	{
-		ContatoreCartografo contatore = new ContatoreCartografo(this.model);
 
 		CostruzioneCoord[] stradella = this.stradella();
 
-		CartaGeografica carta = new CartaGeografica();
-
 		for (int i = 0; i < stradella.length; i++)
 		{
-
 			for (PuntoCardinale punto : PuntoCardinale.values())
 			{
-				carta.put(stradella[i].getCofine(punto), stradella[i].getCostruzione(punto));
+				this.carta.put(stradella[i].getCofine(punto), stradella[i].getCostruzione(punto));
 			}
-
 		}
+		int costruzioni = this.carta.getCostruzioni().size();
+		//TODO errato...
+		assertTrue("non considera Tutte le costruzioni, ma solo " + costruzioni, costruzioni == 20);
 
 		// TODO continuare
 		// carta.getCostruzioneAggregata(null, null);
-
-	}
-
-	private ConfineTessera creaConfineDA(Tessera tessera, PuntoCardinale punto)
-	{
-
-		ConfineTessera confine = new ConfineTessera(tessera, punto);
-		return confine;
 
 	}
 
@@ -76,7 +60,7 @@ public class CartaGeograficaTest
 
 	}
 
-	public CostruzioneCoord[] stradella()
+	private CostruzioneCoord[] stradella()
 	{
 		CostruzioneCoord[] stradaPiccola = new CostruzioneCoord[5];
 
@@ -128,7 +112,6 @@ public class CartaGeograficaTest
 		boolean[] bl = { false, false, false, true, false, false };
 		Link l = new Link(bl);
 		return l;
-
 	}
 
 	private Lati creaLatiIncrocioAQuattro()
@@ -151,10 +134,10 @@ public class CartaGeograficaTest
 
 	}
 
-	public static class CostruzioneCoord
+	private static class CostruzioneCoord
 	{
-
 		public Tessera		tessera;
+		
 		public Coordinate	coord;
 
 		public void daiCoppia(Tessera t1, Coordinate c1)
@@ -169,7 +152,6 @@ public class CartaGeograficaTest
 			Costruzione c = null;
 			if (this.tessera instanceof TesseraNormale)
 			{
-				this.tessera = this.tessera;
 				Elemento el = ((TesseraNormale) this.tessera).getElementoA(punto);
 
 				if (el == Elemento.citta)
@@ -187,7 +169,6 @@ public class CartaGeograficaTest
 
 		public ConfineTessera getCofine(PuntoCardinale punto)
 		{
-
 			return this.tessera.getConfineA(punto);
 		}
 

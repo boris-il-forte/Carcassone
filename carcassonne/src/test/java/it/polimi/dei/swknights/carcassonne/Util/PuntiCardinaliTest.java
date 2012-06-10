@@ -39,12 +39,8 @@ public class PuntiCardinaliTest
 		{
 			PuntoCardinale pGot = PuntiOppostiGot.get(i);
 			PuntoCardinale pExp = PuntiOppostiExp.get(i);
-			if (pGot.toInt() != pExp.toInt())
-			{
-				assertTrue("opposto fail!", false);
-			}
+			assertTrue("opposto fail!", pGot.toInt() == pExp.toInt());
 		}
-		assertTrue(true);
 
 	}
 
