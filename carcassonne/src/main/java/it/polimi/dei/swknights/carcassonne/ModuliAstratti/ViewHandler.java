@@ -8,6 +8,15 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePosition
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 
+/**
+ * Standard class used to implement visitor pattern on view handlers. all
+ * implemented methods do NOP, to make possible override the methods of interest
+ * for the handler in order to handle the correct event
+ * 
+ * @author dave
+ * 
+ */
+
 public class ViewHandler
 {
 	public void visit(UpdateTurnoEvent event)

@@ -24,7 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class ConnessioneControllerSocket extends ConnessioneController
@@ -69,12 +68,10 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				}
 				catch (InvalidStringToParseException e)
 				{
+					Debug.print("stringa parsata non non valida");
+					letsReadAgain = false;
 					break;
-				} // true
-					// sse
-					// devo
-					// leggere
-					// ancora
+				}
 			} while (letsReadAgain);
 			this.partiDiEventoComposto.clear();
 
@@ -95,35 +92,15 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	}
 
 	@Override
-	public void riceviInput()
+	public void close()
 	{
-		Scanner socketIn = null;
 		try
 		{
-			socketIn = new Scanner(this.socket.getInputStream());
+			this.socket.close();
 		}
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		String s = "nulla";
-		try
-		{
-			s = socketIn.nextLine();
-		}
-		catch (NoSuchElementException nsee)
-		{
-			Debug.print("mi sa che è morto il server ");
-		}
-
-		Debug.print("Connessione Controller Socket, ho ricevuto  " + s);
-	}
-
-	@Override
-	public void close()
-	{
-		// TODO Auto-generated method stub
 
 	}
 
@@ -139,11 +116,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 			new ExtraParser(tessera);
 
-			if (line.matches("start:" + REG_TESSERA + ",.+" + ",(black|green|red|yellow|blue)" + "," + "\\d+")) // es
-																												// start:tile,
-																												// name,
-																												// color,
-																												// num
+			// start:tile,name,color,num
+			if (line.matches("start:" + REG_TESSERA + ",(black|green|red|yellow|blue)" + "," + "\\d+"))
 			{
 				String tesseraStart = partiArgomenti[TESSERA_START];
 				String name = partiArgomenti[NOME];
@@ -157,19 +131,16 @@ public class ConnessioneControllerSocket extends ConnessioneController
 						name));
 
 			}
-			if (line.matches("update:" + REG_TESSERA + ",\\-?\\d+\\,\\-?\\d+")) // es.
-																				// update:
-			// tile 2,3
+			// update:tile,2,3
+			if (line.matches("update:" + REG_TESSERA + ",\\-?\\d+\\,\\-?\\d+"))
 			{
 				int x = Integer.parseInt(partiArgomenti[X]);
 				int y = Integer.parseInt(partiArgomenti[Y]);
 				this.proxy.fire(new UpdatePositionEvent(tessera, new Coordinate(x, y), this));
 				return false;
 			}
-
-			if (line.matches("update:" + REG_TESSERA + ",\\-?\\d+\\,\\-?\\d+,")) // es.
-																				// update:
-			// tile 2,3, update:tile 3,3, update: tile 4,3
+			// update:tile 2,3, update:tile 3,3, update: tile 4,3
+			if (line.matches("update:" + REG_TESSERA + ",\\-?\\d+\\,\\-?\\d+,"))
 			{
 				String x = partiArgomenti[X];
 				String y = partiArgomenti[Y];
@@ -187,22 +158,20 @@ public class ConnessioneControllerSocket extends ConnessioneController
 			{
 				String[] comandoEArgomenti = line.split(":");
 				String argomenti = comandoEArgomenti[ARGOMENTI];
-
-				if (line.matches("turn:(black|green|red|yellow|blue)")) // es.
-																		// turn:
-																		// red
+				// turn:color;
+				if (line.matches("turn:(black|green|red|yellow|blue)"))
 				{
-
+					/*
+					 * metti la roba in lista poi quando ritornerà false sarà
+					 * perchè avrà tutti gli elementi necessari per comporre
+					 * l'evento
+					 */
 					String colore = argomenti;
-					this.partiDiEventoComposto.add(colore); // metti la roba in
-															// lista
-					// poi quando ritornerà false sarà perchè avrà tutti gli
-					// elem necessari
-					// per comporre l'evento
+					this.partiDiEventoComposto.add(colore);
 					return true;
-
 				}
-				if (line.matches("next:" + REG_TESSERA)) // es next: blabla
+				// es next: blabla
+				if (line.matches("next:" + REG_TESSERA))
 				{
 					String colore = this.partiDiEventoComposto.get(0);
 					String tessera = argomenti;
@@ -211,7 +180,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 					return false;
 				}
-				if (line.matches("rotated:" + REG_TESSERA)) // es rotate: blabla
+				// es rotate: blabla
+				if (line.matches("rotated:" + REG_TESSERA))
 				{
 					String tessera = argomenti;
 					new ExtraParser(tessera);
@@ -220,11 +190,13 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 				}
 
-				if (line.matches("score:" + REG_SCORES)) // es score: red=10
-														// blu=20
+				// Score arrivato
+				if (line.matches("score:" + REG_SCORES))
 				{
-					// arrivato qua ha tutto ciò che serve per
-					// costruzioneCOmpletata event
+					/*
+					 * arrivato qua ha tutto ciò che serve per
+					 * costruzioneCOmpletata event
+					 */
 					Map<AdapterTessera, Coordinate> mappaAggiornate = new HashMap<AdapterTessera, Coordinate>();
 
 					for (int i = 0; i < this.partiDiEventoComposto.size(); i++)
@@ -253,15 +225,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 					return false;
 
 				}
-				if (line.matches("leave:(black|green|red|yellow|blue)")) // es
-																			// leave:
-																			// yellow
-				{ return false; }
-				if (line.matches("end:" + REG_SCORES)) // es next: red=10
-														// blue=30
-				{
-
-				return false; }
+				// end:scores
+				if (line.matches("end:" + REG_SCORES)) { return false; }
 
 			}
 			else

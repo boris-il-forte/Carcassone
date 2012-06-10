@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * This abstract class gives a common schema for the view. It basically gives a
- * structure for the observer pattern
+ * structure for handling events with the visitors pattern
  * 
  * @author edoardopasi & dave
  * 
