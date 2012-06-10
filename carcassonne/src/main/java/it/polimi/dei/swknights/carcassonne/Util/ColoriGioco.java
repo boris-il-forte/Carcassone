@@ -21,7 +21,7 @@ public class ColoriGioco
 	 */
 	public static List<Color> getListaColori()
 	{
-		return new ArrayList<Color>(mappaColori.keySet());
+		return new ArrayList<Color>(MAPPA_COLORI.keySet());
 
 	}
 
@@ -67,7 +67,7 @@ public class ColoriGioco
 	private static String[] getStringhe(Color color)
 	{
 		String s = "";
-		s = mappaColori.get(color);
+		s = MAPPA_COLORI.get(color);
 		if (s != null)
 		{
 			return s.split(" ");
@@ -80,7 +80,7 @@ public class ColoriGioco
 
 	}
 
-	private static final Map<Color, String>	mappaColori	= inizializzaColori();
+	private static final Map<Color, String>	MAPPA_COLORI	= inizializzaColori();
 
 	public static Color getColor(String color)
 	{

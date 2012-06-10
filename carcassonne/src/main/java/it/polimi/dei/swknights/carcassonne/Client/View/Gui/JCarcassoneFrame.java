@@ -96,13 +96,14 @@ public class JCarcassoneFrame extends JFrame
 
 	private void creaTavolo(int righe, int colonne)
 	{
+		final int minSpaziaturaOrizzontale = 20;
 		this.tavolo = new JCarcassonneTavolo(this.view, righe, colonne);
 		Box box = Box.createHorizontalBox();
-		box.add(Box.createHorizontalStrut(20));
+		box.add(Box.createHorizontalStrut(minSpaziaturaOrizzontale));
 		box.add(Box.createHorizontalGlue());
 		box.add(this.tavolo);
 		box.add(Box.createHorizontalGlue());
-		box.add(Box.createHorizontalStrut(20));
+		box.add(Box.createHorizontalStrut(minSpaziaturaOrizzontale));
 		this.add(box);
 	}
 

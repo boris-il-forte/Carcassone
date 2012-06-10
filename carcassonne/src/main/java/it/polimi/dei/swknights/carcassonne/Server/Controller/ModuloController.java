@@ -136,7 +136,7 @@ public class ModuloController extends AbstractController
 		Costruzione costruzione = mappaCostruzioni.get(punto);
 		if (costruzione != null)
 		{
-			if (costruzione.controllataDa().size() == 0) { return true; }
+			return costruzione.controllataDa().size() == 0;
 		}
 		return false;
 
@@ -284,7 +284,7 @@ public class ModuloController extends AbstractController
 		return handlerList;
 	}
 
-	synchronized private void attendiPosizionamentoTessera() throws InterruptedException
+	private synchronized void attendiPosizionamentoTessera() throws InterruptedException
 	{
 		while (this.gestoreFasi.inputOk())
 		{

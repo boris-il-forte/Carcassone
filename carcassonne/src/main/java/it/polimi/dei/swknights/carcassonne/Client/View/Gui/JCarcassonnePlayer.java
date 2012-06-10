@@ -55,8 +55,17 @@ public class JCarcassonnePlayer extends JPanel
 	}
 
 	private JLabel					labelPunteggio;
-	private static final Dimension	DIMENSIONE_QUADRATO	= new Dimension(30, 30);
-	private static Dimension		DIMENSIONE			= new Dimension(150, 50);
+
+	private static final int		ALTEZZA_QUADRATO	= 30;
+
+	private static final int		LARGHEZZA			= 150;
+
+	private static final int		ALTEZZA				= 50;
+
+	private static final Dimension	DIMENSIONE_QUADRATO	= new Dimension(ALTEZZA_QUADRATO, ALTEZZA_QUADRATO);
+
+	private static final Dimension	DIMENSIONE			= new Dimension(LARGHEZZA, ALTEZZA);
+
 	private static final long		serialVersionUID	= 1038809477224426681L;
 
 }

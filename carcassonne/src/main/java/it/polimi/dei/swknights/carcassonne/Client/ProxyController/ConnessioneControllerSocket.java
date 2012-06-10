@@ -139,7 +139,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 			new ExtraParser(tessera);
 
-			if (line.matches("start:" + regTessera + ",.+" + ",(black|green|red|yellow|blue)" + "," + "\\d+")) // es
+			if (line.matches("start:" + REG_TESSERA + ",.+" + ",(black|green|red|yellow|blue)" + "," + "\\d+")) // es
 																												// start:tile,
 																												// name,
 																												// color,
@@ -157,7 +157,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 						name));
 
 			}
-			if (line.matches("update:" + regTessera + ",\\-?\\d+\\,\\-?\\d+")) // es.
+			if (line.matches("update:" + REG_TESSERA + ",\\-?\\d+\\,\\-?\\d+")) // es.
 																				// update:
 			// tile 2,3
 			{
@@ -167,7 +167,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				return false;
 			}
 
-			if (line.matches("update:" + regTessera + ",\\-?\\d+\\,\\-?\\d+,")) // es.
+			if (line.matches("update:" + REG_TESSERA + ",\\-?\\d+\\,\\-?\\d+,")) // es.
 																				// update:
 			// tile 2,3, update:tile 3,3, update: tile 4,3
 			{
@@ -202,7 +202,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 					return true;
 
 				}
-				if (line.matches("next:" + regTessera)) // es next: blabla
+				if (line.matches("next:" + REG_TESSERA)) // es next: blabla
 				{
 					String colore = this.partiDiEventoComposto.get(0);
 					String tessera = argomenti;
@@ -211,17 +211,16 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 					return false;
 				}
-				if (line.matches("rotated:" + regTessera)) // es rotate: blabla
+				if (line.matches("rotated:" + REG_TESSERA)) // es rotate: blabla
 				{
-					Color giocatore = null; // TODO capire
 					String tessera = argomenti;
 					new ExtraParser(tessera);
-					this.proxy.fire(new UpdateRotationEvent(tessera, giocatore, this));
+					this.proxy.fire(new UpdateRotationEvent(tessera, this));
 					return false;
 
 				}
 
-				if (line.matches("score:" + regScores)) // es score: red=10
+				if (line.matches("score:" + REG_SCORES)) // es score: red=10
 														// blu=20
 				{
 					// arrivato qua ha tutto ciò che serve per
@@ -258,7 +257,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 																			// leave:
 																			// yellow
 				{ return false; }
-				if (line.matches("end:" + regScores)) // es next: red=10
+				if (line.matches("end:" + REG_SCORES)) // es next: red=10
 														// blue=30
 				{
 
@@ -280,18 +279,18 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 	private static final int			ARGOMENTI		= 1;
 
-	private static final String			regScores		= "red=\\d+, blue=\\d+, green=\\d+, yellow=\\d+, black=\\d+";
-	private static final String			regTessera		= ".+";
+	private static final String			REG_SCORES		= "red=\\d+, blue=\\d+, green=\\d+, yellow=\\d+, black=\\d+";
+	private static final String			REG_TESSERA		= ".+";
 	private List<String>				partiDiEventoComposto;
-	private final static int			TESSERA			= 0;
-	private final static int			NOME			= 1;
-	private final static int			COLORE_START	= 2;
-	private final static int			NUMERO			= 3;
-	private final static int			X				= 1;
-	private final static int			Y				= 2;
-	private final static int			COLORE_SCORE	= 0;
-	private final static int			NUM_SCORE		= 1;
-	private final static int			TESSERA_START	= 0;
+	private static final int			TESSERA			= 0;
+	private static final int			NOME			= 1;
+	private static final int			COLORE_START	= 2;
+	private static final int			NUMERO			= 3;
+	private static final int			X				= 1;
+	private static final int			Y				= 2;
+	private static final int			COLORE_SCORE	= 0;
+	private static final int			NUM_SCORE		= 1;
+	private static final int			TESSERA_START	= 0;
 
 	private Socket						socket;
 

@@ -15,11 +15,6 @@ import java.awt.Color;
  */
 public class DecoraTessera
 {
-	private int				idTessera;
-	private Coordinate		coordinate;
-	private Color			giocatore;
-	private AdapterTessera	tessera;
-
 	public DecoraTessera(AdapterTessera tessera, Coordinate coordinate, Color giocatore)
 	{
 		this.tessera = tessera;
@@ -43,9 +38,8 @@ public class DecoraTessera
 		return this.coordinate;
 	}
 
-	public int getIdTessera()
-	{
-		return this.idTessera;
-	}
+	private Coordinate		coordinate;
+	private Color			giocatore;
+	private AdapterTessera	tessera;
 
 }

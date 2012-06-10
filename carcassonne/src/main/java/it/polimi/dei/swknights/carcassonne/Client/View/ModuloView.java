@@ -1,7 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.View;
 
-import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
-import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.CostruzioneCompletataHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.FinePartitaHandler;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.InizioGiocoHandler;
@@ -79,7 +77,7 @@ public abstract class ModuloView extends AbstractModuloView
 	public void mettiPrimaTessera(AdapterTessera tessIniziale)
 	{
 		this.setTesseraCorrente(tessIniziale);
-		this.posizionaTessera(centroScenario);
+		this.posizionaTessera(CENTRO_SCENARIO);
 	}
 
 	/**
@@ -273,6 +271,6 @@ public abstract class ModuloView extends AbstractModuloView
 
 	private final ScenarioDiGioco		scenario;
 
-	protected static final Coordinate	centroScenario	= new Coordinate(0, 0);
+	protected static final Coordinate	CENTRO_SCENARIO	= new Coordinate(0, 0);
 
 }

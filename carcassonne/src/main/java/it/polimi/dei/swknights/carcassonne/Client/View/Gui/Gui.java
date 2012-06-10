@@ -60,7 +60,7 @@ public class Gui extends ModuloView
 	{
 		// TODO: visualizza vincitore e cambia immagine
 		JOptionPane.showMessageDialog(this.finestra, "Fine partita!!" + vincitore, "Carcassonne - swKnights",
-				JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", this.dimesioneTessere));
+				JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", DIM_TESSERE));
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class Gui extends ModuloView
 	{
 		// TODO: cambia immagine
 		JOptionPane.showMessageDialog(this.finestra, "Mossa non consentita!", "Carcassonne - swKnights",
-				JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", this.dimesioneTessere));
+				JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", DIM_TESSERE));
 	}
 
 	@Override
@@ -173,14 +173,14 @@ public class Gui extends ModuloView
 		int y = numeroCasella / this.larghezza;
 		Coordinate coordRelativa = new Coordinate(x, y);
 		return this.getCoordinateNordOvest().getCoordinateA(coordRelativa);
-	
+
 	}
 
 	private PuntoCardinale getPuntocardinaleIserimento(Coordinate coordinateMouse)
 			throws PosizionaMentoInvalidoException
 	{
-		int x = coordinateMouse.getX() - this.dimesioneTessere / 2;
-		int y = coordinateMouse.getY() - this.dimesioneTessere / 2;
+		int x = coordinateMouse.getX() - DIM_TESSERE / 2;
+		int y = coordinateMouse.getY() - DIM_TESSERE / 2;
 		if (x * x - y * y >= 1) { return (x > 0) ? PuntoCardinale.est : PuntoCardinale.ovest; }
 		if (y * y - x * x >= 1) { return (y > 0) ? PuntoCardinale.sud : PuntoCardinale.nord; }
 		throw new PosizionaMentoInvalidoException(coordinateMouse);
@@ -188,10 +188,12 @@ public class Gui extends ModuloView
 
 	private void setDimensioni()
 	{
+		final int riduzioneVerticale = 3;
+		final int riduzioneOrizzontale = 4;
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		Dimension size = toolkit.getScreenSize();
-		this.larghezza = (size.width - 4 * this.dimesioneTessere) / this.dimesioneTessere;
-		this.altezza = (size.height - 3 * this.dimesioneTessere) / this.dimesioneTessere;
+		this.larghezza = (size.width - riduzioneOrizzontale * DIM_TESSERE) / DIM_TESSERE;
+		this.altezza = (size.height - riduzioneVerticale * DIM_TESSERE) / DIM_TESSERE;
 		this.altezza = (this.altezza % 2 == 0) ? (this.altezza + 1) : (this.altezza);
 		this.larghezza = (this.larghezza % 2 == 0) ? (this.larghezza + 1) : (this.larghezza);
 	}
@@ -211,7 +213,7 @@ public class Gui extends ModuloView
 		{
 			Entry<Integer, String> entry = aggiornaMappa.nextTessera();
 			String stringTessera = entry.getValue();
-			Icon tessera = this.immagini.getTileIcon(stringTessera, this.dimesioneTessere);
+			Icon tessera = this.immagini.getTileIcon(stringTessera, DIM_TESSERE);
 			int numeroTessera = entry.getKey();
 			this.finestra.aggiornaTessera(numeroTessera, tessera);
 			this.addSegnalini(numeroTessera, stringTessera);
@@ -221,7 +223,7 @@ public class Gui extends ModuloView
 
 	private void addSegnalini(int numeroTessera, String stringTessera)
 	{
-		Icon segnalini = this.immagini.getSegnalinoIcon(stringTessera, this.dimensioneSegnalino);
+		Icon segnalini = this.immagini.getSegnalinoIcon(stringTessera, DIM_SEGNALINO);
 		if (segnalini != null)
 		{
 			Coordinate coordinateTessera = this.convertiCoordinate(numeroTessera);
@@ -256,8 +258,8 @@ public class Gui extends ModuloView
 
 	private int							altezza;
 	// TODO: coordinare questa dim con quella delle vere caselle...
-	private int							dimesioneTessere	= 100;
-
-	private int							dimensioneSegnalino	= 30;
+	private static final int			DIM_TESSERE		= 100;
+	// TODO: coordinare questa dim con quella delle vere caselle...
+	private static final int			DIM_SEGNALINO	= 30;
 
 }
