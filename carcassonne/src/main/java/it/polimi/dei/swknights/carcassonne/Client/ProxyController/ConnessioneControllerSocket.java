@@ -136,7 +136,9 @@ public class ConnessioneControllerSocket extends ConnessioneController
 			{
 				int x = Integer.parseInt(partiArgomenti[X]);
 				int y = Integer.parseInt(partiArgomenti[Y]);
+				Debug.print(" sono connessione controller, ho ricevuto update, sto per lanciare updatePositionEvent alla vera view");
 				this.proxy.fire(new UpdatePositionEvent(tessera, new Coordinate(x, y), this));
+				Debug.print(" sono connessione controller, ho lanciato l'evento");
 				return false;
 			}
 			// update:tile 2,3, update:tile 3,3, update: tile 4,3

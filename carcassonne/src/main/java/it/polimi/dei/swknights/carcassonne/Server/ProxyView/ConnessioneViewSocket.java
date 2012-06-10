@@ -39,6 +39,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 			String stringaDaSocket = this.in.nextLine();
 			Debug.print("sono connessione socket numero " + this.getNumeroConnessione());
+				
 			if (this.getColoreConnessione().equals(this.proxy.getColoreCorrente()))
 			{
 				this.parsingStringa(stringaDaSocket);
@@ -74,6 +75,8 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	private void parsingStringa(String line)
 	{
+		Debug.print( " parsing - connessione view socket: ho ricevuto " + line);
+		
 		if (line.contains(",") && line.contains(":"))
 		{
 			if (line.matches("place:\\-?\\d+\\,\\-?\\d+")) // es place: 2,3
