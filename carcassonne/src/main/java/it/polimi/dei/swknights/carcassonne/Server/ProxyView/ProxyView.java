@@ -159,7 +159,7 @@ public class ProxyView extends AbstractConnessioneView
 
 	private LinkedList<String>			codaComandi;
 
-	private ArrayList<ProxyViewHandler>	listaHandlers;
+	private List<ProxyViewHandler>		listaHandlers;
 
 	private List<ConnessioneViewSocket>	listaConnessioniSocket;
 
