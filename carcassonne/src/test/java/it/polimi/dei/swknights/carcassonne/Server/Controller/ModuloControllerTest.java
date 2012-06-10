@@ -2,6 +2,12 @@ package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
@@ -14,12 +20,14 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.AbstractView;
+import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Controller;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Lati;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Link;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
+import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
@@ -34,9 +42,15 @@ public class ModuloControllerTest
 		this.model = new TestModel();
 		this.model.addPlayer();
 		this.model.addPlayer();
-		this.model.addPrimaTessera();
+		this.model.pilotaPartita();
+		
 		this.controller = new ModuloController(this.model);
-		this.view = new TestView();
+		List<Controller> liste = new ArrayList<Controller>();
+		liste.add(controller);
+		this.view = new TestView(liste);
+		Debug.print(controller.toString() + " view = " +this.view.toString());
+		
+		this.view.addListener(controller);
 		this.model.addListener(this.view);
 		new Thread(this.controller).start();
 	}
@@ -44,21 +58,12 @@ public class ModuloControllerTest
 	@Test
 	public void stradaPiccola() throws Exception
 	{
-		CostruzioneCoord[] stradella = this.stradella();
-
 		this.view.testCostruzioneCompletata = true;
-		for (int i = 0; i < stradella.length; i++)
-		{
-			while (this.view.nexturno == false)
-				;
-			this.view.nexturno = false;
-			this.model.setTesseraCorrente(stradella[i].getTessera());
-			this.controller.riceviInput(new PlaceEvent(this, stradella[i].getCoordinate()));
-			this.controller.riceviInput(new PassEvent(this));
-		}
+		this.view.fire(new PlaceEvent(this, new Coordinate(0, 1)));
+		Debug.print(" numero mosse non valide : "+ this.view.mossaNonValida);
 		assertTrue("Ha trovato più costruzioni o meno di quelle effettive: "
 				+ this.view.costruzioniCompletate, this.view.costruzioniCompletate == 1);
-
+	
 	}
 
 	private CostruzioneCoord[] stradella()
@@ -96,6 +101,12 @@ public class ModuloControllerTest
 		return stradaPiccola;
 	}
 
+	private Tessera getTesseraCittaGrande()
+	{
+		Tessera t3 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
+		return t3;
+	}
+
 	private Lati creaLatiStradaEO()
 	{
 		Lati latiCreandi;
@@ -103,6 +114,25 @@ public class ModuloControllerTest
 		Elemento sud = Elemento.prato;
 		Elemento ovest = Elemento.strada;
 		Elemento est = Elemento.strada;
+		latiCreandi = new Lati(nord, sud, ovest, est);
+		return latiCreandi;
+	}
+
+	private Link creaLinkCittaGrande() throws IllegalArgumentException
+	{
+		/* NS(0), NE(1), NW(2), WE(3), SE(4), SW(5); */
+		boolean[] bl = { false, false, false, false, false, false };
+		Link l = new Link(bl);
+		return l;
+	}
+
+	private Lati creaLatiCittaGrande()
+	{
+		Lati latiCreandi;
+		Elemento nord = Elemento.citta;
+		Elemento sud = Elemento.citta;
+		Elemento ovest = Elemento.citta;
+		Elemento est = Elemento.citta;
 		latiCreandi = new Lati(nord, sud, ovest, est);
 		return latiCreandi;
 	}
@@ -145,58 +175,86 @@ public class ModuloControllerTest
 	class TestModel extends ModuloModel
 	{
 
-		public void setTesseraCorrente(Tessera tessera)
+		@Override
+		public void getTesseraDaMazzo() // throws PartitaFinitaException
 		{
-			this.tesseraCorrente = tessera;
+			int index = this.mazzoMoggi.size();
+			if (index > 0)
+			{
+				index--;
+				Debug.print("tessere rimanenti" + index);
+				this.tesseraCorrente = this.mazzoMoggi.remove(index);
+				Debug.print("get Tess mazzo:" + this.tesseraCorrente + "" );
+			}
 		}
 
-		public void addPrimaTessera()
+		public void pilotaPartita()
 		{
-			boolean link[] = { false, false, false, true, false, false };
-			Elemento lati[] = {Elemento.prato, Elemento.citta, Elemento.strada, Elemento.strada};
-			this.tesseraCorrente = new TesseraNormale(new Lati(lati),new Link(link));
+			if(mazzoMoggi == null)
+			{
+				mazzoMoggi = new ArrayList<Tessera>();
+			}
+			CostruzioneCoord [] stradella = stradella();
+			for(int i=0; i<stradella.length; i++)
+			{
+			
+				this.mazzoMoggi.add(stradella[i].tessera);
+			}
+			
 		}
 		
 		@Override
-		public void iniziaGioco() throws PartitaFinitaException
+		public void iniziaGioco() 
 		{
 			try
 			{
-				this.posizionaTessera(this.tesseraCorrente, new Coordinate(0, 0));
-				this.fire(new InizioGiocoEvent(this, new AdapterTesseraObject(this.tesseraCorrente), null, 2, "test"));
+				Tessera primaTessera = this.mazzoMoggi.remove( this.mazzoMoggi.size() -1);
+				AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
+				this.tesseraCorrente = primaTessera;
+				Debug.print("" + this.tesseraCorrente);
+				
+				this.posizionaTessera(primaTessera, new Coordinate(0, 0));
+				Integer quanti=2;
+				this.getTesseraDaMazzo();
+				this.fire(new InizioGiocoEvent(this, tessera, null, quanti,	" dsfsdf"));
+
 				this.cominciaTurno();
+
+			}
+
+			catch (PartitaFinitaException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			catch (MossaNonValidaException e)
 			{
-				System.exit(0);
-				return;
+				
+				e.printStackTrace();
 			}
-		}
-
-		@Override
-		public Tessera getTesseraCorrente()
-		{
-			return this.tesseraCorrente;
 		}
 		
 		@Override
-		public void posizionaTesseraCorrente(Coordinate coordinate) throws MossaNonValidaException
+		public void cominciaTurno() throws PartitaFinitaException
 		{
-			this.posizionaTessera(this.tesseraCorrente, coordinate);
+			Color coloreGiocatore = ColoriGioco.getColor("red");
+			this.fire(new UpdateTurnoEvent(this, coloreGiocatore, this.tesseraCorrente));
 		}
 
-		public Tessera	tesseraCorrente;
+		public List<Tessera>	mazzoMoggi;
+		public Tessera			tesseraCorrente;
 
 	}
 
 	class TestView extends AbstractView
 	{
-
-		public TestView()
+		
+		public TestView(List<Controller> listeners)
 		{
-			super(null);
+			super(listeners);
+			
 		}
-
+		
 		public boolean	testMossaNonValida			= false;
 
 		public boolean	testCostruzioneCompletata	= false;
@@ -211,6 +269,7 @@ public class ModuloControllerTest
 		{
 			if (event instanceof MossaNonValidaEvent)
 			{
+				Debug.print("\n ricevi modifiche model - mossa non valida" );
 				if (testMossaNonValida)
 					fail("è stata noificata mossa non valida...");
 				else this.mossaNonValida++;
