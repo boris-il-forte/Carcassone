@@ -52,6 +52,18 @@ public class ColoriGioco
 		return stringhe[2];
 	}
 
+	public static Color getColor(String color)
+	{
+		if (color.compareToIgnoreCase("RED") == 0) { return Color.red; }
+		if (color.compareToIgnoreCase("Green") == 0) { return Color.green; }
+		if (color.compareToIgnoreCase("Yellow") == 0) { return Color.yellow; }
+		if (color.compareToIgnoreCase("Blue") == 0) { return Color.blue; }
+	
+		if (color.compareToIgnoreCase("Black") == 0) { return Color.black; }
+	
+		return null;
+	}
+
 	private static Map<Color, String> inizializzaColori()
 	{
 		Map<Color, String> mappa = new LinkedHashMap<Color, String>();
@@ -79,19 +91,9 @@ public class ColoriGioco
 		}
 
 	}
+	
+	private ColoriGioco(){}
 
 	private static final Map<Color, String>	MAPPA_COLORI	= inizializzaColori();
-
-	public static Color getColor(String color)
-	{
-		if (color.compareToIgnoreCase("RED") == 0) { return Color.red; }
-		if (color.compareToIgnoreCase("Green") == 0) { return Color.green; }
-		if (color.compareToIgnoreCase("Yellow") == 0) { return Color.yellow; }
-		if (color.compareToIgnoreCase("Blue") == 0) { return Color.blue; }
-
-		if (color.compareToIgnoreCase("Black") == 0) { return Color.black; }
-
-		return null;
-	}
 
 }
