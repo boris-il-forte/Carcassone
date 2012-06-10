@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model.Tessere;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
@@ -28,18 +27,11 @@ public class Lati implements Cloneable
 	}
 
 	@Override
-	public Lati clone()
+	public Lati clone() throws CloneNotSupportedException
 	{
-		try
-		{
-			Lati copia = (Lati) super.clone();
-			copia.datiSegnalino = (DatiSegnalino) this.datiSegnalino.clone();
-			return copia;
-		}
-		catch (CloneNotSupportedException e)
-		{
-			return null;
-		}
+		Lati copia = (Lati) super.clone();
+		copia.datiSegnalino = (DatiSegnalino) this.datiSegnalino.clone();
+		return copia;
 	}
 
 	public Lati(Elemento[] elementiTessera)
