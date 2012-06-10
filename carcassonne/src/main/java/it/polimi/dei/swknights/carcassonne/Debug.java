@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 public class Debug
 {
+	private Debug(){}
 
 	public static void print(String message)
 	{

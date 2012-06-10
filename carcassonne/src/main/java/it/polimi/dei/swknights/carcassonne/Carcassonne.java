@@ -2,7 +2,7 @@ package it.polimi.dei.swknights.carcassonne;
 
 import it.polimi.dei.swknights.carcassonne.ModoInizio.Inizio;
 
-class Carcassonne
+public class Carcassonne
 {
 	public static void main(String[] args)
 	{
@@ -19,4 +19,6 @@ class Carcassonne
 		iniziatore.inizia();
 
 	}
+	
+	private Carcassonne(){}
 }
