@@ -4,6 +4,7 @@ import it.polimi.dei.swknights.carcassonne.ModoInizio.Fine;
 import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaCliOffline;
 import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaCliOnLine;
 import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaGuiOffline;
+import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaGuiOnLine;
 import it.polimi.dei.swknights.carcassonne.ModoInizio.IniziaServer;
 import it.polimi.dei.swknights.carcassonne.ModoInizio.Inizio;
 
@@ -53,9 +54,9 @@ public class JCarcassonneBegin
 		{
 			iniziatore = new IniziaCliOffline();
 		}
-		else if (risposta.equalsIgnoreCase("GUI"))
+		else if (risposta.equalsIgnoreCase("Gui on line"))
 		{
-			iniziatore = new IniziaGuiOffline();
+			iniziatore = new IniziaGuiOnLine();
 		}
 		else if (risposta.equalsIgnoreCase("Server"))
 		{
