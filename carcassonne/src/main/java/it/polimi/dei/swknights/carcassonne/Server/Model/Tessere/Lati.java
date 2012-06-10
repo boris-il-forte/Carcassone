@@ -4,6 +4,7 @@ import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruz
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +31,9 @@ public class Lati implements Cloneable
 	{
 		try
 		{
-			return (Lati) super.clone();
+			Lati copia = (Lati) super.clone();
+			copia.datiSegnalino = (DatiSegnalino) this.datiSegnalino.clone();
+			return copia;
 		}
 		catch (CloneNotSupportedException e)
 		{
@@ -172,6 +175,22 @@ public class Lati implements Cloneable
 		public Segnalino		segnalino;
 
 		public PuntoCardinale	puntoCardinale;
+		
+		@Override
+		public DatiSegnalino clone()
+		{
+			DatiSegnalino copia;
+			try
+			{
+				copia = (DatiSegnalino) super.clone();
+				Color colore = this.segnalino.getColore();
+				copia.segnalino = new Segnalino(colore);
+				return copia;
+			}
+			catch (CloneNotSupportedException e)
+			{
+				return null;
+			}			
+		}
 	}
-
 }

@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Handlers;
 
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
@@ -18,7 +19,8 @@ public class UpdatePositionHandler extends ModuloViewHandler
 	public void visit(UpdatePositionEvent event)
 	{
 		Coordinate coord = event.getCoordinate();
-		this.view.posizionaTessera(coord);
+		AdapterTessera tessera = event.getTessera();
+		this.view.posizionaTessera(tessera, coord);
 		this.view.aggiornaMappa();
 		this.sveglia();
 	}

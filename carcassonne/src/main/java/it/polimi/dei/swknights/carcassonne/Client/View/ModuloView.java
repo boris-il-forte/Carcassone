@@ -77,7 +77,7 @@ public abstract class ModuloView extends AbstractModuloView
 	public void mettiPrimaTessera(AdapterTessera tessIniziale)
 	{
 		this.setTesseraCorrente(tessIniziale);
-		this.posizionaTessera(CENTRO_SCENARIO);
+		this.posizionaTessera(this.getTesseraCorrente(),CENTRO_SCENARIO);
 	}
 
 	/**
@@ -105,13 +105,14 @@ public abstract class ModuloView extends AbstractModuloView
 	/**
 	 * Place a card in the given position, just graphical: does not implies any
 	 * change in the model
+	 * @param tessera 
 	 * 
 	 * @param coordinatePosizione
 	 */
 
-	public void posizionaTessera(Coordinate coordinatePosizione)
+	public void posizionaTessera(AdapterTessera tessera, Coordinate coordinatePosizione)
 	{
-		this.getScenario().setTessera(coordinatePosizione, this.getTesseraCorrente());
+		this.getScenario().setTessera(coordinatePosizione,  tessera);
 		this.getGestoreFasi().nextFase();
 	}
 
