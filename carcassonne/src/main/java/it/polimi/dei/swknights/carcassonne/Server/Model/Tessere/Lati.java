@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model.Tessere;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
@@ -161,7 +162,10 @@ public class Lati implements Cloneable
 				return "";
 			}
 		}
-		return "";
+		else
+		{
+			return "";
+		}
 	}
 
 	private Elemento		nord;
@@ -174,7 +178,7 @@ public class Lati implements Cloneable
 
 	private DatiSegnalino	datiSegnalino;
 
-	private static class DatiSegnalino
+	private static class DatiSegnalino implements Cloneable
 	{
 		public Segnalino		segnalino;
 
@@ -186,13 +190,19 @@ public class Lati implements Cloneable
 			DatiSegnalino copia;
 			try
 			{
+
 				copia = (DatiSegnalino) super.clone();
-				Color colore = this.segnalino.getColore();
-				copia.segnalino = new Segnalino(colore);
+				if (segnalino != null)
+				{
+					Color colore = this.segnalino.getColore();
+					copia.segnalino = new Segnalino(colore);
+				}
+
 				return copia;
 			}
 			catch (CloneNotSupportedException e)
 			{
+				e.printStackTrace();
 				return null;
 			}
 		}
