@@ -8,8 +8,10 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.RotateEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
+import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PosizionaMentoInvalidoException;
 import it.polimi.dei.swknights.carcassonne.ImageLoader.IconGetter;
+import it.polimi.dei.swknights.carcassonne.Parser.ExtraParser;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
@@ -228,7 +230,50 @@ public class Gui extends ModuloView
 		{
 			Coordinate coordinateTessera = this.convertiCoordinate(numeroTessera);
 			Coordinate coordinateSegnalino = this.coordinateInserimentoSegnalini.get(coordinateTessera);
+			if (coordinateSegnalino == null)
+			{
+				coordinateSegnalino = this.getCoordinateSegnalinoRemoto(stringTessera);
+			}
 			this.finestra.aggiornaSegnalinoTessera(numeroTessera, segnalini, coordinateSegnalino);
+		}
+	}
+
+	private Coordinate getCoordinateSegnalinoRemoto(String stringTessera)
+	{
+		try
+		{
+			ExtraParser parser = new ExtraParser(stringTessera);
+			for (PuntoCardinale punto : PuntoCardinale.values())
+			{
+				if (!parser.getExtraData(punto).equals("")) { return this
+						.getCoordinateSegnalinoPerPuntoCardinale(punto); }
+
+			}
+		}
+		catch (InvalidStringToParseException e)
+		{
+		}
+
+		return new Coordinate(0, 0);
+	}
+
+	private Coordinate getCoordinateSegnalinoPerPuntoCardinale(PuntoCardinale punto)
+	{
+		final int min = 20;
+		final int max = 80;
+		final int medio = 50;
+		switch (punto)
+		{
+			case nord:
+				return new Coordinate(medio, min);
+			case sud:
+				return new Coordinate(medio, max);
+			case ovest:
+				return new Coordinate(min, medio);
+			case est:
+				return new Coordinate(max, medio);
+			default:
+				return new Coordinate(0, 0);
 		}
 	}
 
