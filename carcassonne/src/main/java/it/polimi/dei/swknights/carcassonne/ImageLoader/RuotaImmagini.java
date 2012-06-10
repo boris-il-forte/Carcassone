@@ -18,7 +18,7 @@ public class RuotaImmagini
 	{
 		for (Entry<String, BufferedImage> entry : this.mappaImmagini.entrySet())
 		{
-			if (entry.getKey().length() == 10)
+			if (entry.getKey().length() == LUNGHEZZA_STRINGA_TESSERA)
 			{
 				this.ruotaEntry(entry);
 			}
@@ -60,6 +60,8 @@ public class RuotaImmagini
 
 	private int							dimensioneImmagini;
 
-	private static final int			NUMERO_LATI	= 4;
+	private static final int			NUMERO_LATI					= 4;
+
+	private static final int			LUNGHEZZA_STRINGA_TESSERA	= 10;
 
 }

@@ -53,15 +53,15 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		while (this.in.hasNext())
 		{
 			String stringaDaSocket = this.in.nextLine();
-			Debug.print(" sono connessione controller socket - ho ricevuto qualcosa  " +
-					 stringaDaSocket +"   -  faccio il parsingStringa");
+			Debug.print(" sono connessione controller socket - ho ricevuto qualcosa  " + stringaDaSocket
+					+ "   -  faccio il parsingStringa");
 			do
 			{
-				if(letsReadAgain)
+				if (letsReadAgain)
 				{
 					stringaDaSocket = this.in.nextLine();
-					Debug.print(" sono connessione controller socket - ho ricevuto qualcosa  " +
-							 stringaDaSocket +"   -  faccio il parsingStringa");
+					Debug.print(" sono connessione controller socket - ho ricevuto qualcosa  "
+							+ stringaDaSocket + "   -  faccio il parsingStringa");
 				}
 				try
 				{
@@ -71,46 +71,91 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				{
 					break;
 				} // true
-																		// sse
-																		// devo
-																		// leggere
-																		// ancora
+					// sse
+					// devo
+					// leggere
+					// ancora
 			} while (letsReadAgain);
 			this.partiDiEventoComposto.clear();
 
 		}
 	}
-	
+
+	public void eseguiComando()
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void invia(String message)
+	{
+		Debug.print(" connessione controller socket - invio " + message);
+		this.out.println(message);
+	}
+
+	@Override
+	public void riceviInput()
+	{
+		Scanner socketIn = null;
+		try
+		{
+			socketIn = new Scanner(this.socket.getInputStream());
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String s = "nulla";
+		try
+		{
+			s = socketIn.nextLine();
+		}
+		catch (NoSuchElementException nsee)
+		{
+			Debug.print("mi sa che è morto il server ");
+		}
+
+		Debug.print("Connessione Controller Socket, ho ricevuto  " + s);
+	}
+
+	@Override
+	public void close()
+	{
+		// TODO Auto-generated method stub
+
+	}
 
 	private boolean parsingStringa(String stringaDaSocket) throws InvalidStringToParseException
 	{
 		String line = stringaDaSocket;
-		if (line.indexOf(",") != -1 && line.indexOf(":") != -1) // composti
-																// update:
-																// tile,x,y
+		if (line.indexOf(",") != -1 && line.indexOf(":") != -1)
 		{
 			String[] comandoEArgomenti = line.split(":");
 			String argomenti = comandoEArgomenti[ARGOMENTI];
 			String[] partiArgomenti = argomenti.split(",");
 			String tessera = partiArgomenti[TESSERA];
-			
+
 			new ExtraParser(tessera);
-			
-			if (line.matches("start:" + regTessera + ",.+" + ",(black|green|red|yellow|blue)" + ","
-					+ "\\d+")) // es start:tile,
-								// name, color, num
+
+			if (line.matches("start:" + regTessera + ",.+" + ",(black|green|red|yellow|blue)" + "," + "\\d+")) // es
+																												// start:tile,
+																												// name,
+																												// color,
+																												// num
 			{
 				String tesseraStart = partiArgomenti[TESSERA_START];
 				String name = partiArgomenti[NOME];
 				String color = partiArgomenti[COLORE_START];
 				String numero = partiArgomenti[NUMERO];
-				
+
 				Color coloreGiocatore = ColoriGioco.getColor(color);
 				AdapterTesseraString ada = new AdapterTesseraString(tesseraStart);
-				
-				this.proxy.fire(new InizioGiocoEvent(this,
-						ada, coloreGiocatore, Integer.parseInt(numero), name));
-				
+
+				this.proxy.fire(new InizioGiocoEvent(this, ada, coloreGiocatore, Integer.parseInt(numero),
+						name));
+
 			}
 			if (line.matches("update:" + regTessera + ",\\-?\\d+\\,\\-?\\d+")) // es.
 																				// update:
@@ -118,16 +163,12 @@ public class ConnessioneControllerSocket extends ConnessioneController
 			{
 				int x = Integer.parseInt(partiArgomenti[X]);
 				int y = Integer.parseInt(partiArgomenti[Y]);
-
-				Color coloreGiocatore = null; // TODO get Current player color
-				this.proxy
-						.fire(new UpdatePositionEvent(tessera, new Coordinate(x, y), coloreGiocatore, this));
-
+				this.proxy.fire(new UpdatePositionEvent(tessera, new Coordinate(x, y), this));
 				return false;
 			}
 
 			if (line.matches("update:" + regTessera + ",\\-?\\d+\\,\\-?\\d+,")) // es.
-																					// update:
+																				// update:
 			// tile 2,3, update:tile 3,3, update: tile 4,3
 			{
 				String x = partiArgomenti[X];
@@ -148,8 +189,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				String argomenti = comandoEArgomenti[ARGOMENTI];
 
 				if (line.matches("turn:(black|green|red|yellow|blue)")) // es.
-																			// turn:
-																			// red
+																		// turn:
+																		// red
 				{
 
 					String colore = argomenti;
@@ -181,7 +222,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				}
 
 				if (line.matches("score:" + regScores)) // es score: red=10
-															// blu=20
+														// blu=20
 				{
 					// arrivato qua ha tutto ciò che serve per
 					// costruzioneCOmpletata event
@@ -237,83 +278,27 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 	}
 
-	public void eseguiComando()
-	{
-		// TODO Auto-generated method stub
+	private static final int			ARGOMENTI		= 1;
 
-	}
+	private static final String			regScores		= "red=\\d+, blue=\\d+, green=\\d+, yellow=\\d+, black=\\d+";
+	private static final String			regTessera		= ".+";
+	private List<String>				partiDiEventoComposto;
+	private final static int			TESSERA			= 0;
+	private final static int			NOME			= 1;
+	private final static int			COLORE_START	= 2;
+	private final static int			NUMERO			= 3;
+	private final static int			X				= 1;
+	private final static int			Y				= 2;
+	private final static int			COLORE_SCORE	= 0;
+	private final static int			NUM_SCORE		= 1;
+	private final static int			TESSERA_START	= 0;
 
-	@Override
-	public void invia(String message)
-	{
-		Debug.print(" connessione controller socket - invio " + message);
-		this.out.println(message);
-	}
+	private Socket						socket;
 
-	@Override
-	public void riceviInput()
-	{
-		Scanner socketIn = null;
-		try
-		{
-			socketIn = new Scanner(this.socket.getInputStream());
-		}
-		catch (IOException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String s = "nulla";
-		try
-		{
-			s = socketIn.nextLine();
-		}
-		catch (NoSuchElementException nsee)
-		{
-			Debug.print("mi sa che è morto il server ");
-		}
+	private Scanner						in;
 
-		
-		Debug.print("Connessione Controller Socket, ho ricevuto  " + s);
-	}
+	private CarcassonneSocketPrinter	out;
 
-	@Override
-	public void close()
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	private static final int	ARGOMENTI		= 1;
-
-	private static final String	regScores		= "red=\\d+, blue=\\d+, green=\\d+, yellow=\\d+, black=\\d+";
-	private static final String	regTessera		= ".+";
-	/*
-	 * TODO: NO! I SEGNALINI !!
-	 * "N=(S|C|N) S=(S|C|N) W=(S|C|N) E=(S|C|N) NS=(0|1) NE=(0|1)" +
-	 * " NW=(0|1) WE=(0|1) SE=(0|1) SW=(0|1)";
-	 */
-
-	private List<String>		partiDiEventoComposto;
-
-	private final static int	TESSERA			= 0;
-	private final static int	NOME			= 1;
-	private final static int	COLORE_START	= 2;
-	private final static int	NUMERO			= 3;
-	private final static int	X				= 1;
-	private final static int	Y				= 2;
-	private final static int	COLORE_SCORE	= 0;
-	private final static int	NUM_SCORE		= 1;
-	private final  static int	TESSERA_START	= 0;
-
-	private Socket				socket;
-
-	private Scanner				in;
-
-	private CarcassonneSocketPrinter			out;
-
-	private ProxyController		proxy;
-
-
+	private ProxyController				proxy;
 
 }
