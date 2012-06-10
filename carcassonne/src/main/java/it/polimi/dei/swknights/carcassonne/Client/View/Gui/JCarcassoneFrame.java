@@ -51,7 +51,6 @@ public class JCarcassoneFrame extends JFrame
 	public void aggiornaSegnalinoTessera(int numeroCasella, Icon segnalino, Coordinate coordinateSegnalino)
 	{
 		this.tavolo.setSegnalino(numeroCasella, segnalino, coordinateSegnalino);
-
 	}
 
 	public void overlayTessera(int numeroCasella, Icon icon)
