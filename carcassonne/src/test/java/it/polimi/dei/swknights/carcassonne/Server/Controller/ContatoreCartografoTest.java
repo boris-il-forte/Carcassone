@@ -15,25 +15,19 @@ import org.junit.Test;
 public class ContatoreCartografoTest
 {
 	private ModuloModel	model;
+	private ContatoreCartografo	contatorecartografo;
 
 	@Before
 	public void initializeTest() throws Exception
 	{
 		this.model = new ModuloModel();
 		this.model.addPlayer();
-	}
-
-	@Test
-	public void atLeastStart() throws Exception
-	{
-		ContatoreCartografo contatore = new ContatoreCartografo(this.model);
-
+		this.contatorecartografo = new ContatoreCartografo(this.model);
 	}
 
 	@Test
 	public void stradaPiccola() throws Exception
 	{
-		ContatoreCartografo contatore = new ContatoreCartografo(this.model);
 
 		CostruzioneCoord[] stradella = this.stradella();
 
@@ -41,7 +35,7 @@ public class ContatoreCartografoTest
 		{
 			this.model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
 			System.out.println(" Tessera Numero: " + i);
-			contatore.riceviCoordinateTessera(stradella[i].coord);
+			this.contatorecartografo.riceviCoordinateTessera(stradella[i].coord);
 		}
 
 	}
