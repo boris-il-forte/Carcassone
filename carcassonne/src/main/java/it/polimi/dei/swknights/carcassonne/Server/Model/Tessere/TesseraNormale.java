@@ -21,7 +21,14 @@ public class TesseraNormale extends Tessera
 	@Override
 	public Tessera clone()
 	{
-		return new TesseraNormale(this.lati.clone(), this.link.clone());
+		try
+		{
+			return new TesseraNormale(this.lati.clone(), this.link.clone());
+		}
+		catch (CloneNotSupportedException e)
+		{
+			throw new AssertionError();
+		}
 	}
 
 	public Elemento getElementoA(PuntoCardinale punto)

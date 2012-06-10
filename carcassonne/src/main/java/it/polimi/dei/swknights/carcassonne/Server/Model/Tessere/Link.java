@@ -28,20 +28,12 @@ public class Link implements Cloneable
 	}
 
 	@Override
-	public Link clone()
+	public Link clone() throws CloneNotSupportedException
 	{
 		Link copia;
-		try
-		{
-			copia = (Link) super.clone();
-			copia.direzioni = this.direzioni.clone();
-			return copia;
-		}
-		catch (CloneNotSupportedException e)
-		{
-			return null;
-		}
-
+		copia = (Link) super.clone();
+		copia.direzioni = this.direzioni.clone();
+		return copia;
 	}
 
 	/**
