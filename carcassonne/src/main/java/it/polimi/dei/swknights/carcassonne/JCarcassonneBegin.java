@@ -54,6 +54,10 @@ public class JCarcassonneBegin
 		{
 			iniziatore = new IniziaCliOffline();
 		}
+		else if(risposta.equalsIgnoreCase("Gui"))
+		{
+			iniziatore = new IniziaGuiOffline();
+		}
 		else if (risposta.equalsIgnoreCase("Gui on line"))
 		{
 			iniziatore = new IniziaGuiOnLine();
