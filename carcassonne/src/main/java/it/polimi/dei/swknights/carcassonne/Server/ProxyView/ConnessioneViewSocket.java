@@ -74,7 +74,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	private void parsingStringa(String line)
 	{
-		if (line.indexOf(",") != -1 && line.indexOf(":") != -1)
+		if (line.contains(",") && line.contains(":"))
 		{
 			if (line.matches("place:\\-?\\d+\\,\\-?\\d+")) // es place: 2,3
 			{
@@ -89,7 +89,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 		}
 		else
 		{
-			if (line.indexOf(":") != -1)
+			if (line.contains(":"))
 			{
 				if (line.matches("tile:[NSWE]")) // es tile: c1
 				{
