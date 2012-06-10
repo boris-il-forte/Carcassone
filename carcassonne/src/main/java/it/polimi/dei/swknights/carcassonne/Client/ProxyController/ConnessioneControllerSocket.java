@@ -130,7 +130,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	private boolean parsingStringa(String stringaDaSocket) throws InvalidStringToParseException
 	{
 		String line = stringaDaSocket;
-		if (line.indexOf(",") != -1 && line.indexOf(":") != -1)
+		if (line.contains(",") && line.contains(":"))
 		{
 			String[] comandoEArgomenti = line.split(":");
 			String argomenti = comandoEArgomenti[ARGOMENTI];
@@ -183,7 +183,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		}
 		else
 		{
-			if (line.indexOf(":") != -1)
+			if (line.contains(":"))
 			{
 				String[] comandoEArgomenti = line.split(":");
 				String argomenti = comandoEArgomenti[ARGOMENTI];
@@ -277,11 +277,19 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 	}
 
-	private static final int			ARGOMENTI		= 1;
+	private List<String>				partiDiEventoComposto;
 
+	private Socket						socket;
+
+	private Scanner						in;
+
+	private CarcassonneSocketPrinter	out;
+
+	private ProxyController				proxy;
+
+	private static final int			ARGOMENTI		= 1;
 	private static final String			REG_SCORES		= "red=\\d+, blue=\\d+, green=\\d+, yellow=\\d+, black=\\d+";
 	private static final String			REG_TESSERA		= ".+";
-	private List<String>				partiDiEventoComposto;
 	private static final int			TESSERA			= 0;
 	private static final int			NOME			= 1;
 	private static final int			COLORE_START	= 2;
@@ -291,13 +299,5 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	private static final int			COLORE_SCORE	= 0;
 	private static final int			NUM_SCORE		= 1;
 	private static final int			TESSERA_START	= 0;
-
-	private Socket						socket;
-
-	private Scanner						in;
-
-	private CarcassonneSocketPrinter	out;
-
-	private ProxyController				proxy;
 
 }
