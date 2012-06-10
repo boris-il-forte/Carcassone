@@ -48,9 +48,14 @@ public class IniziaCliOffline extends Inizio
 			{
 				this.printer.println("Input non valido");
 			}
-		} while (numeroGiocatori < 2 || numeroGiocatori >= 5);
+		} while (numeroGiocatori < MIN_PLAYER || numeroGiocatori > MAX_PLAYER);
 		this.printer.println(numeroGiocatori);
 		return numeroGiocatori;
 	}
+
+	private static final int	MIN_PLAYER	= 2;
+	private static final int	MAX_PLAYER	= 5;
+	
+
 
 }

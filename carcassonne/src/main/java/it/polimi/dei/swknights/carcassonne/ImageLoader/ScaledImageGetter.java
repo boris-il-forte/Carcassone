@@ -74,7 +74,7 @@ public class ScaledImageGetter extends ImageLoader
 			for (int y = 0; y < immagine.getHeight(); y++)
 			{
 				int rgb = immagine.getRGB(x, y);
-				immagineTrasparente.setRGB(x, y, (rgb & 0x6FFFFFFF));
+				immagineTrasparente.setRGB(x, y, (rgb & ALPHA_CHANNEL));
 			}
 		}
 		return immagineTrasparente;
@@ -86,4 +86,6 @@ public class ScaledImageGetter extends ImageLoader
 	private Map<String, BufferedImage>	mappaImmaginiScalate;
 
 	public static final int				DIM_STANDARD	= 60;
+
+	private static final int			ALPHA_CHANNEL	= 0x6FFFFFFF;
 }

@@ -4,8 +4,6 @@ import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ViewHandler;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
-import java.awt.Color;
-
 /**
  * Event triggered by the controller after that a new card is correctely placed
  * 
@@ -15,15 +13,15 @@ import java.awt.Color;
 
 public class UpdatePositionEvent extends UpdateEvent
 {
-	public UpdatePositionEvent(Tessera tessera, Coordinate coordinate, Color giocatore, Object source)
+	public UpdatePositionEvent(Tessera tessera, Coordinate coordinate, Object source)
 	{
-		super(tessera, coordinate, giocatore, source);
+		super(tessera, coordinate, null, source);
 
 	}
 
-	public UpdatePositionEvent(String tessera, Coordinate coordinate, Color coloreGiocatore, Object source)
+	public UpdatePositionEvent(String tessera, Coordinate coordinate, Object source)
 	{
-		super(tessera, coordinate, coloreGiocatore, source);
+		super(tessera, coordinate,null, source);
 	}
 
 	/**

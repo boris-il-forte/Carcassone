@@ -95,7 +95,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 				{
 					String[] partiTile = line.split(":");
 					String side = partiTile[SIDE];
-					PuntoCardinale punto = PuntoCardinale.valueOf(side);
+					PuntoCardinale punto = TokenCardinale.cardinalPointOf(side);
 					this.proxy.fire(new TileEvent(this,this.getColoreConnessione(), punto));
 				}
 			}
@@ -129,5 +129,23 @@ public class ConnessioneViewSocket extends ConnessioneView
 	private static final int			SIDE		= 1;
 
 	private static final int			PLACE_COORD	= 1;
+	
+	private enum TokenCardinale
+	{
+		N(PuntoCardinale.nord),S(PuntoCardinale.sud),W(PuntoCardinale.ovest),E(PuntoCardinale.est);
+		
+		private TokenCardinale(PuntoCardinale punto)
+		{
+			this.punto = punto;
+		}
+		
+		public static PuntoCardinale cardinalPointOf(String punto)
+		{
+			TokenCardinale token = TokenCardinale.valueOf(punto);
+			return token.punto;
+		}
+		
+		private PuntoCardinale punto;
+	}
 
 }

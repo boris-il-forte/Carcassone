@@ -67,8 +67,7 @@ public class ModuloModel extends AbstractModel
 	{
 		Segnalino segnalino = this.getGiocatoreCorrente().getSegnalino();
 		this.tesseraCorrente.setSegnalino(segnalino, puntoCardinale);
-		this.fire(new UpdatePositionEvent(this.tesseraCorrente, this.coordinateTesseraCorrente, this
-				.getColoreGiocatoreCorrente(), this));
+		this.fire(new UpdatePositionEvent(this.tesseraCorrente, this.coordinateTesseraCorrente, this));
 		return segnalino;
 	}
 
@@ -92,8 +91,8 @@ public class ModuloModel extends AbstractModel
 			Tessera primaTessera = this.datiPartita.pescaPrimaTessera();
 			AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
 			this.datiPartita.getAreaDiGioco().addTessera(new Coordinate(0, 0), primaTessera);
-			this.fire(new InizioGiocoEvent(this, tessera, this.getGiocatoreCorrente().getColore(), this
-					.getListaGiocatori().size(), this.getIdPartita()));
+			this.fire(new InizioGiocoEvent(this, tessera, null, this.getListaGiocatori().size(), this
+					.getIdPartita()));
 			this.getTesseraDaMazzo();
 			this.cominciaTurno();
 
@@ -157,13 +156,10 @@ public class ModuloModel extends AbstractModel
 	 */
 	public void posizionaTessera(Tessera tessera, Coordinate coordinate) throws MossaNonValidaException
 	{
-
 		AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
-		Giocatore giocatore = this.datiPartita.getGiocatoreCorrente();
 		areaDiGioco.addTessera(coordinate, tessera);
 		this.coordinateTesseraCorrente = coordinate;
-		this.fire(new UpdatePositionEvent(tessera, coordinate, giocatore.getColore(), this));
-
+		this.fire(new UpdatePositionEvent(tessera, coordinate, this));
 	}
 
 	/**

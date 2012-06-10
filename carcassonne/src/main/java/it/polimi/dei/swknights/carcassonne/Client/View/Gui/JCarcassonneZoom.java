@@ -32,7 +32,7 @@ public class JCarcassonneZoom extends JPanel implements ChangeListener
 		if (source == this.slider)
 		{
 			int zoom = this.slider.getValue();
-			this.view.zoomModificato(zoom / 20);
+			this.view.zoomModificato(zoom / SENSIBILITA_SLIDER);
 		}
 
 	}
@@ -40,6 +40,8 @@ public class JCarcassonneZoom extends JPanel implements ChangeListener
 	private JSlider				slider;
 
 	private Gui					view;
+
+	private static final int	SENSIBILITA_SLIDER	= 20;
 
 	private static final long	serialVersionUID	= -3086842872745087592L;
 }
