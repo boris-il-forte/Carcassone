@@ -24,10 +24,7 @@ public class Link implements Cloneable
 	{
 		if (links.length != LINKS_NUMBER) { throw new IllegalArgumentException(
 				"You are supposed to pass six booleans to Link!"); }
-		for (Bussola direzione : Bussola.values())
-		{
-			this.direzioni[direzione.toInt()] = links[direzione.toInt()];
-		}
+		this.direzioni =  links.clone();
 	}
 
 	@Override
