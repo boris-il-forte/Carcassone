@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Fasi;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 
 /**
  * Phase Handler, gives simple methods (getters basically) to know weather the
@@ -20,7 +19,6 @@ public class GestoreFasi
 	public void cominciaTurno()
 	{
 		this.faseCorrente = FaseTurno.Inizio;
-		Debug.print("fase: " + this.faseCorrente.toString());
 	}
 
 	public void finePartita()
@@ -31,7 +29,6 @@ public class GestoreFasi
 	public void nextFase()
 	{
 		this.faseCorrente = this.faseCorrente.next();
-		Debug.print("fase: " + this.faseCorrente.toString());
 	}
 
 	public boolean partitaOk()

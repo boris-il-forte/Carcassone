@@ -88,11 +88,11 @@ public class Cli extends ModuloView
 
 	public void attendiInput()
 	{
-		
+		this.informaUser.setPhase(this.getGestoreFasi().getCurrentFase());
 		
 			if (this.getGestoreFasi().inputOk() &&  this.turnoCorretto())
 			{
-				this.informaUser.setPhase(this.getGestoreFasi().getCurrentFase());
+				
 				this.getInput();
 			}
 	

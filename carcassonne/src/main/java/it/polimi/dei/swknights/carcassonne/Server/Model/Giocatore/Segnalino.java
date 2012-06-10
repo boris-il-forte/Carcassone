@@ -26,6 +26,7 @@ public class Segnalino
 	 */
 	public Color getColore()
 	{
+		
 		return this.colore;
 	}
 

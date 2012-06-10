@@ -149,15 +149,19 @@ public class Lati implements Cloneable
 
 	private String printSegnalino()
 	{
-		Segnalino segnalino = this.datiSegnalino.segnalino;
-		if (segnalino != null)
+		if (this.datiSegnalino != null)
 		{
-			return segnalino.toString();
+			Segnalino segnalino = this.datiSegnalino.segnalino;
+			if (segnalino != null)
+			{
+				return segnalino.toString();
+			}
+			else
+			{
+				return "";
+			}
 		}
-		else
-		{
-			return "";
-		}
+		return "";
 	}
 
 	private Elemento		nord;
@@ -175,7 +179,7 @@ public class Lati implements Cloneable
 		public Segnalino		segnalino;
 
 		public PuntoCardinale	puntoCardinale;
-		
+
 		@Override
 		public DatiSegnalino clone()
 		{
@@ -190,7 +194,7 @@ public class Lati implements Cloneable
 			catch (CloneNotSupportedException e)
 			{
 				return null;
-			}			
+			}
 		}
 	}
 }
