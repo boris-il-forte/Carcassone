@@ -171,7 +171,7 @@ public class CarcassonneServer implements Runnable
 
 		private Object				lock;
 
-		private static final int	TIMEOUT	= 60000;	// millisec
+		private static final int	TIMEOUT	= 2000;	// millisec
 
 	}
 
