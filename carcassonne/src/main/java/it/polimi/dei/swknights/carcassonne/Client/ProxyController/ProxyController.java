@@ -24,18 +24,15 @@ public class ProxyController extends AbstractConnessioneController
 
 	public ProxyController(Socket socket) throws IOException
 	{
-
 		this.connessione = new ConnessioneControllerSocket(socket, this);
 		this.contattaServerInizia(socket);
 		this.inizializzaHandlers();
 		Executor imperial =Executors.newFixedThreadPool(1); //lancia per ascoltare risp
-		imperial.execute(connessione);
-		
+		imperial.execute(connessione);		
 	}
 
 	public ProxyController() // RMI
 	{
-
 		this.connessione = new ConnessioneControllerRMI();
 	}
 
@@ -47,7 +44,7 @@ public class ProxyController extends AbstractConnessioneController
 	@Override
 	public void run()
 	{
-		//
+		//TODO: check...
 	}
 	
 	@Override
