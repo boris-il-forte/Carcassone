@@ -9,7 +9,7 @@ public class CarcassonneSocket
 
 	public static Socket dammiSocket()
 	{
-		return CarcassonneSocket.dammiSocket(indirizzoServer);
+		return CarcassonneSocket.dammiSocket(INDIRIZZO_SERVER);
 
 	}
 
@@ -34,7 +34,7 @@ public class CarcassonneSocket
 	}
 	
 
-	private static final String	indirizzoServer	= "127.0.0.1";
+	private static final String	INDIRIZZO_SERVER	= "127.0.0.1";
 
 	private static final int	PORTA_GF		= 1984;
 }

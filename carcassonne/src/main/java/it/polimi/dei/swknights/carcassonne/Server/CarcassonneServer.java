@@ -120,13 +120,13 @@ public class CarcassonneServer implements Runnable
 
 	private boolean				timerScaduto;
 
-	private final int			GIOCATORI_PARTITA			= 5;
-
 	private ProxyView			proxyView;
 
 	private Integer				giocatoriAttivi				= 0;
 
 	private Deque<Partita>		partite;
+
+	private static final int	GIOCATORI_PARTITA			= 5;
 
 	private static final int	PORTA_DEL_GRANDE_FRATELLO	= 1984;
 
@@ -156,7 +156,7 @@ public class CarcassonneServer implements Runnable
 				Debug.print("ciclo timer");
 				Thread.sleep(TIMEOUT);
 				Debug.print("passati 20 sec");
-				if (CarcassonneServer.this.giocatoriAttivi < CarcassonneServer.this.GIOCATORI_PARTITA)
+				if (CarcassonneServer.this.giocatoriAttivi < CarcassonneServer.GIOCATORI_PARTITA)
 				{
 					synchronized (this.lock)
 					{
@@ -183,7 +183,7 @@ public class CarcassonneServer implements Runnable
 
 			while (true)
 			{
-				if (CarcassonneServer.this.giocatoriAttivi == CarcassonneServer.this.GIOCATORI_PARTITA
+				if (CarcassonneServer.this.giocatoriAttivi == CarcassonneServer.GIOCATORI_PARTITA
 						|| CarcassonneServer.this.timerScaduto)
 				{
 					Debug.print("DONNNNNG, cominciamo ");

@@ -34,7 +34,7 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 		for (int i = 0; i < CELLE_RIGA * CELLE_RIGA; i++)
 		{
 
-			String label = labelPulsante.get(i);
+			String label = LABEL_MAP.get(i);
 			if (label != null)
 			{
 				JButton pulsante = new JButton(label);
@@ -58,21 +58,21 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 
 	public JButton getSource(PuntoCardinale puntoCardinale)
 	{
+		final int nord = 0, sud = 3, est = 2, ovest = 1;
 		int index = 0;
 		switch (puntoCardinale)
-		// TODO soluzione.... hashmap?
 		{
 			case nord:
-				index = 0;
+				index = nord;
 				break;
 			case sud:
-				index = 3;
+				index = sud;
 				break;
 			case est:
-				index = 2;
+				index = est;
 				break;
 			case ovest:
-				index = 1;
+				index = ovest;
 				break;
 		}
 		return this.listaPulsanti.get(index);
@@ -80,22 +80,23 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 
 	private List<JButton>						listaPulsanti;
 
-	private static final Map<Integer, String>	labelPulsante		= inizializzaLabelPulsante();
-	
+	private static Map<Integer, String> inizializzaLabelPulsante()
+	{
+		final int nord = 1, sud = 7, est = 5, ovest = 3;
+		HashMap<Integer, String> mappa = new HashMap<Integer, String>();
+		mappa.put(nord, "Up");
+		mappa.put(ovest, "Lt");
+		mappa.put(est, "Rt");
+		mappa.put(sud, "Dw");
+		return mappa;
+	}
+
+	private static final Map<Integer, String>	LABEL_MAP		= inizializzaLabelPulsante();
+
 	private static final int					DIMENSIONE_PULSANTE	= 60;
 
 	private static final int					CELLE_RIGA			= 3;
 
 	private static final long					serialVersionUID	= 6405877376841871358L;
-
-	private static Map<Integer, String> inizializzaLabelPulsante()
-	{
-		HashMap<Integer, String> mappa = new HashMap<Integer, String>();
-		mappa.put(1, "Up");
-		mappa.put(3, "Lt");
-		mappa.put(5, "Rt");
-		mappa.put(7, "Dw");
-		return mappa;
-	}
 
 }

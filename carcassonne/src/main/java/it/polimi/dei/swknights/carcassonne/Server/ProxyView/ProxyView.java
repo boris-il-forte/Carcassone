@@ -28,7 +28,7 @@ public class ProxyView extends AbstractConnessioneView
 		this.listaConnessioniRMI = new ArrayList<ConnessioneViewRMI>();
 		this.codaComandi = new LinkedList<String>();
 		this.inizializzaHandlers();
-		this.starDestroyer = Executors.newFixedThreadPool(this.MAX_GIOCATORI);
+		this.starDestroyer = Executors.newFixedThreadPool(MAX_GIOCATORI);
 	}
 
 	@Override
@@ -165,8 +165,8 @@ public class ProxyView extends AbstractConnessioneView
 
 	private List<ConnessioneViewRMI>	listaConnessioniRMI;
 
-	private final int					MAX_GIOCATORI		= 5;
-
 	private final ProxyViewHandler		cambioTurnoHandler	= new CambioTurnoHandler(this);
+
+	private static final int			MAX_GIOCATORI		= 5;
 
 }

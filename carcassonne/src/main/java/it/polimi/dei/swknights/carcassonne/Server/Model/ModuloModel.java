@@ -57,9 +57,7 @@ public class ModuloModel extends AbstractModel
 	public void ruotaTessera()
 	{
 		this.tesseraCorrente.ruota();
-		Color coloreGiocatoreCorrente = this.getColoreGiocatoreCorrente();
-
-		this.fire(new UpdateRotationEvent(this.tesseraCorrente, coloreGiocatoreCorrente, this));
+		this.fire(new UpdateRotationEvent(this.tesseraCorrente,this));
 	}
 
 	public Segnalino addSegnalinoTesseraCorrente(PuntoCardinale puntoCardinale)
