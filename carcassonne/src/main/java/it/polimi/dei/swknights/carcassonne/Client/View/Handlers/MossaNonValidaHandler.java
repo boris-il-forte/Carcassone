@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Handlers;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
 
