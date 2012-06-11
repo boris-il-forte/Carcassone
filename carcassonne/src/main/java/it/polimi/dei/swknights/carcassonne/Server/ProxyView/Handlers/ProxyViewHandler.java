@@ -7,7 +7,6 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 import java.awt.Color;
-import java.util.Map.Entry;
 
 public class ProxyViewHandler extends ViewHandler
 {

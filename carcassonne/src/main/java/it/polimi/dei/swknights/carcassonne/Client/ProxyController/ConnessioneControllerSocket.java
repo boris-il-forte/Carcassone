@@ -11,7 +11,6 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePosition
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateRotationEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
-import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
 import it.polimi.dei.swknights.carcassonne.Parser.ExtraParser;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;

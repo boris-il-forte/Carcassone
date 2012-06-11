@@ -1,7 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Util;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -56,7 +54,6 @@ public class ListFolder
 			// strip out only the JAR file
 			String jarPath = dirURL.getPath().substring(5, dirURL.getPath().indexOf("!"));
 			JarFile jar = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
-			Debug.print("dentro ramo jar:  " + jarPath);
 			// gives ALL entries in jar
 			Enumeration<JarEntry> entries = jar.entries();
 			// avoid duplicates in case it is a subdirectory
@@ -66,12 +63,10 @@ public class ListFolder
 				String name = entries.nextElement().getName();
 				if (name.contains(path))
 				{ // filter according to the path
-					Debug.print("trovata " + name);
 					String entry = name.substring(path.length());
 					int checkSubdir = entry.indexOf("/");
 					if (checkSubdir >= 0)
 					{
-						Debug.print("subdirectory " + name);
 						entry = entry.substring(checkSubdir+1);
 					}
 					result.add(entry);
