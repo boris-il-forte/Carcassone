@@ -35,7 +35,7 @@ public class CarcassonneServer implements Runnable
 	public final void run()
 	{
 		Debug.print("starting Server");
-		//this.lanciaServerRMI();
+		this.lanciaServerRMI();
 		ServerSocket serverSocket = null;
 		try
 		{
@@ -136,9 +136,11 @@ public class CarcassonneServer implements Runnable
 		ServerRMI pt;
 		try
 		{
+			java.rmi.registry.LocateRegistry.createRegistry(1099);
+			System.out.println("RMI registry ready.");
 			pt = new ServerRMIImpl(this);
-			Naming.rebind("//localhost/PerfectTimeServer", pt);
-			System.out.println("Ready to do time");
+			Naming.rebind("//localhost/ServerRMI", pt);
+			System.out.println("Ready ");
 		}
 		catch (RemoteException e)
 		{
