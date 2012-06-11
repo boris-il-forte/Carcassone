@@ -5,7 +5,6 @@ import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.ScenarioDiGioco;
-import it.polimi.dei.swknights.carcassonne.Client.View.Cli.statoNofiche.riscontriPossibili;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
@@ -38,7 +37,7 @@ public class Cli extends ModuloView
 		this.parser = new ParserComandi(this);
 		this.informaUser = new AvvisiUser(this.out);
 		this.setCoordinateRelativeSE(new Coordinate(LARGHEZZA, ALTEZZA));
-		this.lockAspAgg = new Object();
+
 	}
 
 	@Override
@@ -77,16 +76,14 @@ public class Cli extends ModuloView
 		this.out.print(mappa);
 		this.out.flush();
 
-		synchronized (this.lockAspAgg)
-		{
-			this.statoNotifiche.setAggiornamentoMappa(true);
-			lockAspAgg.notifyAll();
-		}
+
 	}
 
 	@Override
-	public void visualizzaPunteggi(Punteggi punteggio)
+	public synchronized void visualizzaPunteggi(Punteggi punteggio)
 	{
+		Debug.print(" cli - visualizza punteggi");
+
 		this.informaUser.notificaPunteggi(punteggio);
 
 	}
@@ -97,31 +94,22 @@ public class Cli extends ModuloView
 
 	public void attendiInput()
 	{
-
+		try
+		{
+			Thread.sleep(300);
+		}
+		catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
 		if (this.getGestoreFasi().inputOk() && this.turnoCorretto())
 		{
-			synchronized (lockAspAgg)
-			{
-				while (this.statoNotifiche.prontoPerNuovoInput() == false)
-				{
-					try
-					{
-						lockAspAgg.wait();
-					}
-					catch (InterruptedException e)
-					{
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
+
 				this.informaUser.setPhase(this.getGestoreFasi().getCurrentFase());
 				this.getInput();
-				this.statoNotifiche.setAggiornamentoMappa(false);
-				this.statoNotifiche.setAggiornamentoTesserina(false);
 			}
 		}
 
-	}
 
 	@Override
 	public void mettiPrimaTessera(AdapterTessera tessIniziale)
@@ -140,21 +128,16 @@ public class Cli extends ModuloView
 	@Override
 	public void notificaMossaNonValida()
 	{
-		
+
 		this.informaUser.notificaMossaNonValida();
-		Debug.print(" cli - mossa non valida ora faccio lockAspPag.notifyAll() ");
-		synchronized (this.lockAspAgg)
-		{
-			this.statoNotifiche.setAggiornamentoTesserina(true);
-			this.statoNotifiche.setAggiornamentoMappa(true);
-			lockAspAgg.notifyAll();
-		}
+
 	}
 
 	@Override
 	public void visualizzaColoreCorrente()
 	{
 		this.informaUser.setColore(this.getColoreGiocatoreCorrente());
+
 	}
 
 	@Override
@@ -164,16 +147,8 @@ public class Cli extends ModuloView
 		this.setTesseraCorrente(tessera);
 		this.informaUser.setTesseraCorrente(tessera);
 		this.informaUser.mostraTesseraCorrente();
-		
-		synchronized (this.lockAspAgg)
-		{
-			this.statoNotifiche.setAggiornamentoTesserina(true);
-			lockAspAgg.notifyAll();
-		}
-		
-	}
-	
 
+	}
 
 	/**
 	 * Executed in response of x,y place the card only if the command is given
@@ -224,6 +199,12 @@ public class Cli extends ModuloView
 		}
 	}
 
+	boolean getTurnoGiusto()
+	{
+		return this.turnoCorretto();
+	}
+	
+	
 	boolean provaPosizionareSengalino(String stringComando)
 	{
 		if (this.getGestoreFasi().fineTurnoOk())
@@ -241,11 +222,7 @@ public class Cli extends ModuloView
 		}
 		return false;
 	}
-	
-	void setNotificheUtenteDaFare(riscontriPossibili risc)
-	{
-		this.statoNotifiche.setNotificheUtenteDaFare(risc);
-	}
+
 
 	private synchronized void aspettaInizio() throws InterruptedException
 	{
@@ -287,12 +264,6 @@ public class Cli extends ModuloView
 		return new Stampante(datiMappa);
 	}
 
-
-
-	private statoNofiche    statoNotifiche = new statoNofiche();
-
-	private Object				lockAspAgg;
-	
 	private Scanner				in;
 
 	private PrintWriter			out;
@@ -301,66 +272,9 @@ public class Cli extends ModuloView
 
 	private final AvvisiUser	informaUser;
 
-	private static final int	ALTEZZA				= 5;
+	private static final int	ALTEZZA			= 5;
 
-	private static final int	LARGHEZZA			= 10;
+	private static final int	LARGHEZZA		= 10;
 
 }
-
-class statoNofiche
-{
-	public boolean aggiornataMappa()
-	{
-		return this.aggiornataMappa;
-	}
-	
-	public boolean aggiornataTesserina()
-	{
-		return this.aggiornataTesserina;
-	}
-	
-	public void setAggiornamentoTesserina(boolean aggiornamento)
-	{
-		this.aggiornataTesserina = aggiornamento;
-	}
-	
-	public void  setAggiornamentoMappa(boolean aggiornamento)
-	{
-		this.aggiornataMappa = aggiornamento;
-	}
-	
-	
-	void setNotificheUtenteDaFare(riscontriPossibili riscontri)
-	{
-		this.notificheDaFare = riscontri;
-	}
-	
-
-
-	
-	public boolean prontoPerNuovoInput()
-	{
-		if (this.notificheDaFare == riscontriPossibili.mappa)
-		{
-			return this.aggiornataMappa();
-		}
-		else if (this.notificheDaFare == riscontriPossibili.mappaETesserina)
-		{
-			return this.aggiornataMappa() && this.aggiornataTesserina();
-		}
-		else
-		{
-			return true;
-		}
-
-	}
-
-	enum riscontriPossibili {
-		mappa, mappaETesserina, niente;
-	}
-	private riscontriPossibili	notificheDaFare = riscontriPossibili.niente;
-	private boolean				aggiornataTesserina	= false;
-	private boolean				aggiornataMappa		= false;
-}
-
 

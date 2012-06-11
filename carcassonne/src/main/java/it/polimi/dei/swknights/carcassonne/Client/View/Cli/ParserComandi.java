@@ -1,5 +1,4 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
-import it.polimi.dei.swknights.carcassonne.Client.View.Cli.statoNofiche.riscontriPossibili;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
@@ -32,7 +31,6 @@ public class ParserComandi
 		int quantitaSpostamento = 0;
 		if (stringComando.matches("[SCsc][1-4]")) // es c1 s2
 		{
-			this.cli.setNotificheUtenteDaFare(riscontriPossibili.mappa);
 			return this.cli.provaPosizionareSengalino(stringComando); 
 		}
 		if (stringComando.matches("\\-?\\d+\\,\\-?\\d+")) // es (2,-4)
@@ -43,24 +41,24 @@ public class ParserComandi
 			x = Integer.parseInt(parti[STRINGA_X]);
 			y = Integer.parseInt(parti[STRINGA_Y]);
 			
-			this.cli.setNotificheUtenteDaFare(riscontriPossibili.mappa);
+
 			return this.cli.provaPosizionareTessera(new Coordinate(x, y));
 		}
 
 		if (stringComando.matches("rotate")) 
 		{ 
-			cli.setNotificheUtenteDaFare(riscontriPossibili.mappaETesserina);
+			
 			return this.cli.provaRuotareTessera();
 		}
 		if (stringComando.matches("pass")) 
 		{ 
-			this.cli.setNotificheUtenteDaFare(riscontriPossibili.niente);
+
 			return this.cli.provaNonMettereSegnalino(); 
 		}
 
 		if (stringComando.matches("(up|down|left|right)\\=\\d+"))
 		{
-			this.cli.setNotificheUtenteDaFare(riscontriPossibili.mappa);
+
 			String dopoUguale = stringComando.substring(stringComando.indexOf('=') + 1);
 			quantitaSpostamento = Integer.parseInt(dopoUguale);
 		}
@@ -87,7 +85,6 @@ public class ParserComandi
 		}
 		if (stringComando.matches("goto=\\-?\\d+\\,\\-?\\d+"))
 		{
-			this.cli.setNotificheUtenteDaFare(riscontriPossibili.mappa);
 			Coordinate coordinate = this.getCoordinate(stringComando);
 			this.cli.muoviViewA(coordinate);
 		}
