@@ -14,9 +14,7 @@ public abstract class AbstractConnessioneView extends AbstractView
 		super(new ArrayList<Controller>());
 	}
 
-	public void run()
-	{
-	}
+	public abstract void run();
 
 	public abstract void riceviModificheModel(ControllerEvent event);
 
