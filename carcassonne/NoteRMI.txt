@@ -1,0 +1,37 @@
+Note RMI
+Importante!!!
+
+
+ecco come configurare client e server!!!
+
+
+/**************SERVER*************************/
+
+-cp /home/dave/java/Carcassonne/src/it/dei/polimi/swknights/carcassonne/Carcassonne
+-Djava.security.policy=file:./permessiRMI.policy
+
+
+/*********************************************/
+
+
+
+/**************CLIENT*************************/
+
+-cp /home/dave/java/provaRMI/src/prova/Prova
+-Djava.security.policy=file:./permessiRMI.policy
+
+/*********************************************/
+
+
+
+Ossia:
+
+----> -cp path/main/Class
+----> -Djava.security.policy=file:./permessiRMI.policy (se permessi nella root progetto)
+
++++++++++++++++++++++++++++++++++
++								+
++								+
++ permessi RMI come da file :)	+
++								+
++++++++++++++++++++++++++++++++++
