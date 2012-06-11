@@ -1,10 +1,13 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
+import it.polimi.dei.swknights.carcassonne.Util.ListFolder;
+
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,8 +25,8 @@ public class ImageLoader
 		try
 		{
 			this.setErrore();
-			this.leggiFileCartella("/tiles", this.mappaURLTiles);
-			this.leggiFileCartella("/segnalini", this.mappaURLSegnalini);
+			this.leggiFileCartella("tiles", this.mappaURLTiles);
+			this.leggiFileCartella("segnalini", this.mappaURLSegnalini);
 			this.apriFilesCartella(this.mappaImmaginiTiles, this.mappaURLTiles, DIM_ORIGINALE_TILES);
 			this.apriFilesCartella(this.mappaImmaginiSegnalini, this.mappaURLSegnalini,
 					DIM_ORIGINALE_SEGNALINI);
@@ -111,25 +114,45 @@ public class ImageLoader
 	{
 		for (Entry<String, URL> entryURL : mappaURL.entrySet())
 		{
-			BufferedImage image = this.scalaImmagine(ImageIO.read(entryURL.getValue()), dimOriginale);
-			mappaImmagini.put(entryURL.getKey(), image);
+			BufferedImage originalImage = ImageIO.read(entryURL.getValue());
+			if (originalImage == null)
+			{
+				Debug.print("Non trovato url " + originalImage);
+			}
+			else
+			{
+				BufferedImage image = this.scalaImmagine(originalImage, dimOriginale);
+				mappaImmagini.put(entryURL.getKey(), image);
+			}
 		}
 	}
 
 	private void leggiFileCartella(String stringCartella, Map<String, URL> map)
 	{
-		URL urlCartella = ImageLoader.class.getResource(stringCartella);
-		File cartella = new File(urlCartella.getFile());
-		for (String stringImmagine : cartella.list())
+		try
 		{
-			// TODO chiedere che mi sa che non va bene...
-			if (!stringImmagine.startsWith("."))
+			for (String stringImmagine : ListFolder.list(stringCartella))
 			{
-				StringBuilder builderPercorso = new StringBuilder(stringCartella).append("/").append(
-						stringImmagine);
-				URL urlImmagine = ImageLoader.class.getResource(builderPercorso.toString());
-				map.put(stringImmagine.split("\\.")[0], urlImmagine);
+				Debug.print(stringImmagine);
+				// TODO chiedere che mi sa che non va bene...
+				if (!stringImmagine.startsWith("."))
+				{
+					StringBuilder builderPercorso = new StringBuilder("/").append(stringCartella).append("/")
+							.append(stringImmagine);
+					URL urlImmagine = ImageLoader.class.getResource(builderPercorso.toString());
+					map.put(stringImmagine.split("\\.")[0], urlImmagine);
+				}
 			}
+		}
+		catch (URISyntaxException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (IOException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

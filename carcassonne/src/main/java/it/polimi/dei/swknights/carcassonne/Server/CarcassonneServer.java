@@ -5,10 +5,16 @@ import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
+import java.rmi.RemoteException;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,6 +35,7 @@ public class CarcassonneServer implements Runnable
 	public final void run()
 	{
 		Debug.print("starting Server");
+		this.lanciaServerRMI();
 		ServerSocket serverSocket = null;
 		try
 		{
@@ -64,10 +71,11 @@ public class CarcassonneServer implements Runnable
 
 	}
 
-	private void creaNuovaPartita()
+	public void gestisciConnessione()
 	{
-		Partita partita = new Partita();
-		this.partite.add(partita);
+		Partita partita = this.aggiungiGiocatore();
+		this.proxyView = partita.getProxyView();
+		this.proxyView.accettaConnessione();
 	}
 
 	private void gestisciConnessione(Socket socket)
@@ -77,24 +85,7 @@ public class CarcassonneServer implements Runnable
 		{
 			if (vuoleConnettersi(socket))
 			{
-				Debug.print("Carcassonne Server - ho ricevuto un connect: qualcuno vuole giocare");
-				this.giocatoriAttivi++;
-				if (this.giocatoriAttivi == 1)
-				{
-					this.creaNuovaPartita();
-				}
-				else if (this.giocatoriAttivi == 2)
-				{
-					Debug.print("due giocatori connessi: parte il timer!");
-					Timer timerConn = new Timer();
-					timerConn.setWhatIsLock(this);
-
-					this.executor.execute(timerConn);
-				}
-
-				Partita partita = this.partite.peekLast();
-				partita.addPlayer();
-
+				Partita partita = this.aggiungiGiocatore();
 				this.proxyView = partita.getProxyView();
 				this.proxyView.accettaConnessione(socket);
 			}
@@ -107,13 +98,87 @@ public class CarcassonneServer implements Runnable
 		}
 		catch (IOException e)
 		{
-			// TODO: annulla lo sbaglio fatto!
+			// TODO: annulla l'aggiunta del giocatore!!!!
+		}
+	}
+
+	private void creaNuovaPartita()
+	{
+		Partita partita = new Partita();
+		this.partite.add(partita);
+	}
+
+	private Partita aggiungiGiocatore()
+	{
+		Debug.print("Carcassonne Server - ho ricevuto un connect: qualcuno vuole giocare");
+		this.giocatoriAttivi++;
+		if (this.giocatoriAttivi == 1)
+		{
+			this.creaNuovaPartita();
+		}
+		else if (this.giocatoriAttivi == 2)
+		{
+			Debug.print("due giocatori connessi: parte il timer!");
+			Timer timerConn = new Timer();
+			timerConn.setWhatIsLock(this);
+
+			this.executor.execute(timerConn);
+		}
+
+		Partita partita = this.partite.peekLast();
+		partita.addPlayer();
+		return partita;
+	}
+
+	private void lanciaServerRMI()
+	{
+		System.setSecurityManager(new RMISecurityManager());
+		ServerRMI pt;
+		try
+		{
+			pt = new ServerRMIImpl(this);
+			Naming.rebind("//localhost/PerfectTimeServer", pt);
+			System.out.println("Ready to do time");
+		}
+		catch (RemoteException e)
+		{
+		}
+		catch (MalformedURLException e)
+		{
 		}
 	}
 
 	private boolean vuoleConnettersi(Socket socket)
 	{
-		return EspertoInizioConnessione.vuoleConnettersi(socket);
+		try
+		{
+			Scanner scanner = new Scanner(socket.getInputStream());
+
+			try
+			{
+				String line = (scanner.nextLine());
+				if (line.equals("connect"))
+				{
+					return true;
+				}
+				else
+				{
+					socket.close();
+					return false;
+				}
+			}
+			catch (NoSuchElementException e)
+			{
+				socket.close();
+				return false;
+			}
+
+		}
+		catch (IOException e)
+		{
+			Debug.print("esperto inizio - IOException");
+			return false;
+		}
 	}
 
 	private ExecutorService		executor;
@@ -171,16 +236,14 @@ public class CarcassonneServer implements Runnable
 
 		private Object				lock;
 
-		private static final int	TIMEOUT	= 2000;	// millisec
+		private static final int	TIMEOUT	= 2000; // millisec
 
 	}
 
 	private class MonacoGong implements Runnable
 	{
-
 		public void run() // posso cominciare?
 		{
-
 			while (true)
 			{
 				if (CarcassonneServer.this.giocatoriAttivi == CarcassonneServer.GIOCATORI_PARTITA
@@ -199,11 +262,8 @@ public class CarcassonneServer implements Runnable
 				{
 					Debug.print(" hai interrotto il sonno del monaco, maledetto! ");
 				}
-
 			}
-
 		}
-
 	}
 
 }
