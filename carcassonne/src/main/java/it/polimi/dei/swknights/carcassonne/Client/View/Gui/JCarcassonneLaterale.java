@@ -83,6 +83,12 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 			case KeyEvent.VK_DOWN:
 				this.view.muoviViewA(PuntoCardinale.sud, 1);
 				break;
+			case KeyEvent.VK_R:
+				this.view.rotateCliccato();
+				break;
+			case KeyEvent.VK_P:
+				this.view.passCliccato();
+				break;
 			default:
 				break;
 		}
