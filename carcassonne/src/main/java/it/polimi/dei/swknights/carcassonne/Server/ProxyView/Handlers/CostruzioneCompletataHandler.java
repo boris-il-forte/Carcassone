@@ -26,14 +26,6 @@ public class CostruzioneCompletataHandler extends ProxyViewHandler
 		this.setComandoUpdatePunteggi(event.getPunteggi());
 	}
 
-	private void setComandoUpdatePunteggi(Punteggi punteggi)
-	{
-		StringBuilder stringCommand = new StringBuilder();
-		stringCommand.append("score:");
-		stringCommand.append(this.getStringaPunteggi(punteggi));
-		this.proxy.setCommandString(stringCommand.toString());
-	}
-
 	private void setComandoUpdateStringhe(Map<AdapterTessera, Coordinate> mappa)
 	{
 		StringBuilder stringCommand;
@@ -48,4 +40,15 @@ public class CostruzioneCompletataHandler extends ProxyViewHandler
 		}
 	}
 
+	private void setComandoUpdatePunteggi(Punteggi punteggi)
+	{
+		StringBuilder stringCommand = new StringBuilder();
+		stringCommand.append("score:");
+		stringCommand.append(this.getStringaPunteggi(punteggi));
+		this.proxy.setCommandString(stringCommand.toString());
+	}
+
 }
+
+
+

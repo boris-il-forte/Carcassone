@@ -32,7 +32,7 @@ public class ParserComandi
 		int quantitaSpostamento = 0;
 		if (stringComando.matches("[SCsc][1-4]")) // es c1 s2
 		{
-			
+			this.cli.setNotificheUtenteDaFare(riscontriPossibili.mappa);
 			return this.cli.provaPosizionareSengalino(stringComando); 
 		}
 		if (stringComando.matches("\\-?\\d+\\,\\-?\\d+")) // es (2,-4)
