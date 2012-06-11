@@ -189,9 +189,9 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				{
 					String x = partiArgomenti[X];
 					String y = partiArgomenti[Y];
+					this.partiDiEventoComposto.add(tessera);
 					this.partiDiEventoComposto.add(x);
 					this.partiDiEventoComposto.add(y);
-					this.partiDiEventoComposto.add(tessera);
 					return true; // ci sarà da leggere ancora
 
 				}
