@@ -74,12 +74,11 @@ public class ProxyView extends AbstractConnessioneView
 
 	}
 
-	public void accettaConnessione()
+	public void accettaConnessione(PortaleRMIImpl portale)
 	{
 		this.giocatoriConnessi++;
-		ConnessioneViewRMI connessione = new ConnessioneViewRMI(this.giocatoriConnessi);
+		ConnessioneViewRMI connessione = new ConnessioneViewRMI(portale, this, this.giocatoriConnessi);
 		this.listaConnessioniRMI.add(connessione);
-
 	}
 
 	public void setCommandString(String commandString)
@@ -93,9 +92,8 @@ public class ProxyView extends AbstractConnessioneView
 		for (ConnessioneViewRMI connRMI : this.listaConnessioniRMI)
 		{
 			int indiceMessaggio = connRMI.getNumeroConnessione();
-			String messaggioIniziale = this.codaComandi.get(indiceMessaggio - 1);// coda
-																					// base
-																					// 0!
+			//coda comandi ha base 0
+			String messaggioIniziale = this.codaComandi.get(indiceMessaggio - 1);
 			connRMI.inviaEventoIniziale(messaggioIniziale);
 		}
 		for (ConnessioneViewSocket connSOCK : this.listaConnessioniSocket)

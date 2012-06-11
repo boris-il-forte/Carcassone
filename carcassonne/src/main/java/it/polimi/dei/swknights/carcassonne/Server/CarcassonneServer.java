@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Server;
 
 import it.polimi.dei.swknights.carcassonne.Debug;
+import it.polimi.dei.swknights.carcassonne.Server.ProxyView.PortaleRMIImpl;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 
 import java.io.IOException;
@@ -71,11 +72,11 @@ public class CarcassonneServer implements Runnable
 
 	}
 
-	public void gestisciConnessione()
+	protected void gestisciConnessione(PortaleRMIImpl portale)
 	{
 		Partita partita = this.aggiungiGiocatore();
 		this.proxyView = partita.getProxyView();
-		this.proxyView.accettaConnessione();
+		this.proxyView.accettaConnessione(portale);
 	}
 
 	private void gestisciConnessione(Socket socket)

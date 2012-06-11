@@ -4,34 +4,13 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEven
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 
 import java.awt.Color;
-import java.io.IOException;
-import java.net.Socket;
 
-public class ConnessioneView extends AbstractConnessioneView
+public abstract class ConnessioneView extends AbstractConnessioneView
 {
 
 	public ConnessioneView(int numeroConnessione)
 	{
 		this.numeroConnessione = numeroConnessione;
-	}
-
-	public void accettaConnessione(Socket socket)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	public void riceviInput() throws IOException
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void riceviModificheModel(ControllerEvent event)
-	{
-		// TODO Auto-generated method stub
-
 	}
 
 	public Color getColoreConnessione()
@@ -42,6 +21,11 @@ public class ConnessioneView extends AbstractConnessioneView
 	public int getNumeroConnessione()
 	{
 		return this.numeroConnessione;
+	}
+	
+	@Override
+	public void riceviModificheModel(ControllerEvent event)
+	{
 	}
 
 	private int	numeroConnessione;

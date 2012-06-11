@@ -1,5 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Server;
 
+import it.polimi.dei.swknights.carcassonne.Server.ProxyView.PortaleRMIImpl;
+import it.polimi.dei.swknights.carcassonne.Server.RMI.PortaleRMI;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -10,9 +13,11 @@ public class ServerRMIImpl extends UnicastRemoteObject implements ServerRMI
 		this.server = server;
 	}
 
-	public void connect()
+	public PortaleRMI connect() throws RemoteException
 	{
-		this.server.gestisciConnessione();
+		PortaleRMIImpl portale = new PortaleRMIImpl();
+		this.server.gestisciConnessione(portale);
+		return portale;
 	}
 
 	private CarcassonneServer	server;
