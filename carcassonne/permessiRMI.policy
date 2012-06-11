@@ -1,0 +1,6 @@
+grant 
+{
+	permission java.net.SocketPermission “*”, “connect”;
+	permission java.net.SocketPermission “*”, “accept”;
+	permission java.io.FilePermission “/tmp/*”, “read”;
+}
