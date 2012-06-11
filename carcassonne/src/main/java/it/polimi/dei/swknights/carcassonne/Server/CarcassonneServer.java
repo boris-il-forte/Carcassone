@@ -35,7 +35,7 @@ public class CarcassonneServer implements Runnable
 	public final void run()
 	{
 		Debug.print("starting Server");
-		this.lanciaServerRMI();
+		//this.lanciaServerRMI();
 		ServerSocket serverSocket = null;
 		try
 		{
