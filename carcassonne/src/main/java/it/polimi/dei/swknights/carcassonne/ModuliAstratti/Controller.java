@@ -13,4 +13,5 @@ import java.util.EventListener;
 public interface Controller extends EventListener, Runnable
 {
 	void riceviInput(ViewEvent event);
+
 }

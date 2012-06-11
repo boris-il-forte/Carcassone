@@ -140,8 +140,15 @@ public class Cli extends ModuloView
 	@Override
 	public void notificaMossaNonValida()
 	{
+		
 		this.informaUser.notificaMossaNonValida();
-
+		Debug.print(" cli - mossa non valida ora faccio lockAspPag.notifyAll() ");
+		synchronized (this.lockAspAgg)
+		{
+			this.statoNotifiche.setAggiornamentoTesserina(true);
+			this.statoNotifiche.setAggiornamentoMappa(true);
+			lockAspAgg.notifyAll();
+		}
 	}
 
 	@Override
@@ -165,6 +172,7 @@ public class Cli extends ModuloView
 		}
 		
 	}
+	
 
 
 	/**
@@ -262,6 +270,7 @@ public class Cli extends ModuloView
 		boolean valido;
 		do
 		{
+			// in flush ??
 			this.informaUser.chiediComando();
 
 			String comando = this.in.nextLine();

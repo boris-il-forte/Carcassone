@@ -32,12 +32,12 @@ public class ProxyViewHandler extends ViewHandler
 	protected String getStringaPunteggi(Punteggi punteggi)
 	{
 		StringBuilder builder = new StringBuilder();
-		for (Entry<Color, Integer> entry : punteggi.entrySet())
+		for (Color colore : ColoriGioco.getListaColori())
 		{
-			String color = ColoriGioco.getProtocolName(entry.getKey());
-			builder.append(color);
+			String stringColor = ColoriGioco.getProtocolName(colore);
+			builder.append(stringColor);
 			builder.append('=');
-			builder.append(entry.getValue());
+			builder.append(punteggi.get(colore));
 			builder.append(",");
 		}
 		builder.deleteCharAt(builder.lastIndexOf(","));
