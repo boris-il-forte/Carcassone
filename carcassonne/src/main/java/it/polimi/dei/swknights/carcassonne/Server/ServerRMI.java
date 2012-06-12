@@ -7,5 +7,5 @@ import java.rmi.RemoteException;
 
 public interface ServerRMI extends Remote
 {
-	PortaleRMI connect() throws RemoteException; 
+	PortaleRMI connect() throws RemoteException;
 }

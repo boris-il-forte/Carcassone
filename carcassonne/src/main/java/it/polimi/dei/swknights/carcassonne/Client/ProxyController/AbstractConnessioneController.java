@@ -17,22 +17,13 @@ public class AbstractConnessioneController implements Controller, Model
 	{
 		this.listeners = new ArrayList<View>();
 	}
-	
-	public void request()
-	{
-
-	}
 
 	public void run()
 	{
-		// TODO Auto-generated method stub
-
 	}
 
 	public void riceviInput(ViewEvent event)
 	{
-		// TODO Auto-generated method stub
-
 	}
 
 	public void addListener(EventListener eventListener)
@@ -46,19 +37,16 @@ public class AbstractConnessioneController implements Controller, Model
 
 	public void removeListener(EventListener eventListener)
 	{
-		
 		this.listeners.remove(eventListener);
 	}
 	
 	
 	public void fire(ControllerEvent event)
 	{
-		
 		for(View listener: this.listeners )
 		{
 			listener.riceviModificheModel(event);
 		}
-		
 	}
 	
 	
