@@ -31,97 +31,87 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-import org.junit.Before;
 import org.junit.Test;
 
-public class ModuloControllerTest
+public class ModuloControllerTestSecond
 {
-
-	@Before
-	public void inizializza()
+	
+	public void inizializza(CostruzioneCoord[] listaCC)
 	{
 		this.model = new TestModel();
 		this.model.addPlayer();
 		this.model.addPlayer();
-		this.model.pilotaPartita();
+		this.model.pilotaPartita(listaCC);
 
 		this.controller = new ModuloController(this.model);
 		List<Controller> liste = new ArrayList<Controller>();
 		liste.add(controller);
 		this.view = new TestView(liste);
 		this.cliDebug = new Cli();
-		
+
 		Debug.print("inizializza, Controller = " + controller.toString() + "\n inizializza, View = "
 				+ this.view.toString());
 
 		this.view.addListener(controller);
-		
 		this.model.addListener(this.view);
 		this.model.addListener(this.cliDebug);
 		Debug.print(" lancio controller ");
-		// Executor superStarDestroyer = Executors.newCachedThreadPool();
-		// superStarDestroyer.execute(this.controller);
 
 		Debug.print(" ho lanciato controller");
 	}
-
+	
+	private Cli cliDebug;
+	private ModuloController controller;
+	private TestModel model;
+	private TestView view;
+	
+	
 	@Test
-	public void stradaPiccola() throws Exception
+	public void testF() throws Exception
 	{
+		this.inizializza(this.stradella());
 		Executor superStarDestroyer = Executors.newCachedThreadPool();
 		superStarDestroyer.execute(this.controller);
-
-		while (!this.view.partitaInziata())	{		Thread.sleep(200);	}
-
-		CostruzioneCoord[] piccolaStrada =  stradella();
 		
-		if(false || true)
-		{	this.mettiTesseraEAggiona(1,0);
-			Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
-			this.mettiTesseraEAggiona(2, 0);
-			Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
-			
-			this.mettiTesseraEAggiona(1, 0);
-			Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
-			
+
 			this.mettiTesseraEAggiona(3, 0);
-			
+			Thread.sleep(500);
 			this.mettiTesseraEAggiona(4, 0);
-			assertTrue("Ha trovato più costruzioni o meno di quelle effettive:  "
-					+  " pensavo di trovarne " + 1 + " invece sono " + this.view.costruzioniCompletate
-					+ this.view.costruzioniCompletate, this.view.costruzioniCompletate == 1);
-		}
-
+			Thread.sleep(500);
+			//this.mettiTesseraEAggiona(4, 0);
+			Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
+			this.cliDebug.aggiornaMappa();
 	}
-
+	
+	
 	private void mettiTesseraEAggiona(int x, int y)
-	{
-		Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		Debug.print(" metto tessera corrente in (" + x + " . " + y + ")");
-		Debug.print( " tessera corrente = " + this.model.getTesseraCorrente());
-		this.view.testCostruzioneCompletata = true;
-		this.view.fire(new PlaceEvent(this, new Coordinate(x,y)));
-		this.dormi(50);
-		this.view.fire(new PassEvent(this));
-		this.dormi(50);
-		
-		this.cliDebug.aggiornaMappa();
-		Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		
-	}
-
-	private void dormi(int quanto)
 	{
 		try
 		{
-			Thread.sleep(quanto);
+		Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		Debug.print("\n\n il mazzo di moggi ha dentro: " + this.model.mazzoMoggi.size() + " carte-tessere");
+		int numTessere = this.model.mazzoMoggi.size();
+		Debug.print(" metto tessera corrente in (" + x + " . " + y + ")");
+
+		Debug.print(" tessera corrente = " + this.model.getTesseraCorrente());
+
+		this.view.testCostruzioneCompletata = true;
+		this.view.fire(new PlaceEvent(this, new Coordinate(x, y)));
+		Thread.sleep(100);
+		this.view.fire(new PassEvent(this));
+		Thread.sleep(100);
+
+		// this.cliDebug.aggiornaMappa();
+		Debug.print("\n\n il mazzo di moggi ha dentro: " + this.model.mazzoMoggi.size() + " carte-tessere");
+		Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		}
-		catch (InterruptedException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		catch(InterruptedException e)
+		{}
+		
 	}
+
+	
+	
 	
 	private CostruzioneCoord[] stradella()
 	{
@@ -157,7 +147,8 @@ public class ModuloControllerTest
 
 		return stradaPiccola;
 	}
-
+	
+	
 	private Tessera getTesseraCittaGrande()
 	{
 		Tessera t3 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
@@ -222,160 +213,207 @@ public class ModuloControllerTest
 		return l;
 
 	}
-
-	private Cli  cliDebug;
 	
-	private TestView			view;
+	
+	
+	
+}
 
-	private ModuloController	controller;
 
-	private TestModel			model;
+///////////////////
 
-	class TestModel extends ModuloModel
+
+
+
+
+
+
+
+
+
+
+
+class TestModel extends ModuloModel
+{
+
+	public TestModel()
 	{
-
-		@Override
-		public void getTesseraDaMazzo() // throws PartitaFinitaException
+		super();
+	}
+	@Override
+	public void getTesseraDaMazzo() // throws PartitaFinitaException
+	{
+		Debug.print(" Test model - getTessera da mazzo");
+		int index = this.mazzoMoggi.size();
+		if (index > 0)
 		{
-			Debug.print(" Test model - getTessera da mazzo");
-			int index = this.mazzoMoggi.size();
-			if (index > 0)
-			{
-				index--;
-				Debug.print("tessere rimanenti" + index);
-				this.tesseraCorrente = this.mazzoMoggi.remove(index);
-				Debug.print("get Tessera da mazzo: tessera corrente = " + this.tesseraCorrente + "");
-			}
+			index--;
+			this.tesseraCorrente = this.mazzoMoggi.remove(index);
+			Debug.print("get Tessera da mazzo: tessera corrente = " + this.tesseraCorrente + "");
+		}
+	}
+
+	public void pilotaPartita(CostruzioneCoord[] costruzione)
+	{
+		Debug.print(" breve a chiamata a M., metto le tessere ");
+		if (mazzoMoggi == null)
+		{
+			mazzoMoggi = new ArrayList<Tessera>();
+		}
+		
+		for (int i = 0; i < costruzione.length; i++)
+		{
+			Debug.print("" + costruzione[i].tessera);
+			this.mazzoMoggi.add(costruzione[i].tessera);
 		}
 
-		public void pilotaPartita()
-		{
-			Debug.print(" breve a chiamata a M., metto le tessere ");
-			if (mazzoMoggi == null)
-			{
-				mazzoMoggi = new ArrayList<Tessera>();
-			}
-			CostruzioneCoord[] stradella = stradella();
-			for (int i = 0; i < stradella.length; i++)
-			{
+	}
 
-				this.mazzoMoggi.add(stradella[i].tessera);
-			}
+	@Override
+	public void iniziaGioco() throws PartitaFinitaException
+	{
+		Debug.print(" test model - inizia Gioco - inizio");
+		try
+		{
+			Tessera primaTessera = this.mazzoMoggi.remove(this.mazzoMoggi.size() - 1);
+			this.tesseraCorrente = primaTessera;
+			Debug.print(" test model - inizia gioco , tessera Corrente =" + this.tesseraCorrente);
+			Debug.print("test model inizia gioco - metto prima tessera: posizionaTessera");
+			this.posizionaTessera(tesseraCorrente, new Coordinate(0, 0));
+			Integer quanti = 2;
+			this.getTesseraDaMazzo();
+
+			Debug.print("test model inizia gioco - fire ( new inizio gioco event )");
+			this.fire(new InizioGiocoEvent(this, primaTessera, null, quanti, " dsfsdf"));
+
+			this.cominciaTurno();
 
 		}
 
-		@Override
-		public void iniziaGioco() throws PartitaFinitaException
+		catch (PartitaFinitaException e)
 		{
-			Debug.print(" test model - inizia Gioco - inizio");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		catch (MossaNonValidaException e)
+		{
+
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void cominciaTurno() throws PartitaFinitaException
+	{
+		Color coloreGiocatore = ColoriGioco.getColor("red");
+		Debug.print("^^^^^^^^^^^^^^^^ this. tessera Corrente = " + this.tesseraCorrente);
+		this.fire(new UpdateTurnoEvent(this, coloreGiocatore, this.tesseraCorrente));
+	}
+
+	@Override
+	public Tessera getTesseraCorrente()
+	{
+		return this.tesseraCorrente;
+	}
+
+	public List<Tessera>	mazzoMoggi;
+	public Tessera			tesseraCorrente;
+
+}
+
+class TestView extends AbstractView
+{
+
+	public TestView(List<Controller> listeners)
+	{
+		super(listeners);
+		this.partitaIniziata = false;
+	}
+
+	public boolean partitaInziata()
+	{
+		return this.partitaIniziata;
+	}
+
+	public boolean	partitaIniziata;
+
+	public boolean	testMossaNonValida			= false;
+
+	public boolean	testCostruzioneCompletata	= false;
+
+	public int		mossaNonValida				= 0;
+
+	public int		costruzioniCompletate		= 0;
+
+	public boolean	nexturno					= true;
+
+	public void riceviModificheModel(ControllerEvent event)
+	{
+		Debug.print(" sono view test - ho ricevuto" + event.toString());
+		
+		
+		
+		if (event instanceof InizioGiocoEvent)
+		{
+			this.partitaIniziata = true;
+		}
+		if (event instanceof MossaNonValidaEvent)
+		{
+			// Debug.print("\n sono view test - ricevi modifiche model - mossa non valida");
+			// dormi(200);
+
+		}
+		else if (event instanceof CostruzioneCompletataEvent)
+		{
+			if (!testCostruzioneCompletata)
+				fail("è stata noificata costruzioneCompletata...");
+			else this.costruzioniCompletate++;
+		}
+		else if (event instanceof UpdateTurnoEvent)
+		{
+			this.nexturno = true;
+		}
+		
+		this.notificaArrivo();
+
+
+	}
+	
+	private boolean arrivato = true;
+	
+	public /* synchronized */void aspettaArrivoEvento()
+	{
+		/*while (!arrivato )
+		{
 			try
 			{
-				Tessera primaTessera = this.mazzoMoggi.remove(this.mazzoMoggi.size() - 1);
-				this.tesseraCorrente = primaTessera;
-				Debug.print(" test model - inizia gioco , tessera Corrente =" + this.tesseraCorrente);
-				Debug.print("test model inizia gioco - metto prima tessera: posizionaTessera");
-				this.posizionaTessera(tesseraCorrente, new Coordinate(0, 0));
-				Integer quanti = 2;
-				this.getTesseraDaMazzo();
-				
-				Debug.print("test model inizia gioco - fire ( new inizio gioco event )");
-				this.fire(new InizioGiocoEvent(this, primaTessera, null, quanti, " dsfsdf"));
-
-				this.cominciaTurno();
-
+				this.wait();
 			}
-
-			catch (PartitaFinitaException e)
+			catch (InterruptedException e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			catch (MossaNonValidaException e)
-			{
-
-				e.printStackTrace();
-			}
-		}
-
-		@Override
-		public void cominciaTurno() throws PartitaFinitaException
-		{
-			Color coloreGiocatore = ColoriGioco.getColor("red");
-			Debug.print(" this. tessera Corrente = " + this.tesseraCorrente);
-			this.fire(new UpdateTurnoEvent(this, coloreGiocatore, this.tesseraCorrente));
-		}
-
-		@Override 
-		public Tessera getTesseraCorrente()
-		{
-			return this.tesseraCorrente;
-		}
-		
-		public List<Tessera>	mazzoMoggi;
-		public Tessera			tesseraCorrente;
-
+		}*/
 	}
-
-	class TestView extends AbstractView
+	
+	private /*synchronized */void notificaArrivo()
 	{
 
-		public TestView(List<Controller> listeners)
-		{
-			super(listeners);
-			this.partitaIniziata = false;
-		}
-
-		public boolean partitaInziata()
-		{
-			return this.partitaIniziata;
-		}
-		
-		public boolean partitaIniziata ;
-		
-		public boolean	testMossaNonValida			= false;
-
-		public boolean	testCostruzioneCompletata	= false;
-
-		public int		mossaNonValida				= 0;
-
-		public int		costruzioniCompletate		= 0;
-
-		public boolean	nexturno					= true;
-
-		public void riceviModificheModel(ControllerEvent event)
-		{
-			Debug.print(" sono view test - ho ricevuto" + event.toString());
-
-			if (event instanceof InizioGiocoEvent)
+			/*synchronized (this)
 			{
-				this.partitaIniziata = true;
-			}
-			if (event instanceof MossaNonValidaEvent)
-			{
-				Debug.print("\n sono view test - ricevi modifiche model - mossa non valida");
-				if (testMossaNonValida)
-					fail("è stata noificata mossa non valida...");
-				else this.mossaNonValida++;
-			}
-			else if (event instanceof CostruzioneCompletataEvent)
-			{
-				if (!testCostruzioneCompletata)
-					fail("è stata noificata costruzioneCompletata...");
-				else this.costruzioniCompletate++;
-			}
-			else if (event instanceof UpdateTurnoEvent)
-			{
-				this.nexturno = true;
-			}
-
-		}
-
-		public void run()
-		{
-		}
-
+				this.arrivato = true;
+				this.notifyAll();
+				this.arrivato = false;
+			}*/
 	}
+
+	public void run()
+	{
+	}
+
 }
+
 
 class CostruzioneCoord
 {
@@ -403,5 +441,7 @@ class CostruzioneCoord
 	{
 		return this.coord;
 	}
+	
 
+	
 }
