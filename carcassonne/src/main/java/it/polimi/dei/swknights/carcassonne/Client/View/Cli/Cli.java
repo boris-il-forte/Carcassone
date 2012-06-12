@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.View.DatiMappa;
 import it.polimi.dei.swknights.carcassonne.Client.View.EntryTessera;
 import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
@@ -30,7 +29,6 @@ public class Cli extends ModuloView
 	public Cli()
 	{
 		super();
-		Debug.print("sono la cli creo cli");
 		this.out = new PrintWriter(System.out);
 		this.in = new Scanner(System.in);
 		this.setCoordinataNordOvest(new Coordinate(-LARGHEZZA / 2, -ALTEZZA / 2));
@@ -46,7 +44,8 @@ public class Cli extends ModuloView
 
 		try
 		{
-			Debug.print("Sono la view, aspetto che la partita abbia inizio");
+			this.out.println("Aspetto che la partita abbia inizio...");
+			this.out.flush();
 			this.aspettaInizio(); // aspetta che la partita cominci...
 			do
 			{
@@ -82,10 +81,7 @@ public class Cli extends ModuloView
 	@Override
 	public synchronized void visualizzaPunteggi(Punteggi punteggio)
 	{
-		Debug.print(" cli - visualizza punteggi");
-
 		this.informaUser.notificaPunteggi(punteggio);
-
 	}
 
 	/**

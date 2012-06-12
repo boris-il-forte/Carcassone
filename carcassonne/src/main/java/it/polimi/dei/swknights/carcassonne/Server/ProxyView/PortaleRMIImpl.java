@@ -11,7 +11,6 @@ public class PortaleRMIImpl extends UnicastRemoteObject implements PortaleRMI
 {
 	public PortaleRMIImpl() throws RemoteException
 	{
-		super();
 		this.clientEvent = null;
 		this.serverEvent = null;
 	}
@@ -40,7 +39,7 @@ public class PortaleRMIImpl extends UnicastRemoteObject implements PortaleRMI
 		}
 	}
 
-	protected synchronized void setClientEvent(ControllerEvent event)
+	protected synchronized void setServerEvent(ControllerEvent event)
 	{
 		this.serverEvent = event;
 		this.notifyAll();
