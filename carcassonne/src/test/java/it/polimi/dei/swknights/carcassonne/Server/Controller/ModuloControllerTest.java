@@ -23,6 +23,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
+import it.polimi.dei.swknights.carcassonne.Model.ModuloModelTest;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.AbstractView;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Controller;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
@@ -79,6 +80,12 @@ public class ModuloControllerTest
 
 		CostruzioneCoord[] piccolaStrada =  stradella();
 		
+		for(int i=0; i< piccolaStrada.length-1; i++)
+		{
+			this.mettiTesseraEAggiona( piccolaStrada[i].coord);
+			Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
+		}
+		
 		if(false)
 		{	this.mettiTesseraEAggiona(1,0);
 			Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
@@ -91,15 +98,22 @@ public class ModuloControllerTest
 			this.mettiTesseraEAggiona(3, 0);
 			
 			this.mettiTesseraEAggiona(4, 0);
-			assertTrue("Ha trovato più costruzioni o meno di quelle effettive:  "
-					+  " pensavo di trovarne " + 1 + " invece sono " + this.view.costruzioniCompletate
-					+ this.view.costruzioniCompletate, this.view.costruzioniCompletate == 1);
+			
 		}
+		
+		Thread.sleep(100);
+		assertTrue("Ha trovato più costruzioni o meno di quelle effettive:  "
+				+  " pensavo di trovarne " + 1 + " invece sono " + this.view.costruzioniCompletate
+				+ this.view.costruzioniCompletate, this.view.costruzioniCompletate == 1);
 
 	}
 
-	private void mettiTesseraEAggiona(int x, int y)
+	
+	private void mettiTesseraEAggiona(Coordinate coord)
 	{
+		int x, y;
+		x = coord.getX();
+		y = coord.getY();
 		Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		Debug.print(" metto tessera corrente in (" + x + " . " + y + ")");
 		Debug.print( " tessera corrente = " + this.model.getTesseraCorrente());
@@ -112,6 +126,11 @@ public class ModuloControllerTest
 		this.cliDebug.aggiornaMappa();
 		Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		
+	}
+
+	private void mettiTesseraEAggiona(int x, int y)
+	{
+		this.mettiTesseraEAggiona(new Coordinate(x, y));
 	}
 
 	private void dormi(int quanto)
@@ -136,22 +155,22 @@ public class ModuloControllerTest
 			stradaPiccola[i] = new CostruzioneCoord();
 		}
 
-		Tessera incrocio0 = new TesseraNormale(this.creaLatiIncrocioAQuattro(),
-				this.creaLinkIncrocioAQuattro());
-		Coordinate c0 = new Coordinate(-1, 0);
+		Tessera incrocio0 = new TesseraNormale(this.tool.creaLatiIncrocioAQuattro(),
+				this.tool.creaLinkIncrocioAQuattro());
+		Coordinate c0 = new Coordinate(1, 0);
 
-		Tessera t1 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
-		Coordinate c1 = new Coordinate(0, 0);
+		Tessera t1 = new TesseraNormale(this.tool.creaLatiStradaEO(), this.tool.creaLinkStradaEO());
+		Coordinate c1 = new Coordinate(2, 0);
 
-		Tessera t2 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
-		Coordinate c2 = new Coordinate(1, 0);
+		Tessera t2 = new TesseraNormale(this.tool.creaLatiStradaEO(), this.tool.creaLinkStradaEO());
+		Coordinate c2 = new Coordinate(3, 0);
 
-		Tessera t3 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
-		Coordinate c3 = new Coordinate(2, 0);
+		Tessera t3 = new TesseraNormale(this.tool.creaLatiStradaEO(), this.tool.creaLinkStradaEO());
+		Coordinate c3 = new Coordinate(4, 0);
 
-		Tessera incrocio4 = new TesseraNormale(this.creaLatiIncrocioAQuattro(),
-				this.creaLinkIncrocioAQuattro());
-		Coordinate c4 = new Coordinate(3, 0);
+		Tessera incrocio4 = new TesseraNormale(this.tool.creaLatiIncrocioAQuattro(),
+				this.tool.creaLinkIncrocioAQuattro());
+		Coordinate c4 = new Coordinate(5, 0);
 
 		stradaPiccola[0].daiCoppia(incrocio0, c0);
 		stradaPiccola[1].daiCoppia(t1, c1);
@@ -161,72 +180,9 @@ public class ModuloControllerTest
 
 		return stradaPiccola;
 	}
-
-	private Tessera getTesseraCittaGrande()
-	{
-		Tessera t3 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
-		return t3;
-	}
-
-	private Lati creaLatiStradaEO()
-	{
-		Lati latiCreandi;
-		Elemento nord = Elemento.prato;
-		Elemento sud = Elemento.prato;
-		Elemento ovest = Elemento.strada;
-		Elemento est = Elemento.strada;
-		latiCreandi = new Lati(nord, sud, ovest, est);
-		return latiCreandi;
-	}
-
-	private Link creaLinkCittaGrande() throws IllegalArgumentException
-	{
-		/* NS(0), NE(1), NW(2), WE(3), SE(4), SW(5); */
-		boolean[] bl = { false, false, false, false, false, false };
-		Link l = new Link(bl);
-		return l;
-	}
-
-	private Lati creaLatiCittaGrande()
-	{
-		Lati latiCreandi;
-		Elemento nord = Elemento.citta;
-		Elemento sud = Elemento.citta;
-		Elemento ovest = Elemento.citta;
-		Elemento est = Elemento.citta;
-		latiCreandi = new Lati(nord, sud, ovest, est);
-		return latiCreandi;
-	}
-
-	private Link creaLinkStradaEO() throws IllegalArgumentException
-	{
-		/* NS(0), NE(1), NW(2), WE(3), SE(4), SW(5); */
-		boolean[] bl = { false, false, false, true, false, false };
-		Link l = new Link(bl);
-		return l;
-
-	}
-
-	private Lati creaLatiIncrocioAQuattro()
-	{
-		Lati latiCreandi;
-		Elemento nord = Elemento.strada;
-		Elemento sud = Elemento.strada;
-		Elemento ovest = Elemento.strada;
-		Elemento est = Elemento.strada;
-		latiCreandi = new Lati(nord, sud, ovest, est);
-		return latiCreandi;
-	}
-
-	private Link creaLinkIncrocioAQuattro() throws IllegalArgumentException
-	{
-		/* NS(0), NE(1), NW(2), WE(3), SE(4), SW(5); */
-		boolean[] bl = { false, false, false, false, false, false };
-		Link l = new Link(bl);
-		return l;
-
-	}
-
+	
+	private modelControllerTool tool = new modelControllerTool();
+	
 	private Cli  cliDebug;
 	
 	private TestView			view;
@@ -381,6 +337,115 @@ public class ModuloControllerTest
 
 	}
 }
+
+
+class modelControllerTool
+{
+	
+	 Link creaLinkIncrocioAQuattro() throws IllegalArgumentException
+	{
+		/* NS(0), NE(1), NW(2), WE(3), SE(4), SW(5); */
+		boolean[] bl = { false, false, false, false, false, false };
+		Link l = new Link(bl);
+		return l;
+
+	}
+	
+	 Tessera getTesseraCittaGrande()
+	{
+		Tessera t3 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
+		return t3;
+	}
+
+	 Lati creaLatiStradaEO()
+	{
+		Lati latiCreandi;
+		Elemento nord = Elemento.prato;
+		Elemento sud = Elemento.prato;
+		Elemento ovest = Elemento.strada;
+		Elemento est = Elemento.strada;
+		latiCreandi = new Lati(nord, sud, ovest, est);
+		return latiCreandi;
+	}
+
+	 Link creaLinkCittaGrande() throws IllegalArgumentException
+	{
+		/* NS(0), NE(1), NW(2), WE(3), SE(4), SW(5); */
+		boolean[] bl = { false, false, false, false, false, false };
+		Link l = new Link(bl);
+		return l;
+	}
+
+	 Lati creaLatiCittaGrande()
+	{
+		Lati latiCreandi;
+		Elemento nord = Elemento.citta;
+		Elemento sud = Elemento.citta;
+		Elemento ovest = Elemento.citta;
+		Elemento est = Elemento.citta;
+		latiCreandi = new Lati(nord, sud, ovest, est);
+		return latiCreandi;
+	}
+
+	 Link creaLinkStradaEO() throws IllegalArgumentException
+	{
+		/* NS(0), NE(1), NW(2), WE(3), SE(4), SW(5); */
+		boolean[] bl = { false, false, false, true, false, false };
+		Link l = new Link(bl);
+		return l;
+
+	}
+
+	public Lati creaLatiIncrocioAQuattro()
+	{
+		Lati latiCreandi;
+		Elemento nord = Elemento.strada;
+		Elemento sud = Elemento.strada;
+		Elemento ovest = Elemento.strada;
+		Elemento est = Elemento.strada;
+		latiCreandi = new Lati(nord, sud, ovest, est);
+		return latiCreandi;
+	}
+
+	
+	 CostruzioneCoord[] fiordoropoli()
+	{
+		CostruzioneCoord[] cittaFiore = new CostruzioneCoord[5];
+
+		for (int i = 0; i < 5; i++)
+		{
+			cittaFiore[i] = new CostruzioneCoord();
+		}
+
+		Tessera incrocio0 = new TesseraNormale(this.creaLatiIncrocioAQuattro(),
+				this.creaLinkIncrocioAQuattro());
+		Coordinate c0 = new Coordinate(-1, 0);
+
+		Tessera t1 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
+		Coordinate c1 = new Coordinate(0, 0);
+
+		Tessera t2 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
+		Coordinate c2 = new Coordinate(1, 0);
+
+		Tessera t3 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
+		Coordinate c3 = new Coordinate(2, 0);
+
+		Tessera incrocio4 = new TesseraNormale(this.creaLatiIncrocioAQuattro(),
+				this.creaLinkIncrocioAQuattro());
+		Coordinate c4 = new Coordinate(3, 0);
+
+		cittaFiore[0].daiCoppia(incrocio0, c0);
+		cittaFiore[1].daiCoppia(t1, c1);
+		cittaFiore[2].daiCoppia(t2, c2);
+		cittaFiore[3].daiCoppia(t3, c3);
+		cittaFiore[4].daiCoppia(incrocio4, c4);
+
+		return cittaFiore;
+	}
+}
+
+
+
 
 class CostruzioneCoord
 {
