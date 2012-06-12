@@ -74,11 +74,13 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 			case ovest:
 				index = ovest;
 				break;
+			default:
+				break;
 		}
 		return this.listaPulsanti.get(index);
 	}
 
-	private List<JButton>						listaPulsanti;
+	private List<JButton>	listaPulsanti;
 
 	private static Map<Integer, String> inizializzaLabelPulsante()
 	{
@@ -91,7 +93,7 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 		return mappa;
 	}
 
-	private static final Map<Integer, String>	LABEL_MAP		= inizializzaLabelPulsante();
+	private static final Map<Integer, String>	LABEL_MAP			= inizializzaLabelPulsante();
 
 	private static final int					DIMENSIONE_PULSANTE	= 60;
 

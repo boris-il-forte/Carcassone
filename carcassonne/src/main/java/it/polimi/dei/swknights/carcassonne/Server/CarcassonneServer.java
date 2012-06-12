@@ -5,7 +5,6 @@ import it.polimi.dei.swknights.carcassonne.Server.ProxyView.PortaleRMIImpl;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -21,8 +20,6 @@ import java.util.concurrent.Executors;
 
 public class CarcassonneServer implements Runnable
 {
-	PrintWriter	printer	= new PrintWriter(System.out);
-
 	public CarcassonneServer()
 	{
 		this.partite = new ArrayDeque<Partita>();
@@ -136,10 +133,10 @@ public class CarcassonneServer implements Runnable
 		try
 		{
 			java.rmi.registry.LocateRegistry.createRegistry(1099);
-			System.out.println("RMI registry ready.");
+			Debug.print("RMI registry ready.");
 			pt = new ServerRMIImpl(this);
 			Naming.rebind("//localhost/ServerRMI", pt);
-			System.out.println("Ready ");
+			Debug.print("Ready ");
 		}
 		catch (RemoteException e)
 		{
