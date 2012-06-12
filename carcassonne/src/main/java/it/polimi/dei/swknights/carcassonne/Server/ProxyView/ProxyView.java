@@ -77,8 +77,9 @@ public class ProxyView extends AbstractConnessioneView
 	public void accettaConnessione(PortaleRMIImpl portale)
 	{
 		this.giocatoriConnessi++;
-		ConnessioneViewRMI connessione = new ConnessioneViewRMI(portale, this, this.giocatoriConnessi);
-		this.listaConnessioniRMI.add(connessione);
+		ConnessioneViewRMI connessioneRMI = new ConnessioneViewRMI(portale, this, this.giocatoriConnessi);
+		this.starDestroyer.execute(connessioneRMI);
+		this.listaConnessioniRMI.add(connessioneRMI);
 	}
 
 	public void setCommandString(String commandString)

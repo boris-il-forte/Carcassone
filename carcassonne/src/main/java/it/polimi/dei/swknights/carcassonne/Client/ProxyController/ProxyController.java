@@ -40,11 +40,31 @@ public class ProxyController extends AbstractConnessioneController
 		this.avviaConnesisone(this.connessione);
 	}
 	
+	@Override
+	public void riceviInput(ViewEvent event) 
+	{
+		for(ProxyControllerHandler handler : this.handlers)
+		{
+			event.accept(handler);
+		}
+		this.invia(event);
+	}
+
+	@Override
+	public void run()
+	{
+	}
+
+	public void setRequestString(String requestString)
+	{
+		this.requestString = requestString;
+	}
+
 	private ProxyController()
 	{
 		this.inizializzaHandlers();
 	}
-	
+
 	private void avviaConnesisone(ConnessioneController connessione)
 	{
 		Executor imperial = Executors.newFixedThreadPool(1);
@@ -54,26 +74,6 @@ public class ProxyController extends AbstractConnessioneController
 	private PortaleRMI contattaServerInizia(ServerRMI server) throws RemoteException
 	{
 		return server.connect(); 
-	}
-
-	public void setRequestString(String requestString)
-	{
-		this.requestString = requestString;
-	}
-
-	@Override
-	public void run()
-	{
-	}
-	
-	@Override
-	public void riceviInput(ViewEvent event) 
-	{
-		for(ProxyControllerHandler handler : this.handlers)
-		{
-			event.accept(handler);
-		}
-		this.invia(event);
 	}
 
 	private void invia(ViewEvent event)
