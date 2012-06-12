@@ -142,7 +142,7 @@ public class ModuloModel extends AbstractModel
 	 */
 	public void posizionaTesseraCorrente(Coordinate coordinate) throws MossaNonValidaException
 	{
-		this.posizionaTessera(this.tesseraCorrente, coordinate);
+		this.posizionaTessera(this.getTesseraCorrente() , coordinate);
 	}
 
 	/**
@@ -156,10 +156,17 @@ public class ModuloModel extends AbstractModel
 	 */
 	public void posizionaTessera(Tessera tessera, Coordinate coordinate) throws MossaNonValidaException
 	{
+		if(tessera != null)
+		{
 		AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
 		areaDiGioco.addTessera(coordinate, tessera);
 		this.coordinateTesseraCorrente = coordinate;
 		this.fire(new UpdatePositionEvent(tessera, coordinate, this));
+		}
+		else
+		{
+			throw new IllegalArgumentException(" tessera passata e' null ! ");
+		}
 	}
 
 	/**
