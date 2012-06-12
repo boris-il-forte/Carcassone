@@ -60,7 +60,6 @@ public class Gui extends ModuloView
 	@Override
 	public void notificaFinePartita(String vincitore)
 	{
-		// TODO: visualizza vincitore e cambia immagine
 		JOptionPane.showMessageDialog(this.finestra, "Fine partita!!" + vincitore, "Carcassonne - swKnights",
 				JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", DIM_TESSERE));
 	}
@@ -68,7 +67,6 @@ public class Gui extends ModuloView
 	@Override
 	public void notificaMossaNonValida()
 	{
-		// TODO: cambia immagine
 		JOptionPane.showMessageDialog(this.finestra, "Mossa non consentita!", "Carcassonne - swKnights",
 				JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", DIM_TESSERE));
 	}
@@ -150,7 +148,7 @@ public class Gui extends ModuloView
 
 	public void zoomModificato(int zoom)
 	{
-		// TODO Auto-generated method stub
+		// TODO togliere!
 	}
 
 	public void overlayImmagine(int numeroCasella)
@@ -302,9 +300,9 @@ public class Gui extends ModuloView
 	private int							larghezza;
 
 	private int							altezza;
-	// TODO: coordinare questa dim con quella delle vere caselle...
+
 	private static final int			DIM_TESSERE		= 100;
-	// TODO: coordinare questa dim con quella delle vere caselle...
+
 	private static final int			DIM_SEGNALINO	= 30;
 
 }

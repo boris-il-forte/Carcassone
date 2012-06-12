@@ -17,7 +17,6 @@ public class JCarcassonneCurrentPlayer extends JPanel
 	public JCarcassonneCurrentPlayer(Map<Color, Icon> mappaSegnalini)
 	{
 		this.addIntestazione();
-		// TODO passare icone segnalino
 		this.addSegnalini(mappaSegnalini);
 	}
 

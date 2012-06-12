@@ -32,7 +32,7 @@ public class InizioGiocoHandler extends ProxyViewHandler
 			stringCommand.append(event.getNumGiocatori());
 			this.proxy.setCommandString(stringCommand.toString());
 		}
-		this.proxy.mandaComandoAvvia();
+		this.proxy.mandaComandoAvvia(event);
 		
 		Debug.print(stringCommand.toString());
 	}

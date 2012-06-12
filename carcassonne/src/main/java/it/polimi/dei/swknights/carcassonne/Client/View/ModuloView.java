@@ -39,7 +39,9 @@ public abstract class ModuloView extends AbstractModuloView
 
 	/**
 	 * Notify the user the end of the game
-	 * @param vincitori TODO
+	 * 
+	 * @param vincitori
+	 *            the players ho win the game
 	 */
 	public abstract void notificaFinePartita(String vincitori);
 
@@ -77,7 +79,7 @@ public abstract class ModuloView extends AbstractModuloView
 	public void mettiPrimaTessera(AdapterTessera tessIniziale)
 	{
 		this.setTesseraCorrente(tessIniziale);
-		this.posizionaTessera(this.getTesseraCorrente(),CENTRO_SCENARIO);
+		this.posizionaTessera(this.getTesseraCorrente(), CENTRO_SCENARIO);
 	}
 
 	/**
@@ -105,14 +107,15 @@ public abstract class ModuloView extends AbstractModuloView
 	/**
 	 * Place a card in the given position, just graphical: does not implies any
 	 * change in the model
-	 * @param tessera 
+	 * 
+	 * @param tessera
 	 * 
 	 * @param coordinatePosizione
 	 */
 
 	public void posizionaTessera(AdapterTessera tessera, Coordinate coordinatePosizione)
 	{
-		this.getScenario().setTessera(coordinatePosizione,  tessera);
+		this.getScenario().setTessera(coordinatePosizione, tessera);
 		this.getGestoreFasi().nextFase();
 	}
 
@@ -159,7 +162,7 @@ public abstract class ModuloView extends AbstractModuloView
 	{
 		this.myColore = colore;
 	}
-	
+
 	public GestoreFasi getGestoreFasi()
 	{
 		return this.gestoreFasi;
@@ -169,7 +172,7 @@ public abstract class ModuloView extends AbstractModuloView
 	{
 		this.coloreGiocatoreCorrente = coloreGiocatore;
 	}
-	
+
 	protected boolean turnoCorretto()
 	{
 		if (this.myColore == null)
@@ -258,8 +261,8 @@ public abstract class ModuloView extends AbstractModuloView
 		this.addVisitorHandler(new FinePartitaHandler(this));
 	}
 
-	private Color myColore = null;
-	
+	private Color						myColore		= null;
+
 	private AdapterTessera				tesseraCorrente;
 
 	private Color						coloreGiocatoreCorrente;

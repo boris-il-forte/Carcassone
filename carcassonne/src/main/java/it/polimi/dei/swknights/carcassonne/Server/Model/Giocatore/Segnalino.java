@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 /**
  * This class represent a pawn that the player can use to control streets or
@@ -12,7 +13,7 @@ import java.awt.Color;
  * 
  */
 
-public class Segnalino
+public class Segnalino implements Serializable
 {
 	public Segnalino(Color colore)
 	{
@@ -26,7 +27,6 @@ public class Segnalino
 	 */
 	public Color getColore()
 	{
-		
 		return this.colore;
 	}
 
@@ -37,5 +37,7 @@ public class Segnalino
 	}
 
 	private Color	colore;
+	
+	private static final long	serialVersionUID	= -8789130292379134917L;
 
 }

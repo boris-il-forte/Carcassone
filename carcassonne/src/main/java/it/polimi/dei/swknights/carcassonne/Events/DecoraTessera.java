@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Events;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 /**
  * This class is used to have the abstraction of a Card but without some
@@ -13,7 +14,7 @@ import java.awt.Color;
  * @author edoardopasi & dave
  * 
  */
-public class DecoraTessera
+public class DecoraTessera implements Serializable
 {
 	public DecoraTessera(AdapterTessera tessera, Coordinate coordinate, Color giocatore)
 	{
@@ -39,7 +40,11 @@ public class DecoraTessera
 	}
 
 	private Coordinate		coordinate;
+	
 	private Color			giocatore;
+	
 	private AdapterTessera	tessera;
+	
+	private static final long	serialVersionUID	= 4724116605542858814L;
 
 }

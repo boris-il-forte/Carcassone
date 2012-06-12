@@ -65,7 +65,7 @@ public class JCarcassonneCasella extends JLayeredPane
 
 	public void setSegnalino(Icon icon, Coordinate coordinateSegnalino)
 	{
-		final int latoSegnalino = 30; // TODO: passare da parametro magari...
+		final int latoSegnalino = 30;
 		this.segnalino.setIcon(icon);
 		this.stato = StatoCasella.conTessera;
 		int x = coordinateSegnalino.getX() - latoSegnalino / 2;

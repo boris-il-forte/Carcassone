@@ -9,7 +9,6 @@ public class UpdateRotationHandler extends ProxyViewHandler
 	public UpdateRotationHandler(ProxyView proxy)
 	{
 		super(proxy);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

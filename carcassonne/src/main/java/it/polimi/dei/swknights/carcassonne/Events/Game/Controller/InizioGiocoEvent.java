@@ -17,28 +17,34 @@ import java.awt.Color;
 public class InizioGiocoEvent extends ControllerEvent
 {
 
-	public InizioGiocoEvent(Object source, Tessera tesseraIniziale, Color giocatore,
-			Integer numeroGiocatori, String idPartita)
+	public InizioGiocoEvent(Object source, Tessera tesseraIniziale, Color giocatore, Integer numeroGiocatori,
+			String idPartita)
 	{
 		super(source);
 		AdapterTessera adapterTessera = new AdapterTesseraObject(tesseraIniziale);
-		this.setData(giocatore, adapterTessera,idPartita, numeroGiocatori);
+		this.setData(giocatore, adapterTessera, idPartita, numeroGiocatori);
 
 	}
-	
-	public InizioGiocoEvent(Object source, String tesseraIniziale, Color giocatore,
-			Integer numeroGiocatori, String idPartita)
+
+	public InizioGiocoEvent(Object source, String tesseraIniziale, Color giocatore, Integer numeroGiocatori,
+			String idPartita)
 	{
 		super(source);
 		AdapterTessera adapterTessera = new AdapterTesseraString(tesseraIniziale);
-		this.setData(giocatore, adapterTessera,idPartita, numeroGiocatori);
+		this.setData(giocatore, adapterTessera, idPartita, numeroGiocatori);
+	}
+
+	public InizioGiocoEvent(Object source, AdapterTessera adapterTessera, Color giocatore,
+			int numeroGiocatori, String idPartita)
+	{
+		super(source);
+		this.setData(giocatore, adapterTessera, idPartita, numeroGiocatori);
 	}
 
 	@Override
 	public void accept(ViewHandler handler)
 	{
 		handler.visit(this);
-	
 	}
 
 	public AdapterTessera getTesseraIniziale()
@@ -49,21 +55,20 @@ public class InizioGiocoEvent extends ControllerEvent
 	public String getIdPartita()
 	{
 		return this.idPartita;
-
 	}
 
 	public int getNumGiocatori()
 	{
 		return this.numeroGiocatori;
-
 	}
 
 	public Color getGiocatore()
 	{
 		return this.giocatore;
 	}
-	
-	private void setData(Color giocatore, AdapterTessera tesseraIniziale, String idPartita, int numeroGiocatori)
+
+	private void setData(Color giocatore, AdapterTessera tesseraIniziale, String idPartita,
+			int numeroGiocatori)
 	{
 		this.giocatore = giocatore;
 		this.tesseraIniziale = tesseraIniziale;
@@ -71,14 +76,14 @@ public class InizioGiocoEvent extends ControllerEvent
 		this.numeroGiocatori = numeroGiocatori;
 	}
 
-	private AdapterTessera	tesseraIniziale;
-	
-	private Color				giocatore;
-	
-	private Integer			numeroGiocatori;
-	
-	private String			idPartita;
+	private AdapterTessera		tesseraIniziale;
 
-	private static final long		serialVersionUID	= -5256224715700170795L;
+	private Color				giocatore;
+
+	private Integer				numeroGiocatori;
+
+	private String				idPartita;
+
+	private static final long	serialVersionUID	= -5256224715700170795L;
 
 }

@@ -50,7 +50,13 @@ public class Parser
 		return this.parsedData[index];
 	}
 
-	// TODO javadoc
+	/**
+	 * Getter for the parsed data representing sides
+	 * 
+	 * @param puntoCardinale
+	 *            the cardinal point used to choose the data to retrieve
+	 * @return the data at the chosen cardinal point as char
+	 */
 
 	public char getDataChar(PuntoCardinale puntoCardinale)
 	{
@@ -75,7 +81,14 @@ public class Parser
 		return this.typeData;
 	}
 
-	// TODO javadoc
+	/**
+	 * Getter for the parsed data representing links
+	 * 
+	 * @param agoBussola
+	 *            the link you want to query
+	 * @return parsed data at agoBussola
+	 */
+	
 	public String getData(Bussola agoBussola)
 	{
 		int index = this.getIndex(agoBussola);

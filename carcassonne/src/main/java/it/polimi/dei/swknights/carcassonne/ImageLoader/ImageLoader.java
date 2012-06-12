@@ -134,7 +134,6 @@ public class ImageLoader
 			for (String stringImmagine : ListFolder.list(stringCartella))
 			{
 				Debug.print(stringImmagine);
-				// TODO chiedere che mi sa che non va bene...
 				if (!stringImmagine.startsWith("."))
 				{
 					StringBuilder builderPercorso = new StringBuilder("/").append(stringCartella).append("/")
@@ -146,13 +145,9 @@ public class ImageLoader
 		}
 		catch (URISyntaxException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

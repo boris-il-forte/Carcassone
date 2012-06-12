@@ -20,4 +20,6 @@ public class PunteggiSegnalini extends Punteggi
 		}
 		return papabili;
 	}
+	
+	private static final long	serialVersionUID	= -2652989721742972154L;
 }
