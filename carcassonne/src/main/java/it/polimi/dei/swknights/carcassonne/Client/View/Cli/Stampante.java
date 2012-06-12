@@ -17,7 +17,7 @@ import java.util.Map;
  * @author edoardopasi & dave
  * 
  */
-class Stampante // TODO: fix bug stampa vicini ai bordi...
+class Stampante
 {
 
 	public Stampante(DatiMappa datiMappa)

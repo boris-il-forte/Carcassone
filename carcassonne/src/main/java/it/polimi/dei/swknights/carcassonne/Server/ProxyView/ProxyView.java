@@ -1,6 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.CambioTurnoHandler;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.CostruzioneCompletataHandler;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers.FinePartitaHandler;
@@ -86,15 +87,12 @@ public class ProxyView extends AbstractConnessioneView
 		this.codaComandi.add(commandString);
 	}
 
-	public void mandaComandoAvvia()
+	public void mandaComandoAvvia(InizioGiocoEvent event)
 	{
 
 		for (ConnessioneViewRMI connRMI : this.listaConnessioniRMI)
 		{
-			int indiceMessaggio = connRMI.getNumeroConnessione();
-			//coda comandi ha base 0
-			String messaggioIniziale = this.codaComandi.get(indiceMessaggio - 1);
-			connRMI.inviaEventoIniziale(messaggioIniziale);
+			connRMI.inviaEventoIniziale(event.getTesseraIniziale(),event.getIdPartita(), this.giocatoriConnessi);
 		}
 		for (ConnessioneViewSocket connSOCK : this.listaConnessioniSocket)
 		{

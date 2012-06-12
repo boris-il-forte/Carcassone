@@ -192,9 +192,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	private static final long				serialVersionUID	= -1423697317579326895L;
 
 	public void focusGained(FocusEvent arg0)
-	{
-		// TODO Auto-generated method stub
-		
+	{	
 	}
 
 	public void focusLost(FocusEvent arg0)

@@ -63,7 +63,7 @@ public class AggiornaMappaGui
 	private void aggiungiSegnalini(Coordinate coordinateTessera, String stringaTessera,
 			Map<Integer, Color> mappaSegnalini)
 	{
-		// TODO Auto-generated method stub
+		// TODO Do it!
 
 	}
 

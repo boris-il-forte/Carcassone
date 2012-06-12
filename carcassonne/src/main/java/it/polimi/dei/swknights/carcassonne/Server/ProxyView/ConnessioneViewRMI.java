@@ -1,9 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView;
 
+import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
-import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 
 public class ConnessioneViewRMI extends ConnessioneView
 {
@@ -19,11 +19,9 @@ public class ConnessioneViewRMI extends ConnessioneView
 		this.portale.setClientEvent(event);
 	}
 
-	public void inviaEventoIniziale(String messaggioIniziale)
+	public void inviaEventoIniziale(AdapterTessera adapterTessera, String idPartita, int giocatoriConnessi)
 	{
-		//TODO finire!!!
-		Tessera tessera = null;
-		ControllerEvent event = new InizioGiocoEvent(this.proxy,tessera, this.getColoreConnessione(), 0, null);
+		ControllerEvent event = new InizioGiocoEvent(this.proxy,adapterTessera, this.getColoreConnessione(), giocatoriConnessi, idPartita);
 		this.portale.setClientEvent(event);
 	}
 

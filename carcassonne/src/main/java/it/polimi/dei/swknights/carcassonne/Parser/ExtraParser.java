@@ -91,7 +91,6 @@ public class ExtraParser extends Parser
 		{
 			final int normalDataIndex = 0;
 			final int extraDataIndex = 1;
-			// TODO controllare che l'espressione abbia la forma giusta...
 			if (this.parsedData[i].length() > 1)
 			{
 				String dataToParse[] = this.parsedData[i].split("\\+");

@@ -10,7 +10,6 @@ public class UpdateTurnoHandler extends ProxyViewHandler
 	public UpdateTurnoHandler(ProxyView proxy)
 	{
 		super(proxy);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
