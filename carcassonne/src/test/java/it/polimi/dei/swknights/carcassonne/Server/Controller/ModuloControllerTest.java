@@ -54,10 +54,13 @@ public class ModuloControllerTest
 		List<Controller> liste = new ArrayList<Controller>();
 		liste.add(controller);
 		this.view = new TestView(liste);
+		this.cliDebug = new Cli();
+		
 		Debug.print("inizializza, Controller = " + controller.toString() + "\n inizializza, View = "
 				+ this.view.toString());
 
 		this.view.addListener(controller);
+		
 		this.model.addListener(this.view);
 		this.model.addListener(this.cliDebug);
 		Debug.print(" lancio controller ");
@@ -79,10 +82,13 @@ public class ModuloControllerTest
 			Thread.sleep(1000);
 			
 		}
-			Debug.print("STRADA PICCOLA");
-			this.view.testCostruzioneCompletata = true;
-			this.view.fire(new PlaceEvent(this, new Coordinate(0, 1)));
-			this.view.fire(new PassEvent(this));
+		
+			this.mettiTesseraEAggiona(1,0);
+			Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
+			this.mettiTesseraEAggiona(2, 0);
+			Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
+			
+			this.mettiTesseraEAggiona(1, 0);
 			Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
 			
 			
@@ -92,6 +98,18 @@ public class ModuloControllerTest
 
 	}
 
+	private void mettiTesseraEAggiona(int x, int y)
+	{
+		Debug.print("STRADA PICCOLA");
+		Debug.print( " tessera corrente = " + this.model.getTesseraCorrente());
+		this.view.testCostruzioneCompletata = true;
+		this.view.fire(new PlaceEvent(this, new Coordinate(x,y)));
+		this.view.fire(new PassEvent(this));
+			 		
+		this.cliDebug.aggiornaMappa();
+	}
+	
+	
 	private CostruzioneCoord[] stradella()
 	{
 		CostruzioneCoord[] stradaPiccola = new CostruzioneCoord[5];
