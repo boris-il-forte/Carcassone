@@ -116,8 +116,6 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 		this.aggiungiSpazio();
 		this.aggiungiScorrimento();
 		this.aggiungiSpazio();
-		this.aggiungiZoom();
-		this.aggiungiSpazio();
 	}
 
 	private void aggiungiSpazio()
@@ -165,12 +163,6 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 		this.add(this.scorrimentoMappa);
 	}
 
-	private void aggiungiZoom()
-	{
-		this.zoom = new JCarcassonneZoom(this.view);
-		this.add(this.zoom);
-	}
-
 	private JCarcassonneCurrentPlayer		giocatoreCorrente;
 
 	private JCarcassonneCasella				tesseraCorrente;
@@ -180,9 +172,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	private JCarcassonneButton				pulsantePass;
 
 	private JCarcassonneScorrimentoMappa	scorrimentoMappa;
-
-	private JCarcassonneZoom				zoom;
-
+	
 	private Gui								view;
 
 	private static final int				LATO_TESSERA		= 150;

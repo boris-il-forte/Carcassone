@@ -68,7 +68,7 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 	{
 		int numeroCasella = this.getNumeroCasella(e);
 		JCarcassonneCasella casella = this.listaCaselle.get(numeroCasella);
-		if (this.inStatoVuota(numeroCasella))
+		if (this.inStatoVuota(numeroCasella) && this.view.getGestoreFasi().posizionaOk())
 		{
 			this.lastPlaced = this.view.convertiCoordinate(numeroCasella);
 			this.view.clicPosizionaTessera(numeroCasella);
