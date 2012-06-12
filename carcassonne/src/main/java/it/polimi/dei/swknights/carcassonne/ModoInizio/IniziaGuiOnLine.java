@@ -22,7 +22,7 @@ public class IniziaGuiOnLine extends Inizio
 				this.printer.println("gui on line");
 				String ip = this.chiediIndirizzoIP();
 				View view = new Gui(); // 1)
-				Socket socket = CarcassonneSocket.dammiSocket(ip); // 2)
+				Socket socket = CarcassonneSocket.dammiSocket(ip, 1984); //TODO: correggere!
 				ProxyController controller;
 
 				
