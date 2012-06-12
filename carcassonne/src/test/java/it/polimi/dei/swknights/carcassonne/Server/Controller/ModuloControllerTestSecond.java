@@ -35,7 +35,7 @@ import org.junit.Test;
 
 public class ModuloControllerTestSecond
 {
-	
+
 	public void inizializza(CostruzioneCoord[] listaCC)
 	{
 		this.model = new TestModel();
@@ -59,60 +59,57 @@ public class ModuloControllerTestSecond
 
 		Debug.print(" ho lanciato controller");
 	}
-	
-	private Cli cliDebug;
-	private ModuloController controller;
-	private TestModel model;
-	private TestView view;
-	
-	
+
+	private Cli					cliDebug;
+	private ModuloController	controller;
+	private TestModel			model;
+	private TestView			view;
+
 	@Test
 	public void testF() throws Exception
 	{
 		this.inizializza(this.stradella());
 		Executor superStarDestroyer = Executors.newCachedThreadPool();
 		superStarDestroyer.execute(this.controller);
-		
 
-			this.mettiTesseraEAggiona(3, 0);
-			Thread.sleep(500);
-			this.mettiTesseraEAggiona(4, 0);
-			Thread.sleep(500);
-			//this.mettiTesseraEAggiona(4, 0);
-			Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
-			this.cliDebug.aggiornaMappa();
+		this.mettiTesseraEAggiona(3, 0);
+		this.view.aspettaArrivoEvento();
+		this.mettiTesseraEAggiona(4, 0);
+		this.view.aspettaArrivoEvento();
+		// this.mettiTesseraEAggiona(4, 0);
+		Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
+		this.cliDebug.aggiornaMappa();
 	}
-	
-	
+
 	private void mettiTesseraEAggiona(int x, int y)
 	{
 		try
 		{
-		Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		Debug.print("\n\n il mazzo di moggi ha dentro: " + this.model.mazzoMoggi.size() + " carte-tessere");
-		int numTessere = this.model.mazzoMoggi.size();
-		Debug.print(" metto tessera corrente in (" + x + " . " + y + ")");
+			Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			Debug.print("\n\n il mazzo di moggi ha dentro: " + this.model.mazzoMoggi.size()
+					+ " carte-tessere");
+			int numTessere = this.model.mazzoMoggi.size();
+			Debug.print(" metto tessera corrente in (" + x + " . " + y + ")");
 
-		Debug.print(" tessera corrente = " + this.model.getTesseraCorrente());
+			Debug.print(" tessera corrente = " + this.model.getTesseraCorrente());
 
-		this.view.testCostruzioneCompletata = true;
-		this.view.fire(new PlaceEvent(this, new Coordinate(x, y)));
-		Thread.sleep(100);
-		this.view.fire(new PassEvent(this));
-		Thread.sleep(100);
+			this.view.testCostruzioneCompletata = true;
+			this.view.fire(new PlaceEvent(this, new Coordinate(x, y)));
+			Thread.sleep(100);
+			this.view.fire(new PassEvent(this));
+			Thread.sleep(100);
 
-		// this.cliDebug.aggiornaMappa();
-		Debug.print("\n\n il mazzo di moggi ha dentro: " + this.model.mazzoMoggi.size() + " carte-tessere");
-		Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+			// this.cliDebug.aggiornaMappa();
+			Debug.print("\n\n il mazzo di moggi ha dentro: " + this.model.mazzoMoggi.size()
+					+ " carte-tessere");
+			Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		}
-		catch(InterruptedException e)
-		{}
-		
+		catch (InterruptedException e)
+		{
+		}
+
 	}
 
-	
-	
-	
 	private CostruzioneCoord[] stradella()
 	{
 		CostruzioneCoord[] stradaPiccola = new CostruzioneCoord[5];
@@ -147,8 +144,7 @@ public class ModuloControllerTestSecond
 
 		return stradaPiccola;
 	}
-	
-	
+
 	private Tessera getTesseraCittaGrande()
 	{
 		Tessera t3 = new TesseraNormale(this.creaLatiStradaEO(), this.creaLinkStradaEO());
@@ -213,25 +209,10 @@ public class ModuloControllerTestSecond
 		return l;
 
 	}
-	
-	
-	
-	
+
 }
 
-
-///////////////////
-
-
-
-
-
-
-
-
-
-
-
+// /////////////////
 
 class TestModel extends ModuloModel
 {
@@ -240,6 +221,7 @@ class TestModel extends ModuloModel
 	{
 		super();
 	}
+
 	@Override
 	public void getTesseraDaMazzo() // throws PartitaFinitaException
 	{
@@ -260,7 +242,7 @@ class TestModel extends ModuloModel
 		{
 			mazzoMoggi = new ArrayList<Tessera>();
 		}
-		
+
 		for (int i = 0; i < costruzione.length; i++)
 		{
 			Debug.print("" + costruzione[i].tessera);
@@ -350,9 +332,7 @@ class TestView extends AbstractView
 	public void riceviModificheModel(ControllerEvent event)
 	{
 		Debug.print(" sono view test - ho ricevuto" + event.toString());
-		
-		
-		
+
 		if (event instanceof InizioGiocoEvent)
 		{
 			this.partitaIniziata = true;
@@ -373,39 +353,38 @@ class TestView extends AbstractView
 		{
 			this.nexturno = true;
 		}
-		
+
 		this.notificaArrivo();
 
-
 	}
-	
-	private boolean arrivato = true;
-	
-	public /* synchronized */void aspettaArrivoEvento()
+
+	private boolean	arrivato	= true;
+
+	public synchronized void aspettaArrivoEvento()
 	{
-		/*while (!arrivato )
+		while (!arrivato)
 		{
 			try
 			{
 				this.wait();
+				this.arrivato = false;
 			}
 			catch (InterruptedException e)
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}*/
+		}
 	}
-	
-	private /*synchronized */void notificaArrivo()
+
+	private synchronized void notificaArrivo()
 	{
 
-			/*synchronized (this)
-			{
-				this.arrivato = true;
-				this.notifyAll();
-				this.arrivato = false;
-			}*/
+		synchronized (this)
+		{
+			this.arrivato = true;
+			this.notifyAll();
+		}
 	}
 
 	public void run()
@@ -413,7 +392,6 @@ class TestView extends AbstractView
 	}
 
 }
-
 
 class CostruzioneCoord
 {
@@ -441,7 +419,5 @@ class CostruzioneCoord
 	{
 		return this.coord;
 	}
-	
 
-	
 }

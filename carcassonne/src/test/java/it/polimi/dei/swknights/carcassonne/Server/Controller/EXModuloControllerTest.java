@@ -63,7 +63,7 @@ public class EXModuloControllerTest
 		Debug.print(" ho lanciato controller");
 	}
 
-	@Test
+	//@Test
 	public void stradaPiccola() throws Exception
 	{
 		Executor superStarDestroyer = Executors.newCachedThreadPool();
