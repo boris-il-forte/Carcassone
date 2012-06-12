@@ -134,6 +134,7 @@ public class IniziaGuiOffline extends Inizio
 				{
 					IniziaGuiOffline.this.notifyAll();
 				}
+				this.dispose();
 			}
 		}
 
