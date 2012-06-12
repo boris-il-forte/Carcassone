@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Exceptions.ColoreNonPresenteException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
