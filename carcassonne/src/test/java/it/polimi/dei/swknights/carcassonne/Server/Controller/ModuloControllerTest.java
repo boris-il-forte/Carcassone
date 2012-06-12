@@ -1,19 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
-
 import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
-import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
-import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
@@ -34,6 +24,12 @@ import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
+
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -275,7 +271,6 @@ public class ModuloControllerTest
 			try
 			{
 				Tessera primaTessera = this.mazzoMoggi.remove(this.mazzoMoggi.size() - 1);
-				AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
 				this.tesseraCorrente = primaTessera;
 				Debug.print(" test model - inizia gioco , tessera Corrente =" + this.tesseraCorrente);
 				Debug.print("test model inizia gioco - metto prima tessera: posizionaTessera");
@@ -284,7 +279,7 @@ public class ModuloControllerTest
 				this.getTesseraDaMazzo();
 				
 				Debug.print("test model inizia gioco - fire ( new inizio gioco event )");
-				this.fire(new InizioGiocoEvent(this, tessera, null, quanti, " dsfsdf"));
+				this.fire(new InizioGiocoEvent(this, primaTessera, null, quanti, " dsfsdf"));
 
 				this.cominciaTurno();
 
