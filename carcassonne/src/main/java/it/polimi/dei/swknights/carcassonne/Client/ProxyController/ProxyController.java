@@ -73,10 +73,10 @@ public class ProxyController extends AbstractConnessioneController
 		{
 			event.accept(handler);
 		}
-		this.inviaSocket(event);
+		this.invia(event);
 	}
 
-	private void inviaSocket(ViewEvent event)
+	private void invia(ViewEvent event)
 	{
 		this.connessione.invia(this.requestString);
 		this.connessione.invia(event);
