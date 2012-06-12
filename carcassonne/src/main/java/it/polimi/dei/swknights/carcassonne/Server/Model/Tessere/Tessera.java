@@ -5,6 +5,7 @@ import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruz
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.Map;
  * 
  */
 
-public abstract class Tessera implements Cloneable
+public abstract class Tessera implements Cloneable, Serializable
 {
 	Tessera(Lati lati, Link link)
 	{
@@ -151,5 +152,7 @@ public abstract class Tessera implements Cloneable
 	protected final Lati	lati;
 
 	protected final Link	link;
+	
+	private static final long	serialVersionUID	= 2822247143726687643L;
 
 }

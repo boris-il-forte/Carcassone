@@ -18,12 +18,12 @@ public class RotateEvent extends ViewEvent
 		super(source);
 	}
 
-	private static final long	serialVersionUID	= 2085506187547788810L;
-
 	@Override
 	public void accept(ControllerHandler handler)
 	{
 		handler.visit(this);
 	}
+
+	private static final long	serialVersionUID	= 2085506187547788810L;
 
 }

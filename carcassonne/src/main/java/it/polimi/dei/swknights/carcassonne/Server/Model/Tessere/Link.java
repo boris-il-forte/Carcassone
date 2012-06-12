@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model.Tessere;
 
+import java.io.Serializable;
+
 import it.polimi.dei.swknights.carcassonne.Util.Bussola;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
@@ -10,9 +12,8 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
  * @author Edo & Dave
  * 
  */
-public class Link implements Cloneable
+public class Link implements Cloneable, Serializable
 {
-
 	/**
 	 * Array of six booleans to be passed in the following order NS(0), NE(1),
 	 * NW(2), WE(3), SE(4), SW(5);
@@ -92,5 +93,7 @@ public class Link implements Cloneable
 	private boolean[]			direzioni		= new boolean[Bussola.NUMERO_DIREZIONI];
 
 	private static final int	LINKS_NUMBER	= 6;
+	
+	private static final long	serialVersionUID	= -5768645230627759238L;
 
 }

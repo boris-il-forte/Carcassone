@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
+import java.io.Serializable;
+
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
 import it.polimi.dei.swknights.carcassonne.Parser.ExtraParser;
 
@@ -11,7 +13,7 @@ import it.polimi.dei.swknights.carcassonne.Parser.ExtraParser;
  * @author edoardopasi & dave
  * 
  */
-public abstract class AdapterTessera
+public abstract class AdapterTessera implements Serializable
 {
 	public abstract String toProtocolString();
 
@@ -40,4 +42,6 @@ public abstract class AdapterTessera
 			return "";
 		}
 	}
+	
+	private static final long	serialVersionUID	= -2192491098300991563L;
 }

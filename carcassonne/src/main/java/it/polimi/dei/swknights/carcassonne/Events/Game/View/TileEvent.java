@@ -39,6 +39,7 @@ public class TileEvent extends ViewEvent
 	}
 
 	private final Color				color;
+	
 	private final PuntoCardinale	puntoDestinazione;
 
 	private static final long		serialVersionUID	= 2085506187547788810L;

@@ -1,6 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Util;
 
-public class Coordinate
+import java.io.Serializable;
+
+public class Coordinate implements Serializable
 {
 	/**
 	 * Costruttore per l'oggetto immutabile coordinata
@@ -113,4 +115,6 @@ public class Coordinate
 	private Integer	x;
 
 	private Integer	y;
+	
+	private static final long	serialVersionUID	= 272884138757347349L;
 }

@@ -9,7 +9,6 @@ package it.polimi.dei.swknights.carcassonne.Events;
  */
 public class AdapterTesseraString extends AdapterTessera
 {
-
 	public AdapterTesseraString(String stringaTessera)
 	{
 		this.stringaTessera = stringaTessera;
@@ -22,4 +21,6 @@ public class AdapterTesseraString extends AdapterTessera
 	}
 
 	private String	stringaTessera;
+	
+	private static final long	serialVersionUID	= 1666429877105397L;
 }

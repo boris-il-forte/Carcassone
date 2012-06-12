@@ -88,10 +88,9 @@ public class ModuloModel extends AbstractModel
 		try
 		{
 			Tessera primaTessera = this.datiPartita.pescaPrimaTessera();
-			AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
 			Debug.print( " modulo model originale (non test) - inizia gioco ");
 			this.datiPartita.getAreaDiGioco().addTessera(new Coordinate(0, 0), primaTessera);
-			this.fire(new InizioGiocoEvent(this, tessera, null, this.getListaGiocatori().size(), this
+			this.fire(new InizioGiocoEvent(this, primaTessera, null, this.getListaGiocatori().size(), this
 					.getIdPartita()));
 			this.getTesseraDaMazzo();
 			this.cominciaTurno();

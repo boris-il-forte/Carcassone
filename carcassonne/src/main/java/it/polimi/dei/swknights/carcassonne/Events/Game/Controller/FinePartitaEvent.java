@@ -23,6 +23,13 @@ public class FinePartitaEvent extends ControllerEvent
 		this.punteggi = punteggi;
 	}
 
+	@Override
+	public void accept(ViewHandler handler)
+	{
+		handler.visit(this);
+	
+	}
+
 	/**
 	 * Map that associates to each Color-Player a score
 	 * 
@@ -40,12 +47,5 @@ public class FinePartitaEvent extends ControllerEvent
 	
 	private Punteggi			punteggi;
 	private static final long	serialVersionUID	= 7228959705104329672L;
-
-	@Override
-	public void accept(ViewHandler handler)
-	{
-		handler.visit(this);
-
-	}
 
 }

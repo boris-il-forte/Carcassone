@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Server.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 
 public class ConnessioneViewRMI extends ConnessioneView
 {
@@ -21,7 +22,8 @@ public class ConnessioneViewRMI extends ConnessioneView
 	public void inviaEventoIniziale(String messaggioIniziale)
 	{
 		//TODO finire!!!
-		ControllerEvent event = new InizioGiocoEvent(this.proxy, null, this.getColoreConnessione(), null, null);
+		Tessera tessera = null;
+		ControllerEvent event = new InizioGiocoEvent(this.proxy,tessera, this.getColoreConnessione(), 0, null);
 		this.portale.setClientEvent(event);
 	}
 
