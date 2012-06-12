@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Util.ListFolder;
 
 import java.awt.Graphics2D;
@@ -115,11 +114,7 @@ public class ImageLoader
 		for (Entry<String, URL> entryURL : mappaURL.entrySet())
 		{
 			BufferedImage originalImage = ImageIO.read(entryURL.getValue());
-			if (originalImage == null)
-			{
-				Debug.print("Non trovato url " + originalImage);
-			}
-			else
+			if (originalImage != null)
 			{
 				BufferedImage image = this.scalaImmagine(originalImage, dimOriginale);
 				mappaImmagini.put(entryURL.getKey(), image);
@@ -133,7 +128,6 @@ public class ImageLoader
 		{
 			for (String stringImmagine : ListFolder.list(stringCartella))
 			{
-				Debug.print(stringImmagine);
 				if (!stringImmagine.startsWith("."))
 				{
 					StringBuilder builderPercorso = new StringBuilder("/").append(stringCartella).append("/")

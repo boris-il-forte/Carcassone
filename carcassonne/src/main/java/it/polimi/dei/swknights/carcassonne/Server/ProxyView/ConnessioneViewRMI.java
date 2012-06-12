@@ -21,6 +21,7 @@ public class ConnessioneViewRMI extends ConnessioneView
 
 	public void inviaEventoIniziale(AdapterTessera adapterTessera, String idPartita, int giocatoriConnessi)
 	{
+		System.out.println(this.getColoreConnessione());
 		ControllerEvent event = new InizioGiocoEvent(this.proxy,adapterTessera, this.getColoreConnessione(), giocatoriConnessi, idPartita);
 		this.portale.setClientEvent(event);
 	}

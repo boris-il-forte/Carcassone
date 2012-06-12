@@ -67,7 +67,6 @@ public class ProxyView extends AbstractConnessioneView
 	public void accettaConnessione(Socket socket) throws IOException
 	{
 		this.giocatoriConnessi++;
-		// giocatori connessi diventa il numero di connessione
 		ConnessioneViewSocket connessioneSocket = new ConnessioneViewSocket(socket, this,
 				this.giocatoriConnessi);
 		this.starDestroyer.execute(connessioneSocket);
@@ -89,7 +88,6 @@ public class ProxyView extends AbstractConnessioneView
 
 	public void mandaComandoAvvia(InizioGiocoEvent event)
 	{
-
 		for (ConnessioneViewRMI connRMI : this.listaConnessioniRMI)
 		{
 			connRMI.inviaEventoIniziale(event.getTesseraIniziale(),event.getIdPartita(), this.giocatoriConnessi);
@@ -100,8 +98,7 @@ public class ProxyView extends AbstractConnessioneView
 			String messaggioIniziale = this.codaComandi.get(indiceMessaggio - 1);
 			connSOCK.invia(messaggioIniziale);
 		}
-		codaComandi.clear();
-
+		this.codaComandi.clear();
 	}
 
 	private void inizializzaHandlers()
