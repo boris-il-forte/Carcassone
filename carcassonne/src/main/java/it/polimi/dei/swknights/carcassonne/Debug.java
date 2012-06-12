@@ -7,7 +7,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-public class Debug
+public final class Debug
 {
 	private Debug(){}
 

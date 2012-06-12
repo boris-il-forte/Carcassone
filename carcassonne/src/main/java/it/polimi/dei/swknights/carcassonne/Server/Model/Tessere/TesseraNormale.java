@@ -2,7 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Server.Model.Tessere;
 
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
-public class TesseraNormale extends Tessera
+public class TesseraNormale extends Tessera implements Cloneable
 {
 	public TesseraNormale(Lati lati, Link link)
 	{
@@ -26,7 +26,7 @@ public class TesseraNormale extends Tessera
 		}
 		catch (CloneNotSupportedException e)
 		{
-			throw new AssertionError();
+			throw new AssertionError(e);
 		}
 	}
 

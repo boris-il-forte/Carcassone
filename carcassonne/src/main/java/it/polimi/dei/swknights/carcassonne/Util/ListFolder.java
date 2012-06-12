@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-public class ListFolder
+public final class ListFolder
 {
 
 	/**
@@ -19,7 +19,7 @@ public class ListFolder
 	 * basically a brute-force implementation. Works for regular files and also
 	 * JARs.
 	 * 
-	 * @author Greg Briggs
+	 * @author Greg Briggs (revisited by Davide Tateo)
 	 * @param clazz
 	 *            Any java class that lives in the same place as the resources
 	 *            you want.
@@ -64,7 +64,7 @@ public class ListFolder
 				if (name.contains(path))
 				{ // filter according to the path
 					String entry = name.substring(path.length());
-					int checkSubdir = entry.indexOf("/");
+					int checkSubdir = entry.indexOf('/');
 					if (checkSubdir >= 0)
 					{
 						entry = entry.substring(checkSubdir+1);

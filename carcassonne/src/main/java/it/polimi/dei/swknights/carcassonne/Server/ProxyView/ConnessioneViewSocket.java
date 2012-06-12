@@ -144,8 +144,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 		
 		public static PuntoCardinale cardinalPointOf(String punto)
 		{
-			TokenCardinale token = TokenCardinale.valueOf(punto);
-			return token.punto;
+			return TokenCardinale.valueOf(punto).punto;
 		}
 		
 		private PuntoCardinale punto;

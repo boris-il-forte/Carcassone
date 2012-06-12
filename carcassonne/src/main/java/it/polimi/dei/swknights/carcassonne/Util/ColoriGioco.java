@@ -12,7 +12,7 @@ import java.util.Map;
  * @author dave & edo
  * 
  */
-public class ColoriGioco
+public final class ColoriGioco
 {
 	/**
 	 * 

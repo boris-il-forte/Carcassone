@@ -25,7 +25,7 @@ public class AreaDiGioco
 	public AreaDiGioco()
 	{
 		this.mappa = new HashMap<Coordinate, Tessera>();
-		this.GPS = new HashMap<Tessera, Coordinate>();
+		this.gps = new HashMap<Tessera, Coordinate>();
 		this.coordinateVuote = new HashSet<Coordinate>();
 	}
 
@@ -54,7 +54,7 @@ public class AreaDiGioco
 
 	public Coordinate getCoordinateTessera(Tessera tessera)
 	{
-		return this.GPS.get(tessera);
+		return this.gps.get(tessera);
 	}
 
 	public Set<Coordinate> getSetCoordinateVuote()
@@ -82,7 +82,7 @@ public class AreaDiGioco
 			if (this.mappa.get(coordinate) == null)
 			{
 				this.mappa.put(coordinate, tessera);
-				this.GPS.put(tessera, coordinate);
+				this.gps.put(tessera, coordinate);
 				this.addCoordinateVuote(coordinate);
 				this.coordinateVuote.remove(coordinate);
 			}
@@ -112,7 +112,7 @@ public class AreaDiGioco
 
 	private Map<Coordinate, Tessera>	mappa;
 
-	private Map<Tessera, Coordinate>	GPS;
+	private Map<Tessera, Coordinate>	gps;
 
 	private Set<Coordinate>				coordinateVuote;
 
