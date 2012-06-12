@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
@@ -88,6 +89,7 @@ public class ModuloModel extends AbstractModel
 		{
 			Tessera primaTessera = this.datiPartita.pescaPrimaTessera();
 			AdapterTessera tessera = new AdapterTesseraObject(primaTessera);
+			Debug.print( " modulo model originale (non test) - inizia gioco ");
 			this.datiPartita.getAreaDiGioco().addTessera(new Coordinate(0, 0), primaTessera);
 			this.fire(new InizioGiocoEvent(this, tessera, null, this.getListaGiocatori().size(), this
 					.getIdPartita()));
