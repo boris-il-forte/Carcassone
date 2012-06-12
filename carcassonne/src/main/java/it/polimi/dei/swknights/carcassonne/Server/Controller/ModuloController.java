@@ -26,7 +26,7 @@ import java.util.Set;
 
 /**
  * Class that implements theController of the MVC pattern Contains all the
- * methods to manage event handling and the high level game logic.
+ * hods to manage event handling and the high level game logic.
  * 
  * @author dave
  * 
@@ -39,7 +39,7 @@ public class ModuloController extends AbstractController
 	 * 
 	 */
 	public ModuloController(ModuloModel model)
-	{	
+	{
 		this.model = model;
 		this.gestoreFasi = new GestoreFasi();
 		this.contaPunti = new ContatoreCartografo(this.model);
@@ -134,26 +134,25 @@ public class ModuloController extends AbstractController
 		Map<PuntoCardinale, Costruzione> mappaCostruzioni;
 		mappaCostruzioni = this.contaPunti.getMapCostruzioniUltimaTessera();
 		Costruzione costruzione = mappaCostruzioni.get(punto);
-		if (costruzione != null)
-		{
-			return costruzione.controllataDa().size() == 0;
-		}
+		if (costruzione != null) { return costruzione.controllataDa().size() == 0; }
 		return false;
 
 	}
-	
+
 	/**
 	 * getter method
-	 * @return the cartographer object embedded in this 
+	 * 
+	 * @return the cartographer object embedded in this
 	 */
 
 	public ContatoreCartografo getContapunti()
 	{
 		return this.contaPunti;
 	}
-	
+
 	/**
 	 * getter method
+	 * 
 	 * @return the Phase Manager embedded in this
 	 */
 
