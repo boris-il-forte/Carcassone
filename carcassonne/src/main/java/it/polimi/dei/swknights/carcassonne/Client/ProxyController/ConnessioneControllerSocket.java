@@ -238,14 +238,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 					}
 				}
 			}
-
-			if (line.contains("end:"))
-			{
-
-			}
+			
 			return false;
-
-
 	}
 
 	private List<String>				partiDiEventoComposto;
