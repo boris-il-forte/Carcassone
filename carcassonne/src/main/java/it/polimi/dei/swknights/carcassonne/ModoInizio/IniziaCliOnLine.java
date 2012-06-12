@@ -1,11 +1,11 @@
 package it.polimi.dei.swknights.carcassonne.ModoInizio;
 
-import it.polimi.dei.swknights.carcassonne.IPAddressValidator;
 import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocket;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.View;
 import it.polimi.dei.swknights.carcassonne.Server.ServerRMI;
+import it.polimi.dei.swknights.carcassonne.Util.IPAddressValidator;
 
 import java.io.IOException;
 import java.net.Socket;

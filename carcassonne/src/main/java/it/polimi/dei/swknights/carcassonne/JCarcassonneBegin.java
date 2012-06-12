@@ -31,7 +31,7 @@ public class JCarcassonneBegin
 		}
 	}
 
-	public String ShowDialog()
+	public String showDialog()
 	{
 		String risposta = (String) JOptionPane.showInputDialog(null, DOMANDA, NOME_DIALOGO,
 				JOptionPane.PLAIN_MESSAGE, this.icon, TIPO_AVVIO, PREDEFINITO);
