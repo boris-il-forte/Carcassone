@@ -19,16 +19,16 @@ public class IniziaCliOffline extends Inizio
 		Controller controller = new ModuloController(model);
 
 		this.printer.println("cli!!");
-		View view = new Cli(); // 1)
+		View view = new Cli();
 
-		view.addListener(controller); // 2)
-		model.addListener(view); // 3)
+		view.addListener(controller);
+		model.addListener(view);
 		int numeroGiocatori = this.setGiocatori();
 		for (int i = 0; i < numeroGiocatori ; i++)
 		{
 			model.addPlayer();
 		}
-		this.superStarDestroyer.execute(view); // 4)
+		this.superStarDestroyer.execute(view);
 		this.superStarDestroyer.execute(controller);
 	}
 

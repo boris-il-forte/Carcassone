@@ -9,16 +9,16 @@ public class CarcassonneSocket
 
 	public static Socket dammiSocket()
 	{
-		return CarcassonneSocket.dammiSocket(INDIRIZZO_SERVER);
+		return CarcassonneSocket.dammiSocket(INDIRIZZO_SERVER, PORTA_GF);
 
 	}
 
-	public static Socket dammiSocket(String ipServer)
+	public static Socket dammiSocket(String ipServer, int numeroPorta)
 	{
 		Socket socket = null;
 		try
 		{
-			socket = new Socket(ipServer, PORTA_GF);
+			socket = new Socket(ipServer, numeroPorta);
 		}
 		catch (UnknownHostException e)
 		{
