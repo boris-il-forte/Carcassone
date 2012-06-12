@@ -163,6 +163,7 @@ public class Cli extends ModuloView
 	{
 		if (this.getGestoreFasi().posizionaOk())
 		{
+			Debug.print("  cli - place event ");
 			this.fire(new PlaceEvent(this, coordinate));
 			return true;
 		}
@@ -190,6 +191,7 @@ public class Cli extends ModuloView
 	{
 		if (this.getGestoreFasi().fineTurnoOk())
 		{
+			Debug.print("cli - pass event ");
 			this.fire(new PassEvent(this));
 			return true;
 		}
