@@ -84,6 +84,7 @@ public class ModuloControllerTest
 		{
 			this.mettiTesseraEAggiona( piccolaStrada[i].coord);
 			Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
+		
 		}
 		
 		if(false)
