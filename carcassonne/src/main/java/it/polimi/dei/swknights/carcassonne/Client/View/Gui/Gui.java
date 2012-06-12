@@ -146,11 +146,6 @@ public class Gui extends ModuloView
 		}
 	}
 
-	public void zoomModificato(int zoom)
-	{
-		// TODO togliere!
-	}
-
 	public void overlayImmagine(int numeroCasella)
 	{
 		if (this.getGestoreFasi().posizionaOk())
