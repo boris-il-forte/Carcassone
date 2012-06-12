@@ -53,7 +53,6 @@ public class ModuloController extends AbstractController
 
 	public void run()
 	{
-		Debug.print(" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!modulo controller - run ");
 		this.primaMossaPartita();
 		try
 		{

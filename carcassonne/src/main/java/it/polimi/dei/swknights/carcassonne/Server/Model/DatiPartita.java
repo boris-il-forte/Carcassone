@@ -139,7 +139,6 @@ public final class DatiPartita
 		if (index > 0)
 		{
 			index--;
-			Debug.print("tessere rimanenti" + index);
 			return this.pilaTessere.remove(index);
 		}
 		else
