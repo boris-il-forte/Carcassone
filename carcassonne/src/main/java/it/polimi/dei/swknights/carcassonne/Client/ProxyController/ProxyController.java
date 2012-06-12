@@ -7,11 +7,13 @@ import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControlle
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.ProxyControllerHandler;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.RuotaHandler;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.TileHandler;
-import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
+import it.polimi.dei.swknights.carcassonne.Server.ServerRMI;
+import it.polimi.dei.swknights.carcassonne.Server.RMI.PortaleRMI;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -24,16 +26,34 @@ public class ProxyController extends AbstractConnessioneController
 
 	public ProxyController(Socket socket) throws IOException
 	{
+		this();
 		this.connessione = new ConnessioneControllerSocket(socket, this);
 		this.contattaServerInizia(socket);
-		this.inizializzaHandlers();
-		Executor imperial =Executors.newFixedThreadPool(1); //lancia per ascoltare risp
-		imperial.execute(connessione);		
+		this.avviaConnesisone(this.connessione);
 	}
 
-	public ProxyController() // RMI
+	public ProxyController(ServerRMI server) throws RemoteException
 	{
-		this.connessione = new ConnessioneControllerRMI();
+		this();
+		PortaleRMI portale = this.contattaServerInizia(server);
+		this.connessione = new ConnessioneControllerRMI(portale,this);
+		this.avviaConnesisone(this.connessione);
+	}
+	
+	private ProxyController()
+	{
+		this.inizializzaHandlers();
+	}
+	
+	private void avviaConnesisone(ConnessioneController connessione)
+	{
+		Executor imperial = Executors.newFixedThreadPool(1);
+		imperial.execute(connessione);
+	}
+
+	private PortaleRMI contattaServerInizia(ServerRMI server) throws RemoteException
+	{
+		return server.connect(); 
 	}
 
 	public void setRequestString(String requestString)
@@ -44,7 +64,6 @@ public class ProxyController extends AbstractConnessioneController
 	@Override
 	public void run()
 	{
-		//TODO: check...
 	}
 	
 	@Override
@@ -52,30 +71,17 @@ public class ProxyController extends AbstractConnessioneController
 	{
 		for(ProxyControllerHandler handler : this.handlers)
 		{
-			event.accept(handler); //tells proxy what has to send (string if socket)
+			event.accept(handler);
 		}
-		this.inviaSocket();
-	}
-	
-	
-	@Override
-	public void request()
-	{
+		this.inviaSocket(event);
 	}
 
-	public void inviaRMI(ControllerEvent event)
+	private void inviaSocket(ViewEvent event)
 	{
-		this.connessione.invia(event);
-
-	}
-
-	private void inviaSocket()
-	{
-	
 		this.connessione.invia(this.requestString);
+		this.connessione.invia(event);
 	}
-
-	// inizio fatto comunque via socket?
+	
 	private void contattaServerInizia(Socket socket)
 	{
 		Debug.print(" sono proxy controller - contattaServer ");
@@ -87,45 +93,17 @@ public class ProxyController extends AbstractConnessioneController
 		}
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
-		/*
-			if(false)
-			{
-			try
-			{
-
-				PrintWriter printer = new PrintWriter(socket.getOutputStream());
-				printer.println("connection request by " + socket.getLocalAddress() + ": "
-						+ socket.getLocalPort());
-				printer.flush();
-				Scanner scann = new Scanner(socket.getInputStream());
-				String s = scann.nextLine();
-				if (s.length() > 0)
-				{
-					contatto = true;
-				}
-			}
-			catch (IOException e)
-			{
-				// TODO Auto-generated catch block
-				// e.printStackTrace();
-			}
-			}
-		}
-		*/
 	}
 
 	private void inizializzaHandlers()
 	{
 		this.handlers = new ArrayList<ProxyControllerHandler>();
-
+		
 		this.handlers.add(new PassHandler(this));
 		this.handlers.add(new PlaceHandler(this));
 		this.handlers.add(new RuotaHandler(this));
 		this.handlers.add(new TileHandler(this));
-
 	}
 
 	CarcassonneSocketPrinter printer;

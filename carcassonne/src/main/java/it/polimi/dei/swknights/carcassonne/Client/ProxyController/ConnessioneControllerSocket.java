@@ -80,12 +80,6 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		}
 	}
 
-	public void eseguiComando()
-	{
-		// TODO Auto-generated method stub
-
-	}
-
 	@Override
 	public void invia(String message)
 	{
