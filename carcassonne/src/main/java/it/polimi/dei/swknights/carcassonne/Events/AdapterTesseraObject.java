@@ -21,6 +21,8 @@ public class AdapterTesseraObject extends AdapterTessera
 	{
 		return this.tessera.toString();
 	}
+	
+	private static final long	serialVersionUID	= -3083803275769710214L;
 
 	private Tessera	tessera;
 }

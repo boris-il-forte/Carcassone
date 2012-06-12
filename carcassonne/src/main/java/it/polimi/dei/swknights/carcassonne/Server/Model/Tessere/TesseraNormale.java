@@ -4,7 +4,6 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 public class TesseraNormale extends Tessera
 {
-
 	public TesseraNormale(Lati lati, Link link)
 	{
 		super(lati, link);
@@ -35,5 +34,7 @@ public class TesseraNormale extends Tessera
 	{
 		return this.lati.getTipoElementoInDirezione(punto);
 	}
+	
+	private static final long	serialVersionUID	= 472894599614894746L;
 
 }

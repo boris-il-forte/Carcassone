@@ -5,6 +5,7 @@ import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,9 +15,8 @@ import java.util.Map;
  * @author Edo & Dave
  * 
  */
-public class Lati implements Cloneable
+public class Lati implements Cloneable, Serializable
 {
-
 	public Lati(Elemento nord, Elemento sud, Elemento ovest, Elemento est)
 	{
 		this.nord = nord;
@@ -169,6 +169,8 @@ public class Lati implements Cloneable
 	private Elemento		est;
 
 	private DatiSegnalino	datiSegnalino;
+	
+	private static final long	serialVersionUID	= -2154812410149249459L;
 
 	private static class DatiSegnalino implements Cloneable
 	{

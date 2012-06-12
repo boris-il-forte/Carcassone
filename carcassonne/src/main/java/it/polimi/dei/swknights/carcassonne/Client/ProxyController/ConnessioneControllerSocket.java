@@ -162,9 +162,7 @@ public class ConnessioneControllerSocket extends ConnessioneController
 					String numero = partiArgomenti[NUMERO];
 
 					Color coloreGiocatore = ColoriGioco.getColor(color);
-					AdapterTesseraString ada = new AdapterTesseraString(tesseraStart);
-
-					this.proxy.fire(new InizioGiocoEvent(this, ada, coloreGiocatore,
+					this.proxy.fire(new InizioGiocoEvent(this, tesseraStart, coloreGiocatore,
 							Integer.parseInt(numero), name));
 
 				}

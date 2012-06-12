@@ -17,8 +17,7 @@ public class MossaNonValidaHandler extends ModuloViewHandler
 	public void visit(MossaNonValidaEvent event)
 	{
 		this.view.notificaMossaNonValida();
-		this.sveglia();
-		
+		this.sveglia();	
 	}
 
 }

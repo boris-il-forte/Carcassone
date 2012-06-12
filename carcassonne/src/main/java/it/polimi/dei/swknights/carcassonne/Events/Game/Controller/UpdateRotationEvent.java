@@ -22,12 +22,12 @@ public class UpdateRotationEvent extends UpdateEvent
 		super(tessera, null, null, source);
 	}
 
-	private static final long	serialVersionUID	= -7350182684969632910L;
-
 	@Override
 	public void accept(ViewHandler handler)
 	{
 		handler.visit(this);
-
+	
 	}
+
+	private static final long	serialVersionUID	= -7350182684969632910L;
 }

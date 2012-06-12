@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Util;
 import it.polimi.dei.swknights.carcassonne.Exceptions.ColoreNonTrovatoException;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class Punteggi
+public class Punteggi implements Serializable
 {
 	public Punteggi()
 	{
@@ -117,5 +118,7 @@ public class Punteggi
 	}
 
 	private Map<Color, Integer>	mappaPunteggi;
+	
+	private static final long	serialVersionUID	= 7226747197782984560L;
 
 }

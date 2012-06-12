@@ -24,6 +24,13 @@ public class UpdatePositionEvent extends UpdateEvent
 		super(tessera, coordinate,null, source);
 	}
 
+	@Override
+	public void accept(ViewHandler handler)
+	{
+		handler.visit(this);
+	
+	}
+
 	/**
 	 * {@link Coordinate} of the placed card
 	 * 
@@ -35,12 +42,5 @@ public class UpdatePositionEvent extends UpdateEvent
 	}
 
 	private static final long	serialVersionUID	= -461479380615200557L;
-
-	@Override
-	public void accept(ViewHandler handler)
-	{
-		handler.visit(this);
-
-	}
 
 }
