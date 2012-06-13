@@ -2,14 +2,13 @@ package it.polimi.dei.swknights.carcassonne.Model;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import it.polimi.dei.swknights.carcassonne.Client.View.AbstractModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
 import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
-import it.polimi.dei.swknights.carcassonne.ModuliAstratti.AbstractView;
-import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Controller;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.View;
 import it.polimi.dei.swknights.carcassonne.Server.Model.AbstractModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
@@ -17,7 +16,6 @@ import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 import java.awt.Color;
-import java.util.List;
 
 import org.junit.Test;
 
@@ -53,14 +51,13 @@ public class AbstractModelTest
 	public int	contaMosseNonValide	= 0;
 	public int	contaInizioGioco	= 0;
 
-	class ViewTest extends AbstractView
+	class ViewTest extends AbstractModuloView
 	{
 		public int	numeroPartita	= 0;
 
-		public ViewTest(List<Controller> listeners)
+		public ViewTest()
 		{
-			super(listeners);
-			// TODO Auto-generated constructor stub
+			super();
 		}
 
 		@Override
