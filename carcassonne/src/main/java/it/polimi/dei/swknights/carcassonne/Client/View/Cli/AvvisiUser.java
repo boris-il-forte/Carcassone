@@ -106,7 +106,14 @@ public class AvvisiUser
 
 	public void notificaPunteggi(Punteggi punteggio)
 	{
-		this.out.println(punteggio.toString());
+		if (punteggio == null)
+		{
+			throw new IllegalArgumentException("punteggio non dovrebbe essere null!");
+		}
+		else
+		{
+			this.out.println(punteggio.toString());
+		}
 
 	}
 

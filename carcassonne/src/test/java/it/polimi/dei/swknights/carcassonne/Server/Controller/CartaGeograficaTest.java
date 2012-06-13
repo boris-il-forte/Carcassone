@@ -140,11 +140,15 @@ public class CartaGeograficaTest
 		
 		public Coordinate	coord;
 
+		@SuppressWarnings("unused")
+		public Coordinate getCoord()
+		{
+			return coord;
+		}
 		public void daiCoppia(Tessera t1, Coordinate c1)
 		{
 			this.tessera = t1;
 			this.coord = c1;
-
 		}
 
 		public Costruzione getCostruzione(PuntoCardinale punto)

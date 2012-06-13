@@ -2,6 +2,11 @@ package it.polimi.dei.swknights.carcassonne.Model;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
@@ -9,10 +14,7 @@ import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+
 
 public class ModuloModelTest
 {
