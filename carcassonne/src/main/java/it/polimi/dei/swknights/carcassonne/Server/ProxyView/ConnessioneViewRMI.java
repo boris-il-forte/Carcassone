@@ -21,7 +21,8 @@ public class ConnessioneViewRMI extends ConnessioneView
 
 	public void inviaEventoIniziale(AdapterTessera adapterTessera, String idPartita, int giocatoriConnessi)
 	{
-		ControllerEvent event = new InizioGiocoEvent(this.proxy,adapterTessera,this.getColoreConnessione() , giocatoriConnessi, idPartita);
+		ControllerEvent event = new InizioGiocoEvent(this.proxy, adapterTessera, this.getColoreConnessione(),
+				giocatoriConnessi, idPartita);
 		this.portale.setServerEvent(event);
 	}
 
@@ -33,7 +34,11 @@ public class ConnessioneViewRMI extends ConnessioneView
 			while (true)
 			{
 				ViewEvent event = this.portale.waitEventoDalClient();
-				this.proxy.fire(event);
+				if (this.getColoreConnessione().equals(this.proxy.getColoreCorrente()))
+				{
+					this.proxy.fire(event);
+				}
+
 			}
 		}
 		catch (InterruptedException e)
