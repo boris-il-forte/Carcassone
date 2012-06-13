@@ -1,6 +1,14 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
 import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+
+import javax.management.BadAttributeValueExpException;
+
+import it.polimi.dei.swknights.carcassonne.Debug;
+import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.NoFirstCardException;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.FactoryTessere;
@@ -18,10 +26,13 @@ public class ContatoreCartografoTest
 {
 	private ModuloModel	model;
 	private ContatoreCartografo	contatorecartografo;
+	public int	completate;
 
 	@Before
 	public void initializeTest() throws Exception
 	{
+		Debug.print("========== Alzate i piedi devo passare e pulire!!! =============");
+		this.completate = 0;
 		this.model = new ModuloModel();
 		this.model.addPlayer();
 		this.contatorecartografo = new ContatoreCartografo(this.model);
@@ -30,24 +41,103 @@ public class ContatoreCartografoTest
 	@Test
 	public void stradaPiccola() throws Exception
 	{
-		boolean arecompletate = false;
-		CostruzioneCoord[] stradella = this.stradella();
-		FactoryTessere factory = new FactoryTessereNormali();
-		factory.acquisisciMazzoDaFile("/Stradella.txt");
-		factory.getTessera(); // TODO correggi
-		for (int i = 0; i < stradella.length; i++)
-		{
-			this.model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
-			this.contatorecartografo.riceviCoordinateTessera(stradella[i].coord);
-			if(this.contatorecartografo.areCostruzioniCompletate())
-			{
-				assertTrue("Male! aspettavo 1 costruzione completata, viste: ",this.contatorecartografo.getCostruzioniCompletate().size() == 1);
-				arecompletate= true;
-			}
-		}
-		
-		assertTrue("Non ci sono costruzioni completate!", arecompletate);
+		FactoryTessere factory = new FactoryTessereNormali();		
+		factory.acquisisciMazzoDaFile("/Stradella.txt");		
+		factory.getTessera(); // TODO correggi nel file o qua, o niente ora va
 
+		this.mettiEConta(factory, new Coordinate(1, 0));
+		this.mettiEConta(factory, new Coordinate(2, 0));
+		this.mettiEConta(factory, new Coordinate(3, 0));
+		this.mettiEConta(factory, new Coordinate(4, 0));
+		this.mettiEConta(factory, new Coordinate(5, 0));
+		
+		Debug.print("completata!");
+		assertTrue("Male! aspettavo 1 costruzione completata, viste: ",
+				this.contatorecartografo.getCostruzioniCompletate().size() == 1);
+		
+		Debug.print(" il numero di costruzioni completate è: " + this.completate);
+
+	}
+	
+	//@Test
+	public void rotonda() throws Exception
+	{
+		FactoryTessere factory = new FactoryTessereNormali();		
+		factory.acquisisciMazzoDaFile("/rotonda.txt");	
+		
+		
+	}
+	
+	@Test
+	public void cittaFiordoropoli() throws Exception
+	{
+		FactoryTessere factory = new FactoryTessereNormali();		
+		factory.acquisisciMazzoDaFile("/Fiordoropoli.txt");		
+		this.mettiEConta(factory, new Coordinate(0, 1)); //ponte
+		this.mettiEConta(factory, new Coordinate(1, 1));  //ovest
+		this.mettiEConta(factory, new Coordinate(2, 1));  //centro
+		this.mettiEConta(factory, new Coordinate(2, 0)); //nord
+		this.mettiEConta(factory, new Coordinate(2, 2));  //sud
+		this.mettiEConta(factory, new Coordinate(3, 1)); //est
+	
+		Debug.print(" il numero di costruzioni completate è: " + this.completate);
+		assertTrue(" dovrebbe essercene una!", this.completate==1);
+	}
+	
+	
+	@Test
+	public void cittaMaledettaBassoAltoSerpe() throws Exception
+	{
+		FactoryTessere factory = new FactoryTessereNormali();		
+		factory.acquisisciMazzoDaFile("/PechinoAltoBassoSerpe.txt");		
+		//dal basso verso l'alto a serpente da sx verso destra
+		
+		//////////////////////////////////////  (0, 0));   c'è già
+		this.mettiEConta(factory, new Coordinate(1, 0)); //croci basso dx
+		this.mettiEConta(factory, new Coordinate(2, 0));  //croce, risalgo da dx
+		
+		this.mettiEConta(factory, new Coordinate(2, -1));  //croce risale da dx
+		this.mettiEConta(factory, new Coordinate(1, -1));  //strada in alto, angolo strada giù dx  
+		this.mettiEConta(factory, new Coordinate(0, -1));  //prato e città sx, risalgo da sx
+		
+		this.mettiEConta(factory, new Coordinate(0, -2));  //prato e città sx
+		this.mettiEConta(factory, new Coordinate(1, -2));  //3 città dx alto basso, prato sx
+		this.mettiEConta(factory, new Coordinate(2, -2));  // città alto e sx strada giu-dx, risalgo dx
+		
+		this.mettiEConta(factory, new Coordinate(2, -3));  //città sotto , strada EO, prato sopra
+		this.mettiEConta(factory, new Coordinate(1, -3));
+		this.mettiEConta(factory, new Coordinate(0, -3));
+		
+		this.mettiEConta(factory, new Coordinate(0, -4));  //città alto, sx   prato basso e dx
+		this.mettiEConta(factory, new Coordinate(1, -4));
+		this.mettiEConta(factory, new Coordinate(2, -4));
+		
+		this.mettiEConta(factory, new Coordinate(2, -5));  // città sotto prato resto
+		this.mettiEConta(factory, new Coordinate(1, -5));
+		this.mettiEConta(factory, new Coordinate(0, -5)); // strada NS, prato resto
+		
+		
+	
+		Debug.print(" il numero di costruzioni completate è: " + this.completate);
+		assertTrue(" dovrebbe essercene una!", this.completate==1);
+	}
+	
+	
+	
+	
+	
+	
+
+	private void mettiEConta(FactoryTessere factory, Coordinate coord) throws Exception
+	{	
+		Tessera tessera = factory.getTessera();
+		Debug.print("" + tessera);
+		this.model.posizionaTessera(tessera, coord);
+		this.contatorecartografo.riceviCoordinateTessera(coord);
+		if(this.contatorecartografo.areCostruzioniCompletate())
+		{
+			this.completate++;
+		}
 	}
 
 	@Test
@@ -151,5 +241,12 @@ public class ContatoreCartografoTest
 		}
 
 	}
+	
+
+	
+	
+	
+	
+	
 
 }
