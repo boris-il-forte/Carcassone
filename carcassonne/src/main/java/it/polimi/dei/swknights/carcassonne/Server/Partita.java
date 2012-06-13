@@ -49,7 +49,7 @@ public class Partita
 
 	}
 
-	Executor					executor;
+	private Executor			executor;
 
 	private ProxyView			view;
 

@@ -50,6 +50,6 @@ public class AbstractConnessioneController implements Controller, Model
 	}
 	
 	
-	protected List<View>  listeners;
+	private List<View>  listeners;
 
 }

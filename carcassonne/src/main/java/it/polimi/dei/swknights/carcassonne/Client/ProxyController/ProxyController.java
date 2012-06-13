@@ -19,11 +19,8 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-/*
- */
-public class ProxyController extends AbstractConnessioneController 
+public class ProxyController extends AbstractConnessioneController
 {
-
 	public ProxyController(Socket socket) throws IOException
 	{
 		this();
@@ -36,14 +33,14 @@ public class ProxyController extends AbstractConnessioneController
 	{
 		this();
 		PortaleRMI portale = this.contattaServerInizia(server);
-		this.connessione = new ConnessioneControllerRMI(portale,this);
+		this.connessione = new ConnessioneControllerRMI(portale, this);
 		this.avviaConnesisone(this.connessione);
 	}
-	
+
 	@Override
-	public void riceviInput(ViewEvent event) 
+	public void riceviInput(ViewEvent event)
 	{
-		for(ProxyControllerHandler handler : this.handlers)
+		for (ProxyControllerHandler handler : this.handlers)
 		{
 			event.accept(handler);
 		}
@@ -73,7 +70,7 @@ public class ProxyController extends AbstractConnessioneController
 
 	private PortaleRMI contattaServerInizia(ServerRMI server) throws RemoteException
 	{
-		return server.connect(); 
+		return server.connect();
 	}
 
 	private void invia(ViewEvent event)
@@ -81,7 +78,7 @@ public class ProxyController extends AbstractConnessioneController
 		this.connessione.invia(this.requestString);
 		this.connessione.invia(event);
 	}
-	
+
 	private void contattaServerInizia(Socket socket)
 	{
 		Debug.print(" sono proxy controller - contattaServer ");
@@ -99,16 +96,19 @@ public class ProxyController extends AbstractConnessioneController
 	private void inizializzaHandlers()
 	{
 		this.handlers = new ArrayList<ProxyControllerHandler>();
-		
+
 		this.handlers.add(new PassHandler(this));
 		this.handlers.add(new PlaceHandler(this));
 		this.handlers.add(new RuotaHandler(this));
 		this.handlers.add(new TileHandler(this));
 	}
 
-	CarcassonneSocketPrinter printer;
+	private CarcassonneSocketPrinter		printer;
+
 	private List<ProxyControllerHandler>	handlers;
+
 	private String							requestString;
+
 	private ConnessioneController			connessione;
 
 }
