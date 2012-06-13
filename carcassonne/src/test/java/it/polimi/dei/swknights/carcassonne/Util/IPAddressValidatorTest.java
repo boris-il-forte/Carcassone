@@ -8,7 +8,7 @@ public class IPAddressValidatorTest
 	public IPAddressValidator ipv = new IPAddressValidator();
 	
 	@Test
-	void testIP()
+	public void testIP() throws Exception
 	{
 		if ( ipv.validate("stringa") ) fail(" no le stringhe! ");
 		if ( ipv.validate("230.440.44.00") ) fail(" no quelli con numeri > 440 ");
