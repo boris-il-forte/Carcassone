@@ -39,15 +39,10 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 			String stringaDaSocket = this.in.nextLine();
 			Debug.print("sono connessione socket numero " + this.getNumeroConnessione());
-				
+
 			if (this.getColoreConnessione().equals(this.proxy.getColoreCorrente()))
 			{
 				this.parsingStringa(stringaDaSocket);
-			}
-			else
-			{
-				Debug.print(" connessione view socket - mio colore = " + this.getColoreConnessione()
-						+ " e' turno del  " + this.proxy.getColoreCorrente());
 			}
 		}
 
@@ -75,8 +70,8 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	private void parsingStringa(String line)
 	{
-		Debug.print( " parsing - connessione view socket: ho ricevuto " + line);
-		
+		Debug.print(" parsing - connessione view socket: ho ricevuto " + line);
+
 		if (line.contains(",") && line.contains(":"))
 		{
 			if (line.matches("place:\\-?\\d+\\,\\-?\\d+")) // es place: 2,3
@@ -99,7 +94,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 					String[] partiTile = line.split(":");
 					String side = partiTile[SIDE];
 					PuntoCardinale punto = TokenCardinale.cardinalPointOf(side);
-					this.proxy.fire(new TileEvent(this,this.getColoreConnessione(), punto));
+					this.proxy.fire(new TileEvent(this, this.getColoreConnessione(), punto));
 				}
 			}
 			else
@@ -132,22 +127,21 @@ public class ConnessioneViewSocket extends ConnessioneView
 	private static final int			SIDE		= 1;
 
 	private static final int			PLACE_COORD	= 1;
-	
-	private enum TokenCardinale
-	{
-		N(PuntoCardinale.nord),S(PuntoCardinale.sud),W(PuntoCardinale.ovest),E(PuntoCardinale.est);
-		
+
+	private enum TokenCardinale {
+		N(PuntoCardinale.nord), S(PuntoCardinale.sud), W(PuntoCardinale.ovest), E(PuntoCardinale.est);
+
 		private TokenCardinale(PuntoCardinale punto)
 		{
 			this.punto = punto;
 		}
-		
+
 		public static PuntoCardinale cardinalPointOf(String punto)
 		{
 			return TokenCardinale.valueOf(punto).punto;
 		}
-		
-		private PuntoCardinale punto;
+
+		private PuntoCardinale	punto;
 	}
 
 }

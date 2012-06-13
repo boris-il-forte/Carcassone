@@ -67,8 +67,11 @@ public class Gui extends ModuloView
 	@Override
 	public void notificaMossaNonValida()
 	{
-		JOptionPane.showMessageDialog(this.finestra, "Mossa non consentita!", "Carcassonne - swKnights",
-				JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", DIM_TESSERE));
+		if (this.turnoCorretto())
+		{
+			JOptionPane.showMessageDialog(this.finestra, "Mossa non consentita!", "Carcassonne - swKnights",
+					JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", DIM_TESSERE));
+		}
 	}
 
 	@Override
