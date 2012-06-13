@@ -18,7 +18,7 @@ public class IniziaCliOffline extends Inizio
 		ModuloModel model = new ModuloModel();
 		Controller controller = new ModuloController(model);
 
-		this.printer.println("cli!!");
+		this.printer.println("cli - modalitàù offline");
 		View view = new Cli();
 
 		view.addListener(controller);

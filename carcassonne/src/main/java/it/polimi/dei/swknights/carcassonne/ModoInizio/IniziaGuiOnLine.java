@@ -4,62 +4,223 @@ import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocket;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;
 import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.View;
+import it.polimi.dei.swknights.carcassonne.Server.ServerRMI;
 import it.polimi.dei.swknights.carcassonne.Util.IPAddressValidator;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class IniziaGuiOnLine extends Inizio
 {
 
-		@Override
-		public void inizia()
+	@Override
+	public void inizia()
+	{
+		try
 		{
+			ProxyController controller;
+			View view = new Gui();
+			this.printer.println("gui on line");
+			Risposta risposte = this.askConnessione();
+			String ip = risposte.getIp();
+			if (risposte.vuoleRMI())
+			{
+				ServerRMI server = (ServerRMI) Naming.lookup("//"+ip+"/ServerRMI");
+				controller = new ProxyController(server);
+			}
+			else
+			{
+				int porta = risposte.getPort();
+				Socket socket = CarcassonneSocket.dammiSocket(ip, porta);
+				if(socket == null)
+				{
+					throw new IOException();
+				}
+				controller = new ProxyController(socket);
+			}
+
+			controller.addListener(view);
+			view.addListener(controller);
+
+			this.superStarDestroyer.execute(view);
+			this.superStarDestroyer.execute(controller);
+		}
+		catch (IOException e)
+		{
+			JOptionPane.showMessageDialog(null, "Server non trovato", "Carcassonne - Errore!",JOptionPane.ERROR_MESSAGE);
+		}
+		catch (InterruptedException e)
+		{
+		}
+		catch (NotBoundException e)
+		{
+		}
+	}
+
+	private Risposta askConnessione() throws InterruptedException
+	{
+		JCarcassonneDialogo inizioGrafico = new JCarcassonneDialogo();
+		synchronized (this)
+		{
+			while (!inizioGrafico.risposto())
+			{
+				this.wait();
+			}
+		}
+		return inizioGrafico;
+	}
+
+	private interface Risposta
+	{
+		String getIp();
+
+		boolean vuoleRMI();
+
+		int getPort();
+	}
+
+	private class JCarcassonneDialogo extends JDialog implements ActionListener, Risposta
+	{
+
+		public JCarcassonneDialogo()
+		{
+			final int altezza = 300, larghezza = 400;
+			this.setTitle("Carcassonne Online Gui Init");
+			this.setPreferredSize(new Dimension(larghezza, altezza));
+			this.setMinimumSize(new Dimension(larghezza, altezza));
+			this.getContentPane().setLayout(new BorderLayout());
+			this.box = Box.createVerticalBox();
+			this.creaLateraleVuoto();
+			this.getContentPane().add(this.box, BorderLayout.CENTER);
+			this.creaLabel();
+			this.creaIpEntry();
+			this.creaPortEntry();
+			this.creaRMICheckBox();
+			this.creaOk();
+			this.setVisible(true);
+		}
+
+		private void creaLateraleVuoto()
+		{
+			JPanel panel = new JPanel();
+			panel.setPreferredSize(new Dimension(25,25));
+			this.add(panel,BorderLayout.WEST);
+		}
+
+		public synchronized boolean risposto()
+		{
+			return this.risposto;
+		}
+
+		public String getIp()
+		{
+			return this.ipEntry.getText();
+		}
+
+		public int getPort()
+		{
+			return Integer.parseInt(this.portEntry.getText());
+		}
+
+		public boolean vuoleRMI()
+		{
+			return this.rmiCheck.isSelected();
+		}
+
+		public void actionPerformed(ActionEvent e)
+		{
+			final int maxPorta = 65536;
+			IPAddressValidator ipValidator = new IPAddressValidator();
+			int numeroPorta = Integer.parseInt(this.portEntry.getText());
 			try
 			{
-				this.printer.println("gui on line");
-				String ip = this.chiediIndirizzoIP();
-				View view = new Gui(); // 1)
-				Socket socket = CarcassonneSocket.dammiSocket(ip, 1984); //TODO: correggere!
-				ProxyController controller;
-
-				
-				controller = new ProxyController(socket);
-				controller.addListener(view);
-				// 2
-				view.addListener(controller);
-
-				
-				this.superStarDestroyer.execute(view); // 4)
-				this.superStarDestroyer.execute(controller);
+				if (e.getSource() == this.ok && ipValidator.validate(this.getIp()) && numeroPorta < maxPorta)
+				{
+					synchronized (IniziaGuiOnLine.this)
+					{
+						IniziaGuiOnLine.this.notifyAll();
+						this.risposto = true;
+					}
+					this.dispose();
+				}
 			}
-			catch (IOException e)
+			catch(NumberFormatException exc)
 			{
-				e.printStackTrace();
 			}
 		}
 
-		private String chiediIndirizzoIP()
+		private void creaLabel()
 		{
-			IPAddressValidator ipValidator = new IPAddressValidator();
-			String ip = null;
-			do
-			{
-				Scanner scanner = new Scanner(System.in);
-				this.printer.println("Inserisci indirizzo ip del server: ");
-				this.printer.flush();
-				try
-				{
-					ip = scanner.nextLine();
-				}
-				catch (InputMismatchException e)
-				{
-					this.printer.println("Input non valido");
-				}
-			} while (!(ipValidator.validate(ip) || ip.equals("")));
-			return (ip.equals(""))? "127.0.0.1" : ip;
+			JLabel label = new JLabel("Inserisci i dati della connessione");
+			this.getContentPane().add(label, BorderLayout.NORTH);
 		}
+
+		private final Dimension	size	=  new Dimension(300, 20);
+
+
+		private void creaIpEntry()
+		{
+			this.box.add(Box.createVerticalGlue());
+			JLabel label = new JLabel("Indirizzo Ip");
+			this.box.add(label);
+			this.ipEntry = new JTextField("127.0.0.1");
+			this.ipEntry.setMaximumSize(this.size);
+			this.box.add(this.ipEntry);
+		}
+
+		private void creaPortEntry()
+		{
+			this.box.add(Box.createVerticalGlue());
+			JLabel label = new JLabel("Numero di porta");
+			this.box.add(label);
+			this.portEntry = new JTextField("1984");
+			this.portEntry.setMaximumSize(this.size);
+			this.box.add(this.portEntry);
+		}
+
+		private void creaRMICheckBox()
+		{
+			this.box.add(Box.createVerticalGlue());
+			this.rmiCheck = new JCheckBox("Usa RMI");
+			this.box.add(this.rmiCheck);
+		}
+
+		private void creaOk()
+		{
+			this.ok = new JButton("Ok");
+			this.getContentPane().add(this.ok, BorderLayout.SOUTH);
+			this.ok.addActionListener(this);
+		}
+
+		private JTextField			ipEntry;
+
+		private Box					box;
+
+		private JTextField			portEntry;
+
+		private JButton				ok;
+
+		private JCheckBox			rmiCheck;
+
+		private boolean				risposto			= false;
+
+		private static final long	serialVersionUID	= 1650136031667534413L;
 
 	}
+
+}
