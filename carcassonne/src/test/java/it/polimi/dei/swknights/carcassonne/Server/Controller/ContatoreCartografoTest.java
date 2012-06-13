@@ -1,14 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
 import static org.junit.Assert.assertTrue;
-
-import java.io.IOException;
-
-import javax.management.BadAttributeValueExpException;
-
 import it.polimi.dei.swknights.carcassonne.Debug;
-import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
-import it.polimi.dei.swknights.carcassonne.Exceptions.NoFirstCardException;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.FactoryTessere;
