@@ -18,6 +18,8 @@ import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
+import it.polimi.dei.swknights.carcassonne.Util.PunteggiSegnalini;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
@@ -69,6 +71,15 @@ public class DatiPartitaTest
 		}
 	}
 
+	
+	public void addddd()
+	{
+		DatiPartita dati = new DatiPartita();
+		Punteggi punti = new Punteggi();
+		dati.aggiornaPunteggioGiocatori(punti);
+		
+	}
+	
 	/*
 	 * java.lang.AssertionError: l'errore finiti color disponibili dovrebbe
 	 * scattare dopo il tentativo di aggiunta del quinto (5°) i = 5
