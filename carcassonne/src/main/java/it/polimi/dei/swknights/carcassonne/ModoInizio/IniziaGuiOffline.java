@@ -69,6 +69,7 @@ public class IniziaGuiOffline extends Inizio
 		{
 			final int altezza = 150, larghezza = 300;
 			this.setPreferredSize(new Dimension(larghezza, altezza));
+			this.setTitle("Carcassonne offLine Gui Init");
 			this.setMinimumSize(new Dimension(larghezza, altezza));
 			this.getContentPane().setLayout(new BorderLayout());
 			this.creaLabel();

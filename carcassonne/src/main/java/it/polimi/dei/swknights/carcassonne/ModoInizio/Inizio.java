@@ -8,8 +8,8 @@ public abstract class Inizio
 {
 	public abstract void inizia();
 
-	Executor	superStarDestroyer	= Executors.newCachedThreadPool();
+	protected Executor		superStarDestroyer	= Executors.newCachedThreadPool();
 
-	PrintWriter	printer				= new PrintWriter(System.out);
+	protected PrintWriter	printer				= new PrintWriter(System.out);
 
 }
