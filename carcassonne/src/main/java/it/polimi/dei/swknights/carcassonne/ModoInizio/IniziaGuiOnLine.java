@@ -99,6 +99,7 @@ public class IniziaGuiOnLine extends Inizio
 
 		public JCarcassonneDialogo()
 		{
+			this.risposto = false;
 			final int altezza = 300, larghezza = 400;
 			this.setTitle("Carcassonne Online Gui Init");
 			this.setPreferredSize(new Dimension(larghezza, altezza));
@@ -122,9 +123,12 @@ public class IniziaGuiOnLine extends Inizio
 			this.add(panel,BorderLayout.WEST);
 		}
 
-		public synchronized boolean risposto()
+		public boolean risposto()
 		{
-			return this.risposto;
+			synchronized(IniziaGuiOnLine.this)
+			{
+				return this.risposto;
+			}
 		}
 
 		public String getIp()
@@ -146,9 +150,9 @@ public class IniziaGuiOnLine extends Inizio
 		{
 			final int maxPorta = 65536;
 			IPAddressValidator ipValidator = new IPAddressValidator();
-			int numeroPorta = Integer.parseInt(this.portEntry.getText());
 			try
 			{
+				int numeroPorta = Integer.parseInt(this.portEntry.getText());
 				if (e.getSource() == this.ok && ipValidator.validate(this.getIp()) && numeroPorta < maxPorta)
 				{
 					synchronized (IniziaGuiOnLine.this)
@@ -217,7 +221,7 @@ public class IniziaGuiOnLine extends Inizio
 
 		private JCheckBox			rmiCheck;
 
-		private boolean				risposto			= false;
+		private boolean				risposto;
 
 		private static final long	serialVersionUID	= 1650136031667534413L;
 
