@@ -65,48 +65,57 @@ public class ModuloControllerTestSecond
 	private TestModel			model;
 	private TestView			view;
 
+	
 	@Test
 	public void testF() throws Exception
 	{
 		this.inizializza(this.stradella());
 		Executor superStarDestroyer = Executors.newCachedThreadPool();
 		superStarDestroyer.execute(this.controller);
-
+		this.view.aspettaArrivoEvento();
+		this.view.aspettaArrivoEvento();
+		this.view.aspettaArrivoEvento();
+	
+		this.mettiTesseraEAggiona(1, 0);
+		
+		this.mettiTesseraEAggiona(2, 0);
+		
 		this.mettiTesseraEAggiona(3, 0);
-		this.view.aspettaArrivoEvento();
-		this.mettiTesseraEAggiona(4, 0);
-		this.view.aspettaArrivoEvento();
-		// this.mettiTesseraEAggiona(4, 0);
+	
+		this.mettiTesseraEAggiona(4, 0);		
+		
 		Debug.print(" numero mosse non valide : " + this.view.mossaNonValida);
 		this.cliDebug.aggiornaMappa();
+	
+		
+		assertTrue("Ha trovato più costruzioni o meno di quelle effettive:  " + " pensavo di trovarne " + 1
+				+ " invece sono " + this.view.costruzioniCompletate + this.view.costruzioniCompletate,
+				this.view.costruzioniCompletate == 1);
+		
 	}
 
 	private void mettiTesseraEAggiona(int x, int y)
 	{
-		try
-		{
+	
 			Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			Debug.print("\n\n il mazzo di moggi ha dentro: " + this.model.mazzoMoggi.size()
 					+ " carte-tessere");
-			int numTessere = this.model.mazzoMoggi.size();
+		
 			Debug.print(" metto tessera corrente in (" + x + " . " + y + ")");
 
 			Debug.print(" tessera corrente = " + this.model.getTesseraCorrente());
 
 			this.view.testCostruzioneCompletata = true;
 			this.view.fire(new PlaceEvent(this, new Coordinate(x, y)));
-			Thread.sleep(100);
+			this.view.aspettaArrivoEvento();
 			this.view.fire(new PassEvent(this));
-			Thread.sleep(100);
+			this.view.aspettaArrivoEvento();
 
 			// this.cliDebug.aggiornaMappa();
 			Debug.print("\n\n il mazzo di moggi ha dentro: " + this.model.mazzoMoggi.size()
 					+ " carte-tessere");
 			Debug.print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		}
-		catch (InterruptedException e)
-		{
-		}
+
 
 	}
 
@@ -358,23 +367,25 @@ class TestView extends AbstractView
 
 	}
 
-	private boolean	arrivato	= true;
+	int semaforo = 0;
 
 	public synchronized void aspettaArrivoEvento()
 	{
-		while (!arrivato)
+		
+		while (this.semaforo==0)
 		{
 			try
 			{
 				this.wait();
-				this.arrivato = false;
+				
 			}
 			catch (InterruptedException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		
+		this.semaforo --;
 	}
 
 	private synchronized void notificaArrivo()
@@ -382,8 +393,10 @@ class TestView extends AbstractView
 
 		synchronized (this)
 		{
-			this.arrivato = true;
+			this.semaforo++;
 			this.notifyAll();
+			
+			Debug.print("################# Notifica arrivo evento ! ");
 		}
 	}
 
