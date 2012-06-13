@@ -174,24 +174,20 @@ public class Lati implements Cloneable, Serializable
 
 	private static class DatiSegnalino implements Cloneable, Serializable
 	{
-		public Segnalino		segnalino;
-
-		public PuntoCardinale	puntoCardinale;
-
 		@Override
 		public DatiSegnalino clone()
 		{
 			DatiSegnalino copia;
 			try
 			{
-
+		
 				copia = (DatiSegnalino) super.clone();
 				if (segnalino != null)
 				{
 					Color colore = this.segnalino.getColore();
 					copia.segnalino = new Segnalino(colore);
 				}
-
+		
 				return copia;
 			}
 			catch (CloneNotSupportedException e)
@@ -200,6 +196,10 @@ public class Lati implements Cloneable, Serializable
 				return null;
 			}
 		}
+		
+		private Segnalino		segnalino;
+
+		private PuntoCardinale	puntoCardinale;
 		
 		private static final long	serialVersionUID	= -9116381706795851155L;
 	}

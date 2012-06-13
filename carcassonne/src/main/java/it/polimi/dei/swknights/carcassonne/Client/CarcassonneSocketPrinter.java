@@ -5,8 +5,6 @@ import java.io.PrintWriter;
 
 public class CarcassonneSocketPrinter
 {
-	PrintWriter printer ;
-	
 	public CarcassonneSocketPrinter(OutputStream out)
 	{
 		printer = new PrintWriter(out);
@@ -17,6 +15,6 @@ public class CarcassonneSocketPrinter
 		this.printer.println(s);
 		this.printer.flush();
 	}
-	
 
+	private PrintWriter printer ;
 }
