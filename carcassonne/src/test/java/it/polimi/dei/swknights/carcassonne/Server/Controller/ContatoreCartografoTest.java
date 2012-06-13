@@ -1,6 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografo;
+import static org.junit.Assert.assertTrue;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Lati;
@@ -28,15 +28,21 @@ public class ContatoreCartografoTest
 	@Test
 	public void stradaPiccola() throws Exception
 	{
-
+		boolean arecompletate = false;
 		CostruzioneCoord[] stradella = this.stradella();
 
 		for (int i = 0; i < stradella.length; i++)
 		{
 			this.model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
-			System.out.println(" Tessera Numero: " + i);
 			this.contatorecartografo.riceviCoordinateTessera(stradella[i].coord);
+			if(this.contatorecartografo.areCostruzioniCompletate())
+			{
+				assertTrue("Male! aspettavo 1 costruzione completata, viste: ",this.contatorecartografo.getCostruzioniCompletate().size() == 1);
+				arecompletate= true;
+			}
 		}
+		
+		assertTrue("Non ci sono costruzioni completate!", arecompletate);
 
 	}
 
