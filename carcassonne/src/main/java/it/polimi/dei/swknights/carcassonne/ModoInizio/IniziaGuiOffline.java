@@ -40,8 +40,8 @@ public class IniziaGuiOffline extends Inizio
 			{
 				model.addPlayer();
 			}
-			this.superStarDestroyer.execute(view);
-			this.superStarDestroyer.execute(controller);
+			this.execute(view);
+			this.execute(controller);
 		}
 		catch (InterruptedException e)
 		{

@@ -18,7 +18,7 @@ public class IniziaCliOffline extends Inizio
 		ModuloModel model = new ModuloModel();
 		Controller controller = new ModuloController(model);
 
-		this.printer.println("cli - modalitàù offline");
+		this.print("cli - modalità offline");
 		View view = new Cli();
 
 		view.addListener(controller);
@@ -28,8 +28,8 @@ public class IniziaCliOffline extends Inizio
 		{
 			model.addPlayer();
 		}
-		this.superStarDestroyer.execute(view);
-		this.superStarDestroyer.execute(controller);
+		this.execute(view);
+		this.execute(controller);
 	}
 
 	private int setGiocatori()
@@ -38,18 +38,16 @@ public class IniziaCliOffline extends Inizio
 		do
 		{
 			Scanner scanner = new Scanner(System.in);
-			this.printer.println("Inserisci numero giocatori (max 5, min 2)");
-			this.printer.flush();
+			this.print("Inserisci numero giocatori (max 5, min 2)");
 			try
 			{
 				numeroGiocatori = scanner.nextInt();
 			}
 			catch (InputMismatchException e)
 			{
-				this.printer.println("Input non valido");
+				this.print("Input non valido");
 			}
 		} while (numeroGiocatori < MIN_PLAYER || numeroGiocatori > MAX_PLAYER);
-		this.printer.println(numeroGiocatori);
 		return numeroGiocatori;
 	}
 
