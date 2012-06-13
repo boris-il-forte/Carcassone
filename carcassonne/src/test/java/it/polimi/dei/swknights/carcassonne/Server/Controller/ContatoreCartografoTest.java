@@ -3,6 +3,8 @@ package it.polimi.dei.swknights.carcassonne.Server.Controller;
 import static org.junit.Assert.assertTrue;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.FactoryTessere;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.FactoryTessereNormali;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Lati;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Link;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
@@ -30,7 +32,9 @@ public class ContatoreCartografoTest
 	{
 		boolean arecompletate = false;
 		CostruzioneCoord[] stradella = this.stradella();
-
+		FactoryTessere factory = new FactoryTessereNormali();
+		factory.acquisisciMazzoDaFile("/Stradella.txt");
+		factory.getTessera(); // TODO correggi
 		for (int i = 0; i < stradella.length; i++)
 		{
 			this.model.posizionaTessera(stradella[i].tessera, stradella[i].coord);
