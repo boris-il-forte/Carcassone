@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.007" errors="3" skipped="0" tests="3" name="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest">
+<testsuite failures="0" time="0.111" errors="1" skipped="0" tests="3" name="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64"/>
@@ -19,7 +19,7 @@
     <property name="basedir" value="/home/dave/java/Carcassonne"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="surefire.real.class.path" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter4155248317130410851.jar"/>
+    <property name="surefire.real.class.path" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter6613501693080463932.jar"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
@@ -28,21 +28,22 @@
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="surefire.test.class.path" value="/home/dave/java/Carcassonne/target/test-classes:/home/dave/java/Carcassonne/target/classes:/home/dave/.m2/repository/junit/junit/4.8.1/junit-4.8.1.jar:"/>
+    <property name="noipv6" value="-Djava.net.preferIPv4Stack=true"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="50.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="3.2.0-2-amd64"/>
+    <property name="os.version" value="3.0.0-1-amd64"/>
     <property name="user.home" value="/home/dave"/>
     <property name="user.timezone" value=""/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
-    <property name="file.encoding" value="UTF-8"/>
     <property name="java.specification.version" value="1.6"/>
+    <property name="file.encoding" value="UTF-8"/>
     <property name="user.name" value="dave"/>
     <property name="java.class.path" value="/home/dave/java/Carcassonne/target/test-classes:/home/dave/java/Carcassonne/target/classes:/home/dave/.m2/repository/junit/junit/4.8.1/junit-4.8.1.jar:"/>
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/usr/lib/jvm/java-6-openjdk-amd64/jre"/>
-    <property name="sun.java.command" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter4155248317130410851.jar /home/dave/java/Carcassonne/target/surefire/surefire3773554044449198320tmp /home/dave/java/Carcassonne/target/surefire/surefire2316805497117376564tmp"/>
+    <property name="sun.java.command" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter6613501693080463932.jar /home/dave/java/Carcassonne/target/surefire/surefire8320369539177307054tmp /home/dave/java/Carcassonne/target/surefire/surefire6680453000967791771tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="it"/>
     <property name="java.vm.info" value="mixed mode"/>
@@ -57,51 +58,20 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.001" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="testCostruzioniCorrette">
-    <error message="Unresolved compilation problems: 
-	The import it.polimi.dei.swknights.carcassonne.Util.Coordinate cannot be resolved
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-" type="java.lang.Error">java.lang.Error: Unresolved compilation problems: 
-	The import it.polimi.dei.swknights.carcassonne.Util.Coordinate cannot be resolved
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-
-	at it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest.&lt;init&gt;(ContatoreCartografoTest.java:10)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
-	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:202)
-	at org.junit.runners.BlockJUnit4ClassRunner$1.runReflectiveCall(BlockJUnit4ClassRunner.java:251)
+  <testcase time="0.05" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="stradaPiccola">
+    <error type="java.lang.NullPointerException">java.lang.NullPointerException
+	at it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.FactoryTessereNormali.estraiDescrizioniTessere(FactoryTessereNormali.java:146)
+	at it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.FactoryTessereNormali.acquisisciMazzoDaFile(FactoryTessereNormali.java:41)
+	at it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest.stradaPiccola(ContatoreCartografoTest.java:36)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:44)
 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:248)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:41)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)
 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
 	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
@@ -123,142 +93,10 @@
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcess(SurefireStarter.java:87)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69)
 </error>
-    <system-out>@SLTests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.006 sec &lt;&lt;&lt; FAILURE!
+    <system-out>@SLTests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.068 sec
 @SLRunning it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest
 </system-out>
   </testcase>
-  <testcase time="0.001" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="testCostruzioniScorrette">
-    <error message="Unresolved compilation problems: 
-	The import it.polimi.dei.swknights.carcassonne.Util.Coordinate cannot be resolved
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-" type="java.lang.Error">java.lang.Error: Unresolved compilation problems: 
-	The import it.polimi.dei.swknights.carcassonne.Util.Coordinate cannot be resolved
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-
-	at it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest.&lt;init&gt;(ContatoreCartografoTest.java:10)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
-	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:202)
-	at org.junit.runners.BlockJUnit4ClassRunner$1.runReflectiveCall(BlockJUnit4ClassRunner.java:251)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:248)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:35)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:146)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:97)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:616)
-	at org.apache.maven.surefire.booter.ProviderFactory$ClassLoaderProxy.invoke(ProviderFactory.java:103)
-	at $Proxy0.invoke(Unknown Source)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:145)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcess(SurefireStarter.java:87)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69)
-</error>
-  </testcase>
-  <testcase time="0" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="stradaPiccola">
-    <error message="Unresolved compilation problems: 
-	The import it.polimi.dei.swknights.carcassonne.Util.Coordinate cannot be resolved
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-" type="java.lang.Error">java.lang.Error: Unresolved compilation problems: 
-	The import it.polimi.dei.swknights.carcassonne.Util.Coordinate cannot be resolved
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-	Coordinate cannot be resolved to a type
-
-	at it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest.&lt;init&gt;(ContatoreCartografoTest.java:10)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:57)
-	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.lang.reflect.Constructor.newInstance(Constructor.java:532)
-	at org.junit.runners.BlockJUnit4ClassRunner.createTest(BlockJUnit4ClassRunner.java:202)
-	at org.junit.runners.BlockJUnit4ClassRunner$1.runReflectiveCall(BlockJUnit4ClassRunner.java:251)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
-	at org.junit.runners.BlockJUnit4ClassRunner.methodBlock(BlockJUnit4ClassRunner.java:248)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:76)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:193)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:52)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:191)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:42)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:184)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:236)
-	at org.apache.maven.surefire.junit4.JUnit4TestSet.execute(JUnit4TestSet.java:35)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:146)
-	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:97)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:616)
-	at org.apache.maven.surefire.booter.ProviderFactory$ClassLoaderProxy.invoke(ProviderFactory.java:103)
-	at $Proxy0.invoke(Unknown Source)
-	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:145)
-	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcess(SurefireStarter.java:87)
-	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69)
-</error>
-  </testcase>
+  <testcase time="0.019" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="testCostruzioniCorrette"/>
+  <testcase time="0.015" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="testCostruzioniScorrette"/>
 </testsuite>

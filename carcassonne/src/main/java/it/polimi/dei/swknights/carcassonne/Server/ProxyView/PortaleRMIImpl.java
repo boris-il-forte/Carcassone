@@ -6,13 +6,15 @@ import it.polimi.dei.swknights.carcassonne.Server.RMI.PortaleRMI;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class PortaleRMIImpl extends UnicastRemoteObject implements PortaleRMI
 {
 	public PortaleRMIImpl() throws RemoteException
 	{
 		this.clientEvent = null;
-		this.serverEvent = null;
+		this.serverEvent = new LinkedList<ControllerEvent>();
 	}
 
 	public synchronized void passaEvento(ViewEvent event) throws RemoteException
@@ -25,13 +27,11 @@ public class PortaleRMIImpl extends UnicastRemoteObject implements PortaleRMI
 	{
 		try
 		{
-			while (this.serverEvent == null)
+			while (this.serverEvent.size() == 0)
 			{
 				this.wait();
 			}
-			ControllerEvent event = this.serverEvent;
-			this.serverEvent = null;
-			return event;
+			return this.serverEvent.poll();
 		}
 		catch (InterruptedException e)
 		{
@@ -41,11 +41,10 @@ public class PortaleRMIImpl extends UnicastRemoteObject implements PortaleRMI
 
 	protected synchronized void setServerEvent(ControllerEvent event)
 	{
-		this.serverEvent = event;
+		this.serverEvent.add(event);
 		this.notifyAll();
 	}
-	
-	
+
 	protected synchronized ViewEvent waitEventoDalClient() throws InterruptedException
 	{
 		while (this.clientEvent == null)
@@ -57,9 +56,9 @@ public class PortaleRMIImpl extends UnicastRemoteObject implements PortaleRMI
 		return event;
 	}
 
-	private ViewEvent			clientEvent;
+	private ViewEvent				clientEvent;
 
-	private ControllerEvent		serverEvent;
+	private Queue<ControllerEvent>	serverEvent;
 
-	private static final long	serialVersionUID	= 5746659670043537383L;
+	private static final long		serialVersionUID	= 5746659670043537383L;
 }
