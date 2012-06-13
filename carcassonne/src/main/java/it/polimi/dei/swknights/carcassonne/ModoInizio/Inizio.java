@@ -7,9 +7,25 @@ import java.util.concurrent.Executors;
 public abstract class Inizio
 {
 	public abstract void inizia();
+	
+	protected void execute(Runnable aWing)
+	{
+		this.superStarDestroyer.execute(aWing);
+	}
+	
+	protected void print(String string)
+	{
+		this.printer.println(string);
+		this.printer.flush();
+	}
+	
+	protected void flush()
+	{
+		this.printer.flush();
+	}
 
-	protected Executor		superStarDestroyer	= Executors.newCachedThreadPool();
+	private Executor		superStarDestroyer	= Executors.newCachedThreadPool();
 
-	protected PrintWriter	printer				= new PrintWriter(System.out);
+	private PrintWriter	printer				= new PrintWriter(System.out);
 
 }

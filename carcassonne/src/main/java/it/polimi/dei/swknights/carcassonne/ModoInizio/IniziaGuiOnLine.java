@@ -35,7 +35,7 @@ public class IniziaGuiOnLine extends Inizio
 		{
 			ProxyController controller;
 			View view = new Gui();
-			this.printer.println("gui on line");
+			this.print("gui on line");
 			Risposta risposte = this.askConnessione();
 			String ip = risposte.getIp();
 			if (risposte.vuoleRMI())
@@ -57,8 +57,8 @@ public class IniziaGuiOnLine extends Inizio
 			controller.addListener(view);
 			view.addListener(controller);
 
-			this.superStarDestroyer.execute(view);
-			this.superStarDestroyer.execute(controller);
+			this.execute(view);
+			this.execute(controller);
 		}
 		catch (IOException e)
 		{

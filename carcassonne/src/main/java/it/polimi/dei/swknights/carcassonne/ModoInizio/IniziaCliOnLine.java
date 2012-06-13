@@ -25,7 +25,7 @@ public class IniziaCliOnLine extends Inizio
 			ProxyController controller;
 			View view;
 			
-			this.printer.println("cli on line");
+			this.print("cli on line");
 			String ip = this.chiediIndirizzoIP();
 			if(this.vuoleRMI())
 			{
@@ -44,35 +44,31 @@ public class IniziaCliOnLine extends Inizio
 			controller.addListener(view);
 			view.addListener(controller);
 
-			this.superStarDestroyer.execute(view);
-			this.superStarDestroyer.execute(controller);
+			this.execute(view);
+			this.execute(controller);
 		}
 		catch (IOException e)
 		{
-			this.printer.println("Server Unreachable");
-			this.printer.flush();
+			this.print("Server Unreachable");
 			System.exit(0);
 		}
 		catch (NotBoundException e)
 		{
-			this.printer.println("Server Unreachable - RMI error");
-			this.printer.flush();
-			e.printStackTrace();
+			this.print("Server Unreachable - RMI error");
 			System.exit(0);
 		}
 	}
 
 	private boolean vuoleRMI()
 	{
-		this.printer.flush();
+		this.flush();
 		Scanner scanner = new Scanner(System.in);
 		String tecnologia;
 		boolean vuoleRMI = false;
 		
 		do
 		{
-			this.printer.println("Che tecnologia vuoi usare?");
-			this.printer.flush();
+			this.print("Che tecnologia vuoi usare?");
 			
 			tecnologia = scanner.nextLine();
 			if(tecnologia.equalsIgnoreCase("RMI") || tecnologia.equalsIgnoreCase(""))
@@ -102,16 +98,14 @@ public class IniziaCliOnLine extends Inizio
 		String ip = null;
 		do
 		{
-			this.printer.println("Inserisci indirizzo ip del server: ");
-			this.printer.flush();
+			this.print("Inserisci indirizzo ip del server: ");
 			try
 			{
 				ip = scanner.nextLine();
 			}
 			catch (InputMismatchException e)
 			{
-				this.printer.println("Input non valido");
-				this.printer.flush();
+				this.print("Input non valido");
 			}
 		} while (!(ipValidator.validate(ip) || ip.equals("")));
 		return (ip.equals("")) ? "127.0.0.1" : ip;
@@ -124,8 +118,7 @@ public class IniziaCliOnLine extends Inizio
 		String input = "nulla arrivato";
 		while (risposta == 0)
 		{
-			this.printer.print("Inserisci numero di porta");
-			this.printer.flush();
+			this.print("Inserisci numero di porta");
 			try
 			{
 				input = scanner.nextLine();
