@@ -195,7 +195,6 @@ public final class DatiPartita
 		this.pilaTessere = new ArrayList<Tessera>();
 		for (FactoryTessere factory : this.listFactoryTessere)
 		{
-			// TODO cambiare modo di assegnare percorso...
 			factory.acquisisciMazzoDaFile("/Carcassonne.txt");
 			while (factory.tesseraDisponibile())
 			{

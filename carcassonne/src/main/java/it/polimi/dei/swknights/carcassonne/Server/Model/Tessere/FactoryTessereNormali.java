@@ -36,8 +36,6 @@ public class FactoryTessereNormali extends FactoryTessere
 	public void acquisisciMazzoDaFile(String pathFileTessere)
 	{
 
-		// scrive in this.descrizioneTessere
-
 		try
 		{
 			this.estraiDescrizioniTessere(pathFileTessere);
@@ -60,20 +58,28 @@ public class FactoryTessereNormali extends FactoryTessere
 		Tessera tesseraMagic = null;
 		for (String descrizione : this.descrizioniTessere)
 		{
-			Tessera tessera = this.tesseraDaDescrzione(descrizione);
-
-			if (tessera.lati.getTipoElementoInDirezione(PuntoCardinale.nord) == Elemento.prato
-					&& tessera.lati.getTipoElementoInDirezione(PuntoCardinale.sud) == Elemento.citta
-					&& tessera.lati.getTipoElementoInDirezione(PuntoCardinale.ovest) == Elemento.strada
-					&& tessera.lati.getTipoElementoInDirezione(PuntoCardinale.est) == Elemento.strada)
+			Tessera tessera;
+			try
 			{
-				tesseraMagic = this.tesseraDaDescrzione(descrizione);
+				tessera = this.tesseraDaDescrzione(descrizione);
+				if (this.isMagic(tessera) && tesseraMagic == null)
+				{
+					tesseraMagic = tessera;
+				}
+				else
+				{
+					this.aggiungiAlMazzo(tessera);
+				}
 			}
-			else
+			catch (IllegalArgumentException e)
 			{
-				this.aggiungiAlMazzo(tessera);
 			}
-
+			catch (InvalidStringToParseException e)
+			{
+			}
+			catch (BadAttributeValueExpException e)
+			{
+			}
 		}
 
 		if (tesseraMagic == null) { throw new NoFirstCardException(
@@ -83,32 +89,22 @@ public class FactoryTessereNormali extends FactoryTessere
 
 	}
 
-	private Tessera tesseraDaDescrzione(String descrizione)
+	private boolean isMagic(Tessera tessera)
 	{
-		try
-		{
-			Parser parser = new Parser(descrizione);
-			Lati lati = this.creaElementi(parser);
-			Link link = this.creaLinks(parser);
-			return new TesseraNormale(lati, link);
-		}
-		catch (InvalidStringToParseException e1)
-		{
-			e1.printStackTrace();
-			return null; // TODO: propago eccezione?
-		}
-		catch (IllegalArgumentException e)
-		{
-			e.printStackTrace(); // TODO propago eccezione?
-			return null;
-		}
-		catch (BadAttributeValueExpException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+		boolean nordPrato = tessera.lati.getTipoElementoInDirezione(PuntoCardinale.nord) == Elemento.prato;
+		boolean sudCitta = tessera.lati.getTipoElementoInDirezione(PuntoCardinale.sud) == Elemento.citta;
+		boolean ovestStrada = tessera.lati.getTipoElementoInDirezione(PuntoCardinale.ovest) == Elemento.strada;
+		boolean estStrada = tessera.lati.getTipoElementoInDirezione(PuntoCardinale.est) == Elemento.strada;
+		return nordPrato && sudCitta && ovestStrada && estStrada;
+	}
 
+	private Tessera tesseraDaDescrzione(String descrizione) throws InvalidStringToParseException,
+			IllegalArgumentException, BadAttributeValueExpException, IllegalArgumentException
+	{
+		Parser parser = new Parser(descrizione);
+		Lati lati = this.creaElementi(parser);
+		Link link = this.creaLinks(parser);
+		return new TesseraNormale(lati, link);
 	}
 
 	private Lati creaElementi(Parser parser)

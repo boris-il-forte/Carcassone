@@ -1,8 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore;
 
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
+import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 
 import java.awt.Color;
+import java.util.List;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -20,17 +22,11 @@ public class FactoryGiocatore
 	/**
 	 * Instantaces the colors, each of them will be given to each created player
 	 */
+	
 	public FactoryGiocatore()
 	{
-		int i = 0;
-		Color colori[] = new Color[] { Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.BLACK };
-		this.codaColoriDisponibili = new ArrayDeque<Color>();
-
-		for (i = 0; i < colori.length; i++)
-		{
-			this.codaColoriDisponibili.add(colori[i]);
-		}
-
+		List<Color> colori = ColoriGioco.getListaColori();
+		this.codaColoriDisponibili = new ArrayDeque<Color>(colori);
 	}
 
 	/**
