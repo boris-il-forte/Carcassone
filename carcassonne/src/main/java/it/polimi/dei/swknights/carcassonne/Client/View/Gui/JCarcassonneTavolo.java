@@ -131,7 +131,7 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 		}
 	}
 
-	private Gui							view;
+	private transient Gui				view;
 
 	private List<JCarcassonneCasella>	listaCaselle;
 

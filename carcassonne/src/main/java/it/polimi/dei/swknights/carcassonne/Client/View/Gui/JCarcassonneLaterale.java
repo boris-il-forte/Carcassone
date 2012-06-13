@@ -172,8 +172,8 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	private JCarcassonneButton				pulsantePass;
 
 	private JCarcassonneScorrimentoMappa	scorrimentoMappa;
-	
-	private Gui								view;
+
+	private transient Gui					view;
 
 	private static final int				LATO_TESSERA		= 150;
 
@@ -182,7 +182,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	private static final long				serialVersionUID	= -1423697317579326895L;
 
 	public void focusGained(FocusEvent arg0)
-	{	
+	{
 	}
 
 	public void focusLost(FocusEvent arg0)
