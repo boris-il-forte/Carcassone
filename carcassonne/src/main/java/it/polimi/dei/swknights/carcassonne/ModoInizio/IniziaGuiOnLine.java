@@ -27,7 +27,6 @@ import javax.swing.JTextField;
 
 public class IniziaGuiOnLine extends Inizio
 {
-
 	@Override
 	public void inizia()
 	{
