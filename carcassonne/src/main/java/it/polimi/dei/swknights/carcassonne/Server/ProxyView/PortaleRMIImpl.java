@@ -13,13 +13,13 @@ public class PortaleRMIImpl extends UnicastRemoteObject implements PortaleRMI
 {
 	public PortaleRMIImpl() throws RemoteException
 	{
-		this.clientEvent = null;
-		this.serverEvent = new LinkedList<ControllerEvent>();
+		this.clientEvents = new LinkedList<ViewEvent>();
+		this.serverEvents = new LinkedList<ControllerEvent>();
 	}
 
 	public synchronized void passaEvento(ViewEvent event) throws RemoteException
 	{
-		this.clientEvent = event;
+		this.clientEvents.add(event);
 		this.notifyAll();
 	}
 
@@ -27,11 +27,11 @@ public class PortaleRMIImpl extends UnicastRemoteObject implements PortaleRMI
 	{
 		try
 		{
-			while (this.serverEvent.size() == 0)
+			while (this.serverEvents.size() == 0)
 			{
 				this.wait();
 			}
-			return this.serverEvent.poll();
+			return this.serverEvents.poll();
 		}
 		catch (InterruptedException e)
 		{
@@ -41,24 +41,22 @@ public class PortaleRMIImpl extends UnicastRemoteObject implements PortaleRMI
 
 	protected synchronized void setServerEvent(ControllerEvent event)
 	{
-		this.serverEvent.add(event);
+		this.serverEvents.add(event);
 		this.notifyAll();
 	}
 
 	protected synchronized ViewEvent waitEventoDalClient() throws InterruptedException
 	{
-		while (this.clientEvent == null)
+		while (this.clientEvents.size() == 0)
 		{
 			this.wait();
 		}
-		ViewEvent event = this.clientEvent;
-		this.clientEvent = null;
-		return event;
+		return this.clientEvents.poll();
 	}
 
-	private ViewEvent				clientEvent;
+	private Queue<ViewEvent>		clientEvents;
 
-	private Queue<ControllerEvent>	serverEvent;
+	private Queue<ControllerEvent>	serverEvents;
 
 	private static final long		serialVersionUID	= 5746659670043537383L;
 }
