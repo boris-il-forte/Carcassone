@@ -127,7 +127,7 @@ public class JCarcassoneFrame extends JFrame
 
 	private JCarcassonneTavolo		tavolo;
 
-	private Gui						view;
+	private transient Gui			view;
 
 	private int						numeroGiocatori		= 2;
 

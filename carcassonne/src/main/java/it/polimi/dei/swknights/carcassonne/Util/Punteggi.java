@@ -56,8 +56,6 @@ public class Punteggi implements Serializable
 			
 		}
 		
-		
-		
 		return papabili;
 	}
 

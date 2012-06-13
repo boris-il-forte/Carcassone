@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class CarcassonneSocket
+public final class CarcassonneSocket
 {
 
 	public static Socket dammiSocket()
