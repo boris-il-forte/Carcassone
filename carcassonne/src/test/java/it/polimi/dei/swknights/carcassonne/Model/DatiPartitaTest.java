@@ -5,29 +5,18 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.CostruzioneCitta;
-import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.CostruzioneStrada;
 import it.polimi.dei.swknights.carcassonne.Server.Model.AreaDiGioco;
 import it.polimi.dei.swknights.carcassonne.Server.Model.DatiPartita;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Giocatore;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
-import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Lati;
-import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Link;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
-import it.polimi.dei.swknights.carcassonne.Util.PunteggiSegnalini;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.junit.BeforeClass;
@@ -36,15 +25,29 @@ import org.junit.Test;
 public class DatiPartitaTest
 {
 
-	private static Map<Costruzione, List<PuntoCardinale>>	mappaExp;
-	private static Map<Costruzione, List<PuntoCardinale>>	mappaGot;
-
 	@BeforeClass
 	public static void initializeTest() throws Exception
 	{
 
 	}
-
+	
+	@Test
+	public void getSetCoordinateVuotee()
+	{
+		DatiPartita dati = new DatiPartita();
+		Set<Coordinate> setCoordVuote =  dati.getSetCoordinateVuote();
+		assertTrue( setCoordVuote instanceof Set );
+		//testato in area di gioco
+	}
+	
+	@Test
+	public void getAreaGioco()
+	{
+		DatiPartita dati = new DatiPartita();
+		AreaDiGioco area =  dati.getAreaDiGioco();
+		assertTrue( area instanceof AreaDiGioco );
+	}
+	
 	@Test
 	public void addSquadraDiCalcio() throws Exception
 	{
@@ -71,12 +74,30 @@ public class DatiPartitaTest
 		}
 	}
 
-	
-	public void addddd()
+	@Test
+	public void aggiornaPunteggiGiocatori() throws Exception
 	{
 		DatiPartita dati = new DatiPartita();
+		dati.addGiocatore();
+		dati.addGiocatore();
+		
+	
 		Punteggi punti = new Punteggi();
+		
+		punti.addPunteggi(Color.red, 20);
+		punti.addPunteggi(Color.blue, 10);
+		
 		dati.aggiornaPunteggioGiocatori(punti);
+		assertTrue(" ok 20 punti " +
+				"" + dati.getGiocatoreCorrente().getPunti(),
+				dati.getGiocatoreCorrente().getPunti() == 20) ;
+		assertTrue(" ok 10 punti ",  dati.getGiocatore(Color.red).getPunti() == 20) ;
+		
+		punti.addPunteggi(Color.blue, 15);
+		
+		dati.aggiornaPunteggioGiocatori(punti);
+		
+		assertTrue(" ok 35 punti, attesi =  " + dati.getGiocatore(Color.blue).getPunti(),  dati.getGiocatore(Color.blue).getPunti() == 35) ;
 		
 	}
 	
@@ -183,86 +204,7 @@ public class DatiPartitaTest
 
 	}
 
-	private Tessera tesseraCitta()
-	{
-		Tessera t1 = new TesseraNormale(this.creaLatiCittaGrande(), this.creaLinkCittaGrande());
-		return t1;
-	}
+	
 
-	private boolean stesseListePuntiCardinali(List<Costruzione> CostruzioniExp,
-			List<Costruzione> CostruzioniGot)
-	{
-		this.ordinaCostruzioni(CostruzioniGot);
-		this.ordinaCostruzioni(CostruzioniExp);
-
-		if (CostruzioniExp.size() == CostruzioniGot.size())
-		{
-			for (int i = 0; i < CostruzioniExp.size(); i++)
-			{
-				Costruzione costruzioneExp = CostruzioniExp.get(i);
-				Costruzione costruzioneGot = CostruzioniGot.get(i);
-				List<PuntoCardinale> puntiExp = mappaExp.get(costruzioneExp);
-				List<PuntoCardinale> puntiGot = mappaGot.get(costruzioneGot);
-				if (puntiExp.equals(puntiGot) == false) { return false; }
-			}
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	private void ordinaCostruzioni(List<Costruzione> costruzioniGot)
-	{
-		Collections.sort(costruzioniGot, new Comparator<Costruzione>()
-		{
-
-			public int compare(Costruzione c1, Costruzione c2)
-			{
-				if (c1.contaElementi() != c2.contaElementi())
-				{
-					return c1.contaElementi() - c2.contaElementi();
-				}
-				else
-				{
-					if (c1 instanceof CostruzioneCitta && c2 instanceof CostruzioneStrada) { return 1; }
-					if (c1 instanceof CostruzioneStrada && c2 instanceof CostruzioneCitta) { return -1; }
-
-				}
-				return 0;
-			}
-		});
-	}
-
-	private List<Costruzione> listaDa(Set<Costruzione> keySet)
-	{
-		List<Costruzione> listaC = new ArrayList<Costruzione>();
-		for (Costruzione c : keySet)
-		{
-			listaC.add(c);
-		}
-		return listaC;
-	}
-
-	private Lati creaLatiCittaGrande()
-	{
-		Lati latiCreandi;
-		Elemento nord = Elemento.citta;
-		Elemento sud = Elemento.citta;
-		Elemento ovest = Elemento.citta;
-		Elemento est = Elemento.citta;
-		latiCreandi = new Lati(nord, sud, ovest, est);
-		return latiCreandi;
-	}
-
-	private Link creaLinkCittaGrande() throws IllegalArgumentException
-	{
-		/* NS(0), NE(1), NW(2), WE(3), SE(4), SW(5); */
-		boolean[] bl = { true, true, true, true, true, true };
-		Link l = new Link(bl);
-		return l;
-
-	}
-
+	
 }

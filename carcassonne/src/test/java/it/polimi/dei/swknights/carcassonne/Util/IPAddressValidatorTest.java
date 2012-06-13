@@ -1,7 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Util;
 
 import org.junit.Test;
-import org.junit.*;
 import static org.junit.Assert.*;
 
 public class IPAddressValidatorTest
@@ -9,7 +8,7 @@ public class IPAddressValidatorTest
 	public IPAddressValidator ipv = new IPAddressValidator();
 	
 	@Test
-	public void testIP()
+	void testIP()
 	{
 		if ( ipv.validate("stringa") ) fail(" no le stringhe! ");
 		if ( ipv.validate("230.440.44.00") ) fail(" no quelli con numeri > 440 ");

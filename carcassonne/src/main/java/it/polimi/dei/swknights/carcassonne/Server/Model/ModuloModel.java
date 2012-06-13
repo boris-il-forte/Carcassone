@@ -141,6 +141,7 @@ public class ModuloModel extends AbstractModel
 	 */
 	public void posizionaTesseraCorrente(Coordinate coordinate) throws MossaNonValidaException
 	{
+		Debug.print(" sono modulo model - getTessera COrrente = " + this.getTesseraCorrente());
 		this.posizionaTessera(this.getTesseraCorrente() , coordinate);
 	}
 

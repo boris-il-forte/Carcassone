@@ -31,6 +31,7 @@ public class EsploratoreConfiniTest
 	@Test
 	public void atLeastStart() throws Exception
 	{
+		@SuppressWarnings("unused")
 		ContatoreCartografo contatore = new ContatoreCartografo(this.model);
 
 	}
