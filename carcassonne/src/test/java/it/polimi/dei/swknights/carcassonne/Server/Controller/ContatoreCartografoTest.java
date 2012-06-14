@@ -149,10 +149,10 @@ public class ContatoreCartografoTest
 		
 		this.mettiEConta(factory, new Coordinate(0, -3), 0);
 		this.mettiEConta(factory, new Coordinate(1, -3), 0);
-		this.mettiEConta(factory, new Coordinate(2, -3), 0);
+		this.mettiEConta(factory, new Coordinate(2, -3), 1);
 		
 		this.mettiEConta(factory, new Coordinate(0, -2), 0);
-		this.mettiEConta(factory, new Coordinate(0, -1), 1);
+		this.mettiEConta(factory, new Coordinate(0, -1), 0);
 		
 		
 		Debug.print(" il numero di costruzioni completate è: " + this.completate);
@@ -190,9 +190,9 @@ public class ContatoreCartografoTest
 		this.mettiEConta(factory, new Coordinate(1, -4), 0);
 		this.mettiEConta(factory, new Coordinate(2, -4), 0);
 		
-		this.mettiEConta(factory, new Coordinate(2, -5), 0);  // città sotto prato resto
-		this.mettiEConta(factory, new Coordinate(1, -5), 0);
-		this.mettiEConta(factory, new Coordinate(0, -5), 0); // strada NS, prato resto
+		this.mettiEConta(factory, new Coordinate(2, -5), 1);  // città sotto prato resto
+		this.mettiEConta(factory, new Coordinate(1, -5), 1);
+		this.mettiEConta(factory, new Coordinate(0, -5), 1); // strada NS, prato resto
 		
 	
 		Debug.print(" il numero di costruzioni completate è: " + this.completate);
