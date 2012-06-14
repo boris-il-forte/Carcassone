@@ -36,8 +36,6 @@ public class ContatoreCartografoTest
 	{
 		FactoryTessere factory = new FactoryTessereNormali();		
 		factory.acquisisciMazzoDaFile("/Stradella.txt");		
-		factory.getTessera(); // TODO correggi nel file o qua, o niente ora va
-
 		this.mettiEConta(factory, new Coordinate(1, 0));
 		this.mettiEConta(factory, new Coordinate(2, 0));
 		this.mettiEConta(factory, new Coordinate(3, 0));
@@ -45,9 +43,7 @@ public class ContatoreCartografoTest
 		this.mettiEConta(factory, new Coordinate(5, 0));
 		
 		Debug.print("completata!");
-		assertTrue("Male! aspettavo 1 costruzione completata, viste: ",
-				this.contatorecartografo.getCostruzioniCompletate().size() == 1);
-		
+		assertTrue("Male! aspettavo 1 costruzione completata, viste: " + this.completate , this.completate==1 );
 		Debug.print(" il numero di costruzioni completate è: " + this.completate);
 
 	}
@@ -109,7 +105,6 @@ public class ContatoreCartografoTest
 		this.mettiEConta(factory, new Coordinate(1, -5));
 		this.mettiEConta(factory, new Coordinate(0, -5)); // strada NS, prato resto
 		
-		
 	
 		Debug.print(" il numero di costruzioni completate è: " + this.completate);
 		assertTrue(" dovrebbe essercene una!", this.completate==1);
@@ -129,7 +124,7 @@ public class ContatoreCartografoTest
 		this.contatorecartografo.riceviCoordinateTessera(coord);
 		if(this.contatorecartografo.areCostruzioniCompletate())
 		{
-			this.completate++;
+			this.completate+= this.contatorecartografo.getCostruzioniCompletate().size();
 		}
 	}
 
