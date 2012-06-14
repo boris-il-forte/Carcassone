@@ -55,6 +55,18 @@ public class ColoriGiocoTest
 		assertEquals(nomiColoriExp, nomiColoriGot);
 
 	}
+	
+	@Test
+	public void getColorFromStr()
+	{
+		
+		assertEquals(Color.green, ColoriGioco.getColor("green"));
+		assertEquals(Color.yellow, ColoriGioco.getColor("yellow"));
+		assertEquals(Color.blue, ColoriGioco.getColor("blue"));
+		assertEquals(Color.black, ColoriGioco.getColor("black"));
+		
+		
+	}
 
 	@Test
 	public void sigleColoriGiusti() throws Exception

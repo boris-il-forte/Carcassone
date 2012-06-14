@@ -9,6 +9,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEve
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.View;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.AbstractModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
@@ -26,6 +27,10 @@ public class AbstractModelTest
 		AbstractModel modelT = new ModuloModel();
 		View cli = new Cli();
 		View proxy=new ProxyView();
+		
+		ModuloController contr = new ModuloController( (ModuloModel) modelT);
+		
+		modelT.addListener(contr);
 		modelT.addListener(cli);
 	
 		modelT.addListener(proxy);

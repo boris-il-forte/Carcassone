@@ -48,11 +48,22 @@ public class ContatoreCartografoTest
 
 	}
 	
-	//@Test
+	@Test
 	public void rotonda() throws Exception
 	{
 		FactoryTessere factory = new FactoryTessereNormali();		
 		factory.acquisisciMazzoDaFile("/rotonda.txt");	
+		
+		this.mettiEConta(factory, new Coordinate(0, -1));
+		this.mettiEConta(factory, new Coordinate(0, -2));
+		this.mettiEConta(factory, new Coordinate(0, -3));
+		this.mettiEConta(factory, new Coordinate(1, -3));
+		this.mettiEConta(factory, new Coordinate(1, -2));
+		this.mettiEConta(factory, new Coordinate(1, -1));
+		
+		Debug.print("completata!");
+		assertTrue("Male! aspettavo 1 costruzione completata, viste: " + this.completate , this.completate==1 );
+		Debug.print(" il numero di costruzioni completate è: " + this.completate);
 		
 		
 	}
@@ -116,7 +127,8 @@ public class ContatoreCartografoTest
 		
 		
 		Debug.print(" il numero di costruzioni completate è: " + this.completate);
-		assertTrue(" dovrebbe essercene una! invece sono: " + this.completate, this.completate==1);
+		assertTrue(" dovrebbe essercene una! invece sono: " + 
+		this.completate, this.completate==1);
 		
 	}
 	

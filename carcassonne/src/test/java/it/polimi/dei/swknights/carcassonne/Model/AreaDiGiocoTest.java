@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
+import it.polimi.dei.swknights.carcassonne.Exceptions.NullCardException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
 import it.polimi.dei.swknights.carcassonne.Server.Model.AreaDiGioco;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
@@ -24,6 +25,22 @@ public class AreaDiGiocoTest
 	public static void initializeTest() throws Exception
 	{
 
+	}
+	
+	@Test
+	public void addTesseraNull() throws MossaNonValidaException
+	{
+		AreaDiGioco area = new AreaDiGioco();
+		boolean fatto=false;
+		try
+		{
+		area.addTessera(new Coordinate(0, 0), null);
+		}
+		catch(NullCardException e)
+		{
+			fatto = true;
+		}
+		assertTrue("ma no! ", fatto);
 	}
 
 	@Test
@@ -146,7 +163,6 @@ public class AreaDiGiocoTest
 		}
 
 	}
-
 
 
 	private Lati creaLatiCittaGrande()

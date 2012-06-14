@@ -1,20 +1,21 @@
 package it.polimi.dei.swknights.carcassonne.Model;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
+import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Lati;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Link;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
-
-
 
 public class ModuloModelTest
 {
@@ -38,6 +39,75 @@ public class ModuloModelTest
 	public void deleteModel()
 	{
 		model = null;
+	}
+
+	@Test
+	public void ruotaTessera() throws Exception
+	{
+		TesseraNormale t1 = new TesseraNormale(this.creaLatiCittaGrande(), this.creaLinkCittaGrande());
+		model.posizionaTessera(t1, new Coordinate(2, 2));
+
+		model.getTesseraDaMazzo();
+
+		t1 = (TesseraNormale) model.getTesseraCorrente().clone();
+
+		model.ruotaTessera();
+
+		TesseraNormale t2 = (TesseraNormale) model.getTesseraCorrente().clone();
+
+		assertTrue(t1.equals(t2) == false);
+	}
+
+	@Test
+	public void getCoordinateTessera() throws Exception
+	{
+		boolean denied00 = false;
+		TesseraNormale t1 = new TesseraNormale(this.creaLatiCittaGrande(), this.creaLinkCittaGrande());
+		model.posizionaTessera(t1, new Coordinate(2, 2));
+		model.getCoordinateTessera(model.getTesseraCorrente());
+		assertTrue(model.getCoordinateTessera(t1).equals(new Coordinate(2, 2)));
+
+		model.getTesseraDaMazzo();
+
+		Tessera t2 = model.getTesseraCorrente().clone();
+		model.posizionaTesseraCorrente(new Coordinate(0, 0));
+		Tessera t3 = model.getTessera(new Coordinate(0, 0));
+		assertEquals(t3.toString(), t2.toString());
+
+	}
+
+	private Lati creaLatiCittaGrande()
+	{
+		Lati latiCreandi;
+		Elemento nord = Elemento.citta;
+		Elemento sud = Elemento.citta;
+		Elemento ovest = Elemento.citta;
+		Elemento est = Elemento.citta;
+		latiCreandi = new Lati(nord, sud, ovest, est);
+		return latiCreandi;
+	}
+
+	private Link creaLinkCittaGrande() throws IllegalArgumentException
+	{
+		/* NS(0), NE(1), NW(2), WE(3), SE(4), SW(5); */
+		boolean[] bl = { true, true, true, true, true, true };
+		Link l = new Link(bl);
+		return l;
+
+	}
+
+	@Test
+	public void posizionaTesseraNull() throws Exception
+	{
+		try
+		{
+			ModuloModelTest.model.posizionaTessera(null, new Coordinate(0, 0));
+		}
+		catch (IllegalArgumentException e)
+		{
+			assertTrue(true);
+		}
+
 	}
 
 	@Test
