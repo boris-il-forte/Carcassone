@@ -43,10 +43,14 @@ public class CartaGeografica
 	public Costruzione getCostruzioneAggregata(Costruzione pezzoCostruzione, ConfineTessera confinante)
 	{
 		Costruzione costruzioneConfinante = this.mappaConfini.get(confinante);
-		costruzioneConfinante.joinCostruzioni(pezzoCostruzione);
-		//List<ConfineTessera> confiniPezzo = this.aggiungiConfiniPezzo(pezzoCostruzione, costruzioneConfinante);
-		this.aggiornaConfini(confinante, costruzioneConfinante);
-
+		if(costruzioneConfinante == pezzoCostruzione)
+		{
+			this.gestisciAutoanello(confinante, costruzioneConfinante);
+		}
+		else
+		{
+			this.gestisciEstensione(pezzoCostruzione, costruzioneConfinante, confinante);
+		}
 		return costruzioneConfinante;
 	}
 
@@ -121,11 +125,47 @@ public class CartaGeografica
 		return this.costruzioniCompletate.size() > 0;
 	}
 
-	private void aggiornaConfini(ConfineTessera confine, Costruzione nuovaCostruzione)
+	private void gestisciAutoanello(ConfineTessera confinante, Costruzione costruzioneConfinante)
+	{
+		this.mappaConfini.remove(confinante);
+		List<ConfineTessera> listaConfini = this.mappaCostruzioni.remove(costruzioneConfinante);
+		listaConfini.remove(confinante);
+		if(listaConfini.size()>0)
+		{
+			this.mappaCostruzioni.put(costruzioneConfinante, listaConfini);
+		}	
+	}
+
+	private void gestisciEstensione(Costruzione pezzoCostruzione, Costruzione costruzioneConfinante, ConfineTessera confinante)
+	{
+		costruzioneConfinante.joinCostruzioni(pezzoCostruzione);
+		List<ConfineTessera> confiniPezzo = this.aggiungiConfiniPezzo(pezzoCostruzione, costruzioneConfinante);
+		this.aggiornaConfini(confinante, costruzioneConfinante, confiniPezzo);
+		
+	}
+
+	private List<ConfineTessera> aggiungiConfiniPezzo(Costruzione pezzoCostruzione,
+			Costruzione costruzioneConfinante)
+	{
+		List<ConfineTessera> confiniPezzo = this.mappaCostruzioni.get(pezzoCostruzione);
+		if(confiniPezzo == null)
+		{
+			confiniPezzo = new ArrayList<ConfineTessera>();
+		}
+		for(ConfineTessera confine : confiniPezzo)
+		{
+			this.mappaConfini.put(confine, costruzioneConfinante);
+		}
+		return confiniPezzo;
+	}
+
+	private void aggiornaConfini(ConfineTessera confine, Costruzione nuovaCostruzione, List<ConfineTessera> confiniPezzo)
 	{
 		Costruzione costruzione = this.mappaConfini.remove(confine);
 		List<ConfineTessera> listaConfini = this.mappaCostruzioni.remove(costruzione);
+		listaConfini.addAll(confiniPezzo);
 		listaConfini.remove(confine);
+		
 		if (!listaConfini.isEmpty())
 		{
 			this.mappaCostruzioni.put(nuovaCostruzione, listaConfini);

@@ -25,10 +25,16 @@ public final class Debug
 	
 	public static void print(Map<Costruzione, List<ConfineTessera>> mappa)
 	{
+		StringBuilder builder = new StringBuilder();
 		for(Entry<Costruzione, List<ConfineTessera>> entry : mappa.entrySet())
 		{
-			printer.print(entry.getKey());
-			
+			builder.append(entry.getKey().toString());
+			for(ConfineTessera confine : entry.getValue())
+			{
+				builder.append(confine.toString());
+			}
+			printer.println(builder.toString());
+			printer.flush();
 		}
 	}
 

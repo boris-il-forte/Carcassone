@@ -151,8 +151,8 @@ public class ContatoreCartografoTest
 		this.mettiEConta(factory, new Coordinate(1, -3), 0);
 		this.mettiEConta(factory, new Coordinate(2, -3), 1);
 		
-		this.mettiEConta(factory, new Coordinate(0, -2), 0);
-		this.mettiEConta(factory, new Coordinate(0, -1), 0);
+		this.mettiEConta(factory, new Coordinate(0, -2), 1);
+		this.mettiEConta(factory, new Coordinate(0, -1), 1);
 		
 		
 		Debug.print(" il numero di costruzioni completate è: " + this.completate);
@@ -215,7 +215,7 @@ public class ContatoreCartografoTest
 					" la tessera e': " + tessera);
 			this.completate+= this.contatorecartografo.getCostruzioniCompletate().size();
 		}
-		assertTrue(" le costruzioni finite a questo punto dovrebbero essere:",
+		assertTrue(" le costruzioni finite a questo punto dovrebbero essere: " + quanteCompleta,
 				this.completate ==  quanteCompleta);
 		
 	}
