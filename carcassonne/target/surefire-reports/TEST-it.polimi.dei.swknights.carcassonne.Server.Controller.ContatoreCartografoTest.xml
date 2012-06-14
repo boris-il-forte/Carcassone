@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="1" time="0.468" errors="0" skipped="0" tests="5" name="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest">
+<testsuite failures="1" time="0.207" errors="0" skipped="0" tests="6" name="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64"/>
@@ -19,7 +19,7 @@
     <property name="basedir" value="/home/dave/java/Carcassonne"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="surefire.real.class.path" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter8144766029277427447.jar"/>
+    <property name="surefire.real.class.path" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter7137737960797684167.jar"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
@@ -28,22 +28,21 @@
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk-amd64/jre/../lib/amd64:/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="surefire.test.class.path" value="/home/dave/java/Carcassonne/target/test-classes:/home/dave/java/Carcassonne/target/classes:/home/dave/.m2/repository/junit/junit/4.8.1/junit-4.8.1.jar:"/>
-    <property name="noipv6" value="-Djava.net.preferIPv4Stack=true"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="50.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="3.0.0-1-amd64"/>
+    <property name="os.version" value="3.2.0-2-amd64"/>
     <property name="user.home" value="/home/dave"/>
     <property name="user.timezone" value=""/>
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
-    <property name="java.specification.version" value="1.6"/>
     <property name="file.encoding" value="UTF-8"/>
+    <property name="java.specification.version" value="1.6"/>
     <property name="user.name" value="dave"/>
     <property name="java.class.path" value="/home/dave/java/Carcassonne/target/test-classes:/home/dave/java/Carcassonne/target/classes:/home/dave/.m2/repository/junit/junit/4.8.1/junit-4.8.1.jar:"/>
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/usr/lib/jvm/java-6-openjdk-amd64/jre"/>
-    <property name="sun.java.command" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter8144766029277427447.jar /home/dave/java/Carcassonne/target/surefire/surefire7563353756127167258tmp /home/dave/java/Carcassonne/target/surefire/surefire5945449462803743224tmp"/>
+    <property name="sun.java.command" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter7137737960797684167.jar /home/dave/java/Carcassonne/target/surefire/surefire4038574008489171303tmp /home/dave/java/Carcassonne/target/surefire/surefire1948799428760108053tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="it"/>
     <property name="java.vm.info" value="mixed mode"/>
@@ -58,13 +57,15 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.11" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="stradaPiccola"/>
+  <testcase time="0.019" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="testCostruzioniCorrette"/>
+  <testcase time="0.018" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="testCostruzioniScorrette"/>
+  <testcase time="0.031" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="stradaPiccola"/>
   <testcase time="0.045" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="cittaFiordoropoli"/>
-  <testcase time="0.166" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="cittaMaledettaBassoAltoSerpe">
-    <failure message=" dovrebbe essercene una!" type="java.lang.AssertionError">java.lang.AssertionError:  dovrebbe essercene una!
+  <testcase time="0.058" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="cittaMaledettaMergeBassoAlto">
+    <failure message=" dovrebbe essercene una! invece sono: 2" type="java.lang.AssertionError">java.lang.AssertionError:  dovrebbe essercene una! invece sono: 2
 	at org.junit.Assert.fail(Assert.java:91)
 	at org.junit.Assert.assertTrue(Assert.java:43)
-	at it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest.cittaMaledettaBassoAltoSerpe(ContatoreCartografoTest.java:115)
+	at it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest.cittaMaledettaMergeBassoAlto(ContatoreCartografoTest.java:119)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -96,26 +97,33 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:69)
 </failure>
     <system-out>========== Alzate i piedi devo passare e pulire!!! =============
-N=N S=N W=S E=S NS=0 NE=0 NW=0 WE=1 SE=1 SW=1
-N=S S=N W=S E=N NS=1 NE=1 NW=1 WE=1 SE=1 SW=1
-N=S S=S W=N E=N NS=1 NE=0 NW=0 WE=0 SE=0 SW=0
-N=C S=N W=N E=N NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
-N=N S=N W=C E=N NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
-N=N S=N W=C E=N NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
+N=N S=N W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0
+N=N S=N W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0
+N=N S=N W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0
+N=N S=N W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0
+N=N S=N W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0
+N=C S=N W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0
 N=C S=C W=N E=C NS=1 NE=1 NW=0 WE=0 SE=1 SW=0
-N=C S=S W=C E=S NS=0 NE=0 NW=1 WE=0 SE=1 SW=0
-N=N S=C W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0
-N=C S=C W=C E=S NS=1 NE=0 NW=1 WE=0 SE=0 SW=1
-N=C S=N W=N E=C NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
-N=S S=C W=S E=C NS=0 NE=0 NW=1 WE=0 SE=1 SW=0
-N=N S=C W=C E=C NS=0 NE=0 NW=0 WE=1 SE=1 SW=1
-N=C S=N W=C E=N NS=0 NE=0 NW=1 WE=0 SE=1 SW=0
+N=C S=N W=C E=N NS=0 NE=0 NW=1 WE=0 SE=0 SW=0
+N=N S=N W=N E=C NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
+N=N S=N W=N E=C NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
+N=N S=N W=N E=C NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
+N=N S=N W=N E=C NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
 N=N S=C W=N E=N NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
 N=C S=N W=N E=N NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
-N=S S=S W=N E=N NS=1 NE=0 NW=0 WE=0 SE=0 SW=0
- il numero di costruzioni completate è: 3
+N=C S=N W=N E=N NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
+N=N S=C W=N E=C NS=0 NE=0 NW=0 WE=0 SE=0 SW=1
+N=N S=C W=C E=C NS=0 NE=0 NW=0 WE=1 SE=1 SW=1
+N=C S=N W=C E=N NS=0 NE=0 NW=1 WE=0 SE=0 SW=0
+N=C S=N W=N E=C NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
+N=C S=C W=C E=N NS=1 NE=0 NW=1 WE=0 SE=0 SW=1
+ metto la tessera alla coordinata:  (1,-3) la tessera e&apos;: N=C S=C W=C E=N NS=1 NE=0 NW=1 WE=0 SE=0 SW=1
+N=N S=C W=N E=N NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
+ metto la tessera alla coordinata:  (2,-3) la tessera e&apos;: N=N S=C W=N E=N NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
+N=N S=N W=C E=N NS=0 NE=0 NW=0 WE=0 SE=0 SW=0
+N=N S=N W=S E=S NS=0 NE=0 NW=0 WE=1 SE=0 SW=0
+ il numero di costruzioni completate è: 2
 </system-out>
   </testcase>
-  <testcase time="0.06" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="testCostruzioniCorrette"/>
-  <testcase time="0.035" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="testCostruzioniScorrette"/>
+  <testcase time="0.027" classname="it.polimi.dei.swknights.carcassonne.Server.Controller.ContatoreCartografoTest" name="cittaMaledettaBassoAltoSerpe"/>
 </testsuite>
