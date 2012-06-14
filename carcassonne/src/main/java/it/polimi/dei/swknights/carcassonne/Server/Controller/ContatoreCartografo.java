@@ -156,7 +156,7 @@ public class ContatoreCartografo
 			Costruzione aggregata = this.cartaGeografica.getCostruzioneAggregata(pezzo, confinante);
 			pezzo = aggregata;
 		}
-		return nuovoPezzoCostruzione;
+		return pezzo;
 	}
 
 	private void aggiungiNuoviConfini(List<ConfineTessera> nuoviConfini, Costruzione costruzione)
