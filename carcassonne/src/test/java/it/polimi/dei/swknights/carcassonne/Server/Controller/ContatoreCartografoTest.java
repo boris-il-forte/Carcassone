@@ -36,11 +36,11 @@ public class ContatoreCartografoTest
 	{
 		FactoryTessere factory = new FactoryTessereNormali();		
 		factory.acquisisciMazzoDaFile("/Stradella.txt");		
-		this.mettiEConta(factory, new Coordinate(1, 0));
-		this.mettiEConta(factory, new Coordinate(2, 0));
-		this.mettiEConta(factory, new Coordinate(3, 0));
-		this.mettiEConta(factory, new Coordinate(4, 0));
-		this.mettiEConta(factory, new Coordinate(5, 0));
+		this.mettiEConta(factory, new Coordinate(1, 0),0);
+		this.mettiEConta(factory, new Coordinate(2, 0),0);
+		this.mettiEConta(factory, new Coordinate(3, 0),0);
+		this.mettiEConta(factory, new Coordinate(4, 0),0);
+		this.mettiEConta(factory, new Coordinate(5, 0),1);
 		
 		Debug.print("completata!");
 		assertTrue("Male! aspettavo 1 costruzione completata, viste: " + this.completate , this.completate==1 );
@@ -54,12 +54,12 @@ public class ContatoreCartografoTest
 		FactoryTessere factory = new FactoryTessereNormali();		
 		factory.acquisisciMazzoDaFile("/Rotonda.txt");	
 		
-		this.mettiEConta(factory, new Coordinate(0, -1));
-		this.mettiEConta(factory, new Coordinate(0, -2));
-		this.mettiEConta(factory, new Coordinate(0, -3));
-		this.mettiEConta(factory, new Coordinate(1, -3));
-		this.mettiEConta(factory, new Coordinate(1, -2));
-		this.mettiEConta(factory, new Coordinate(1, -1));
+		this.mettiEConta(factory, new Coordinate(0, -1),0);
+		this.mettiEConta(factory, new Coordinate(0, -2),0);
+		this.mettiEConta(factory, new Coordinate(0, -3),0);
+		this.mettiEConta(factory, new Coordinate(1, -3),0);
+		this.mettiEConta(factory, new Coordinate(1, -2),0);
+		this.mettiEConta(factory, new Coordinate(1, -1),1);
 		
 		Debug.print("completata!");
 		assertTrue("Male! aspettavo 1 costruzione completata, viste: " + this.completate , this.completate==1 );
@@ -76,16 +76,16 @@ public class ContatoreCartografoTest
 		factory.acquisisciMazzoDaFile("/Springfield.txt");	
 		
 		///0,0
-		this.mettiEConta(factory, new Coordinate(0, -1));
-		this.mettiEConta(factory, new Coordinate(0, -2));
+		this.mettiEConta(factory, new Coordinate(0, -1), 0);
+		this.mettiEConta(factory, new Coordinate(0, -2), 0);
 		
-		this.mettiEConta(factory, new Coordinate(0, -3));		
-		this.mettiEConta(factory, new Coordinate(1, -3));
-		this.mettiEConta(factory, new Coordinate(2, -3));
+		this.mettiEConta(factory, new Coordinate(0, -3), 0);		
+		this.mettiEConta(factory, new Coordinate(1, -3), 0);
+		this.mettiEConta(factory, new Coordinate(2, -3), 0);
 		
-		this.mettiEConta(factory, new Coordinate(2, -2));		
-		this.mettiEConta(factory, new Coordinate(2, -1));
-		this.mettiEConta(factory, new Coordinate(1, -1));
+		this.mettiEConta(factory, new Coordinate(2, -2), 0);		
+		this.mettiEConta(factory, new Coordinate(2, -1), 0);
+		this.mettiEConta(factory, new Coordinate(1, -1), 1);
 
 		
 		Debug.print("completata!");
@@ -102,12 +102,12 @@ public class ContatoreCartografoTest
 	{
 		FactoryTessere factory = new FactoryTessereNormali();		
 		factory.acquisisciMazzoDaFile("/Fiordoropoli.txt");		
-		this.mettiEConta(factory, new Coordinate(0, 1)); //ponte
-		this.mettiEConta(factory, new Coordinate(1, 1));  //ovest
-		this.mettiEConta(factory, new Coordinate(2, 1));  //centro
-		this.mettiEConta(factory, new Coordinate(2, 0)); //nord
-		this.mettiEConta(factory, new Coordinate(2, 2));  //sud
-		this.mettiEConta(factory, new Coordinate(3, 1)); //est
+		this.mettiEConta(factory, new Coordinate(0, 1),  0); //ponte
+		this.mettiEConta(factory, new Coordinate(1, 1), 0 );  //ovest
+		this.mettiEConta(factory, new Coordinate(2, 1), 0);  //centro
+		this.mettiEConta(factory, new Coordinate(2, 0), 0); //nord
+		this.mettiEConta(factory, new Coordinate(2, 2), 0);  //sud
+		this.mettiEConta(factory, new Coordinate(3, 1), 1); //est
 	
 		Debug.print(" il numero di costruzioni completate è: " + this.completate);
 		assertTrue(" dovrebbe essercene una!", this.completate==1);
@@ -123,36 +123,36 @@ public class ContatoreCartografoTest
 		//dal basso verso l'alto a serpente da sx verso destra
 		
 		//////////////////////////////////////  (0, 0));   c'è già
-		this.mettiEConta(factory, new Coordinate(1, 0)); 
-		this.mettiEConta(factory, new Coordinate(2, 0));
-		this.mettiEConta(factory, new Coordinate(3, 0));
+		this.mettiEConta(factory, new Coordinate(1, 0),  0); 
+		this.mettiEConta(factory, new Coordinate(2, 0), 0);
+		this.mettiEConta(factory, new Coordinate(3, 0), 0);
 		
-		this.mettiEConta(factory, new Coordinate(3, -1));
-		this.mettiEConta(factory, new Coordinate(2, -1));
-		this.mettiEConta(factory, new Coordinate(1, -1));
+		this.mettiEConta(factory, new Coordinate(3, -1), 0);
+		this.mettiEConta(factory, new Coordinate(2, -1), 0);
+		this.mettiEConta(factory, new Coordinate(1, -1), 0);
 		
-		this.mettiEConta(factory, new Coordinate(1, -2));
-		this.mettiEConta(factory, new Coordinate(2, -2));
-		this.mettiEConta(factory, new Coordinate(3, -2));
+		this.mettiEConta(factory, new Coordinate(1, -2), 0);
+		this.mettiEConta(factory, new Coordinate(2, -2), 0);
+		this.mettiEConta(factory, new Coordinate(3, -2), 0);
 		
-		this.mettiEConta(factory, new Coordinate(3, -3));
-		this.mettiEConta(factory, new Coordinate(3, -4));
-		this.mettiEConta(factory, new Coordinate(3, -5));
+		this.mettiEConta(factory, new Coordinate(3, -3), 0);
+		this.mettiEConta(factory, new Coordinate(3, -4), 0);
+		this.mettiEConta(factory, new Coordinate(3, -5), 0);
 		
-		this.mettiEConta(factory, new Coordinate(2, -5));
-		this.mettiEConta(factory, new Coordinate(1, -5));
-		this.mettiEConta(factory, new Coordinate(0, -5));
+		this.mettiEConta(factory, new Coordinate(2, -5), 0);
+		this.mettiEConta(factory, new Coordinate(1, -5), 0);
+		this.mettiEConta(factory, new Coordinate(0, -5), 0);
 		
-		this.mettiEConta(factory, new Coordinate(0, -4));
-		this.mettiEConta(factory, new Coordinate(1, -4));
-		this.mettiEConta(factory, new Coordinate(2, -4));
+		this.mettiEConta(factory, new Coordinate(0, -4), 0);
+		this.mettiEConta(factory, new Coordinate(1, -4), 0);
+		this.mettiEConta(factory, new Coordinate(2, -4), 0);
 		
-		this.mettiEConta(factory, new Coordinate(0, -3));
-		this.mettiEConta(factory, new Coordinate(1, -3));
-		this.mettiEConta(factory, new Coordinate(2, -3));
+		this.mettiEConta(factory, new Coordinate(0, -3), 0);
+		this.mettiEConta(factory, new Coordinate(1, -3), 0);
+		this.mettiEConta(factory, new Coordinate(2, -3), 0);
 		
-		this.mettiEConta(factory, new Coordinate(0, -2));
-		this.mettiEConta(factory, new Coordinate(0, -1));
+		this.mettiEConta(factory, new Coordinate(0, -2), 0);
+		this.mettiEConta(factory, new Coordinate(0, -1), 1);
 		
 		
 		Debug.print(" il numero di costruzioni completate è: " + this.completate);
@@ -171,28 +171,28 @@ public class ContatoreCartografoTest
 		//dal basso verso l'alto a serpente da sx verso destra
 		
 		//////////////////////////////////////  (0, 0));   c'è già
-		this.mettiEConta(factory, new Coordinate(1, 0)); //croci basso dx
-		this.mettiEConta(factory, new Coordinate(2, 0));  //croce, risalgo da dx
+		this.mettiEConta(factory, new Coordinate(1, 0), 0); //croci basso dx
+		this.mettiEConta(factory, new Coordinate(2, 0), 0);  //croce, risalgo da dx
 		
-		this.mettiEConta(factory, new Coordinate(2, -1));  //croce risale da dx
-		this.mettiEConta(factory, new Coordinate(1, -1));  //strada in alto, angolo strada giù dx  
-		this.mettiEConta(factory, new Coordinate(0, -1));  //prato e città sx, risalgo da sx
+		this.mettiEConta(factory, new Coordinate(2, -1), 0);  //croce risale da dx
+		this.mettiEConta(factory, new Coordinate(1, -1), 0);  //strada in alto, angolo strada giù dx  
+		this.mettiEConta(factory, new Coordinate(0, -1), 0);  //prato e città sx, risalgo da sx
 		
-		this.mettiEConta(factory, new Coordinate(0, -2));  //prato e città sx
-		this.mettiEConta(factory, new Coordinate(1, -2));  //3 città dx alto basso, prato sx
-		this.mettiEConta(factory, new Coordinate(2, -2));  // città alto e sx strada giu-dx, risalgo dx
+		this.mettiEConta(factory, new Coordinate(0, -2), 0);  //prato e città sx
+		this.mettiEConta(factory, new Coordinate(1, -2), 0);  //3 città dx alto basso, prato sx
+		this.mettiEConta(factory, new Coordinate(2, -2), 0);  // città alto e sx strada giu-dx, risalgo dx
 		
-		this.mettiEConta(factory, new Coordinate(2, -3));  //città sotto , strada EO, prato sopra
-		this.mettiEConta(factory, new Coordinate(1, -3));
-		this.mettiEConta(factory, new Coordinate(0, -3));
+		this.mettiEConta(factory, new Coordinate(2, -3), 0);  //città sotto , strada EO, prato sopra
+		this.mettiEConta(factory, new Coordinate(1, -3), 0);
+		this.mettiEConta(factory, new Coordinate(0, -3), 0);
 		
-		this.mettiEConta(factory, new Coordinate(0, -4));  //città alto, sx   prato basso e dx
-		this.mettiEConta(factory, new Coordinate(1, -4));
-		this.mettiEConta(factory, new Coordinate(2, -4));
+		this.mettiEConta(factory, new Coordinate(0, -4), 0);  //città alto, sx   prato basso e dx
+		this.mettiEConta(factory, new Coordinate(1, -4), 0);
+		this.mettiEConta(factory, new Coordinate(2, -4), 0);
 		
-		this.mettiEConta(factory, new Coordinate(2, -5));  // città sotto prato resto
-		this.mettiEConta(factory, new Coordinate(1, -5));
-		this.mettiEConta(factory, new Coordinate(0, -5)); // strada NS, prato resto
+		this.mettiEConta(factory, new Coordinate(2, -5), 0);  // città sotto prato resto
+		this.mettiEConta(factory, new Coordinate(1, -5), 0);
+		this.mettiEConta(factory, new Coordinate(0, -5), 0); // strada NS, prato resto
 		
 	
 		Debug.print(" il numero di costruzioni completate è: " + this.completate);
@@ -203,7 +203,7 @@ public class ContatoreCartografoTest
 	
 	
 
-	private void mettiEConta(FactoryTessere factory, Coordinate coord) throws Exception
+	private void mettiEConta(FactoryTessere factory, Coordinate coord, int quanteCompleta) throws Exception
 	{	
 		Tessera tessera = factory.getTessera();
 		Debug.print("" + tessera);
@@ -215,6 +215,9 @@ public class ContatoreCartografoTest
 					" la tessera e': " + tessera);
 			this.completate+= this.contatorecartografo.getCostruzioniCompletate().size();
 		}
+		assertTrue(" le costruzioni finite a questo punto dovrebbero essere:",
+				this.completate ==  quanteCompleta);
+		
 	}
 
 	@Test
