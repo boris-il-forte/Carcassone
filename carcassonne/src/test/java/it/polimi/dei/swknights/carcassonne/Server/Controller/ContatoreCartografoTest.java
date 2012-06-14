@@ -69,6 +69,35 @@ public class ContatoreCartografoTest
 	}
 	
 	@Test
+	public void ciambellaCity() throws Exception
+	{
+		Debug.print("Sono ciambella city");
+		FactoryTessere factory = new FactoryTessereNormali();		
+		factory.acquisisciMazzoDaFile("/Springfield.txt");	
+		
+		///0,0
+		this.mettiEConta(factory, new Coordinate(0, -1));
+		this.mettiEConta(factory, new Coordinate(0, -2));
+		
+		this.mettiEConta(factory, new Coordinate(0, -3));		
+		this.mettiEConta(factory, new Coordinate(1, -3));
+		this.mettiEConta(factory, new Coordinate(2, -3));
+		
+		this.mettiEConta(factory, new Coordinate(2, -2));		
+		this.mettiEConta(factory, new Coordinate(2, -1));
+		this.mettiEConta(factory, new Coordinate(1, -1));
+
+		
+		Debug.print("completata!");
+		assertTrue("Male! aspettavo 1 costruzione completata, viste: " + this.completate , this.completate==1 );
+		Debug.print(" il numero di costruzioni completate è: " + this.completate);
+		
+	}
+	
+	
+	
+	
+	@Test
 	public void cittaFiordoropoli() throws Exception
 	{
 		FactoryTessere factory = new FactoryTessereNormali();		
