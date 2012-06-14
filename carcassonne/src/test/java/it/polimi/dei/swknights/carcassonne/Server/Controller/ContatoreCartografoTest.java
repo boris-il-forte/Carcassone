@@ -52,7 +52,7 @@ public class ContatoreCartografoTest
 	public void rotonda() throws Exception
 	{
 		FactoryTessere factory = new FactoryTessereNormali();		
-		factory.acquisisciMazzoDaFile("/rotonda.txt");	
+		factory.acquisisciMazzoDaFile("/Rotonda.txt");	
 		
 		this.mettiEConta(factory, new Coordinate(0, -1));
 		this.mettiEConta(factory, new Coordinate(0, -2));
