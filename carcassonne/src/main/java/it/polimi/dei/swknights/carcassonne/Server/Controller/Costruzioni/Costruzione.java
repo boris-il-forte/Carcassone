@@ -88,26 +88,6 @@ public abstract class Costruzione
 
 	public List<Color> controllataDa()
 	{
-		/* uso contatoreSegnalini invece
-		int max = 1;
-		List<Color> controllori = new ArrayList<Color>();
-		for (Entry<Color, Integer> entryColore : this.contatoreSegnalini.entrySet())
-		{
-			int numeroSegnalini = entryColore.getValue();
-			if (numeroSegnalini > max)
-			{
-				max = numeroSegnalini;
-			}
-		}
-		for (Entry<Color, Integer> entryColore : this.contatoreSegnalini.entrySet())
-		{
-			if (entryColore.getValue() == max)
-			{
-				controllori.add(entryColore.getKey());
-			}
-		} 
-		*/
-		
 		return this.contatoreSegnalini.getVincitoriAttuale();
 	}
 
