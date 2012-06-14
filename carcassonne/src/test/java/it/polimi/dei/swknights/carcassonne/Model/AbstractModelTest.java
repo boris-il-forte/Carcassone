@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import it.polimi.dei.swknights.carcassonne.Client.View.AbstractModuloView;
 import it.polimi.dei.swknights.carcassonne.Client.View.Cli.Cli;
-import it.polimi.dei.swknights.carcassonne.Client.View.Gui.Gui;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
@@ -26,14 +25,11 @@ public class AbstractModelTest
 	{
 		AbstractModel modelT = new ModuloModel();
 		View cli = new Cli();
-		View gui = new Gui();
-		View proxy = new ProxyView();
+		View proxy=new ProxyView();
 		modelT.addListener(cli);
-		modelT.addListener(gui);
+	
 		modelT.addListener(proxy);
-
 		modelT.removeListener(proxy);
-		modelT.removeListener(gui);
 
 		modelT.fire(new MossaNonValidaEvent(this));
 		modelT.fire(new InizioGiocoEvent(this, "N=S S=S W=S E=S NS=0 NE=0 NW=0 WE=0 SE=0 SW=0", Color.red, 2,
@@ -54,7 +50,6 @@ public class AbstractModelTest
 	class ViewTest extends AbstractModuloView
 	{
 		public int	numeroPartita	= 0;
-
 		public ViewTest()
 		{
 			super();

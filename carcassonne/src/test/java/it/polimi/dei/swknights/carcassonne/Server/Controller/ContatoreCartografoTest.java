@@ -75,6 +75,54 @@ public class ContatoreCartografoTest
 	
 	
 	@Test
+	public void cittaMaledettaMergeBassoAlto() throws Exception
+	{
+		
+		FactoryTessere factory = new FactoryTessereNormali();		
+		factory.acquisisciMazzoDaFile("/PechinoMergeBassoAlto.txt");		
+		//dal basso verso l'alto a serpente da sx verso destra
+		
+		//////////////////////////////////////  (0, 0));   c'è già
+		this.mettiEConta(factory, new Coordinate(1, 0)); 
+		this.mettiEConta(factory, new Coordinate(2, 0));
+		this.mettiEConta(factory, new Coordinate(3, 0));
+		
+		this.mettiEConta(factory, new Coordinate(3, -1));
+		this.mettiEConta(factory, new Coordinate(2, -1));
+		this.mettiEConta(factory, new Coordinate(1, -1));
+		
+		this.mettiEConta(factory, new Coordinate(1, -2));
+		this.mettiEConta(factory, new Coordinate(2, -2));
+		this.mettiEConta(factory, new Coordinate(3, -2));
+		
+		this.mettiEConta(factory, new Coordinate(3, -3));
+		this.mettiEConta(factory, new Coordinate(3, -4));
+		this.mettiEConta(factory, new Coordinate(3, -5));
+		
+		this.mettiEConta(factory, new Coordinate(2, -5));
+		this.mettiEConta(factory, new Coordinate(1, -5));
+		this.mettiEConta(factory, new Coordinate(0, -5));
+		
+		this.mettiEConta(factory, new Coordinate(0, -4));
+		this.mettiEConta(factory, new Coordinate(1, -4));
+		this.mettiEConta(factory, new Coordinate(2, -4));
+		
+		this.mettiEConta(factory, new Coordinate(0, -3));
+		this.mettiEConta(factory, new Coordinate(1, -3));
+		this.mettiEConta(factory, new Coordinate(2, -3));
+		
+		this.mettiEConta(factory, new Coordinate(0, -2));
+		this.mettiEConta(factory, new Coordinate(0, -1));
+		
+		
+		Debug.print(" il numero di costruzioni completate è: " + this.completate);
+		assertTrue(" dovrebbe essercene una! invece sono: " + this.completate, this.completate==1);
+		
+	}
+	
+	
+	
+	@Test
 	public void cittaMaledettaBassoAltoSerpe() throws Exception
 	{
 		FactoryTessere factory = new FactoryTessereNormali();		
@@ -113,8 +161,6 @@ public class ContatoreCartografoTest
 	
 	
 	
-	
-	
 
 	private void mettiEConta(FactoryTessere factory, Coordinate coord) throws Exception
 	{	
@@ -124,6 +170,8 @@ public class ContatoreCartografoTest
 		this.contatorecartografo.riceviCoordinateTessera(coord);
 		if(this.contatorecartografo.areCostruzioniCompletate())
 		{
+			Debug.print(" metto la tessera alla coordinata:  " + coord +
+					" la tessera e': " + tessera);
 			this.completate+= this.contatorecartografo.getCostruzioniCompletate().size();
 		}
 	}
