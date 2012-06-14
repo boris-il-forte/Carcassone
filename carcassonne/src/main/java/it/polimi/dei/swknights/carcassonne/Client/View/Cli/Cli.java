@@ -83,6 +83,13 @@ public class Cli extends ModuloView
 	{
 		this.informaUser.notificaPunteggi(punteggio);
 	}
+	
+	@Override
+	public void setNumeroPlayer(int numGiocatori)
+	{
+		super.setNumeroPlayer(numGiocatori);
+		this.out.println("Giocano "+this.getNumeroPlayer()+" giocatori");
+	}
 
 	/**
 	 * Wait for a user input eg can wait for the "rotate" command
