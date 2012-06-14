@@ -1,7 +1,13 @@
 package it.polimi.dei.swknights.carcassonne;
 
+import it.polimi.dei.swknights.carcassonne.Server.Controller.ConfineTessera;
+import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
+
 import java.awt.Image;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -15,6 +21,15 @@ public final class Debug
 	{
 		printer.println(message);
 		printer.flush();
+	}
+	
+	public static void print(Map<Costruzione, List<ConfineTessera>> mappa)
+	{
+		for(Entry<Costruzione, List<ConfineTessera>> entry : mappa.entrySet())
+		{
+			printer.print(entry.getKey());
+			
+		}
 	}
 
 	public static void showImg(Image imgTessera, String descrizione)
