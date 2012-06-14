@@ -22,6 +22,7 @@ public class CartaGeografica
 	 * Default Constructor for CartaGeografica. It only initializes the
 	 * collections used by the object
 	 */
+	
 	public CartaGeografica()
 	{
 		this.mappaConfini = new HashMap<ConfineTessera, Costruzione>();
@@ -43,24 +44,10 @@ public class CartaGeografica
 	{
 		Costruzione costruzioneConfinante = this.mappaConfini.get(confinante);
 		costruzioneConfinante.joinCostruzioni(pezzoCostruzione);
-		List<ConfineTessera> confiniPezzo = this.aggiungiConfiniPezzo(pezzoCostruzione, costruzioneConfinante);
-		this.aggiornaConfini(confinante, costruzioneConfinante, confiniPezzo);
-		
-		return costruzioneConfinante;
-	}
+		//List<ConfineTessera> confiniPezzo = this.aggiungiConfiniPezzo(pezzoCostruzione, costruzioneConfinante);
+		this.aggiornaConfini(confinante, costruzioneConfinante);
 
-	private List<ConfineTessera> aggiungiConfiniPezzo(Costruzione pezzoCostruzione, Costruzione costruzione)
-	{
-		List<ConfineTessera> listaConfiniPezzo = this.mappaCostruzioni.remove(pezzoCostruzione);
-		if (listaConfiniPezzo != null)
-		{
-			for (ConfineTessera confine : listaConfiniPezzo)
-			{
-				this.mappaConfini.remove(confine);
-				this.mappaConfini.put(confine, costruzione);
-			}
-		}
-		return listaConfiniPezzo!=null? listaConfiniPezzo : new ArrayList<ConfineTessera>();
+		return costruzioneConfinante;
 	}
 
 	/**
@@ -134,17 +121,16 @@ public class CartaGeografica
 		return this.costruzioniCompletate.size() > 0;
 	}
 
-	private void aggiornaConfini(ConfineTessera confine, Costruzione nuovaCostruzione, List<ConfineTessera> confiniPezzo)
+	private void aggiornaConfini(ConfineTessera confine, Costruzione nuovaCostruzione)
 	{
 		Costruzione costruzione = this.mappaConfini.remove(confine);
 		List<ConfineTessera> listaConfini = this.mappaCostruzioni.remove(costruzione);
 		listaConfini.remove(confine);
-		listaConfini.addAll(confiniPezzo);
 		if (!listaConfini.isEmpty())
 		{
 			this.mappaCostruzioni.put(nuovaCostruzione, listaConfini);
 		}
-		
+
 	}
 
 	private Map<ConfineTessera, Costruzione>		mappaConfini;
