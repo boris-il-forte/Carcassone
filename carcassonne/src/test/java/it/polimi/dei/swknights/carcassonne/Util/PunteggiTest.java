@@ -1,8 +1,8 @@
 package it.polimi.dei.swknights.carcassonne.Util;
-
-import static org.junit.Assert.fail;
-
+import static org.junit.Assert.*;
+import it.polimi.dei.swknights.carcassonne.Exceptions.ColoreNonTrovatoException;
 import java.awt.Color;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +16,36 @@ public class PunteggiTest
 	public void setUp()
 	{
 		this.punti = new Punteggi();
+	}
+	
+	@Test
+	public void getVincitoriEPuntiNegativi()
+	{
+		this.punti.addPunteggi(Color.BLACK, 10);
+		this.punti.addPunteggi(Color.red, 4);
+		List<Color> vincitori = punti.getVincitoriAttuale();
+		
+		assertTrue(" più di uno vinse ", vincitori.size() == 1);
+		
+		this.punti.addPunteggi(Color.red, 6);
+		
+		vincitori = punti.getVincitoriAttuale();
+		
+		assertTrue(" più di uno vinse ", vincitori.size() == 2);
+		
+		boolean puntiNegGest=false;
+		try
+		{
+			this.punti.addPunteggi(Color.black, -10);
+			
+		}
+		catch(IllegalArgumentException e)
+		{
+			puntiNegGest = true;
+		}
+		
+		assertTrue("male, non gestiti neg!", puntiNegGest);
+		
 	}
 
 	@Test
@@ -47,7 +77,19 @@ public class PunteggiTest
 		{
 			fail("il red dovrebbe avere 0 punti !");
 		}
-
+		
+		boolean rosaGestito=false;
+		try
+		{
+			this.punti.get(Color.pink);
+		}
+		catch(ColoreNonTrovatoException e)
+		{
+			rosaGestito = true;
+		}
+		
+		assertTrue("rosa", rosaGestito);
+		
 	}
 
 	@Test

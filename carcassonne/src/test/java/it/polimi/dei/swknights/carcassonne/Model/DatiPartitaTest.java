@@ -3,6 +3,7 @@ package it.polimi.dei.swknights.carcassonne.Model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import it.polimi.dei.swknights.carcassonne.Exceptions.ColoreNonPresenteException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.FinitiColoriDisponibiliException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Server.Model.AreaDiGioco;
@@ -203,8 +204,33 @@ public class DatiPartitaTest
 		}
 
 	}
-
 	
+	@Test
+	public void getGiocatoreRosa()
+	{
+		boolean handled = false;
+		try
+		{
+			
+				DatiPartita dati = new DatiPartita();
+				dati.getGiocatore(Color.pink);
+			
+		}
+		catch (ColoreNonPresenteException e)
+		{
+			handled = true;
+			e.printStackTrace();
+		}
+		catch (IllegalArgumentException e)
+		{
+			handled = true;
+		}
+		
+		
+		assertTrue(" hai dato il rosa!",handled);
+		
+	}
 
 	
 }
+
