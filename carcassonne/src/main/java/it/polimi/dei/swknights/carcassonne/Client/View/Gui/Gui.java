@@ -95,6 +95,12 @@ public class Gui extends ModuloView
 	{
 		this.finestra.aggiornaPunteggi(punteggio);
 	}
+	
+	public void setNumeroPlayer(int numGiocatori)
+	{
+		super.setNumeroPlayer(numGiocatori);
+		this.finestra.creaContaPunti(numGiocatori);
+	}
 
 	public Map<Color, Icon> getMappaSegnalini()
 	{
@@ -172,6 +178,18 @@ public class Gui extends ModuloView
 		Coordinate coordRelativa = new Coordinate(x, y);
 		return this.getCoordinateNordOvest().getCoordinateA(coordRelativa);
 
+	}
+
+	public String getLabelCorrente()
+	{
+		if(this.turnoCorretto())
+		{
+			return "E' il tuo Turno!";
+		}
+		else
+		{
+			return "Non è il tuo turno...";
+		}
 	}
 
 	private PuntoCardinale getPuntocardinaleIserimento(Coordinate coordinateMouse)

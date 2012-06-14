@@ -17,6 +17,8 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
 public class JCarcassonneLaterale extends Box implements ActionListener, KeyListener, FocusListener
@@ -41,6 +43,8 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	public void aggiornaGiocatoreCorrente(Color colore, int numeroSegnalini)
 	{
 		this.giocatoreCorrente.setGiocatoreCorrente(colore, numeroSegnalini);
+		this.labelCorrente.setText(this.view.getLabelCorrente());
+		this.labelCorrente.setHorizontalTextPosition(SwingConstants.CENTER);
 	}
 
 	public void actionPerformed(ActionEvent e)
@@ -127,8 +131,10 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	{
 		Map<Color, Icon> mappaSegnalini = this.view.getMappaSegnalini();
 		this.giocatoreCorrente = new JCarcassonneCurrentPlayer(mappaSegnalini);
+		this.labelCorrente = new JLabel();
 		this.add(this.giocatoreCorrente);
-
+		this.aggiungiSpazio();
+		this.add(this.labelCorrente);
 	}
 
 	private void aggiugiTesseraCorrente()
@@ -164,6 +170,8 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	}
 
 	private JCarcassonneCurrentPlayer		giocatoreCorrente;
+
+	private JLabel							labelCorrente;
 
 	private JCarcassonneCasella				tesseraCorrente;
 

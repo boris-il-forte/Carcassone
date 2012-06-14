@@ -62,12 +62,21 @@ public class JCarcassoneFrame extends JFrame
 	public void aggiornaMappa(int numeroVuota, Coordinate coordinateVuota)
 	{
 		this.tavolo.setTesseraVuota(numeroVuota, coordinateVuota);
-
 	}
 
 	public void svuotaMappa()
 	{
 		this.tavolo.svuotaMappa();
+	}
+
+	public final void creaContaPunti(int numeroGiocatori)
+	{
+		if(this.contaPunti!= null)
+		{
+			this.remove(this.contaPunti);
+		}
+		this.contaPunti = new JCarcassonnePunteggi(numeroGiocatori);
+		this.add(this.contaPunti, BorderLayout.SOUTH);
 	}
 
 	private void inizializzaFinestra(int righe, int colonne)
@@ -76,7 +85,7 @@ public class JCarcassoneFrame extends JFrame
 		this.creaMenu();
 		this.creaBarraComandi();
 		this.creaTavolo(righe, colonne);
-		this.creaContaPunti();
+		this.creaContaPunti(0);
 	}
 
 	private void creaFinestra()
@@ -112,13 +121,6 @@ public class JCarcassoneFrame extends JFrame
 		this.add(this.barraLaterale, BorderLayout.WEST);
 	}
 
-	private void creaContaPunti()
-	{
-		this.contaPunti = new JCarcassonnePunteggi(this.numeroGiocatori);
-		this.add(this.contaPunti, BorderLayout.SOUTH);
-
-	}
-
 	private JCarcassonnePunteggi	contaPunti;
 
 	private JCarcassonneMenu		menu;
@@ -128,8 +130,6 @@ public class JCarcassoneFrame extends JFrame
 	private JCarcassonneTavolo		tavolo;
 
 	private transient Gui			view;
-
-	private int						numeroGiocatori		= 2;
 
 	private static final Dimension	DIMENSIONE_MINIMA	= new Dimension(1200, 600);
 

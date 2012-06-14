@@ -25,7 +25,7 @@ public class InizioGiocoHandler extends ModuloViewHandler
 		AdapterTessera tessIniziale = event.getTesseraIniziale();
 		this.view.mettiPrimaTessera(tessIniziale);
 		this.view.setColore(coloreInterfaccia);
-		
+		this.view.setNumeroPlayer(event.getNumGiocatori());
 		this.view.aggiornaMappa();
 		this.sveglia();
 	}

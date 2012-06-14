@@ -27,6 +27,8 @@ import java.util.Map.Entry;
 
 public abstract class ModuloView extends AbstractModuloView
 {
+	private int	numGiocatori;
+
 	public ModuloView()
 	{
 		super();
@@ -69,6 +71,16 @@ public abstract class ModuloView extends AbstractModuloView
 	 * instance
 	 */
 	public abstract void aggiornaMappa();
+
+	public void setNumeroPlayer(int numGiocatori)
+	{
+		this.numGiocatori = numGiocatori;
+	}
+	
+	protected int getNumeroPlayer()
+	{
+		return this.numGiocatori;
+	}
 
 	/**
 	 * Used in the beginning of the game, place the first card
