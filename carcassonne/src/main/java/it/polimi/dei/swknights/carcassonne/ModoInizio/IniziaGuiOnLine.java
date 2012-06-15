@@ -112,6 +112,7 @@ public class IniziaGuiOnLine extends Inizio
 			this.creaPortEntry();
 			this.creaRMICheckBox();
 			this.creaOk();
+			this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 			this.setVisible(true);
 		}
 
