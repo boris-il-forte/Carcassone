@@ -79,10 +79,10 @@ public class EsploratoreConfini
 		for (Costruzione costruzione : costruzioni)
 		{
 			List<PuntoCardinale> listaPunti = new ArrayList<PuntoCardinale>();
-			List<ConfineTessera> confini = this.confini.get(costruzione);
-			List<ConfineTessera> confinanti = this.confinanti.get(costruzione);
-			listaPunti.addAll(this.getPunticardinaliDi(confini, !scambia));
-			listaPunti.addAll(this.getPunticardinaliDi(confinanti, scambia));
+			List<ConfineTessera> confiniCostruzione = this.confini.get(costruzione);
+			List<ConfineTessera> confinantiCostruzione = this.confinanti.get(costruzione);
+			listaPunti.addAll(this.getPunticardinaliDi(confiniCostruzione, !scambia));
+			listaPunti.addAll(this.getPunticardinaliDi(confinantiCostruzione, scambia));
 			mappaCostruzioni.put(costruzione, listaPunti);
 		}
 		return mappaCostruzioni;
