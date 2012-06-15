@@ -192,8 +192,7 @@ public class Lati implements Cloneable, Serializable
 			}
 			catch (CloneNotSupportedException e)
 			{
-				e.printStackTrace();
-				return null;
+				throw new AssertionError(e);
 			}
 		}
 		
