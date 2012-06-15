@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.MossaNonValidaException;
@@ -20,7 +19,6 @@ public class PlaceHandler extends ModuloControllerHandler
 	@Override
 	public void visit(PlaceEvent event)
 	{
-		Debug.print("visito place event");
 		try
 		{
 			Coordinate coordinate = event.getCoordinateDestinazione();

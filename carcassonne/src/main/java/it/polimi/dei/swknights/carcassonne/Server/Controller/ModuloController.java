@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Exceptions.PartitaFinitaException;
 import it.polimi.dei.swknights.carcassonne.Exceptions.TesseraNonTrovataException;
@@ -198,7 +197,6 @@ public class ModuloController extends AbstractController
 
 	private void primaMossaPartita()
 	{
-		Debug.print(" sono modulo controller originale (non test) - prima mossa partita ");
 		final Coordinate origine = new Coordinate(0, 0);
 		try
 		{
@@ -262,7 +260,6 @@ public class ModuloController extends AbstractController
 			try
 			{
 				tesseraVicino = this.model.getTessera(coordinate.getCoordinateA(punto));
-				Debug.print(" tessera vicino = " + tesseraVicino + " tessera = " + tessera);
 				if (!tessera.buonVicino(tesseraVicino, punto)) { return false; }
 
 			}

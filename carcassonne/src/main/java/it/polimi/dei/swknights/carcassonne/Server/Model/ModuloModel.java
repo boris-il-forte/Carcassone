@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraObject;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
@@ -88,7 +87,6 @@ public class ModuloModel extends AbstractModel
 		try
 		{
 			Tessera primaTessera = this.datiPartita.pescaPrimaTessera();
-			Debug.print( " modulo model originale (non test) - inizia gioco ");
 			this.datiPartita.getAreaDiGioco().addTessera(new Coordinate(0, 0), primaTessera);
 			this.fire(new InizioGiocoEvent(this, primaTessera, null, this.getListaGiocatori().size(), this
 					.getIdPartita()));
@@ -141,7 +139,6 @@ public class ModuloModel extends AbstractModel
 	 */
 	public void posizionaTesseraCorrente(Coordinate coordinate) throws MossaNonValidaException
 	{
-		Debug.print(" sono modulo model - getTessera COrrente = " + this.getTesseraCorrente());
 		this.posizionaTessera(this.getTesseraCorrente() , coordinate);
 	}
 

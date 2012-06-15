@@ -1,7 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
-
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +24,6 @@ public class ScaledImageGetter extends ImageLoader
 		}
 		else
 		{
-			Debug.print("stringa non trovata: " + string);
 			return this.getErrore();
 		}
 	}

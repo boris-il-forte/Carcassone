@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocketPrinter;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraString;
@@ -53,15 +52,11 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		while (this.in.hasNext())
 		{
 			String stringaDaSocket = this.in.nextLine();
-			Debug.print(" sono connessione controller socket - ho ricevuto qualcosa  " + stringaDaSocket
-					+ "   -  faccio il parsingStringa");
 			do
 			{
 				if (letsReadAgain)
 				{
 					stringaDaSocket = this.in.nextLine();
-					Debug.print(" sono connessione controller socket - ho ricevuto qualcosa  "
-							+ stringaDaSocket + "   -  faccio il parsingStringa");
 				}
 				try
 				{
@@ -70,7 +65,6 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				}
 				catch (InvalidStringToParseException e)
 				{
-					Debug.print("stringa parsata non non valida");
 					letsReadAgain = false;
 					break;
 				}
@@ -83,7 +77,6 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	@Override
 	public void invia(String message)
 	{
-		Debug.print(" connessione controller socket - invio " + message);
 		this.out.println(message);
 	}
 
@@ -106,7 +99,6 @@ public class ConnessioneControllerSocket extends ConnessioneController
 
 		if (line.contains("score:"))
 		{
-			Debug.print(" connessione controller socket ! ");
 			if (line.matches("score:" + REG_SCORES))
 			{
 				String[] comandoEArgomenti = line.split(":");
@@ -171,9 +163,8 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				{
 					int x = Integer.parseInt(partiArgomenti[X]);
 					int y = Integer.parseInt(partiArgomenti[Y]);
-					Debug.print(" sono connessione controller, ho ricevuto update, sto per lanciare updatePositionEvent alla vera view");
 					this.proxy.fire(new UpdatePositionEvent(tessera, new Coordinate(x, y), this));
-					Debug.print(" sono connessione controller, ho lanciato l'evento");
+					
 					return false;
 				}
 				// update:tile 2,3, update:tile 3,3, update: tile 4,3
@@ -232,7 +223,6 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				{
 					if (line.equalsIgnoreCase("move not valid"))
 					{
-						Debug.print(" kkk ");
 						this.proxy.fire(new MossaNonValidaEvent(this));
 						return false;
 					}

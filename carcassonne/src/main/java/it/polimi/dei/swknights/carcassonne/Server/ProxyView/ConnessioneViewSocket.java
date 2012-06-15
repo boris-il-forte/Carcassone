@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocketPrinter;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PassEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
@@ -38,7 +37,6 @@ public class ConnessioneViewSocket extends ConnessioneView
 		{
 
 			String stringaDaSocket = this.in.nextLine();
-			Debug.print("sono connessione socket numero " + this.getNumeroConnessione());
 
 			if (this.getColoreConnessione().equals(this.proxy.getColoreCorrente()))
 			{
@@ -50,9 +48,7 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	public void invia(String string)
 	{
-		Debug.print(" Connessione view socket " + string);
 		this.out.println(string);
-
 	}
 
 	public void close()
@@ -70,8 +66,6 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	private void parsingStringa(String line)
 	{
-		Debug.print(" parsing - connessione view socket: ho ricevuto " + line);
-
 		if (line.contains(",") && line.contains(":"))
 		{
 			if (line.matches("place:\\-?\\d+\\,\\-?\\d+")) // es place: 2,3
@@ -83,7 +77,6 @@ public class ConnessioneViewSocket extends ConnessioneView
 				int y = Integer.parseInt(partiCoord[Y]);
 				this.proxy.fire(new PlaceEvent(this, new Coordinate(x, y)));
 			}// es. reconnect: yellow,PARTITA02
-
 		}
 		else
 		{
@@ -109,7 +102,6 @@ public class ConnessioneViewSocket extends ConnessioneView
 				}
 			}
 		}
-
 	}
 
 	private Socket						socket;
