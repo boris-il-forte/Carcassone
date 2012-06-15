@@ -28,6 +28,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	{
 		super(BoxLayout.Y_AXIS);
 		this.view = gui;
+		this.mappaIcone = this.view.getIcone();
 		this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 		this.aggiungiComponenti();
 		this.setFocusable(true);
@@ -150,24 +151,27 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 
 	private void aggiungiRotate()
 	{
-		this.pulsanteRotate = new JCarcassonneRotate();
+		Icon icona = this.mappaIcone.get("rotate");
+		this.pulsanteRotate = new JCarcassonneButton(icona);
 		this.pulsanteRotate.setActionListener(this);
 		this.add(this.pulsanteRotate);
 	}
 
 	private void aggiungiPass()
 	{
-		this.pulsantePass = new JCarcassonnePass();
+		this.pulsantePass = new JCarcassonneButton(this.mappaIcone.get("pass"));
 		this.pulsantePass.setActionListener(this);
 		this.add(this.pulsantePass);
 	}
 
 	private void aggiungiScorrimento()
 	{
-		this.scorrimentoMappa = new JCarcassonneScorrimentoMappa();
+		this.scorrimentoMappa = new JCarcassonneScorrimentoMappa(this.mappaIcone);
 		this.scorrimentoMappa.addActionListener(this);
 		this.add(this.scorrimentoMappa);
 	}
+
+	private Map<String, Icon>				mappaIcone;
 
 	private JCarcassonneCurrentPlayer		giocatoreCorrente;
 

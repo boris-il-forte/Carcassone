@@ -1,6 +1,9 @@
 package it.polimi.dei.swknights.carcassonne.ImageLoader;
 
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -51,6 +54,17 @@ public class IconGetter
 		{
 			return null;
 		}
+	}
+
+	public Map<String, Icon> getButtonIconMap()
+	{
+		Map<String, Icon> mappa = new HashMap<String, Icon>();
+		for (Entry<String, BufferedImage> entry : this.immagini.getIconGUIMap().entrySet())
+		{
+			Icon icona = new ImageIcon(entry.getValue());
+			mappa.put(entry.getKey(), icona);
+		}
+		return mappa;
 	}
 
 	public Icon getAlphaTileIcon(String stringToFind)

@@ -180,6 +180,11 @@ public class Gui extends ModuloView
 
 	}
 
+	public Map<String, Icon> getIcone()
+	{
+		return this.immagini.getButtonIconMap();
+	}
+
 	public String getLabelCorrente()
 	{
 		if(this.turnoCorretto())
