@@ -5,7 +5,6 @@ import it.polimi.dei.swknights.carcassonne.Client.View.Vicinato;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
-import java.awt.Color;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -46,7 +45,6 @@ public class AggiornaMappaGui
 	{
 		Map<Integer, String> mappaTessere = new HashMap<Integer, String>();
 		Map<Coordinate, Integer> mappaViciniVuoti = new HashMap<Coordinate, Integer>();
-		Map<Integer, Color> mappaSegnalini = new HashMap<Integer, Color>();
 		for (EntryTessera entryTessera : listaTessere)
 		{
 			Coordinate coordinateTessera = entryTessera.getCoordinate();
@@ -54,17 +52,9 @@ public class AggiornaMappaGui
 			Vicinato vicinato = entryTessera.getVicinato();
 			this.aggiungiTessere(coordinateTessera, stringaTessera, mappaTessere);
 			this.aggiungiViciniVuoti(coordinateTessera, vicinato, mappaViciniVuoti);
-			this.aggiungiSegnalini(coordinateTessera, stringaTessera, mappaSegnalini);
 		}
 		this.tessereIterator = mappaTessere.entrySet().iterator();
 		this.vuotiIterator = mappaViciniVuoti.entrySet().iterator();
-	}
-
-	private void aggiungiSegnalini(Coordinate coordinateTessera, String stringaTessera,
-			Map<Integer, Color> mappaSegnalini)
-	{
-		// TODO Do it!
-
 	}
 
 	private void aggiungiTessere(Coordinate coordinateTessera, String stringaTessera,
