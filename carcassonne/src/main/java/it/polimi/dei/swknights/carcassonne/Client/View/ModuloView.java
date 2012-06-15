@@ -109,6 +109,10 @@ public abstract class ModuloView extends AbstractModuloView
 		for (Entry<AdapterTessera, Coordinate> entryAdapterCoord : tessereCostruzioneFinita.entrySet())
 		{
 			Coordinate coord = entryAdapterCoord.getValue();
+			
+			Color coloreSegnalino = scenario.getTessera(coord).getColorSegnalino();
+			this.segnalini.addPunteggi(coloreSegnalino, 1);
+			
 			AdapterTessera tessera = entryAdapterCoord.getKey();
 			scenario.setTessera(coord, tessera);
 
