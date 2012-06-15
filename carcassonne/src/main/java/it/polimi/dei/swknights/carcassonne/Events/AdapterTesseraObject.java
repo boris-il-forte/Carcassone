@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Events;
 
 import java.awt.Color;
 
+import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 
 /**
@@ -27,7 +28,8 @@ public class AdapterTesseraObject extends AdapterTessera
 	@Override
 	public Color getColorSegnalino()
 	{
-		return this.tessera.getSegnalino().getColore();
+		Segnalino segnalino = this.tessera.getSegnalino();
+		return (segnalino==null)?null :segnalino.getColore();
 	}
 
 	private static final long	serialVersionUID	= -3083803275769710214L;
