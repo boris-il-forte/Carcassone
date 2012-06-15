@@ -156,7 +156,7 @@ public class EsploratoreConfini
 		}
 		catch (TesseraNonTrovataException e1)
 		{
-			throw new AssertionError("L'algoritmo e' fallito miseramente! ", e1);
+			throw new AssertionError(e1);
 		}
 	}
 
