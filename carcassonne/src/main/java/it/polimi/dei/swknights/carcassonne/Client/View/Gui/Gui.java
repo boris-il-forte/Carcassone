@@ -85,8 +85,8 @@ public class Gui extends ModuloView
 	@Override
 	public void visualizzaColoreCorrente()
 	{
-		// TODO numero segnalini corretto
-		this.finestra.aggiornaGiocatoreCorrente(this.getColoreGiocatoreCorrente(), 0);
+		Color coloreCorrente = this.getColoreGiocatoreCorrente();
+		this.finestra.aggiornaGiocatoreCorrente(coloreCorrente, this.getNumeroSegnalini(coloreCorrente));
 
 	}
 
