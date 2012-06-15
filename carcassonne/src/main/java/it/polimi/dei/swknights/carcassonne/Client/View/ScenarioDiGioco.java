@@ -58,7 +58,7 @@ public class ScenarioDiGioco
 		}
 		else
 		{
-			return null; // TODO o exception??
+			return null;
 		}
 	}
 

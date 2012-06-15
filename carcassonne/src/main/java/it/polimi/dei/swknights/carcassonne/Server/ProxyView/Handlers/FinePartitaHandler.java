@@ -10,7 +10,6 @@ public class FinePartitaHandler extends ProxyViewHandler
 	public FinePartitaHandler(ProxyView proxy)
 	{
 		super(proxy);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

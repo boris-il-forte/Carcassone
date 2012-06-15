@@ -25,12 +25,10 @@ public class ListFolderTest
 		}
 		catch (URISyntaxException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		catch (UnsupportedOperationException e)
