@@ -52,7 +52,7 @@ public final class ListFolder
 		{
 			/* A JAR path */
 			// strip out only the JAR file
-			String jarPath = dirURL.getPath().substring(5, dirURL.getPath().indexOf("!"));
+			String jarPath = dirURL.getPath().substring(5, dirURL.getPath().indexOf("!")); //TODO: magic! chissà perchè...
 			JarFile jar = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
 			// gives ALL entries in jar
 			Enumeration<JarEntry> entries = jar.entries();

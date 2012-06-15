@@ -118,8 +118,9 @@ public class IniziaGuiOnLine extends Inizio
 
 		private void creaLateraleVuoto()
 		{
+			final int spazio = 25;
 			JPanel panel = new JPanel();
-			panel.setPreferredSize(new Dimension(25,25));
+			panel.setPreferredSize(new Dimension(spazio,spazio));
 			this.add(panel,BorderLayout.WEST);
 		}
 

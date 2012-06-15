@@ -97,9 +97,10 @@ public class Cli extends ModuloView
 
 	public void attendiInput()
 	{
+		final int tempoAttesaInput = 300;
 		try
 		{
-			Thread.sleep(300);
+			Thread.sleep(tempoAttesaInput);
 		}
 		catch (InterruptedException e)
 		{
