@@ -75,6 +75,7 @@ public class IniziaGuiOffline extends Inizio
 			this.creaLabel();
 			this.creaSpinner();
 			this.creaOk();
+			this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 			this.setVisible(true);
 		}
 
