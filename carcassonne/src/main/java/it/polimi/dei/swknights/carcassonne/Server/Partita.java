@@ -18,7 +18,6 @@ public class Partita
 	 */
 	public Partita()
 	{
-
 		java.util.Date date = new java.util.Date();
 		this.idPartita = ("GAME" + new Timestamp(date.getTime()));
 		this.idPartita = this.idPartita.replace(':', '@');
@@ -47,6 +46,11 @@ public class Partita
 	{
 		this.model.addPlayer();
 
+	}
+	
+	public String getId()
+	{
+		return this.idPartita;
 	}
 
 	private Executor			executor;
