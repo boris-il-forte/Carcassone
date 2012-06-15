@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne;
 
 import it.polimi.dei.swknights.carcassonne.Server.Controller.ConfineTessera;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
+import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Image;
 import java.io.PrintWriter;
@@ -22,6 +23,22 @@ public final class Debug
 		printer.println(message);
 		printer.flush();
 	}
+	
+	public static void printMappaPuCo(Map<PuntoCardinale, Costruzione> mappaPuCo )
+	{
+		Debug.print(" mappa puCo su :  mappaPuCo" +  mappaPuCo.toString()+"\n\n");
+		StringBuilder builder = new StringBuilder();
+		for(Entry<PuntoCardinale, Costruzione> entry : mappaPuCo.entrySet())
+		{
+			builder.append(" key = " + entry.getKey().toString());
+			builder.append("\nvalue = " + entry.getValue().toString());
+	
+			printer.println(builder.toString());
+			printer.flush();
+		}
+		
+	}
+	
 	
 	public static void print(Map<Costruzione, List<ConfineTessera>> mappa)
 	{

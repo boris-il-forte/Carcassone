@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
@@ -121,7 +122,9 @@ public class ContatoreCartografo
 
 	public void addSegnalino(Segnalino segnalino, PuntoCardinale puntoCardinale)
 	{
-		Costruzione costruzione = this.getMapCostruzioniUltimaTessera().get(puntoCardinale);
+		Debug.printMappaPuCo( this.getMapCostruzioniUltimaTessera());
+		Map<PuntoCardinale, Costruzione > mapCostruzPunto = this.getMapCostruzioniUltimaTessera();
+		Costruzione costruzione = mapCostruzPunto.get(puntoCardinale);
 		costruzione.addSegnalino(segnalino);
 	}
 
