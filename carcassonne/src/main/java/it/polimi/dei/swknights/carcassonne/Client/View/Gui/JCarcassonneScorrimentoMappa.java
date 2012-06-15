@@ -10,13 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class JCarcassonneScorrimentoMappa extends JPanel
 {
-	public JCarcassonneScorrimentoMappa()
+	public JCarcassonneScorrimentoMappa(Map<String, Icon> mappaIcone)
 	{
 		final int larghezza = CELLE_RIGA * DIMENSIONE_PULSANTE;
 		final int altezza = CELLE_RIGA * DIMENSIONE_PULSANTE;
@@ -26,26 +27,7 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 		this.setPreferredSize(dimensione);
 		this.setMaximumSize(dimensione);
 		this.listaPulsanti = new ArrayList<JButton>();
-		this.addPulsanti();
-	}
-
-	private void addPulsanti()
-	{
-		for (int i = 0; i < CELLE_RIGA * CELLE_RIGA; i++)
-		{
-
-			String label = LABEL_MAP.get(i);
-			if (label != null)
-			{
-				JButton pulsante = new JButton(label);
-				this.listaPulsanti.add(pulsante);
-				this.add(pulsante);
-			}
-			else
-			{
-				this.add(new JLabel());
-			}
-		}
+		this.addPulsanti(mappaIcone);
 	}
 
 	public void addActionListener(ActionListener listener)
@@ -80,18 +62,38 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 		return this.listaPulsanti.get(index);
 	}
 
-	private List<JButton>	listaPulsanti;
+	private void addPulsanti(Map<String, Icon> mappaIcone)
+	{
+		for (int i = 0; i < CELLE_RIGA * CELLE_RIGA; i++)
+		{
+	
+			String label = LABEL_MAP.get(i);
+			if (label != null)
+			{
+				Icon icona = mappaIcone.get(label);
+				JButton pulsante = new JButton(icona);
+				this.listaPulsanti.add(pulsante);
+				this.add(pulsante);
+			}
+			else
+			{
+				this.add(new JLabel());
+			}
+		}
+	}
 
 	private static Map<Integer, String> inizializzaLabelPulsante()
 	{
 		final int nord = 1, sud = 7, est = 5, ovest = 3;
 		HashMap<Integer, String> mappa = new HashMap<Integer, String>();
-		mappa.put(nord, "Up");
-		mappa.put(ovest, "Lt");
-		mappa.put(est, "Rt");
-		mappa.put(sud, "Dw");
+		mappa.put(nord, "up");
+		mappa.put(ovest, "lt");
+		mappa.put(est, "rt");
+		mappa.put(sud, "dw");
 		return mappa;
 	}
+
+	private List<JButton>	listaPulsanti;
 
 	private static final Map<Integer, String>	LABEL_MAP			= inizializzaLabelPulsante();
 

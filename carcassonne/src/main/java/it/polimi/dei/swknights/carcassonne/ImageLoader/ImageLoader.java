@@ -26,14 +26,35 @@ public class ImageLoader
 			this.setErrore();
 			this.leggiFileCartella("tiles", this.mappaURLTiles);
 			this.leggiFileCartella("segnalini", this.mappaURLSegnalini);
+			this.leggiFileCartella("pulsanti", this.mappaURLGUI);
 			this.apriFilesCartella(this.mappaImmaginiTiles, this.mappaURLTiles, DIM_ORIGINALE_TILES);
 			this.apriFilesCartella(this.mappaImmaginiSegnalini, this.mappaURLSegnalini,
 					DIM_ORIGINALE_SEGNALINI);
+			this.caricaIcone();
 			this.aggiungiRuotate();
 		}
 		catch (IOException e)
 		{
 			return;
+		}
+	}
+
+	private void caricaIcone()
+	{
+		for (Entry<String, URL> entryURL : this.mappaURLGUI.entrySet())
+		{
+			try
+			{
+				BufferedImage image = ImageIO.read(entryURL.getValue());
+				if (image == null)
+				{
+					image = this.errorImage;
+				}
+				this.mappaIconeGUI.put(entryURL.getKey(), image);
+			}
+			catch (IOException e)
+			{
+			}
 		}
 	}
 
@@ -48,6 +69,11 @@ public class ImageLoader
 		{
 			return this.errorURL;
 		}
+	}
+
+	public Map<String, BufferedImage> getIconGUIMap()
+	{
+		return this.mappaIconeGUI;
 	}
 
 	public BufferedImage getOriginalTileImage(String stringa)
@@ -82,11 +108,13 @@ public class ImageLoader
 
 	private void inizializzaMappe()
 	{
+		this.mappaURLGUI= new HashMap<String, URL>();
 		this.mappaURLTiles = new HashMap<String, URL>();
-		this.mappaImmaginiTiles = new HashMap<String, BufferedImage>();
 		this.mappaURLSegnalini = new HashMap<String, URL>();
+		
+		this.mappaIconeGUI = new HashMap<String, BufferedImage>();
+		this.mappaImmaginiTiles = new HashMap<String, BufferedImage>();
 		this.mappaImmaginiSegnalini = new HashMap<String, BufferedImage>();
-
 	}
 
 	private BufferedImage getImage(Map<String, BufferedImage> mappaImmagini, String stringa)
@@ -155,11 +183,15 @@ public class ImageLoader
 
 	private URL							errorURL;
 
+	private Map<String, BufferedImage>	mappaIconeGUI;
+
 	private Map<String, BufferedImage>	mappaImmaginiSegnalini;
+
+	private Map<String, BufferedImage>	mappaImmaginiTiles;
 
 	private Map<String, URL>			mappaURLSegnalini;
 
-	private Map<String, BufferedImage>	mappaImmaginiTiles;
+	private Map<String, URL>			mappaURLGUI;
 
 	private Map<String, URL>			mappaURLTiles;
 

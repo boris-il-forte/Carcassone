@@ -131,7 +131,7 @@ public class JCarcassoneFrame extends JFrame
 
 	private transient Gui			view;
 
-	private static final Dimension	DIMENSIONE_MINIMA	= new Dimension(1200, 600);
+	private static final Dimension	DIMENSIONE_MINIMA	= new Dimension(1200, 700);
 
 	private static final long		serialVersionUID	= -5492055857856379920L;
 
