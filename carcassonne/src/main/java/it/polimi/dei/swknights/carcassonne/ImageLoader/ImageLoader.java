@@ -96,7 +96,7 @@ public class ImageLoader
 		return this.errorImage;
 	}
 
-	protected BufferedImage scalaImmagine(BufferedImage original, int dim)
+	protected final BufferedImage scalaImmagine(BufferedImage original, int dim)
 	{
 		BufferedImage resized = new BufferedImage(dim, dim, original.getType());
 		Graphics2D g = resized.createGraphics();
@@ -173,7 +173,7 @@ public class ImageLoader
 		}
 	}
 
-	private void setErrore() throws IOException
+	private final void setErrore() throws IOException
 	{
 		this.errorURL = ImageLoader.class.getResource("/error.jpg");
 		this.errorImage = this.scalaImmagine(ImageIO.read(this.errorURL), DIM_ORIGINALE_TILES);

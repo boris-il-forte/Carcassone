@@ -47,7 +47,7 @@ public class ScaledImageGetter extends ImageLoader
 		return this.addAlpha(image);
 	}
 
-	public void setImageDim(int dimensione)
+	public final void setImageDim(int dimensione)
 	{
 		if (dimensione != this.currentDim)
 		{
