@@ -1,5 +1,7 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
+import java.awt.Color;
+
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 
 /**
@@ -22,6 +24,12 @@ public class AdapterTesseraObject extends AdapterTessera
 		return this.tessera.toString();
 	}
 	
+	@Override
+	public Color getColorSegnalino()
+	{
+		return this.tessera.getSegnalino().getColore();
+	}
+
 	private static final long	serialVersionUID	= -3083803275769710214L;
 
 	private Tessera	tessera;
