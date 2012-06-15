@@ -156,8 +156,7 @@ public class EsploratoreConfini
 		}
 		catch (TesseraNonTrovataException e1)
 		{
-			e1.printStackTrace();
-			System.exit(-1);
+			throw new AssertionError("L'algoritmo e' fallito miseramente! ", e1);
 		}
 	}
 
