@@ -59,7 +59,6 @@ public class ConnessioneViewSocket extends ConnessioneView
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
 		}
 
 	}

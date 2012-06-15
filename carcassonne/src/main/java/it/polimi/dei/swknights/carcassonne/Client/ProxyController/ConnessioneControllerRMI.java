@@ -40,7 +40,6 @@ public class ConnessioneControllerRMI extends ConnessioneController
 		}
 		catch (RemoteException e)
 		{
-			e.printStackTrace();
 		}
 	
 	}

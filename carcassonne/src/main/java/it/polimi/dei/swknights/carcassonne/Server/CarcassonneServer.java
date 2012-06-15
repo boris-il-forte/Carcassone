@@ -50,7 +50,6 @@ public class CarcassonneServer implements Runnable
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
 			Debug.print(" spengo server ");
 			this.executor.shutdownNow();
 		}
@@ -210,7 +209,6 @@ public class CarcassonneServer implements Runnable
 			}
 			catch (InterruptedException e)
 			{
-				e.printStackTrace();
 			}
 		}
 

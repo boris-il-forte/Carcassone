@@ -43,12 +43,10 @@ public class FactoryTessereNormali extends FactoryTessere
 		}
 		catch (NoFirstCardException e)
 		{
-			e.printStackTrace();
-			System.exit(-1);
+			throw new AssertionError(e);
 		}
 		catch (IOException e1)
 		{
-			e1.printStackTrace();
 		}
 
 	}

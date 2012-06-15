@@ -218,7 +218,6 @@ public class ModuloModel extends AbstractModel
 		}
 		catch (FinitiColoriDisponibiliException e)
 		{
-			e.printStackTrace();
 		}
 	}
 
@@ -234,7 +233,6 @@ public class ModuloModel extends AbstractModel
 			}
 			catch (ColoreNonPresenteException e)
 			{
-				e.printStackTrace();
 			}
 		}
 

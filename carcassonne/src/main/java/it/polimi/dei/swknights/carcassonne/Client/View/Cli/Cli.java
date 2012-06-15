@@ -57,7 +57,6 @@ public class Cli extends ModuloView
 
 		catch (InterruptedException e)
 		{
-			e.printStackTrace();
 		}
 
 	}
@@ -75,7 +74,6 @@ public class Cli extends ModuloView
 		this.out.print(mappa);
 		this.out.flush();
 
-
 	}
 
 	@Override
@@ -83,12 +81,12 @@ public class Cli extends ModuloView
 	{
 		this.informaUser.notificaPunteggi(punteggio);
 	}
-	
+
 	@Override
 	public void setNumeroPlayer(int numGiocatori)
 	{
 		super.setNumeroPlayer(numGiocatori);
-		this.out.println("Giocano "+this.getNumeroPlayer()+" giocatori");
+		this.out.println("Giocano " + this.getNumeroPlayer() + " giocatori");
 	}
 
 	/**
@@ -101,19 +99,18 @@ public class Cli extends ModuloView
 		try
 		{
 			Thread.sleep(tempoAttesaInput);
-		}
-		catch (InterruptedException e)
-		{
-			e.printStackTrace();
-		}
-		if (this.getGestoreFasi().inputOk() && this.turnoCorretto())
-		{
+			if (this.getGestoreFasi().inputOk() && this.turnoCorretto())
+			{
 
 				this.informaUser.setPhase(this.getGestoreFasi().getCurrentFase());
 				this.getInput();
 			}
 		}
-
+		catch (InterruptedException e)
+		{
+		}
+		
+	}
 
 	@Override
 	public void mettiPrimaTessera(AdapterTessera tessIniziale)
@@ -206,8 +203,7 @@ public class Cli extends ModuloView
 	{
 		return this.turnoCorretto();
 	}
-	
-	
+
 	boolean provaPosizionareSengalino(String stringComando)
 	{
 		if (this.getGestoreFasi().fineTurnoOk())
@@ -225,7 +221,6 @@ public class Cli extends ModuloView
 		}
 		return false;
 	}
-
 
 	private synchronized void aspettaInizio() throws InterruptedException
 	{
@@ -275,9 +270,8 @@ public class Cli extends ModuloView
 
 	private final AvvisiUser	informaUser;
 
-	private static final int	ALTEZZA			= 5;
+	private static final int	ALTEZZA		= 5;
 
-	private static final int	LARGHEZZA		= 10;
+	private static final int	LARGHEZZA	= 10;
 
 }
-

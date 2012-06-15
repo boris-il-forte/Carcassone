@@ -64,7 +64,6 @@ public class ModuloController extends AbstractController
 		}
 		catch (InterruptedException e)
 		{
-			e.printStackTrace();
 		}
 	}
 
@@ -206,8 +205,7 @@ public class ModuloController extends AbstractController
 		}
 		catch (PartitaFinitaException e)
 		{
-			e.printStackTrace();
-			System.exit(0);
+			Thread.currentThread().interrupt();
 		}
 	}
 
