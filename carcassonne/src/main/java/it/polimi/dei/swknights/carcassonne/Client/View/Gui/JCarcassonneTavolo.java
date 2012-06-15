@@ -2,6 +2,7 @@ package it.polimi.dei.swknights.carcassonne.Client.View.Gui;
 
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -20,6 +21,9 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 	public JCarcassonneTavolo(Gui gui, int righe, int colonne)
 	{
 		super();
+		final int coloreSfondo = 0x8AA764;
+		this.setBackground(new Color(coloreSfondo));
+		this.setOpaque(true);
 		this.righe = righe;
 		this.colonne = colonne;
 		final int larghezza = this.colonne * DIMENSIONE_CELLE;
