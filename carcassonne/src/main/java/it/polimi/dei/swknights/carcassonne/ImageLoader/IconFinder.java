@@ -31,8 +31,8 @@ public class IconFinder
 			ExtraParser parser = new ExtraParser(stringToFind);
 			for (PuntoCardinale puntoCardinale : PuntoCardinale.values())
 			{
-				String string = parser.getData(puntoCardinale);
-				this.string.append(string);
+				String stringaParsata = parser.getData(puntoCardinale);
+				this.string.append(stringaParsata);
 				String extraData = parser.getExtraData(puntoCardinale);
 				if (!extraData.equals(""))
 				{
@@ -41,8 +41,8 @@ public class IconFinder
 			}
 			for (Bussola agoBussola : Bussola.values())
 			{
-				String string = parser.getData(agoBussola);
-				this.string.append(string);
+				String data = parser.getData(agoBussola);
+				this.string.append(data);
 			}
 		}
 		catch (InvalidStringToParseException e)

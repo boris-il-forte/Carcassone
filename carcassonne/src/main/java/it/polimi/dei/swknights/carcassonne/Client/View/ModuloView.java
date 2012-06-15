@@ -29,10 +29,6 @@ import java.util.Map.Entry;
 
 public abstract class ModuloView extends AbstractModuloView
 {
-	private int	numGiocatori;
-
-	private PunteggiSegnalini	segnalini;
-
 	public ModuloView()
 	{
 		super();
@@ -81,7 +77,7 @@ public abstract class ModuloView extends AbstractModuloView
 	{
 		this.numGiocatori = numGiocatori;
 	}
-	
+
 	/**
 	 * Used in the beginning of the game, place the first card
 	 * 
@@ -105,16 +101,15 @@ public abstract class ModuloView extends AbstractModuloView
 	 */
 	public void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereCostruzioneFinita)
 	{
-		ScenarioDiGioco scenario = this.getScenario();
 		for (Entry<AdapterTessera, Coordinate> entryAdapterCoord : tessereCostruzioneFinita.entrySet())
 		{
 			Coordinate coord = entryAdapterCoord.getValue();
-			
-			Color coloreSegnalino = scenario.getTessera(coord).getColorSegnalino();
+
+			Color coloreSegnalino = this.scenario.getTessera(coord).getColorSegnalino();
 			this.segnalini.addPunteggi(coloreSegnalino, 1);
-			
+
 			AdapterTessera tessera = entryAdapterCoord.getKey();
-			scenario.setTessera(coord, tessera);
+			this.scenario.setTessera(coord, tessera);
 
 		}
 		this.aggiornaMappa();
@@ -132,7 +127,7 @@ public abstract class ModuloView extends AbstractModuloView
 	public void posizionaTessera(AdapterTessera tessera, Coordinate coordinatePosizione)
 	{
 		Color coloreSegnalino = tessera.getColorSegnalino();
-		if(coloreSegnalino != null)
+		if (coloreSegnalino != null)
 		{
 			this.segnalini.diminuisci(coloreSegnalino);
 		}
@@ -193,7 +188,7 @@ public abstract class ModuloView extends AbstractModuloView
 	{
 		this.coloreGiocatoreCorrente = coloreGiocatore;
 	}
-	
+
 	protected int getNumeroSegnalini(Color colore)
 	{
 		return this.segnalini.get(colore);
@@ -275,7 +270,7 @@ public abstract class ModuloView extends AbstractModuloView
 	{
 		final int maxSegnalini = 7;
 		this.segnalini = new PunteggiSegnalini();
-		for(Color colore : ColoriGioco.getListaColori())
+		for (Color colore : ColoriGioco.getListaColori())
 		{
 			this.segnalini.addPunteggi(colore, maxSegnalini);
 		}
@@ -285,9 +280,8 @@ public abstract class ModuloView extends AbstractModuloView
 	{
 		Coordinate nordOvest = coordinate;
 		Coordinate sudEst = coordinate.getCoordinateA(this.coordinateRelativeSE);
-		ScenarioDiGioco scenario = this.getScenario();
-		Coordinate min = scenario.getMin();
-		Coordinate max = scenario.getMax();
+		Coordinate min = this.scenario.getMin();
+		Coordinate max = this.scenario.getMax();
 		return this.isIn(nordOvest, sudEst, min, max);
 	}
 
@@ -303,6 +297,10 @@ public abstract class ModuloView extends AbstractModuloView
 	}
 
 	private Color						myColore		= null;
+
+	private int							numGiocatori;
+
+	private PunteggiSegnalini			segnalini;
 
 	private AdapterTessera				tesseraCorrente;
 

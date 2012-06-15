@@ -80,9 +80,9 @@ public class Coordinate implements Serializable
 	 */
 	public Coordinate getVersore()
 	{
-		int x = (this.x != 0) ? (this.x / Math.abs(this.x)) : 0;
-		int y = (this.y != 0) ? (this.y / Math.abs(this.y)) : 0;
-		return new Coordinate(x, y);
+		int ascissa = (this.x != 0) ? (this.x / Math.abs(this.x)) : 0;
+		int ordinata = (this.y != 0) ? (this.y / Math.abs(this.y)) : 0;
+		return new Coordinate(ascissa, ordinata);
 	}
 
 	@Override

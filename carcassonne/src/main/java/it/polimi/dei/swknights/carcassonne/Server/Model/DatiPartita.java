@@ -105,9 +105,9 @@ public final class DatiPartita
 
 	public List<Giocatore> getListaGiocatori()
 	{
-		List<Giocatore> giocatori = new ArrayList<Giocatore>();
-		giocatori.addAll(this.giocatori);
-		return giocatori;
+		List<Giocatore> listaGiocatori = new ArrayList<Giocatore>();
+		listaGiocatori.addAll(this.giocatori);
+		return listaGiocatori;
 	}
 
 	public Set<Coordinate> getSetCoordinateVuote()
