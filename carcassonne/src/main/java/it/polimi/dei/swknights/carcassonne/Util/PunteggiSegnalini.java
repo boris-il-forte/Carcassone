@@ -22,4 +22,10 @@ public class PunteggiSegnalini extends Punteggi
 	}
 	
 	private static final long	serialVersionUID	= -2652989721742972154L;
+
+	public void diminuisci(Color coloreSegnalino)
+	{
+		final int unoInMeno = -1;
+		this.modificaPunteggi(coloreSegnalino, unoInMeno);	
+	}
 }
