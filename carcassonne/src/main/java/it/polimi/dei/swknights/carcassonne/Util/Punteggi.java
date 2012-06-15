@@ -75,8 +75,7 @@ public class Punteggi implements Serializable
 		}
 		else
 		{
-			int punteggio = this.mappaPunteggi.get(colore) + punti;
-			this.mappaPunteggi.put(colore, punteggio);
+			this.modificaPunteggi(colore, punti);
 		}
 	}
 
@@ -103,6 +102,12 @@ public class Punteggi implements Serializable
 		}
 		return stringaPunti.toString();
 
+	}
+
+	protected void modificaPunteggi(Color colore, int punti)
+	{
+		int punteggio = this.mappaPunteggi.get(colore) + punti;
+		this.mappaPunteggi.put(colore, punteggio);
 	}
 
 	private Map<Color, Integer> inizializza()

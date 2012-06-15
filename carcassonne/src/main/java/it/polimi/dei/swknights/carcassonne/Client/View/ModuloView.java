@@ -131,6 +131,11 @@ public abstract class ModuloView extends AbstractModuloView
 
 	public void posizionaTessera(AdapterTessera tessera, Coordinate coordinatePosizione)
 	{
+		Color coloreSegnalino = tessera.getColorSegnalino();
+		if(coloreSegnalino != null)
+		{
+			this.segnalini.diminuisci(coloreSegnalino);
+		}
 		this.getScenario().setTessera(coordinatePosizione, tessera);
 		this.getGestoreFasi().nextFase();
 	}
