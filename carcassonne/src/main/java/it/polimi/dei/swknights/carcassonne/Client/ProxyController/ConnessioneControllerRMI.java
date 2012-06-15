@@ -1,11 +1,10 @@
 package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
-import java.rmi.RemoteException;
-
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 import it.polimi.dei.swknights.carcassonne.Server.RMI.PortaleRMI;
+
+import java.rmi.RemoteException;
 
 public class ConnessioneControllerRMI extends ConnessioneController
 {
@@ -20,7 +19,6 @@ public class ConnessioneControllerRMI extends ConnessioneController
 	{
 		try
 		{
-			Debug.print(" connessione controller RMI - invio " + event);
 			this.portale.passaEvento(event);
 		}
 		catch (RemoteException e)

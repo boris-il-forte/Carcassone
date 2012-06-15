@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocketPrinter;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.PassHandler;
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControllerHandlers.PlaceHandler;
@@ -81,7 +80,6 @@ public class ProxyController extends AbstractConnessioneController
 
 	private void contattaServerInizia(Socket socket)
 	{
-		Debug.print(" sono proxy controller - contattaServer ");
 		try
 		{
 			printer = new CarcassonneSocketPrinter(socket.getOutputStream());

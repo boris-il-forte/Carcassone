@@ -12,8 +12,7 @@ public final class Carcassonne
 		JCarcassonneBegin begin = new JCarcassonneBegin();
 
 		risposta = begin.showDialog();
-
-		Debug.print(" risposta = " + risposta);
+		
 		Inizio iniziatore = begin.getIniziatore(risposta);
 
 		iniziatore.inizia();

@@ -131,13 +131,13 @@ public abstract class Costruzione
 	@Override
 	public String toString()
 	{
-		StringBuilder builder = new StringBuilder(" tessere componenti :");
+		StringBuilder builder = new StringBuilder("tessere componenti: ");
 		for (Tessera t : this.elementi)
 		{
-			builder.append(t.toString());
+			builder.append(t.toString()).append(" ");
 		}
-		builder.append("segnalini :");
-		for (Color segnalino : this.contatoreSegnalini.keySet())
+		builder.append(" segnalini: ");
+		for (Segnalino segnalino : this.setSegnalini)
 		{
 			builder.append(segnalino.toString());
 		}

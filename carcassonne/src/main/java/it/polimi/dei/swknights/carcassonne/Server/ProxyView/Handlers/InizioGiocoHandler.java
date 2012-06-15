@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
@@ -34,7 +33,6 @@ public class InizioGiocoHandler extends ProxyViewHandler
 		}
 		this.proxy.mandaComandoAvvia(event);
 		
-		Debug.print(stringCommand.toString());
 	}
 
 }
