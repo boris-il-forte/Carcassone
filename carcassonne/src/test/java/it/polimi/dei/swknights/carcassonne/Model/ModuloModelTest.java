@@ -3,13 +3,20 @@ package it.polimi.dei.swknights.carcassonne.Model;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
+import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Elemento;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Lati;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Link;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Tessere.TesseraNormale;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
+import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import org.junit.After;
@@ -58,6 +65,35 @@ public class ModuloModelTest
 		assertTrue(t1.equals(t2) == false);
 	}
 
+	@Test
+	public void notificaFinePartita()
+	{
+		Punteggi punti = new Punteggi();
+		punti.addPunteggi(Color.green, 10);
+		model.notificaFinePartita(punti);
+	}
+	
+	
+	@Test
+	public void notificaCostruzione()
+	{
+		TesseraNormale t1 = new TesseraNormale(this.creaLatiCittaGrande(), this.creaLinkCittaGrande());
+		TesseraNormale t2 = new TesseraNormale(this.creaLatiCittaGrande(), this.creaLinkCittaGrande());
+		List<Tessera> tessere = new ArrayList<Tessera>();
+		
+		t2.setSegnalino(new Segnalino(Color.green), PuntoCardinale.nord);
+		
+		tessere.add(t1);
+		tessere.add(t2);
+		
+		Punteggi punti = new Punteggi();
+		punti.addPunteggi(Color.green, 10);
+		model.notificaFinePartita(punti);		
+		model.notificaCostruzioneCompletata(tessere, punti);
+	}
+	
+	
+	
 	@Test
 	public void getCoordinateTessera() throws Exception
 	{
