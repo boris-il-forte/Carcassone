@@ -132,7 +132,7 @@ public class CarcassonneServer implements Runnable
 		ServerRMI pt;
 		try
 		{
-			java.rmi.registry.LocateRegistry.createRegistry(1099);
+			java.rmi.registry.LocateRegistry.createRegistry(DEFAULT_RMI_REGISTRY_PORT);
 			Debug.print("RMI registry ready.");
 			pt = new ServerRMIImpl(this);
 			Naming.rebind("//localhost/ServerRMI", pt);
@@ -192,6 +192,8 @@ public class CarcassonneServer implements Runnable
 	private static final int	GIOCATORI_PARTITA			= 5;
 
 	private static final int	PORTA_DEL_GRANDE_FRATELLO	= 1984;
+
+	private static final int	DEFAULT_RMI_REGISTRY_PORT	= 1099;
 
 	private class Timer implements Runnable
 	{
@@ -254,7 +256,8 @@ public class CarcassonneServer implements Runnable
 				}
 				try
 				{
-					Thread.sleep(200);
+					final int tempoDiPolling = 200;
+					Thread.sleep(tempoDiPolling);
 				}
 				catch (InterruptedException e)
 				{
