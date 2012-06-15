@@ -1,5 +1,6 @@
 package it.polimi.dei.swknights.carcassonne.Events;
 
+import java.awt.Color;
 import java.io.Serializable;
 
 import it.polimi.dei.swknights.carcassonne.Exceptions.InvalidStringToParseException;
@@ -44,4 +45,6 @@ public abstract class AdapterTessera implements Serializable
 	}
 	
 	private static final long	serialVersionUID	= -2192491098300991563L;
+
+	public abstract Color getColorSegnalino();
 }

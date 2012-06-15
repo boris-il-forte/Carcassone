@@ -25,6 +25,18 @@ public final class ColoriGioco
 
 	}
 
+	public static Color getColorBySigla(String sigla)
+	{
+		if (sigla.compareToIgnoreCase("RED") == 0) { return Color.red; }
+		if (sigla.compareToIgnoreCase("Green") == 0) { return Color.green; }
+		if (sigla.compareToIgnoreCase("Yellow") == 0) { return Color.yellow; }
+		if (sigla.compareToIgnoreCase("Blue") == 0) { return Color.blue; }
+	
+		if (sigla.compareToIgnoreCase("Black") == 0) { return Color.black; }
+		
+		return null;
+	}
+
 	/**
 	 * returns R, B, G, Y or K according to the Color (K is BLACK, this beacause
 	 * Blue and Black has the same initial )
