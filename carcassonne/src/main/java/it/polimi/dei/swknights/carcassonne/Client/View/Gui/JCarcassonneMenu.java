@@ -63,7 +63,15 @@ public class JCarcassonneMenu extends JMenuBar implements ActionListener
 			JOptionPane
 					.showMessageDialog(
 							this,
-							"<html>Gioco creato da Edoardo Pasi e Davide Tateo.<br/> Questo gioco è stato testato con il metodo dell'amico di Ghezzi<html/>",
+							"<html>Gioco creato da Edoardo Pasi e Davide Tateo.<br/><br/>" +
+							" Questo gioco è stato testato con il metodo dell'amico di Ghezzi<br/><br/>" +
+							"Si ringrazia il (buon) Fabio Santi Venuto per i pulsanti<br/>" +
+							"Grazie a Santi per i pulSanti!<br/> " +
+							"<br/><br/><br/>" +
+							"Aggiungere Dave a un progetto in anticipo, lo rende in ritardo, e lo ritarda pure ulteriormente. Ma ci mette i Pulsanti Fighi!<br/> " +
+							"<br/><br/><br/>" +
+							"Si ringraziano anche Marco Funaro e soprattutto Mario Sangiorgio per il grande aiuto nello sviluppo del progetto. <br/> " +
+							"Si ringrazia anche chi non programma in java! ;)<html/>",
 							"Carcassonne - swKnights -credits", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
