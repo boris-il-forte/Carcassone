@@ -9,8 +9,10 @@ import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdateRotationHa
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.UpdateTurnoHandler;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Fasi.GestoreFasi;
+import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
+import it.polimi.dei.swknights.carcassonne.Util.PunteggiSegnalini;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
@@ -29,12 +31,15 @@ public abstract class ModuloView extends AbstractModuloView
 {
 	private int	numGiocatori;
 
+	private PunteggiSegnalini	segnalini;
+
 	public ModuloView()
 	{
 		super();
 		this.scenario = new ScenarioDiGioco();
 		this.gestoreFasi = new GestoreFasi();
 		this.attivaHanlders();
+		this.inizializzaSegnalini();
 	}
 
 	public abstract void visualizzaPunteggi(Punteggi punteggio);
@@ -77,11 +82,6 @@ public abstract class ModuloView extends AbstractModuloView
 		this.numGiocatori = numGiocatori;
 	}
 	
-	protected int getNumeroPlayer()
-	{
-		return this.numGiocatori;
-	}
-
 	/**
 	 * Used in the beginning of the game, place the first card
 	 * 
@@ -184,6 +184,16 @@ public abstract class ModuloView extends AbstractModuloView
 	{
 		this.coloreGiocatoreCorrente = coloreGiocatore;
 	}
+	
+	protected int getNumeroSegnalini(Color colore)
+	{
+		return this.segnalini.get(colore);
+	}
+
+	protected int getNumeroPlayer()
+	{
+		return this.numGiocatori;
+	}
 
 	protected boolean turnoCorretto()
 	{
@@ -250,6 +260,16 @@ public abstract class ModuloView extends AbstractModuloView
 		boolean fuoriASinistra = max.getX() > sudEst.getX();
 
 		return !(fuoriInBasso || fuoriInAlto || fuoriADestra || fuoriASinistra);
+	}
+
+	private void inizializzaSegnalini()
+	{
+		final int maxSegnalini = 7;
+		this.segnalini = new PunteggiSegnalini();
+		for(Color colore : ColoriGioco.getListaColori())
+		{
+			this.segnalini.addPunteggi(colore, maxSegnalini);
+		}
 	}
 
 	private boolean nelBoundingBox(Coordinate coordinate)
