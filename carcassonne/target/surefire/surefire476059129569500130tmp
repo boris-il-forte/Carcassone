@@ -1,6 +1,0 @@
-#surefire
-#Sun May 20 17:40:01 CEST 2012
-user.dir=/home/dave/java/Carcassonne
-localRepository=/home/dave/.m2/repository
-noipv6=-Djava.net.preferIPv4Stack\=true
-basedir=/home/dave/java/Carcassonne
