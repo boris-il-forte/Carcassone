@@ -14,11 +14,7 @@ public class SegnalinoTest
 	public void segnalino()
 	{
 		Segnalino s = new Segnalino(Color.yellow);
-		assertTrue("nooo il giallo non è giallo!",
-				s.getColore() == Color.yellow);
-		Segnalino s2 = new Segnalino(Color.pink);
-		//purtroppo si può creare un segnlino rosa... va beh
+		assertEquals("nooo il giallo non è giallo!", s.getColore(), Color.yellow);
 	}
-	
-	
+
 }
