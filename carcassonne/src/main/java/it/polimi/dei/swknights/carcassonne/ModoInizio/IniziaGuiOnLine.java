@@ -61,13 +61,16 @@ public class IniziaGuiOnLine extends Inizio
 		}
 		catch (IOException e)
 		{
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Server non trovato", "Carcassonne - Errore!",JOptionPane.ERROR_MESSAGE);
 		}
 		catch (InterruptedException e)
 		{
+			e.printStackTrace();
 		}
 		catch (NotBoundException e)
 		{
+			e.printStackTrace();
 		}
 	}
 
