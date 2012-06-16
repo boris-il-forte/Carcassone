@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.015" errors="0" skipped="0" tests="1" name="it.polimi.dei.swknights.carcassonne.Client.View.Cli.StampanteTest">
+<testsuite failures="0" time="0.018" errors="0" skipped="0" tests="1" name="it.polimi.dei.swknights.carcassonne.Client.View.Cli.StampanteTest">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/amd64"/>
@@ -19,7 +19,7 @@
     <property name="basedir" value="/home/dave/java/Carcassonne"/>
     <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-6-openjdk-amd64/jre/lib/endorsed"/>
     <property name="os.arch" value="amd64"/>
-    <property name="surefire.real.class.path" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter8995918179020711968.jar"/>
+    <property name="surefire.real.class.path" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter8504709854426577447.jar"/>
     <property name="java.io.tmpdir" value="/tmp"/>
     <property name="line.separator" value="
 "/>
@@ -42,7 +42,7 @@
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/usr/lib/jvm/java-6-openjdk-amd64/jre"/>
-    <property name="sun.java.command" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter8995918179020711968.jar /home/dave/java/Carcassonne/target/surefire/surefire161940250975072194tmp /home/dave/java/Carcassonne/target/surefire/surefire3881191500727864345tmp"/>
+    <property name="sun.java.command" value="/home/dave/java/Carcassonne/target/surefire/surefirebooter8504709854426577447.jar /home/dave/java/Carcassonne/target/surefire/surefire2123119952767189387tmp /home/dave/java/Carcassonne/target/surefire/surefire2924298186236179218tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="it"/>
     <property name="java.vm.info" value="mixed mode"/>
@@ -57,5 +57,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.014" classname="it.polimi.dei.swknights.carcassonne.Client.View.Cli.StampanteTest" name="stamp"/>
+  <testcase time="0.017" classname="it.polimi.dei.swknights.carcassonne.Client.View.Cli.StampanteTest" name="stamp"/>
 </testsuite>

@@ -53,17 +53,6 @@ public class CarcassonneServer implements Runnable
 			Debug.print(" spengo server ");
 			this.executor.shutdownNow();
 		}
-		finally
-		{
-			try
-			{
-				serverSocket.close();
-			}
-			catch (IOException e)
-			{
-			}
-		}
-
 	}
 
 	protected void gestisciConnessione(PortaleRMIImpl portale)
