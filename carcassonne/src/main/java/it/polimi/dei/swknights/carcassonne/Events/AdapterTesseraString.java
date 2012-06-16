@@ -39,7 +39,7 @@ public class AdapterTesseraString extends AdapterTessera
 				String stringa = parser.getExtraData(punto);
 				if(!stringa.equals(""))
 				{
-					return ColoriGioco.getColorBySigla(stringa);
+					return ColoriGioco.getColor(stringa);
 				}
 			}
 		}

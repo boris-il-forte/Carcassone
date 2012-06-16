@@ -24,18 +24,20 @@ public final class ColoriGioco
 		return new ArrayList<Color>(MAPPA_COLORI.keySet());
 
 	}
-
-	public static Color getColorBySigla(String sigla)
-	{
-		if (sigla.compareToIgnoreCase("RED") == 0) { return Color.red; }
-		if (sigla.compareToIgnoreCase("Green") == 0) { return Color.green; }
-		if (sigla.compareToIgnoreCase("Yellow") == 0) { return Color.yellow; }
-		if (sigla.compareToIgnoreCase("Blue") == 0) { return Color.blue; }
 	
-		if (sigla.compareToIgnoreCase("Black") == 0) { return Color.black; }
-		
+	public static Color getColor(String color)
+	{
+		if (color.compareToIgnoreCase("RED") == 0) { return Color.red; }
+		if (color.compareToIgnoreCase("Green") == 0) { return Color.green; }
+		if (color.compareToIgnoreCase("Yellow") == 0) { return Color.yellow; }
+		if (color.compareToIgnoreCase("Blue") == 0) { return Color.blue; }
+	
+		if (color.compareToIgnoreCase("Black") == 0) { return Color.black; }
+	
 		return null;
 	}
+	
+	
 
 	/**
 	 * returns R, B, G, Y or K according to the Color (K is BLACK, this beacause
@@ -64,17 +66,7 @@ public final class ColoriGioco
 		return stringhe[2];
 	}
 
-	public static Color getColor(String color)
-	{
-		if (color.compareToIgnoreCase("RED") == 0) { return Color.red; }
-		if (color.compareToIgnoreCase("Green") == 0) { return Color.green; }
-		if (color.compareToIgnoreCase("Yellow") == 0) { return Color.yellow; }
-		if (color.compareToIgnoreCase("Blue") == 0) { return Color.blue; }
-	
-		if (color.compareToIgnoreCase("Black") == 0) { return Color.black; }
-	
-		return null;
-	}
+
 
 	private static Map<Color, String> inizializzaColori()
 	{
