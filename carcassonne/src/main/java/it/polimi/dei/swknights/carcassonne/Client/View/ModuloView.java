@@ -137,6 +137,7 @@ public abstract class ModuloView extends AbstractModuloView
 
 	public void muoviViewA(Coordinate coordinate)
 	{
+		if(!this.gestoreFasi.partitaCominciata()){return;}
 		if (this.nelBoundingBox(coordinate))
 		{
 			this.setCoordinataNordOvest(coordinate);
@@ -146,6 +147,7 @@ public abstract class ModuloView extends AbstractModuloView
 
 	public void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
 	{
+		if(!this.gestoreFasi.partitaCominciata()){return;}
 		Coordinate coordinate = this.coordinateNordOvest;
 		Coordinate nuoveCoordinate = coordinate.getCoordinateA(puntoCardinale);
 
