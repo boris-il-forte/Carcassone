@@ -122,6 +122,8 @@ public class CarcassonneServer implements Runnable
 		try
 		{
 			java.rmi.registry.LocateRegistry.createRegistry(DEFAULT_RMI_REGISTRY_PORT);
+			
+			System.setProperty("java.rmi.server.hostname", "192.168.1.20");
 			Debug.print("RMI registry ready.");
 			pt = new ServerRMIImpl(this);
 			Naming.rebind("//localhost/ServerRMI", pt);
