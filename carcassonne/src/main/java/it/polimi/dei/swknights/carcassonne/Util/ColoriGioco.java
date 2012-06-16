@@ -27,14 +27,24 @@ public final class ColoriGioco
 	
 	public static Color getColor(String color)
 	{
-		if (color.compareToIgnoreCase("RED") == 0) { return Color.red; }
-		if (color.compareToIgnoreCase("Green") == 0) { return Color.green; }
-		if (color.compareToIgnoreCase("Yellow") == 0) { return Color.yellow; }
-		if (color.compareToIgnoreCase("Blue") == 0) { return Color.blue; }
+		if (color.equalsIgnoreCase("RED")) { return Color.red; }
+		if (color.equalsIgnoreCase("Green")) { return Color.green; }
+		if (color.equalsIgnoreCase("Yellow")) { return Color.yellow; }
+		if (color.equalsIgnoreCase("Blue")) { return Color.blue; }
+		if (color.equalsIgnoreCase("Black")) { return Color.black; }
 	
-		if (color.compareToIgnoreCase("Black") == 0) { return Color.black; }
+		throw new IllegalArgumentException("mi hai passato la stringa " + color + "che non rappresenta alcun clore");
+	}
 	
-		return null;
+	public static Color getColorBySigla(String sigla)
+	{
+		if (sigla.equalsIgnoreCase("R")) { return Color.red; }
+		if (sigla.equalsIgnoreCase("G")) { return Color.green; }
+		if (sigla.equalsIgnoreCase("Y")) { return Color.yellow; }
+		if (sigla.equalsIgnoreCase("B")) { return Color.blue; }
+		if (sigla.equalsIgnoreCase("K")) { return Color.black; }
+		
+		throw new IllegalArgumentException("mi hai passato la sigla " + sigla + "che non rappresenta alcun clore");
 	}
 	
 	

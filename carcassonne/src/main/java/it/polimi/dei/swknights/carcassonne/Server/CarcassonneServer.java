@@ -52,6 +52,7 @@ public class CarcassonneServer implements Runnable
 		{
 			Debug.print(" spengo server ");
 			this.executor.shutdownNow();
+			Thread.currentThread().interrupt();
 		}
 	}
 
@@ -231,25 +232,28 @@ public class CarcassonneServer implements Runnable
 	{
 		public void run() // posso cominciare?
 		{
-			while (true)
+			try
 			{
-				if (CarcassonneServer.this.giocatoriAttivi == CarcassonneServer.GIOCATORI_PARTITA
-						|| CarcassonneServer.this.timerScaduto)
+				while (true)
 				{
-					Debug.print("DONNNNNG, cominciamo ");
-					CarcassonneServer.this.partite.peekLast().cominciaPartita();
-					CarcassonneServer.this.timerScaduto = false;
-					CarcassonneServer.this.giocatoriAttivi = 0;
-				}
-				try
-				{
+					if (CarcassonneServer.this.giocatoriAttivi == CarcassonneServer.GIOCATORI_PARTITA
+							|| CarcassonneServer.this.timerScaduto)
+					{
+						Debug.print("DONNNNNG, cominciamo ");
+						CarcassonneServer.this.partite.peekLast().cominciaPartita();
+						CarcassonneServer.this.timerScaduto = false;
+						CarcassonneServer.this.giocatoriAttivi = 0;
+					}
+
 					final int tempoDiPolling = 200;
 					Thread.sleep(tempoDiPolling);
+
 				}
-				catch (InterruptedException e)
-				{
-					Debug.print(" hai interrotto il sonno del monaco, maledetto! ");
-				}
+			}
+			catch (InterruptedException e)
+			{
+				Debug.print(" hai interrotto il sonno del monaco, maledetto! ");
+				Debug.print("DIE HARD!");
 			}
 		}
 	}
