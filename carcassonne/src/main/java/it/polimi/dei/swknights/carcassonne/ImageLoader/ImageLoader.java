@@ -15,8 +15,17 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Class used to load images
+ * 
+ * @author dave
+ * 
+ */
 public class ImageLoader
 {
+	/**
+	 * Default constructor, loads all images
+	 */
 	public ImageLoader()
 	{
 		this.inizializzaMappe();
@@ -39,25 +48,13 @@ public class ImageLoader
 		}
 	}
 
-	private void caricaIcone()
-	{
-		for (Entry<String, URL> entryURL : this.mappaURLGUI.entrySet())
-		{
-			try
-			{
-				BufferedImage image = ImageIO.read(entryURL.getValue());
-				if (image == null)
-				{
-					image = this.errorImage;
-				}
-				this.mappaIconeGUI.put(entryURL.getKey(), image);
-			}
-			catch (IOException e)
-			{
-			}
-		}
-	}
-
+	/**
+	 * Getter method
+	 * 
+	 * @param stringa
+	 *            string representing a resource
+	 * @return the url of the selected resource
+	 */
 	public URL getUrl(String stringa)
 	{
 		URL url = this.mappaURLTiles.get(stringa);
@@ -71,16 +68,35 @@ public class ImageLoader
 		}
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the GUI icon map
+	 */
 	public Map<String, BufferedImage> getIconGUIMap()
 	{
 		return this.mappaIconeGUI;
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @param stringa
+	 *            a string representing a resource
+	 * @return the original tile image
+	 */
 	public BufferedImage getOriginalTileImage(String stringa)
 	{
 		return this.getImage(this.mappaImmaginiTiles, stringa);
 	}
 
+	/**
+	 * Getetr method
+	 * 
+	 * @param stringa
+	 *            a string representing a resource
+	 * @return the original marker image
+	 */
 	public BufferedImage getOriginalSegnalinoImage(String stringa)
 	{
 		return this.getImage(this.mappaImmaginiSegnalini, stringa);
@@ -106,12 +122,31 @@ public class ImageLoader
 		return resized;
 	}
 
+	private void caricaIcone()
+	{
+		for (Entry<String, URL> entryURL : this.mappaURLGUI.entrySet())
+		{
+			try
+			{
+				BufferedImage image = ImageIO.read(entryURL.getValue());
+				if (image == null)
+				{
+					image = this.errorImage;
+				}
+				this.mappaIconeGUI.put(entryURL.getKey(), image);
+			}
+			catch (IOException e)
+			{
+			}
+		}
+	}
+
 	private void inizializzaMappe()
 	{
-		this.mappaURLGUI= new HashMap<String, URL>();
+		this.mappaURLGUI = new HashMap<String, URL>();
 		this.mappaURLTiles = new HashMap<String, URL>();
 		this.mappaURLSegnalini = new HashMap<String, URL>();
-		
+
 		this.mappaIconeGUI = new HashMap<String, BufferedImage>();
 		this.mappaImmaginiTiles = new HashMap<String, BufferedImage>();
 		this.mappaImmaginiSegnalini = new HashMap<String, BufferedImage>();

@@ -5,19 +5,35 @@ import it.polimi.dei.swknights.carcassonne.Parser.ExtraParser;
 import it.polimi.dei.swknights.carcassonne.Util.Bussola;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
+/**
+ * Class used to find icons by string
+ * @author dave
+ *
+ */
 public class IconFinder
 {
+	/**
+	 * Default constructor
+	 * @param stringToFind the string to find
+	 */
 	public IconFinder(String stringToFind)
 	{
 		this.string = new StringBuilder();
 		this.trovaStringa(stringToFind);
 	}
 
+	/**
+	 * Getter method
+	 * @return the label of the marker
+	 */
 	public String getSegnalino()
 	{
 		return this.segnalino;
 	}
 
+	/**
+	 * Return the string found by the finder algorithm
+	 */
 	@Override
 	public String toString()
 	{

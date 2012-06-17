@@ -5,8 +5,22 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * A class used to rotate images
+ * 
+ * @author dave
+ * 
+ */
 public class RuotaImmagini
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param mappaImmagini
+	 *            a map of images to be rotated
+	 * @param dimensioneImmagini
+	 *            the dimension of the images (supposed to be square)
+	 */
 	public RuotaImmagini(Map<String, BufferedImage> mappaImmagini, int dimensioneImmagini)
 	{
 		this.dimensioneImmagini = dimensioneImmagini;
@@ -14,6 +28,10 @@ public class RuotaImmagini
 		this.immaginiRuotate = new HashMap<String, BufferedImage>();
 	}
 
+	/**
+	 * Getter method
+	 * @return the map of all rotated images
+	 */
 	public Map<String, BufferedImage> getMapRuotate()
 	{
 		for (Entry<String, BufferedImage> entry : this.mappaImmagini.entrySet())
