@@ -20,7 +20,6 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -284,12 +283,7 @@ public class Gui extends ModuloView
 			return "Non è il tuo turno...";
 		}
 	}
-
-	BufferedImage getSfondo()
-	{
-		return this.immagini.getSfondo();
-	}
-
+	
 	private PuntoCardinale getPuntocardinaleIserimento(Coordinate coordinateMouse)
 			throws PosizionaMentoInvalidoException
 	{
