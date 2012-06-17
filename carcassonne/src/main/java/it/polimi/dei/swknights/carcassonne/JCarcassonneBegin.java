@@ -16,8 +16,17 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+/**
+ * Begin dialog class. Used to permit the user to choose what to start
+ * 
+ * @author dave
+ * 
+ */
 public class JCarcassonneBegin
 {
+	/**
+	 * Default constructor for the dialog. It loads an image
+	 */
 	public JCarcassonneBegin()
 	{
 		URL url = JCarcassonneBegin.class.getResource("/error.jpg");
@@ -31,6 +40,11 @@ public class JCarcassonneBegin
 		}
 	}
 
+	/**
+	 * Method that shows the dialog
+	 * 
+	 * @return the string representing the answer to the question
+	 */
 	public String showDialog()
 	{
 		String risposta = (String) JOptionPane.showInputDialog(null, DOMANDA, NOME_DIALOGO,
@@ -47,6 +61,13 @@ public class JCarcassonneBegin
 
 	}
 
+	/**
+	 * getter for the starter strategy produced by asking the question
+	 * 
+	 * @param risposta
+	 *            the selected way to start as a string
+	 * @return the starting strategy
+	 */
 	public Inizio getIniziatore(String risposta)
 	{
 		Inizio iniziatore = new Fine();
@@ -54,7 +75,7 @@ public class JCarcassonneBegin
 		{
 			iniziatore = new IniziaCliOffline();
 		}
-		else if(risposta.equalsIgnoreCase("Gui"))
+		else if (risposta.equalsIgnoreCase("Gui"))
 		{
 			iniziatore = new IniziaGuiOffline();
 		}
