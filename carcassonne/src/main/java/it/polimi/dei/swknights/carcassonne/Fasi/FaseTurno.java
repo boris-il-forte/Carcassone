@@ -16,30 +16,37 @@ public enum FaseTurno {
 		this.messaggioUtente = messaggio;
 	}
 
+	/**
+	 * Returns the phase default message
+	 */
 	@Override
 	public String toString()
 	{
 		return this.messaggioUtente;
 	}
 
-	private String	messaggioUtente;
-
+	/**
+	 * change to the next phase
+	 * @return
+	 */
 	public FaseTurno next()
 	{
 		switch (this)
 		{
 			case Inizio:
 				return Media;
-
+	
 			case Attesa:
 				return Inizio;
-
+	
 			case FinePartita:
 				return FinePartita;
-
+	
 			default:
 				return Attesa;
 		}
 	}
+
+	private String	messaggioUtente;
 
 }
