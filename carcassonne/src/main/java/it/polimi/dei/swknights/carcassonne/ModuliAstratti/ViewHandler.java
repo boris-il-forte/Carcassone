@@ -19,30 +19,51 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEve
 
 public class ViewHandler
 {
+	/**
+	 * default visitor's handler, does nothing
+	 */
 	public void visit(UpdateTurnoEvent event)
 	{
 	}
-
+	
+	/**
+	 * default visitor's handler, does nothing
+	 */
 	public void visit(UpdateRotationEvent event)
 	{
 	}
 
+	/**
+	 * default visitor's handler, does nothing
+	 */
 	public void visit(UpdatePositionEvent event)
 	{
 	}
 
+	/**
+	 * default visitor's handler, does nothing
+	 */
 	public void visit(MossaNonValidaEvent event)
 	{
 	}
 
+	/**
+	 * default visitor's handler, does nothing
+	 */
 	public void visit(InizioGiocoEvent event)
 	{
 	}
 
+	/**
+	 * default visitor's handler, does nothing
+	 */
 	public void visit(FinePartitaEvent event)
 	{
 	}
 
+	/**
+	 * default visitor's handler, does nothing
+	 */
 	public void visit(CostruzioneCompletataEvent event)
 	{
 	}

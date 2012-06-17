@@ -14,21 +14,32 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.View.TileEvent;
  * 
  */
 
-public class ControllerHandler
+public abstract class ControllerHandler
 {
-
+	/**
+	 * default visitor's handler, does nothing
+	 */
 	public void visit(PassEvent event)
 	{
 	}
 
+	/**
+	 * default visitor's handler, does nothing
+	 */
 	public void visit(PlaceEvent event)
 	{
 	}
 
+	/**
+	 * default visitor's handler, does nothing
+	 */
 	public void visit(RotateEvent event)
 	{
 	}
 
+	/**
+	 * default visitor's handler, does nothing
+	 */
 	public void visit(TileEvent event)
 	{
 	}

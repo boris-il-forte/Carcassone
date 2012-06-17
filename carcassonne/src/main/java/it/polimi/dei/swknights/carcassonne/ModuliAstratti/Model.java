@@ -11,5 +11,9 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEven
  */
 public interface Model extends EventSource
 {
+	/**
+	 * Method used to fire events
+	 * @param event the event to be fired
+	 */
 	void fire(ControllerEvent event);
 }

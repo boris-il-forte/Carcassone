@@ -13,5 +13,9 @@ import java.util.EventListener;
  */
 public interface View extends EventListener, Runnable, EventSource
 {
+	/**
+	 * Method to receive 
+	 * @param event
+	 */
 	void riceviModificheModel(ControllerEvent event);
 }
