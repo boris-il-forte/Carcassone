@@ -6,6 +6,11 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEve
 
 import java.awt.Color;
 
+/**
+ * Handler for game begin event
+ * @author dave
+ *
+ */
 public class InizioGiocoHandler extends ModuloViewHandler
 {
 	public InizioGiocoHandler(ModuloView view)

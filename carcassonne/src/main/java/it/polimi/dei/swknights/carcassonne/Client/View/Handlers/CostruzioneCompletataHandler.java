@@ -7,6 +7,11 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 import java.util.Map;
 
+/**
+ * Handler for buildings completed event
+ * @author dave
+ *
+ */
 public class CostruzioneCompletataHandler extends ModuloViewHandler
 {
 	public CostruzioneCompletataHandler(ModuloView view)

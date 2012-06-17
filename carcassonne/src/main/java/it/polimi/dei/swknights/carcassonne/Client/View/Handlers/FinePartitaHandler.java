@@ -7,6 +7,11 @@ import it.polimi.dei.swknights.carcassonne.Client.View.ModuloView;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 
+/**
+ * Handler for game over event
+ * @author dave
+ *
+ */
 public class FinePartitaHandler extends ModuloViewHandler
 {
 	public FinePartitaHandler(ModuloView view)

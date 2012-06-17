@@ -7,7 +7,7 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEve
 import java.awt.Color;
 
 /**
- * Class to handl the turn update event
+ * Class used to handle the turn update event
  * 
  * @author edoardopasi
  * 
