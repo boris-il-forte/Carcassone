@@ -10,6 +10,12 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
  */
 public class TesseraNonTrovataException extends Exception
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param coordinate
+	 *            the coordinates where the card was not found
+	 */
 	public TesseraNonTrovataException(Coordinate coordinate)
 	{
 		super("La tessera alla coordinata" + coordinate + "non è stata trovata");
