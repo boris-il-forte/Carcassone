@@ -5,8 +5,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * Class to get images at a specified size
+ * @author dave
+ *
+ */
 public class ScaledImageGetter extends ImageLoader
 {
+	/**
+	 * Default constructor
+	 */
 	public ScaledImageGetter()
 	{
 		super();
@@ -15,6 +23,11 @@ public class ScaledImageGetter extends ImageLoader
 		this.setImageDim(DIM_STANDARD);
 	}
 
+	/**
+	 * Getter method
+	 * @param string the string representation of the resource
+	 * @return the image resource searched
+	 */
 	public BufferedImage getImage(String string)
 	{
 		BufferedImage immagine = this.mappaImmaginiScalate.get(string);
@@ -28,6 +41,12 @@ public class ScaledImageGetter extends ImageLoader
 		}
 	}
 
+	/**
+	 * getter method
+	 * @param segnalino the string representing the color of the marker 
+	 * @param dimensioneSegnalino the dimension of the marker
+	 * @return the marker image at the specified size
+	 */
 	public BufferedImage getSegnalino(String segnalino, int dimensioneSegnalino)
 	{
 		if (!segnalino.equals(""))
@@ -41,12 +60,21 @@ public class ScaledImageGetter extends ImageLoader
 		}
 	}
 
+	/**
+	 * getter method
+	 * @param string the string representation of the resource
+	 * @return the image resource searched whit alpha channel set
+	 */
 	public BufferedImage getAlphaImage(String string)
 	{
 		BufferedImage image = this.getImage(string);
 		return this.addAlpha(image);
 	}
 
+	/**
+	 * Method used to set current dimension images
+	 * @param dimensione
+	 */
 	public final void setImageDim(int dimensione)
 	{
 		if (dimensione != this.currentDim)

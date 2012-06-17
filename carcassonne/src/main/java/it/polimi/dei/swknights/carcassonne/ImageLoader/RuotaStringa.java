@@ -3,19 +3,37 @@ package it.polimi.dei.swknights.carcassonne.ImageLoader;
 import it.polimi.dei.swknights.carcassonne.Util.Bussola;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
+/**
+ * A class to make rotation of the strings representing tiles resources
+ * 
+ * @author dave
+ * 
+ */
 public class RuotaStringa
 {
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param daRuotare
+	 *            the string to be rotated
+	 */
 	public RuotaStringa(String daRuotare)
 	{
 		this.daRuotare = daRuotare;
 	}
 
+	/**
+	 * Method that performs a single clockwise rotation of the string
+	 */
 	public void ruotaStringa()
 	{
 		this.daRuotare = this.ruota(this.daRuotare);
 	}
 
+	/**
+	 * returns the current string saved in this object
+	 */
 	@Override
 	public String toString()
 	{
