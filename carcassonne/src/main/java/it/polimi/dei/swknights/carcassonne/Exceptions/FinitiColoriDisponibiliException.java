@@ -10,6 +10,9 @@ package it.polimi.dei.swknights.carcassonne.Exceptions;
 public class FinitiColoriDisponibiliException extends Exception
 {
 
+	/**
+	 * Default constructor
+	 */
 	public FinitiColoriDisponibiliException()
 	{
 		super("Sono finiti i colori disponibili, pertanto non è " + "possibile creare altri giocatori !");
