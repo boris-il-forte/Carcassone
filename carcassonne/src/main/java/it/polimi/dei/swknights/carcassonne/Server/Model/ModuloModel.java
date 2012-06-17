@@ -96,8 +96,7 @@ public class ModuloModel extends AbstractModel
 		}
 		catch (MossaNonValidaException e)
 		{
-			System.exit(0);
-			return;
+			throw new AssertionError(e);
 		}
 	}
 
