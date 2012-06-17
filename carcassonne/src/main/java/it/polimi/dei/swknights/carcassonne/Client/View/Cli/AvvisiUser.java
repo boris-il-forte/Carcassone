@@ -20,6 +20,17 @@ import java.io.PrintWriter;
 public class AvvisiUser
 {
 	/**
+	 * Default constructor
+	 * 
+	 * @param out
+	 *            the PrintWriter object to write into
+	 */
+	public AvvisiUser(PrintWriter out)
+	{
+		this.out = out;
+	}
+
+	/**
 	 * Gives the user a little description of the requested input, specifying
 	 * the sintax of it
 	 */
@@ -42,11 +53,9 @@ public class AvvisiUser
 
 	}
 
-	public AvvisiUser(PrintWriter out)
-	{
-		this.out = out;
-	}
-
+	/**
+	 * Print a message if the move is invalid
+	 */
 	public void notificaMossaNonValida()
 	{
 		this.notificaVideo("Mossa non valida!");
@@ -79,16 +88,55 @@ public class AvvisiUser
 		this.faseTurno = faseTurno;
 	}
 
+	/**
+	 * Set the current tile
+	 * 
+	 * @param tessera
+	 */
 	public void setTesseraCorrente(AdapterTessera tessera)
 	{
 		this.tesseraCorrente = tessera;
 	}
 
+	/**
+	 * notify the end of the game
+	 */
 	public void notificaFinePartita()
 	{
 		this.notificaVideo("Fine Partita!");
 	}
 
+	/**
+	 * shows the current score
+	 * 
+	 * @param punteggio
+	 *            the score to be show
+	 */
+	public void notificaPunteggi(Punteggi punteggio)
+	{
+		if (punteggio == null)
+		{
+			throw new IllegalArgumentException("punteggio non dovrebbe essere null!");
+		}
+		else
+		{
+			this.out.println(punteggio.toString());
+		}
+
+	}
+
+	/*
+	 * public void notificaPunteggi(Punteggi punteggio) { if (punteggio == null)
+	 * { throw new
+	 * IllegalArgumentException("punteggio non dovrebbe essere null!"); } else {
+	 * this.out.println(punteggio.toString()); }
+	 * 
+	 * }
+	 * 
+	 * 
+	 * 
+	 * @param message
+	 */
 	private void notificaVideo(String message)
 	{
 		this.out.println(message);
@@ -103,18 +151,5 @@ public class AvvisiUser
 	private FaseTurno		faseTurno;
 
 	private Color			coloreGiocatore;
-
-	public void notificaPunteggi(Punteggi punteggio)
-	{
-		if (punteggio == null)
-		{
-			throw new IllegalArgumentException("punteggio non dovrebbe essere null!");
-		}
-		else
-		{
-			this.out.println(punteggio.toString());
-		}
-
-	}
 
 }

@@ -20,6 +20,12 @@ import java.util.Map;
 class Stampante
 {
 
+	/**
+	 * default constructor
+	 * 
+	 * @param datiMappa
+	 *            the data of the map we want to print (NW & SE coordinates)
+	 */
 	public Stampante(DatiMappa datiMappa)
 	{
 		this.datiMappa = datiMappa;
@@ -28,11 +34,12 @@ class Stampante
 		this.builder = new StringBuilder2D(new Dimension(width + 1, height + 1));
 	}
 
+	/**
+	 * Constructor. Used to print a single card.
+	 */
 	public Stampante()
 	{
-
 		this(new DatiMappa(new Coordinate(0, 0), new Coordinate(0, 0)));
-
 	}
 
 	/**
@@ -78,6 +85,9 @@ class Stampante
 		this.scriviVuoti(coordinate, vicinato);
 	}
 
+	/**
+	 * Returns the string representation of the map
+	 */
 	@Override
 	public String toString()
 	{

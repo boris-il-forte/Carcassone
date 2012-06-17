@@ -8,12 +8,8 @@ import java.util.List;
 
 /**
  * A graphical tool used in CLI mode to simulate a 2D space, it basically
- * provide a 2D buffer. in where write. It is easy with it print something like
- * that
- * 
- * **************** * C1 * * * ****************
- * 
- * or hopefully even better.
+ * provide a 2D buffer. in where write. It is easy with it print an ascii art
+ * representation of a tile, or others ascrii art reppresentations.
  * 
  * @author edoardopasi & dave
  * 
@@ -21,6 +17,12 @@ import java.util.List;
 
 public class StringBuilder2D
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param dimensione
+	 *            the default dimension of the area to be printed
+	 */
 	public StringBuilder2D(Dimension dimensione)
 	{
 		this.dimensione = dimensione;
@@ -31,6 +33,7 @@ public class StringBuilder2D
 	 * Writes a character in the given coordinates of the buffer.
 	 * 
 	 * @param coordinate
+	 *            the coordinate of the char to write
 	 * @param c
 	 *            the character to write
 	 */
@@ -71,7 +74,9 @@ public class StringBuilder2D
 	 * Write a string in the given position
 	 * 
 	 * @param coordinataInserimento
+	 *            the coordinate to write the string into
 	 * @param string
+	 *            the string to write
 	 */
 	public void scriviStringa(Coordinate coordinataInserimento, String string)
 	{
@@ -105,6 +110,10 @@ public class StringBuilder2D
 		return linea.charAt(coordinate.getX());
 	}
 
+	/**
+	 * method to get the printable ascii representation of the map as a 2d
+	 * string
+	 */
 	@Override
 	public String toString()
 	{
