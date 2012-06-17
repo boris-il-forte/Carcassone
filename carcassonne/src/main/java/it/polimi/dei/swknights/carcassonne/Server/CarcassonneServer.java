@@ -20,19 +20,19 @@ import java.util.concurrent.Executors;
 
 public class CarcassonneServer implements Runnable
 {
-	public CarcassonneServer()
+	public CarcassonneServer(String ipRMI)
 	{
 		this.partite = new ArrayDeque<Partita>();
 		this.executor = Executors.newCachedThreadPool();
 		this.timerScaduto = false;
-		MonacoGong starter = new MonacoGong();
-		this.executor.execute(starter);
-
+		this.ipRMI = ipRMI;
 	}
 
 	public final void run()
 	{
 		Debug.print("starting Server");
+		MonacoGong starter = new MonacoGong();
+		this.executor.execute(starter);
 		this.lanciaServerRMI();
 		ServerSocket serverSocket = null;
 		try
@@ -123,7 +123,7 @@ public class CarcassonneServer implements Runnable
 		{
 			java.rmi.registry.LocateRegistry.createRegistry(DEFAULT_RMI_REGISTRY_PORT);
 			
-			System.setProperty("java.rmi.server.hostname", "192.168.1.20");
+			System.setProperty("java.rmi.server.hostname", this.ipRMI);
 			Debug.print("RMI registry ready.");
 			pt = new ServerRMIImpl(this);
 			Naming.rebind("//localhost/ServerRMI", pt);
@@ -169,6 +169,8 @@ public class CarcassonneServer implements Runnable
 			return false;
 		}
 	}
+
+	private String	ipRMI;
 
 	private ExecutorService		executor;
 
