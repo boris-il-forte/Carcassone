@@ -12,8 +12,20 @@ import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EtchedBorder;
 
+/**
+ * Class representing one of the grid cells
+ * 
+ * @author dave
+ * 
+ */
 public class JCarcassonneCasella extends JLayeredPane
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param bounds
+	 *            the dimension of the cell
+	 */
 	public JCarcassonneCasella(Rectangle bounds)
 	{
 		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
@@ -27,11 +39,24 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.stato = StatoCasella.nonUsata;
 	}
 
+	/**
+	 * convenience constructor for square cells
+	 * 
+	 * @param dimLato
+	 */
 	public JCarcassonneCasella(int dimLato)
 	{
 		this(new Rectangle(0, 0, dimLato, dimLato));
 	}
 
+	/**
+	 * Updates the state of the icon
+	 * 
+	 * @param icon
+	 *            the image of the icon
+	 * @param aggiornaStato
+	 *            if the logic state of this cell must be updated
+	 */
 	public void setTessera(Icon icon, boolean aggiornaStato)
 	{
 		this.cella.setIcon(icon);
@@ -42,6 +67,12 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.cella.setHorizontalTextPosition(SwingConstants.CENTER);
 	}
 
+	/**
+	 * Set empty this cell
+	 * 
+	 * @param coordinateVuota
+	 *            the cell coordinates
+	 */
 	public void setVuota(Coordinate coordinateVuota)
 	{
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -53,6 +84,9 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.stato = StatoCasella.vuota;
 	}
 
+	/**
+	 * Clear the cell
+	 */
 	public void svuota()
 	{
 		this.cella.setText("");
@@ -63,6 +97,14 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.stato = StatoCasella.nonUsata;
 	}
 
+	/**
+	 * Set the marker
+	 * 
+	 * @param icon
+	 *            the image of the marker
+	 * @param coordinateSegnalino
+	 *            the position of the marker
+	 */
 	public void setSegnalino(Icon icon, Coordinate coordinateSegnalino)
 	{
 		final int latoSegnalino = 30;
@@ -74,6 +116,11 @@ public class JCarcassonneCasella extends JLayeredPane
 		this.cella.setHorizontalTextPosition(SwingConstants.CENTER);
 	}
 
+	/**
+	 * Getter for the cell state
+	 * 
+	 * @return the cell state
+	 */
 	public StatoCasella getStato()
 	{
 		return this.stato;

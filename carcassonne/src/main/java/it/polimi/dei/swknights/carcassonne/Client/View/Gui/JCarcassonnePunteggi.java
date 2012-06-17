@@ -12,14 +12,44 @@ import java.util.Map.Entry;
 
 import javax.swing.JPanel;
 
+/**
+ * Class representing the score panel
+ * 
+ * @author dave
+ * 
+ */
 public class JCarcassonnePunteggi extends JPanel
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param numGiocatori
+	 *            the number of player's
+	 */
 	public JCarcassonnePunteggi(int numGiocatori)
 	{
 		this.players = new HashMap<Color, JCarcassonnePlayer>();
 		this.setLayout(new FlowLayout());
 		this.creaColori(numGiocatori);
 
+	}
+
+	/**
+	 * Method used to update the players' score
+	 * 
+	 * @param punteggi
+	 *            the players' score
+	 */
+	public void aggiornaPunteggi(Punteggi punteggi)
+	{
+		for (Entry<Color, Integer> entry : punteggi.entrySet())
+		{
+			JCarcassonnePlayer player = this.players.get(entry.getKey());
+			if (player != null)
+			{
+				player.setPunteggio(entry.getValue());
+			}
+		}
 	}
 
 	private void creaColori(int numGiocatori)
@@ -33,18 +63,6 @@ public class JCarcassonnePunteggi extends JPanel
 			this.add(player);
 		}
 
-	}
-
-	public void aggiornaPunteggi(Punteggi punteggi)
-	{
-		for (Entry<Color, Integer> entry : punteggi.entrySet())
-		{
-			JCarcassonnePlayer player = this.players.get(entry.getKey());
-			if (player != null)
-			{
-				player.setPunteggio(entry.getValue());
-			}
-		}
 	}
 
 	private Map<Color, JCarcassonnePlayer>	players;

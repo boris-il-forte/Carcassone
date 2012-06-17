@@ -6,9 +6,19 @@ import java.awt.event.ActionListener;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
+/**
+ * Class representing one of the GUI buttons
+ * @author dave
+ *
+ */
 public class JCarcassonneButton extends JPanel
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param icona
+	 *            the icon for this button
+	 */
 	public JCarcassonneButton(Icon icona)
 	{
 		super();
@@ -23,12 +33,23 @@ public class JCarcassonneButton extends JPanel
 		this.button.setMaximumSize(dimensione);
 	}
 
+	/**
+	 * Set action listener for this button
+	 * 
+	 * @param listener
+	 *            the action listener
+	 */
 	public void setActionListener(ActionListener listener)
 	{
 		this.button.addActionListener(listener);
 
 	}
 
+	/**
+	 * Getter method. use it only to get the source of the event
+	 * 
+	 * @return the button source of the event
+	 */
 	public Object getEventSource()
 	{
 		return this.button;

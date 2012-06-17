@@ -28,8 +28,17 @@ import java.util.Map.Entry;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
+/**
+ * Class thath implaments a graphic user interface
+ * 
+ * @author dave
+ * 
+ */
 public class Gui extends ModuloView
 {
+	/**
+	 * Default constructor. builds the Gui and all the needed data types
+	 */
 	public Gui()
 	{
 		super();
@@ -41,12 +50,18 @@ public class Gui extends ModuloView
 		this.coordinateInserimentoSegnalini = new HashMap<Coordinate, Coordinate>();
 	}
 
+	/**
+	 * Run method. Shows the GUI
+	 */
 	@Override
 	public void run()
 	{
 		this.finestra.showGui();
 	}
 
+	/**
+	 * Method used to refresh the map
+	 */
 	@Override
 	public void aggiornaMappa()
 	{
@@ -57,6 +72,9 @@ public class Gui extends ModuloView
 		this.aggiornaCaselle(listaTessere);
 	}
 
+	/**
+	 * Method that shows a dialog when the game is over
+	 */
 	@Override
 	public void notificaFinePartita(String vincitore)
 	{
@@ -64,6 +82,9 @@ public class Gui extends ModuloView
 				JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", DIM_TESSERE));
 	}
 
+	/**
+	 * method that shows a dialog when a move not valid is made
+	 */
 	@Override
 	public void notificaMossaNonValida()
 	{
@@ -74,6 +95,9 @@ public class Gui extends ModuloView
 		}
 	}
 
+	/**
+	 * Method that shows the current card (as an image)
+	 */
 	@Override
 	public void visualizzaTesseraCorrente(AdapterTessera tessera)
 	{
@@ -82,6 +106,10 @@ public class Gui extends ModuloView
 		this.finestra.aggiornaTesseraCorrente(iconaTessera);
 	}
 
+	/**
+	 * method thath shows who is the current player and also how much markers he
+	 * has
+	 */
 	@Override
 	public void visualizzaColoreCorrente()
 	{
@@ -90,18 +118,29 @@ public class Gui extends ModuloView
 
 	}
 
+	/**
+	 * method used to refresh the players' score
+	 */
 	@Override
 	public void visualizzaPunteggi(Punteggi punteggio)
 	{
 		this.finestra.aggiornaPunteggi(punteggio);
 	}
-	
+
+	/**
+	 * Method used to set the number of players
+	 */
 	public void setNumeroPlayer(int numGiocatori)
 	{
 		super.setNumeroPlayer(numGiocatori);
 		this.finestra.creaContaPunti(numGiocatori);
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the markers' icon map
+	 */
 	public Map<Color, Icon> getMappaSegnalini()
 	{
 		Map<Color, Icon> mappaSegnalini = new HashMap<Color, Icon>();
@@ -113,6 +152,13 @@ public class Gui extends ModuloView
 		return mappaSegnalini;
 	}
 
+	/**
+	 * method used to place a card in the given position number
+	 * 
+	 * @param numeroCasella
+	 *            the number of the position in the grid, where 0 is the NW
+	 *            position
+	 */
 	public void clicPosizionaTessera(int numeroCasella)
 	{
 		if (this.getGestoreFasi().posizionaOk())
@@ -122,6 +168,14 @@ public class Gui extends ModuloView
 		}
 	}
 
+	/**
+	 * handler method for the marker position click
+	 * 
+	 * @param numeroCasella
+	 *            the number of the position in the grid
+	 * @param coordinateMouse
+	 *            the relatives coordinates of the click
+	 */
 	public void clicPosizionaSegnalino(int numeroCasella, Coordinate coordinateMouse)
 	{
 		if (this.getGestoreFasi().fineTurnoOk())
@@ -139,6 +193,9 @@ public class Gui extends ModuloView
 		}
 	}
 
+	/**
+	 * handler for the pass button click
+	 */
 	public void passCliccato()
 	{
 		if (this.getGestoreFasi().fineTurnoOk())
@@ -147,6 +204,9 @@ public class Gui extends ModuloView
 		}
 	}
 
+	/**
+	 * handler for the rotate button click
+	 */
 	public void rotateCliccato()
 	{
 		if (this.getGestoreFasi().ruotaOk())
@@ -155,6 +215,12 @@ public class Gui extends ModuloView
 		}
 	}
 
+	/**
+	 * Handler for mouse enter in a empty position
+	 * 
+	 * @param numeroCasella
+	 *            the number of the empty position
+	 */
 	public void overlayImmagine(int numeroCasella)
 	{
 		if (this.getGestoreFasi().posizionaOk())
@@ -164,6 +230,14 @@ public class Gui extends ModuloView
 		}
 	}
 
+	/**
+	 * Handler for mouse exiting of the empty position
+	 * 
+	 * @param casella
+	 *            the cell in the given position
+	 * @param numeroCasella
+	 *            the position number
+	 */
 	public void togliOverlay(JCarcassonneCasella casella, int numeroCasella)
 	{
 		Coordinate coordinateVuota = this.convertiCoordinate(numeroCasella);
@@ -171,6 +245,11 @@ public class Gui extends ModuloView
 		casella.setVuota(coordinateVuota);
 	}
 
+	/**
+	 * Coordinates converter method (from number in the grid to game coordinates)
+	 * @param numeroCasella
+	 * @return
+	 */
 	public Coordinate convertiCoordinate(int numeroCasella)
 	{
 		int x = numeroCasella % this.larghezza;
@@ -180,14 +259,22 @@ public class Gui extends ModuloView
 
 	}
 
+	/**
+	 * Getter method
+	 * @return the images of the GUI
+	 */
 	public Map<String, Icon> getIcone()
 	{
 		return this.immagini.getButtonIconMap();
 	}
 
+	/**
+	 * Getter method
+	 * @return the current label saying if the view is playable
+	 */
 	public String getLabelCorrente()
 	{
-		if(this.turnoCorretto())
+		if (this.turnoCorretto())
 		{
 			return "E' il tuo Turno!";
 		}
@@ -307,7 +394,7 @@ public class Gui extends ModuloView
 			if (this.isIn(coordinateVuota, max, min))
 			{
 				int numeroVuota = entry.getValue();
-				this.finestra.aggiornaMappa(numeroVuota, coordinateVuota);
+				this.finestra.aggiornaVuote(numeroVuota, coordinateVuota);
 			}
 		}
 	}

@@ -10,9 +10,18 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Class representing Score entry for the score panel
+ * @author dave
+ *
+ */
 public class JCarcassonnePlayer extends JPanel
 {
 
+	/**
+	 * default constructor
+	 * @param colore the player's color
+	 */
 	public JCarcassonnePlayer(Color colore)
 	{
 		this.setPreferredSize(DIMENSIONE);
@@ -23,6 +32,10 @@ public class JCarcassonnePlayer extends JPanel
 
 	}
 
+	/**
+	 * method that set the player's score
+	 * @param value
+	 */
 	public void setPunteggio(Integer value)
 	{
 		this.labelPunteggio.setText(value.toString());
