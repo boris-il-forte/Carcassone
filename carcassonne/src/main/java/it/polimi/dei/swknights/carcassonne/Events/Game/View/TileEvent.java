@@ -16,6 +16,16 @@ import java.awt.Color;
 public class TileEvent extends ViewEvent
 {
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param source
+	 *            the event source
+	 * @param colore
+	 *            the marker color
+	 * @param punto
+	 *            the cardinal point where the marker must be placed
+	 */
 	public TileEvent(Object source, Color colore, PuntoCardinale punto)
 	{
 		super(source);
@@ -33,21 +43,28 @@ public class TileEvent extends ViewEvent
 		return this.color;
 	}
 
+	/**
+	 * Getter method
+	 * @return where the marker should be placed
+	 */
 	public PuntoCardinale getPuntoDestinazione()
 	{
 		return this.puntoDestinazione;
 	}
 
-	private final Color				color;
-	
-	private final PuntoCardinale	puntoDestinazione;
-
-	private static final long		serialVersionUID	= 2085506187547788810L;
-
+	/**
+	 * Accept method for visitor's pattern
+	 */
 	@Override
 	public void accept(ControllerHandler handler)
 	{
 		handler.visit(this);
 	}
+
+	private final Color				color;
+
+	private final PuntoCardinale	puntoDestinazione;
+
+	private static final long		serialVersionUID	= 2085506187547788810L;
 
 }

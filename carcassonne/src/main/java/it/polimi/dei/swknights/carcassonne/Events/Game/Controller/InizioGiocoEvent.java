@@ -17,6 +17,20 @@ import java.awt.Color;
 public class InizioGiocoEvent extends ControllerEvent
 {
 
+	/**
+	 * Constructor used if you have the card object 
+	 * 
+	 * @param source
+	 *            the event's source
+	 * @param tesseraIniziale
+	 *            the starting tile
+	 * @param giocatore
+	 *            the color of the player
+	 * @param numeroGiocatori
+	 *            the number of the players
+	 * @param idPartita
+	 *            the game id
+	 */
 	public InizioGiocoEvent(Object source, Tessera tesseraIniziale, Color giocatore, Integer numeroGiocatori,
 			String idPartita)
 	{
@@ -26,6 +40,19 @@ public class InizioGiocoEvent extends ControllerEvent
 
 	}
 
+	/**
+	 * Constructor used if you have the card string
+	 * @param source
+	 *            the event's source
+	 * @param tesseraIniziale
+	 *            the starting tile
+	 * @param giocatore
+	 *            the color of the player
+	 * @param numeroGiocatori
+	 *            the number of the players
+	 * @param idPartita
+	 *            the game id
+	 */
 	public InizioGiocoEvent(Object source, String tesseraIniziale, Color giocatore, Integer numeroGiocatori,
 			String idPartita)
 	{
@@ -34,6 +61,19 @@ public class InizioGiocoEvent extends ControllerEvent
 		this.setData(giocatore, adapterTessera, idPartita, numeroGiocatori);
 	}
 
+	/**
+	 * Constructor used if you have the card adapter
+	 * @param source
+	 *            the event's source
+	 * @param tesseraIniziale
+	 *            the starting tile
+	 * @param giocatore
+	 *            the color of the player
+	 * @param numeroGiocatori
+	 *            the number of the players
+	 * @param idPartita
+	 *            the game id
+	 */
 	public InizioGiocoEvent(Object source, AdapterTessera adapterTessera, Color giocatore,
 			int numeroGiocatori, String idPartita)
 	{
@@ -41,27 +81,46 @@ public class InizioGiocoEvent extends ControllerEvent
 		this.setData(giocatore, adapterTessera, idPartita, numeroGiocatori);
 	}
 
+	/**
+	 * accept method for visitor's pattern
+	 */
 	@Override
 	public void accept(ViewHandler handler)
 	{
 		handler.visit(this);
 	}
 
+	/**
+	 * Getter method
+	 * @return the starting tile
+	 */
 	public AdapterTessera getTesseraIniziale()
 	{
 		return this.tesseraIniziale;
 	}
 
+	/**
+	 * Getetr method
+	 * @return the game id
+	 */
 	public String getIdPartita()
 	{
 		return this.idPartita;
 	}
 
+	/**
+	 * Getter method
+	 * @return the number of players
+	 */
 	public int getNumGiocatori()
 	{
 		return this.numeroGiocatori;
 	}
 
+	/**
+	 * Getetr method
+	 * @return the player's color
+	 */
 	public Color getGiocatore()
 	{
 		return this.giocatore;

@@ -14,6 +14,12 @@ import java.util.EventObject;
 public abstract class ControllerEvent extends EventObject
 {
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param source
+	 *            the source of the event
+	 */
 	public ControllerEvent(Object source)
 	{
 		super(source);

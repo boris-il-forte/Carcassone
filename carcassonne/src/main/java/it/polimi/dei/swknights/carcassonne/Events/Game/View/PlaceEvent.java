@@ -13,6 +13,14 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 public class PlaceEvent extends ViewEvent
 {
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param source
+	 *            the event source
+	 * @param coordinate
+	 *            the coordinate where the user want to place teh card
+	 */
 	public PlaceEvent(Object source, Coordinate coordinate)
 	{
 		super(source);
@@ -20,23 +28,26 @@ public class PlaceEvent extends ViewEvent
 	}
 
 	/**
-	 * The coordinates where the card may be placed
+	 * Getter method
 	 * 
-	 * @return
+	 * @return the coordinates where the card may be placed
 	 */
 	public Coordinate getCoordinateDestinazione()
 	{
 		return this.coordinateDestinazione;
 	}
 
-	private final Coordinate	coordinateDestinazione;
-
-	private static final long	serialVersionUID	= 2085506187547788810L;
-
+	/**
+	 * Accept method for visitor's pattern
+	 */
 	@Override
 	public void accept(ControllerHandler handler)
 	{
 		handler.visit(this);
 	}
+
+	private final Coordinate	coordinateDestinazione;
+
+	private static final long	serialVersionUID	= 2085506187547788810L;
 
 }

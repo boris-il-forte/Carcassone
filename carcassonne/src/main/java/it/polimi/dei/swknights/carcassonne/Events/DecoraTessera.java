@@ -16,6 +16,16 @@ import java.io.Serializable;
  */
 public class DecoraTessera implements Serializable
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param tessera
+	 *            the event's card representation
+	 * @param coordinate
+	 *            the coordinates of the card
+	 * @param giocatore
+	 *            the current player
+	 */
 	public DecoraTessera(AdapterTessera tessera, Coordinate coordinate, Color giocatore)
 	{
 		this.tessera = tessera;
@@ -23,28 +33,43 @@ public class DecoraTessera implements Serializable
 		this.giocatore = giocatore;
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the event's card representation
+	 */
 	public AdapterTessera getTessera()
 	{
 		return this.tessera;
 
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the current player's color
+	 */
 	public Color getGiocatore()
 	{
 		return this.giocatore;
 	}
 
+	/**
+	 * getter method
+	 * 
+	 * @return the coordinates of the card
+	 */
 	public Coordinate getCoordinate()
 	{
 		return this.coordinate;
 	}
 
-	private Coordinate		coordinate;
-	
-	private Color			giocatore;
-	
-	private AdapterTessera	tessera;
-	
+	private Coordinate			coordinate;
+
+	private Color				giocatore;
+
+	private AdapterTessera		tessera;
+
 	private static final long	serialVersionUID	= 4724116605542858814L;
 
 }

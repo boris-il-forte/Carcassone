@@ -13,22 +13,45 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 public class UpdatePositionEvent extends UpdateEvent
 {
+	/**
+	 * Constructor to be called when you have the card object
+	 * 
+	 * @param tessera
+	 *            the placed card
+	 * @param coordinate
+	 *            the placed card's coordinates
+	 * @param source
+	 *            the event source
+	 */
 	public UpdatePositionEvent(Tessera tessera, Coordinate coordinate, Object source)
 	{
 		super(tessera, coordinate, null, source);
 
 	}
 
+	/**
+	 * Constructor to be called when you have the card string
+	 * 
+	 * @param tessera
+	 *            the placed card
+	 * @param coordinate
+	 *            the placed card's coordinates
+	 * @param source
+	 *            the event source
+	 */
 	public UpdatePositionEvent(String tessera, Coordinate coordinate, Object source)
 	{
-		super(tessera, coordinate,null, source);
+		super(tessera, coordinate, null, source);
 	}
 
+	/**
+	 * accept method for visitor's pattern
+	 */
 	@Override
 	public void accept(ViewHandler handler)
 	{
 		handler.visit(this);
-	
+
 	}
 
 	/**
