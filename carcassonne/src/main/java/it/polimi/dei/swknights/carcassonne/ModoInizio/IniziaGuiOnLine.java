@@ -24,9 +24,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+/**
+ * Starter for the GUIonline
+ * @author dave
+ *
+ */
 public class IniziaGuiOnLine extends Inizio
 {
+	/**
+	 * start the GUI online
+	 */
 	@Override
 	public void inizia()
 	{

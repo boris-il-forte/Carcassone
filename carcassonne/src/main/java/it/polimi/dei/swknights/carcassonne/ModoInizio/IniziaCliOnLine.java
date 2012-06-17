@@ -13,10 +13,17 @@ import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+/**
+ * Starter for the CLI online
+ * @author dave
+ *
+ */
 public class IniziaCliOnLine extends Inizio
 {
 
+	/**
+	 * Starts the CLI to the server specified by the user
+	 */
 	@Override
 	public void inizia()
 	{
