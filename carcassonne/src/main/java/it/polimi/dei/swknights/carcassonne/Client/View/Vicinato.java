@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class used to represent the neighbourhood of a card in CLI mode Just a
+ * Class used to represent the neighborhood of a card in CLI mode Just a
  * graphical tool
  * 
  * @author edoardopasi & dave
@@ -14,6 +14,18 @@ import java.util.Map;
  */
 public class Vicinato
 {
+	/**
+	 * Default constructor. set up all the neighborhood variables.
+	 * 
+	 * @param nord
+	 *            true if there is a neighbor at the north of this card
+	 * @param sud
+	 *            true if there is a neighbor at the south of this card
+	 * @param ovest
+	 *            true if there is a neighbor at the west of this card
+	 * @param est
+	 *            true if there is a neighbor at the est of this card
+	 */
 	public Vicinato(Boolean nord, Boolean sud, Boolean ovest, Boolean est)
 	{
 		this.mappaVicinato = new HashMap<PuntoCardinale, Boolean>();

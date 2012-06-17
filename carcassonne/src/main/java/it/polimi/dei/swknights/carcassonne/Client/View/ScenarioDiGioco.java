@@ -20,6 +20,9 @@ import java.util.TreeMap;
  */
 public class ScenarioDiGioco
 {
+	/**
+	 * Default constructor. set up the object
+	 */
 	public ScenarioDiGioco()
 	{
 		this.mappaRighe = new TreeMap<Integer, ScenarioDiGioco.Riga>();

@@ -29,6 +29,9 @@ import java.util.Map.Entry;
 
 public abstract class ModuloView extends AbstractModuloView
 {
+	/**
+	 * Default constructor. Initializes the object.
+	 */
 	public ModuloView()
 	{
 		super();
@@ -38,6 +41,11 @@ public abstract class ModuloView extends AbstractModuloView
 		this.inizializzaSegnalini();
 	}
 
+	/**
+	 * Abstract method to display the current score
+	 * 
+	 * @param punteggio
+	 */
 	public abstract void visualizzaPunteggi(Punteggi punteggio);
 
 	/**
@@ -73,6 +81,12 @@ public abstract class ModuloView extends AbstractModuloView
 	 */
 	public abstract void aggiornaMappa();
 
+	/**
+	 * Method used to set the number of players of this game
+	 * 
+	 * @param numGiocatori
+	 *            the number of players
+	 */
 	public void setNumeroPlayer(int numGiocatori)
 	{
 		this.numGiocatori = numGiocatori;
@@ -120,8 +134,10 @@ public abstract class ModuloView extends AbstractModuloView
 	 * change in the model
 	 * 
 	 * @param tessera
+	 *            the card to be placed
 	 * 
 	 * @param coordinatePosizione
+	 *            the position of the card
 	 */
 
 	public void posizionaTessera(AdapterTessera tessera, Coordinate coordinatePosizione)
@@ -135,9 +151,15 @@ public abstract class ModuloView extends AbstractModuloView
 		this.getGestoreFasi().nextFase();
 	}
 
+	/**
+	 * Method to change the area of the game displayed in the view
+	 * 
+	 * @param coordinate
+	 *            NW coordinates the view must move to
+	 */
 	public void muoviViewA(Coordinate coordinate)
 	{
-		if(!this.gestoreFasi.partitaCominciata()){return;}
+		if (!this.gestoreFasi.partitaCominciata()) { return; }
 		if (this.nelBoundingBox(coordinate))
 		{
 			this.setCoordinataNordOvest(coordinate);
@@ -145,9 +167,17 @@ public abstract class ModuloView extends AbstractModuloView
 		this.aggiornaMappa();
 	}
 
+	/**
+	 * Method to change the area of the game displayed in the view
+	 * 
+	 * @param puntoCardinale
+	 *            the direction the player wants to move
+	 * @param quantita
+	 *            how much the player want to move
+	 */
 	public void muoviViewA(PuntoCardinale puntoCardinale, int quantita)
 	{
-		if(!this.gestoreFasi.partitaCominciata()){return;}
+		if (!this.gestoreFasi.partitaCominciata()) { return; }
 		Coordinate coordinate = this.coordinateNordOvest;
 		Coordinate nuoveCoordinate = coordinate.getCoordinateA(puntoCardinale);
 
@@ -166,7 +196,9 @@ public abstract class ModuloView extends AbstractModuloView
 	 * Change player and show the new drawn Card
 	 * 
 	 * @param colGiocatoreCorrente
+	 *            current player color
 	 * @param tesseraNuova
+	 *            card to be placed
 	 */
 	public void aggiornaTurno(Color colGiocatoreCorrente, AdapterTessera tesseraNuova)
 	{
@@ -176,16 +208,30 @@ public abstract class ModuloView extends AbstractModuloView
 		this.gestoreFasi.cominciaTurno();
 	}
 
+	/**
+	 * Set the color of the player using this view
+	 * 
+	 * @param colore
+	 *            the player's color
+	 */
 	public void setColore(Color colore)
 	{
 		this.myColore = colore;
 	}
 
+	/**
+	 * getter method
+	 * 
+	 * @return the phase manager for the view
+	 */
 	public GestoreFasi getGestoreFasi()
 	{
 		return this.gestoreFasi;
 	}
 
+	/**
+	 * set the current player color
+	 */
 	public void setColoreCorrente(Color coloreGiocatore)
 	{
 		this.coloreGiocatoreCorrente = coloreGiocatore;
