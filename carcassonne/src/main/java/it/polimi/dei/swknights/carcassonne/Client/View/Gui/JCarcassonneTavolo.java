@@ -73,7 +73,7 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 	}
 
 	/**
-	 * Method thath set an empty cell
+	 * Method that set an empty cell
 	 * 
 	 * @param numeroVuota
 	 *            the number of the cell in the grid
@@ -87,10 +87,14 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 	}
 
 	/**
-	 * method that set
+	 * method that set the marker for the cell
+	 * 
 	 * @param numeroCasella
+	 *            the position on the grid
 	 * @param segnalino
+	 *            the marker icon
 	 * @param coordinateSegnalino
+	 *            where to draw the marker
 	 */
 	public void setSegnalino(int numeroCasella, Icon segnalino, Coordinate coordinateSegnalino)
 	{
@@ -99,6 +103,9 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 
 	}
 
+	/**
+	 * Method that clear all the map
+	 */
 	public void svuotaMappa()
 	{
 		for (JCarcassonneCasella cella : this.listaCaselle)
@@ -108,6 +115,9 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 
 	}
 
+	/**
+	 * Handler for the mouse click event, used for tile and marker place.
+	 */
 	public void mouseClicked(MouseEvent e)
 	{
 		int numeroCasella = this.getNumeroCasella(e);
@@ -125,6 +135,9 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 		}
 	}
 
+	/**
+	 * Handler for the mouse entered event. used only for overlay
+	 */
 	public void mouseEntered(MouseEvent e)
 	{
 		int numeroCasella = this.getNumeroCasella(e);
@@ -134,6 +147,9 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 		}
 	}
 
+	/**
+	 * Handler for mouse exited event. used to cancel overlay on empty cells
+	 */
 	public void mouseExited(MouseEvent e)
 	{
 		int numeroCasella = this.getNumeroCasella(e);
@@ -143,14 +159,23 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 		}
 	}
 
+	/**
+	 * Useless handler from interface
+	 */
 	public void mousePressed(MouseEvent e)
 	{
 	}
 
+	/**
+	 * Useless handler from interface
+	 */
 	public void mouseReleased(MouseEvent e)
 	{
 	}
 
+	/**
+	 * Useless handler from interface
+	 */
 	private int getNumeroCasella(MouseEvent e)
 	{
 		Object source = e.getSource();

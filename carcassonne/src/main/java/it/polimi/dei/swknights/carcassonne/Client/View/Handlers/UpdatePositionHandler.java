@@ -5,6 +5,11 @@ import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
+/**
+ * Handler for update position event
+ * @author dave
+ *
+ */
 public class UpdatePositionHandler extends ModuloViewHandler
 {
 	public UpdatePositionHandler(ModuloView view)
