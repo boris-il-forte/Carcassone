@@ -18,10 +18,17 @@ import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
-
+/**
+ * Starter for the GUI offline
+ * @author dave
+ *
+ */
 public class IniziaGuiOffline extends Inizio
 {
 
+	/**
+	 * starts the GUI offline
+	 */
 	@Override
 	public void inizia()
 	{

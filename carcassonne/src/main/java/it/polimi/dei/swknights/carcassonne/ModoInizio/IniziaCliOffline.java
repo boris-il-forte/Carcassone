@@ -9,9 +9,17 @@ import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Starter for the CLI offline
+ * @author dave
+ *
+ */
 public class IniziaCliOffline extends Inizio
 {
 
+	/**
+	 * start the CLI offline
+	 */
 	@Override
 	public void inizia()
 	{

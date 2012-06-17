@@ -73,7 +73,7 @@ public class ScaledImageGetter extends ImageLoader
 
 	/**
 	 * Method used to set current dimension images
-	 * @param dimensione
+	 * @param dimensione the dimension of the side of the images
 	 */
 	public final void setImageDim(int dimensione)
 	{
