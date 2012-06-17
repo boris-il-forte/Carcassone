@@ -3,7 +3,6 @@ package it.polimi.dei.swknights.carcassonne.Client.View;
 import it.polimi.dei.swknights.carcassonne.Client.View.Handlers.ModuloViewHandler;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.AbstractView;
-import it.polimi.dei.swknights.carcassonne.ModuliAstratti.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +17,12 @@ import java.util.List;
 
 public abstract class AbstractModuloView extends AbstractView
 {
+	/**
+	 * Default constructor. Initialize visitors list with an empty list
+	 */
 	public AbstractModuloView()
 	{
-		super(new ArrayList<Controller>());
+		super();
 		this.visitorHandlers = new ArrayList<ModuloViewHandler>();
 	}
 

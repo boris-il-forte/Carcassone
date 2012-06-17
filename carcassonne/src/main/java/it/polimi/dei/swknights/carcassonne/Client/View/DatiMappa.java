@@ -12,13 +12,22 @@ import java.util.Map;
  */
 public class DatiMappa
 {
+	/**
+	 * Default constructor. Set how much of the map should be displayed
+	 * simultaneously
+	 * 
+	 * @param min
+	 *            the minimum coordinate to be displayed
+	 * @param max
+	 *            the maximum coordinate to be displayed
+	 */
 	public DatiMappa(Coordinate min, Coordinate max)
 	{
 		this.creaBoundingMap(min, max);
 	}
 
 	/**
-	 * 
+	 * Getter method
 	 * @return height of the map
 	 */
 	public Integer getAltezza()
@@ -27,7 +36,7 @@ public class DatiMappa
 	}
 
 	/**
-	 * 
+	 * Getter method
 	 * @return the width of the map
 	 */
 	public Integer getLarghezza()
@@ -36,7 +45,7 @@ public class DatiMappa
 	}
 
 	/**
-	 * 
+	 * Getter method
 	 * @param puntoCardinale
 	 *            the cardinal point of the requested max
 	 * @return the coordinate of the max point in that given direction

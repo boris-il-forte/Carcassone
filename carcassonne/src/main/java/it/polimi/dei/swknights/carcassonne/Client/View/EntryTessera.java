@@ -26,23 +26,40 @@ public class EntryTessera
 		this.vicinato = vicinato;
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the coordinates of the tile
+	 */
 	public Coordinate getCoordinate()
 	{
 		return this.coordinate;
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the tile
+	 */
 	public AdapterTessera getTessera()
 	{
 		return this.tessera;
 	}
 
+	/**
+	 * getter method
+	 * 
+	 * @return the neighborhood of the tile
+	 */
 	public Vicinato getVicinato()
 	{
 		return this.vicinato;
 	}
 
 	private Coordinate		coordinate;
+	
 	private Vicinato		vicinato;
+	
 	private AdapterTessera	tessera;
 
 }

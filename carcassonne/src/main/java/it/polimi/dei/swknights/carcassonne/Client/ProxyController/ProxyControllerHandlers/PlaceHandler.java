@@ -4,14 +4,24 @@ import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControlle
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.PlaceEvent;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
+/**
+ * Class used to handle the place event
+ * @author dave
+ *
+ */
 public class PlaceHandler extends ProxyControllerHandler
 {
+	/**
+	 * Default constructor. Calls superclass constructor.
+	 */
 	public PlaceHandler(ProxyController proxy)
 	{
 		super(proxy);
-
 	}
 
+	/**
+	 * Visit method to handle the place event with visitors pattern.
+	 */
 	@Override
 	public void visit(PlaceEvent event)
 	{

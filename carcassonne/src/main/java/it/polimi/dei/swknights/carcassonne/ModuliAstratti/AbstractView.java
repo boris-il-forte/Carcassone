@@ -2,15 +2,19 @@ package it.polimi.dei.swknights.carcassonne.ModuliAstratti;
 
 import it.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;
 
+import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
 
 public abstract class AbstractView implements View
 {
 
-	public AbstractView(List<Controller> listeners)
+	/**
+	 * Default constructor. initializes the listener list with an empty list
+	 */
+	public AbstractView()
 	{
-		this.listeners = listeners;
+		this.listeners = new ArrayList<Controller>();
 	}
 
 	/**

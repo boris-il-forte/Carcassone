@@ -3,13 +3,24 @@ package it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyControll
 import it.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;
 import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ControllerHandler;
 
-public class ProxyControllerHandler extends ControllerHandler
+/**
+ * Abstract class for proxy handlers
+ * 
+ * @author dave
+ * 
+ */
+public abstract class ProxyControllerHandler extends ControllerHandler
 {
-
+	/**
+	 * Default constructor. Initializes the handler
+	 * 
+	 * @param proxy
+	 *            the proxy that use the handler
+	 */
 	public ProxyControllerHandler(ProxyController proxy)
 	{
 		this.proxy = proxy;
 	}
 
-	ProxyController	proxy;
+	protected ProxyController	proxy;
 }
