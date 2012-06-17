@@ -76,6 +76,11 @@ public class Parser
 		return this.getData(agoBussola).charAt(FIRST_CHAR);
 	}
 
+	/**
+	 * Method that returns the tipe of the tile
+	 * 
+	 * @return
+	 */
 	public String getDataType()
 	{
 		return this.typeData;
@@ -88,13 +93,21 @@ public class Parser
 	 *            the link you want to query
 	 * @return parsed data at agoBussola
 	 */
-	
+
 	public String getData(Bussola agoBussola)
 	{
 		int index = this.getIndex(agoBussola);
 		return this.parsedData[index];
 	}
 
+	/**
+	 * getter for the parsed data representing links
+	 * 
+	 * @param agoBussola
+	 *            the link you want to query
+	 * @return parsed data at agoBussola as a boolean
+	 * @throws BadAttributeValueExpException if the parsed data isn't either 1 or 0
+	 */
 	public Boolean getDataBool(Bussola agoBussola) throws BadAttributeValueExpException
 	{
 		char siglaLink = this.getDataChar(agoBussola);

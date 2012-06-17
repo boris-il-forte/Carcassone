@@ -103,6 +103,15 @@ public class IconGetter
 		}
 		return mappa;
 	}
+	
+	/**
+	 * getter method
+	 * @return the background image
+	 */
+	public BufferedImage getSfondo()
+	{
+		return this.immagini.getIconGUIMap().get("sfondo");	
+	}
 
 	/**
 	 * Getter method

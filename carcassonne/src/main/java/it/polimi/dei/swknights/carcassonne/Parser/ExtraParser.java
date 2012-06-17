@@ -65,6 +65,9 @@ public class ExtraParser extends Parser
 		return this.extraData[index];
 	}
 
+	/**
+	 * Returns a string representation that can be used to be shown in the CLI
+	 */
 	@Override
 	public String toString()
 	{
