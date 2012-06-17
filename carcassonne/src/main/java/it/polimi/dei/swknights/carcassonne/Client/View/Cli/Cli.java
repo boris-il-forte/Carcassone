@@ -26,6 +26,9 @@ import java.util.Scanner;
 public class Cli extends ModuloView
 {
 
+	/**
+	 * Default constructor. initializes the command line interface
+	 */
 	public Cli()
 	{
 		super();
@@ -38,8 +41,11 @@ public class Cli extends ModuloView
 
 	}
 
+	/**
+	 * Run method. Runs the CLI.
+	 */
 	@Override
-	public void run() // OK
+	public void run()
 	{
 
 		try
@@ -61,6 +67,9 @@ public class Cli extends ModuloView
 
 	}
 
+	/**
+	 * Method used to refresh the map
+	 */
 	@Override
 	public void aggiornaMappa()
 	{
@@ -76,12 +85,18 @@ public class Cli extends ModuloView
 
 	}
 
+	/**
+	 * Method used to show the current score
+	 */
 	@Override
 	public synchronized void visualizzaPunteggi(Punteggi punteggio)
 	{
 		this.informaUser.notificaPunteggi(punteggio);
 	}
 
+	/**
+	 * Method to set the number of the players
+	 */
 	@Override
 	public void setNumeroPlayer(int numGiocatori)
 	{
@@ -112,6 +127,9 @@ public class Cli extends ModuloView
 		
 	}
 
+	/**
+	 * method used to set up the first card
+	 */
 	@Override
 	public void mettiPrimaTessera(AdapterTessera tessIniziale)
 	{
@@ -119,6 +137,9 @@ public class Cli extends ModuloView
 		super.mettiPrimaTessera(tessIniziale);
 	}
 
+	/**
+	 * method that notify the end of the game
+	 */
 	@Override
 	public void notificaFinePartita(String vincitore)
 	{
@@ -126,6 +147,9 @@ public class Cli extends ModuloView
 		this.informaUser.notificaFinePartita();
 	}
 
+	/**
+	 * method used when an invalid move is made.
+	 */
 	@Override
 	public void notificaMossaNonValida()
 	{
@@ -134,6 +158,9 @@ public class Cli extends ModuloView
 
 	}
 
+	/**
+	 * method thath shows current player's color
+	 */
 	@Override
 	public void visualizzaColoreCorrente()
 	{
@@ -141,6 +168,9 @@ public class Cli extends ModuloView
 
 	}
 
+	/**
+	 * Method thath shows the current tile to the player
+	 */
 	@Override
 	public void visualizzaTesseraCorrente(AdapterTessera tessera)
 	{

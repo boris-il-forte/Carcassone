@@ -1,4 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Client.View.Cli;
+
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
@@ -12,6 +13,12 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 public class ParserComandi
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param cli
+	 *            the cli that uses this parser
+	 */
 	public ParserComandi(Cli cli)
 	{
 		this.cli = cli;
@@ -30,9 +37,7 @@ public class ParserComandi
 	{
 		int quantitaSpostamento = 0;
 		if (stringComando.matches("[SCsc][1-4]")) // es c1 s2
-		{
-			return this.cli.provaPosizionareSengalino(stringComando); 
-		}
+		{ return this.cli.provaPosizionareSengalino(stringComando); }
 		if (stringComando.matches("\\-?\\d+\\,\\-?\\d+")) // es (2,-4)
 		{
 			int x, y;
@@ -40,21 +45,16 @@ public class ParserComandi
 			String[] parti = comando.split(",");
 			x = Integer.parseInt(parti[STRINGA_X]);
 			y = Integer.parseInt(parti[STRINGA_Y]);
-			
 
 			return this.cli.provaPosizionareTessera(new Coordinate(x, y));
 		}
 
-		if (stringComando.matches("rotate")) 
-		{ 
-			
-			return this.cli.provaRuotareTessera();
-		}
-		if (stringComando.matches("pass")) 
-		{ 
+		if (stringComando.matches("rotate")) {
 
-			return this.cli.provaNonMettereSegnalino(); 
-		}
+		return this.cli.provaRuotareTessera(); }
+		if (stringComando.matches("pass")) {
+
+		return this.cli.provaNonMettereSegnalino(); }
 
 		if (stringComando.matches("(up|down|left|right)\\=\\d+"))
 		{
