@@ -50,12 +50,10 @@ public class IniziaCliOnLine extends Inizio
 		catch (IOException e)
 		{
 			this.print("Server Unreachable");
-			System.exit(0);
 		}
 		catch (NotBoundException e)
 		{
 			this.print("Server Unreachable - RMI error");
-			System.exit(0);
 		}
 	}
 
