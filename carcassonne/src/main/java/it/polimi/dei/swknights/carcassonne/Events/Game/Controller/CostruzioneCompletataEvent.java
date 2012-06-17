@@ -16,6 +16,16 @@ import java.util.Map;
 public class CostruzioneCompletataEvent extends ControllerEvent
 {
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param source
+	 *            the source of the event
+	 * @param tessereAggiornate
+	 *            the list of the tiles to be updated
+	 * @param punteggi
+	 *            the player's score
+	 */
 	public CostruzioneCompletataEvent(Object source, Map<AdapterTessera, Coordinate> tessereAggiornate,
 			Punteggi punteggi)
 	{
@@ -24,11 +34,18 @@ public class CostruzioneCompletataEvent extends ControllerEvent
 		this.punteggi = punteggi;
 	}
 
+	/**
+	 * Getter for the score
+	 * @return the score of the player
+	 */
 	public Punteggi getPunteggi()
 	{
 		return this.punteggi;
 	}
 
+	/**
+	 * Accept method for visitor's pattern
+	 */
 	@Override
 	public void accept(ViewHandler handler)
 	{
@@ -50,7 +67,9 @@ public class CostruzioneCompletataEvent extends ControllerEvent
 	}
 
 	private Punteggi						punteggi;
+	
 	private Map<AdapterTessera, Coordinate>	tessereAggiornate;
+	
 	private static final long				serialVersionUID	= -7907111208766111881L;
 
 }

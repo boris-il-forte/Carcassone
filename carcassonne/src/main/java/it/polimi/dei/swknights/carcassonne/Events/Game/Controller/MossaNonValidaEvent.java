@@ -12,17 +12,24 @@ import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ViewHandler;
 public class MossaNonValidaEvent extends ControllerEvent
 {
 
+	/**
+	 * Default constructor
+	 * @param source
+	 */
+	public MossaNonValidaEvent(Object source)
+	{
+		super(source);
+	
+	}
+
+	/**
+	 * accept method for visitor's pattern
+	 */
 	@Override
 	public void accept(ViewHandler handler)
 	{
 		handler.visit(this);
 	
-	}
-
-	public MossaNonValidaEvent(Object source)
-	{
-		super(source);
-
 	}
 
 	private static final long	serialVersionUID	= 3592976018587414189L;

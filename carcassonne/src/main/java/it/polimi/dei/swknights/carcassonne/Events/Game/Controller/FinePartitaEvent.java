@@ -17,17 +17,28 @@ import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 public class FinePartitaEvent extends ControllerEvent
 {
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param source
+	 *            the event's source
+	 * @param punteggi
+	 *            the player's score
+	 */
 	public FinePartitaEvent(Object source, Punteggi punteggi)
 	{
 		super(source);
 		this.punteggi = punteggi;
 	}
 
+	/**
+	 * accept method for visitor's pattern
+	 */
 	@Override
 	public void accept(ViewHandler handler)
 	{
 		handler.visit(this);
-	
+
 	}
 
 	/**
@@ -44,7 +55,7 @@ public class FinePartitaEvent extends ControllerEvent
 	{
 		return this.punteggi.getVincitoriAttuale();
 	}
-	
+
 	private Punteggi			punteggi;
 	private static final long	serialVersionUID	= 7228959705104329672L;
 

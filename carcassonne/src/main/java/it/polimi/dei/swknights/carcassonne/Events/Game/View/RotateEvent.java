@@ -12,12 +12,20 @@ import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ControllerHandler;
 
 public class RotateEvent extends ViewEvent
 {
-
+	/**
+	 * Default constructor
+	 * 
+	 * @param source
+	 *            the event source
+	 */
 	public RotateEvent(Object source)
 	{
 		super(source);
 	}
 
+	/**
+	 * Accept method for visitor's pattern
+	 */
 	@Override
 	public void accept(ControllerHandler handler)
 	{

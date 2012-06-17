@@ -9,8 +9,27 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 import java.awt.Color;
 
+/**
+ * Abstract schema for events to be triggered when a generic update on model
+ * happens.
+ * 
+ * @author edoardopasi & dave
+ * 
+ */
 public abstract class UpdateEvent extends ControllerEvent
 {
+	/**
+	 * Constructor to be called when you have the card object
+	 * 
+	 * @param tessera
+	 *            the updated card
+	 * @param coordinate
+	 *            the updated coordinates
+	 * @param giocatore
+	 *            the current player
+	 * @param source
+	 *            the event source
+	 */
 	public UpdateEvent(Tessera tessera, Coordinate coordinate, Color giocatore, Object source)
 	{
 		super(source);
@@ -18,6 +37,18 @@ public abstract class UpdateEvent extends ControllerEvent
 		this.setData(adapter, coordinate, giocatore);
 	}
 
+	/**
+	 * Constructor to be called when you have the card string representation
+	 * 
+	 * @param tessera
+	 *            the updated card
+	 * @param coordinate
+	 *            the updated coordinates
+	 * @param giocatore
+	 *            the current player
+	 * @param source
+	 *            the event source
+	 */
 	public UpdateEvent(String tessera, Coordinate coordinate, Color giocatore, Object source)
 	{
 		super(source);
@@ -25,14 +56,14 @@ public abstract class UpdateEvent extends ControllerEvent
 		this.setData(adapter, coordinate, giocatore);
 	}
 
+	/**
+	 * Getter for the card
+	 * 
+	 * @return the event's card representation
+	 */
 	public AdapterTessera getTessera()
 	{
 		return this.dati.getTessera();
-	}
-
-	private void setData(AdapterTessera tessera, Coordinate coordinate, Color giocatore)
-	{
-		this.dati = new DecoraTessera(tessera, coordinate, giocatore);
 	}
 
 	/**
@@ -43,6 +74,11 @@ public abstract class UpdateEvent extends ControllerEvent
 	protected DecoraTessera getDati()
 	{
 		return this.dati;
+	}
+
+	private void setData(AdapterTessera tessera, Coordinate coordinate, Color giocatore)
+	{
+		this.dati = new DecoraTessera(tessera, coordinate, giocatore);
 	}
 
 	private DecoraTessera		dati;

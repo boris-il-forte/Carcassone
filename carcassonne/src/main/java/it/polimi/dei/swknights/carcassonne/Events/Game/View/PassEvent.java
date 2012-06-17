@@ -13,11 +13,20 @@ import it.polimi.dei.swknights.carcassonne.ModuliAstratti.ControllerHandler;
 public class PassEvent extends ViewEvent
 {
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param source
+	 *            the event source
+	 */
 	public PassEvent(Object source)
 	{
 		super(source);
 	}
 
+	/**
+	 * Accept method for visitor's pattern
+	 */
 	@Override
 	public void accept(ControllerHandler handler)
 	{

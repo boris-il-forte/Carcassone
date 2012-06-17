@@ -16,17 +16,29 @@ import java.awt.Color;
  */
 public class AdapterTesseraString extends AdapterTessera
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param stringaTessera
+	 *            the string you want to send in events representing a card
+	 */
 	public AdapterTesseraString(String stringaTessera)
 	{
 		this.stringaTessera = stringaTessera;
 	}
 
+	/**
+	 * return the protocol string (the string itself)
+	 */
 	@Override
 	public String toProtocolString()
 	{
 		return this.stringaTessera;
 	}
-	
+
+	/**
+	 * Get the color of the marker in this card, if any
+	 */
 	@Override
 	public Color getColorSegnalino()
 	{
@@ -34,22 +46,19 @@ public class AdapterTesseraString extends AdapterTessera
 		try
 		{
 			parser = new ExtraParser(this.stringaTessera);
-			for(PuntoCardinale punto : PuntoCardinale.values())
+			for (PuntoCardinale punto : PuntoCardinale.values())
 			{
 				String stringa = parser.getExtraData(punto);
-				if(!stringa.equals(""))
-				{
-					return ColoriGioco.getColorBySigla(stringa);
-				}
+				if (!stringa.equals("")) { return ColoriGioco.getColorBySigla(stringa); }
 			}
 		}
-		catch(InvalidStringToParseException e)
+		catch (InvalidStringToParseException e)
 		{
 		}
 		return null;
 	}
 
-	private String	stringaTessera;
-	
+	private String				stringaTessera;
+
 	private static final long	serialVersionUID	= 1666429877105397L;
 }
