@@ -12,6 +12,10 @@ import java.util.EventListener;
  */
 public interface Controller extends EventListener, Runnable
 {
+	/**
+	 * method to receive events
+	 * @param event the event to be handle
+	 */
 	void riceviInput(ViewEvent event);
 
 }

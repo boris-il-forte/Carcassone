@@ -6,6 +6,13 @@ import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
 
+/**
+ * Abstract class to define view. it's a schema for all views and implements
+ * observer pattern
+ * 
+ * @author dave
+ * 
+ */
 public abstract class AbstractView implements View
 {
 
