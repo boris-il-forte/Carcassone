@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="Model1" size="1875,2241" id="it.polimi.dei.swknights.carcassonne.Server.Model" metadata="uml2-1.0" initialized="true" scrolledX="732" tag="1000" key="32303037303533312D3130303020436172636173736F6E6E652F65646F6172646F70617369">
+  <children xsi:type="editmodel:ClassEditModel" name="AreaDiGioco" location="255,1845" size="140,139" id="it.polimi.dei.swknights.carcassonne.Server.Model/AreaDiGioco" runTimeClassModel="addTessera(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;Lit.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;),getTessera(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;),getSetCoordinateVuote(),AreaDiGioco(),getCoordinateTessera(Lit.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="117,90">
+      <children xsi:type="editmodel:MethodEditModel" name="AreaDiGioco" id="it.polimi.dei.swknights.carcassonne.Server.Model/AreaDiGioco#AreaDiGioco()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addTessera" id="it.polimi.dei.swknights.carcassonne.Server.Model/AreaDiGioco#addTessera(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;Lit.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCoordinateTessera" id="it.polimi.dei.swknights.carcassonne.Server.Model/AreaDiGioco#getCoordinateTessera(Lit.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSetCoordinateVuote" id="it.polimi.dei.swknights.carcassonne.Server.Model/AreaDiGioco#getSetCoordinateVuote()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTessera" id="it.polimi.dei.swknights.carcassonne.Server.Model/AreaDiGioco#getTessera(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="DatiPartita" location="68,1830" size="159,283" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita" runTimeClassModel="aggiornaPunteggioGiocatori(Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;),pescaPrimaTessera(),DatiPartita(),areaDiGioco,pescaTesseraDalMazzo(),getGiocatoreCorrente(),getGiocatore(Ljava.awt.Color;),nextTurno(),getAreaDiGioco(),addGiocatore(),getSetCoordinateVuote(),getListaGiocatori(),getCoordinateTessera(Lit.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="119,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="areaDiGioco" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#areaDiGioco"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="136,216">
+      <children xsi:type="editmodel:MethodEditModel" name="DatiPartita" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#DatiPartita()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addGiocatore" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#addGiocatore()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="aggiornaPunteggioGiocatori" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#aggiornaPunteggioGiocatori(Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAreaDiGioco" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#getAreaDiGioco()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCoordinateTessera" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#getCoordinateTessera(Lit.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getGiocatore" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#getGiocatore(Ljava.awt.Color;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getGiocatoreCorrente" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#getGiocatoreCorrente()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getListaGiocatori" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#getListaGiocatori()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSetCoordinateVuote" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#getSetCoordinateVuote()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="nextTurno" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#nextTurno()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="pescaPrimaTessera" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#pescaPrimaTessera()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="pescaTesseraDalMazzo" id="it.polimi.dei.swknights.carcassonne.Server.Model/DatiPartita#pescaTesseraDalMazzo()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.12/@sourceConnections.0" name="AbstractView" location="1325,342" size="220,131" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractView" runTimeClassModel="AbstractView(Ljava.util.List;),fire(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;),addListener(Ljava.util.EventListener;),removeListener(Ljava.util.EventListener;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="87,72">
+      <children xsi:type="editmodel:MethodEditModel" name="AbstractView" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractView#AbstractView(Ljava.util.List;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addListener" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractView#addListener(Ljava.util.EventListener;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="fire" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractView#fire(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeListener" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractView#removeListener(Ljava.util.EventListener;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/View&lt;-it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractView" source="//@children.2" target="//@children.23" targetEnd="//@children.2/@sourceConnections.0/@children.1" sourceEnd="//@children.2/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="110,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="110,87"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.6/@sourceConnections.0" name="ModuloView" location="1429,1054" size="208,383" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView" runTimeClassModel="setColore(Ljava.awt.Color;),visualizzaPunteggi(Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;),setNumeroPlayer(I),aggiornaTurno(Ljava.awt.Color;Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;),getGestoreFasi(),visualizzaTesseraCorrente(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;),ModuloView(),mettiPrimaTessera(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;),muoviViewA(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;),notificaMossaNonValida(),muoviViewA(Lit.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;I),posizionaTessera(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;),ridaiSegnaliniDiTessere(Ljava.util.Map;),gestoreFasi,aggiornaMappa(),notificaFinePartita(Ljava.lang.String;),setColoreCorrente(Ljava.awt.Color;),visualizzaColoreCorrente()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="114,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="gestoreFasi" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#gestoreFasi"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="129,306">
+      <children xsi:type="editmodel:MethodEditModel" name="ModuloView" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#ModuloView()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="aggiornaMappa" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#aggiornaMappa()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="aggiornaTurno" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#aggiornaTurno(Ljava.awt.Color;Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getGestoreFasi" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#getGestoreFasi()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="mettiPrimaTessera" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#mettiPrimaTessera(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="muoviViewA" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#muoviViewA(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="muoviViewA" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#muoviViewA(Lit.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="notificaFinePartita" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#notificaFinePartita(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="notificaMossaNonValida" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#notificaMossaNonValida()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="posizionaTessera" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#posizionaTessera(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="ridaiSegnaliniDiTessere" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#ridaiSegnaliniDiTessere(Ljava.util.Map;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setColore" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#setColore(Ljava.awt.Color;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setColoreCorrente" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#setColoreCorrente(Ljava.awt.Color;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNumeroPlayer" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#setNumeroPlayer(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="visualizzaColoreCorrente" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#visualizzaColoreCorrente()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="visualizzaPunteggi" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#visualizzaPunteggi(Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="visualizzaTesseraCorrente" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView#visualizzaTesseraCorrente(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Client.View/AbstractModuloView&lt;-it.polimi.dei.swknights.carcassonne.Client.View/ModuloView" source="//@children.3" target="//@children.12" targetEnd="//@children.3/@sourceConnections.0/@children.1" sourceEnd="//@children.3/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="160,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="46,131" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ConnessioneViewRMI" location="50,1487" size="231,131" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewRMI" runTimeClassModel="run(),inviaEventoIniziale(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;Ljava.lang.String;I),ConnessioneViewRMI(Lit.polimi.dei.swknights.carcassonne.Server.ProxyView.PortaleRMIImpl;Lit.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;I),invia(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="109,72">
+      <children xsi:type="editmodel:MethodEditModel" name="ConnessioneViewRMI" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewRMI#ConnessioneViewRMI(Lit.polimi.dei.swknights.carcassonne.Server.ProxyView.PortaleRMIImpl;Lit.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="invia" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewRMI#invia(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="inviaEventoIniziale" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewRMI#inviaEventoIniziale(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;Ljava.lang.String;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewRMI#run()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneView&lt;-it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewRMI" source="//@children.4" target="//@children.21/@sourceConnections.0" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="115,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.21/@sourceConnections.0" name="ConnessioneView" location="907,1054" size="231,149" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneView" runTimeClassModel="numeroConnessione,getColoreConnessione(),ConnessioneView(I),riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;),getNumeroConnessione()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="115,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="numeroConnessione" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneView#numeroConnessione"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="120,72">
+      <children xsi:type="editmodel:MethodEditModel" name="ConnessioneView" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneView#ConnessioneView(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColoreConnessione" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneView#getColoreConnessione()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNumeroConnessione" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneView#getNumeroConnessione()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="riceviModificheModel" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneView#riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.10/@sourceConnections.0" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/AbstractConnessioneView&lt;-it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneView" source="//@children.5" target="//@children.11" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="115,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="115,113" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Cli" location="1422,1487" size="221,347" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli" runTimeClassModel="getTurnoGiusto(),visualizzaPunteggi(Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;),setNumeroPlayer(I),visualizzaTesseraCorrente(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;),provaPosizionareSengalino(Ljava.lang.String;),mettiPrimaTessera(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;),provaRuotareTessera(),notificaMossaNonValida(),provaNonMettereSegnalino(),Cli(),attendiInput(),run(),aggiornaMappa(),provaPosizionareTessera(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;),notificaFinePartita(Ljava.lang.String;),visualizzaColoreCorrente()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="132,288">
+      <children xsi:type="editmodel:MethodEditModel" name="Cli" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#Cli()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="aggiornaMappa" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#aggiornaMappa()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="attendiInput" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#attendiInput()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTurnoGiusto" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#getTurnoGiusto()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="mettiPrimaTessera" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#mettiPrimaTessera(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="notificaFinePartita" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#notificaFinePartita(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="notificaMossaNonValida" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#notificaMossaNonValida()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="provaNonMettereSegnalino" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#provaNonMettereSegnalino()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="provaPosizionareSengalino" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#provaPosizionareSengalino(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="provaPosizionareTessera" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#provaPosizionareTessera(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="provaRuotareTessera" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#provaRuotareTessera()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#run()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNumeroPlayer" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#setNumeroPlayer(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="visualizzaColoreCorrente" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#visualizzaColoreCorrente()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="visualizzaPunteggi" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#visualizzaPunteggi(Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="visualizzaTesseraCorrente" id="it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli#visualizzaTesseraCorrente(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.8/@sourceConnections.0" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView&lt;-it.polimi.dei.swknights.carcassonne.Client.View.Cli/Cli" source="//@children.6" target="//@children.3" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="110,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="104,383" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.25/@sourceConnections.0" name="ConnessioneController" location="347,631" size="250,113" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneController" runTimeClassModel="invia(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;),close(),invia(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="47,54">
+      <children xsi:type="editmodel:MethodEditModel" name="close" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneController#close()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="invia" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneController#invia(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="invia" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneController#invia(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/AbstractConnessioneController&lt;-it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneController" source="//@children.7" target="//@children.9/@sourceConnections.0" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="125,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Gui" location="1169,1487" size="223,401" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui" runTimeClassModel="visualizzaPunteggi(Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;),convertiCoordinate(I),setNumeroPlayer(I),Gui(),getIcone(),visualizzaTesseraCorrente(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;),clicPosizionaTessera(I),getLabelCorrente(),overlayImmagine(I),rotateCliccato(),togliOverlay(Lit.polimi.dei.swknights.carcassonne.Client.View.Gui.JCarcassonneCasella;I),notificaMossaNonValida(),passCliccato(),run(),clicPosizionaSegnalino(ILit.polimi.dei.swknights.carcassonne.Util.Coordinate;),aggiornaMappa(),notificaFinePartita(Ljava.lang.String;),visualizzaColoreCorrente(),getMappaSegnalini()">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="129,342">
+      <children xsi:type="editmodel:MethodEditModel" name="Gui" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#Gui()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="aggiornaMappa" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#aggiornaMappa()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="clicPosizionaSegnalino" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#clicPosizionaSegnalino(ILit.polimi.dei.swknights.carcassonne.Util.Coordinate;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="clicPosizionaTessera" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#clicPosizionaTessera(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="convertiCoordinate" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#convertiCoordinate(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getIcone" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#getIcone()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLabelCorrente" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#getLabelCorrente()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMappaSegnalini" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#getMappaSegnalini()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="notificaFinePartita" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#notificaFinePartita(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="notificaMossaNonValida" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#notificaMossaNonValida()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="overlayImmagine" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#overlayImmagine(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="passCliccato" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#passCliccato()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="rotateCliccato" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#rotateCliccato()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#run()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setNumeroPlayer" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#setNumeroPlayer(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="togliOverlay" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#togliOverlay(Lit.polimi.dei.swknights.carcassonne.Client.View.Gui.JCarcassonneCasella;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="visualizzaColoreCorrente" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#visualizzaColoreCorrente()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="visualizzaPunteggi" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#visualizzaPunteggi(Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="visualizzaTesseraCorrente" id="it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui#visualizzaTesseraCorrente(Lit.polimi.dei.swknights.carcassonne.Events.AdapterTessera;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Client.View/ModuloView&lt;-it.polimi.dei.swknights.carcassonne.Client.View.Gui/Gui" source="//@children.8" target="//@children.6/@sourceConnections.0" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="111,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ProxyController" location="627,631" size="250,167" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ProxyController" runTimeClassModel="setRequestString(Ljava.lang.String;),riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;),run(),ProxyController(Lit.polimi.dei.swknights.carcassonne.Server.ServerRMI;),requestString,ProxyController(Ljava.net.Socket;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="99,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="requestString" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ProxyController#requestString"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="93,90">
+      <children xsi:type="editmodel:MethodEditModel" name="ProxyController" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ProxyController#ProxyController(Lit.polimi.dei.swknights.carcassonne.Server.ServerRMI;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="ProxyController" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ProxyController#ProxyController(Ljava.net.Socket;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="riceviInput" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ProxyController#riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ProxyController#run()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setRequestString" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ProxyController#setRequestString(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.7/@sourceConnections.0" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/AbstractConnessioneController&lt;-it.polimi.dei.swknights.carcassonne.Client.ProxyController/ProxyController" source="//@children.9" target="//@children.22" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="125,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="125,167" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ProxyView" location="1168,1054" size="231,239" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView" runTimeClassModel="getColoreCorrente(),run(),accettaConnessione(Ljava.net.Socket;),accettaConnessione(Lit.polimi.dei.swknights.carcassonne.Server.ProxyView.PortaleRMIImpl;),setColoreCorrente(Ljava.awt.Color;),mandaComandoAvvia(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;),setCommandString(Ljava.lang.String;),riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;),ProxyView(),coloreCorrente">
+    <children xsi:type="editmodel:CompartmentEditModel" size="103,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="coloreCorrente" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView#coloreCorrente"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="111,162">
+      <children xsi:type="editmodel:MethodEditModel" name="ProxyView" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView#ProxyView()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="accettaConnessione" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView#accettaConnessione(Ljava.net.Socket;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="accettaConnessione" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView#accettaConnessione(Lit.polimi.dei.swknights.carcassonne.Server.ProxyView.PortaleRMIImpl;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getColoreCorrente" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView#getColoreCorrente()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="mandaComandoAvvia" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView#mandaComandoAvvia(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="riceviModificheModel" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView#riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView#run()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setColoreCorrente" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView#setColoreCorrente(Ljava.awt.Color;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setCommandString" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView#setCommandString(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/AbstractConnessioneView&lt;-it.polimi.dei.swknights.carcassonne.Server.ProxyView/ProxyView" source="//@children.10" target="//@children.5/@sourceConnections.0" targetEnd="//@children.10/@sourceConnections.0/@children.1" sourceEnd="//@children.10/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="115,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.0" name="AbstractConnessioneView" location="1282,631" size="231,113" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/AbstractConnessioneView" runTimeClassModel="run(),AbstractConnessioneView(),riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="127,54">
+      <children xsi:type="editmodel:MethodEditModel" name="AbstractConnessioneView" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/AbstractConnessioneView#AbstractConnessioneView()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="riceviModificheModel" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/AbstractConnessioneView#riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/AbstractConnessioneView#run()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractView&lt;-it.polimi.dei.swknights.carcassonne.Server.ProxyView/AbstractConnessioneView" source="//@children.11" target="//@children.12/@sourceConnections.0" targetEnd="//@children.11/@sourceConnections.0/@children.1" sourceEnd="//@children.11/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="115,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.3/@sourceConnections.0 //@children.15/@children.2/@children.0/@sourceConnections.0" name="AbstractModuloView" location="1543,631" size="208,131" id="it.polimi.dei.swknights.carcassonne.Client.View/AbstractModuloView" runTimeClassModel="riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;),AbstractModuloView(),run(),riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="109,72">
+      <children xsi:type="editmodel:MethodEditModel" name="AbstractModuloView" id="it.polimi.dei.swknights.carcassonne.Client.View/AbstractModuloView#AbstractModuloView()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="riceviInput" id="it.polimi.dei.swknights.carcassonne.Client.View/AbstractModuloView#riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="riceviModificheModel" id="it.polimi.dei.swknights.carcassonne.Client.View/AbstractModuloView#riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Client.View/AbstractModuloView#run()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.11/@sourceConnections.0" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractView&lt;-it.polimi.dei.swknights.carcassonne.Client.View/AbstractModuloView" source="//@children.12" target="//@children.2" targetEnd="//@children.12/@sourceConnections.0/@children.1" sourceEnd="//@children.12/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="104,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="110,131" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ConnessioneControllerSocket" location="330,1054" size="250,131" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerSocket" runTimeClassModel="ConnessioneControllerSocket(Ljava.net.Socket;Lit.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;),close(),run(),invia(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="141,72">
+      <children xsi:type="editmodel:MethodEditModel" name="ConnessioneControllerSocket" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerSocket#ConnessioneControllerSocket(Ljava.net.Socket;Lit.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="close" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerSocket#close()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="invia" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerSocket#invia(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerSocket#run()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneController&lt;-it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerSocket" source="//@children.13" target="//@children.25/@sourceConnections.0" targetEnd="//@children.13/@sourceConnections.0/@children.1" sourceEnd="//@children.13/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="125,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ControllerMock" location="50,631" size="267,149" id="it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers/ControllerMock" runTimeClassModel="ControllerMock(Lit.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;),comunicaPosizionamentoTessera(),costruzioneLibera(Lit.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;),place,pass">
+    <children xsi:type="editmodel:CompartmentEditModel" size="55,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="pass" id="it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers/ControllerMock#pass"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="place" id="it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers/ControllerMock#place"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="156,54">
+      <children xsi:type="editmodel:MethodEditModel" name="ControllerMock" id="it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers/ControllerMock#ControllerMock(Lit.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="comunicaPosizionamentoTessera" id="it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers/ControllerMock#comunicaPosizionamentoTessera()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="costruzioneLibera" id="it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers/ControllerMock#costruzioneLibera(Lit.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController&lt;-it.polimi.dei.swknights.carcassonne.Server.Controller.Handlers/ControllerMock" source="//@children.14" target="//@children.20" targetEnd="//@children.14/@sourceConnections.0/@children.1" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="133,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="115,239"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="AbstractModelTest" location="1667,1054" size="188,246" id="it.polimi.dei.swknights.carcassonne.Model/AbstractModelTest" runTimeClassModel="listenerAddRemoveFire(),contaMosseNonValide,it.polimi.dei.swknights.carcassonne.Model.AbstractModelTest.ViewTest,contaInizioGioco">
+    <children xsi:type="editmodel:CompartmentEditModel" size="120,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="contaInizioGioco" id="it.polimi.dei.swknights.carcassonne.Model/AbstractModelTest#contaInizioGioco"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="contaMosseNonValide" id="it.polimi.dei.swknights.carcassonne.Model/AbstractModelTest#contaMosseNonValide"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="116,18">
+      <children xsi:type="editmodel:MethodEditModel" name="listenerAddRemoveFire" id="it.polimi.dei.swknights.carcassonne.Model/AbstractModelTest#listenerAddRemoveFire()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="132,123">
+      <children xsi:type="editmodel:ClassEditModel" name="ViewTest" size="132,121" id="it.polimi.dei.swknights.carcassonne.Model/AbstractModelTest$ViewTest" runTimeClassModel="run(),numeroPartita,ViewTest(),riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)">
+        <children xsi:type="editmodel:CompartmentEditModel" size="90,18">
+          <children xsi:type="editmodel:AttributeEditModel" name="numeroPartita" id="it.polimi.dei.swknights.carcassonne.Model/AbstractModelTest$ViewTest#numeroPartita"/>
+        </children>
+        <children xsi:type="editmodel:CompartmentEditModel" size="109,54">
+          <children xsi:type="editmodel:MethodEditModel" name="ViewTest" id="it.polimi.dei.swknights.carcassonne.Model/AbstractModelTest$ViewTest#ViewTest()"/>
+          <children xsi:type="editmodel:MethodEditModel" name="riceviModificheModel" id="it.polimi.dei.swknights.carcassonne.Model/AbstractModelTest$ViewTest#riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)"/>
+          <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Model/AbstractModelTest$ViewTest#run()"/>
+        </children>
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Client.View/AbstractModuloView&lt;-it.polimi.dei.swknights.carcassonne.Model/AbstractModelTest$ViewTest" source="//@children.15/@children.2/@children.0" target="//@children.12" targetEnd="//@children.15/@children.2/@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.15/@children.2/@children.0/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+          <children xsi:type="editmodel:AssociationEndEditModel" location="41,0" attachSource="true"/>
+          <children xsi:type="editmodel:AssociationEndEditModel" location="165,131"/>
+        </sourceConnections>
+        <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+      </children>
+    </children>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.18/@sourceConnections.0 //@children.22/@sourceConnections.1" name="Controller" location="287,50" size="220,87" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/Controller" runTimeClassModel="riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="68,18">
+      <children xsi:type="editmodel:MethodEditModel" name="riceviInput" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/Controller#riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.19/@sourceConnections.0" name="AbstractModel" location="934,342" size="117,121" id="it.polimi.dei.swknights.carcassonne.Server.Model/AbstractModel" runTimeClassModel="AbstractModel(),addListener(Ljava.util.EventListener;),removeListener(Ljava.util.EventListener;),fire(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="87,72">
+      <children xsi:type="editmodel:MethodEditModel" name="AbstractModel" id="it.polimi.dei.swknights.carcassonne.Server.Model/AbstractModel#AbstractModel()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addListener" id="it.polimi.dei.swknights.carcassonne.Server.Model/AbstractModel#addListener(Ljava.util.EventListener;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="fire" id="it.polimi.dei.swknights.carcassonne.Server.Model/AbstractModel#fire(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeListener" id="it.polimi.dei.swknights.carcassonne.Server.Model/AbstractModel#removeListener(Ljava.util.EventListener;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.22/@sourceConnections.0" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/Model&lt;-it.polimi.dei.swknights.carcassonne.Server.Model/AbstractModel" source="//@children.17" target="//@children.24" targetEnd="//@children.17/@sourceConnections.0/@children.1" sourceEnd="//@children.17/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="58,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="110,87" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.20/@sourceConnections.0" name="AbstractController" location="73,205" size="220,77" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractController" runTimeClassModel="riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="68,18">
+      <children xsi:type="editmodel:MethodEditModel" name="riceviInput" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractController#riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/Controller&lt;-it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractController" source="//@children.18" target="//@children.16" targetEnd="//@children.18/@sourceConnections.0/@children.1" sourceEnd="//@children.18/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="216,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="2,87" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ModuloModel" location="907,631" size="171,373" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel" runTimeClassModel="getTesseraCorrente(),posizionaTesseraCorrente(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;),getTessera(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;),getSetVuote(),tesseraCorrente,addSegnalinoTesseraCorrente(Lit.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;),addPlayer(),iniziaGioco(),posizionaTessera(Lit.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;),notificaFinePartita(Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;),ModuloModel(),getTesseraDaMazzo(),ModuloModel(Ljava.lang.String;),nextTurno(),ruotaTessera(),notificaCostruzioneCompletata(Ljava.util.List;Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;),getCoordinateTessera(Lit.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;),cominciaTurno()">
+    <children xsi:type="editmodel:CompartmentEditModel" size="116,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="tesseraCorrente" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#tesseraCorrente"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="148,306">
+      <children xsi:type="editmodel:MethodEditModel" name="ModuloModel" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#ModuloModel(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="ModuloModel" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#ModuloModel()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addPlayer" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#addPlayer()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addSegnalinoTesseraCorrente" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#addSegnalinoTesseraCorrente(Lit.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="cominciaTurno" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#cominciaTurno()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getCoordinateTessera" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#getCoordinateTessera(Lit.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSetVuote" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#getSetVuote()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTessera" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#getTessera(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTesseraCorrente" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#getTesseraCorrente()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getTesseraDaMazzo" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#getTesseraDaMazzo()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="iniziaGioco" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#iniziaGioco()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="nextTurno" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#nextTurno()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="notificaCostruzioneCompletata" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#notificaCostruzioneCompletata(Ljava.util.List;Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="notificaFinePartita" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#notificaFinePartita(Lit.polimi.dei.swknights.carcassonne.Util.Punteggi;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="posizionaTessera" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#posizionaTessera(Lit.polimi.dei.swknights.carcassonne.Server.Model.Tessere.Tessera;Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="posizionaTesseraCorrente" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#posizionaTesseraCorrente(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="ruotaTessera" id="it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel#ruotaTessera()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Server.Model/AbstractModel&lt;-it.polimi.dei.swknights.carcassonne.Server.Model/ModuloModel" source="//@children.19" target="//@children.17" targetEnd="//@children.19/@sourceConnections.0/@children.1" sourceEnd="//@children.19/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="85,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="58,121"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.0" name="ModuloController" location="68,342" size="230,239" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController" runTimeClassModel="getContapunti(),comunicaPosizionamentoTessera(),ModuloController(Lit.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;),gestoreFasi,getGestoreFasi(),tuttoVicinatoDAccordo(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;),riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;),run(),costruzioneLibera(Lit.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;),addSegnalinoTessera(Lit.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;Lit.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;)">
+    <children xsi:type="editmodel:CompartmentEditModel" size="114,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="gestoreFasi" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController#gestoreFasi"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="156,162">
+      <children xsi:type="editmodel:MethodEditModel" name="ModuloController" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController#ModuloController(Lit.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addSegnalinoTessera" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController#addSegnalinoTessera(Lit.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;Lit.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="comunicaPosizionamentoTessera" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController#comunicaPosizionamentoTessera()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="costruzioneLibera" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController#costruzioneLibera(Lit.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getContapunti" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController#getContapunti()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getGestoreFasi" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController#getGestoreFasi()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="riceviInput" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController#riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController#run()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="tuttoVicinatoDAccordo" id="it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController#tuttoVicinatoDAccordo(Lit.polimi.dei.swknights.carcassonne.Util.Coordinate;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/AbstractController&lt;-it.polimi.dei.swknights.carcassonne.Server.Controller/ModuloController" source="//@children.20" target="//@children.18" targetEnd="//@children.20/@sourceConnections.0/@children.1" sourceEnd="//@children.20/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="115,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="110,77"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ConnessioneViewSocket" location="907,1487" size="231,131" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewSocket" runTimeClassModel="run(),ConnessioneViewSocket(Ljava.net.Socket;Lit.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;I),close(),invia(Ljava.lang.String;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="120,72">
+      <children xsi:type="editmodel:MethodEditModel" name="ConnessioneViewSocket" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewSocket#ConnessioneViewSocket(Ljava.net.Socket;Lit.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="close" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewSocket#close()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="invia" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewSocket#invia(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewSocket#run()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.4/@sourceConnections.0" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneView&lt;-it.polimi.dei.swknights.carcassonne.Server.ProxyView/ConnessioneViewSocket" source="//@children.21" target="//@children.5" targetEnd="//@children.21/@sourceConnections.0/@children.1" sourceEnd="//@children.21/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="115,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="115,149" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.0" name="AbstractConnessioneController" location="487,342" size="250,167" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/AbstractConnessioneController" runTimeClassModel="riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;),AbstractConnessioneController(),run(),addListener(Ljava.util.EventListener;),removeListener(Ljava.util.EventListener;),fire(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="148,108">
+      <children xsi:type="editmodel:MethodEditModel" name="AbstractConnessioneController" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/AbstractConnessioneController#AbstractConnessioneController()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addListener" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/AbstractConnessioneController#addListener(Ljava.util.EventListener;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="fire" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/AbstractConnessioneController#fire(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeListener" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/AbstractConnessioneController#removeListener(Ljava.util.EventListener;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="riceviInput" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/AbstractConnessioneController#riceviInput(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/AbstractConnessioneController#run()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/Model&lt;-it.polimi.dei.swknights.carcassonne.Client.ProxyController/AbstractConnessioneController" source="//@children.22" target="//@children.17/@sourceConnections.0" targetEnd="//@children.22/@sourceConnections.0/@children.1" sourceEnd="//@children.22/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="125,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/Controller&lt;-it.polimi.dei.swknights.carcassonne.Client.ProxyController/AbstractConnessioneController" source="//@children.22" target="//@children.16" targetEnd="//@children.22/@sourceConnections.1/@children.1" sourceEnd="//@children.22/@sourceConnections.1/@children.0" connectionRouterKind="Manual" anchorType="ChopBox">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="71,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="138,87"/>
+      <bendpoints location="562,130" secondRelativeDimension="106,43" firstRelativeDimension="1,-160"/>
+      <bendpoints location="487,130" secondRelativeDimension="69,43" firstRelativeDimension="-48,-159"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.2/@sourceConnections.0" name="View" location="1325,205" size="220,87" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/View" runTimeClassModel="riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="109,18">
+      <children xsi:type="editmodel:MethodEditModel" name="riceviModificheModel" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/View#riceviModificheModel(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Events/EventSource&lt;-it.polimi.dei.swknights.carcassonne.ModuliAstratti/View" source="//@children.23" target="//@children.24/@sourceConnections.0" targetEnd="//@children.23/@sourceConnections.0/@children.1" sourceEnd="//@children.23/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="110,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.17/@sourceConnections.0" name="Model" location="692,205" size="220,87" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/Model" runTimeClassModel="fire(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="40,18">
+      <children xsi:type="editmodel:MethodEditModel" name="fire" id="it.polimi.dei.swknights.carcassonne.ModuliAstratti/Model#fire(Lit.polimi.dei.swknights.carcassonne.Events.Game.Controller.ControllerEvent;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.23/@sourceConnections.0" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Events/EventSource&lt;-it.polimi.dei.swknights.carcassonne.ModuliAstratti/Model" source="//@children.24" target="//@children.26" targetEnd="//@children.24/@sourceConnections.0/@children.1" sourceEnd="//@children.24/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="110,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="95,105" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ConnessioneControllerRMI" location="50,1054" size="250,131" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerRMI" runTimeClassModel="invia(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;),run(),close(),ConnessioneControllerRMI(Lit.polimi.dei.swknights.carcassonne.Server.RMI.PortaleRMI;Lit.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="130,72">
+      <children xsi:type="editmodel:MethodEditModel" name="ConnessioneControllerRMI" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerRMI#ConnessioneControllerRMI(Lit.polimi.dei.swknights.carcassonne.Server.RMI.PortaleRMI;Lit.polimi.dei.swknights.carcassonne.Client.ProxyController.ProxyController;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="close" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerRMI#close()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="invia" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerRMI#invia(Lit.polimi.dei.swknights.carcassonne.Events.Game.View.ViewEvent;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="run" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerRMI#run()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.13/@sourceConnections.0" autoLocated="true" id="it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneController&lt;-it.polimi.dei.swknights.carcassonne.Client.ProxyController/ConnessioneControllerRMI" source="//@children.25" target="//@children.7" targetEnd="//@children.25/@sourceConnections.0/@children.1" sourceEnd="//@children.25/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="125,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="125,113" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" targetConnections="//@children.24/@sourceConnections.0" name="EventSource" location="1023,50" size="190,105" id="it.polimi.dei.swknights.carcassonne.Events/EventSource" runTimeClassModel="addListener(Ljava.util.EventListener;),removeListener(Ljava.util.EventListener;)">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="87,36">
+      <children xsi:type="editmodel:MethodEditModel" name="addListener" id="it.polimi.dei.swknights.carcassonne.Events/EventSource#addListener(Ljava.util.EventListener;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeListener" id="it.polimi.dei.swknights.carcassonne.Events/EventSource#removeListener(Ljava.util.EventListener;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" level="-1" properties="wireOptions=3;Product=eUML2"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>
