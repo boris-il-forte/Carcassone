@@ -32,7 +32,9 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	 * Basic constructor, just assign the passed variable to private field
 	 * 
 	 * @param socket
+	 *            the socket used by this connection
 	 * @throws IOException
+	 *             if there is a problem with te connection
 	 */
 	public ConnessioneControllerSocket(Socket socket, ProxyController proxy) throws IOException
 	{
@@ -45,6 +47,9 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		this.partiDiEventoComposto = new ArrayList<String>();
 	}
 
+	/**
+	 * Run methods. Waits for command strings on the socket from the server
+	 */
 	@Override
 	public void run()
 	{
@@ -74,12 +79,18 @@ public class ConnessioneControllerSocket extends ConnessioneController
 		}
 	}
 
+	/**
+	 * Send command strings to the server
+	 */
 	@Override
 	public void invia(String message)
 	{
 		this.out.println(message);
 	}
 
+	/**
+	 * Method that close the socket.
+	 */
 	@Override
 	public void close()
 	{

@@ -18,8 +18,23 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * A proxy that manages connections, to mask the technology used to connect the
+ * server.
+ * 
+ * @author dave
+ * 
+ */
 public class ProxyController extends AbstractConnessioneController
 {
+	/**
+	 * Constructor to manage a socket connection
+	 * 
+	 * @param socket
+	 *            the socket used by the connection
+	 * @throws IOException
+	 *             if there is a problem with the socket
+	 */
 	public ProxyController(Socket socket) throws IOException
 	{
 		this();
@@ -28,6 +43,14 @@ public class ProxyController extends AbstractConnessioneController
 		this.avviaConnesisone(this.connessione);
 	}
 
+	/**
+	 * Constructor to manage an RMI connection
+	 * 
+	 * @param server
+	 *            the RMI server remote object
+	 * @throws RemoteException
+	 *             if there is a problem with the connection
+	 */
 	public ProxyController(ServerRMI server) throws RemoteException
 	{
 		this();
@@ -36,6 +59,12 @@ public class ProxyController extends AbstractConnessioneController
 		this.avviaConnesisone(this.connessione);
 	}
 
+	/**
+	 * Method to receive input from the view
+	 * 
+	 * @param event
+	 *            the event to receive
+	 */
 	@Override
 	public void riceviInput(ViewEvent event)
 	{
@@ -46,11 +75,20 @@ public class ProxyController extends AbstractConnessioneController
 		this.invia(event);
 	}
 
+	/**
+	 * Run method. does nothing, only to have the same interface of a connection
+	 */
 	@Override
 	public void run()
 	{
 	}
 
+	/**
+	 * Set the string that a socket connection wants to send
+	 * 
+	 * @param requestString
+	 *            the string to be send
+	 */
 	public void setRequestString(String requestString)
 	{
 		this.requestString = requestString;
