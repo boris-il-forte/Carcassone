@@ -24,6 +24,12 @@ import javax.swing.border.BevelBorder;
 public class JCarcassonneLaterale extends Box implements ActionListener, KeyListener, FocusListener
 {
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param gui
+	 *            the GUI object who uses this frame.
+	 */
 	public JCarcassonneLaterale(Gui gui)
 	{
 		super(BoxLayout.Y_AXIS);
@@ -36,11 +42,25 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 		this.addFocusListener(this);
 	}
 
+	/**
+	 * Method that set up the current tile.
+	 * 
+	 * @param tessera
+	 *            the icon of the current tile
+	 */
 	public void aggiornaTesseraCorrente(Icon tessera)
 	{
 		this.tesseraCorrente.setTessera(tessera, true);
 	}
 
+	/**
+	 * method that updates current player's panel
+	 * 
+	 * @param colore
+	 *            current player's color
+	 * @param numeroSegnalini
+	 *            current player's number of markersf
+	 */
 	public void aggiornaGiocatoreCorrente(Color colore, int numeroSegnalini)
 	{
 		this.giocatoreCorrente.setGiocatoreCorrente(colore, numeroSegnalini);
@@ -48,6 +68,9 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 		this.labelCorrente.setHorizontalTextPosition(SwingConstants.CENTER);
 	}
 
+	/**
+	 * Buttons action handler
+	 */
 	public void actionPerformed(ActionEvent e)
 	{
 		Object source = e.getSource();
@@ -71,6 +94,9 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 		}
 	}
 
+	/**
+	 * Keyboard action handler
+	 */
 	public void keyPressed(KeyEvent e)
 	{
 		int key = e.getKeyCode();
@@ -99,14 +125,20 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 		}
 	}
 
+	/**
+	 * useless handler from interface
+	 */
 	public void keyReleased(KeyEvent e)
 	{
 	}
 
+	/**
+	 * useless handler from interface
+	 */
 	public void keyTyped(KeyEvent e)
 	{
 	}
-
+	
 	private void aggiungiComponenti()
 	{
 		this.aggiungiSpazio();

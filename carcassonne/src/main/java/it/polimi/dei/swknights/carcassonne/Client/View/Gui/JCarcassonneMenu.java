@@ -11,8 +11,16 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+/**
+ * Class representing a menu
+ * @author dave
+ *
+ */
 public class JCarcassonneMenu extends JMenuBar implements ActionListener
 {
+	/**
+	 * default constructor, creates the menu
+	 */
 	public JCarcassonneMenu()
 	{
 		this.creaMenuBar();

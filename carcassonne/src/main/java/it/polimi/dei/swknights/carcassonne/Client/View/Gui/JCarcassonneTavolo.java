@@ -15,9 +15,25 @@ import javax.swing.Icon;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 
+/**
+ * Class representing the part of the map shown to the player
+ * 
+ * @author dave
+ * 
+ */
 public class JCarcassonneTavolo extends JPanel implements MouseListener
 {
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param gui
+	 *            the GUI using this frame
+	 * @param righe
+	 *            the number of rows displayed
+	 * @param colonne
+	 *            the number of columns displayed
+	 */
 	public JCarcassonneTavolo(Gui gui, int righe, int colonne)
 	{
 		super();
@@ -40,18 +56,42 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 		this.view = gui;
 	}
 
+	/**
+	 * Method to set the Image of a tile
+	 * 
+	 * @param numeroCasella
+	 *            the number of the position in the grid
+	 * @param immagine
+	 *            the icon to be set up
+	 * @param aggiornaStato
+	 *            if the state of the cell must be updated
+	 */
 	public void setIconTessera(int numeroCasella, Icon immagine, boolean aggiornaStato)
 	{
 		JCarcassonneCasella casella = this.listaCaselle.get(numeroCasella);
 		casella.setTessera(immagine, aggiornaStato);
 	}
 
+	/**
+	 * Method thath set an empty cell
+	 * 
+	 * @param numeroVuota
+	 *            the number of the cell in the grid
+	 * @param coordinateVuota
+	 *            the coordinates of the empty cell
+	 */
 	public void setTesseraVuota(int numeroVuota, Coordinate coordinateVuota)
 	{
 		JCarcassonneCasella casella = this.listaCaselle.get(numeroVuota);
 		casella.setVuota(coordinateVuota);
 	}
 
+	/**
+	 * method that set
+	 * @param numeroCasella
+	 * @param segnalino
+	 * @param coordinateSegnalino
+	 */
 	public void setSegnalino(int numeroCasella, Icon segnalino, Coordinate coordinateSegnalino)
 	{
 		JCarcassonneCasella casella = this.listaCaselle.get(numeroCasella);

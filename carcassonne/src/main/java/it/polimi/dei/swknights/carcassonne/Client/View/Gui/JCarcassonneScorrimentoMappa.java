@@ -15,8 +15,20 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Class representing the directional arrows used to move the map
+ * 
+ * @author dave
+ * 
+ */
 public class JCarcassonneScorrimentoMappa extends JPanel
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param mappaIcone
+	 *            the map for the GUI button icons
+	 */
 	public JCarcassonneScorrimentoMappa(Map<String, Icon> mappaIcone)
 	{
 		final int larghezza = CELLE_RIGA * DIMENSIONE_PULSANTE;
@@ -30,6 +42,12 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 		this.addPulsanti(mappaIcone);
 	}
 
+	/**
+	 * add an action listener to all the arrows
+	 * 
+	 * @param listener
+	 *            the listener for the arrows
+	 */
 	public void addActionListener(ActionListener listener)
 	{
 		for (JButton pulsante : this.listaPulsanti)
@@ -38,6 +56,13 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 		}
 	}
 
+	/**
+	 * Method to get the source of the event. use only when handling events
+	 * 
+	 * @param puntoCardinale
+	 *            the cardinal point
+	 * @return the button at this cardinal point
+	 */
 	public JButton getSource(PuntoCardinale puntoCardinale)
 	{
 		final int nord = 0, sud = 3, est = 2, ovest = 1;
@@ -66,7 +91,7 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 	{
 		for (int i = 0; i < CELLE_RIGA * CELLE_RIGA; i++)
 		{
-	
+
 			String label = LABEL_MAP.get(i);
 			if (label != null)
 			{
@@ -93,7 +118,7 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 		return mappa;
 	}
 
-	private List<JButton>	listaPulsanti;
+	private List<JButton>						listaPulsanti;
 
 	private static final Map<Integer, String>	LABEL_MAP			= inizializzaLabelPulsante();
 

@@ -11,15 +11,35 @@ import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * Class representing the current player panel
+ * 
+ * @author dave
+ * 
+ */
 public class JCarcassonneCurrentPlayer extends JPanel
 {
 
+	/**
+	 * Default constructor
+	 * 
+	 * @param mappaSegnalini
+	 *            the icons for the markers displayed
+	 */
 	public JCarcassonneCurrentPlayer(Map<Color, Icon> mappaSegnalini)
 	{
 		this.addIntestazione();
 		this.addSegnalini(mappaSegnalini);
 	}
 
+	/**
+	 * Updates the current player panel
+	 * 
+	 * @param colore
+	 *            current player's color
+	 * @param segnalini
+	 *            the number of current player's marker
+	 */
 	public void setGiocatoreCorrente(Color colore, int segnalini)
 	{
 		this.colore.setBackground(colore);

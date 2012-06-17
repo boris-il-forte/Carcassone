@@ -10,8 +10,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 
+/**
+ * Class representing the markers' counter
+ * 
+ * @author dave
+ * 
+ */
 public class JCarcassonneSegnalini extends JPanel
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param mappaIcone
+	 *            the marker images map
+	 */
 	public JCarcassonneSegnalini(Map<Color, Icon> mappaIcone)
 	{
 		this.mappaIcone = mappaIcone;
@@ -23,6 +35,14 @@ public class JCarcassonneSegnalini extends JPanel
 		this.add(this.contatore);
 	}
 
+	/**
+	 * Set the current player's marker
+	 * 
+	 * @param colore
+	 *            the current player's color
+	 * @param numeroSegnalini
+	 *            the current player's number of markers
+	 */
 	public void setGiocatore(Color colore, Integer numeroSegnalini)
 	{
 		Icon icon = this.mappaIcone.get(colore);
