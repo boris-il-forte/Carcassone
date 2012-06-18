@@ -21,8 +21,21 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * Class that provides a proxy between the server and all connections. It
+ * manages up to 5 connection in an optimized way, trying to make all operation
+ * as much efficient as possible. it also allow to mask the connection tecnology
+ * to the server, allowing decoupling of the controller and the model from the
+ * view
+ * 
+ * @author dave
+ * 
+ */
 public class ProxyView extends AbstractConnessioneView
 {
+	/**
+	 * Default constructor
+	 */
 	public ProxyView()
 	{
 		this.listaConnessioniSocket = new ArrayList<ConnessioneViewSocket>();
@@ -32,6 +45,9 @@ public class ProxyView extends AbstractConnessioneView
 		this.starDestroyer = Executors.newFixedThreadPool(MAX_GIOCATORI);
 	}
 
+	/**
+	 * method used to receive events from the model
+	 */
 	@Override
 	public void riceviModificheModel(ControllerEvent event)
 	{
@@ -49,21 +65,44 @@ public class ProxyView extends AbstractConnessioneView
 
 	}
 
+	/**
+	 * Run method, does nothing, only to mantain the same interface as
+	 * superclass
+	 */
 	@Override
 	public void run()
 	{
 	}
 
+	/**
+	 * getter method
+	 * 
+	 * @return the current player's color
+	 */
 	public Color getColoreCorrente()
 	{
 		return this.coloreCorrente;
 	}
 
+	/**
+	 * Setter method for the current player color
+	 * 
+	 * @param colore
+	 *            the color to be set
+	 */
 	public void setColoreCorrente(Color colore)
 	{
 		this.coloreCorrente = colore;
 	}
 
+	/**
+	 * method used to accept a new socket connection
+	 * 
+	 * @param socket
+	 *            the socket used by this connection
+	 * @throws IOException
+	 *             if something goes wrong with the connection
+	 */
 	public void accettaConnessione(Socket socket) throws IOException
 	{
 		this.giocatoriConnessi++;
@@ -74,6 +113,12 @@ public class ProxyView extends AbstractConnessioneView
 
 	}
 
+	/**
+	 * method used to accept a new RMI connection
+	 * 
+	 * @param portale
+	 *            the RMI remote object used to sent events
+	 */
 	public void accettaConnessione(PortaleRMIImpl portale)
 	{
 		this.giocatoriConnessi++;
@@ -82,16 +127,27 @@ public class ProxyView extends AbstractConnessioneView
 		this.listaConnessioniRMI.add(connessioneRMI);
 	}
 
+	/**
+	 * Set the command string to be send to all socket connections
+	 * 
+	 * @param commandString
+	 */
 	public void setCommandString(String commandString)
 	{
 		this.codaComandi.add(commandString);
 	}
 
+	/**
+	 * Method used to send all connection the begin game event
+	 * 
+	 * @param event
+	 */
 	public void mandaComandoAvvia(InizioGiocoEvent event)
 	{
 		for (ConnessioneViewRMI connRMI : this.listaConnessioniRMI)
 		{
-			connRMI.inviaEventoIniziale(event.getTesseraIniziale(),event.getIdPartita(), this.giocatoriConnessi);
+			connRMI.inviaEventoIniziale(event.getTesseraIniziale(), event.getIdPartita(),
+					this.giocatoriConnessi);
 		}
 		for (ConnessioneViewSocket connSOCK : this.listaConnessioniSocket)
 		{

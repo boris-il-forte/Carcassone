@@ -14,6 +14,11 @@ public enum Bussola {
 		this.numero = numero;
 	}
 
+	/**
+	 * Return the number corresponding to this direction
+	 * 
+	 * @return
+	 */
 	public int toInt()
 	{
 		return this.numero;
@@ -42,6 +47,9 @@ public enum Bussola {
 		return Bussola.valueOf(stringBussola);
 	}
 
+	/**
+	 * the number of possible directions
+	 */
 	public static final int	NUMERO_DIREZIONI	= 6;
 
 	private int				numero;

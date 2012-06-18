@@ -18,11 +18,21 @@ public class Coordinate implements Serializable
 		this.y = y;
 	}
 
+	/**
+	 * getter method
+	 * 
+	 * @return the x coordinate
+	 */
 	public Integer getX()
 	{
 		return this.x;
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the y coordinate
+	 */
 	public Integer getY()
 	{
 		return this.y;
@@ -85,6 +95,9 @@ public class Coordinate implements Serializable
 		return new Coordinate(ascissa, ordinata);
 	}
 
+	/**
+	 * Hascode function
+	 */
 	@Override
 	public int hashCode()
 	{
@@ -95,6 +108,10 @@ public class Coordinate implements Serializable
 		return result;
 	}
 
+	/**
+	 * equals function. two coordinates are equal if and only if the two
+	 * components are equals
+	 */
 	@Override
 	public boolean equals(Object object)
 	{
@@ -106,15 +123,18 @@ public class Coordinate implements Serializable
 		return false;
 	}
 
+	/**
+	 * String serialization for coordinates. 
+	 */
 	@Override
 	public String toString()
 	{
 		return "(" + this.x + "," + this.y + ")";
 	}
 
-	private Integer	x;
+	private Integer				x;
 
-	private Integer	y;
-	
+	private Integer				y;
+
 	private static final long	serialVersionUID	= 272884138757347349L;
 }
