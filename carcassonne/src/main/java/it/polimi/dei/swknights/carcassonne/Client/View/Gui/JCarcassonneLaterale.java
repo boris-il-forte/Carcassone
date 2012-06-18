@@ -163,7 +163,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	@Override
 	public void paintComponent(Graphics g)
 	{
-		BufferedImage img = this.view.getSfondo("sfondo");
+		BufferedImage img = this.view.getSfondo("left");
 		Dimension panelSize = getSize();
 		int width = img.getWidth(this);
 		int height = img.getHeight(this);
