@@ -4,8 +4,19 @@ import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdateTurnoEve
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 
+/**
+ * This class handles the update position event in proxy mode
+ * @author edoardo
+ *
+ */
+
 public class UpdateTurnoHandler extends ProxyViewHandler
 {
+	/**
+	 * basic constructor
+	 * @param proxy
+	 */
+
 
 	public UpdateTurnoHandler(ProxyView proxy)
 	{

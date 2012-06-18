@@ -8,10 +8,18 @@ import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 import java.util.Map;
 import java.util.Map.Entry;
-
+/**
+ * class to handle when a costruction is completed in proxy mode
+ * @author edoardo
+ *
+ */
 public class CostruzioneCompletataHandler extends ProxyViewHandler
 {
 
+	/**
+	 * basic costructor
+	 * @param proxy
+	 */
 	public CostruzioneCompletataHandler(ProxyView proxy)
 	{
 		super(proxy);

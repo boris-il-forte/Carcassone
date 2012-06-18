@@ -7,14 +7,25 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 import java.awt.Color;
-
+/**
+ * This class gives a basic schema of a view handler, plus it gives basic methods 
+ * to make common strings of the protocol
+ * Each proxy view handler basically makes a protocol string (or a part of it for multiple
+ * events) to be sent via netwok
+ * @author edoardo
+ *
+ */
 public class ProxyViewHandler extends ViewHandler
 {
+	/**
+	 * basic constructor
+	 * @param proxy
+	 */
 	public ProxyViewHandler(ProxyView proxy)
 	{
 		this.proxy = proxy;
 	}
-
+	
 	protected String getStringaUpdate(String tile, Coordinate coordinata)
 	{
 		StringBuilder builder = new StringBuilder();
