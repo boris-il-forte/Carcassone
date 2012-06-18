@@ -9,20 +9,39 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**
+ * Implementation of PortaleRMI remote object. Provides a sort of high-level
+ * event socket between client and server
+ * 
+ * @author dave
+ * 
+ */
 public class PortaleRMIImpl extends UnicastRemoteObject implements PortaleRMI
 {
+	/**
+	 * default constructor
+	 * 
+	 * @throws RemoteException
+	 *             if something goes wrong with the network
+	 */
 	public PortaleRMIImpl() throws RemoteException
 	{
 		this.clientEvents = new LinkedList<ViewEvent>();
 		this.serverEvents = new LinkedList<ControllerEvent>();
 	}
 
+	/**
+	 * Method used to send events to the server
+	 */
 	public synchronized void passaEvento(ViewEvent event) throws RemoteException
 	{
 		this.clientEvents.add(event);
 		this.notifyAll();
 	}
-
+	
+	/**
+	 * Method used to wait events from server
+	 */
 	public synchronized ControllerEvent waitEventoDalServer() throws RemoteException
 	{
 		try

@@ -14,9 +14,26 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+/**
+ * This class is used to manage a socket connection to the view
+ * 
+ * @author dave
+ * 
+ */
 public class ConnessioneViewSocket extends ConnessioneView
 {
-
+	/**
+	 * Default constructor
+	 * 
+	 * @param socket
+	 *            the socket used by this connection
+	 * @param proxy
+	 *            the proxy that manages the connection
+	 * @param numeroConnessione
+	 *            the number of this connection
+	 * @throws IOException
+	 *             if something wrong happens during the connection
+	 */
 	public ConnessioneViewSocket(Socket socket, ProxyView proxy, int numeroConnessione) throws IOException
 	{
 		super(numeroConnessione);
@@ -29,6 +46,9 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	}
 
+	/**
+	 * Run method, waits for command strings on socket
+	 */
 	@Override
 	public void run()
 	{
@@ -46,11 +66,20 @@ public class ConnessioneViewSocket extends ConnessioneView
 
 	}
 
+	/**
+	 * Method used toi send command string on this socket
+	 * 
+	 * @param string
+	 *            the command string to send
+	 */
 	public void invia(String string)
 	{
 		this.out.println(string);
 	}
 
+	/**
+	 * Method used to close socket connections
+	 */
 	public void close()
 	{
 		try

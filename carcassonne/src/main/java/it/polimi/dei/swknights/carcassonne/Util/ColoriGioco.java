@@ -24,7 +24,14 @@ public final class ColoriGioco
 		return new ArrayList<Color>(MAPPA_COLORI.keySet());
 
 	}
-	
+
+	/**
+	 * getter method
+	 * 
+	 * @param color
+	 *            a string representation of a game color
+	 * @return the color corresponding to this string
+	 */
 	public static Color getColor(String color)
 	{
 		if (color.equalsIgnoreCase("RED")) { return Color.red; }
@@ -32,10 +39,18 @@ public final class ColoriGioco
 		if (color.equalsIgnoreCase("Yellow")) { return Color.yellow; }
 		if (color.equalsIgnoreCase("Blue")) { return Color.blue; }
 		if (color.equalsIgnoreCase("Black")) { return Color.black; }
-	
-		throw new IllegalArgumentException("mi hai passato la stringa " + color + "che non rappresenta alcun clore");
+
+		throw new IllegalArgumentException("mi hai passato la stringa " + color
+				+ "che non rappresenta alcun clore");
 	}
-	
+
+	/**
+	 * Getter method
+	 * 
+	 * @param sigla
+	 *            a string abbreviation for a color
+	 * @return the color corresponding to the given string
+	 */
 	public static Color getColorBySigla(String sigla)
 	{
 		if (sigla.equalsIgnoreCase("R")) { return Color.red; }
@@ -43,11 +58,10 @@ public final class ColoriGioco
 		if (sigla.equalsIgnoreCase("Y")) { return Color.yellow; }
 		if (sigla.equalsIgnoreCase("B")) { return Color.blue; }
 		if (sigla.equalsIgnoreCase("K")) { return Color.black; }
-		
-		throw new IllegalArgumentException("mi hai passato la sigla " + sigla + "che non rappresenta alcun clore");
+
+		throw new IllegalArgumentException("mi hai passato la sigla " + sigla
+				+ "che non rappresenta alcun clore");
 	}
-	
-	
 
 	/**
 	 * returns R, B, G, Y or K according to the Color (K is BLACK, this beacause
@@ -60,8 +74,10 @@ public final class ColoriGioco
 	}
 
 	/**
+	 * Getter method
 	 * 
 	 * @param colore
+	 *            a color to query about
 	 * @return the full name of the color e.g. RED
 	 */
 	public static String getName(Color colore)
@@ -75,8 +91,6 @@ public final class ColoriGioco
 		String[] stringhe = getStringhe(colore);
 		return stringhe[2];
 	}
-
-
 
 	private static Map<Color, String> inizializzaColori()
 	{
@@ -105,8 +119,10 @@ public final class ColoriGioco
 		}
 
 	}
-	
-	private ColoriGioco(){}
+
+	private ColoriGioco()
+	{
+	}
 
 	private static final Map<Color, String>	MAPPA_COLORI	= inizializzaColori();
 
