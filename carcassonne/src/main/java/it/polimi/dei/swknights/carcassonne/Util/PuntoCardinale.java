@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Util;
 
-
 /**
  * this enum gives a simple implementation of the Cardinal Points, it also gives
  * the opposite Point
@@ -17,12 +16,18 @@ public enum PuntoCardinale {
 		this.string = string;
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the ordinal number for this cardinal point
+	 */
 	public int toInt()
 	{
 		return this.numerazione;
 	}
 
 	/**
+	 * Getter method
 	 * 
 	 * @return the Cardinal Point in the oppposite direction
 	 */
@@ -43,12 +48,18 @@ public enum PuntoCardinale {
 		}
 	}
 
+	/**
+	 * String serialization of this cardinal point, used in socket protocol
+	 */
 	@Override
 	public String toString()
 	{
 		return this.string;
 	}
 
+	/**
+	 * The number of cardinal points
+	 */
 	public static final int	NUMERO_DIREZIONI	= 4;
 
 	private int				numerazione;
