@@ -6,8 +6,11 @@ import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.JFrame;
 
@@ -185,10 +188,7 @@ public class JCarcassoneFrame extends JFrame
 	{
 		final int minSpaziaturaOrizzontale = 20;
 		this.tavolo = new JCarcassonneTavolo(this.view, righe, colonne);
-		Box box = Box.createHorizontalBox();
-		final int marrone = 0xC09331;
-		box.setBackground(new Color(marrone));
-		box.setOpaque(true);
+		Box box = new JCarcassonneBox();
 		box.add(Box.createHorizontalStrut(minSpaziaturaOrizzontale));
 		box.add(Box.createHorizontalGlue());
 		box.add(this.tavolo);
@@ -217,4 +217,29 @@ public class JCarcassoneFrame extends JFrame
 
 	private static final long		serialVersionUID	= -5492055857856379920L;
 
+	private class JCarcassonneBox extends Box
+	{
+		public JCarcassonneBox()
+		{
+			super(BoxLayout.X_AXIS);
+		}
+		
+		
+		public void paintComponent(Graphics g)
+		{
+			BufferedImage img = JCarcassoneFrame.this.view.getSfondo("sfondo");
+			Dimension panelSize = getSize();
+			int width = img.getWidth(this);
+			int height = img.getHeight(this);
+			for (int y = 0; y < panelSize.height; y += height)
+			{
+				for (int x = 0; x < panelSize.width; x += width)
+				{
+					g.drawImage(img, x, y, this);
+				}
+			}
+		}
+		
+		private static final long	serialVersionUID	= 4176262019821017182L;
+	}
 }
