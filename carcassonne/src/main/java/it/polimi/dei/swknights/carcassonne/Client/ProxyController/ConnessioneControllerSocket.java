@@ -1,9 +1,11 @@
 package it.polimi.dei.swknights.carcassonne.Client.ProxyController;
 
+import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Client.CarcassonneSocketPrinter;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTessera;
 import it.polimi.dei.swknights.carcassonne.Events.AdapterTesseraString;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.CostruzioneCompletataEvent;
+import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.InizioGiocoEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.MossaNonValidaEvent;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.UpdatePositionEvent;
@@ -105,9 +107,36 @@ public class ConnessioneControllerSocket extends ConnessioneController
 	}
 
 	private boolean parsingStringa(String stringaDaSocket) throws InvalidStringToParseException
-	{
+	{	
 		String line = stringaDaSocket;
+		
+		// end: red=1,blue=30,green=20
+		if(line.matches("end:"+ ".+" /*REG_SCORES*/))
+		{
 
+			String[] comandoEArgomentiEnd = line.split(":");
+			String argomentiEnd = comandoEArgomentiEnd[1];
+
+			Punteggi punti = new Punteggi();
+			String[] coloriPunteggi = argomentiEnd.split(",");
+
+			for (String colorePunteggio : coloriPunteggi)
+			{
+				String[] partiColPunt = colorePunteggio.split("=");
+				String coloreG = partiColPunt[COLORE_SCORE];
+				int puneggioG = Integer.parseInt(partiColPunt[NUM_SCORE]);
+				punti.addPunteggi(ColoriGioco.getColor(coloreG), puneggioG);
+			}
+
+			this.proxy.fire(new FinePartitaEvent(this, punti));		
+			return false;			
+			
+		}
+		
+		
+		
+		
+		
 		if (line.matches("score:" + REG_SCORES))
 		{
 			String[] comandoEArgomenti = line.split(":");
@@ -186,6 +215,11 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				return true; // ci sarà da leggere ancora
 
 			}
+			
+
+			
+			
+			
 
 		}
 		else
@@ -236,6 +270,11 @@ public class ConnessioneControllerSocket extends ConnessioneController
 				}
 			}
 		}
+		
+		
+
+		
+		
 
 		return false;
 	}
