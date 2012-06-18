@@ -40,8 +40,6 @@ public class JCarcassonnePlayer extends JPanel
 	public void setPunteggio(Integer value)
 	{
 		this.labelPunteggio.setText(value.toString());
-		this.labelPunteggio.setForeground(Color.YELLOW);
-
 	}
 
 	private void addLabelColore(Color colore)
@@ -67,6 +65,7 @@ public class JCarcassonnePlayer extends JPanel
 	private void addLabelPunteggio()
 	{
 		this.labelPunteggio = new JLabel("0");
+		this.labelPunteggio.setForeground(Color.YELLOW);
 		this.add(this.labelPunteggio);
 	}
 

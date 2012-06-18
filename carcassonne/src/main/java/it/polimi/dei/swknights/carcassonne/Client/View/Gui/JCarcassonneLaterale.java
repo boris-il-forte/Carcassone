@@ -37,7 +37,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 		super(BoxLayout.Y_AXIS);
 		this.view = gui;
 		this.mappaIcone = this.view.getIcone();
-		this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+		this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED,Color.GRAY, Color.BLACK));
 		this.aggiungiComponenti();
 		this.setFocusable(true);
 		this.addKeyListener(this);
@@ -210,7 +210,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	{
 		final Dimension dimensione = new Dimension(LATO_TESSERA, LATO_TESSERA);
 		this.tesseraCorrente = new JCarcassonneCasella(BOUNDING_BOX);
-		this.tesseraCorrente.setBorder(BorderFactory.createEtchedBorder());
+		this.tesseraCorrente.setBorder(BorderFactory.createEtchedBorder(Color.GRAY, Color.BLACK));
 		this.tesseraCorrente.setMinimumSize(dimensione);
 		this.tesseraCorrente.setPreferredSize(dimensione);
 		this.tesseraCorrente.setMaximumSize(dimensione);
