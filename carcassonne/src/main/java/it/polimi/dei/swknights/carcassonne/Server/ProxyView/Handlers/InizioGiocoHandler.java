@@ -5,10 +5,18 @@ import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 
 import java.awt.Color;
+/**
+ * This class is used to handle the beginning of the game in proxy mode
+ * @author edoardo
+ *
+ */
 
 public class InizioGiocoHandler extends ProxyViewHandler
 {
-
+	/**
+	 * basic constructor
+	 * @param proxy
+	 */
 	public InizioGiocoHandler(ProxyView proxy)
 	{
 		super(proxy);
