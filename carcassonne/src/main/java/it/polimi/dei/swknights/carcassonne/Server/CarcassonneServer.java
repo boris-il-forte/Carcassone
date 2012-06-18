@@ -110,15 +110,15 @@ public class CarcassonneServer implements Runnable
 		this.partite.add(partita);
 	}
 
-	private Partita aggiungiGiocatore()
+	private synchronized Partita aggiungiGiocatore()
 	{
 		Debug.print("Carcassonne Server - ho ricevuto un connect: qualcuno vuole giocare");
-		this.giocatoriAttivi++;
-		if (this.giocatoriAttivi == 1)
+		this.aggiungiGiocatoreAttivo();
+		if (this.getGiocatoriAttivi() == 1)
 		{
 			this.creaNuovaPartita();
 		}
-		else if (this.giocatoriAttivi == 2)
+		else if (this.getGiocatoriAttivi() == 2)
 		{
 			Debug.print("due giocatori connessi: parte il timer!");
 			Timer timerConn = new Timer();
@@ -230,7 +230,7 @@ public class CarcassonneServer implements Runnable
 				Debug.print("ciclo timer");
 				Thread.sleep(TIMEOUT);
 				Debug.print("passati 20 sec");
-				if (CarcassonneServer.this.giocatoriAttivi < CarcassonneServer.GIOCATORI_PARTITA)
+				if (CarcassonneServer.this.getGiocatoriAttivi() < CarcassonneServer.GIOCATORI_PARTITA)
 				{
 					synchronized (this.lock)
 					{
@@ -240,7 +240,7 @@ public class CarcassonneServer implements Runnable
 					}
 				}
 
-			} while (CarcassonneServer.this.giocatoriAttivi == 1);
+			} while (CarcassonneServer.this.getGiocatoriAttivi() == 1);
 		}
 
 		private Object				lock;
@@ -257,7 +257,7 @@ public class CarcassonneServer implements Runnable
 			{
 				while (true)
 				{
-					if (CarcassonneServer.this.giocatoriAttivi == CarcassonneServer.GIOCATORI_PARTITA
+					if (CarcassonneServer.this.getGiocatoriAttivi() == CarcassonneServer.GIOCATORI_PARTITA
 							|| CarcassonneServer.this.timerScaduto)
 					{
 						Debug.print("DONNNNNG, cominciamo ");
@@ -277,6 +277,16 @@ public class CarcassonneServer implements Runnable
 				Debug.print("DIE HARD!");
 			}
 		}
+	}
+
+	private synchronized int getGiocatoriAttivi()
+	{
+		return this.giocatoriAttivi;
+	}
+	
+	private synchronized void aggiungiGiocatoreAttivo()
+	{
+		this.giocatoriAttivi++;
 	}
 
 }
