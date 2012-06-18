@@ -11,6 +11,13 @@ import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+/**
+ * Utility class to open files either on a folder in the filesystem or in this
+ * Jar file
+ * 
+ * @author dave
+ * 
+ */
 public final class ListFolder
 {
 
@@ -31,7 +38,7 @@ public final class ListFolder
 	 */
 	public static String[] list(String path) throws URISyntaxException, IOException
 	{
-		URL dirURL = ListFolder.class.getResource("/"+path);
+		URL dirURL = ListFolder.class.getResource("/" + path);
 		if (dirURL != null && dirURL.getProtocol().equals("file"))
 		{
 			/* A file path: easy enough */
@@ -52,7 +59,10 @@ public final class ListFolder
 		{
 			/* A JAR path */
 			// strip out only the JAR file
-			String jarPath = dirURL.getPath().substring(5, dirURL.getPath().indexOf("!")); //TODO: magic! chissà perchè...
+			String jarPath = dirURL.getPath().substring(5, dirURL.getPath().indexOf("!")); // TODO:
+																							// magic!
+																							// chissà
+																							// perchè...
 			JarFile jar = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
 			// gives ALL entries in jar
 			Enumeration<JarEntry> entries = jar.entries();
@@ -67,7 +77,7 @@ public final class ListFolder
 					int checkSubdir = entry.indexOf('/');
 					if (checkSubdir >= 0)
 					{
-						entry = entry.substring(checkSubdir+1);
+						entry = entry.substring(checkSubdir + 1);
 					}
 					result.add(entry);
 				}

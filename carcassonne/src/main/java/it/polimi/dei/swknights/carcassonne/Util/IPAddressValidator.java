@@ -3,16 +3,17 @@ package it.polimi.dei.swknights.carcassonne.Util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Class used to validate ip address
+ * @author dave
+ *
+ */
 public class IPAddressValidator
 {
 
-	private Pattern				pattern;
-
-	private static final String	IPADDRESS_PATTERN	= "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
-															+ "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
-															+ "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
-															+ "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
-
+	/**
+	 * Default constructor
+	 */
 	public IPAddressValidator()
 	{
 		this.pattern = Pattern.compile(IPADDRESS_PATTERN);
@@ -30,4 +31,10 @@ public class IPAddressValidator
 		Matcher matcher = this.pattern.matcher(ip);
 		return matcher.matches();
 	}
+
+	private Pattern				pattern;
+	private static final String	IPADDRESS_PATTERN	= "^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+	+ "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+	+ "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\."
+	+ "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$";
 }
