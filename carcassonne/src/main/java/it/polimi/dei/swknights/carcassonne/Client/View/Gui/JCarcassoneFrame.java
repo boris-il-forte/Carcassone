@@ -186,6 +186,9 @@ public class JCarcassoneFrame extends JFrame
 		final int minSpaziaturaOrizzontale = 20;
 		this.tavolo = new JCarcassonneTavolo(this.view, righe, colonne);
 		Box box = Box.createHorizontalBox();
+		final int marrone = 0xC09331;
+		box.setBackground(new Color(marrone));
+		box.setOpaque(true);
 		box.add(Box.createHorizontalStrut(minSpaziaturaOrizzontale));
 		box.add(Box.createHorizontalGlue());
 		box.add(this.tavolo);
