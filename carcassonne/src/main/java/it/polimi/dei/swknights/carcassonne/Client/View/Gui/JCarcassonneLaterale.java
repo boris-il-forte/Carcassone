@@ -4,6 +4,7 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +12,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.util.Map;
 
 import javax.swing.BorderFactory;
@@ -138,7 +140,41 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	public void keyTyped(KeyEvent e)
 	{
 	}
-	
+
+	/**
+	 * useless handler from interface
+	 */
+	public void focusGained(FocusEvent arg0)
+	{
+	}
+
+	/**
+	 * keep the keyboard focus on the panel to control key input
+	 */
+	public void focusLost(FocusEvent arg0)
+	{
+		this.grabFocus();
+	}
+
+	/**
+	 * Override superclass method to draw background image
+	 */
+	@Override
+	public void paintComponent(Graphics g)
+	{
+		BufferedImage img = this.view.getSfondo("sfondo");
+		Dimension panelSize = getSize();
+		int width = img.getWidth(this);
+		int height = img.getHeight(this);
+		for (int y = 0; y < panelSize.height; y += height)
+		{
+			for (int x = 0; x < panelSize.width; x += width)
+			{
+				g.drawImage(img, x, y, this);
+			}
+		}
+	}
+
 	private void aggiungiComponenti()
 	{
 		this.aggiungiSpazio();
@@ -224,14 +260,5 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 	private static final Rectangle			BOUNDING_BOX		= new Rectangle(1, 1, 147, 147);
 
 	private static final long				serialVersionUID	= -1423697317579326895L;
-
-	public void focusGained(FocusEvent arg0)
-	{
-	}
-
-	public void focusLost(FocusEvent arg0)
-	{
-		this.grabFocus();
-	}
 
 }

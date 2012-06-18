@@ -154,7 +154,7 @@ public class JCarcassoneFrame extends JFrame
 		{
 			this.remove(this.contaPunti);
 		}
-		this.contaPunti = new JCarcassonnePunteggi(numeroGiocatori);
+		this.contaPunti = new JCarcassonnePunteggi(numeroGiocatori, this.view.getSfondo("punteggi"));
 		this.add(this.contaPunti, BorderLayout.SOUTH);
 	}
 

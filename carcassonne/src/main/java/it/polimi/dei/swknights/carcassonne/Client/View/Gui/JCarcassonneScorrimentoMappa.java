@@ -40,6 +40,7 @@ public class JCarcassonneScorrimentoMappa extends JPanel
 		this.setMaximumSize(dimensione);
 		this.listaPulsanti = new ArrayList<JButton>();
 		this.addPulsanti(mappaIcone);
+		this.setOpaque(false);
 	}
 
 	/**

@@ -20,6 +20,7 @@ import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -284,6 +285,15 @@ public class Gui extends ModuloView
 		}
 	}
 	
+	/**
+	 * Getter method
+	 * @return the backrground image
+	 */
+	public BufferedImage getSfondo(String stringa)
+	{
+		return this.immagini.getSfondo(stringa);
+	}
+
 	private PuntoCardinale getPuntocardinaleIserimento(Coordinate coordinateMouse)
 			throws PosizionaMentoInvalidoException
 	{

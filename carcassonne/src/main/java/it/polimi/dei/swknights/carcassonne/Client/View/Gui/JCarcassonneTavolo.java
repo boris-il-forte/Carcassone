@@ -37,7 +37,7 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 	public JCarcassonneTavolo(Gui gui, int righe, int colonne)
 	{
 		super();
-		final int coloreSfondo = 0x8AA764;
+		final int coloreSfondo = 0xC5FF98;
 		this.setBackground(new Color(coloreSfondo));
 		this.setOpaque(true);
 		this.righe = righe;

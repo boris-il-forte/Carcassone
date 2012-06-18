@@ -115,6 +115,15 @@ public class IconGetter
 		BufferedImage image = this.immagini.getAlphaImage(finder.toString());
 		return new ImageIcon(image);
 	}
+	
+	/**
+	 * Getter method
+	 * @return the background image
+	 */
+	public BufferedImage getSfondo(String stringa)
+	{
+		return this.immagini.getIconGUIMap().get(stringa);
+	}
 
 	private void setDim(int dim)
 	{
