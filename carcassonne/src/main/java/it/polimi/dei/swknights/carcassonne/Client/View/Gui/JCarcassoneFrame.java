@@ -157,7 +157,7 @@ public class JCarcassoneFrame extends JFrame
 		{
 			this.remove(this.contaPunti);
 		}
-		this.contaPunti = new JCarcassonnePunteggi(numeroGiocatori, this.view.getSfondo("punteggi"));
+		this.contaPunti = new JCarcassonnePunteggi(numeroGiocatori, this.view.getSfondo("front"));
 		this.add(this.contaPunti, BorderLayout.SOUTH);
 	}
 
@@ -227,7 +227,7 @@ public class JCarcassoneFrame extends JFrame
 		
 		public void paintComponent(Graphics g)
 		{
-			BufferedImage img = JCarcassoneFrame.this.view.getSfondo("sfondo");
+			BufferedImage img = JCarcassoneFrame.this.view.getSfondo("behind");
 			Dimension panelSize = getSize();
 			int width = img.getWidth(this);
 			int height = img.getHeight(this);
