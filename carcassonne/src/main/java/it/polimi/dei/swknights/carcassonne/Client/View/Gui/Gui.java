@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -80,7 +81,7 @@ public class Gui extends ModuloView
 	public void notificaFinePartita(String vincitore)
 	{
 		JOptionPane.showMessageDialog(this.finestra, "Fine partita!!" + vincitore, "Carcassonne - swKnights",
-				JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", DIM_TESSERE));
+				JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.immagini.getSfondo("logo")));
 	}
 
 	/**
@@ -92,7 +93,7 @@ public class Gui extends ModuloView
 		if (this.turnoCorretto())
 		{
 			JOptionPane.showMessageDialog(this.finestra, "Mossa non consentita!", "Carcassonne - swKnights",
-					JOptionPane.INFORMATION_MESSAGE, this.immagini.getTileIcon("", DIM_TESSERE));
+					JOptionPane.INFORMATION_MESSAGE, new ImageIcon(this.immagini.getSfondo("logo")));
 		}
 	}
 

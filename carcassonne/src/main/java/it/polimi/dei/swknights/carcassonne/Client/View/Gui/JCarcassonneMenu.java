@@ -13,8 +13,9 @@ import javax.swing.JOptionPane;
 
 /**
  * Class representing a menu
+ * 
  * @author dave
- *
+ * 
  */
 public class JCarcassonneMenu extends JMenuBar implements ActionListener
 {
@@ -50,11 +51,11 @@ public class JCarcassonneMenu extends JMenuBar implements ActionListener
 	private static Map<String, String[]> inizializzaItemMap()
 	{
 		String elementiFile[] = { "NuovaPartita" };
-		String elementiOpzioni[] = { "Modalità" };
+		String elementiComandi[] = { "Comandi da tastiera" };
 		String elementiCredits[] = { "Credits" };
 		Map<String, String[]> mappa = new HashMap<String, String[]>();
 		mappa.put("file", elementiFile);
-		mappa.put("opzioni", elementiOpzioni);
+		mappa.put("comandi", elementiComandi);
 		mappa.put("credits", elementiCredits);
 		return mappa;
 	}
@@ -82,10 +83,23 @@ public class JCarcassonneMenu extends JMenuBar implements ActionListener
 									+ "Si ringrazia anche chi non programma in java! ;)"
 									+ "<br/><br/><br/>"
 									+ "swKnights - perchè il male si annida anche nel cattivo sw... e va combattuto! - swKnights"
-									+ "<br/>"
-									+ "Grazie Maestro!<html/>", "Carcassonne - swKnights -credits",
+									+ "<br/>" + "Grazie Maestro!<html/>", "Carcassonne - swKnights -credits",
 							JOptionPane.INFORMATION_MESSAGE);
 		}
+		if (item.equals("Comandi da tastiera"))
+		{
+			JOptionPane.showMessageDialog(this, "<html>Comandi da tastiera<br/><br/>"
+					+ "Arrow UP -> mappa su <br/>" + "Arrow Down -> mappa giù <br/>"
+					+ "Arrow Left -> mappa sinistra <br/>" + "Arrow Right -> mappa destra <br/>"
+					+ "R -> ruota tessera<br/>" + "P -> Pass", "Carcassonne - swKnights -comandi",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+		if (item.equals("NuovaPartita"))
+		{
+			JOptionPane.showMessageDialog(this, "<html>Implementato in carcassonne 2.0<br/><br/>",
+					"Carcassonne - swKnights -comandi", JOptionPane.INFORMATION_MESSAGE);
+		}
+
 	}
 
 }

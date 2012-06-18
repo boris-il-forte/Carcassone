@@ -202,6 +202,7 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 		Map<Color, Icon> mappaSegnalini = this.view.getMappaSegnalini();
 		this.giocatoreCorrente = new JCarcassonneCurrentPlayer(mappaSegnalini);
 		this.labelCorrente = new JLabel();
+		this.labelCorrente.setForeground(Color.YELLOW);
 		JPanel labelPanelCorrente = new JPanel();
 		labelPanelCorrente.add(this.labelCorrente);
 		labelPanelCorrente.setOpaque(false);

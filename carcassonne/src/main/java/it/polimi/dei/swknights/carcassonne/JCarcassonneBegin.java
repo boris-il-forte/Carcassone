@@ -29,7 +29,7 @@ public class JCarcassonneBegin
 	 */
 	public JCarcassonneBegin()
 	{
-		URL url = JCarcassonneBegin.class.getResource("/error.jpg");
+		URL url = JCarcassonneBegin.class.getResource("/pulsanti/logo.png");
 		try
 		{
 			this.icon = new ImageIcon(ImageIO.read(url));

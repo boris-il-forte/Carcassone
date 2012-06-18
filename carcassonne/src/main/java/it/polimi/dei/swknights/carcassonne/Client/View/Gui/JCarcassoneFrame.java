@@ -36,6 +36,7 @@ public class JCarcassoneFrame extends JFrame
 	{
 		super();
 		this.view = gui;
+		this.setIconImage(this.view.getSfondo("logo"));
 		this.inizializzaFinestra(righe, colonne);
 	}
 

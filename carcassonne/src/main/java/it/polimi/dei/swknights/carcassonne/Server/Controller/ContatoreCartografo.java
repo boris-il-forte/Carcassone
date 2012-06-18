@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.Controller;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Server.Controller.Costruzioni.Costruzione;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
