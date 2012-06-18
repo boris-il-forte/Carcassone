@@ -29,10 +29,12 @@ public class JCarcassonneSegnalini extends JPanel
 		this.mappaIcone = mappaIcone;
 		this.segnalino = new JLabel();
 		this.segnalino.setPreferredSize(DIMENSIONE_SEGNALINO);
+		this.segnalino.setOpaque(true);
 		this.segnalino.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		this.add(this.segnalino);
 		this.contatore = new JLabel();
 		this.add(this.contatore);
+		this.setOpaque(false);
 	}
 
 	/**

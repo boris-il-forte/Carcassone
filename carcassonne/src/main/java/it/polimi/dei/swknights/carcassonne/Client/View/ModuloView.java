@@ -115,6 +115,13 @@ public abstract class ModuloView extends AbstractModuloView
 	 */
 	public void ridaiSegnaliniDiTessere(Map<AdapterTessera, Coordinate> tessereCostruzioneFinita)
 	{
+		try
+		{
+			Thread.sleep(300);
+		}
+		catch(InterruptedException e)
+		{	
+		}
 		for (Entry<AdapterTessera, Coordinate> entryAdapterCoord : tessereCostruzioneFinita.entrySet())
 		{
 			Coordinate coord = entryAdapterCoord.getValue();

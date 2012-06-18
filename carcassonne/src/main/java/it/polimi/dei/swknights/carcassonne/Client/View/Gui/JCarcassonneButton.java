@@ -31,6 +31,7 @@ public class JCarcassonneButton extends JPanel
 		this.button.setMinimumSize(dimensione);
 		this.button.setPreferredSize(dimensione);
 		this.button.setMaximumSize(dimensione);
+		this.setOpaque(false);
 	}
 
 	/**

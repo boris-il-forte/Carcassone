@@ -4,7 +4,10 @@ import it.polimi.dei.swknights.carcassonne.Util.ColoriGioco;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -26,8 +29,9 @@ public class JCarcassonnePunteggi extends JPanel
 	 * @param numGiocatori
 	 *            the number of player's
 	 */
-	public JCarcassonnePunteggi(int numGiocatori)
+	public JCarcassonnePunteggi(int numGiocatori, BufferedImage background)
 	{
+		this.backGround =background;
 		this.players = new HashMap<Color, JCarcassonnePlayer>();
 		this.setLayout(new FlowLayout());
 		this.creaColori(numGiocatori);
@@ -51,6 +55,24 @@ public class JCarcassonnePunteggi extends JPanel
 			}
 		}
 	}
+	
+	/**
+	 * Override superclass method to draw background image
+	 */
+	@Override
+	public void paintComponent(Graphics g)
+	{
+		Dimension panelSize = getSize();
+		int width = this.backGround.getWidth();
+		int height = this.backGround.getHeight();
+		for (int y = 0; y < panelSize.height; y += height)
+		{
+			for (int x = 0; x < panelSize.width; x += width)
+			{
+				g.drawImage(this.backGround, x, y, this);
+			}
+		}
+	}
 
 	private void creaColori(int numGiocatori)
 	{
@@ -64,6 +86,8 @@ public class JCarcassonnePunteggi extends JPanel
 		}
 
 	}
+
+	private BufferedImage	backGround;
 
 	private Map<Color, JCarcassonnePlayer>	players;
 

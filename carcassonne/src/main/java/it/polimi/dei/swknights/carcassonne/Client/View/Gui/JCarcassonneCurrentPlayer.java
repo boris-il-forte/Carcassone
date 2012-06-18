@@ -30,6 +30,7 @@ public class JCarcassonneCurrentPlayer extends JPanel
 	{
 		this.addIntestazione();
 		this.addSegnalini(mappaSegnalini);
+		this.setOpaque(false);
 	}
 
 	/**
@@ -64,6 +65,7 @@ public class JCarcassonneCurrentPlayer extends JPanel
 		this.nome = new JLabel();
 		this.nome.setPreferredSize(SIZE_NOME);
 		panel.add(this.nome);
+		panel.setOpaque(false);
 		this.add(panel);
 	}
 
