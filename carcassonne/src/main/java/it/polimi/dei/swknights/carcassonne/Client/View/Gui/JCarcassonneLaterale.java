@@ -20,6 +20,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 
@@ -201,9 +202,12 @@ public class JCarcassonneLaterale extends Box implements ActionListener, KeyList
 		Map<Color, Icon> mappaSegnalini = this.view.getMappaSegnalini();
 		this.giocatoreCorrente = new JCarcassonneCurrentPlayer(mappaSegnalini);
 		this.labelCorrente = new JLabel();
+		JPanel labelPanelCorrente = new JPanel();
+		labelPanelCorrente.add(this.labelCorrente);
+		labelPanelCorrente.setOpaque(false);
 		this.add(this.giocatoreCorrente);
 		this.aggiungiSpazio();
-		this.add(this.labelCorrente);
+		this.add(labelPanelCorrente);
 	}
 
 	private void aggiugiTesseraCorrente()
