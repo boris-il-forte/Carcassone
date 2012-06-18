@@ -63,6 +63,7 @@ public class JCarcassonneCurrentPlayer extends JPanel
 		this.colore.setOpaque(true);
 		panel.add(this.colore);
 		this.nome = new JLabel();
+		this.nome.setForeground(Color.YELLOW);
 		this.nome.setPreferredSize(SIZE_NOME);
 		panel.add(this.nome);
 		panel.setOpaque(false);

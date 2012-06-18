@@ -1,6 +1,5 @@
 package it.polimi.dei.swknights.carcassonne.Server.ProxyView.Handlers;
 
-import it.polimi.dei.swknights.carcassonne.Debug;
 import it.polimi.dei.swknights.carcassonne.Events.Game.Controller.FinePartitaEvent;
 import it.polimi.dei.swknights.carcassonne.Server.ProxyView.ProxyView;
 import it.polimi.dei.swknights.carcassonne.Util.Punteggi;

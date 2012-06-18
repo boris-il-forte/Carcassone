@@ -33,6 +33,7 @@ public class JCarcassonneSegnalini extends JPanel
 		this.segnalino.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 		this.add(this.segnalino);
 		this.contatore = new JLabel();
+		this.contatore.setForeground(Color.YELLOW);
 		this.add(this.contatore);
 		this.setOpaque(false);
 	}
