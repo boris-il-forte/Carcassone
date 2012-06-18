@@ -26,12 +26,18 @@ import javax.management.BadAttributeValueExpException;
 public class FactoryTessereNormali extends FactoryTessere
 {
 
+	/**
+	 * Default constructor
+	 */
 	public FactoryTessereNormali()
 	{
 		super();
 		this.descrizioniTessere = new ArrayList<String>();
 	}
 
+	/**
+	 * Method that builds up all cards from file
+	 */
 	@Override
 	public void acquisisciMazzoDaFile(String pathFileTessere)
 	{

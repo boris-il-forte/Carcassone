@@ -8,8 +8,23 @@ import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Server.Model.Giocatore.Segnalino;
 import it.polimi.dei.swknights.carcassonne.Util.PuntoCardinale;
 
+/**
+ * Handler class for the marker-place event coming from the client. It
+ * implements visitor pattern to handle this event
+ * 
+ * @author dave
+ * 
+ */
 public class TileHandler extends ModuloControllerHandler
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param controller
+	 *            the controller using this handler
+	 * @param model
+	 *            the model related to this controller
+	 */
 	public TileHandler(ModuloController controller, ModuloModel model)
 	{
 		super(controller, model);

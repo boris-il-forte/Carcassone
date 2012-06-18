@@ -15,6 +15,12 @@ import java.io.Serializable;
 
 public class Segnalino implements Serializable
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param colore
+	 *            the color of the marker
+	 */
 	public Segnalino(Color colore)
 	{
 		this.colore = colore;
@@ -30,14 +36,17 @@ public class Segnalino implements Serializable
 		return this.colore;
 	}
 
+	/**
+	 * String serialization of the marker, used in socket protocol
+	 */
 	@Override
 	public String toString()
 	{
 		return "+" + ColoriGioco.getSigla(this.colore);
 	}
 
-	private Color	colore;
-	
+	private Color				colore;
+
 	private static final long	serialVersionUID	= -8789130292379134917L;
 
 }

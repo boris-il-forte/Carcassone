@@ -32,6 +32,9 @@ import java.util.Set;
 public final class DatiPartita
 {
 
+	/**
+	 * Default constructor
+	 */
 	public DatiPartita()
 	{
 		this.factoryGiocatori = new FactoryGiocatore();
@@ -110,6 +113,11 @@ public final class DatiPartita
 		return listaGiocatori;
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the set of empty coordinates where a card can be placed
+	 */
 	public Set<Coordinate> getSetCoordinateVuote()
 	{
 		return this.areaDiGioco.getSetCoordinateVuote();
@@ -148,7 +156,7 @@ public final class DatiPartita
 	}
 
 	/**
-	 * 
+	 * Getter method
 	 * @return the first card, to be placed
 	 */
 	public Tessera pescaPrimaTessera()
@@ -156,6 +164,10 @@ public final class DatiPartita
 		return this.tesseraMagic;
 	}
 
+	/**
+	 * Updates the player's score
+	 * @param punteggi the updated score of all players
+	 */
 	public void aggiornaPunteggioGiocatori(Punteggi punteggi)
 	{
 		for (Entry<Color, Integer> entry : punteggi.entrySet())

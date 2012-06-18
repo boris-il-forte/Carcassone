@@ -63,6 +63,10 @@ public enum Elemento {
 
 	}
 
+	/**
+	 * returns string serialization of this object. used in protocol string
+	 * representing cards
+	 */
 	@Override
 	public String toString()
 	{

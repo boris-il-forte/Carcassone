@@ -49,17 +49,32 @@ public class ModuloModel extends AbstractModel
 		this.idPartita = idPartita;
 	}
 
+	/**
+	 * convenience constructor to create a model without a name
+	 */
 	public ModuloModel()
 	{
 		this("");
 	}
 
+	/**
+	 * Rotate the current card
+	 */
 	public void ruotaTessera()
 	{
 		this.tesseraCorrente.ruota();
-		this.fire(new UpdateRotationEvent(this.tesseraCorrente,this));
+		this.fire(new UpdateRotationEvent(this.tesseraCorrente, this));
 	}
 
+	/**
+	 * Add a marker to the current tile
+	 * 
+	 * @param puntoCardinale
+	 *            a ardinal point where to place the marker
+	 * @return the added marker
+	 * @throws SegnaliniFinitiException
+	 *             if current player has no more available markers
+	 */
 	public Segnalino addSegnalinoTesseraCorrente(PuntoCardinale puntoCardinale)
 			throws SegnaliniFinitiException
 	{
@@ -69,6 +84,11 @@ public class ModuloModel extends AbstractModel
 		return segnalino;
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the current card
+	 */
 	public Tessera getTesseraCorrente()
 	{
 		return this.tesseraCorrente;
@@ -119,11 +139,23 @@ public class ModuloModel extends AbstractModel
 		this.datiPartita.nextTurno();
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @param tessera
+	 *            the card we want to ask about
+	 * @return the coordinates of the given card
+	 */
 	public Coordinate getCoordinateTessera(Tessera tessera)
 	{
 		return this.datiPartita.getCoordinateTessera(tessera);
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the set of the empty coordinates where a card can be placed
+	 */
 	public Set<Coordinate> getSetVuote()
 	{
 		return this.datiPartita.getSetCoordinateVuote();
@@ -138,7 +170,7 @@ public class ModuloModel extends AbstractModel
 	 */
 	public void posizionaTesseraCorrente(Coordinate coordinate) throws MossaNonValidaException
 	{
-		this.posizionaTessera(this.getTesseraCorrente() , coordinate);
+		this.posizionaTessera(this.getTesseraCorrente(), coordinate);
 	}
 
 	/**
@@ -152,12 +184,12 @@ public class ModuloModel extends AbstractModel
 	 */
 	public void posizionaTessera(Tessera tessera, Coordinate coordinate) throws MossaNonValidaException
 	{
-		if(tessera != null)
+		if (tessera != null)
 		{
-		AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
-		areaDiGioco.addTessera(coordinate, tessera);
-		this.coordinateTesseraCorrente = coordinate;
-		this.fire(new UpdatePositionEvent(tessera, coordinate, this));
+			AreaDiGioco areaDiGioco = this.datiPartita.getAreaDiGioco();
+			areaDiGioco.addTessera(coordinate, tessera);
+			this.coordinateTesseraCorrente = coordinate;
+			this.fire(new UpdatePositionEvent(tessera, coordinate, this));
 		}
 		else
 		{
@@ -188,12 +220,26 @@ public class ModuloModel extends AbstractModel
 		this.tesseraCorrente = this.datiPartita.pescaTesseraDalMazzo();
 	}
 
+	/**
+	 * Notifies the end of the game
+	 * 
+	 * @param punteggi
+	 *            the final score of all players
+	 */
 	public void notificaFinePartita(Punteggi punteggi)
 	{
 		this.datiPartita.aggiornaPunteggioGiocatori(punteggi);
 		this.fire(new FinePartitaEvent(this, this.getPunteggi()));
 	}
 
+	/**
+	 * notifies that a construction has been completed
+	 * 
+	 * @param tessere
+	 *            the card to be updated (because they contains markers)
+	 * @param punteggi
+	 *            the score at the end of this turn
+	 */
 	public void notificaCostruzioneCompletata(List<Tessera> tessere, Punteggi punteggi)
 	{
 		this.datiPartita.aggiornaPunteggioGiocatori(punteggi);
@@ -209,6 +255,9 @@ public class ModuloModel extends AbstractModel
 		this.fire(new CostruzioneCompletataEvent(this, mapTessere, this.getPunteggi()));
 	}
 
+	/**
+	 * Add a player to the game
+	 */
 	public void addPlayer()
 	{
 		try

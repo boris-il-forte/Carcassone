@@ -25,9 +25,12 @@ public class Link implements Cloneable, Serializable
 	{
 		if (links.length != LINKS_NUMBER) { throw new IllegalArgumentException(
 				"You are supposed to pass six booleans to Link!"); }
-		this.direzioni =  links.clone();
+		this.direzioni = links.clone();
 	}
 
+	/**
+	 * Clone method
+	 */
 	@Override
 	public Link clone() throws CloneNotSupportedException
 	{
@@ -57,7 +60,7 @@ public class Link implements Cloneable, Serializable
 	 * 
 	 * @param puntoCardinale1
 	 * @param puntoCardinale2
-	 * @return
+	 * @return true if they are connected
 	 */
 	public boolean areConnected(PuntoCardinale puntoCardinale1, PuntoCardinale puntoCardinale2)
 	{
@@ -72,6 +75,9 @@ public class Link implements Cloneable, Serializable
 		}
 	}
 
+	/**
+	 * String serialization of the card connections. uset in socket protocol
+	 */
 	@Override
 	public String toString()
 	{
@@ -90,10 +96,10 @@ public class Link implements Cloneable, Serializable
 		return stringBuilder.toString();
 	}
 
-	private boolean[]			direzioni		= new boolean[Bussola.NUMERO_DIREZIONI];
+	private boolean[]			direzioni			= new boolean[Bussola.NUMERO_DIREZIONI];
 
-	private static final int	LINKS_NUMBER	= 6;
-	
+	private static final int	LINKS_NUMBER		= 6;
+
 	private static final long	serialVersionUID	= -5768645230627759238L;
 
 }

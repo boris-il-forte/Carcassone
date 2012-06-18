@@ -14,6 +14,10 @@ import java.util.concurrent.ArrayBlockingQueue;
  */
 public class Giocatore
 {
+	/**
+	 * Default friendly constructor
+	 * @param colore
+	 */
 	Giocatore(Color colore)
 	{
 		this.colore = colore;
@@ -49,6 +53,10 @@ public class Giocatore
 		}
 	}
 
+	/**
+	 * Adds a marker to the player
+	 * @param segnalino
+	 */
 	public void addSegnalino(Segnalino segnalino)
 	{
 		this.listaSegnalini.add(segnalino);
@@ -66,6 +74,10 @@ public class Giocatore
 		this.punti += punti;
 	}
 
+	/**
+	 * Gets the score f the player
+	 * @return
+	 */
 	public Integer getPunti()
 	{
 		return this.punti;

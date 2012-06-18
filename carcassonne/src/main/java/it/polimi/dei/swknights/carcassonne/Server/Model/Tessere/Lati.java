@@ -17,6 +17,18 @@ import java.util.Map;
  */
 public class Lati implements Cloneable, Serializable
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param nord
+	 *            the element at north
+	 * @param sud
+	 *            the element at south
+	 * @param ovest
+	 *            the element at west
+	 * @param est
+	 *            the element at east
+	 */
 	public Lati(Elemento nord, Elemento sud, Elemento ovest, Elemento est)
 	{
 		this.nord = nord;
@@ -26,19 +38,28 @@ public class Lati implements Cloneable, Serializable
 		this.datiSegnalino = new DatiSegnalino();
 	}
 
+	/**
+	 * Convenience constructor, takes an array of 4 elements to build up card
+	 * sides
+	 * 
+	 * @param elementiTessera
+	 */
+	public Lati(Elemento[] elementiTessera)
+	{
+		this(elementiTessera[PuntoCardinale.nord.toInt()], elementiTessera[PuntoCardinale.sud.toInt()],
+				elementiTessera[PuntoCardinale.ovest.toInt()], elementiTessera[PuntoCardinale.est.toInt()]);
+
+	}
+
+	/**
+	 * Clone method
+	 */
 	@Override
 	public Lati clone() throws CloneNotSupportedException
 	{
 		Lati copia = (Lati) super.clone();
 		copia.datiSegnalino = (DatiSegnalino) this.datiSegnalino.clone();
 		return copia;
-	}
-
-	public Lati(Elemento[] elementiTessera)
-	{
-		this(elementiTessera[PuntoCardinale.nord.toInt()], elementiTessera[PuntoCardinale.sud.toInt()],
-				elementiTessera[PuntoCardinale.ovest.toInt()], elementiTessera[PuntoCardinale.est.toInt()]);
-
 	}
 
 	/**
@@ -105,6 +126,11 @@ public class Lati implements Cloneable, Serializable
 		this.datiSegnalino.puntoCardinale = puntoCardinale;
 	}
 
+	/**
+	 * Remove the marker from the tile
+	 * 
+	 * @return the removed marker
+	 */
 	public Segnalino removeSegnalino()
 	{
 		Segnalino segnalino = this.datiSegnalino.segnalino;
@@ -112,11 +138,19 @@ public class Lati implements Cloneable, Serializable
 		return segnalino;
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @return the marker on this tile
+	 */
 	public Segnalino getSegnalino()
 	{
 		return this.datiSegnalino.segnalino;
 	}
 
+	/**
+	 * String serialization of card sides. used in socket protocol
+	 */
 	@Override
 	public String toString()
 	{
@@ -160,16 +194,16 @@ public class Lati implements Cloneable, Serializable
 		}
 	}
 
-	private Elemento		nord;
+	private Elemento			nord;
 
-	private Elemento		sud;
+	private Elemento			sud;
 
-	private Elemento		ovest;
+	private Elemento			ovest;
 
-	private Elemento		est;
+	private Elemento			est;
 
-	private DatiSegnalino	datiSegnalino;
-	
+	private DatiSegnalino		datiSegnalino;
+
 	private static final long	serialVersionUID	= -2154812410149249459L;
 
 	private static class DatiSegnalino implements Cloneable, Serializable
@@ -180,14 +214,14 @@ public class Lati implements Cloneable, Serializable
 			DatiSegnalino copia;
 			try
 			{
-		
+
 				copia = (DatiSegnalino) super.clone();
 				if (segnalino != null)
 				{
 					Color colore = this.segnalino.getColore();
 					copia.segnalino = new Segnalino(colore);
 				}
-		
+
 				return copia;
 			}
 			catch (CloneNotSupportedException e)
@@ -195,11 +229,11 @@ public class Lati implements Cloneable, Serializable
 				throw new AssertionError(e);
 			}
 		}
-		
-		private Segnalino		segnalino;
 
-		private PuntoCardinale	puntoCardinale;
-		
+		private Segnalino			segnalino;
+
+		private PuntoCardinale		puntoCardinale;
+
 		private static final long	serialVersionUID	= -9116381706795851155L;
 	}
 }

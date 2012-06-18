@@ -8,8 +8,18 @@ import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.List;
 
+/**
+ * Abstract class thath gives a basic shema for a model. implements the Observer
+ * pattern to fire and recieve events
+ * 
+ * @author dave
+ * 
+ */
 public abstract class AbstractModel implements Model
 {
+	/**
+	 * Default constructor
+	 */
 	public AbstractModel()
 	{
 		this.listeners = new ArrayList<View>();
@@ -46,7 +56,10 @@ public abstract class AbstractModel implements Model
 	{
 		this.listeners.remove(eventListener);
 	}
-
+	
+	/**
+	 * Method used to fire events
+	 */
 	public void fire(ControllerEvent event)
 	{
 		for (View listener : this.listeners)
