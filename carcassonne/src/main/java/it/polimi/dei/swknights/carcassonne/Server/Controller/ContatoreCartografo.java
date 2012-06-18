@@ -122,7 +122,6 @@ public class ContatoreCartografo
 
 	public void addSegnalino(Segnalino segnalino, PuntoCardinale puntoCardinale)
 	{
-		Debug.printMappaPuCo( this.getMapCostruzioniUltimaTessera());
 		Map<PuntoCardinale, Costruzione > mapCostruzPunto = this.getMapCostruzioniUltimaTessera();
 		Costruzione costruzione = mapCostruzPunto.get(puntoCardinale);
 		costruzione.addSegnalino(segnalino);

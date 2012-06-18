@@ -263,7 +263,7 @@ public class CarcassonneServer implements Runnable
 						Debug.print("DONNNNNG, cominciamo ");
 						CarcassonneServer.this.partite.peekLast().cominciaPartita();
 						CarcassonneServer.this.timerScaduto = false;
-						CarcassonneServer.this.giocatoriAttivi = 0;
+						CarcassonneServer.this.azzeraGiocatoriAttivi();
 					}
 
 					final int tempoDiPolling = 200;
@@ -288,5 +288,12 @@ public class CarcassonneServer implements Runnable
 	{
 		this.giocatoriAttivi++;
 	}
+	
+	private synchronized void azzeraGiocatoriAttivi()
+	{
+		this.giocatoriAttivi=0;
+	}
+	
+	
 
 }
