@@ -17,8 +17,6 @@ import java.util.Queue;
  */
 public class FactoryGiocatore
 {
-	private Queue<Color>	codaColoriDisponibili;
-
 	/**
 	 * Instantaces the colors, each of them will be given to each created player
 	 */
@@ -52,5 +50,7 @@ public class FactoryGiocatore
 			throw new FinitiColoriDisponibiliException();
 		}
 	}
+
+	private Queue<Color>	codaColoriDisponibili;
 
 }

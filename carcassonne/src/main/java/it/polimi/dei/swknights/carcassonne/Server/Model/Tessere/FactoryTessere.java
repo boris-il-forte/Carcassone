@@ -1,29 +1,39 @@
 package it.polimi.dei.swknights.carcassonne.Server.Model.Tessere;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class is the generic factory of the Factory Pattern: it gives a schema for
  * the actual card factory
  * @author Edo e Dave
  *
  */
-
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class FactoryTessere
 {
 
+	/**
+	 * Default constructor
+	 */
 	public FactoryTessere()
 	{
 		this.mazzo = new ArrayList<Tessera>();
 	}
 
+	/**
+	 * Gettr method
+	 * @return a card of the deck
+	 */
 	public Tessera getTessera()
 	{
 		int lastIndex = this.mazzo.size() - 1;
 		return this.mazzo.remove(lastIndex);
 	}
 
+	/**
+	 * Getter method
+	 * @return the first game card
+	 */
 	public Tessera getTesseraMagic()
 	{
 		return this.tesseraMagic;

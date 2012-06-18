@@ -23,6 +23,14 @@ import java.util.Map;
 
 public abstract class Tessera implements Cloneable, Serializable
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param lati
+	 *            the sides of the card
+	 * @param link
+	 *            the links of thye card
+	 */
 	Tessera(Lati lati, Link link)
 	{
 		this.lati = lati;
@@ -31,6 +39,9 @@ public abstract class Tessera implements Cloneable, Serializable
 		m.remove(null);
 	}
 
+	/**
+	 * Clone method
+	 */
 	@Override
 	public abstract Tessera clone();
 
@@ -119,16 +130,30 @@ public abstract class Tessera implements Cloneable, Serializable
 		this.lati.setSegnalino(segnalino, puntoCardinale);
 	}
 
+	/**
+	 * Method that removes the marker from this tile
+	 * 
+	 * @return the removed marker
+	 */
 	public Segnalino removeSegnalino()
 	{
 		return this.lati.removeSegnalino();
 	}
+
+	/**
+	 * Getter method
+	 * 
+	 * @return the marker on this tile, or null if there is no marker
+	 */
 
 	public Segnalino getSegnalino()
 	{
 		return this.lati.getSegnalino();
 	}
 
+	/**
+	 * String serialization of this object
+	 */
 	@Override
 	public abstract String toString();
 
@@ -149,10 +174,10 @@ public abstract class Tessera implements Cloneable, Serializable
 
 	}
 
-	protected final Lati	lati;
+	protected final Lati		lati;
 
-	protected final Link	link;
-	
+	protected final Link		link;
+
 	private static final long	serialVersionUID	= 2822247143726687643L;
 
 }

@@ -8,15 +8,18 @@ public abstract class ModuloControllerHandler extends ControllerHandler
 {
 	/**
 	 * Default constructor for generic ModuloController handler
-	 * @param controller the contrroller that manage this handler
-	 * @param model the model managed by the handler and controller
+	 * 
+	 * @param controller
+	 *            the contrroller that manage this handler
+	 * @param model
+	 *            the model managed by the handler and controller
 	 */
 	public ModuloControllerHandler(ModuloController controller, ModuloModel model)
 	{
 		this.controller = controller;
 		this.model = model;
 	}
-	
+
 	/**
 	 * method that wakes up the controller
 	 */

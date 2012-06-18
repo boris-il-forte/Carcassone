@@ -32,22 +32,36 @@ public class Partita
 
 	}
 
+	/** 
+	 * starts the game
+	 */
 	public void cominciaPartita()
 	{
 		this.executor.execute(this.controller);
 	}
 
+	/**
+	 * Getter method
+	 * @return the proxy view of this online game
+	 */
 	public ProxyView getProxyView()
 	{
 		return this.view;
 	}
 
+	/**
+	 * Method used to add players on model
+	 */
 	public void addPlayer()
 	{
 		this.model.addPlayer();
 
 	}
 	
+	/**
+	 * Method used to get game id
+	 * @return the Id of the game (a string timestamp)
+	 */
 	public String getId()
 	{
 		return this.idPartita;

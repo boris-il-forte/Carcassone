@@ -18,8 +18,22 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Class that represent a server for the game Carcassonne. it provides
+ * connections functionality with socket and with the RMI technology.
+ * 
+ * @author dave
+ * 
+ */
 public class CarcassonneServer implements Runnable
 {
+	/**
+	 * Default constructor
+	 * 
+	 * @param ipRMI
+	 *            the ip address used by clients to search remote object in the
+	 *            RMI registry of this machine
+	 */
 	public CarcassonneServer(String ipRMI)
 	{
 		this.partite = new ArrayDeque<Partita>();
@@ -28,6 +42,9 @@ public class CarcassonneServer implements Runnable
 		this.ipRMI = ipRMI;
 	}
 
+	/**
+	 * run method, starts the server
+	 */
 	public final void run()
 	{
 		Debug.print("starting Server");
@@ -122,7 +139,7 @@ public class CarcassonneServer implements Runnable
 		try
 		{
 			java.rmi.registry.LocateRegistry.createRegistry(DEFAULT_RMI_REGISTRY_PORT);
-			
+
 			System.setProperty("java.rmi.server.hostname", this.ipRMI);
 			Debug.print("RMI registry ready.");
 			pt = new ServerRMIImpl(this);
@@ -170,7 +187,7 @@ public class CarcassonneServer implements Runnable
 		}
 	}
 
-	private String	ipRMI;
+	private String				ipRMI;
 
 	private ExecutorService		executor;
 

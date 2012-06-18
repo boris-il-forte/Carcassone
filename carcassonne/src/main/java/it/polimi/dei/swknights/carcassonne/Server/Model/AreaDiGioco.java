@@ -22,6 +22,9 @@ import java.util.Set;
 
 public class AreaDiGioco
 {
+	/**
+	 * Default constructor
+	 */
 	public AreaDiGioco()
 	{
 		this.mappa = new HashMap<Coordinate, Tessera>();
@@ -52,11 +55,23 @@ public class AreaDiGioco
 
 	}
 
+	/**
+	 * Getter method
+	 * 
+	 * @param tessera
+	 *            a card object of the query
+	 * @return the coordinates of the given card
+	 */
 	public Coordinate getCoordinateTessera(Tessera tessera)
 	{
 		return this.gps.get(tessera);
 	}
 
+	/**
+	 * Getter metoh
+	 * 
+	 * @return the set of the empty coordinates where a card could be placed
+	 */
 	public Set<Coordinate> getSetCoordinateVuote()
 	{
 		return this.coordinateVuote;

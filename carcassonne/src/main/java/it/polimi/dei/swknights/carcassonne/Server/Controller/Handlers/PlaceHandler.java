@@ -8,6 +8,13 @@ import it.polimi.dei.swknights.carcassonne.Server.Controller.ModuloController;
 import it.polimi.dei.swknights.carcassonne.Server.Model.ModuloModel;
 import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
+/**
+ * Handler class for the place event coming from the client. It implements
+ * visitor pattern to handle this event
+ * 
+ * @author dave
+ * 
+ */
 public class PlaceHandler extends ModuloControllerHandler
 {
 
@@ -16,6 +23,9 @@ public class PlaceHandler extends ModuloControllerHandler
 		super(controller, model);
 	}
 
+	/**
+	 * Handler method that uses visitor's pattern for the palce event
+	 */
 	@Override
 	public void visit(PlaceEvent event)
 	{
