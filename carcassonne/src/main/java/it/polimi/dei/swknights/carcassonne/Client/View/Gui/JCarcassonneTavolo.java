@@ -4,9 +4,11 @@ import it.polimi.dei.swknights.carcassonne.Util.Coordinate;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -174,8 +176,24 @@ public class JCarcassonneTavolo extends JPanel implements MouseListener
 	}
 
 	/**
-	 * Useless handler from interface
+	 * Override superclass method to draw background image
 	 */
+	@Override
+	public void paintComponent(Graphics g)
+	{
+		BufferedImage img = this.view.getSfondo("prato");
+		Dimension panelSize = getSize();
+		int width = img.getWidth(this);
+		int height = img.getHeight(this);
+		for (int y = 0; y < panelSize.height; y += height)
+		{
+			for (int x = 0; x < panelSize.width; x += width)
+			{
+				g.drawImage(img, x, y, this);
+			}
+		}
+	}
+	
 	private int getNumeroCasella(MouseEvent e)
 	{
 		Object source = e.getSource();
