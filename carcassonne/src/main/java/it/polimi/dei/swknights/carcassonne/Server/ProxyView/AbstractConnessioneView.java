@@ -21,4 +21,3 @@ public abstract class AbstractConnessioneView extends AbstractView
 	public abstract void riceviModificheModel(ControllerEvent event);
 
 }
-//TODO: controllare...
