@@ -59,10 +59,7 @@ public final class ListFolder
 		{
 			/* A JAR path */
 			// strip out only the JAR file
-			String jarPath = dirURL.getPath().substring(5, dirURL.getPath().indexOf("!")); // TODO:
-																							// magic!
-																							// chissà
-																							// perchè...
+			String jarPath = dirURL.getPath().substring(LUNGHEZZA_IDENTIFICATORE, dirURL.getPath().indexOf("!"));
 			JarFile jar = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
 			// gives ALL entries in jar
 			Enumeration<JarEntry> entries = jar.entries();
@@ -91,5 +88,7 @@ public final class ListFolder
 	private ListFolder()
 	{
 	}
+
+	private static final int	LUNGHEZZA_IDENTIFICATORE	= 5;
 
 }
