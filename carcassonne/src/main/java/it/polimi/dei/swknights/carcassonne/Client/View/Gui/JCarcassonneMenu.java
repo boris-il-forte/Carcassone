@@ -76,6 +76,7 @@ public class JCarcassonneMenu extends JMenuBar implements ActionListener
 									+ " Questo gioco è stato testato con il metodo dell'amico di Ghezzi<br/><br/>"
 									+ "Si ringrazia il (buon) Fabio Santi Venuto per i pulsanti<br/>"
 									+ "Grazie a Santi per i pulSanti!<br/> "
+									+ "30 e Logo al Ninte per aver reso un aborto grafico una perla nerd"
 									+ "<br/><br/><br/>"
 									+ "Aggiungere Dave a un progetto in anticipo, lo rende in ritardo, e lo ritarda pure ulteriormente. Ma ci mette i Pulsanti Fighi!<br/> "
 									+ "<br/><br/><br/>"
